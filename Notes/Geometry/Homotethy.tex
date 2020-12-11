@@ -1,0 +1,996 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{md}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Homothety}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{December 8, 2020}
+
+\maketitle
+\section{Homothety}
+\begin{definition}[Homothety]
+    A \emph{homothety} (or dilation) is a mapping that takes a figure and creates an expanded or contracted version of that figure. More formally, givan a point $H$ and number $k, k \neq 0$, a homothety with center $H$ and coefficient $k$ maps point $A$ to a point $A'$ such that:
+    \begin{enumerate}[(a)]
+        \item Points $H$, $A$, and $A'$ are collinear.
+        \item $\overrightarrow{HA'} = k \cdot \overrightarrow{HA}$.
+    \end{enumerate}
+    We denote such homothety by $\mathcal{H}(H, k)$.
+\end{definition}
+\begin{figure}[h]
+    \begin{asy} 
+        unitsize(0.05cm);
+        pair A=(15,15),B=(30,15),C=(30,30),D=(15,30),a=(60,60),b=(120,60),c=(120,120),d=(60,120);
+    
+        dot((0,0));
+        draw(d--(0,0)--b,dotted);
+        draw(c--(0,0),dotted);
+        label("$O$",(0,0),SW);
+        draw(A--B--C--D--A);
+        dot(A);
+        label("$A$",A,SW);
+        dot(B);
+        label("$B$",B,SE);
+        dot(C);
+        label("$C$",C,NE);
+        dot(D);
+        label("$D$",D,NW);
+        draw(a--b--c--d--a);
+        dot(a);
+        label("$A'$",a,SW);
+        dot(b);
+        label("$B'$",b,SE);
+        dot(c);
+        label("$C'$",c,NE);
+        dot(d);
+        label("$D'$",d,NW);
+    \end{asy}        
+\end{figure}
+\begin{remark}
+    Observe that $k = 1$ corresponds to identity (nothing happens) and $k = -1$ to central symmetry.
+\end{remark}
+\subsection{Properties of Homotheties}
+\subsubsection{Collinearity}
+If $\mathcal{H}(A) = A'$, then $H, A, A'$ are collinear.
+\subsubsection{Preserves Angles}
+A Homothety preserves angles. If $\mathcal{H}(A, B, C) = A', B', C'$, then $ \angle ABC = \angle A'B'C'$.
+\begin{note}
+    Can be easily proved using similar triangles. May be prove the next property first.
+\end{note}
+
+\subsubsection{Preserves Ratios}
+A Homothety preserves rations. If $\mathcal{H}(A, B, C) = A', B', C'$, then $AB:BC = A'B':B'C'$.
+\begin{proof}
+    From similar triangles $\triangle HAB$ and $\triangle HA'B'$, we get $A'B' = k \cdot AB$, and the result follows.
+\end{proof}
+
+\subsubsection{Maps Line to Parallel Line}
+A Homothety maps a line to another line parallel to the first. If $\mathcal{H}(A, B) = A', B'$, then $\overline{AB} \parallel \overline{A'B'}$.
+\begin{proof}
+    Follows from similar triangles $\triangle HAB$ and $\triangle HA'B'$.
+\end{proof}
+
+\subsubsection{Maps Circles to Circles}
+A Homothety maps a circle to another circle.
+\begin{remark}
+    Proof \TBD.
+\end{remark}
+\begin{remark}
+    See \url{https://mathworld.wolfram.com/HomotheticCenter.html} for an animation of Homothety for circles.
+\end{remark}
+
+\subsubsection{Preserves Tangency}
+A Homothety preserves tangency.
+\begin{remark}
+    Proof \TBD.
+\end{remark}
+
+\subsubsection{Preserves Figures}
+In general, a homothety maps a figure (i.e. a triangle with its orthocenter) into a similar figure (similar triangle with its orthocenter).
+
+\subsubsection{Existence}
+For every pair of similar, ``equally oriented'' figures (i.e. traingles with corresponding sides parallel) there exists a homothety mapping one of them to the other.
+
+\begin{note}
+    Most likely there is a good HMMT problem on this. \TBD find it and include it.
+\end{note}
+
+\subsubsection{Inverse}
+Every homothety has an inverse transformation. If $\mathcal{H}$ is a homothety with center $H$ and coefficient $k$, then $\mathcal{H}^{-1}$ is the homothety with same center $H$ and coefficient $\frac{1}{k}$.
+
+\subsection{Examples}
+\begin{example}
+    Let $P$ be a point inside a square $ABCD$. Prove that the centroids of the triangle $PAB$, $PBC$, $PBC$, $PCD$, $PDA$ form a square.
+\end{example}
+\begin{soln}
+    Draw the medians $PM_1, PM_2, PM_3, PM_4$ as shown below. Note that $M_1M_2M_3M_4$ is a square.
+    \begin{figure}[h!]
+        \centering        
+        \begin{asy}
+            import cse5;
+            unitsize(1cm);
+            pair A, B, C, D, P, A1, B1, C1, D1, A2, B2, C2, D2;
+
+            A = (0,0);
+            B = (5,0);
+            C = (5,5);
+            D = (0,5);
+            P = (3,4);
+
+            A1 = (A + B)/2;
+            B1 = (B + C)/2;
+            C1 = (C + D)/2;
+            D1 = (D + A)/2;
+
+            draw(A--B--C--D--cycle);
+            draw(A--P--B^^C--P--D);
+
+            draw(A1--P--B1^^C1--P--D1, blue);
+
+            A2 = P + (A1-P)*2/3;
+            B2 = P + (B1-P)*2/3;
+            C2 = P + (C1-P)*2/3;
+            D2 = P + (D1-P)*2/3;
+
+            draw(A1--B1--C1--D1--cycle, lightcyan);
+            draw(A2--B2--C2--D2--cycle, cyan);
+
+            dot(P);
+            dot(A2);
+            dot(B2);
+            dot(C2);
+            dot(D2);
+            
+            label("$P$", P, S);
+            label("$A$", A, S);
+            label("$B$", B, S);
+            label("$C$", C, N);
+            label("$D$", D, N);
+
+            label("$M_1$", A1, S);
+            label("$M_2$", B1, E);
+            label("$M_3$", C1, N);
+            label("$M_4$", D1, W);
+
+            label("$G_1$", A2, SE);
+            label("$G_2$", B2, NE);
+            label("$G_3$", C2, NE);
+            label("$G_4$", D2, NW);
+
+        \end{asy}
+        \caption{Point inside a square example.}
+    \end{figure}
+    Define the homothety $\mathcal{H}(P, \frac{2}{3})$. Then $\mathcal{H}(M_1,M_2,M_3,M_4) = G_1, G_2, G_3, G_4$. Therefore, $G_1G_2G_3G_4$ is a square too.
+\end{soln}
+% \newpage
+\section{Common Homotethies}
+\subsection{Triangles with Parallel Corresponding Sides}
+\begin{theorem}
+    For two triangles $ABC$ and $A'B'C'$, which have parallel corresponding sides, the
+lines $AA'$, $BB'$ and $CC'$, which join the vertices with the corresponding equal angles, either pass through a common point and the triangles are homothetic, or are parallel and the triangles are
+congruent.
+\end{theorem}
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import cse5;
+        unitsize(1cm);
+
+        picture pic1, pic2;
+        pair O, A, B, C;
+        real k1, k2, d;
+
+        O = (0,0);
+        A = (1,3);
+        B = (1.15, 1.75);
+        C = (2, 1);
+
+        k1 = 2;
+        d = 0.2;
+
+        draw(pic1, (-d*A)--((k1+d)*A), blue+dashed);
+        draw(pic1, (-d*B)--((k1+d)*B), blue+dashed);
+        draw(pic1, (-d*C)--((k1+d)*C), blue+dashed);
+
+        draw(pic1, A--B--C--cycle);
+        draw(pic1, (k1*A)--(k1*B)--(k1*C)--cycle);
+        label(pic1, "$A$", A, NW);
+        label(pic1, "$A'$", k1*A, NW);
+        label(pic1, "$B$", B, NW);
+        label(pic1, "$B'$", k1*B, NW);
+        label(pic1, "$C$", C, SE);
+        label(pic1, "$C'$", k1*C, SE);
+
+        dot(pic1, O, blue);
+        label(pic1, "$O$", O, SE);
+
+
+        k1 = -1.25;
+        d = 0.2;
+
+        draw(pic2, ((1+d)*A)--((k1-d)*A), blue+dashed);
+        draw(pic2, ((1+d)*B)--((k1-d)*B), blue+dashed);
+        draw(pic2, ((1+d)*C)--((k1-d)*C), blue+dashed);
+
+        draw(pic2, A--B--C--cycle);
+        draw(pic2, (k1*A)--(k1*B)--(k1*C)--cycle);
+        label(pic2, "$A$", A, NW);
+        label(pic2, "$A'$", k1*A, SE);
+        label(pic2, "$B$", B, NW);
+        label(pic2, "$B'$", k1*B, SE);
+        label(pic2, "$C$", C, SE);
+        label(pic2, "$C'$", k1*C, NW);
+
+        dot(pic2, O, blue);
+        label(pic2, "$O$", O, SE);
+
+        add(shift(3*up)*shift(10*right)*pic2);
+        add(pic1);
+    \end{asy}
+    \caption{Homothetic Triangles}
+\end{figure}
+\begin{proof}
+    \TBD
+\end{proof}
+\subsection{Tangential Circles}
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import cse5;
+        unitsize(0.5cm);
+        pair H, O1, O2, A1, A2;
+        real k, r, d;
+
+        d = 1;
+        H = (0,0);
+        r = 2;
+        O1 = (r, r);
+        k = 2.5;
+        O2 = k*O1;
+
+        A1 = O1 + (0, r*sqrt(2));
+        A2 = O2 + (0, k*r*sqrt(2));
+
+        draw(circle(O1, r*sqrt(2)));
+        draw(circle(O2, k*r*sqrt(2)));
+        draw((A1.x-d,A1.y)--(A1.x+d,A1.y), blue);
+        draw((A2.x-d*k,A2.y)--(A2.x+d*k,A2.y), blue);
+
+        draw(H--O2--A2--cycle^^O1--A1);
+        dot (O1);
+        dot (O2);
+        dot (A1);
+        dot (A2);
+
+        dot (H);
+        label ("$H$", H, SW);
+        label ("$O$", O1, SE);
+        label ("$O'$", O2, SE);
+        label ("$A$", A1, NW);
+        label ("$A'$", A2, NW);
+        label("$l_1$",(A1.x-d,A1.y), W);
+        label("$l_2$",(A2.x-k*d,A2.y), W);
+
+    \end{asy}
+    \caption{Homotethic Circles}
+\end{figure}
+A common homothety arises when two circles touch at a point $H$. Then the ray from $H$ meeting the
+two circles at two corresponding points is a homothety that maps the circles to each other.
+
+In the above figure, one can show using similar triangles that $\frac{HA'}{HA} = \frac{HO'}{HO} = \frac{O'A'}{OA} = \frac{r'}{r} = k$, where $r$ and $r'$ are radii of the circles. As $OA$ is parallel to $O'A'$, we have $l$ is parallel to $l'$. Thus the homothety also maps $l$ to $l'$.
+
+\begin{note}
+    Similar to the top point of the circle shown in the figure, the homotethy also maps the bottom point of one to the other.
+\end{note}
+
+\TBD
+\clearpage
+
+\section{Nine Point Circle or Euler Circle}
+\begin{lemma}[Reflecting the Orthocenter]
+    Let $H$ be the orthocenter of $\triangle ABC$, and $X$ be the reflection of $H$ over $\overline{BC}$, and $Y$ be the reflection of $H$ over the midpoint of $\overline{BC}$. Then
+    \begin{enumerate}
+        \item $X$ is on $(ABC)$ (that is, the circumcircle of $\triangle ABC$).
+        \item $AY$ is the diameter of $(ABC)$.
+    \end{enumerate}
+\end{lemma}
+\begin{figure}[h]
+    \centering
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize(0.75cm);
+
+        pair A, B, C, H, O, O1;
+
+        B = (0,0);
+        A = (2,5);
+        C = (8,0);
+
+        draw (A--B--C--cycle);
+        path c1;
+        c1 = circumcircle(A, B, C);
+        O = circumcenter(A, B, C);
+        draw (c1, yellow);
+
+        pair Ap, Ap2, Bp, Bp2, Cp, Cp2;
+        Ap = foot(A, B, C);
+        Bp = foot (B, A, C);
+        Cp = foot (C, A, B);
+
+        H = extension(A, Ap, B, Bp);
+
+        // Ap2 = 
+
+        Ap2 = H + 2 (Ap - H);
+        draw (A--Ap2, blue);
+        draw (B--Bp, blue);
+        draw (C--Cp, blue);
+
+        dot(Ap, red);
+        dot(Ap2, red);
+
+        pair A1, A1p;
+
+        A1 = (B + C) /2;
+
+        A1p = H + 2 (A1 - H);
+
+        draw (H--A1p, green); 
+        dot(A1, darkgreen);
+        dot(A1p, darkgreen);
+
+
+
+
+        dot(H, red);
+
+
+        label("$H$", H, NW);
+        label("$X$", Ap2, S);
+
+        label("$Y$", A1p, S);
+
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+
+    \end{asy}
+    \caption{Reflecting the Orthocenter}
+\end{figure}
+
+\begin{proof}[Proof of Part 1]
+    We can prove part 1 by extending $AH$ to meet the circle $(ABC)$ at $A''$ and show that $A''$ is the reflection of $H$ over $\overline{BC}$.
+
+    We can do this by noting that $\measuredangle XBC = \measuredangle XAC = 90^\circ - \measuredangle C = \measuredangle A'BH$. Therefore $\triangle A''BA' \cong HBA'$, and $HA' = A'A''$.
+
+    \begin{figure}[h]
+        \centering
+        \begin{asy}
+            import cse5;
+            import olympiad;
+    
+            unitsize(0.75cm);
+    
+            pair A, B, C, H, O, O1;
+    
+            B = (0,0);
+            A = (2,5);
+            C = (8,0);
+    
+            draw (A--B--C--cycle);
+            path c1;
+            c1 = circumcircle(A, B, C);
+            O = circumcenter(A, B, C);
+            draw (c1, yellow);
+    
+            pair Ap, Ap2, Bp, Bp2, Cp, Cp2;
+            Ap = foot(A, B, C);
+            Bp = foot (B, A, C);
+            Cp = foot (C, A, B);
+    
+            H = extension(A, Ap, B, Bp);
+    
+            // Ap2 = 
+    
+            Ap2 = H + 2 (Ap - H);
+            draw (A--Ap2--B, blue);
+            draw (B--Bp, blue);
+            draw (C--Cp, blue);
+    
+            dot(Ap, red);
+            dot(Ap2, red);
+    
+            pair A1, A1p;
+    
+            A1 = (B + C) /2;
+    
+            A1p = H + 2 (A1 - H);
+    
+            // draw (H--A1p, green); 
+            // dot(A1, darkgreen);
+            // dot(A1p, darkgreen);
+    
+    
+            draw(anglemark(Ap2, B, C, 10), red);
+
+            draw(anglemark(Ap2, A, C, 19,20), orange);
+            draw(anglemark(Ap2, A, C, 10), red);
+
+            draw(anglemark(Ap, B, H, 19,20), orange);
+
+            dot(H, red);
+    
+    
+            label("$H$", H, NW);
+            label("$A'$", Ap, SE);
+            label("$A''$", Ap2, SE);
+    
+    
+            label("$A$", A, N);
+            label("$B$", B, SW);
+            label("$C$", C, SE);
+    
+        \end{asy}
+        \caption{Intersection of $AH$ with $(ABC)$ is the reflection of $H$ over $\overline{BC}$}
+    \end{figure}
+    
+\end{proof}
+
+\begin{proof}[Proof of Part 2]
+    We will prove this by constructing the diameter $AD$ of the circle $(ABC)$ and showing that $D$ is the reflection of $H$ over the midpoint of $\overline{AB}$.
+
+    \begin{figure}[h]
+        \centering
+        \begin{asy}
+            import cse5;
+            import olympiad;
+    
+            unitsize(0.75cm);
+    
+            pair A, B, C, H, O, O1;
+    
+            B = (0,0);
+            A = (2,5);
+            C = (8,0);
+    
+            draw (A--B--C--cycle);
+            path c1;
+            c1 = circumcircle(A, B, C);
+            O = circumcenter(A, B, C);
+            draw (c1, yellow);
+    
+            pair Ap, Ap2, Bp, Bp2, Cp, Cp2;
+            Ap = foot(A, B, C);
+            Bp = foot (B, A, C);
+            Cp = foot (C, A, B);
+    
+            H = extension(A, Ap, B, Bp);
+    
+            // Ap2 = 
+    
+            Ap2 = H + 2 (Ap - H);
+            //draw (A--Ap, blue);
+            draw (B--Bp, blue);
+            draw (C--Cp, blue);
+    
+            //dot(Ap, red);
+            //dot(Ap2, red);
+    
+            pair A1, A1p;
+    
+            A1 = (B + C) /2;
+    
+            A1p = H + 2 (A1 - H);
+    
+            draw (H--A1p, green); 
+
+            draw(A--A1p, purple);
+            dot(A1, darkgreen);
+            dot(A1p, darkgreen);
+    
+    
+    
+    
+            dot(H, red);
+            dot(O, purple);
+            draw(C--A1p--B--H--cycle, fuchsia);
+            draw(B--C, green);
+
+            draw (rightanglemark(A1p,B,A, 10), red);
+            draw (rightanglemark(C,Cp,A, 10), red);
+            draw (rightanglemark(A1p,C,A, 10), red);
+            draw (rightanglemark(B,Bp,A, 10), red);
+
+            label("$H$", H, NW);
+    
+            label("$D$", A1p, S);
+    
+            label("$A$", A, N);
+            label("$B$", B, SW);
+            label("$C$", C, SE);
+    
+        \end{asy}
+        \caption{For diameter $AD$, $D$ is reflection of $H$ over midpoint of $\overline{BC}$ }
+    \end{figure}
+    
+    $\overline{CD} \perp \overline{CA}$ and $\overline{BH} \perp \overline{CA}$, therefore $\overline{CD} \parallel \overline{BH}$. Similarly, $\overline{BD} \parallel \overline{CH}$. Therefore, $BHCD$ is a parallelogram and its diagonals bisect. Thereore, $D$ is the reflection of $H$ over the midpoint of $\overline{BC}$.
+\end{proof}
+
+\begin{lemma}[Nine Point Circle]
+Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \overline{AC}, \overline{AB}$, $A_m, B_m, C_n$ be the midpoints of $\overline{BC}, \overline{AC}, \overline{AB}$ and  $A_{\frac{H}{2}}, B_{\frac{H}{2}}, C_{\frac{H}{2}}$ be the midpoints of $\overline{AH}, \overline{BH}, \overline{CH}$ respectively. Then all these nine points lie on a circle. Further, the center of the circle $N_9$ is the midpoint of $\overline{OH}$, where $O$ is the circumcenter of $\triangle ABC$.  
+\end{lemma}
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize(1cm);
+
+        pair A, B, C, H, O, O1;
+
+        B = (0,0);
+        A = (2,5);
+        C = (8,0);
+
+        draw (A--B--C--cycle);
+        path c1;
+        c1 = circumcircle(A, B, C);
+        O = circumcenter(A, B, C);
+        draw (c1, yellow);
+
+        pair Ap, Ap2, Bp, Bp2, Cp, Cp2;
+        Ap = foot(A, B, C);
+        Bp = foot (B, A, C);
+        Cp = foot (C, A, B);
+
+        H = extension(A, Ap, B, Bp);
+
+        // Ap2 = 
+
+        Ap2 = H + 2 (Ap - H);
+        Bp2 = H + 2 (Bp - H);
+        Cp2 = H + 2 (Cp - H);
+        draw (A--Ap2, blue);
+        draw (B--Bp2, blue);
+        draw (C--Cp2, blue);
+
+        dot(Ap, red);
+        dot(Bp, red);
+        dot(Cp, red);
+        dot(Ap2, red);
+        dot(Bp2, red);
+        dot(Cp2, red);
+
+        pair A1, A1p, B1, B1p, C1, C1p;
+
+        A1 = (B + C) /2;
+        B1 = (A + C) / 2;
+        C1 = (A + B) / 2;
+
+        A1p = H + 2 (A1 - H);
+        B1p = H + 2 (B1 - H);
+        C1p = H + 2 (C1 - H);
+
+        draw (H--A1p, green); 
+        dot(A1, darkgreen);
+        dot(A1p, darkgreen);
+
+        draw (H--B1p, green); 
+        dot(B1, darkgreen);
+        dot(B1p, darkgreen);
+
+        draw (H--C1p, green); 
+        dot(C1, darkgreen);
+        dot(C1p, darkgreen);
+
+        pair A3, B3, C3;
+        A3 = A + (H - A)/2;
+        B3 = B + (H - B)/2;
+        C3 = C + (H - C)/2;
+
+        dot(A3, purple);
+        dot(B3, purple);
+        dot(C3, purple);
+
+        path c2 = circumcircle (Ap, Bp, Cp);
+        O1 = circumcenter(Ap, Bp, Cp);
+        draw (c2, orange);
+
+        draw (H--O, cyan);
+
+        dot(H, red);
+        dot (O, purple);
+        dot (O1, purple);
+
+        label("$O$", O, S);
+        label("$N_9$", O1, S);
+
+        label("$H$", H, NW);
+        label("$A_p$", Ap, SW);
+        label("$A_p'$", Ap2, SW);
+
+        label("$A_m$", A1, SW);
+        label("$A_m'$", A1p, SW);
+
+        label("$A_\frac{H}{2}$", A3, SW);
+        
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+
+    \end{asy}
+    \caption{The 9-point circle}
+\end{figure}
+
+\begin{proof}
+    From the previous lemma, we know that $A_p'$ and $A_m'$ lie on the circle $(ABC)$. 
+
+    Consider the Homothety $\mathcal{H}(H, \frac{1}{2})$. $\mathcal{H}(A_p') = A_p$, $\mathcal{H}(A_m') = A_m$, and $\mathcal{H}(A) = A_{\frac{H}{2}}$. Since the original 3 points are on a circle, the Homothety is also a circle and therefore, $A_p, A_m, A_{\frac{H}{2}}$ are on a circle.
+
+    The center of the circle will also be the Homothety of the original circle, that is $\mathcal{H}(O) = N_9$, therfore, $HN_9 = \frac{1}{2}HO$.
+\end{proof}
+
+\section{More Applications}
+\subsection{Euler Line}
+\begin{lemma}[Euler Line]
+    Let $ABC$ be a triangle, and $H, G, O$ be its orthocenter, centroid, and circumcenter, respectively. Then the points $H, G, O$ lie on a a single line (called the \emph{Euler line} of $\triangle ABC$) in this order and $HG = 2 \cdot GO$.
+\end{lemma}
+\begin{proof}
+    First note that the orthocenter of the medial triangle $A_mB_mC_m$ is the same as the circumcenter $O$ of the trinagle $ABC$. This is becuse $C_mB_m \parallel BC$, and therefor $OA_m \perp BC \implies OA_m \perp C_mB_m$. 
+    \begin{figure}[h!]
+        \centering
+        \begin{asy}
+            import cse5;
+            import olympiad;
+    
+            unitsize(1cm);
+    
+            pair A, B, C, H, O, G;
+    
+            B = (0,0);
+            A = (2,5);
+            C = (8,0);
+    
+            draw (A--B--C--cycle);
+
+            O = circumcenter(A, B, C);
+            G = (A + B + C) / 3;
+
+            pair Ap, Ap2, Bp, Bp2, Cp, Cp2;
+            Ap = foot(A, B, C);
+            Bp = foot (B, A, C);
+            Cp = foot (C, A, B);
+    
+            H = extension(A, Ap, B, Bp);
+    
+    
+            draw (A--Ap, palecyan);
+            draw (B--Bp, palecyan);
+            draw (C--Cp, palecyan);
+    
+            //dot(Ap, red);
+            //dot(Bp, red);
+            //dot(Cp, red);
+    
+            pair A1, A1p, B1, B1p, C1, C1p;
+    
+            A1 = (B + C) /2;
+            B1 = (A + C) / 2;
+            C1 = (A + B) / 2;
+    
+            A1p = extension(A1,O,B1,C1);
+            B1p = extension(B1,O,A1,C1);
+            C1p = extension(C1,O,A1,B1);
+
+            draw (A--A1^^B--B1^^C--C1, paleblue);
+            draw (A1--B1--C1--cycle, blue);
+            draw (A1--A1p^^B1--B1p^^C1--C1p, green);
+            draw (H--O, orange);
+
+            dot(A1, darkgreen);
+    
+            dot(B1, darkgreen);
+            dot(C1, darkgreen);
+    
+    
+    
+            dot(H, red);
+            dot (O, red);
+            dot(G, red);
+
+            label("$O$", O, S);
+            label("$G$", G, S);
+
+            label("$H$", H, NW);
+            //label("$A_p$", Ap, SW);
+    
+            label("$A_m$", A1, S);
+            label("$B_m$", B1, E);
+            label("$C_m$", C1, W);
+    
+            
+            label("$A$", A, N);
+            label("$B$", B, SW);
+            label("$C$", C, SE);
+    
+        \end{asy}
+        \caption{The Euler Line}
+    \end{figure}
+    Consider the homotethy $\mathcal{H}(G, -\frac{1}{2})$ (centered at $G$ with a coefficient $-\frac{1}{2}$). $\mathcal{H}(A, B, C) = A_m, B_m, C_m$. That is $\mathcal{H}$ maps $\triangle ABC$ to its medial  $\triangle A_mB_mC_m$. Therefore, $\mathcal{H} = H_m$. But as we noted earlier, $H_m = O$, therefore $\mathcal{H} = O$. By collinearity of homothety, $H, G, O$ are collinear. And by the contraction factor of $\mathcal{H}$, $GO = \frac{1}{2} HG$.
+\end{proof}
+
+\subsection{Circles Inscribed in Segments}
+\begin{problem}
+    Let $\Omega$ be a circle with center $O$ and a chord $\overline{AB}$, and consider a circle $omega$ tangent internally to $\Omega$ at $T$ and $\overline{AB}$ at $K$. Let $M$ denote the midpoint of $\arc{AB}$ not containing $T$. Show that there is a homotethy mapping $K$ to $M$ and in particular $T$, $K$, and $M$ are all collinear. 
+    \textit{Evan Chen EGMO, \#4.31}
+\end{problem}
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import olympiad;
+        import cse5;
+        unitsize(0.35cm);
+
+        pair O, O1, O2, A, B, T1, K1, T2, K2, M, CT1, CT11, CT2;
+        real r = 8, r1, r2, x, y = 1, xd = 3;
+
+        x = sqrt(r*r-y*y);
+
+        O = (0,0);
+        A = (-x,-y);
+        B = (x,-y);
+        M = (0,r);
+
+        K1 = (x - xd, -y);
+
+        path circ = circle(O, r);
+        pair [] t1c =intersectionpoints(circ, M--(M+(M-K1)*-5));
+
+        if (t1c[0].y != M.y) {
+            T1 = t1c[0];
+        } else {
+            T1 = t1c[1];
+        }
+
+        r1 = r * (distance(K1,T1)/distance(M,T1));
+
+        O1 = (x - xd, -y -r1);
+
+        pair Ap, Bp;
+        Ap = (A.x, M.y);
+        Bp = (B.x,M.y);
+        draw (Ap--Bp, blue + dashed);
+        draw (circle(O1, r1), red);
+
+        draw (M--T1, blue);
+        draw (A--M--B--T1, cyan);
+        draw (T1--O1--K1^^O1--O--M, yellow);
+        draw(circ);
+        draw(A--B);
+
+        draw(anglemark(B, M, Bp, 40,45), orange);
+        draw(anglemark(B, A, M, 40,45), orange);
+
+        draw(anglemark(B, M, Bp, 20), red);
+        draw(anglemark(M, B, A, 20), red);
+
+
+        dot(O);
+        dot(O1);
+        dot(M);
+        dot(K1);
+        dot(T1);
+        label("$O$", O, N);
+        label("$A$", A, W);
+        label("$B$", B, E);
+        label("$A'$", Ap, W);
+        label("$B'$", Bp, E);
+        label("$T$", T1, SE);
+        label("$K$", K1, NE);
+        label("$M(K')$", M, N);
+
+    \end{asy}
+    \caption{Homothethy of Circle Inscribed in Segment \textit{(\cite{echen} EGMO 4.31)}}
+\end{figure}
+\begin{soln}
+    As the centers of $\Omega$ and $\omega$ are collinear with $T$ due to tangency, it follows that there is a homotethy centered at $T$ mapping $\omega$ to $\Omega$.
+
+\begin{note}
+    We noted this earlier in the common homotethy situations section as well.
+\end{note}
+    To prove that this homotethy maps $K$ to $M$, we will take the mapping of $K$ as $K'$ and show that $K'$ is the midpoint of the $\arc{AB}$ and is therefore same as $M$.
+
+    By homotethy, $A'B'$ is parallel to $AB$ and therefore $\angle B'K'B = \angle K'BA$. Also, $OK'$ is tangent at $K'$, so $\angle B'K'B = \angle K'AB$. Therefore, $\angle K'BA = \angle K'AB$. That is $\triangle K'AB$ is isoceles and $K'O$ is median in addition to being altitude. Therefore $K'$ is the midpoint of $\arc{AB}$.
+\end{soln}
+\begin{problem}
+    Further, show that $\triangle TMB \sim \triangle BMK$. \textit{\cite{echen} EGMO, \#4.32}
+\end{problem}
+\begin{soln}
+    $\angle MAB = \angle MTB$ (same inscribed angles), and therefore $\angle MTB = \angle MBK $ and $\angle KMB$ is common. Therefore by AA similarity $ \triangle TMB \sim BMK$.
+\end{soln}
+\begin{remark}
+    The above implies that $\frac{TM}{MB} = \frac{MB}{MK}$, that is $MB^2 = MK \cdot MT$, that is the power of $M$ w.r.t circle $\omega$ is $MB^2$.
+\end{remark}
+
+\begin{lemma}[Circles inscribed in Segments]
+    Let $\overline{AB}$ be a chord of circle $\Omega$. Let $\omega$ be a circle tangent to $AB$ at $K$ and internally tangent to $\Omega$ at $T$. Then ray $TK$ passes through the midpoint $M$ of $\arc{AB}$ not containing $T$. 
+
+    Moreover, $MA^2 = MB^2$ is the power of $M$ with respect to $\omega$.
+\end{lemma}
+\begin{proof}
+    Proved in the previous two problems.
+\end{proof}
+
+\begin{problem}
+    Let $\omega_1, \omega_2$ be two cicrles internally tangent to $\Omega$ at $T_1, T_2$, and externally tangent to each other. Suppose their common tangent meets the circle $\Omega$ at $P$. Let $K_1K_2$ be another common tangent, tangent at points $K_1, K_2$ to $\omega_1, \omega_2$. Show that the rays $T_1K_1$ and $T_2K_2$ also meet $\Omega$ at $P$.
+    \textit{Extracted from \cite{wong} MA2219, Exercise 7.9, as intermediate step.}
+\end{problem}
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import olympiad;
+        import cse5;
+        unitsize(0.5cm);
+
+        real vectRatio(pair v1, pair v2) {
+            return sqrt(v1.x*v1.x + v1.y*v1.y)/sqrt(v2.x*v2.x + v2.y*v2.y);
+        }
+        pair O, O1, O2, A, B, T1, K1, T2, K2, M, CT1, CT11, CT2;
+        real r = 8, r1, r2, x, y = 1, xd = 3;
+
+        x = sqrt(r*r-y*y);
+
+        O = (0,0);
+        A = (-x,-y);
+        B = (x,-y);
+        M = (0,r);
+
+        K1 = (x - xd, -y);
+
+        path circ = circle(O, r);
+        pair [] t1c =intersectionpoints(circ, M--(M+(M-K1)*-5));
+
+        if (t1c[0].y != M.y) {
+            T1 = t1c[0];
+        } else {
+            T1 = t1c[1];
+        }
+
+        //r1 = r*vectRatio((K1-T1),(M-T1));
+        r1 = r * (distance(K1,T1)/distance(M,T1));
+        //label((string)r1, O);
+
+        O1 = (x - xd, -y -r1);
+        CT1 = tangent(M, O1, r1, 1);
+        t1c = intersectionpoints(circ, M--(M+(M-CT1)*-5));
+        CT11 = t1c[1];
+
+        pair tmp = extension(M,CT1,A,B);
+        pair bp = bisectorpoint(A, tmp, CT1);
+
+        //draw(tmp--bp,red);
+
+        O2 = extension(O1,CT1, tmp, bp);
+        r2 = distance(O2, CT1);
+        K2 = foot (O2, A, B);
+        t1c =intersectionpoints(circ, M--(M+(M-K2)*-5));
+        T2 = t1c[1];
+
+        //draw(O1--O2, blue);
+
+        draw (M--CT11);
+
+        draw (circle(O1, r1), red);
+        draw (circle(O2, r2), red);
+        //dot (O2, purple);
+
+        draw (M--T1^^M--T2, blue);
+        draw(circ);
+        draw(A--B);
+        dot(O);
+        dot(O1);
+        dot(O2);
+        dot(M);
+        dot(K1);
+        dot(K2);
+        dot(T1);
+        dot(T2);
+
+        label("$\Omega$", O, NE);
+        label("$\omega_1$", O1, NW);
+        label("$\omega_2$", O2, NE);
+
+        label("$A$", A, W);
+        label("$B$", B, E);
+        //label("$A'$", Ap, W);
+        //label("$B'$", Bp, E);
+        label("$T_1$", T1, SE);
+        label("$K_1$", K1, NE);
+        label("$T_2$", T2, SE);
+        label("$K_2$", K2, NE);
+        label("$P$", M, N);
+
+
+    \end{asy}
+    
+\end{figure}
+\begin{proof}
+    By the previous lemma, we know that there is a homothety centered at $T_1$ that sends $K_1$ to $K_1'$, such that $K_1'$ is the midpoint of $\arc{AB}$, and power of $K_1'$ w.r.t circle $\omega_2$  is $PB^2 = PA^2$. Similarly, there is homothety centered at $T_2$ that sends $K_2$ to $K_2'$, such that $K_2'$ is the midpoint of $\arc{AB}$, and power of $K_2'$ w.r.t circle $\omega_2$ is $PB^2 = PA^2$.
+
+    However, if $K_1', K_2'$ are both the midpoint of $\arc{AB}$, then they are the same point $K'$. Then $K'$ has the same power w.r.t circles $\omega_1, \omega_2$, and therefore is on the radical axis, that is on the common tangent. Therefore, $K'$ and $P$ are the same points.
+\end{proof}
+
+\begin{problem}
+    Let $\omega_1, \omega_2, \omega_3$ be three circles inside and tangent to a circle $\Omega$ such that $\omega_2$ is tangent to $\omega_1$ and $\omega_3$ externally; and $\omega_1, \omega_3$ lie outside each other. Suppose the common tangent between $\omega_1, \omega_2$
+    and the common tangent between $\omega_1, \omega_2$ meet at a point $P$ on $\Omega$. Prove that $\omega_1, \omega_2, \omega_3$ touch a line.
+    \textit{\cite{wong} MA2219, Exercise 7.9.}
+\end{problem}
+\TBD Add a version of the diagram above with $\omega_3$ added.
+\vspace{0.1in}
+
+    Let $T_1, T_2, T_3$ be the points of tangencies for the 3 circles with $\Omega$ as previous problems.
+
+    Let's first consider the pair $\omega_1, \omega_2$. Let their common tangency be $K_1, K_{21}$ with $K_1$ being the tangency point with $\omega_1$ and $K_{21}$  the tangency point with $\omega_2$. From the previous problem, we know that $T_1K_1$ and $T_2K_{21}$ intersect with $\Omega$ and their common tangent at a point, say $P_{12}$.
+
+    Similarly, if we consider $\omega_2, \omega_3$ and let their common tangent be $K_{23}K_3$, we know that they intersect with $\Omega$ and their common tangent at a point, say $P_{23}$.
+
+    However, the 2 common tangents meet $\Omega$ at the same point $P$. Therefore, $P = P_{12} = P_{23}$. This implies that $K_{21} = K_{23}$ and so the two tangent lines $K_1K_{21}$ and $K_{23}K_3$ are the same.
+
+\clearpage
+\section{Problems}
+\begin{problem}
+    Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
+    \begin{sketch}
+        The homotethy cenetered at $X$ sends $A$ to $C$ and $B$ to $D$. Therefore, it must send $E$ to $F$ (preserve triangle similarity). 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    \TBD
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    \TBD
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    \TBD
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    \TBD
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+
+\clearpage
+\section{Solutions}
+\makehints
+
+\clearpage
+
+\begin{thebibliography}{99}
+	\bibitem{echen} Evan Chen, Euclidean Geometry in Mathematical Olympiads (EGMO)
+    \bibitem{wong} Wong Yan Loi, Notes MA2219, available at: \\ \url{https://cpb-us-w2.wpmucdn.com/blog.nus.edu.sg/dist/2/12659/files/2019/12/Notes_MA2219.pdf} 
+	\bibitem{paris} Paris Pamfilos, Homotheties and Similiarities : \\ \url{http://users.math.uoc.gr/~pamfilos/eGallery/problems/Similarities.pdf}
+\end{thebibliography}
+
+\end{document}
