@@ -1,0 +1,14 @@
+*.pdf
+*.gz
+*.aux
+*.log
+*.pre
+*.pre
+*.asy
+*.fls
+*.fdb*
+*.DS_Store
+*.out
+*.toc
+*.nav
+*.snm
