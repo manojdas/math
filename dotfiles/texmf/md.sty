@@ -1,0 +1,83 @@
+\ProvidesPackage{md}
+\newif\ifusefancy\usefancyfalse
+\newif\ifuseevan\useevantrue
+
+
+\usepackage{graphicx,caption,subcaption}
+\usepackage{yhmath}
+
+\graphicspath{ {./images/} }
+
+\usepackage[letterpaper, top=2cm,bottom=3.5cm,left=1.5cm,right=1.5cm,includeheadfoot,asymmetric]{geometry}
+
+\newcommand{\org}[1]{\newcommand{\theorg}{#1}}
+\newcommand{\TBD}{\emph{\textcolor{red}{TBD\ }}}
+
+% \usepackage[automark,headwidth=textwithmarginpar,footwidth=text,
+%             footsepline=0.4pt, 
+%             headsepline=0.4pt:textwithmarginpar,
+%             plainfootsepline]{scrlayer-scrpage}  % Custom header and footer
+
+\ifuseevan
+\usepackage[sexy, nofancy, hints]{evan}
+\Newassociation{sketch}{hintitem}{hints}
+\else
+\usepackage[colorlinks]{hyperref}
+\providecommand{\thetitle}{\@title}
+\providecommand{\theauthor}{\@author}
+\providecommand{\thedate}{\@date}
+\PassOptionsToPackage{usenames,svgnames,dvipsnames,table}{xcolor}
+\usepackage{xcolor}
+\fi
+
+\usepackage{lastpage}
+
+\ifusefancy
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thetitle}
+\fancyhead[RE,LO]{\thedate}
+% \fancyfoot[CE,CO]{Page \thepage\ of \pageref{LastPage}}
+\fancyfoot[LE,RO]{\theorg}
+\fancyfoot[RE,LO]{Page \thepage\ of \pageref{LastPage}}
+
+
+\fancypagestyle{plain}{%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhf{}%
+  \fancyfoot[LE,RO]{\theorg}
+\fancyfoot[RE,LO]{Page \thepage\ of \pageref{LastPage}}
+%   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}%
+}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\else
+\usepackage[headsepline, footsepline=2pt, plainfootsepline]{scrlayer-scrpage}
+\renewcommand{\headfont}{}
+\addtolength{\textheight}{3.14cm}
+\setlength{\footskip}{0.5in}
+\setlength{\headsep}{10pt}
+
+
+\ohead{\thetitle}
+\chead{}
+\ihead{\thedate}
+\cfoot{}
+\ofoot*{Page \thepage~of \pageref{LastPage}}
+\ifoot{\theorg}
+\setlength{\headheight}{14pt}
+\fi
+
+
+% \@ifundefined{KOMAClassName}{}{
+% 	\renewcommand*{\sectionformat}%
+% 		{\color{purple}\S\thesection\enskip}
+% 	\renewcommand*{\subsectionformat}%
+% 		{\color{purple}\S\thesubsection\enskip}
+% 	\renewcommand*{\subsubsectionformat}%
+% 		{\color{purple}\S\thesubsubsection\enskip}
+% 	\KOMAoptions{numbers=noenddot}
+% }
