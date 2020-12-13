@@ -7,7 +7,7 @@
 \title{Homothety}
 % If you contribute to the handout, put your name in comment here
 
-\author{Manoj Das 2}
+\author{Manoj Das}
 \org{Manoj Math Notes}
 \date{December 8, 2020}
 
@@ -830,7 +830,7 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 
 \begin{problem}
     Let $\omega_1, \omega_2$ be two cicrles internally tangent to $\Omega$ at $T_1, T_2$, and externally tangent to each other. Suppose their common tangent meets the circle $\Omega$ at $P$. Let $K_1K_2$ be another common tangent, tangent at points $K_1, K_2$ to $\omega_1, \omega_2$. Show that the rays $T_1K_1$ and $T_2K_2$ also meet $\Omega$ at $P$.
-    \textit{Extracted from \cite{wong} MA2219, Exercise 7.9, as intermediate step.}
+    \textit{(Extracted from \cite{wong} MA2219, Exercise 7.9, as intermediate step.)}
 \end{problem}
 \begin{figure}[h!]
     \centering
@@ -930,7 +930,7 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 \begin{problem}
     Let $\omega_1, \omega_2, \omega_3$ be three circles inside and tangent to a circle $\Omega$ such that $\omega_2$ is tangent to $\omega_1$ and $\omega_3$ externally; and $\omega_1, \omega_3$ lie outside each other. Suppose the common tangent between $\omega_1, \omega_2$
     and the common tangent between $\omega_1, \omega_2$ meet at a point $P$ on $\Omega$. Prove that $\omega_1, \omega_2, \omega_3$ touch a line.
-    \textit{\cite{wong} MA2219, Exercise 7.9.}
+    \textit{(Wong, MA2219 \cite{wong}, Exercise 7.9.)}
 \end{problem}
 \TBD Add a version of the diagram above with $\omega_3$ added.
 \vspace{0.1in}
@@ -946,25 +946,113 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 \clearpage
 \section{Problems}
 \begin{problem}
-    Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
+    \textit{homotethy and Collinearity} Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
     \begin{sketch}
         The homotethy cenetered at $X$ sends $A$ to $C$ and $B$ to $D$. Therefore, it must send $E$ to $F$ (preserve triangle similarity). 
     \end{sketch}
 \end{problem}
 
 \begin{problem}
-    \TBD
+    Let $X$ be a point inside a rectangle $ABCD$ and denote by $K, L, M, N$ the reflections of $X$ about the midpoints of the sides $AB, BC, CD, DA$, respectively. Prove that $KLMN$ is a rhombus.
+    \begin{sketch}
+        The midpoints of the rectangle form a rohombus. And $\mathcal{H}(X, 2)$ maps each midpoint to $K, L, M, N$. Therefore, $KLMN$ is a rhombus.
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Given a fixed point $P$ and circle $\omega$, find the locus of the points $R$ on the segment $PQ$ where $PR:RQ = 2$ and $Q$ runs over the circle $\omega$.
+    \begin{sketch}
+        Let $\mathcal{H}$ be the homotethy $\mathcal{H}(P, 2)$, then $\mathcal{H}(Q) = R$, and therefore the locus of $R$ as $Q$ over the circle $\omega$ is a circle $\omega_2$ with radius $r_2 = 2\cdot r$ and center $O_2$ at the line segment $PO$ such that $PO_2 = 2 \cdot PO$, where $O$ and $r$ are the center and radius of $\omega$. 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Points $B, C$ are fixed while $A$ is a variable point on a fixed circle $\omega$ of center $O$ and radius $R$. Find the locus of the centroid of the triangle $ABC$.
+    \begin{sketch}
+        Since centroid is $\frac{a+b+c}{3}$, $\mathcal{H}(\frac{b+c}{3}, \frac{1}{3})$ maps $A$ to the centroid. Hence the locus is a circle of radius $\frac{1}{3}\cdot R$, centered at $\frac{b+c}{3}$, where $b, c$ are the vectors for point $B, C$.
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Let $X$ be a point inside a quadrilateral $ABCD$. Prove that the centroids of the triangles $XAB, XBC, XCD, XDA$ form a parallelogram.
     \begin{sketch}
         \TBD 
     \end{sketch}
 \end{problem}
 
 \begin{problem}
-    \TBD
+    Suppose that $ABCD$ is a trapezoid with $AB \parallel CD$. Suppose that $M, N$ are the midpoints of $AB,CD$, and let $AC \cap BD = X$ and let $BC \cap AD = Y$. Prove that $X, Y, M, N$ are collinear.
     \begin{sketch}
         \TBD 
     \end{sketch}
 \end{problem}
+
+\begin{problem}
+    In a triangle $ABC$, let $M, N, P$ be the midpoints of the sides $BC, CA, AB$. Denote the incenters of the three small triangles $APN, BMP, CNM$ by $I, J, K$, respectively. Prove that $MI, NJ, PK$ are concurrent.
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Given a fixed circle with center $O$ and a point $P$ in the plance, consider a point $Q$ on the circle and let $OL$ be the angle bisector of $ \angle POQ $ with $ L \in PQ $. Find the locus of points $L$ when $Q$ runs over the circle.
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    \textit{(USAMO 1992)} Chords $AA', BB'$, and $CC'$ of a sphere $\Omega$ meet at an interior point $P$ but are not all in a plane. The sphere through $A, B, C, P$ is a tangent to the sphere through $A', B', C', P$. Prove that $AA' = BB' = CC'$.
+    \begin{sketch}
+        \TBD 
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Points $A$ and $B$ on a circle are fixed. Point $C$ runs along the circle. Find the set of the intersection points of the medians of triangles $ABC$. \textit{(Prasolov \cite{pgeo}, 7.26)}
+    \begin{sketch}
+        Let $O$ be the midpoint of segment $AB$, and $M$ the intersection point of the medians of triangle $ABC$. The homothety with center $O$ and coefficient $\frac{1}{3}$ sends point $C$ to point $M$.
+        Therefore, the intersection point of the medians of triangle $ABC$ lies on circle $S$ which is
+        the image of the initial circle under the homothety with center $O$ and coefficient $\frac{1}{3}$. To get the desired locus we have to delete from $S$ the images of points $A$ and $B$.
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Triangle $ABC$ is given. Find the locus of the centers of rectangles $PQRS$ whose
+    vertices $Q$ and $P$ lie on side $AC$ and vertices $R$ and $S$ lie on sides $AB$ and $BC$, respectively. \textit{(Prasolov \cite{pgeo}, 7.27)}
+    \begin{sketch}
+    Let $O$ be the midpoint of height $BH$; let $M$, $D$ and $E$ be the midpoints of segment $AC$, and sides $RQ$ and $PS$, respectively (Fig. \TBD).
+
+    Points $D$ and $E$ lie on lines $AO$ and $CO$, respectively. The midpoint of segment $DE$ is the center of rectangle $PQRS$. Clearly, this midpoint lies on segment $OM$. The locus in question is segment $OM$ without its endpoints.
+\end{sketch}
+\end{problem}
+
+\begin{problem}
+    Two circles intersect at points $A$ and $B$. Through point $A$ a line passes. It intersects the circles for the second time at points $P$ and $Q$. What is the line plotted by the midpoint of segment $PQ$ while the intersecting line rotates about point $A$. \textit{(Prasolov \cite{pgeo}, 7.28)}
+    \begin{sketch}
+    Let $O1$ and $O2$ be the centers of the given circles (point $P$ lies on the circle centered at $O1$); $O$ the midpoint of segment $O1O2$; $P', Q'$ and $O'$
+    the projections of points $O1, O2$ and $O$ to line $P Q$. As line $P Q$ rotates, point $O'$ runs the circle $S$ with diameter $AO$. Clearly, the
+    homothety with center $A$ and coefficient $2$ sends segment $P'Q'$
+    to segment $P Q$, i.e., point $O'$ turns into the midpoint of segment $P Q$. Hence, the locus in question is the image of circle
+    $S$ under this homothety.    
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    Points $A$, $B$ and $C$ lie on one line; $B$ is between $A$ and $C$. Find the locus of points $M$ such that the radii of the circumscribed circles of triangles $AMB$ and $CMB$ are equal. \textit{(Prasolov \cite{pgeo}, 7.29)}
+    \begin{sketch}
+    Let $P$ and $Q$ be the centers of the circumscribed circles of triangles $AMB$ and
+    $CMB$. Point $M$ belongs to the locus to be found if $BPMQ$ is a rhombus, i.e., point $M$ is the image of the midpoint of segment $P Q$ under the homothety with center $B$ and coefficient 2. Since the projections of points $P$ and $Q$ to line $AC$ are the midpoints of segments $AB$ and $BC$, respectively, the midpoints of all segments $PQ$ lie on one line. (The locus to be found is the above-obtained line without the intersection point with line $AC$.)    
+    \end{sketch}
+\end{problem}
+
+\begin{remark}
+    \TBD See also Problems 19.10, 19.21, 19.38.
+\end{remark}
+
+
+
+Prove that if no side of a quadrilateral is parallel to any other side, then the midpoint of the segment that connects the intersection points of the opposite sides lies on the line that connects the midpoints of the diagonals. (The Gauss line.)
 
 \begin{problem}
     \TBD
@@ -988,8 +1076,9 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 \clearpage
 
 \begin{thebibliography}{99}
-	\bibitem{echen} Evan Chen, Euclidean Geometry in Mathematical Olympiads (EGMO)
+    \bibitem{echen} Evan Chen, Euclidean Geometry in Mathematical Olympiads (EGMO)
     \bibitem{wong} Wong Yan Loi, Notes MA2219, available at: \\ \url{https://cpb-us-w2.wpmucdn.com/blog.nus.edu.sg/dist/2/12659/files/2019/12/Notes_MA2219.pdf} 
+    \bibitem{pgeo} Prasolov, Problems in Plane and Solid Geometry, available at: \\ \url{http://e.math.hr/afine/planegeo.pdf}
 	\bibitem{paris} Paris Pamfilos, Homotheties and Similiarities : \\ \url{http://users.math.uoc.gr/~pamfilos/eGallery/problems/Similarities.pdf}
 \end{thebibliography}
 
