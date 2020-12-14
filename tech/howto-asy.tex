@@ -1,0 +1,205 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+\lstset{
+numbers=left,
+numberstyle=\small,
+numbersep=8pt,
+frame = single,
+language=C,
+framexleftmargin=15pt}
+
+\begin{document}
+\title{Using Asymptote}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{December 8, 2020}
+
+\maketitle
+\section{Triangles}
+\subsection{Drawing Using Angles}
+\subsubsection{Option 1}
+Use \textit{dir()} to get an unit vector in the desired direction.
+\\
+\begin{asy}
+import geometry;
+size(4cm);
+
+pair A,B,C;
+
+point A=(-.5*sqrt(37),0);
+point B=(.5*sqrt(37),0);
+
+draw(A--B);
+dot(A^^B);
+//dot(origin,red);
+point C_help=shift(A)*dir(50);
+line line_1=line(A,C_help);
+line line_2=line(origin,(0,1));
+pair C=intersectionpoint(line_1,line_2);
+dot(C);
+draw(A--B--C--cycle);
+draw("$50^\circ$",arc(A,.6,0,50));
+draw("$50^\circ$",arc(B,.6,180-50,180));
+draw("$80^\circ$",arc(C,.6,degrees(A-C),degrees(B-C)));
+label("$A$",A,S);
+label("$B$",B,S);
+label("$C$",C,N);
+\end{asy}
+\begin{lstlisting}
+import geometry;
+...
+point A=(-.5*sqrt(37),0);
+point B=(.5*sqrt(37),0);
+...
+point C_help=shift(A)*dir(50);
+line line_1=line(A,C_help);
+line line_2=line(origin,(0,1));
+pair C=intersectionpoint(line_1,line_2);
+...
+\end{lstlisting}
+\subsubsection{Option 2}
+Another version using \textit{rotate}. Also, usage of \textit{markangle}.
+
+\begin{asy}
+size(6 cm);
+import geometry;
+
+pair A = (3,0), B = (4,6);
+pair rotA = rotate(-50,B)*A, rotB = rotate(50,A)*B; //Rotate A 50 degrees clockwise around B, rotate B 50 degrees counterclockwise around A.
+pair C = extension(A,rotB,B,rotA); //Standard function for the intersection of two lines.
+
+draw(A--B--C--cycle);
+dot(A); dot(B); dot(C);
+label("$A$",A,-unit(B+C-2*A)); //Puts the label a unit distance away, opposite the side BC.
+label("$B$",B,-unit(C+A-2*B));
+label("$C$",C,-unit(A+B-2*C));
+markangle("$50^{\circ}$",B,A,C); //These angle marks are the only pieces that actually use the import.
+markangle("$50^{\circ}$",C,B,A);
+markangle("$80^{\circ}$",A,C,B);
+\end{asy}
+\begin{lstlisting}
+...
+//Rotate A 50 degrees clockwise around B,
+//rotate B 50 degrees counterclockwise around A.
+pair rotA = rotate(-50,B)*A, rotB = rotate(50,A)*B;
+...
+markangle("$50^{\circ}$",B,A,C);
+...
+\end{lstlisting}
+\subsection{Circumcircle, Incircle}
+Using \textit{olympiad} package's functions.
+\\
+\vspace{5 pt} \\
+\begin{asy}
+import olympiad;
+unitsize(50);
+pair A,B,C,O,I;
+A=origin; B=2*right; C=1.5*dir(70);
+O=circumcenter(A,B,C); // olympiad - circumcenter
+I=incenter(A,B,C); // olympiad - incenter
+draw(A--B--C--cycle);
+dot(O);
+dot(I);
+draw(circumcircle(A,B,C)); // olympiad - circumcircle
+draw(incircle(A,B,C)); // olympiad - incircle
+label("$I$",I,W);
+label("$O$",O,S);
+\end{asy}
+\begin{lstlisting}
+import olympiad;
+...
+O = circumcenter(A,B,C);
+I = incenter(A,B,C);
+...
+draw (circumcircle (A,B,C));
+draw (incircle (A,B,C));
+...
+\end{lstlisting}
+
+%-----------------------------------------------
+\section{Circles}
+\subsection{Circles at Tangents}
+We use a parabola to find where the center of the tangent circle will be. Let $R$, and $r$ be the radius of the large and the small circle. Then the center of the small circle will be $R + r$ from the center of the large circle. If we let the \textit{Directerix} be at $x$ from the center of the large circle. Then we have $x - R  + r = R + r \implies x = 2 R$.
+\\
+\vspace{5 pt} \\
+\begin{asy}
+size(6 cm);
+import geometry;
+pair O = (0,0);
+line Direc = line((0,2),(1,2));
+//draw (Direc, red + dashed, L = "Directerix");
+parabola Parab = parabola(O,Direc);
+draw (Parab, red + dashed);
+line Loc = line((0,.5),(1,.5));
+draw (Loc, red + dashed);
+pair P = intersectionpoints(Parab,Loc)[1];
+pair Q = (P.x,-P.y);
+draw(circle(O,1));
+draw(circle(P,.5));
+draw(circle(Q,.5));
+draw(box((-1,1),(P.x+.5,-1)));
+dot (O, red);
+dot (P, red);
+dot (Q, red);
+label("O", O, S, red);
+label("P", P, S, red);
+label("Q", Q, S, red);
+\end{asy}
+\begin{lstlisting}
+...
+line Direc = line((0,2),(1,2));
+parabola Parab = parabola(O,Direc);
+line Loc = line((0,.5),(1,.5));
+pair P = intersectionpoints(Parab,Loc)[1];
+pair Q = (P.x,-P.y);
+...
+\end{lstlisting}
+
+\section{More 2D Examples}
+\subsection{Rotations, Parallel Lines}
+\begin{example}[HMMT November 2014, Team Round \#10] \label{hmmt_nov14_team_10}
+    Let $ABCDEF$ be a convex hexagon with the following properties.
+    \begin{enumerate}[a)]
+        \item $\overline{AC}$ and $\overline{AE}$ trisect $\angle BAF$.
+        \item $\overline{BE} \parallel \overline{CD}$ and $\overline{CF} \parallel \overline{DE}$.
+        \item $AB = 2AC = 4AE = 8AF$.
+    \end{enumerate}
+\end{example}
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(1cm);
+        pair A, B, C, D, E, F, C1, E1;
+        real theta = 162, s = 1;
+
+        A = (0, 0);
+        B = (s*8, 0);
+        C = s*4*dir(theta/3);
+        E = s*2*dir(2*theta/3);
+        F = s*dir(theta);
+
+        C1 = rotate(degrees(B-E), C)*(C.x-1,C.y);
+        //draw(C--C1, red);
+
+        E1 = rotate(degrees(C-F), E)*(E.x+1, E.y);
+        //draw(E--E1, red);
+
+        D = extension(C, C1, E, E1);
+
+        draw(E--F--A--B--C--D--cycle);
+        draw(A--C^^A--E^^B--E^^C--F, yellow);
+        
+        
+
+    \end{asy}
+\end{figure}
+
+\begin{thebibliography}{99}
+    \bibitem{staats} Charles Staats III, An Asymptote Tutorial, available at: \\ \url{https://asymptote.sourceforge.io/asymptote_tutorial.pdf} 
+\end{thebibliography}
+
+\end{document}
