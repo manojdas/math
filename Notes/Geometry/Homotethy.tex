@@ -96,7 +96,7 @@ In general, a homothety maps a figure (i.e. a triangle with its orthocenter) int
 For every pair of similar, ``equally oriented'' figures (i.e. traingles with corresponding sides parallel) there exists a homothety mapping one of them to the other.
 
 \begin{note}
-    Most likely there is a good HMMT problem on this. \TBD find it and include it.
+    For an applications of this in a problem see Example \ref{hmmt_nov14_team_10}.
 \end{note}
 
 \subsubsection{Inverse}
@@ -944,9 +944,252 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
     However, the 2 common tangents meet $\Omega$ at the same point $P$. Therefore, $P = P_{12} = P_{23}$. This implies that $K_{21} = K_{23}$ and so the two tangent lines $K_1K_{21}$ and $K_{23}K_3$ are the same.
 
 \clearpage
-\section{Problems}
+\section{More Examples}
+\begin{example}[HMMT November 2014, Team Round \#10] \label{hmmt_nov14_team_10}
+    Let $ABCDEF$ be a convex hexagon with the following properties.
+    \begin{enumerate}[a)]
+        \item $\overline{AC}$ and $\overline{AE}$ trisect $\angle BAF$.
+        \item $\overline{BE} \parallel \overline{CD}$ and $\overline{CF} \parallel \overline{DE}$.
+        \item $AB = 2AC = 4AE = 8AF$.
+    \end{enumerate}
+    Suppose that quadrilaterals $ACDE$ and $ADEF$ have areas 2014 and 1400, respectively. Find the area of quadrilateral $ABCD$
+
+\end{example}
+
+\begin{soln}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(1cm);
+        import patterns;
+
+        add("hatch",hatch());
+        add("hatchback",hatch(NW));
+        add("crosshatch",crosshatch(3mm));
+
+        pair A, B, C, D, E, F, C1, E1;
+        real theta = 162, s = 1;
+
+        A = (0, 0);
+        B = (s*8, 0);
+        C = s*4*dir(theta/3);
+        E = s*2*dir(2*theta/3);
+        F = s*dir(theta);
+
+        C1 = rotate(degrees(B-E), C)*(C.x-1,C.y);
+        //draw(C--C1, red);
+
+        E1 = rotate(degrees(C-F), E)*(E.x+1, E.y);
+        //draw(E--E1, red);
+
+        D = extension(C, C1, E, E1);
+
+        //axialshade(A--C--D--E--cycle, green+opacity(0.4), A, blue+opacity(0.4), D);
+        //axialshade(A--D--E--F--cycle, green+opacity(0.4), A, blue+opacity(0.4), E);
+        fill(A--C--D--E--cycle, blue+opacity(0.25));
+        fill(A--D--E--F--cycle, green+opacity(0.25));
+
+        draw(E--F--A--B--C--D--cycle);
+        draw(B--E^^C--F, yellow);
+        
+        draw(A--C--D--E--cycle, red);
+        draw(A--D--E--F--cycle, red);
+        label("$A$", A, S);
+        label("$B$", B, S);
+        label("$C$", C, NE);
+        label("$D$", D, N);
+        label("$E$", E, NW);
+        label("$F$", F, SW);
+    \end{asy}
+    \caption{Example \ref{hmmt_nov14_team_10} Problem Statement}
+\end{figure}
+
+First, Since $\angle BAC = \angle CAE = \angle EAF$ and $\frac{AC}{AB} = \frac{AE}{AC} = \frac{AF}{AE} =2$, $\triangle ABC \sim \triangle ACE \sim \triangle AEF$. Therefore, $[ABC] = 16[AEF]$. Also, $AFEC \sim AECB$.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(1cm);
+        pair P, Q, T;
+
+        pair A, B, C, D, E, F, C1, E1;
+        real theta = 162, s = 1;
+
+        A = (0, 0);
+        B = (s*8, 0);
+        C = s*4*dir(theta/3);
+        E = s*2*dir(2*theta/3);
+        F = s*dir(theta);
+
+        C1 = rotate(degrees(B-E), C)*(C.x-1,C.y);
+        //draw(C--C1, red);
+
+        E1 = rotate(degrees(C-F), E)*(E.x+1, E.y);
+        //draw(E--E1, red);
+
+        D = extension(C, C1, E, E1);
+
+        P = extension(B, E, A, C);
+        Q = extension(A, E, C, F);
+        T = extension(C, F, B, E);
+
+        draw(E--F--A--B--C--D--cycle);
+        draw(B--E^^C--F, yellow);
+        
+        //draw(A--C--D--E--cycle, red);
+        //draw(A--D--E--F--cycle, red);
+        draw(A--F--E--cycle^^A--E--C--cycle^^A--C--B--cycle, red);
+        draw(C--F^^B--E, blue);
+
+        dot(P);
+        dot(Q); 
+        dot(T);
+
+        label("$A$", A, S);
+        label("$B$", B, S);
+        label("$C$", C, NE);
+        label("$D$", D, N);
+        label("$E$", E, NW);
+        label("$F$", F, SW);
+
+        label("$P$", P, SW);
+        label("$Q$", Q, SE);
+        label("$T$", T, NW);
+    \end{asy}
+    \caption{Example \ref{hmmt_nov14_team_10} - Similar Triangles and Quadrilaterals}
+\end{figure}
+
+Let $P = BE \cap AC, Q = AE \cap FC, T = BE \cap FC$. Then, since the quadrilaterals $AFEC$ and $AECB$ are similar to one another, we have $AP : PC = AQ : QE$ (\TBD check with Sanjana). Therefore, $PQ \parallel EC$.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(1cm);
+        pair P, Q, T;
+
+        pair A, B, C, D, E, F, C1, E1;
+        real theta = 162, s = 1;
+
+        A = (0, 0);
+        B = (s*8, 0);
+        C = s*4*dir(theta/3);
+        E = s*2*dir(2*theta/3);
+        F = s*dir(theta);
+
+        C1 = rotate(degrees(B-E), C)*(C.x-1,C.y);
+        //draw(C--C1, red);
+
+        E1 = rotate(degrees(C-F), E)*(E.x+1, E.y);
+        //draw(E--E1, red);
+
+        D = extension(C, C1, E, E1);
+
+        P = extension(B, E, A, C);
+        Q = extension(A, E, C, F);
+        T = extension(C, F, B, E);
+
+        draw(E--F--A--B--C--D--cycle);
+        draw(B--E^^C--F, yellow);
+        
+        //draw(A--C--D--E--cycle, red);
+        //draw(A--D--E--F--cycle, red);
+        //draw(A--F--E--cycle^^A--E--C--cycle^^A--C--B--cycle, red);
+        //draw(C--F^^B--E, blue);
+        draw(Q--P--T--cycle^^E--C--D--cycle, red);
+        draw(A--E^^A--D^^A--C, blue+dashed);
+        dot(P);
+        dot(Q); 
+        dot(T);
+
+        label("$A$", A, S);
+        label("$B$", B, S);
+        label("$C$", C, NE);
+        label("$D$", D, N);
+        label("$E$", E, NW);
+        label("$F$", F, SW);
+
+        label("$P$", P, SW);
+        label("$Q$", Q, SE);
+        label("$T$", T, NW);
+    \end{asy}
+    \caption{Example \ref{hmmt_nov14_team_10} - Homothety implies $A, T, D$ Collinear}
+\end{figure}
+
+
+$\triangle TQP$ and $\triangle DEC$ are similar triangles with all corresponding sides similar. Therefore, there exists a \textbf{\textcolor{red}{homotethy}} mapping one triangle to the other and $EQ, DT, PC$ are collinear at the center of that homotethy. Now since $A$ is the interesection of $EQ$ and $CP$, $D, T, A$ are collinear.
+
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(1cm);
+        pair P, Q, T;
+
+        pair A, B, C, D, E, F, C1, E1;
+        real theta = 162, s = 1;
+
+        A = (0, 0);
+        B = (s*8, 0);
+        C = s*4*dir(theta/3);
+        E = s*2*dir(2*theta/3);
+        F = s*dir(theta);
+
+        C1 = rotate(degrees(B-E), C)*(C.x-1,C.y);
+        //draw(C--C1, red);
+
+        E1 = rotate(degrees(C-F), E)*(E.x+1, E.y);
+        //draw(E--E1, red);
+
+        D = extension(C, C1, E, E1);
+
+        P = extension(B, E, A, C);
+        Q = extension(A, E, C, F);
+        T = extension(C, F, B, E);
+
+        draw(E--F--A--B--C--D--cycle);
+        draw(B--E^^C--F, yellow);
+        
+        //draw(A--C--D--E--cycle, red);
+        //draw(A--D--E--F--cycle, red);
+        //draw(A--F--E--cycle^^A--E--C--cycle^^A--C--B--cycle, red);
+        //draw(C--F^^B--E, blue);
+        //draw(Q--P--T--cycle^^E--C--D--cycle, red);
+        //draw(A--E^^A--D^^A--C, blue+dashed);
+        draw(E--T--C--D--cycle, blue);
+        draw(C--E, blue);
+        draw(A--E--D--C--A^^A--D, red);
+        dot(P);
+        dot(Q); 
+        dot(T);
+
+        label("$A$", A, S);
+        label("$B$", B, S);
+        label("$C$", C, NE);
+        label("$D$", D, N);
+        label("$E$", E, NW);
+        label("$F$", F, SW);
+
+        //label("$P$", P, SW);
+        //label("$Q$", Q, SE);
+        label("$T$", T, NW);
+    \end{asy}
+    \caption{Example \ref{hmmt_nov14_team_10} - Finish Off}
+\end{figure}
+Since $ETCD$ is a parallelogram, $TD$ bisects $EC$, and since $A, T, D$ are collinear, $AD$ bisects $EC$. This implies that \[[ADE] = [ACD] = \frac{1}{2}[ACDE] = 1007.\]
+Also,\[ [AEF] = [ADEF] - [ADE] = 1400 - 1007 = 393. \]
+Finally, \[[ABCD] = [ABC] + [ACD] = 16\cdot [AEF] + [ACD] = 16\cdot 393 + 1007 = \boxed{7295}.\]
+\end{soln}
+
+\clearpage
+\section{Exercises}
+\begin{problem}[2018 AMC 12 B, \#13]
+    \TBD
+    \begin{sketch}
+        \TBD
+    \end{sketch}
+\end{problem}
 \begin{problem}
-    \textit{homotethy and Collinearity} Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
+    \textit{Homotethy and Collinearity} Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
     \begin{sketch}
         The homotethy cenetered at $X$ sends $A$ to $C$ and $B$ to $D$. Therefore, it must send $E$ to $F$ (preserve triangle similarity). 
     \end{sketch}
