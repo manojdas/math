@@ -12,6 +12,89 @@
 \date{Fall, 2020}
 
 \maketitle
+
+\section{Chapter 1 - Angles}
+\begin{example}[BMT-2012-Tournament-Round5-P4]\label{bmt-12-r5-p4}
+    Right triangle ABC with right angle B and
+    integer side lengths has BD as the altitude. E and F are the incenters of triangles
+    ADB and BDC respectively. Line EF is extended and intersects BC at G, and AB
+    at H. If AB = 15 and BC = 8, find the area of triangle BGH.    
+\end{example}
+\begin{soln}
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(0.75cm);
+        import cse5;
+        import olympiad;
+
+        pair A, B, C, D, E, F, G, H, M, K;
+
+        B = (0,0);
+        A = (0,15);
+        C = (8,0);
+        D = foot(B, A, C);
+
+        draw(A--B--C--cycle^^B--D);
+        label("A", A, N);
+        label("B", B, S);
+        label("C", C, S);
+        label("D", D, NE);
+
+        E = incenter(A, D, B);
+        F = incenter(C, D, B);
+        dot(E);
+        dot(F);
+        label("E", E, SW);
+        label("F", F, SW);
+        draw(incircle(A, D, B));
+        draw(incircle(B, C, D));
+
+        G = extension(E, F, B, C);
+        H = extension(F, E, B, A);
+        draw(G--H);
+        label("G", G, S);
+        label("H", H, W);
+
+        M = foot(F, B, C);
+        K = foot(F, B, D);
+        label("M", M, S, blue);
+        label("K", K, NW, blue);
+        draw (M--F--K, blue);
+
+        draw(A--E--B^^E--D^^B--F--D, orange);
+
+        draw(MarkAngle(s="\frac{\alpha}{2}", E, A, D, 2, red));
+        draw(MarkAngle(s="\frac{\alpha}{2}", F, B, D, 3, red));
+        draw(MarkAngle(s="45^\circ", A, D, E, 0.8, red));
+        draw(MarkAngle(s="45^\circ", B, D, F, 0.8, red));
+
+
+    \end{asy}
+    \caption{Example \ref{bmt-12-r5-p4}}
+\end{figure}
+
+$\triangle AED \sim \triangle BDF$ implying $\frac{AD}{BD} = \frac{ED}{FD}$. 
+
+Rearranging, we get $\frac{AD}{ED}
+= \frac{BD}{FD}$. Also, $\angle EDF = \angle ABC = 90^\circ$. Therefore, $\triangle EDB \sim \triangle ABC$.
+
+Implying, $\angle FED = \alpha$.
+
+$\angle BFD = \angle BFE + \angle EFD = 180 - 45 - \frac{\alpha}{2}$, but $\angle EFD = 90 - \angle FED = 90 - \alpha$. That is $ \angle BFE + 90 - \alpha = 135 - \frac{\alpha}{2}$, or $\angle BFE = 45^\circ + \frac{\alpha}{2}$.
+
+But $\angle BFE = \angle BGF + \frac{\alpha}{2}$. That is $45^\circ + \frac{\alpha}{2} = \angle BGF + \frac{\alpha}{2}$, implying $\angle BGF = 45^\circ$.
+
+Therefore, $\triangle FMG \cong \triangle FKD$, and therefore $MG = KD$. 
+
+Now $BG = BM + MG = BK + KD = BD$. 
+
+$\triangle HBG$ is isosceles, so $BH = BG = BD$, so $[HBG] = \frac{1}{2}BD^2$.
+
+    
+\end{soln}
+
+\clearpage
 \section{Chapter 6 - Lengths II}
 
 \begin{remark}
