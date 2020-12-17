@@ -1,0 +1,328 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Advanced AIME - MC 45G}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{Fall, 2020}
+
+\maketitle
+\section{Chapter 6 - Lengths II}
+
+\begin{remark}
+    This is instructor provided lemma and is not in book.
+\end{remark}
+\begin{lemma}\label{extra_sess6_lemma}
+    Let $D, E, F$ be the points where the incircle of $ \triangle ABC$ touches $BC, AC, AB$, respectively, and $M$ be the midpoint of $AB$. Then $AB, EF,$ and the diameter of the incircle at $D$ are all concurrent.
+\end{lemma}
+\begin{figure}[ht!]\label{extra_sess6_lemma_fig}
+    \centering
+    \begin{asy}
+        import cse5;
+        import olympiad;
+        unitsize(0.5cm);
+
+        real a = 14, b = 13, c = 15;
+        path c1, c2;
+        pair A, B, C, D, E, F, D, D1, M, I, N, P, Q;
+
+        B = (0,0);
+        C = (a, 0);
+        M = (B + C)/2;
+
+        c1 = circle(B, c);
+        c2 = circle(C, b);
+
+        A = intersectionpoints(c1, c2)[0];
+        I = incenter(A, B, C);
+        D = foot(I, B, C);
+        E = foot(I, A, C);
+        F = foot(I, A, B);
+        D1 = rotate(180,I)*D;
+        N = intersectionpoints(D--D1, E--F)[0];
+
+
+        draw(A--B--C--cycle);
+        draw(incircle(A,B,C));
+        draw(D--D1^^E--F^^A--M);
+
+        //dot(I);
+        //dot(D);
+        dot(N, red);
+
+        label("$A$", A, NE);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+        label("$M$", M, S);
+        label("$D$", D, S);
+        label("$E$", E, NE);
+        label("$F$", F, NW);
+        //label("$N$", N, SE);
+    \end{asy}
+    \caption{Lemma \ref{extra_sess6_lemma}}
+\end{figure}
+\begin{proof}
+    Let $N = DI \cap DF$ and $PQ \parallel BC$ and passing through $N$ as shown in Figure \ref{extra_sess6_lemma_proof_fig}.
+
+    We want to show that $N$ defined this way and $A$ and $D$ are collinear. Sufficient to show that $N$ is the midpoint of $PQ$ because then since $PQ \parallel BC$ extension of $AN$ to $BC$ will be the midpoint of $BC$, that is $M$.
+
+    Now $IF \perp AB$ and $PN \perp DI$ so $I, F, P, N$ are concyclic. This implies that $ \angle EFI = \angle QPI$. Similarly, $\angle PQI = \angle FEI$. Therefore, since $IF = IE$, $IP = IQ$ and $N$ is midpoint of $AD$.
+    
+\begin{figure}[ht!]\label{extra_sess6_lemma_proof_fig}
+    \centering
+    \begin{asy}
+        import cse5;
+        import olympiad;
+        unitsize(0.5cm);
+
+        real a = 14, b = 13, c = 15;
+        path c1, c2;
+        pair A, B, C, D, E, F, D, D1, M, I, N, P, Q;
+
+        B = (0,0);
+        C = (a, 0);
+        M = (B + C)/2;
+
+        c1 = circle(B, c);
+        c2 = circle(C, b);
+
+        A = intersectionpoints(c1, c2)[0];
+        I = incenter(A, B, C);
+        D = foot(I, B, C);
+        E = foot(I, A, C);
+        F = foot(I, A, B);
+        D1 = rotate(180,I)*D;
+        N = intersectionpoints(D--D1, E--F)[0];
+        P = extension(N, (N.x-1, N.y), A, B);
+        Q = extension(N, (N.x+1, N.y), A, C);
+
+        draw(A--B--C--cycle);
+        draw(incircle(A,B,C));
+        draw(D--D1^^E--F^^A--M);
+        draw(P--Q--I--cycle^^F--I--E, blue);
+
+        dot(I);
+        //dot(D);
+        dot(N, red);
+
+
+        label("$A$", A, NE);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+        label("$M$", M, S);
+        label("$D$", D, S);
+        label("$E$", E, SW);
+        label("$F$", F, NW);
+        label("$N$", N, SE);
+        label("$P$", P, SE);
+        label("$Q$", Q, NE);
+        label("$I$", I, SE);
+
+    \end{asy}
+    \caption{Proof for lemma \ref{extra_sess6_lemma}}
+\end{figure}
+\end{proof}
+
+\begin{example}[HMMT Feb 2007, Guts \#36]\label{hmmt_feb07_guts_36}
+    The Marathon. Let $\omega$ denote the incircle of triangle $ABC$. The segments $BC, CA,$ and $AB$ are
+    tangent to $\omega$ at $D, E,$ and $F$, respectively. Point $P$ lies on $EF$ such that segment $PD$ is perpendicular
+    to $BC$. The line $AP$ intersects $BC$ at $Q$. The circles $\omega_1$ and $\omega_2$ pass through $B$ and $C$, respectively,
+    and are tangent to $AQ$ at $Q$; the former meets $AB$ again at $X$, and the latter meets $AC$ again at $Y$ .
+    The line $XY$ intersects $BC$ at $Z$. Given that $AB = 15, BC = 14$, and $CA = 13$, find $\floor{XZ \cdot YZ}$.    
+\end{example}
+
+
+\begin{soln}
+    Solution outline:
+    \begin{enumerate}
+        \item Use previous lemma, lemma \ref{extra_sess6_lemma}, to know thar $Q$ is the midpoint.
+        \item Use Stewart's to find the length of the median.
+        \item Use power of A w.r.t $\omega$ to find $AX, BY$.
+        \item $BXYC$ is cyclic (see Claim \ref{hmmt_feb07_guts_36_claim}); use power of $Z$ w.r.t this circle
+        \item Use Menelaus on $\triangle ABC$ with $Z$. 
+    \end{enumerate}
+    
+    \begin{figure}[ht!]\label{hmmt_feb07_guts_36_fig}
+        \centering
+        \begin{asy}
+            import cse5;
+            import olympiad;
+            unitsize(0.5cm);
+    
+            real a = 14, b = 13, c = 15;
+            path c1, c2, w1, w2;
+            pair A, B, C, D, E, F, D, D1, Q, I, N, P, Q, X, Y, Z;
+    
+            B = (0,0);
+            C = (a, 0);
+            Q = (B + C)/2;
+    
+            c1 = circle(B, c);
+            c2 = circle(C, b);
+    
+            A = intersectionpoints(c1, c2)[0];
+            I = incenter(A, B, C);
+            D = foot(I, B, C);
+            E = foot(I, A, C);
+            F = foot(I, A, B);
+            D1 = rotate(180,I)*D;
+            P = intersectionpoints(D--D1, E--F)[0];
+    
+            //These numbers come from soln (Stewart's theorem)
+            X = ((148/15)*B + (15-148/15)*A)/15;
+            Y = ((148/13)*C + (13-148/13)*A)/13;
+            w1 = circumcircle(Q, X, B);
+            w2 = circumcircle(Q, Y, C);
+
+            Z = extension (X, Y, B, C);
+
+            //dot(X, red);
+            //dot(Y, red);
+
+            draw(A--B--C--cycle);
+            draw(incircle(A,B,C));
+            draw(D--P^^E--F^^A--Q^^X--Z--C);
+            draw(w1^^w2);
+
+            //draw(P--Q--I--cycle^^F--I--E, blue);
+            
+            //N = circumcenter(B, X, C);
+            //dot(N, red);
+    
+    
+            label("$A$", A, NE);
+            label("$B$", B, SW);
+            label("$C$", C, SE);
+            label("$Q$", Q, SW);
+            label("$D$", D, S);
+            label("$E$", E, NE);
+            label("$F$", F, NW);
+            label("$P$", P, SE);
+            label("$X$", X, NW);
+            label("$Y$", Y, NE);
+            label("$Z$", Z, S);
+
+        \end{asy}
+        \caption{Example \ref{hmmt_feb07_guts_36}}
+    \end{figure}
+
+
+    By Stewart's theorem (and using that AQ is median), we have 
+    \[AQ^2 = \frac{2\cdot13^{2}+2\cdot15^{2}-14^{2}}{4} = 148.\]
+
+
+    Using power of $A$ w.r.t $\omega_1, \omega_2$ we have 
+    \[AX \cdot AB = AY \cdot AC = AQ^2 = 148.\]
+    Therefore, $AX = \frac{148}{15}$ and $AY = \frac{148}{13}$. 
+
+    Using power of $Z$ on $(BXYC)$, we have
+    \[ZY \cdot ZX = ZC \cdot ZB.\]
+    
+    Using Menelaus on $\triangle ABC$ and $Z$, we have
+    \[ \frac{ZB}{ZC} \cdot \frac{YC}{AY} \cdot \frac{AX}{BX} = 1.\]
+
+    $YC = 13 - \frac{148}{13} = \frac{21}{13}$, and $BX = 15 - \frac{148}{15} = \frac{77}{15}$. Then we get 
+    \[\frac{ZB}{ZC} = \frac{AY}{YC} \cdot \frac{BX}{AX} = \frac{\frac{148}{13}}{\frac{21}{13}} \cdot \frac{\frac{77}{15}}{\frac{148}{15}} = \frac{11}{3}.\]
+
+    Since, $ZC$ lies outside of segment $BC$, this means $\frac{ZC + 14}{ZC} = \frac{11}{3}$, giving $ZC = \frac{21}{4}$. Therefore,
+    \[\floor{ZC \cdot ZB} = \floor{\frac{11}{3}\Big(\frac{21}{4}\Big)^2} = \boxed{101}.\]
+\end{soln}
+\begin{claim}\label{hmmt_feb07_guts_36_claim}
+    $BXYC$ is cyclic.
+\end{claim}
+\begin{remark}
+    This seems like a very general configuration. May be there is an existing lemma for it. Seems the claim could be more generally stated as: Let $AQ$ be the common tangent to $\omega_1, \omega_2$ at $Q$, and the segment $BQC$ intersect the circles at $B, C$. Let $X, Y$ be the other intersection of $AB, AC$ with the circles $\omega_1, \omega_2$. Then $AXQY$ and $BCYX$ are cyclic.
+
+    \TBD verify with Sanjana. In particular, that this does not rely on $Q$ being the midpoint of $BC$.
+\end{remark}
+\begin{proof}
+    Let $\angle AQC = \theta_1$. By \emph{Tagent Cord Angle} $\angle BXQ = \theta_1$, and similarly, $\angle QXC = 180 - \theta_1$, and therefore, $\angle AYQ = theta_1$. 
+
+    Now, we have $\triangle AQY \sim \triangle ACQ$, and hence $\angle AQY = \angle ACQ = \gamma$. Similarly, $\angle AQX = \beta$. Then $\angle XAY + \angle XQY = \alpha + \beta + \gamma = 190^\circ$, and $AXQY$ is cyclic.
+
+    Since $AXQY$ is cyclic, $\angle AXY = \angle AQY = \gamma$, and therefore, $BXYC$ is cyclic.
+
+    \begin{figure}[ht!]\label{hmmt_feb07_guts_36_fig_2}
+        \centering
+        \begin{asy}
+            import cse5;
+            import olympiad;
+            unitsize(0.5cm);
+    
+            real a = 14, b = 13, c = 15;
+            path c1, c2, w1, w2;
+            pair A, B, C, D, E, F, D, D1, Q, I, N, P, Q, X, Y, Z;
+    
+            B = (0,0);
+            C = (a, 0);
+            Q = (B + C)/2;
+    
+            c1 = circle(B, c);
+            c2 = circle(C, b);
+    
+            A = intersectionpoints(c1, c2)[0];
+            I = incenter(A, B, C);
+            D = foot(I, B, C);
+            E = foot(I, A, C);
+            F = foot(I, A, B);
+            D1 = rotate(180,I)*D;
+            P = intersectionpoints(D--D1, E--F)[0];
+    
+            //These numbers come from soln (Stewart's theorem)
+            X = ((148/15)*B + (15-148/15)*A)/15;
+            Y = ((148/13)*C + (13-148/13)*A)/13;
+            w1 = circumcircle(Q, X, B);
+            w2 = circumcircle(Q, Y, C);
+
+            Z = extension (X, Y, B, C);
+
+            //dot(X, red);
+            //dot(Y, red);
+
+            draw(A--B--C--cycle);
+            //draw(incircle(A,B,C));
+            draw(A--Q^^X--Y);
+            draw(w1^^w2);
+
+            draw(X--Q--Y, blue+dashed);
+            //draw(P--Q--I--cycle^^F--I--E, blue);
+            
+            //N = circumcenter(B, X, C);
+            //dot(N, red);
+    
+    
+            label("$A$", A, NE);
+            label("$B$", B, SW);
+            label("$C$", C, SE);
+            label("$Q$", Q, SW);
+            //label("$D$", D, S);
+            //label("$E$", E, NE);
+            //label("$F$", F, NW);
+            //label("$P$", P, SE);
+            label("$X$", X, NW);
+            label("$Y$", Y, NE);
+            //label("$Z$", Z, S);
+
+            markangle("$\theta_1$", radius=8, C,Q,A);
+            markangle("$\theta_1$",radius=8, B,X,Q);
+            markangle("$180-\theta_1$",radius=8, Q,Y,C);
+            //markangle("$\frac{\alpha}{2}$", radius=12, X, A, Q);
+            //markangle("$\frac{\alpha}{2}$", radius=12, Q, A, C);
+            markangle("$\gamma$", radius=25, Y, Q, A, red);
+            markangle("$\beta$", radius=15, A, Q, X, red);
+            markangle("$\gamma$", radius=15, Y, X, A, orange);
+        \end{asy}
+        \caption{Claim \ref{hmmt_feb07_guts_36_claim} - $BXYC$ is cyclic (and so is $AXQY$)}
+    \end{figure}
+\end{proof}
+\clearpage
+\section{Instructor Insights}
+\begin{enumerate}
+    \item Advanced Geometry is lot about recognizing configurations.
+\end{enumerate}
+\end{document}
