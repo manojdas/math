@@ -828,9 +828,8 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
     Proved in the previous two problems.
 \end{proof}
 
-\begin{problem}
+\begin{problem}\label{prob_7_9_0_wong}
     Let $\omega_1, \omega_2$ be two cicrles internally tangent to $\Omega$ at $T_1, T_2$, and externally tangent to each other. Suppose their common tangent meets the circle $\Omega$ at $P$. Let $K_1K_2$ be another common tangent, tangent at points $K_1, K_2$ to $\omega_1, \omega_2$. Show that the rays $T_1K_1$ and $T_2K_2$ also meet $\Omega$ at $P$.
-    \textit{(Extracted from \cite{wong} MA2219, Exercise 7.9, as intermediate step.)}
 \end{problem}
 \begin{figure}[h!]
     \centering
@@ -919,7 +918,7 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 
 
     \end{asy}
-    
+    \caption{Solution for Problem \ref{prob_7_9_0_wong}}
 \end{figure}
 \begin{proof}
     By the previous lemma, we know that there is a homothety centered at $T_1$ that sends $K_1$ to $K_1'$, such that $K_1'$ is the midpoint of $\arc{AB}$, and power of $K_1'$ w.r.t circle $\omega_2$  is $PB^2 = PA^2$. Similarly, there is homothety centered at $T_2$ that sends $K_2$ to $K_2'$, such that $K_2'$ is the midpoint of $\arc{AB}$, and power of $K_2'$ w.r.t circle $\omega_2$ is $PB^2 = PA^2$.
@@ -927,12 +926,213 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
     However, if $K_1', K_2'$ are both the midpoint of $\arc{AB}$, then they are the same point $K'$. Then $K'$ has the same power w.r.t circles $\omega_1, \omega_2$, and therefore is on the radical axis, that is on the common tangent. Therefore, $K'$ and $P$ are the same points.
 \end{proof}
 
-\begin{problem}
+\begin{problem}{Wong, MA2219 \cite{wong}, Exercise 7.9.}\label{prob_7_9_wong}
     Let $\omega_1, \omega_2, \omega_3$ be three circles inside and tangent to a circle $\Omega$ such that $\omega_2$ is tangent to $\omega_1$ and $\omega_3$ externally; and $\omega_1, \omega_3$ lie outside each other. Suppose the common tangent between $\omega_1, \omega_2$
     and the common tangent between $\omega_1, \omega_2$ meet at a point $P$ on $\Omega$. Prove that $\omega_1, \omega_2, \omega_3$ touch a line.
-    \textit{(Wong, MA2219 \cite{wong}, Exercise 7.9.)}
+    \begin{figure}[h!]
+        \centering
+        \begin{asy}
+            import olympiad;
+            import cse5;
+            unitsize(0.5cm);
+    
+            pair O, O1, O2, O3, A, B, T1, K1, T2, K2, T3, K3, M, CT1, CT11, CT2, CT21;
+            real r = 8, r1, r2, r3, x, y = 1, xd = 3;
+    
+            x = sqrt(r*r-y*y);
+    
+            O = (0,0);
+            A = (-x,-y);
+            B = (x,-y);
+            M = (0,r);
+    
+            K1 = (x - xd, -y);
+    
+            path circ = circle(O, r);
+            pair [] t1c =intersectionpoints(circ, M--(M+(M-K1)*-5));
+    
+            if (t1c[0].y != M.y) {
+                T1 = t1c[0];
+            } else {
+                T1 = t1c[1];
+            }
+    
+            //r1 = r*vectRatio((K1-T1),(M-T1));
+            r1 = r * (distance(K1,T1)/distance(M,T1));
+            //label((string)r1, O);
+    
+            O1 = (x - xd, -y -r1);
+            CT1 = tangent(M, O1, r1, 1);
+            t1c = intersectionpoints(circ, M--(M+(M-CT1)*-5));
+            CT11 = t1c[1];
+    
+            pair tmp = extension(M,CT1,A,B);
+            pair bp = bisectorpoint(A, tmp, CT1);
+    
+            //draw(tmp--bp,red);
+    
+            O2 = extension(O1,CT1, tmp, bp);
+            r2 = distance(O2, CT1);
+            K2 = foot (O2, A, B);
+            t1c =intersectionpoints(circ, M--(M+(M-K2)*-5));
+            T2 = t1c[1];
+    
+            CT2 = tangent(M, O2, r2, 1);
+            //dot(CT2, red);
+            CT21 = intersectionpoints(circ, M--(M+(M-CT2)*-5))[1];
+            //dot(CT21, red);
+    
+            tmp = extension(M,CT2,A,B);
+            bp = bisectorpoint(A, tmp, CT2);
+    
+            O3 = extension(O2,CT2, tmp, bp);
+            r3 = distance(O3, CT2);
+            K3 = foot (O3, A, B);
+            t1c =intersectionpoints(circ, M--(M+(M-K3)*-5));
+            T3 = t1c[1];
+    
+            //draw(O1--O2, blue);
+    
+            draw (M--CT11^^M--CT21);
+    
+            draw (circle(O1, r1));
+            draw (circle(O2, r2));
+            draw (circle(O3, r3));
+    
+            //dot (O2, purple);
+    
+            //draw (M--T1^^M--T2, blue);
+            draw(circ);
+            draw((A.x+1, A.y)--(B.x-1,B.y));
+            dot(O);
+            dot(O1);
+            dot(O2);
+            dot(O3);
+            dot(M);
+            
+            label("$\Omega$", O, NE);
+            label("$\omega_1$", O1, N);
+            label("$\omega_2$", O2, N);
+            label("$\omega_3$", O3, N);
+    
+            label("$P$", M, N);
+    
+    
+        \end{asy}
+        \caption{Problem \ref{prob_7_9_wong}}
+    \end{figure}
 \end{problem}
-\TBD Add a version of the diagram above with $\omega_3$ added.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{asy}
+        import olympiad;
+        import cse5;
+        unitsize(0.5cm);
+
+        pair O, O1, O2, O3, A, B, T1, K1, T2, K2, T3, K3, M, CT1, CT11, CT2, CT21;
+        real r = 8, r1, r2, r3, x, y = 1, xd = 3;
+
+        x = sqrt(r*r-y*y);
+
+        O = (0,0);
+        A = (-x,-y);
+        B = (x,-y);
+        M = (0,r);
+
+        K1 = (x - xd, -y);
+
+        path circ = circle(O, r);
+        pair [] t1c =intersectionpoints(circ, M--(M+(M-K1)*-5));
+
+        if (t1c[0].y != M.y) {
+            T1 = t1c[0];
+        } else {
+            T1 = t1c[1];
+        }
+
+        //r1 = r*vectRatio((K1-T1),(M-T1));
+        r1 = r * (distance(K1,T1)/distance(M,T1));
+        //label((string)r1, O);
+
+        O1 = (x - xd, -y -r1);
+        CT1 = tangent(M, O1, r1, 1);
+        t1c = intersectionpoints(circ, M--(M+(M-CT1)*-5));
+        CT11 = t1c[1];
+
+        pair tmp = extension(M,CT1,A,B);
+        pair bp = bisectorpoint(A, tmp, CT1);
+
+        //draw(tmp--bp,red);
+
+        O2 = extension(O1,CT1, tmp, bp);
+        r2 = distance(O2, CT1);
+        K2 = foot (O2, A, B);
+        t1c =intersectionpoints(circ, M--(M+(M-K2)*-5));
+        T2 = t1c[1];
+
+        CT2 = tangent(M, O2, r2, 1);
+        //dot(CT2, red);
+        CT21 = intersectionpoints(circ, M--(M+(M-CT2)*-5))[1];
+        //dot(CT21, red);
+
+        tmp = extension(M,CT2,A,B);
+        bp = bisectorpoint(A, tmp, CT2);
+
+        O3 = extension(O2,CT2, tmp, bp);
+        r3 = distance(O3, CT2);
+        K3 = foot (O3, A, B);
+        t1c =intersectionpoints(circ, M--(M+(M-K3)*-5));
+        T3 = t1c[1];
+
+        //draw(O1--O2, blue);
+
+        draw (M--CT11^^M--CT21);
+
+        draw (circle(O1, r1));
+        draw (circle(O2, r2));
+        draw (circle(O3, r3));
+
+        //dot (O2, purple);
+
+        draw (M--T1^^M--T2^^M--T3, blue);
+        draw(circ);
+        draw(A--B);
+        dot(O);
+        dot(O1);
+        dot(O2);
+        dot(O3);
+        dot(M);
+        dot(K1);
+        dot(K2);
+        dot(K3);
+
+        dot(T1);
+        dot(T2);
+        dot(T3);
+
+        label("$\Omega$", O, NE);
+        label("$\omega_1$", O1, NW);
+        label("$\omega_2$", O2, NE);
+        label("$\omega_3$", O3, NW);
+
+        label("$A$", A, W);
+        label("$B$", B, E);
+        //label("$A'$", Ap, W);
+        //label("$B'$", Bp, E);
+        label("$T_1$", T1, SE);
+        label("$K_1$", K1, NE);
+        label("$T_2$", T2, SE);
+        label("$K_2$", K2, NE);
+        label("$T_3$", T3, SW);
+        label("$K_3$", K3, NW);
+        label("$P$", M, N);
+
+
+    \end{asy}
+    \caption{Solution for problem \ref{prob_7_9_wong}}
+\end{figure}
 \vspace{0.1in}
 
     Let $T_1, T_2, T_3$ be the points of tangencies for the 3 circles with $\Omega$ as previous problems.
@@ -1180,6 +1380,72 @@ Also,\[ [AEF] = [ADEF] - [ADE] = 1400 - 1007 = 393. \]
 Finally, \[[ABCD] = [ABC] + [ACD] = 16\cdot [AEF] + [ACD] = 16\cdot 393 + 1007 = \boxed{7295}.\]
 \end{soln}
 
+\begin{example}[HMMT February 2002, Guts \#32] \label{hmmt_feb02_guts_32}
+    Two circles have radii 13 and 30, and their centers are 41 units apart. The line
+through the centers of the two circles intersects the smaller circle at two points; let $A$ be the
+one outside the larger circle. Suppose $B$ is a point on the smaller circle and $C$ a point on
+the larger circle such that $B$ is the midpoint of $AC$. Compute the distance $AC$.
+\end{example}
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(0.15cm);
+        pair O, O2, O1, A, B, C;
+
+        O  = (0,0);
+        O1 = (41, 0);
+        A = (-13, 0);
+        O2 = (13, 0);
+        draw(circle(O, 13));
+        draw(circle(O1, 30));
+        draw(O--O1);
+        dot(A);
+        dot(O);
+        dot(O1);
+
+        draw (circle(O2, 26), red);
+        dot(O2, red);
+
+        C = intersectionpoints(circle(O1, 30), circle(O2, 26))[0];
+        B = intersectionpoints(circle(O, 13), O--C)[0];
+        draw(O--C);
+
+        draw(O2--C--O1, blue);
+        //draw(Label("$2\cdot13=26$", Rotate(dir(O2--C))), O2--C, red);
+
+        dot(C);
+        dot(B);
+
+        label("$A$", A, W);
+        label("$O$", O, S);
+        label("$O_1$", O1, S);
+        label("$O_2$", O2, SE, red);
+
+        label("$B$", B, N);
+        label("$C$", C, N);
+
+        label(Label("$30$", Relative(0.5), Rotate(dir(C--O1))), C--O1, NE, blue);
+        label(Label("$2\cdot13=26$", Relative(0.4), Rotate(dir(O2--C))), O2--C, NW, blue);
+        label("$41-13=28$", O2--O1, N, blue);
+
+    \end{asy}
+    \caption{Example \ref{hmmt_feb02_guts_32}}
+\end{figure}
+\begin{soln}
+    The key insight here is where will point $C$ and $B$ lie such that $AC = 2 \cdot AB$? 
+
+    Realize that if we consider the homothety $\mathcal{H}(A, 2)$ it will send the small circle to another circle such that if we take any point $X$ on the new circle and the point $Y$ on the intersection of $AX$ with the original circle, the $X$ is the mapping of $Y$ under the homothety $\mathcal{H}$ and therefore $AX = 2 AY$.
+
+    Therefore, if we draw the circle that is the mapping of the smaller circle under the homothety $\mathcal{H}(A, 2)$ and mark the point of intersection of this circle with bigger circle as $C$ and the intersection of $AC$ with the smaller circle as $B$, then we have the desired $B, C$.
+
+    Now the mapping $O_2$ under $\mathcal{H}(A, 2)$ of the center $O$ is such that $A, O, O_2$ are collinear and $AO_2 = 2 \cdot AO$, that is $O_2$ is the diameterically opposite point of $A$ and is therefore, on the line $OO_1$.
+    
+    \begin{note}
+        If we constructed a circle of twice the radius of the smaller circle at the diameterically opposite point of $A$, we could solve this problem the same. However, homotethy explains why we want to construct that circle.
+    \end{note}
+
+    Rest of the problem is straightforward. First, $O_2C = 2 \cdot 13 = 26$, $O_2O_1 = 41 - 13 = 28$, and $O_1C = 30$. Therefore, we have a $13-14-15$ triangle in $O_2CO_1$. Therefore, if we drop the foot, $D$, from $C$ to $O_2O_1$, $CD = 2\cdot12$ and $O_2D = 2\cdot5$. Finally, $AC^2 = AD^2 + CD^2 = (26+2\cdot5)^2 + (2\cdot12)^2$, and $AC = \boxed{12\sqrt{13}}$.
+\end{soln}
 \clearpage
 \section{Exercises}
 \begin{problem}[2018 AMC 12 B, \#13]
