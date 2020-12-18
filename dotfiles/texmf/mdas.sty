@@ -62,12 +62,24 @@
 \setlength{\headsep}{10pt}
 
 
-\ohead{\thetitle}
-\chead{}
-\ihead{\thedate}
+% \ohead{\thetitle}
+% \chead{}
+% \ihead{\thedate}
+
+% \ihead{\footnotesize\textbf{\theauthor} (\thedate)}
+\renewcommand*{\sectionmark}[1]{%
+    \markright{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}%
+    \markleft{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}
+}
+% \automark*{section}
+\ihead{\footnotesize\textbf{\headmark}}
+\ohead{\footnotesize\textbf{\thetitle}}
+\cfoot{\pagemark}
+
+
 \cfoot{}
-\ofoot*{Page \thepage~of \pageref{LastPage}}
-\ifoot{\theorg}
+\ofoot*{\footnotesize\textbf{Page \thepage~of \pageref{LastPage}}}
+\ifoot{\footnotesize\textbf{\theorg}}
 \setlength{\headheight}{14pt}
 \fi
 
