@@ -96,7 +96,87 @@ $\triangle HBG$ is isosceles, so $BH = BG = BD$, so $[HBG] = \frac{1}{2}BD^2$.
 
 \clearpage
 \section{Chapter 6 - Lengths II}
+\subsection{Concepts}
+\begin{enumerate}
+    \item Power of a point
+    \item Radical axis and radical center
+    \item Ptolemy's theorem
+\end{enumerate}
 
+\begin{remark}
+    The proof of Ptolemy's is very instructive (how an auxilary line is used).
+\end{remark}
+\subsection{Additional Examples}
+\begin{example}\label{ch6_add_1}
+    Triangle $ABC$ has side lengths $AB = 65, BC = 33,$ and $AC = 56$. Find the radius of the circle tangent to sides $AC$ and $BC$ and to the circumcircle of $\triangle ABC$.
+\end{example}
+\begin{note}
+    $\triangle ABC$ is right-angled $\triangle$.
+\end{note}
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        //ch6_add_1
+        import olympiad;
+
+        unitsize(0.10cm);
+        pair A, B, C, D, I, E, O;
+        path c1;
+        pair []OE;
+        real r = 24;
+
+        A = (0, 56);
+        B = (33, 0);
+        C = (0, 0);
+        I = incenter(A, B, C);
+        c1 = circumcircle(A, B, C);
+        O = circumcenter(A, B, C);
+
+        D = intersectionpoints(C--I*5, c1)[1];
+        E = (r, r);
+        OE = intersectionpoints((O-(E-O)*4)--(O+(E-O)*4), c1);
+
+        draw (c1);
+        draw (circle(E, r));
+        draw(A--C--B--cycle);
+        draw(C--D^^A--D--B, blue);
+        //dot (I);
+        dot(D);
+        dot (E);
+        dot (O);
+        dot(OE[1]);
+
+        draw(OE[0]--OE[1], red);
+
+        label("$A$", A, N);
+        label("$C$", C, S);
+        label("$B$", B, S);
+        label("$E$", E, S);
+        label("$D$", D, NE);
+        label("$O$", O, SW);
+        label("$T$", OE[1], SE);
+    \end{asy}
+
+    \caption{Example \ref{ch6_add_1}}
+\end{figure}
+\begin{soln}
+    Let $E$ be the center of the second circle. Extend $CE$ to intersect $(ABC)$ at $D$. Since $CD$ is angle bisector of $\angle ACB$ (tangent to two sides), $D$ is the midpoint of $\arc{ADB}$.
+
+    Therefore, $\triangle ADB$ is isosceles triangle, and specifically 45-45-90 triangle. Therefore $AD = BD = \frac{AB}{\sqrt{2}}$.
+
+    First, note that by Homothety, the common point of tangency, $T$, the first circle's center, $O$, and the second circle's center, $E$ are all collinear. Therefore, the power of $E$ on the bigger circle evaluated along the diameter $OT$ is $r \cdot (65 - r)$. And evaluated along $CD$, it is $CE \cdot ED$. Therefore,
+    \[CE \cdot ED = r \cdot (65 - r).\]
+    But $CE = \sqrt{2} r$, and $ED = CD - CE$; plugging in the above, $\sqrt{2} r (CD - \sqrt{2}r) = r \cdot (65 - r)$, which simplifies to
+    \[\sqrt{2} CD - r = 65.\]
+    Applying \emph{Ptolemy} to $ADBC$ we get,
+    \begin{align*}
+        AC \cdot BD + AD \cdot BC &= AB \cdot CD, \\
+        AC \cdot \frac{AB}{\sqrt{2}} + \frac{AB}{\sqrt{2}} \cdot BC &= AB \cdot CD, \\
+        CD &= \frac{AC + BC}{\sqrt{2}}, \\
+        CD &= \frac{89\sqrt{2}}{2}.
+    \end{align*}
+    Plugging in the previous equation we have $89 - r = 65$ and $r = \boxed{24}$.
+\end{soln}
 \begin{remark}
     This is instructor provided lemma and is not in book.
 \end{remark}
