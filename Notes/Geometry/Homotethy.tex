@@ -63,7 +63,7 @@ A Homothety preserves angles. If $\mathcal{H}(A, B, C) = A', B', C'$, then $ \an
 \end{note}
 
 \subsubsection{Preserves Ratios}
-A Homothety preserves rations. If $\mathcal{H}(A, B, C) = A', B', C'$, then $AB:BC = A'B':B'C'$.
+A Homothety preserves ratios. If $\mathcal{H}(A, B, C) = A', B', C'$, then $AB:BC = A'B':B'C'$.
 \begin{proof}
     From similar triangles $\triangle HAB$ and $\triangle HA'B'$, we get $A'B' = k \cdot AB$, and the result follows.
 \end{proof}
@@ -728,7 +728,7 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 
 \subsection{Circles Inscribed in Segments}
 \begin{problem}
-    Let $\Omega$ be a circle with center $O$ and a chord $\overline{AB}$, and consider a circle $omega$ tangent internally to $\Omega$ at $T$ and $\overline{AB}$ at $K$. Let $M$ denote the midpoint of $\arc{AB}$ not containing $T$. Show that there is a homotethy mapping $K$ to $M$ and in particular $T$, $K$, and $M$ are all collinear. 
+    Let $\Omega$ be a circle with center $O$ and a chord $\overline{AB}$, and consider a circle $\omega$ tangent internally to $\Omega$ at $T$ and $\overline{AB}$ at $K$. Let $M$ denote the midpoint of $\arc{AB}$ not containing $T$. Show that there is a homotethy mapping $K$ to $M$ and in particular $T$, $K$, and $M$ are all collinear. 
     \textit{Evan Chen EGMO, \#4.31}
 \end{problem}
 \begin{figure}[h!]
@@ -1145,6 +1145,156 @@ Let $A_p, B_p, C_p$ be the foot of altitudes from $A, B, C$ to $\overline{BC}, \
 
 \clearpage
 \section{More Examples}
+\begin{example}[2007 AIME II, \# 15]\label{aime_07_2_15}
+    Four circles $\omega, \omega_A, \omega_B,$ and $\omega_C$ with the same radius are drawn in the interior of triangle $ABC$ such that $\omega_A$ is tangent to sides $AB$ and $AC$, $\omega_B$ to $BC$ and $BA$, $\omega_C$ to $CA$ and $CB$, and $\omega$ is externally tangent to $\omega_A, \omega_B,$ and $\omega_C$. If the sides of triangle $ABC$ are 13, 14, and 15, the radius of $\omega$ can be represented in the form $\frac{m}{n}$, where $m$ and $n$ are relatively prime positive integers. Find $m + n$.
+\end{example}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        import olympiad;
+
+        unitsize(0.75cm);
+        pair A, B, C, Oa, Ob, Oc, Od, O, I;
+        path circ1, circ2;
+
+        // Homotethy factor - backplugged from solution
+        real k = 64/129;
+        real r = 260/129;
+
+        B = (0, 0);
+        C = (14, 0);
+
+        circ1 = circle(B, 13);
+        circ2 = circle(C, 15);
+
+        A = intersectionpoints(circ1, circ2)[0];
+        I = incenter(A, B, C);
+
+        Oa = (65*A + 64*I)/129;
+        Ob = (65*B + 64*I)/129;
+        Oc = (65*C + 64*I)/129;
+
+        Od = circumcenter(Oa, Ob, Oc);
+        O = circumcenter(A, B, C);
+
+        draw(circle(Oa, r));
+        draw(circle(Ob, r));
+        draw(circle(Oc, r));
+        draw(circle(Od, r));
+
+        draw(incircle(Oa, Ob, Oc)^^incircle(A, B, C)^^I--foot(I, A, C), green);
+        draw(A--B--C--cycle);
+        draw(Oa--Ob--Oc--cycle, blue);
+        draw(A--I--B^^I--C, blue);
+        draw(Oa--foot(Oa, A, C)^^Oc--foot(Oc, A, C), blue);
+        draw(rightanglemark(Oa, foot(Oa, A, C), C)^^rightanglemark(Oc, foot(Oc, A, C), A));
+        dot(I);
+        dot(Oa);
+        dot(Ob);
+        dot(Oc);
+        dot(Od);
+        dot(O, red);
+
+        label("$A$", A, N);
+        label("$B$", B, S);
+        label("$C$", C, S);
+        label("$I$", I, S);
+        label("$O_A$", Oa, NW);
+        label("$O_B$", Ob, SW);
+        label("$O_C$", Oc, SE);
+        label("$O_\omega$", Od, N);
+        label("$O$", O, SE, red);
+
+    \end{asy}
+    \caption{Example \ref{aime_07_2_15}}
+    \label{aime_07_2_15_fig}
+\end{figure}
+
+\begin{soln}
+    First, we notice that $O_AO_C \parallel AC$, $O_AO_B \parallel AB$, and $O_BO_C \parallel BC$ (because same radius circles tangent to sides, refer to Figure \ref{aime_07_2_15_fig}). Therefore, not only are triangles $ABC$ and $O_AO_BO_C$ similar but also there is a Homotethy $\mathcal{H}$ mapping one to the other. 
+
+    Where is the center of $\mathcal{H}$ and what is the dilation factor, $k$? Since $\mathcal{H}$ maps $A, B, C$ to $O_A, O_B, O_C$, its center is at the point of intersection of $AO_A, BO_B, CO_C$. Since the circles are tangents to two sides, their centers lie on the angle bisectors and therefore, the center of $\mathcal{H}$ is the incenter $\mathcal{I}$ of $\triangle ABC$.
+
+    Therefore, $\mathcal{H}$ maps the incircle of $\triangle ABC$ to the incircle of $\triangle O_AO_BO_C$. Let $r_\omega, r, r'$ be the radius of circle $\omega$, inradius of $\triangle ABC$, and inradius of $\triangle O_AO_BO_C$, respectively. Then $r' = r - r_\omega$ and the dilation factor is $k = \frac{r'}{r} = \frac{r - r_\omega}{r}$.
+
+    Since we have the side lengths of $\triangle{ABC}$, we can calulate its inradius $r = \frac{[ABC]}{s} = \frac{\sqrt{21\cdot8\cdot7\cdot6}}{21} = 4$. Therefore, dilation factor $k = \frac{4-r_\omega}{4}$.
+
+    Next, we note that the center of the circle $\omega$, $O_\omega$ is at a distance $2r_\omega$ from $O_A, O_B, O_C$. Therefore, it is the circumcenter of $\triangle O_AO_BO_C$, and is the mapping of the circumcenter $O$ of $\triangle ABC$.
+
+    Let $R, R'$ be the circumradius of $\triangle ABC, O_AO_BO_C$. By Homotethy $\mathcal{H}$, $\frac{R'}{R} = k = \frac{4-r_\omega}{4}$. But $R' = 2r_\omega$. Therefore, $\frac{2r_\omega}{R} = \frac{4-r_\omega}{4}$.
+
+    We have $R = \frac{a\cdot b\cdot c}{4[ABC]} = {13 \cdot 14 \cdot 15}{4 \cdot 84} = \frac{65}{8}$. Putting it all together $\frac{2r_\omega}{\frac{65}{8}} = \frac{4-r_\omega}{4}$, and $r_w = \boxed{\frac{260}{129}}.$
+\end{soln}
+
+
+\begin{example}[HMMT February 2002, Guts \#32] \label{hmmt_feb02_guts_32}
+    Two circles have radii 13 and 30, and their centers are 41 units apart. The line
+through the centers of the two circles intersects the smaller circle at two points; let $A$ be the
+one outside the larger circle. Suppose $B$ is a point on the smaller circle and $C$ a point on
+the larger circle such that $B$ is the midpoint of $AC$. Compute the distance $AC$.
+\end{example}
+\begin{figure}[ht!]
+    \centering
+    \begin{asy}
+        unitsize(0.15cm);
+        pair O, O2, O1, A, B, C;
+
+        O  = (0,0);
+        O1 = (41, 0);
+        A = (-13, 0);
+        O2 = (13, 0);
+        draw(circle(O, 13));
+        draw(circle(O1, 30));
+        draw(O--O1);
+        dot(A);
+        dot(O);
+        dot(O1);
+
+        draw (circle(O2, 26), red);
+        dot(O2, red);
+
+        C = intersectionpoints(circle(O1, 30), circle(O2, 26))[0];
+        B = intersectionpoints(circle(O, 13), O--C)[0];
+        draw(O--C);
+
+        draw(O2--C--O1, blue);
+        //draw(Label("$2\cdot13=26$", Rotate(dir(O2--C))), O2--C, red);
+
+        dot(C);
+        dot(B);
+
+        label("$A$", A, W);
+        label("$O$", O, S);
+        label("$O_1$", O1, S);
+        label("$O_2$", O2, SE, red);
+
+        label("$B$", B, N);
+        label("$C$", C, N);
+
+        label(Label("$30$", Relative(0.5), Rotate(dir(C--O1))), C--O1, NE, blue);
+        label(Label("$2\cdot13=26$", Relative(0.4), Rotate(dir(O2--C))), O2--C, NW, blue);
+        label("$41-13=28$", O2--O1, N, blue);
+
+    \end{asy}
+    \caption{Example \ref{hmmt_feb02_guts_32}}
+\end{figure}
+\begin{soln}
+    The key insight here is where will point $C$ and $B$ lie such that $AC = 2 \cdot AB$? 
+
+    Realize that if we consider the homothety $\mathcal{H}(A, 2)$ it will send the small circle to another circle such that if we take any point $X$ on the new circle and the point $Y$ on the intersection of $AX$ with the original circle, the $X$ is the mapping of $Y$ under the homothety $\mathcal{H}$ and therefore $AX = 2 AY$.
+
+    Therefore, if we draw the circle that is the mapping of the smaller circle under the homothety $\mathcal{H}(A, 2)$ and mark the point of intersection of this circle with bigger circle as $C$ and the intersection of $AC$ with the smaller circle as $B$, then we have the desired $B, C$.
+
+    Now the mapping $O_2$ under $\mathcal{H}(A, 2)$ of the center $O$ is such that $A, O, O_2$ are collinear and $AO_2 = 2 \cdot AO$, that is $O_2$ is the diameterically opposite point of $A$ and is therefore, on the line $OO_1$.
+    
+    \begin{note}
+        If we constructed a circle of twice the radius of the smaller circle at the diameterically opposite point of $A$, we could solve this problem the same. However, homotethy explains why we want to construct that circle.
+    \end{note}
+
+    Rest of the problem is straightforward. First, $O_2C = 2 \cdot 13 = 26$, $O_2O_1 = 41 - 13 = 28$, and $O_1C = 30$. Therefore, we have a $13-14-15$ triangle in $O_2CO_1$. Therefore, if we drop the foot, $D$, from $C$ to $O_2O_1$, $CD = 2\cdot12$ and $O_2D = 2\cdot5$. Finally, $AC^2 = AD^2 + CD^2 = (26+2\cdot5)^2 + (2\cdot12)^2$, and $AC = \boxed{12\sqrt{13}}$.
+\end{soln}
+
 \begin{example}[HMMT November 2014, Team Round \#10] \label{hmmt_nov14_team_10}
     Let $ABCDEF$ be a convex hexagon with the following properties.
     \begin{enumerate}[a)]
@@ -1260,7 +1410,7 @@ First, Since $\angle BAC = \angle CAE = \angle EAF$ and $\frac{AC}{AB} = \frac{A
     \caption{Example \ref{hmmt_nov14_team_10} - Similar Triangles and Quadrilaterals}
 \end{figure}
 
-Let $P = BE \cap AC, Q = AE \cap FC, T = BE \cap FC$. Then, since the quadrilaterals $AFEC$ and $AECB$ are similar to one another, we have $AP : PC = AQ : QE$ (\TBD check with Sanjana). Therefore, $PQ \parallel EC$.
+Let $P = BE \cap AC, Q = AE \cap FC, T = BE \cap FC$. Then, since the quadrilaterals $AFEC$ and $AECB$ are similar to one another, we have $AP : PC = AQ : QE$. Therefore, $PQ \parallel EC$.
 
 \begin{figure}[ht!]
     \centering
@@ -1380,80 +1530,23 @@ Also,\[ [AEF] = [ADEF] - [ADE] = 1400 - 1007 = 393. \]
 Finally, \[[ABCD] = [ABC] + [ACD] = 16\cdot [AEF] + [ACD] = 16\cdot 393 + 1007 = \boxed{7295}.\]
 \end{soln}
 
-\begin{example}[HMMT February 2002, Guts \#32] \label{hmmt_feb02_guts_32}
-    Two circles have radii 13 and 30, and their centers are 41 units apart. The line
-through the centers of the two circles intersects the smaller circle at two points; let $A$ be the
-one outside the larger circle. Suppose $B$ is a point on the smaller circle and $C$ a point on
-the larger circle such that $B$ is the midpoint of $AC$. Compute the distance $AC$.
-\end{example}
-\begin{figure}[ht!]
-    \centering
-    \begin{asy}
-        unitsize(0.15cm);
-        pair O, O2, O1, A, B, C;
-
-        O  = (0,0);
-        O1 = (41, 0);
-        A = (-13, 0);
-        O2 = (13, 0);
-        draw(circle(O, 13));
-        draw(circle(O1, 30));
-        draw(O--O1);
-        dot(A);
-        dot(O);
-        dot(O1);
-
-        draw (circle(O2, 26), red);
-        dot(O2, red);
-
-        C = intersectionpoints(circle(O1, 30), circle(O2, 26))[0];
-        B = intersectionpoints(circle(O, 13), O--C)[0];
-        draw(O--C);
-
-        draw(O2--C--O1, blue);
-        //draw(Label("$2\cdot13=26$", Rotate(dir(O2--C))), O2--C, red);
-
-        dot(C);
-        dot(B);
-
-        label("$A$", A, W);
-        label("$O$", O, S);
-        label("$O_1$", O1, S);
-        label("$O_2$", O2, SE, red);
-
-        label("$B$", B, N);
-        label("$C$", C, N);
-
-        label(Label("$30$", Relative(0.5), Rotate(dir(C--O1))), C--O1, NE, blue);
-        label(Label("$2\cdot13=26$", Relative(0.4), Rotate(dir(O2--C))), O2--C, NW, blue);
-        label("$41-13=28$", O2--O1, N, blue);
-
-    \end{asy}
-    \caption{Example \ref{hmmt_feb02_guts_32}}
-\end{figure}
-\begin{soln}
-    The key insight here is where will point $C$ and $B$ lie such that $AC = 2 \cdot AB$? 
-
-    Realize that if we consider the homothety $\mathcal{H}(A, 2)$ it will send the small circle to another circle such that if we take any point $X$ on the new circle and the point $Y$ on the intersection of $AX$ with the original circle, the $X$ is the mapping of $Y$ under the homothety $\mathcal{H}$ and therefore $AX = 2 AY$.
-
-    Therefore, if we draw the circle that is the mapping of the smaller circle under the homothety $\mathcal{H}(A, 2)$ and mark the point of intersection of this circle with bigger circle as $C$ and the intersection of $AC$ with the smaller circle as $B$, then we have the desired $B, C$.
-
-    Now the mapping $O_2$ under $\mathcal{H}(A, 2)$ of the center $O$ is such that $A, O, O_2$ are collinear and $AO_2 = 2 \cdot AO$, that is $O_2$ is the diameterically opposite point of $A$ and is therefore, on the line $OO_1$.
-    
-    \begin{note}
-        If we constructed a circle of twice the radius of the smaller circle at the diameterically opposite point of $A$, we could solve this problem the same. However, homotethy explains why we want to construct that circle.
-    \end{note}
-
-    Rest of the problem is straightforward. First, $O_2C = 2 \cdot 13 = 26$, $O_2O_1 = 41 - 13 = 28$, and $O_1C = 30$. Therefore, we have a $13-14-15$ triangle in $O_2CO_1$. Therefore, if we drop the foot, $D$, from $C$ to $O_2O_1$, $CD = 2\cdot12$ and $O_2D = 2\cdot5$. Finally, $AC^2 = AD^2 + CD^2 = (26+2\cdot5)^2 + (2\cdot12)^2$, and $AC = \boxed{12\sqrt{13}}$.
-\end{soln}
 \clearpage
 \section{Exercises}
 \begin{problem}[2018 AMC 12 B, \#13]
-    \TBD
+    Square $ABCD$ has side length $30$. Point $P$ lies inside the square so that $AP = 12$ and $BP = 26$. The centroids of $\triangle{ABP}$, $\triangle{BCP}$, $\triangle{CDP}$, and $\triangle{DAP}$ are the vertices of a convex quadrilateral. What is the area of that quadrilateral?    
     \begin{sketch}
-        \TBD
+        $\big(\frac{2}{3}\big)^2(15\sqrt{2})^2 = \boxed{200}$.
     \end{sketch}
 \end{problem}
+
+\begin{problem}[2015 HMMT Geometry, \#2]
+    Let $ABC$ be a triangle with orthocenter $H$; suppose that $AB = 13,BC = 14,CA = 15$. Let $G_A$ be the centroid of triangle $HBC$, and define $G_B$, $G_C$ similarly. Determine the area of triangle $G_AG_BG_C$.
+    \begin{sketch}
+        $G_AG_BG_C$ is a homotethy of the medial triangle. Therefore, $[G_AG_BG_C] = \big(\frac{2}{3})^2\big(\frac{1}{2})^2[ABC] = \boxed{\frac{28}{3}}$.
+    \end{sketch}
+\end{problem}
+
+
 \begin{problem}
     \textit{Homotethy and Collinearity} Let $ABCD$ be a trapezoid. Construct equilateral triangles $ABE$ and $CDF$ externally. If $X$ is the intersection of $AC$ and $BD$, then prove that $E, F, X$ are collinear.
     \begin{sketch}
