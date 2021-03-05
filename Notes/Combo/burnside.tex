@@ -1,0 +1,602 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+\usepackage{adjustbox}
+\setlist{nosep}
+
+\begin{document}
+\title{Burnside Lemma}
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{\today}
+
+\maketitle
+\section{Introduction}
+
+\section{Definitions}
+\begin{example}
+    How many ways are there to color the vertices of a square using red and blue colors?
+\end{example}
+
+\begin{table}[h!]
+    \centering
+\begin{tabular}{|c|c|}
+    \hline
+    Class 1 &
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+    \begin{asy}
+        unitsize(1 cm);
+        picture pic1;
+        real r = 0.1;
+        
+        draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+        fill(pic1, circle((0,0), r), blue);
+        fill(pic1, circle((0,1), r), blue);
+        fill(pic1, circle((1,0), r), blue);
+        fill(pic1, circle((1,1), r), blue);
+        
+        add(pic1);
+        label("$C_1$", (0.5,-0.5));
+    \end{asy}
+    \end{adjustbox}
+
+    \\
+    \hline
+    Class 2 & 
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+        \begin{asy}
+            unitsize(1 cm);
+            picture pic1;
+            real r = 0.1;
+            
+            draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+            fill(pic1, circle((0,0), r), red);
+            fill(pic1, circle((0,1), r), blue);
+            fill(pic1, circle((1,0), r), blue);
+            fill(pic1, circle((1,1), r), blue);
+            
+            add(pic1);
+            add(shift(1*up)*shift(2.5*right)*rotate(270)*pic1);
+            
+            add(shift(1*up)*shift(6*right)*rotate(180)*pic1);
+            
+            add(shift(8.5*right)*rotate(90)*pic1);
+            label("$C_2$", (0.5,-0.5));
+            label("$C_3$", (3.0,-0.5));
+            label("$C_4$", (5.5,-0.5));
+            label("$C_5$", (8,-0.5));
+            
+            \end{asy}
+            
+    \end{adjustbox} 
+
+
+    \\
+    \hline
+    Class 3 & 
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+        \begin{asy}
+            unitsize(1 cm);
+            picture pic1;
+            real r = 0.1;
+            
+            draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+            fill(pic1, circle((0,0), r), red);
+            fill(pic1, circle((0,1), r), blue);
+            fill(pic1, circle((1,0), r), red);
+            fill(pic1, circle((1,1), r), blue);
+            
+            add(pic1);
+            add(shift(1*up)*shift(2.5*right)*rotate(270)*pic1);
+            
+            add(shift(1*up)*shift(6*right)*rotate(180)*pic1);
+            
+            add(shift(8.5*right)*rotate(90)*pic1);
+            label("$C_6$", (0.5,-0.5));
+            label("$C_7$", (3.0,-0.5));
+            label("$C_8$", (5.5,-0.5));
+            label("$C_9$", (8,-0.5));
+            
+            \end{asy}
+            
+    \end{adjustbox} 
+
+    \\
+    \hline
+    Class 4 & 
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+        \begin{asy}
+            unitsize(1 cm);
+            picture pic1;
+            real r = 0.1;
+            
+            draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+            fill(pic1, circle((0,0), r), red);
+            fill(pic1, circle((0,1), r), blue);
+            fill(pic1, circle((1,0), r), blue);
+            fill(pic1, circle((1,1), r), red);
+            
+            add(pic1);
+            add(shift(1*up)*shift(2.5*right)*rotate(270)*pic1);
+            
+            label("$C_{10}$", (0.5,-0.5));
+            label("$C_{11}$", (3.0,-0.5));
+            
+            \end{asy}
+            
+    \end{adjustbox} 
+
+    \\
+    \hline
+    Class 5 & 
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+        \begin{asy}
+            unitsize(1 cm);
+            picture pic1;
+            real r = 0.1;
+            
+            draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+            fill(pic1, circle((0,0), r), red);
+            fill(pic1, circle((0,1), r), blue);
+            fill(pic1, circle((1,0), r), red);
+            fill(pic1, circle((1,1), r), red);
+            
+            add(pic1);
+            add(shift(1*up)*shift(2.5*right)*rotate(270)*pic1);
+            
+            add(shift(1*up)*shift(6*right)*rotate(180)*pic1);
+            
+            add(shift(8.5*right)*rotate(90)*pic1);
+            label("$C_{12}$", (0.5,-0.5));
+            label("$C_{13}$", (3.0,-0.5));
+            label("$C_{14}$", (5.5,-0.5));
+            label("$C_{15}$", (8,-0.5));
+            
+            \end{asy}
+            
+    \end{adjustbox} 
+
+    \\
+    \hline
+    Class 6 &
+    \begin{adjustbox}{margin = 0 5 0 5, valign=c}
+    \begin{asy}
+        unitsize(1 cm);
+        picture pic1;
+        real r = 0.1;
+        
+        draw(pic1, (0,0)--(0,1)--(1,1)--(1,0)--cycle, gray(0.7));
+        fill(pic1, circle((0,0), r), red);
+        fill(pic1, circle((0,1), r), red);
+        fill(pic1, circle((1,0), r), red);
+        fill(pic1, circle((1,1), r), red);
+        
+        add(pic1);
+        label("$C_{16}$", (0.5,-0.5));
+    \end{asy}
+    \end{adjustbox} \\
+    \hline
+
+\end{tabular}
+
+\caption{\label{tab:square-colors}$2^4$ red-blue colorings of a square vertices. Colorings within a class are equivalent with respect to rotations and reflections.}
+\end{table}
+
+Table \ref{tab:square-colors} lists all the different colorings. We have organized the colorings into different classes where elements of class can be converted into one another using rotations; in other words, are equivalent with respect to rotations and reflections. For example, $C_2$ when rotated by $90^\circ, 180^\circ, 270^\circ,$ yields $C_3, C_4, C5$ respectively.
+
+Next, let's consider the various symmetries in this example:
+\begin{enumerate}
+    \item Identity: initial position or no action. Let us denote this as $e$.
+    \item Rotations: we can rotate by $90^\circ, 180^\circ,$ or $270^\circ$. Let's denote these as $\pi_1, \pi_2, \pi_3$.
+    \item Reflections: we can reflect horizontally, vertically, across the north-east diagonal, or across the north-west diagonal. Let's denote these as $r_1, r_2, r_3, r_4$ respectively.
+\end{enumerate}
+Let's illustrate how these symmetries or actions work:
+\begin{itemize}
+    \item $e(C_x) = C_x$ for all $x$.
+    \item $\pi_1(C_2) = C_3, \pi_1(C_3) = C_4, \ldots$, $p_1(C_{10}) = C_{11}$, $\pi_1(C_{12}) = C_{13}, \pi_1(C_{13}) = C_{14}, \ldots$.
+    \item $\pi_2(C_2) = C_4, \pi_2(C_3) = C_5, \ldots$, $\pi_2(C_{12}) = C_{14}, \pi_2(C_{13}) = C_{15}, \ldots$.
+    \item $r_1(C_6) = C_8$, $r_2(C_7) = C_9$.
+    \item $r_3(C_3) = C_5$, $r_5(C_2) = C_4$.
+    \item $r_3(C_{10}) = C_{10}$, $r_4(C_{10}) = C_{10}$.  
+\end{itemize}
+
+Let's use this example to define some terminology.
+
+\begin{definition}[Set $X$]
+    Let's denote the different configurations by $x$, and the set of all configurations by $X$.
+\end{definition}
+In this example, each coloring $C_0, \ldots, C_{16}$ is a configuration and $X = \{C_0, C_1, C_2, \ldots, C_{16}\}$.
+
+\begin{definition}[Group of Actions/Symmetries, $G$]
+We call the group of actions or symmetries as group of actions or group of symmetries and denote it as $G$.    
+\end{definition}
+
+In this example, $G = \{e, \pi_1, \pi_2, \pi_3, r_1, r_2, r_3, r_4 \}$. The operation $\cdot$ for this group is the composition operation. That is $g_1 \cdot g_2$ is apply $g_2$ to the result of applying $g_1$ to $x$.
+
+This is a Group because:
+\begin{itemize} 
+    \item \textbf{Identity: } $e$ is identity because composing it with any other action gives the same action.
+    \item \textbf{Associativity: } We can verify that $(g_1 \cdot g_2) \cdot g_3 = g_1 \cdot (g_2 \cdot g_3)$.
+    \item \textbf{Inverse: } We can verify that each action has an inverse. For example, $\pi_3 = \pi_1^{-1}$.
+\end{itemize}
+
+\begin{definition}[Orbit]
+    An Orbit of $x$, denoted as $O_x$, is all the configurations $x'$ that can be reached from $x$ by applying a combination of actions in $G$. That is
+    \[O_x = \{x' \mid \exists g \in G, g \cdot x = x' \}. \]
+\end{definition}
+In this example, the orbit of $C_2$, $O_{C_2} = \{C_2, C_3, C_4, C_5\}.$ In fact, each class in Table \ref{tab:square-colors} is an Orbit. That leads us to the following observation:
+\begin{remark}
+    The number of distinct configurations (w.r.t symmetry) is same as the number of orbits. In our example, Class 1 to Class 6 each correspond to a distinct coloring as well as to an orbit.
+\end{remark}
+
+It is easy to see that an orbit is a closed group, because:
+\begin{itemize}
+    \item If $g_1 \cdot x_a = x_b$ and $g_2 \cdot x_b = x_c$, then $g_2 \cdot g_1 \cdot x_a = x_c$. In other words if $a, b$ are in the same orbit and $b, c$ are in the same orbit then $a, c$ are in the same orbit.
+    \item If $a, b$ are in the same orbit, and $a, c$ are not in the same orbit, then $b, c$, can not be in the same orbit. Otherwise, we should be able to go from $a$ to $b$ and then $b$ to $c$.
+\end{itemize}
+
+\begin{definition}[Fixed Point]
+    A configuration $x$ is a fixed point of an action $g$, if $g \cdot x = x$. The set of fixed points for $g$ is denoted as $fix(g)$. That is 
+    \[fix(g) = \{x \mid g\cdot x = x\}. \]
+\end{definition}
+
+In this example,
+\begin{itemize}
+    \item $fix(\pi_1) = \{C_1, C_{16}\}$.
+    \item $fix(\pi_2) = \{C_1, C_{10}, C_{11}, C_{16}\}$. 
+\end{itemize}
+
+Table \ref{tab:square-colors-1} lists all the fixed points for all the actions.
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $g$ & $fix(g)$ & $|fix(g)|$ \\
+        \hline
+        e & $C_1, C2, C_3, \ldots, C_{16}$ & 16 \\
+        \hline
+        $\pi_1$ & $C_1, C_{16}$ & 2 \\
+        $\pi_2$ & $C_1, C_{10}, C_{11}, C_{16}$ & 4 \\
+        $\pi_3$ & $C_1, C_{16}$ & 2 \\
+        \hline
+        $r_1$ & $C_1, C_7, C_9, C_{16}$& 4\\
+        $r_2$ & $C_1, C_6, C_8, C_{16}$& 4\\
+        $r_3$ & $C_1, C_2, C_4, C_{10}, C_{11}, C_{13}, C_{15}, C_{16}$& 8\\
+        $r_4$ & $C_1, C_3, C_5, C_{10}, C_{11}, C_{12}, C_{14}, C_{16}$& 8\\
+        \hline
+        \multicolumn{2}{|r|}{Total}&48\\
+        \hline
+
+    \end{tabular}
+    \caption{\label{tab:square-colors-1} Fixed points for the various actions.}
+\end{table}
+\begin{definition}[Stabilizer]
+    A stabilizer for $x$ is a an action $g$ that fixes it, that is $g \cdot x = x$. The set of actions that fixes $x$ is called the Stabilizer for $x$ and denoted as $S_x$. That is
+    \[S_x = \{g \mid g \cdot x = x\}. \]
+
+\end{definition}
+
+In this example,
+\begin{itemize}
+    \item $S_{C_2} = \{e, r_3\}$ because $C_2$ is unchanged by reflection about the north-west axis; and other than $e$ every other action changes it.
+    \item $fix(\pi_2) = \{C_1, C_{10}, C_{11}, C_{16}\}$. 
+\end{itemize}
+
+
+Table \ref{tab:square-colors-2} lists all the Stabilizers for all the configurations.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $x$ & Orbit $O_x$ & Stabilizers $S_x$ \\
+        \hline
+        $C_1$ & $C_1$ & $e, \pi_1, \pi_2, \pi_3, r_1, r_2, r_3, r_4$ \\
+        \hline
+        $C_2$ & $C_2, C_3, C_4, C_5$ & $e, r_3$ \\
+        $C_3$ & $C_2, C_3, C_4, C_5$ & $e, r_4$ \\
+        $C_4$ & $C_2, C_3, C_4, C_5$ & $e, r_3$ \\
+        $C_5$ & $C_2, C_3, C_4, C_5$ & $e, r_4$ \\
+        \hline
+        $C_6$ & $C_6, C_7, C_8, C_9$ & $e, r_2$ \\
+        $C_7$ & $C_6, C_7, C_8, C_9$ & $e, r_1$ \\
+        $C_8$ & $C_6, C_7, C_8, C_9$ & $e, r_2$ \\
+        $C_9$ & $C_6, C_7, C_8, C_9$ & $e, r_1$ \\
+        \hline
+        $C_{10}$ & $C_{10}, C_{11}$ & $e, \pi_2, r_3, r_4$ \\
+        $C_{11}$ & $C_{10}, C_{11}$ & $e, \pi_2, r_3, r_4$ \\
+        \hline
+        $C_{12}$ & $C_{12}, C_{13}, C_{14}, C_{15}$ & $e, r_4$ \\
+        $C_{13}$ & $C_{12}, C_{13}, C_{14}, C_{15}$ & $e, r_3$ \\
+        $C_{14}$ & $C_{12}, C_{13}, C_{14}, C_{15}$ & $e, r_4$ \\
+        $C_{15}$ & $C_{12}, C_{13}, C_{14}, C_{15}$ & $e, r_3$ \\
+        \hline
+        $C_{16}$ & $C_{16}$ & $e, \pi_1, \pi_2, \pi_3, r_1, r_2, r_3, r_4$ \\
+        \hline
+    \end{tabular}
+    \caption{\label{tab:square-colors-2} Orbits and Stabilizers for the various configurations.}
+\end{table}
+\section{Orbit Stabilizer Theorem}
+If we look at Table \ref{tab:square-colors-2} we notice some interesting things:
+\begin{itemize}
+    \item All $x$ in one orbit, have the same number of stabilizers,
+    \item this number when multiplied by the size of that orbit is same across all orbits,
+    \item and it is the same as the size of the group $G$.
+\end{itemize}
+This happens to be no coincidence.
+\begin{theorem}[Orbit Stabilizer Theorem]
+    For all $x$, the product of the size of its orbit and the size of stabilizers is equal to the size of the group. That is 
+    \[|O_x| \cdot |S_x| = |G|.\]
+\end{theorem}
+This theorem can be proved using group theory. However, we will not go into it. 
+
+This theorem is need to prove Burnside Lemma. It may also be useful to quickly count the number of symmetries.
+
+\begin{example}
+    How many rotational symmetries are there for a cube?
+\end{example}
+\begin{proof}[Solution 1: Using Orbit Stabilizer Theorem]
+    Let's use a simple configuration where we label the faces and see which face is on the top. It is easy to see that all 6 faces can be rotated into top position starting from any top face $x$. Therefore, $|O_x| = 6$. Next, let's see which $g$ stabilizes $x$, that is leave $x$ as the top face. It's easy to see that only the rotation around the axis that passes from center of the top face to center of bottom face, fixes $x$. There are 3 such rotations: $90, 180, 270$. These plus $e$ are $S_x$. So $|S_x| = 4$. Then from the Orbit Stabilizer theorem, we have
+    \[ |G| = |S_x| \cdot |O_x| = 4 \cdot 6 = \boxed{24}\].
+\end{proof}
+
+\begin{proof}[Solution 2: Direct Counting]
+    \quad
+    \begin{center}
+        \begin{tabular}{|l|c|l|c|}
+            \hline
+            Axis& \# Axes& Symmetries&\# symmetries \\
+            \hline
+            Identity & & & 1 \\
+            \hline
+            Face-centers&$\frac{6}{2}=3$ & $90^\circ, 180^\circ, 270^\circ$ & $3\cdot3 = 9$ \\
+            \hline
+            Edge-midpoints&$\frac{12}{2}=6$ & $180^\circ$ & $6\cdot 1 = 6$ \\
+            \hline
+            Long-diagonals&$\frac{8}{2}=4$ & $120^\circ, 240^\circ$ & $4\cdot 2 = 8$ \\
+            \hline
+            \multicolumn{3}{|r|}{Total} & \boxed{24} \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{proof}
+\section{Burnside Lemma}
+\begin{theorem}[Burnside Lemma]
+    Let $X / G$ be the set of orbits of $X$. Then
+    \[|X / G| = \frac{1}{|G|} \sum_{g \in G} fix(g). \]
+\end{theorem}
+
+In other words, the number of orbits, which is the same as number of distinct configurations, can be computed by summing the $fix(g)$ over all $g \in G$ and then dividing by the size of $G$.
+
+\begin{proof}
+    We prove this by double counting the number of fix-edges between $g \in G$ and $x \in X$. First, we count over $g \in G$. This gives us $sum_{g \in G} fix(g)$.
+
+    Next, we count over the $x \in X$. However, we group the $x$ in orbits for counting. From the Orbit Stabilizer theorem, we have that $|O_x| \cdot |S_x| = |G|$. Therefore, each orbit contributes $|G|$ edges. And since we have $|X / G|$ orbits, the total number of edges is $|X / G| \cdot |G|$ edges.
+
+    Equating the two and dividing both sides by $|G|$ we get the desired result.
+\end{proof}
+
+\begin{example}
+    How many ways are there to color the vertices of a square using red and blue colors that are distinct with respect to rotations and reflections?
+\end{example}
+
+While we have seen the answer to this already above, let's finish our example using Burnside Lemma. From Table \ref{tab:square-colors-1} we have the total number of fixed points as 48 and we have $|G| = 8$. Therefore, the number of distinct colorings is
+\[ \frac{1}{|G|} \cdot \sum fix(g) = \frac{1}{8} 48 = \boxed{6}, \]
+which is what we had listed in Table \ref{tab:square-colors}.
+
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        int edge[][] = {
+            {1,1,1,1,1,1,1,1},
+            {1,0,0,0,0,0,1,0},
+            {1,0,0,0,0,0,0,1},
+            {1,0,0,0,0,0,1,0},
+            {1,0,0,0,0,0,0,1},
+            {1,0,0,0,0,1,0,0},
+            {1,0,0,0,1,0,0,0},
+            {1,0,0,0,0,1,0,0},
+            {1,0,0,0,1,0,0,0},
+            {1,0,1,0,0,0,1,1},
+            {1,0,1,0,0,0,1,1},
+            {1,0,0,0,0,0,0,1},
+            {1,0,0,0,0,0,1,0},
+            {1,0,0,0,0,0,0,1},
+            {1,0,0,0,0,0,1,0},
+            {1,1,1,1,1,1,1,1},
+        };
+        int cl[] = {0, 1, 5, 9, 11, 15, 16};
+
+        string g[] = {"$e$", "$\pi_1$", "$\pi_2$", "$\pi_3$", "$r_1$", "$r_2$", "$r_3$", "$r_4$"};
+        real r = 0.35;
+        real cx = 0.40;
+        real y = 4;
+
+        for (int i = 0; i < 6; ++i) {
+            draw((cl[i]-cx, -0.5)--((cl[i+1]-1)+cx, -0.5)--((cl[i+1]-1)+cx, 0.5)--(cl[i]-cx, 0.5)--cycle);
+        }
+        for (int i = 0; i < 16; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (edge[i][j] == 1) {
+                    draw((i,0)--(2*j,y));
+                }
+            }
+        }
+        for (int i = 0; i < 16; ++i) {
+            filldraw(circle((i, 0), r), white, black);
+            label("$C_{" + (string)(i+1) + "}$", (i, 0));
+        }
+        for (int i = 0; i < 8; ++i) {
+            filldraw(circle((2*i, y), r), white, black);
+            label(g[i], (2*i, y));
+        }
+    \end{asy}
+\end{center}
+\clearpage
+
+\section{Problems}
+\begin{problem}
+    How many ways the faces of a cube can be colored using 3 colors, red, blue, green, that are distinct with respect to rotations.
+
+    \begin{sketch}
+        Let's count the $fix(g)$.
+        \begin{center}
+            \begin{tabular}{|l|l|p{5cm}|c|}
+                \hline
+                Axis & Rotations &  & Fixes \\
+                \hline
+                None & None & Freely choose all faces & $1 \cdot 3^6$ \\
+                \hline
+                Face-Centers & $90^\circ, 270^\circ$ & Say top-bottom axis: can choose top, bottom, and one side face. Other side faces are determined. & $3 \cdot 2 \cdot 3^3$ \\
+                \hline
+                Face-Centers & $180^\circ$ & Say top-bottom axis: can choose top, bottom, and two adjacent side faces. The other side faces are determined. & $3 \cdot 1 \cdot 3^4$ \\
+                \hline
+                Edge-Midpoints & $180^\circ$ & If we choose a color for a face adjacent to the edge, the other 3 faces that it can be rotated into are determined. Can freely choose the 2 side faces. & $6 \cdot 1 \cdot 3^3$ \\
+                \hline
+                Long-Diagonal & $120^\circ, 240^\circ$ & There are 2 set of faces that rotate into each other, so we have 2 choices. & $4 \cdot 2 \cdot 3^2$ \\
+                \hline
+                \multicolumn{3}{|r|}{total} & 1368 \\
+                \hline
+            \end{tabular}
+        \end{center}
+        We have $|G| = 24$. Therefore, the number of distinct colorings is
+        \[\frac{1}{24} \cdot 1368 = \boxed{57}.\]
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    How many ways can color the squares of a $4 \times 4$ chessboard using black and white that are distinct with respect to rotations and reflections.
+    \begin{sketch}
+        First let's look at the symmetries. We have the identity, $e$, 3 rotations around the center by $90^\circ, 180^\circ, 270^\circ$, $\pi_1, \pi_2, pi_3$, and four reflections about the horizontal, vertical, north-east and north-west diagonals, $r_1, r_2, r_3, r_4$.
+
+        Now, let's count the fixes.
+
+        \begin{itemize}
+            \item $e$: We can choose a color for each square freely. So $2^{16}$ fixes.
+            \item $\pi_1 (90^\circ \text{ rotation}), \pi_3 (270^\circ \text{ rotation})$: $\pi_3$ is symmetrical version of $\pi_1$, so let's just consider $\pi_1$. As we can see in the diagram each square goes to 4 other square and we can choose 4 colors independently. So $2\cdot 2^4$ fixes.
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"1", "3", "2", "1"},
+                        {"2", "4", "4", "3"},
+                        {"3", "4", "4", "2"},
+                        {"1", "2", "3", "1"},
+
+                    };
+                    for (int i = 0; i < 4; ++i)
+                    for (int j = 0; j < 4; ++j) {
+                        draw((i,0)--(i,4)^^(0,j)--(4,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((4,0)--(4,4)^^(0,4)--(4,4));
+                \end{asy}
+            \end{center}
+            \item $\pi_2 (180^\circ \text{ rotation})$: As we can see in the diagram below, each square goes to another and so we can choose colors for 8 independently. So the number of fixes is $1 \cdot 2^8$.
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"4", "3", "2", "1"},
+                        {"8", "7", "6", "5"},
+                        {"5", "6", "7", "8"},
+                        {"1", "2", "3", "4"},
+
+                    };
+                    for (int i = 0; i < 4; ++i)
+                    for (int j = 0; j < 4; ++j) {
+                        draw((i,0)--(i,4)^^(0,j)--(4,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((4,0)--(4,4)^^(0,4)--(4,4));
+                \end{asy}
+            \end{center}
+            \item $r_1 (\text{ horizontal reflextion}), r_3 (\text{ vertical reflextion})$: As we can see in the diagram below for $r_1$, each square goes to another and so we can choose colors for 8 independently. So the number of fixes is $2 \cdot 2^8$.
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"1", "2", "3", "4"},
+                        {"5", "6", "7", "8"},
+                        {"5", "6", "7", "8"},
+                        {"1", "2", "3", "4"},
+
+                    };
+                    for (int i = 0; i < 4; ++i)
+                    for (int j = 0; j < 4; ++j) {
+                        draw((i,0)--(i,4)^^(0,j)--(4,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((4,0)--(4,4)^^(0,4)--(4,4));
+                    draw((-0.5,2)--(4.5,2), red+dashed);
+                \end{asy}
+            \end{center}
+            \item $r_3 (\text{ north-east reflection}), r_4 (\text{ north-west reflextion})$: As we can see in the diagram below for $r_3$, the triangle above the diagonal maps below the diagonal, allowing us to choose 6 colors independently; also, we can choose the 4 colors on the diagonal independently. So the number of fixes is $2 \cdot 2^{10}$.
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"7", "6", "4", "1"},
+                        {"6", "8", "5", "2"},
+                        {"4", "5", "9", "3"},
+                        {"1", "2", "3", "10"},
+
+                    };
+                    for (int i = 0; i < 4; ++i)
+                    for (int j = 0; j < 4; ++j) {
+                        draw((i,0)--(i,4)^^(0,j)--(4,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((4,0)--(4,4)^^(0,4)--(4,4));
+                    draw((-0.5,-0.5)--(4.5,4.5), red+dashed);
+
+                \end{asy}
+            \end{center}
+        \end{itemize}
+        Then by Burnside Lemma, the number of distinct colorings is 
+        \[\frac{1}{8}(2^{16} + 2\cdot 2^4 + 1 \cdot 2^8 + 2 \cdot 2^8 + 2 \cdot 2^{10}) = \frac{68384}{8} = \boxed{8548}.\]
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    How many ways we can color the vertices of an equilateral triangle using 4 colors that are distinct with respect to reflections and rotations.
+    \begin{sketch}
+    First, let's list the symmetries: we have identity, $e$, rotations by $120^\circ, 240^\circ$, $\pi_1, \pi_2$, and reflections over the medians, $r_1, r_2, r_3$.
+    
+    Now, let's count the fixes:
+    \begin{itemize}
+        \item $e$: $4^3$.
+        \item $\pi_1, \pi_2$: Each vertex gets rotated into every every other vertex. So we can independently choose only 1. Therefore, $2 \cdot 4$.
+        \item $r_1, r_2, r_3$: The 2 vertices are not on the median get reflected into one other. So we independenltly choose color for the vertex on the median and one of the other vertices. Therefore, $3 \cdot 4^2$.
+    \end{itemize}
+    So by Burnside Lemma, the number of colorings is
+    \[\frac{1}{6}(4^3 + 2 \cdot 4 + 3 \cdot 4^2) = \boxed{20} .\]
+    \end{sketch}
+\end{problem}
+\begin{problem}[PUMaC 2012, Cominatorics A, \# 6]
+    Two white pentagonal pyramids, with side lengths all the same, are glued to each other
+at their regular pentagon bases. Some of the resulting 10 faces are colored black. How many
+rotationally distinguishable colorings may result?
+
+\begin{sketch}
+There is 1 identity rotation, 4
+$(72^\circ, 144^\circ, 216^\circ, 288^\circ)$ rotations about the apex vertices, and 5 $180^\circ$
+rotations about the nonapex vertices that send the shape to itself, and these form the symmetry group of the figure.
+Respectively, these fix 10, 2 (can select color for top and bottom independently), and 5 orbits (each face rotates to another only) of faces. By the Burnside’s lemma, the answer
+is 
+\[ \frac{1}{10}(2^{10}+4\cdot2^2+5\cdot2^5)  = \boxed{120} .\]
+
+\end{sketch}
+\end{problem}
+
+\clearpage
+\section{Solution Sketches}
+\makehints
+\newpage
+\section{References}
+\begin{itemize}
+    \item \url{https://www.youtube.com/watch?v=wvofB5tZz3Y}
+    \item \url{https://www.youtube.com/watch?v=6kfbotHL0fs}
+\end{itemize}
+\end{document}

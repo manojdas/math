@@ -159,7 +159,7 @@ pair Q = (P.x,-P.y);
 ...
 \end{lstlisting}
 
-\section{Labels}
+\section{This and That}
 \subsection{Rotated Labels}
 \begin{center}
     \begin{asy}
@@ -180,6 +180,65 @@ pair Q = (P.x,-P.y);
     ...
     label(Label("$2\cdot13=26$", Relative(0.4), Rotate(dir(A--C))), A--C, NW, blue);
     label(Label("$30$", Relative(0.5), Rotate(dir(C--B))), C--B, NE, blue);
+    ...
+\end{lstlisting}
+
+\subsection{Line Markers with Labels}
+\begin{center}
+    \begin{asy}
+        unitsize(3cm);
+
+        // filltype = background color
+        Label L = Label("$f(x)$", align=(0,0), position=MidPoint, filltype=Fill(white));
+        draw((0,0) -- (0,sqrt(1.4)), L=L, arrow=Arrows(), bar=Bars);            
+    \end{asy}
+\end{center}
+\subsection{Multiple Pictures}
+Sometimes we need to put two pictures side by side. While we can draw as a single picture and adjust our coordinates accordingly, it is simpler to draw two pictures independently and then place the pictures as desired. All the drawing commands take an optional \emph{picture pic} first parameter. This picture is added to the output picture using \emph{add} command. Any transformations including rotations and translations can be done at the time of add.
+\begin{center}
+\begin{asy}
+    unitsize(2cm);
+    pair A, B, C, D;
+    pair P1, P2, P3;
+    
+    picture pic1, pic2;
+    
+    A = (-2,0);
+    B = (-2,2);
+    C = (0,2);
+    D = (0,0);
+    
+    P1 = rotate(-60)*A;
+    P2 = extension(rotate(-15)*A, D, A, B);
+    P3 = extension(rotate(-75)*A, D, B, C);
+    
+    draw(pic1, A--B--C--D--cycle^^D--P1--A);
+    label(pic1, "$4$", A--D, S);
+    label(pic1, "$4$", A--B, W);
+	
+    draw(pic2, A--B--C--D--cycle^^D--P2--P3--cycle);
+    label(pic2, "$4$", A--D, S);
+    label(pic2, "$4$", D--C, E);
+
+    add(shift(2.5*right)*pic2);
+    add(pic1);
+\end{asy}    
+\end{center}
+
+The relevant excerpt of the code for above figure is:
+
+\begin{lstlisting}
+    ...
+    picture pic1, pic2;
+    ...
+    draw(pic1, A--B--C--D--cycle^^D--P1--A);
+    label(pic1, "$4$", A--D, S);
+    ...
+    draw(pic2, A--B--C--D--cycle^^D--P2--P3--cycle);
+    label(pic2, "$4$", A--D, S);
+    ...
+    add(shift(2.5*right)*pic2);
+    add(pic1);
     ...
 \end{lstlisting}
 

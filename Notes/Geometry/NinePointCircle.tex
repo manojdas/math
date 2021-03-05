@@ -16,20 +16,59 @@
 
 \TBD WIP
 \section{Examples}
-\begin{example}[HMMT February 2019, Geometry \#8]
-In triangle $ABC$ with $AB < AC$, let $H$ be the orthocenter and $O$ be the circumcenter. Given that the
-midpoint of $OH$ lies on $BC, BC = 1$, and the perimeter of $ABC$ is 6, find the area of $ABC$.    
+
+\begin{example}[HMMT Feb 2019, Geometry 8]\label{hmmt_feb_19_geo_8}
+    In triangle $ABC$ with $AB < AC$, let $H$ be the orthocenter and $O$ be the circumcenter. Given that the midpoint of $OH$ lies on $BC$, $BC = 1$, and the perimeter of $ABC$ is 6, find the area of $ABC$.
 \end{example}
-\begin{remark}[Key Insight]
-    The midpoint of $OH$ is $N$, the center of the 9 point circle.
+
+\begin{figure}[ht]
+    \centering
+    \begin{asy}
+        unitsize(0.25cm);
+        pair A, B, C, N, Ma, Mb, Mc, M2;
+
+        A = (-25, 24);
+        B = (-7, 0);
+        C = (7, 0);
+
+        N = (-25/2, 0);
+        Ma = (0, 0);
+        Mb = (A + C) / 2;
+        Mc = (A + B) / 2;
+
+        M2 = (Mb + Mc)/2;
+
+        draw((M2.x, M2.y+5)--(M2.x, -0.5), blue+dashed);
+        draw(A--B--C--cycle);
+        draw (Ma--Mb--Mc--cycle, blue);
+
+        draw(Ma--N^^Mb--N^^Mc--N, green);
+
+        dot(N, red);
+        dot(Ma);
+        dot(Mb);
+        dot(Mc);
+
+        label("$A$", A, NE);
+        label("$B$", B, S);
+        label("$C$", C, S);
+        label("$N_9$", N, S);
+        label("$M_a$", Ma, S);
+        label("$M_b$", Mb, NE);
+        label("$M_c$", Mc, NW);
+
+    \end{asy}
+    \caption{Figure \ref{hmmt_feb_19_geo_8}}
+    \label{hmmt_feb_19_geo_8_fig}
+\end{figure}
+\begin{remark}
+    The key observations in this problem are:
+    \begin{itemize}
+        \item The midpoint of $O$ and $H$ is $N_9$, the center of the nine-point circle.
+        \item The ninepoint circle is the circumcircle of the medial triangle.
+    \end{itemize}
+    After this, the problem may be solved using coordinate bashing or trig bashing to get $\boxed{\frac{6}{7}}$.
 \end{remark}
-\TBD Diagram
-\begin{soln}[Coordinate Bash]
-\TBD
-\end{soln}
-\begin{soln}[Trig]
-\TBD
-\end{soln}
 
 \begin{thebibliography}{99}
     \bibitem{fact5} \TBD
