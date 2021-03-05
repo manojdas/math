@@ -2,6 +2,11 @@
 \newif\ifusefancy\usefancyfalse
 \newif\ifuseevan\useevantrue
 
+\DeclareOption{noevan}{\useevanfalse}
+\ProcessOptions\relax
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{urlcolor=RubineRed,linkcolor=RoyalBlue,citecolor=ForestGreen}
 
 \usepackage{graphicx,caption,subcaption}
 \usepackage{yhmath}
@@ -14,22 +19,49 @@
 
 \newcommand{\org}[1]{\newcommand{\theorg}{#1}}
 \newcommand{\TBD}{\emph{\textcolor{red}{TBD\ }}}
+\newcommand{\THEAD}[1]{\textit{\textcolor{blue}{#1}}}
+\newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\dstirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
 
 % \usepackage[automark,headwidth=textwithmarginpar,footwidth=text,
 %             footsepline=0.4pt, 
 %             headsepline=0.4pt:textwithmarginpar,
 %             plainfootsepline]{scrlayer-scrpage}  % Custom header and footer
 
+\usepackage{asymptote}
 \ifuseevan
-\usepackage[sexy, nofancy, hints]{evan}
+% \usepackage[sexy, nofancy, hints, noasy]{evan}
+\usepackage[sexy, nofancy, hints, noasy, nohref]{evan}
 \Newassociation{sketch}{hintitem}{hints}
 \else
-\usepackage[colorlinks]{hyperref}
+\usepackage{listings}
 \providecommand{\thetitle}{\@title}
 \providecommand{\theauthor}{\@author}
 \providecommand{\thedate}{\@date}
 \PassOptionsToPackage{usenames,svgnames,dvipsnames,table}{xcolor}
 \usepackage{xcolor}
+
+\@ifundefined{KOMAClassName}{}{
+  \@ifundefined{chapter}{}{
+    \addtokomafont{partprefix}{\rmfamily}
+    \renewcommand*{\partformat}{\color{purple}
+      \scalebox{2.5}{\thepart}\enlargethispage{2em}}
+    \addtokomafont{chapterprefix}{\raggedleft}
+    \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
+    \renewcommand*{\chapterformat}{\mbox{%
+      \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+      \scalebox{2.718}{\color{purple}\thechapter}\enskip}}
+  }
+  \renewcommand*{\sectionformat}%
+    {\color{purple}\S\thesection\enskip}
+  \renewcommand*{\subsectionformat}%
+    {\color{purple}\S\thesubsection\enskip}
+  \renewcommand*{\subsubsectionformat}%
+    {\color{purple}\S\thesubsubsection\enskip}
+  \KOMAoptions{numbers=noenddot}
+  \usepackage[tocindentauto]{tocstyle}
+  \usetocstyle{KOMAlike}
+}
 \fi
 
 \usepackage{lastpage}
@@ -73,18 +105,41 @@
     \markright{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}%
     \markleft{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}
 }
+% \renewcommand{\chaptermark}[1]{\markboth{\if@mainmatter\chaptername\ \thechapter~~\fi#1}{}}
+
 % \automark*{section}
-\ihead{\footnotesize\textbf{\headmark}}
-\ohead{\footnotesize\textbf{\thetitle}}
-\cfoot{\pagemark}
+\ihead*{\footnotesize\textbf{\headmark}}
+\ohead*{\footnotesize\textbf{\thetitle}}
+\cfoot*{\pagemark}
 
 
-\cfoot{}
+\cfoot*{}
 \ofoot*{\footnotesize\textbf{Page \thepage~of \pageref{LastPage}}}
-\ifoot{\footnotesize\textbf{\theorg}}
+\@ifundefined{theorg}%
+  {}
+  {%
+    \ifoot*{\footnotesize\textbf{\theorg}}
+  }
 \setlength{\headheight}{14pt}
 \fi
 
+\lstset{
+    backgroundcolor=\color{TealBlue!5},
+    stepnumber=2,
+    numbersep=5pt,
+    frame=single,
+    framerule=0pt,
+    framesep=0pt,
+    captionpos=b,
+    language=C++
+}
+\lstdefinestyle{plain}{
+  backgroundcolor=\color{white},
+  numbers=none,
+  frame=none,
+  captionpos=b,
+  language=C++
+}
 
 % \@ifundefined{KOMAClassName}{}{
 % 	\renewcommand*{\sectionformat}%
@@ -95,3 +150,109 @@
 % 		{\color{purple}\S\thesubsubsection\enskip}
 % 	\KOMAoptions{numbers=noenddot}
 % }
+
+\definecolor{maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{ipython_frame}{RGB}{207, 207, 207}
+\definecolor{ipython_bg}{RGB}{247, 247, 247}
+\definecolor{ipython_red}{RGB}{186, 33, 33}
+\definecolor{ipython_green}{RGB}{0, 128, 0}
+\definecolor{ipython_cyan}{RGB}{64, 128, 128}
+\definecolor{ipython_purple}{RGB}{170, 34, 255}
+
+\lstset{
+    breaklines=true,
+    %
+    extendedchars=true,
+    literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+%%
+%% Python definition (c) 1998 Michael Weber
+%% Additional definitions (2013) Alexis Dimitriadis
+%% modified by me (should not have empty lines)
+%%
+\lstdefinelanguage{iPython}{
+    morekeywords={access,and,break,class,continue,def,del,elif,else,except,exec,finally,for,from,global,if,import,in,is,lambda,not,or,pass,print,raise,return,try,while},%
+    %
+    % Built-ins
+    morekeywords=[2]{abs,all,any,basestring,bin,bool,bytearray,callable,chr,classmethod,cmp,compile,complex,delattr,dict,dir,divmod,enumerate,eval,execfile,file,filter,float,format,frozenset,getattr,globals,hasattr,hash,help,hex,id,input,int,isinstance,issubclass,iter,len,list,locals,long,map,max,memoryview,min,next,object,oct,open,ord,pow,property,range,raw_input,reduce,reload,repr,reversed,round,set,setattr,slice,sorted,staticmethod,str,sum,super,tuple,type,unichr,unicode,vars,xrange,zip,apply,buffer,coerce,intern},%
+    %
+    sensitive=true,%
+    morecomment=[l]\#,%
+    morestring=[b]',%
+    morestring=[b]",%
+    %
+    morestring=[s]{'''}{'''},% used for documentation text (mulitiline strings)
+    morestring=[s]{"""}{"""},% added by Philipp Matthias Hahn
+    %
+    morestring=[s]{r'}{'},% `raw' strings
+    morestring=[s]{r"}{"},%
+    morestring=[s]{r'''}{'''},%
+    morestring=[s]{r"""}{"""},%
+    morestring=[s]{u'}{'},% unicode strings
+    morestring=[s]{u"}{"},%
+    morestring=[s]{u'''}{'''},%
+    morestring=[s]{u"""}{"""},%
+    %
+    % {replace}{replacement}{lenght of replace}
+    % *{-}{-}{1} will not replace in comments and so on
+    literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\EUR}}1 {£}{{\pounds}}1
+    %
+    {^}{{{\color{ipython_purple}\^{}}}}1
+    {=}{{{\color{ipython_purple}=}}}1
+    %
+    {+}{{{\color{ipython_purple}+}}}1
+    {*}{{{\color{ipython_purple}$^\ast$}}}1
+    {/}{{{\color{ipython_purple}/}}}1
+    %
+    {+=}{{{+=}}}1
+    {-=}{{{-=}}}1
+    {*=}{{{$^\ast$=}}}1
+    {/=}{{{/=}}}1,
+    literate=
+    *{-}{{{\color{ipython_purple}-}}}1
+     {?}{{{\color{ipython_purple}?}}}1,
+    %
+    identifierstyle=\color{black}\ttfamily,
+    commentstyle=\color{ipython_cyan}\ttfamily,
+    stringstyle=\color{ipython_red}\ttfamily,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    %
+    rulecolor=\color{ipython_frame},
+    frame=single,
+    % frameround={t}{t}{t}{t},
+    framexleftmargin=6mm,
+    numbers=left,
+    numberstyle=\tiny\color{halfgray},
+    %
+    %
+    backgroundcolor=\color{TealBlue!5},
+    %   extendedchars=true,
+    basicstyle=\scriptsize,
+    keywordstyle=\color{ipython_green}\ttfamily,
+}
