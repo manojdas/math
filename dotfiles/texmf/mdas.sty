@@ -22,7 +22,10 @@
 \newcommand{\THEAD}[1]{\textit{\textcolor{blue}{#1}}}
 \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
 \newcommand{\dstirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
-
+\newcommand{\dstirlings}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+\newcommand{\stirlings}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\kc}{\mathfrak c}
+\newcommand{\PP}{\mathcal{P}}
 % \usepackage[automark,headwidth=textwithmarginpar,footwidth=text,
 %             footsepline=0.4pt, 
 %             headsepline=0.4pt:textwithmarginpar,
@@ -33,6 +36,8 @@
 % \usepackage[sexy, nofancy, hints, noasy]{evan}
 \usepackage[sexy, nofancy, hints, noasy, nohref]{evan}
 \Newassociation{sketch}{hintitem}{hints}
+\declaretheorem[name=Note,sibling=theorem]{note}
+\declaretheorem[name=Note,numbered=no]{note*}
 \else
 \usepackage{listings}
 \providecommand{\thetitle}{\@title}
