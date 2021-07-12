@@ -1,0 +1,176 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 1}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 1}}
+
+\subsection{Problem 1}
+Prove that ABCD is cyclic in each of the following cases:
+
+\begin{center}
+\begin{asy}
+    import cse5;
+    import olympiad;
+        
+    size(200);
+
+    pathpen = black + linewidth(0.7);
+    pointpen = black;
+    pen s = fontsize(8);
+    path O = circle((0,0), 2);
+    pair origin = (0,0);
+    pair I = (2,0);
+    pair A = rotate(-100)*I;
+    pair Q = scale(1.8)*rotate(5)*I;
+    pair D = rotate(115)*I;
+    //intersection for C
+    pair C = intersectionpoints(D--Q, O)[0];
+
+    //intersection for B
+    //path q = (A--Q);
+    //real[] inter1 = intersect(q,O);
+    //pair B = point(q,inter1[0]);
+    pair B = intersectionpoints(A--Q, O)[0];
+
+    //intersection for P
+    path x = (A--C);
+    path y = (D--B);
+    real[] inter2 = intersect(x,y);
+    pair P = point(x,inter2[0]);
+
+    //draw(MP("B",B,(0,1),s)--MP("A",A,SW,s);
+    draw(O,heavygreen);
+    draw(MP("A",A,S,s)--MP("Q",Q,E,s)--MP("D",D,NW,s)--MP("B",B,SE,s)--MP("C",C,NE,s)--A--D);
+    draw(MP("P",P,scale(2)*N,s));
+    
+\end{asy}   
+\end{center}
+
+\begin{enumerate}
+    \item $\angle ABD = \angle ACD.$ (Or any of the other pairs of similarly defined angles, such as $\angle ADB = \angle ACB.$)
+    \item $\angle ABC + \angle ADC = 180^\circ$
+    \item $PA\cdot PB= PC\cdot PD$
+    \item $QC\cdot QD= QB\cdot QA$
+    \item $AB\cdot CD + BC\cdot DA = AC\cdot BD$
+\end{enumerate} 
+
+\begin{mdsoln}
+    (1) Suppose $ \angle ABD=\angle ACD$. Let $ \omega$ be the circumcircle of $ ABD$. Suppose that line $ AC$ meets $ \omega$ again at $ C_1$. Then, $ C_1$ must also be on the same side of $ AD$ as $ B$. Then, $ \angle AC_1D=\angle ABD$, since the angles inscribe the same arc of $ \omega$. Then, $ \angle AC_1D=\angle ABD=\angle ACD$. Since $ C,C_1,A$ are collinear with $ A$ not between $ C$ and $ C_1$, this implies that $ C=C_1$, so $ ABCD$ is cyclic (with circumcircle $ \omega$).
+
+(2) Suppose $ \angle ABC+\angle ADC=180^\circ$. Let $ \omega$ be the circumcircle of $ ABC$. Suppose $ AD$ intersects $ \omega$ again at $ D_1$.
+
+Case 1: $ D_1$ is on the same side of $ AC$ as $ B$. Then, $ \angle AD_1C=\angle ABC=180^\circ-\angle ADC$, so $ \angle AD_1D+\angle D_1DA=180^\circ$, implying $ \angle DAD_1=0^\circ$, so $ D=D_1$, a contradiction since $ D$ is on the opposite side of $ AC$ from $ B$.
+
+Case 2: $ D_1$ is on the opposite side of $ AC$ from $ B$. Then, $ \angle AD_1C+\angle ABC=180^\circ$, so $ \angle AD_1C=\angle ADC$, implying by our earlier logic in part (1) that $ D_1=D$ and hence that $ ABCD$ is cyclic.
+
+(3) Suppose that $ (PA)(PC)=(PD)(PB)$. Then, $ PA/PB=PD/PC$, so $ \triangle PAB\sim \triangle PDC$, implying that $ \angle ABP=\angle PCD$, and hence that $ \angle ABD=\angle ACD$. By part (1) of the problem, then, $ ABCD$ must be cyclic.
+
+(4) Suppose that $ (QC)(QD)=(QB)(QA)$. Then, $ QC/QB=QA/QD$, so $ \triangle QBC\sim \triangle QDA$, implying that $ \angle CBQ=\angle ADQ$ and hence that $ \angle ADC=180^\circ-\angle ABC$. By part (2) of this problem, then, $ ABCD$ must be cyclic.
+
+(5) (based on a solution by mahbub)
+Suppose that $ (AB)(CD)+(AD)(BC)=(AC)(BD)$.
+
+Construct $ X$ such that $ \angle XAB=\angle DAC$ and $ \angle ABX=\angle ACD$ (where angles are measured clockwise). By construction, $ \triangle ABX\sim \triangle ACD$. Then, $ AX/AD=AB/AC$. Moreover, $ \angle DAX=\angle DAB-\angle XAB=\angle DAB-\angle DAC=\angle CAB$. These two facts imply that $ \triangle DAX\sim \triangle CAB$.
+
+Since $ \triangle ABX\sim \triangle ACD$, we have $ (AB)(CD)=(AC)(BX)$. Since $ \triangle DAX\sim \triangle CAB$, we have $ (AD)(BC)=(AC)(XD)$. Summing these two equations yelds $ (AB)(CD)+(AD)(BC)=(AC)(BX+XD)$. Since we know that $ (AB)(CD)+(AD)(BC)=(AC)(BD)$, this means that $ BX+XD=BD$, so $ X$ must be on the segment $ BD$. Then, $ \angle ACD=\angle ABX=\angle ABD$, so, by part (1) of this problem, $ ABCD$ is cyclic.
+
+\end{mdsoln}
+\subsection{Problem 2}
+
+A circle through vertex $ A$ of parallelogram $ ABCD$ meets $ AB$ and $ AD$ at $ P$ and $ R$, respectively, and it meets $ AC$ at $ Q$. Prove that $ AQ\cdot AC= AP \cdot AB + AR\cdot AD$.
+
+\begin{mdsoln}
+    Since $ APQR$ is cyclic, we have $ \angle QPR=\angle QAR=\angle ACB$ (since $ ABCD$ is a parallelogram) and $ \angle PRQ=\angle PAQ=\angle BAC$. These imply that $ \triangle PQR\sim \triangle CBA$, so that $ PR=kAC$, $ QR=kAB$, $ PQ=kBC$ for some real number $ k$.
+
+    Now, using Ptolemy’s Theorem on $ APQR$, we get $ AQ\cdot PR=AP\cdot QR+AR\cdot PQ$. Substituting, we get $ AQ\cdot (kAC)=AP\cdot (kAB)+AR\cdot (kBC)$. Dividing by $ k$ and substituting $ AD=BC$ (valid since $ ABCD$ is a parallelogram) we get $ AQ\cdot AC= AP \cdot AB + AR\cdot AD$, which is what we wanted to prove.
+\end{mdsoln}
+
+
+\subsection{Problem 3}
+
+Prove the equality portion of Ptolemy’s Inequality. Namely, if $ ABCD$ is cyclic, then $ (AB)(CD) + (BC)(AD) = (AC)(BD)$.
+
+\begin{mdsoln}
+    Suppose $ ABCD$ is cyclic.
+
+Construct $ X$ on segment $ BD$ such that $ \angle XAB=\angle DAC$. Since $ ABCD$ is cyclic, $ \angle ABX=\angle ABD=\angle ACD$. Hence, $ \triangle ABX\sim \triangle ACD$. Then, $ AX/AD=AB/AC$. Moreover, $ \angle DAX=\angle DAB-\angle XAB=\angle DAB-\angle DAC=\angle CAB$. These two facts imply that $ \triangle DAX\sim \triangle CAB$.
+
+Since $ \triangle ABX\sim \triangle ACD$, we have $ (AB)(CD)=(AC)(BX)$. Since $ \triangle DAX\sim \triangle CAB$, we have $ (AD)(BC)=(AC)(XD)$. Summing these two equations yelds $ (AB)(CD)+(AD)(BC)=(AC)(BX+XD)$. Because $ X$ is on segment $ BD$, $ BX+XD=BD$, so $ (AB)(CD)+(AD)(BC)=(AC)(BD)$, and we are done.
+
+\end{mdsoln}
+
+
+\subsection{Problem 4}
+
+Right triangle $ ABC$ has right angle $ C$. Points $ X$ and $ Y$ are on line $ AB$ (beyond $ A$ and $ B$) such that $ XA = AB = BY$. $ N$ is on line $ CY$ such that $ XN$ is perpendicular to $ CY$. Show that a rectangle with sides $ CY$ and $ CN$ has double the area of a square with side $ AB$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+            
+        size(250);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        pair A = dir(-180), B=dir(0), X = scale(3)*A, Y= scale(3)*B, N=scale(3)*dir(155);
+        draw(MP("X",X,SW,s)--MP("N",N,NW,s)--MP("Y",Y,E,s)--cycle);
+        //draw(Circle(origin,3));
+        //draw(Circle(origin,1));
+        pair C = intersectionpoints(N--Y,Circle(origin,1))[0];
+        draw(MP("A",A,S,s)--MP("B",B,S,s)--MP("C",C,rotate(15)*NE,s)--cycle);
+        //dot(origin);
+        draw(rightanglemark(A,C,B,5));
+        draw(rightanglemark(X,N,Y,5));
+    
+    \end{asy}   
+\end{center}
+
+\begin{mdsoln}
+    Let $ M$ be the midpoint of $ AB$ and $ \omega$ the circumcircle of right triangle $ XYN$. Note that $ \omega$ is centered at $ M$. Let $ P$ and $ Q$ be the intersections of line $ MC$ with $ \omega$, with $ C$ between $ M$ and $ P$. Then, by the Power of a Point Theorem, $ (CN)(CY)=(CP)(CQ)=(PM-CM)(QM+CM)$. But $ PM=QM=XM=XY/2=3AB/2$ and $ CM=AB/2$. Hence, $ (CN)(CY)=(AB)(2AB)=2(AB)^2$, which is what we were trying to prove.
+\end{mdsoln}
+\subsection{Problem 5}
+
+Let $ B$ be a point on circle $ S$ and let $ A$ be a point distinct from $ B$ on the tangent to $ S$ through $ B$. Let $ C$ be a point outside $ S$ such that segment $ AC$ meets $ S$ in two points. Let $ U$ be the circle touching $ AC$ at $ C$ and touching circle $ S$ at point $ D$ on the opposite side of $ AC$ from $ B$. Prove that the circumcenter of triangle $ BCD$ lies on the circumcircle of triangle $ ABC$.
+
+(Note that I’ve added the circumcircles to the diagram already, with centers $ K$ and $ T$.)
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+            
+        size(250);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        path S = Circle(origin,1);
+        dot(MP("S",origin,E,s));
+        pair B = dir(160), A=B+scale(.9)*dir(70), D=dir(0);
+        draw(S,heavygreen);
+        draw(Circle((2.4,0),1.4),heavygreen);
+        pair C = tangent(A,(2.4,0),1.4);
+        pair U = (2.4,0);
+        dot(U);
+        draw(MP("U",U,W,s));
+        draw(MP("B",B,W,s)--MP("A",A,NW,s)--MP("C",C,SW,s)--cycle);
+        draw(A--A+scale(4)*(B-A));
+        draw(A--A+scale(1.5)*(C-A));
+        draw(B--MP("D",D,E,s)--C);
+        draw(circumcircle(A,B,C),heavygreen);
+        pair T = circumcenter(A,B,C);
+        dot(T);
+        draw(MP("T",T,NW,s));
+        draw(circumcircle(B,D,C),heavygreen);
+        pair K = circumcenter(B,D,C);
+        dot(MP("K",K,SW,s));
+    
+\end{asy}   
+\end{center}
+
+\begin{mdsoln}
+    Let $ K$ be the circumcenter of $ \triangle BCD$, $ V$ the intersection of $ AC$ and $ BD$. Let $ \angle BKC = 2\alpha$ and $ \angle SBD = \angle SDB = \beta$. Hence $ \angle BDC = 180^{\circ} - \alpha$. So $ \angle DCU = \angle CDU = 180^{\circ} - \angle CDS = \alpha + \beta$. Hence $ \angle DCV = 90^{\circ} - (\alpha + \beta)$.
+
+So $ \angle AVB = \angle DVC = 180^{\circ} - (\angle DCV + \angle CDV) = 2\alpha + \beta - 90^{\circ}$. Also, since $ AB$ is tangent to circle $ S$, $ \angle ABV = 90^{\circ} - \beta$.
+
+Hence, in $ \triangle ABV$, $ \angle BAV = 180^{\circ} - (\angle ABV + \angle AVB) = 180^{\circ} - 2\alpha$. This means $ \angle BAC + \angle BKC = 180^{\circ}$ or $ ABKC$ is a cyclic quadrilateral. Hence the circumcircle of $ \triangle ABC$ goes through $ K$, which is the circumcenter of $ \triangle BDC$.
+\end{mdsoln}

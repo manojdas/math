@@ -1,0 +1,250 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 2}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 2}}
+
+\subsection{Problem 1}
+
+Circle $S$ has center $O$ and intersects circle $S'$ at $A$ and $B$. Let $C$ be on the arc of $S$ inside $S'$. Let $E$ and $D$ be the second intersections of $S'$ with lines $AC$ and $BC$, respectively. Prove that $DE\perp OC$.
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        size(250);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        pair S = origin, A = dir(155), B = dir(-125), C = (-.6,0);
+        dot(S);
+        pair D = intersectionpoints(B--B+scale(3)*(C-B),Circle(S,1))[1];
+        pair E = intersectionpoints(A--A+scale(5)*(C-A),Circle(S,1))[1];
+        draw(Circle(S,1),heavygreen);
+        draw(circumcircle(A,C,B),heavygreen);
+        draw(MP("A",A,shift(0,.5)*N,s)--MP("E",E,shift(0,-1)*S,s)--MP("D",D,N,s)--MP("B",B,shift(0,-1)*S,s));
+        draw(MP("C",C,rotate(10)*scale(2)*SW,s));
+        pair O = circumcenter(A,C,B);
+        dot(MP("O",O,N,s));
+        draw(C+scale(2.3)*(O-C)--O+scale(2.5)*(C-O));
+        MP("X",intersectionpoints(D--E,C+scale(2.3)*(O-C)--O+scale(2.5)*(C-O))[0],rotate(-20)*scale(2)*N,s);
+    
+\end{asy}   
+\end{center}
+
+
+
+\begin{mdsoln}
+    Since $ADEB$ is a cyclic quadrilateral, $\angle EDB = \angle EAB$. Therefore,\[ \angle EDB = \angle EAB = \angle CAB = \frac{1}{2} \overarc{CB} = \frac {1}{2} \angle COB.\]Since $OCB$ is isosceles,\[ \angle BCO = 90^{\circ} - \frac{1}{2} \angle COB = 90^{\circ} - \angle EDB.\]Since $\angle DCX = \angle BCO$ and $\angle XDC = \angle EDB$, this means that $\angle DCX = 90^{\circ} - \angle XDC$, implying that $\angle CXD = 90^{\circ}$, as desired.
+\end{mdsoln}
+
+
+
+\subsection{Problem 2}
+
+In acute $\angle BAC$, $F$ is on $AB$ and $E$ on $AC$ as shown. Prove that the circumcircles of $BFG$, $CEG$, $ABE$ and $ACF$ are concurrent.
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        size(200);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        pair B = origin, A = (2,0), C = (1.4,-2.1),F=(1.2,0),E=point(A--C,.4);
+        pair G = intersectionpoints(F--C,B--E)[0];
+        draw(MP("F",F,N,s)--MP("C",C,S,s)--MP("A",A,NE,s)--MP("B",B,W,s)--MP("E",E,E,s));
+        MP("G",G,NE,s);
+        draw(circumcircle(B,F,G),heavygreen);
+        draw(circumcircle(B,A,E),heavygreen);
+        draw(circumcircle(G,E,C),heavygreen);
+        draw(circumcircle(A,F,C),heavygreen);
+    
+\end{asy}   
+\end{center}
+
+\begin{mdsoln}
+    \ 
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        size(150);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        pair B = origin, A = (2,0), C = (1.4,-2.1),F=(1.2,0),E=point(A--C,.4);
+        pair G = intersectionpoints(F--C,B--E)[0];
+        draw(MP("F",F,N,s)--MP("C",C,S,s)--MP("A",A,NE,s)--MP("B",B,W,s)--MP("E",E,E,s));
+        MP("G",G,NE,s);
+        pair K = intersectionpoints(circumcircle(B,F,G), circumcircle(B,A,E))[1];
+
+        draw(circumcircle(B,F,G),heavygreen);
+        //draw(circumcircle(B,A,E),heavygreen);
+        draw(circumcircle(G,E,C),heavygreen);
+        //draw(circumcircle(A,F,C),heavygreen);
+        draw(F--MP("K",K,SW,s)--C);
+    
+\end{asy}   
+\end{center}
+
+Let $K$ be the second intersection of the circumcircles of triangles $BFG$ and $CEG$. It suffices to prove that $ABKE$ and $ACKF$ are cyclic.
+
+Since $BFGK$ is cyclic, $\angle FKG = \angle FBG = \angle ABE$. And since $CEGK$ is cyclic, $\angle GKC = 180^{\circ} - \angle CEG = \angle BEA$. Hence,
+\begin{align*}
+\angle FKC &= \angle FKG + \angle GKC \\
+&= \angle ABE + \angle BEA \\
+&= 180^{\circ} - \angle EAB \\ 
+& = 180^{\circ} - \angle CAF.
+\end{align*}
+
+This implies that $ACKF$ is cyclic. Similarly, $ABKE$ is cyclic.
+
+\end{mdsoln}
+\subsection{Problem 3}
+
+Each diagonal of a convex pentagon is parallel to one side of the pentagon. Prove that the ratio of the length of a diagonal to that of its corresponding side is the same for all five diagonals, and find this ratio.
+
+\begin{mdsoln}
+
+Let the pentagon be $ABCDE$ . Let $L$ be the intersection of $BD$ and $CD$ and define $M, N, P,$ and $Q$ similarly opposite $B,C,D,$ and $E$, respectively.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+        unitsize(2cm);
+
+        pair A = dir(0); pair B = dir(360/5); pair C = dir(2*360/5); pair D = dir(3*360/5); pair E = dir(4*360/5);
+        draw(A---B--C--D--E--cycle);
+        dot("$A$", A, dir(0)); dot("$B$", B, NE); dot("$C$", C, NW); dot("$D$", D, SW); dot("$E$", E, SW);
+        draw(A--D--B--E--C--A);
+        pair N = IP(A--D, E--B); pair M = IP(A--D, E--C); pair L = IP(E--C, D--B); pair Q = IP(D--B, C--A); pair P = IP(A--C, B--E); 
+        dot("$N$", N, SE); dot("$P$", P, NE); dot("$Q$", Q, dir(120)); dot("$L$", L, W); dot("$M$", M, dir(250));
+            
+        \end{asy}   
+        \end{center}
+        
+        As $EB \parallel CD$, we have $ELB \sim CLD$. Then,\[ \frac{EB}{CD} = \frac{BL}{DL}. \]Similarly, $BC\parallel DA$, so $BCL \sim DML$ and\[ \frac{BL}{DL} = \frac{BC}{DM}, \]and $CA \parallel DE$, so $BCA \sim MDE$ and\[\frac{BC}{DM} = \frac{AC}{DE}.\]Combining these three we have $\frac{EB}{CD} = \frac{AC}{DE}$. Similarly, we may conclude that\[ \frac{EB}{CD} = \frac{AC}{DE} = \frac{BD}{EA} = \frac{CE}{AB} = \frac{DA}{BC} = x,\]for some real nubmer $x$.
+
+Our first equation therefore tlels us that $x = \frac{BL}{DL}$, which implies that $DL = \frac 1x BL$, So\[ BD = BL + DL = \left(1 + \frac1x\right) BL.\]Note that $ABLE$ is a parallelogram, since $AB \parallel EC$ and $EA \parallel DB$. Hence $BL = AE$, yielding $BD = \left(1 + \frac1x\right) AE$. But we know that $BD = xAE$. Therefore, we must have $xAE = (1 + \frac 1x)AE$, implying that\[ x^2 -x - 1 = 0. \]Applying the quadratic formula yields\[x = \frac{1 \pm \sqrt{5}}{2}.\]Since $x$ must be positive, we conclude that $x = \boxed{ \frac{1 + \sqrt{5}}{2}}$.
+
+\end{mdsoln}
+
+\subsection{Problem 4}
+
+Let $ABCDEF$ be a regular hexagon with $M$ and $N$ points on diagonals $CA$ and $CE$ (respectively) such that $AM=CN$. Prove that $AM=AB$ if $M, N$ and $B$ are collinear.
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize(2cm);
+
+        size(150);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+        pair C =dir(0); pair B = dir(60); pair A = dir(120); pair F = dir(180); pair E = dir(240); pair D = dir(300); pair O = (0,0);
+        pair M = point(A--C,1/sqrt(3)), N = point(C--E,1/sqrt(3));
+        dot(MP("M",M,SW,s));
+        dot(MP("N",N,NW,s));
+        draw(MP("A",A,scale(1.2)*A,s)--MP("B",B,scale(1.2)*B,s)--MP("C",C,scale(1.2)*C,s)--MP("D",D,scale(1.2)*D,s)--MP("E",E,scale(1.2)*E,s)--MP("F",F,scale(1.2)*F,s)--cycle);
+        draw(A--C--E);
+    
+\end{asy}   
+\end{center}
+\textit{Has hints.}
+\begin{sketch}
+    \begin{enumerate}
+        \item Can you find some useful congruent triangles?
+        \item Show that $\angle DNC = \angle NMC$, then find $\angle DNB$.
+        \item Let $O$ be the center of the hexagon. Show that $DNOB$ is cyclic.
+
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+    \ 
+    \begin{center}
+        \begin{asy}
+            import cse5;
+            import olympiad;
+
+            size(150);
+            pathpen = black + linewidth(0.7); 
+            pointpen = black; 
+            pen s = fontsize(8);
+            pair C =dir(0); pair B = dir(60); pair A = dir(120); pair F = dir(180); pair E = dir(240); pair D = dir(300); pair O = (0,0);
+            pair M = point(A--C,1/sqrt(3)), N = point(C--E,1/sqrt(3));
+            dot(MP("M",M,SW,s));
+            dot(MP("N",N,NW,s));
+            draw(MP("A",A,scale(1.2)*A,s)--MP("B",B,scale(1.2)*B,s)--MP("C",C,scale(1.2)*C,s)--MP("D",D,scale(1.2)*D,s)--MP("E",E,scale(1.2)*E,s)--MP("F",F,scale(1.2)*F,s)--cycle);
+            draw(B--MP("O",O,W,s)--D--N--cycle);
+            draw(A--C--E);
+        
+    \end{asy}   
+    \end{center}
+    Let $O$ be the circumcenter of $ABCDEF$.
+
+    Observe that $ABM$ and $CDN$ are congruent, since $AM = CN, AB = CD,$ and $\angle BAM = \angle BAC = \angle DCE = \angle DCN$. THen, $\angle CND = \angle AMB = \angle CMN$. Hence,
+    \begin{align*}
+    \angle BND &=\angle MND \\ 
+    &=\angle MNC + \angle CND \\ 
+    &=\angle MNC + \angle CMN \\ 
+    &= 180^{\circ} - \angle NCM \\ 
+    &= 180^{\circ} - \angle ECA \\ 
+    &= 180^{\circ} - 60^{\circ} \\ 
+    & = 120^{\circ} 
+    \end{align*}(Note: We also could have found this angle by noticing that $CDN$ is the image of $ABM$ under a clockwise rotation by 120 degrees about the origin.)
+
+    We also know that $\angle BOD = 120^{\circ}$. Hence, $\angle BND = \angle BOD$, so $BDNO$ must be cyclic. Since $CB = CD = CO$, we see that $C$ must be the circumcenter of $BDO$ and hence of $BDNO$. Hence, $CN = CD$, so\[ AM = CN = CD = AB, \]as desired.
+\end{mdsoln}
+
+\subsection{Problem 5}
+
+In triangle $ABC,$ let $AK,$ $BL,$ and $CM$ be the altitudes and $H$ the orthocenter. Let $P$ be the midpoint of $AH.$ Let $BH$ and $MK$ meet at $S,$ and $LP$ and $AM$ meet at $T.$ Prove that $TS \perp BC$.
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        size(200);
+        pathpen = black + linewidth(0.7); 
+        pointpen = black; 
+        pen s = fontsize(8);
+
+        pair A=dir(100),B=dir(-25),C=dir(205),K=foot(A,C,B),L=foot(B,A,C),M=foot(C,A,B),H=orthocenter(A,B,C),P=(A+H)/2;
+        pair S = IPs(B--H,M--K)[0], T=IPs(L--L+scale(3)*(P-L),A--M)[0];
+        pair X = foot(T,B,C);
+        MP("H",H,scale(3)*W,s);
+        MP("S",S,scale(2)*WSW,s);
+        MP("P",P,SE,s);
+        draw(MP("A",A,N,s)--MP("B",B,E,s)--MP("C",C,SW,s)--cycle);
+        draw(A--MP("K",K,scale(2)*K,s)--MP("M",M,NE,s)--C--MP("L",L,NW,s)--MP("T",T,NE,s)--MP("X",X,scale(2)*X,s)--B--L);
+    
+\end{asy}   
+\end{center}
+\textit{Has hints.}
+\begin{sketch}
+    \begin{enumerate}
+        \item Show that $BMHK$ is cyclic and that $\angle LHP = \angle BMK$.
+        \item Show that $\angle TLS = \angle LHP$.
+        \item Chase angles to show that $TLSM$ is cyclic.
+        \item Show that $AMHL$ is cyclic, and conclude from above that $\angle TSL = \angle AHL$.
+        \item Use Hint 4 to finish off the problem
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+
+    Since $P$ is the midpoint of the hypotenuse of right triangle $AHL$, it must be the triangle's circumcenter, implying $\triangle PLH$ is isosceles. Hence,\[ \angle PLH = \angle LHP = \angle BHK. \]Since $\angle CKH = 90^{\circ} = 180^{\circ} - \angle HCL$, $HKCL$ is cyclic, so\[ \angle BHK = \angle LCK = \angle ACK.\]Now, since $\angle CMA = 90^{\circ} = \angle CKA$, $AMKC$ must be cyclic, so\[ \angle ACK = 180^{\circ} - \angle KMA.\]Combining these three equations yields $\angle PLH = 180^{\circ} - \angle KMA$, which is equivalent to $\angle TLS = 180^{\circ} - \angle SMT$. Consequently, $LTMS$ is cyclic.
+
+    Then, $\angle LST = \angle LMT = \angle LMA$. Since $\angle BLC = \angle BMC = 90^{\circ}$, $BMLC$ is cyclic, so $\angle LMA = \angle LCB$. We conclude that\[ \angle LST = \angle LCB = \angle ACK = \angle BHK,\]where the last inequality follows from the fact that $\angle BHK = \angle LCK = \angle ACK$. Hence, $\angle LST = \angle LHP$, so $HP \parallel ST$. Then, since $HP \perp BC$, it follows that $ST \perp BC$, as desired.
+
+
+\end{mdsoln}
+

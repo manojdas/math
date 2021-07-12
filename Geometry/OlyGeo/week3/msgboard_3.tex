@@ -1,0 +1,1079 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 3}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 3}}
+
+\subsection{Problem 1}
+
+We define a homothety of center O as a transformation that takes every point X to a point Y such that ray OY is k times ray OX. (Make sure you see what this means when k is negative $\rightarrow$ X, O, and Y are still collinear, but X and Y are on opposite sides of O.)
+
+Let h be a homothety.
+
+Prove that h maps every line m into a line parallel to m (unless m goes thorough O then h maps m to itself).
+
+(I'm asking you to prove stuff we assumed in class.)
+
+\begin{mdsoln}
+
+    Suppose that $h$ has ratio $r$ (where $r$ is nonzero). We will be using directed segments in this proof - i.e., $XY=-YX$.
+    
+    \paragraph{Case 1.} Line $m$ goes through $O$.
+
+    Then, let $A$ be some point on $m$. The image of $A$ under $h$ is, by definition, on $m$. Conversely, there must be a point $B$ on $m$ such that $A$ is the image of $B$ under $h$ (since $r$ is nonzero). We conclude that every point on $m$ maps to another point of $m$ and that every point of $m$ is the image of some other point on $m$. Hence, $h$ takes $m$ to itself.
+
+    \paragraph{Case 2.} Line $m$ does not go through $O$.
+
+    Let $A$ and $B$ be distinct points on $m$, and let their images under $h$ be $A_1$ and $B_1$, respectively. The homothety centered at $O$ with ratio $1/r$ clearly takes $A_1$ and $B_1$ to $A$ and $B$, respectively, so $A_1$ and $B_1$ must be distinct. Then, let $m_1$ be the line passing through $A_1$ and $B_1$. Let $C$, distinct from $A$ and $B$, and $D_1$, distinct from $A_1$ and $B_1$, be arbitrary points on $m$ and $m_1$, respectively. Let $C_1$ be the intersection of $OC$ with $m_1$ and let $D$ be the intersection of $OD_1$ with $m$.
+
+    Since $OA_1=rOA$ and $OB_1=rOB$, we conclude that $\triangle OA_1B_1$ is similar to $\triangle OAB$, so $A_1B_1\parallel AB$, implying that $m_1\parallel m$.
+
+    Now, because $AC\parallel A_1C_1$, we have $\triangle OAC\sim \triangle OA_1C_1$, so $OC_1/OC=OA_1/OA=r$, showing that $C_1$ is the image of $C$ under $h$.
+
+    Likewise, since $AD\parallel A_1D_1$, we have $\triangle OAD\sim \triangle OA_1D_1$, so $OD_1/OD=OA_1/OA=r$, showing that $D_1$ is the image of $D$ under $h$.
+
+    We have thus shown that there exists a line $m_1$ parallel to $m$ such that every point on $m$ is mapped to a point on $m_1$ and every point of $m_1$ is the image under $h$ of a point on $m$. We conclude that this line $m_1$ is the image of $m$ under $h$, and we are done.
+\end{mdsoln}
+
+
+\subsection{Problem 2}
+
+Let h be a homothety. See Problem 1 for our definition of homothety to use in your proof.
+
+Let A, B, and C be collinear. Let h(A) = X, h(B) = Y, and h(C) = Z. Prove that XZ/ZY = AC/CB.
+
+You may assume that the image of a line is a line under homothety.
+
+\begin{mdsoln}
+Let $r$ be the ratio and $O$ the center of $h$. We will again be using directed line segments.
+
+Since $OX=rOA$ and $OZ=rOC$, we see that $\triangle OAC\sim \triangle OXZ$, so $XZ/AC=OX/OA=r$. Likewise, since $OY=rOB$ and $OZ=rOC$, so $\triangle OBC\sim \triangle OYZ$, implying $ZY/CB=OY/OB=r$. Then, $XZ/AC=ZY/CB$, so $XZ/ZY=AC/CB$, as desired.
+    
+\end{mdsoln}
+
+\subsection{Problem 3}
+
+Let h be a homothety. See Problem 1 for our definition of homothety to use in your proof.
+
+Prove that if k is the ratio of our homothety, then prove that if AB is a segment and h(AB) = XY, then XY is k times the length of AB.
+
+You may assume that the image of a line is a line under homothety.
+
+\begin{mdsoln}
+Solution outline:
+Let $O$ be the center of $h$. We will again be using directed line segments.
+
+Since $OX=kOA$ and $OY=kOB$, we see that $\triangle OAB\sim \triangle OXY$, so that $XY/AB=OX/OA=k$, as desired.
+    
+\end{mdsoln}
+
+
+\subsection{Problem 4}
+
+Two circles are internally tangent at point A. The larger circle has radius 3 and the smaller circle has radius 1. Find the maximum area of a triangle which has the point of tangency as a vertex and one vertex on each of the small and large circles.
+
+\begin{mdsoln}
+Solution outline (based on work by alkjash and SorcererofDM):
+Let the smaller and larger circles be denoted $\omega_1$ and $\omega_3$, respectively, with $O$ the center of $\omega_3$. Let $\triangle ABC$ have vertex $B$ on $\omega_1$ and vertex $C$ on $\omega_3$.
+
+Observe that since $A$ is the point of tangency of $\omega_1$ and $\omega_3$, it is the center of a homothety $h$ with ratio 3 taking $\omega_1$ to $\omega_3$. Then, $h$ takes $B$ on $\omega_1$ to $D$ on $\omega_3$ with $OD=3OB$. We see that $[ACD]=3[ABC]$. Then, since each choice of $D$ corresponds to a unique choice of $B$ and each choice of $B$ corresponds to a unique choice of $D$, to maximize $[ABC]$ it suffices to maximize $[ACD]$.
+
+Now, it really is a well-known theorem that the triangle of maximal area inscribed in a given circle is an equilateral triangle. We will, however, prove this fact.
+
+Let $x=(1/2)\angle AOC$, $y=(1/2)\angle COD$, and $z=(1/2)\angle DOA$. Then, $AC=2\cdot 3\sin x$, $CD=2\cdot 3\sin y$, and $DA=2\cdot 3\sin z$. Then, $[ACD]=xyz/(4\cdot 3)$, since 3 is the circumradius of $ACD$. Hence, $[ACD]=18\sin x\sin y\sin z$.
+
+By the AM-GM Inequality,$$\sin x\sin y\sin z\le \left(\frac{\sin x+\sin y+\sin z}{3}\right)^3$$with equality holding if and only if $\sin x=\sin y=\sin z$. Then, since $\sin \theta$ is concave for $0^\circ\le \theta<180^\circ$, Jensen’s Inequality implies that$$\frac{\sin x+\sin y+\sin z}{3}\le \sin\left(\frac{x+y+z}{3}\right)=\sin\left(\frac{180^\circ}{3}\right)=\sin 60^\circ=\sqrt{3}/2$$with equality holding if and only if $x=y=z$. We conclude that$$\sin x\sin y\sin z\le (\sqrt{3}/2)^3=3\sqrt{3}/8$$with equality if and only if $x=y=z=60^\circ$. Then, $[ACD]$ has (attainable) maximum of $18\sin x\sin y\sin z=18\cdot 3\sqrt{3}/8=27\sqrt{3}/4$, so $[ABC]$ has attainable maximum of $1/3$ of this, namely $9\sqrt{3}/4$.
+    
+\end{mdsoln}
+
+\subsection{Problem 5}
+
+M is on diameter AB of a semicircle with center O. The line perpendicular to AB through M hits this semicircle at P. A circle inside the semicircle is tangent to AB at R, to the semicircle at S and to PM at Q. Prove that PB = RB.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+struct T {
+    private pair c;
+    private real r;
+    void operator init(pair c, real r) {
+        this.c=c;
+        this.r=r;
+    }
+    pair getC() {
+        return this.c;
+    }
+    real getR() {
+        return this.r;
+    }
+}
+
+T[] ppl(pair P1, pair P2, pair L1, pair L2){
+    pair P = extension(P1,P2,L1,L2);
+    pair T = tangent(P, midpoint(P1--P2), length(P1-P2)/2, 1);
+    pair mag = scale(1/length(L1-L2))*(L1-L2);
+    pair I1 = P+scale(length(T-P))*(mag);
+    pair I2 = P-scale(length(T-P))*(mag);
+    T f1 = T(circumcenter(P1, P2, I1), circumradius(P1, P2, I1)),
+      f2 = T(circumcenter(P1, P2, I2), circumradius(P1, P2, I2));
+    T[] final = {f1, f2};
+    return final;
+}
+
+pair c = origin, A = (-1,0), B=(1,0), O=origin, P = rotate(40)*B, M = (P.x,0);
+
+real r = 1;
+dot(O);
+draw(arc(c,r,0,180),heavygreen);
+pair X = extension(B,O,P,M);
+pair c1 = reflect(X,bisectorpoint(-O,X,P))*c;
+pair d = scale(r)*rotate(90)*(M-P)/length(M-P);
+pair L5 = shift(-d)*P, L6 = shift(-d)*M;
+pair Tc = ppl(c,c1,L5,L6)[0].getC();
+real Tr = ppl(c,c1,L5,L6)[0].getR()-r;
+draw(Circle(Tc,Tr),heavygreen);
+draw(MP("R",(Tc.x,0),S,s)--P--B);
+draw(MP("A",A,W,s)--MP("O",O,S,s)--MP("B",B,S,s));
+draw(MP("P",P,NE,s)--MP("M",M,S,s));
+dot(MP("T",Tc,NW,s));
+dot(MP("Q",point(Circle(Tc,Tr),200),W,s));
+dot(MP("S",IP(O--scale(2)*Tc,arc(c,r,0,180)),NE,s));
+    
+\end{asy}   
+\end{center}
+
+\begin{mdsoln}
+Solution outline:
+Let the small tangent circle have center $T$ and radius $r$. Let the large semicircle have radius $s$.
+
+Then, $TR=r$ and $TO=OS-TS=s-r$, so $OR=\sqrt{(s-r)^2-r^2}=\sqrt{s^2-2sr}$.
+
+We conclude that\begin{eqnarray*}PB^2&=&PM^2+MB^2\\ &=& PO^2-OM^2+(OB-OM)^2\\ &=& PO^2+OB^2-2(OB)(OM)\\ &=& s^2+s^2-2s(\sqrt{s^2-2sr}+r)\\ &=& s^2-2s\sqrt{s^2-2sr}+(s^2-2sr)\\ &=&(s-\sqrt{s^2-2sr})^2\\ &=&RB^2\end{eqnarray*}
+Hence, $PB=RB$, as desired.
+
+OR
+
+This solution uses inversion, which will be covered at the end of the course.
+
+Extend the large semicircle to form a complete circle $\omega_1$. Let $\omega_2$ be the small circle and let $\omega_3$ be a circle centered at $B$ of radius $BR$.
+
+Invert about a circle centered at $R$ and of arbitrary radius. Let $B,P$ be taken to $B_1,P_1$, respectively. Circle $\omega_1$ is transformed into a circle $\omega_4$, and circles $\omega_2$ and $\omega_3$ are transformed into lines $\ell_2$, $\ell_3$. The line $MP$ is sent to a circle $\omega_5$ passing through $R$.
+
+Since $\omega_2$ is tangent to $\omega_1$ and $MP$, we must have $\ell_2$ tangent to $\omega_4$ and $\omega_5$, namely one of their common external tangents.
+
+Since $\omega_3\perp RB$, we must have $\ell_3\perp RB_1$ (inversion preserves angles). Then, since $\omega_2\perp \omega_3$, we have $\ell_2\perp \ell_3$. Hence, $\ell_2\parallel RB_1$. But since $RB_1$ is the line connecting the centers of $\omega_4$ and $\omega_5$, of which $\ell_2$ is a common external tangent, circles $\omega_4$ and $\omega_5$ must have the same radius.
+
+Now, $\ell_3$ must intersect segment $RB_1$ at its midpoint, $N$. Then, since $R$ is on $\omega_5$ and $B_1$ is on $\omega_4$, and since the points are on the line connecting the centers of $\omega_4$ and $\omega_5$, and since these circles are the same size, we conclude that $\ell_3$ is the radical axis of $\omega_4$ and $\omega_5$, so it passes through the intersections of $\omega_4$ and $\omega_5$. Since $P$ is on both $MP$ and $\omega_1$, $P_1$ must be one of these intersections. Hence, $P$ is on $\ell_3$, so $P$ is on $\omega_3$, implying $BP=BR$, as desired.
+    
+\end{mdsoln}
+
+\subsection{Problem 6}
+
+Let the term 'broken line segment' mean a path consisting of a series of line segments, so that 'broken line segment XYZ' means the path consisting of a segment from X to Y, then from Y to Z. The midpoint of such a 'broken line segment' is the point that is half-way from X to Z if we follow the broken line segment XYZ.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(100);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair X = (1,2), Y=origin, Z=(4,0);
+path P = (Z--Y--X);
+pair M = ((Z.x-(length(X)+length(Z))/2),0);
+draw(P);
+dot(MP("X",X,N,s));
+dot(MP("Y",Y,SW,s));
+dot(MP("M",M,S,s));
+dot(MP("Z",Z,E,s));
+    
+\end{asy}   
+\end{center}
+
+Shown is broken line segment XYZ with midpoint M.
+
+Given triangle $ABC$, let $X$, $Y$, $Z$ be the midpoints of the broken lines $CAB$, $ABC$, $BCA$, respectively. Let $m_A$, $m_B$, $m_C$ be the respective lines through $X$, $Y$, $Z$ parallel to the angle bisectors of $A$, $B$, $C$. Show that $m_A$, $m_B$, $m_C$ are concurrent.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+
+pair A = dir(145), B = dir(220), C = dir(-15);
+pair X = point(C--A,((length(A-B)+length(C-A))/2)/length(C-A));
+pair Y = point(C--B,((length(A-B)+length(C-B))/2)/length(C-B));
+pair Z = point(A--C,((length(A-C)+length(C-B))/2)/length(C-A));
+
+draw(MP("X",X,NE,s)--scale(1.8,X,X+bisectorpoint(B,A,C)-A,.5),heavyred);
+MP("m_A",point(scale(1.8,X,X+bisectorpoint(B,A,C)-A,.5),.95),E,s);
+draw(MP("Y",Y,SE,s)--scale(1.8,Y,Y+bisectorpoint(A,B,C)-B,.5),heavyred);
+MP("m_B",point(scale(1.8,Y,Y+bisectorpoint(A,B,C)-B,.5),.9),SE,s);
+draw(MP("Z",Z,NE,s)--scale(2.3,Z,Z+bisectorpoint(B,C,A)-C,.2),heavyred);
+MP("m_C",point(scale(2.3,Z,Z+bisectorpoint(B,C,A)-C,.2),.9),SW,s);
+
+draw(A--incenter(B,A,C));
+draw(B--incenter(B,A,C));
+draw(C--incenter(B,A,C));
+draw(MP("A",A,NW,s)--MP("B",B,SW,s)--MP("C",C,E,s)--cycle);
+    
+\end{asy}   
+\end{center}
+
+\textit{Has hints.}
+\begin{sketch}
+    \begin{enumerate}
+        \item What special points do the m's appear to go through?
+        \item Show that the m's pass through the midpoints of the sides of the triangle.
+        \item Don't forget about the Angle Bisector Theorem
+        \item Parallel lines mean similar triangles!
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+Solution outline:
+Let $I$ be the incenter of $\triangle ABC$, and let $m_A$ meet $BC$ at $D$, $m_B$ meet $CA$ at $E$, and $m_C$ meet $AB$ at $F$.
+
+Assume WLOG that $X$ is on $CA$. Then, let $P$ and $Q$ be the feet of the altitudes to line $AI$ from $B$ and $X$, respectively, and let $R$ and $S$ be the feet of the altitudes from to $m_A$ from $B$ and $C$, respectively. Finally, let $\angle CAB=2\alpha$.
+
+We see that $BP=AB\sin \alpha$ and $XQ=AX\sin \alpha$, so $BR=(AB+AX)\sin \alpha$. Then, $CS=CX\sin \alpha$. Since $X$ is the midpoint of broken segment $CAB$, $CX=AB+AX$. Hence, $CS=(AB+AX)\sin\alpha=BR$. Because $CS$ and $BR$ are both perpendicular to $m_A$, they must be parallel. Hence, $\triangle BRD$ and $\triangle CSD$ are congruent. We conclude that $BD=CD$, so $D$ is the midpoint of $BC$.
+
+Likewise, $E$ and $F$ must be the midpoints of $CA$ and $AB$, respectively. Hence, $m_A$, $m_B$, $m_C$ are just the angle bisectors of the medial triangle $\triangle DEF$ of $\triangle ABC$ and must concur (at the incenter of $\triangle DEF$).
+    
+\end{mdsoln}
+
+\begin{remark*}
+    Please review Message Board problems 7-12. Post your thoughts on the questions posed there. These posts contain information regarding some special points and lines in a triangle with which you must be familiar to be proficient at geometry. In each of these, facts marked with (**) should be known as well as you know the Pythagorean Theorem (i.e. it should be so well known that it appears obvious). Those without (**) you should be aware can be solved pretty easily (this mostly pertains to angle relationships that can be rederived quickly). Note that in all of these, I will use $a = BC$, $b = AC$, $c = AB$, $[ABC]$ is the area of triangle $ABC$, and $s$ is the semiperimeter of triangle $ABC$.
+
+    I will be assuming you are familiar with the material in these during the fourth class.        
+\end{remark*}
+
+\subsection{Problem 7 - Altitudes}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A=(1,3),B=(4,0),C=origin;
+pair D = foot(A,B,C), E = foot(B,A,C), F = foot(C,A,B);
+draw(MP("A",A,N,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--cycle);
+draw(MP("D",D,S,s)--MP("E",E,NW,s)--MP("F",F,NE,s)--cycle,heavyblue);
+draw(A--D^^B--E^^C--F,heavyred);
+MP("H",orthocenter(A,B,C),SE,s);
+draw(rightanglemark(C,F,B,4));
+draw(rightanglemark(A,D,C,4));
+draw(rightanglemark(B,E,A,4));
+draw(circumcircle(E,C,D),heavygreen);
+    
+\end{asy}   
+\end{center}
+
+The altitudes are concurrent at the orthocenter, which we usually denote $H$. $DEF$ is sometimes called the orthic triangle of $ABC$. Prove/solve the following, where triangle $ABC$ is acute:
+
+1) Find angle $CAD$ in terms of angles $A$, $B$, and/or $C$.
+
+2) Show that $\angle FEH = \angle DEH$. (**)
+
+3) Show that $\triangle ABC \sim \triangle AEF$ (**)
+
+4) Find angle $AHB$ in terms of $\angle A$, $\angle B$, and $\angle C$. (**)
+
+\begin{mdsoln}
+(1) From right triangle $ACD$, $\angle CAD = 90^\circ - C$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1 cm);
+
+pair A, B, C, D;
+
+A = (1,2);
+B = (0,0);
+C = (4,0);
+D = (A + reflect(B,C)*(A))/2;
+
+draw(A--B--C--cycle);
+draw(A--D);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, S);
+    
+\end{asy}   
+\end{center}
+
+(2) Since $\angle AEH = \angle AFH = 90^\circ$, quadrilateral $AEHF$ is cyclic. Similarly, $\angle CDH = \angle CEH = 90^\circ$, so quadrilateral $CDHE$ is cyclic.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, D, E, F, H;
+
+A = (1,3);
+B = (0,0);
+C = (4,0);
+D = (A + reflect(B,C)*(A))/2;
+E = (B + reflect(C,A)*(B))/2;
+F = (C + reflect(A,B)*(C))/2;
+H = extension(A,D,B,E);
+
+draw(circumcircle(A,E,F),red);
+draw(circumcircle(C,D,E),red);
+draw(A--B--C--cycle);
+draw(A--D);
+draw(B--E);
+draw(C--F);
+draw(D--E--F);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, S);
+label("$E$", E, NE);
+label("$F$", F, NW);
+label("$H$", H, SE);
+    
+\end{asy}   
+\end{center}
+
+Then $\angle FEH = \angle FAH = \angle BAD$. But from right triangle $ABD$, $\angle BAD = 90^\circ - B$. Also, from right triangle $BCF$, $\angle BCF = 90^\circ - B$. Finally, $\angle BCF = \angle DCH = \angle DEH$. Therefore, $\angle FEH = \angle DEH$.
+
+(3) Since $\angle BEC = \angle BFC = 90^\circ$, quadrilateral $BCEF$ is cyclic.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, D, E, F, H;
+
+A = (1,3);
+B = (0,0);
+C = (4,0);
+D = (A + reflect(B,C)*(A))/2;
+E = (B + reflect(C,A)*(B))/2;
+F = (C + reflect(A,B)*(C))/2;
+H = extension(A,D,B,E);
+
+draw(circumcircle(B,C,E),red);
+draw(A--B--C--cycle);
+draw(A--D);
+draw(B--E);
+draw(C--F);
+draw(E--F);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, S);
+label("$E$", E, NE);
+label("$F$", F, NW);
+label("$H$", H, SE);
+    
+\end{asy}   
+\end{center}
+
+Then $\angle AEF = 180^\circ - \angle CEF = \angle CBF = B$ and $\angle AFE = 180^\circ - \angle BFE = \angle BCE = C$, so triangles $AEF$ and $ABC$ are similar.
+
+(4) We see that $\angle AHB = 180^\circ - \angle BHD$. But $\angle BHD = 90^\circ - \angle HBD = 90^\circ - \angle CBE = \angle C$, so $\angle AHB = 180^\circ - C = A + B$.
+    
+\end{mdsoln}
+
+\subsection{Problem 8 - Perpendicular Bisectors}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A=(1,3),C=(4,0),B=origin;
+pair A = dir(110),B=dir(180+15),C=dir(-15), O=circumcenter(A,B,C);
+pair D = foot(O,B,C), E = foot(O,A,C), F = foot(O,A,B);
+draw(MP("A",A,N,s)--MP("B",B,SW,s)--MP("C",C,SE,s)--cycle);
+draw(A--O^^B--O^^C--O,heavyred);
+draw(scale(-4.3)*D--O--MP("D",D,S,s)^^MP("E",E,NE,s)--O--scale(-2.5)*E^^MP("F",F,NW,s)--O--scale(-1.5)*F,heavyblue);
+//draw(A--D^^B--E^^C--F,heavyred);
+draw(rightanglemark(O,F,B,2));
+draw(rightanglemark(O,D,C,2));
+draw(rightanglemark(O,E,A,2));
+draw(circumcircle(A,B,C),heavygreen);
+    
+\end{asy}   
+\end{center}
+
+The perpendicular bisectors of the sides of a triangle are concurrent at the circumcenter, which we usually label $O$. This is the center of the circle which passes through all three vertices of the triangle. We typically use an uppercase $R$, to denote the radius of this circle (the circumradius).
+
+Prove/solve the following:
+
+1) $[ABC] = abc/4R$ (**)
+
+2) Find angle $AOB$ in terms of angles $A$, $B$, $C$
+
+3) Find angle $OAB$ in terms of angles $A$, $B$, $C$
+
+\begin{mdsoln}
+(1) By the extended sine law,
+\[\frac{a}{\sin A} = 2R.\]Then
+\[[ABC] = \frac{1}{2} bc \sin A = \frac{1}{2} bc \cdot \frac{a}{2R} = \frac{abc}{4R}.\]
+(2) $\angle AOB = 2 \angle ACB = 2C$.
+
+(3) Since $OA = OB$, $\angle OAB = (180^\circ - \angle AOB)/2 = (180^\circ - 2C)/2 = 90^\circ - C$.
+    
+\end{mdsoln}
+
+\subsection{Problem 9 - Angle Bisectors}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A=(1,3),C=(4,0),B=origin;
+pair A = dir(100),B=dir(180+5),C=dir(-5), O=incenter(A,B,C);
+pair X = foot(O,B,C), Y = foot(O,A,C), Z = foot(O,A,B);
+pair D = extension(A,O,B,C);
+pair E = extension(B,O,A,C);
+pair F = extension(C,O,A,B);
+draw(A--MP("D",D,SE,s)^^B--MP("E",E,NE,s)^^C--MP("F",F,W,s),heavyred);
+draw(O--MP("X",X,SW,s)^^MP("Y",Y,NE,s)--O^^MP("Z",Z,NW,s)--O,heavyblue);
+draw(D--E--F--cycle,orange);
+draw(rightanglemark(A,Z,O,1.5));
+draw(rightanglemark(B,X,O,1.5));
+draw(rightanglemark(C,Y,O,1.5));
+draw(incircle(A,B,C),heavygreen);
+draw(MP("A",A,N,s)--MP("B",B,SW,s)--MP("C",C,SE,s)--cycle);
+    
+\end{asy}   
+\end{center}
+
+The angle bisectors of a triangle are concurrent at a point we call the incenter and usually denote $I$ (**). The incenter is the center of the circle which is inscribed in the triangle (**). We call the radius of this circle the inradius of the triangle; we typically use a lowercase $r$ to denote this length.
+
+We already proved the Angle Bisector Theorem, which tells us that if $AD$ is an angle bisector of $ABC$, then $AB/BD = AC/CD$. (**) Prove/solve the following:
+
+1) $[ABC] = rs$, where $[ABC]$ is the area of $ABC$
+
+2) $AY = AZ = s - a$ (**)
+
+3) Find angle $BIC$ in terms of angles $A$, $B$, $C$.
+
+4) Find angle $BID$ in terms of angles $A$, $B$, $C$.
+
+5) Find angle $AZY$ in terms of angles $A$, $B$, $C$.
+
+\begin{mdsoln}
+
+(1) The area of triangle $IBC$ is
+\[[IBC] = \frac{1}{2} BC \cdot IX = \frac{1}{2} ar.\]Similarly, $[AIC] = \frac{1}{2} br$ and $[ABI] = \frac{1}{2} cr$, so
+\begin{align*}
+[ABC] &= [IBC] + [AIC] + [ABI] \\
+&= \frac{1}{2} ar + \frac{1}{2} br + \frac{1}{2} cr \\
+&= r \cdot \frac{a + b + c}{2} \\
+&= rs.
+\end{align*}
+(2) Since $AY$ and $AZ$ are tangents from the same point to the same circle, they are equal. Let $x = AY = AZ$. Similarly, let $y = BX = BZ$ and $z = CX = CY$. Then $a = BC = BX + CX = y + z$. Similarly, $b = x + z$ and $c = x + y$. Adding all these equations, we get
+\[a + b + c = 2x + 2y + 2z,\]so $x + y + z = (a + b + c)/2 = s$. Subtracting the equation $y + z = a$, we get $x = s - a$.
+
+(3) From triangle $BCI$,
+\begin{align*}
+\angle BIC &= 180^\circ - \angle IBC - \angle ICB \\
+&= 180^\circ - \frac{B}{2} - \frac{C}{2} \\
+&= 180^\circ - \frac{B + C}{2} \\
+&= 180^\circ - \frac{180^\circ - A}{2} \\
+&= \frac{A}{2} + 90^\circ.
+\end{align*}
+(4) Since $\angle BID$ is external to triangle $ABI$,
+\begin{align*}
+\angle BID &= \angle BAI + \angle ABI \\
+&= \frac{A}{2} + \frac{B}{2} \\
+&= \frac{A + B}{2} \\
+&= \frac{180^\circ - C}{2} \\
+&= 90^\circ - \frac{C}{2}.
+\end{align*}
+(5) Since triangle $AYZ$ is isosceles with $AY = AZ$,
+\[\angle AZY = \frac{180^\circ - \angle YAZ}{2} = 90^\circ - \frac{A}{2}.\]
+\end{mdsoln}
+
+
+\subsection{Problem 10 - Medians}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A=(1,3),C=(4,0),B=origin;
+pair A = dir(100),B=dir(180+25),C=dir(-25), O=centroid(A,B,C);
+draw(MP("A",A,N,s)--MP("B",B,SW,s)--MP("C",C,SE,s)--cycle);
+pair D = extension(A,O,B,C);
+pair E = extension(B,O,A,C);
+pair F = extension(C,O,A,B);
+draw(A--MP("D",D,SE,s)^^B--MP("E",E,NE,s)^^C--MP("F",F,W,s),heavyred);
+draw(D--E--F--cycle,heavygreen);
+dot(MP("G",O,scale(2)*NNE,s));
+    
+\end{asy}   
+\end{center}
+
+Medians connect the vertices to the opposite sides. The medians are concurrent at a point called the centroid, which is usually denoted $G$ (**). $DEF$ is sometimes called the medial triangle of $ABC$. Prove the following:
+
+1) The six small triangles all have equal area (**).
+
+2) Point $G$ cuts each median in a ratio of 2:1, e.g. $AG = 2DG$ (**).
+
+3) $DEF$ is homothetic to $ABC$ with ratio $-1/2$. The center of homothety is the centroid, which is the centroid of both triangles. (**)
+
+\begin{mdsoln}
+
+(1) Since triangles $BDG$ and $CDG$ have the same altitude with respect to base $BC$, they have the same area. Let $x = [BDG] = [CDG]$. Similarly, let $y = [CEG] = [AEG]$, and let $z = [AFG] = [BFG]$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, D, E, F, G;
+
+A = (1,3);
+B = (0,0);
+C = (4,0);
+D = (B + C)/2;
+E = (C + A)/2;
+F = (A + B)/2;
+G = (A + B + C)/3;
+
+draw(A--B--C--cycle);
+draw(A--D);
+draw(B--E);
+draw(C--F);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, S);
+label("$E$", E, NE);
+label("$F$", F, NW);
+label("$x$", (B + D + G)/3);
+label("$x$", (C + D + G)/3);
+label("$y$", (C + E + G)/3);
+label("$y$", (A + E + G)/3);
+label("$z$", (A + F + G)/3);
+label("$z$", (B + F + G)/3);
+    
+\end{asy}   
+\end{center}
+
+By the same reasoning, triangles $ABD$ and $ACD$ have the same area, so $x + 2z = x + 2y$, which means $y = z$. Also, triangles $BCE$ and $ABE$ have the same area, so $2x + y = y + 2z$, which means $x = y$. Hence, $x = y = z$. In other words, all six small triangles have the same area.
+
+(2) We see that $AG:DG = [ACG]:[CDG] = 2x:x = 2:1$.
+
+(3) Consider the homothety centered at $G$ with ratio $-1/2$. Since $AG:DG = 2:1$, this homothety takes $A$ to $D$. Similarly, this homothety takes $B$ to $E$ and $C$ to $F$. Since $G$ is the centroid of triangle $ABC$, it is also the centroid of triangle $DEF$.
+    
+\end{mdsoln}
+
+\subsection{Problem 11 - Excircles}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+struct T {
+    private pair c;
+    private real r;
+    void operator init(pair c, real r) {
+        this.c=c;
+        this.r=r;
+    }
+    pair getC() {
+        return this.c;
+    }
+    real getR() {
+        return this.r;
+    }
+}
+
+T[] lll(pair L1, pair L2, pair L3, pair L4, pair L5, pair L6) {
+    pair P1 = extension(L1, L2, L3, L4);
+    pair P2 = extension(L3, L4, L5, L6);
+    pair P3 = extension(L1, L2, L5, L6);
+
+    pair AB1 = bisectorpoint(P2,P1,P3);
+    pair AB2 = bisectorpoint(P1,P2,P3);
+    pair AB3 = bisectorpoint(P2,P3,P1);
+
+    AB1 = P1+rotate(90)*(AB1-P1);
+    AB2 = P2+rotate(90)*(AB2-P2);
+    AB3 = P3+rotate(90)*(AB3-P3);
+
+    pair O1 = extension(P3,AB3,P2,AB2);
+    pair O2 = extension(P1,AB1,P3,AB3);
+    pair O3 = extension(P1,AB1,P2,AB2);
+
+    T[] final = {T(incenter(P1,P2,P3),inradius(P1,P2,P3))};
+    final.push(T(O1,length(O1-foot(O1,P2,P3))));
+    final.push(T(O2,length(O2-foot(O2,P1,P3))));
+    final.push(T(O3,length(O3-foot(O3,P1,P2))));
+
+    return final;
+}
+
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+
+pair A = dir(-100),B=dir(50),C=dir(160);
+//draw(A--B--C--cycle);
+T[] circles = lll(A,C,C,B,B,A);
+pair I = circles[0].getC();
+pair F = circles[1].getC();
+pair E = circles[2].getC();
+pair D = circles[3].getC();
+for(int i = 0; i<4; ++i) {
+    draw(Circle(circles[i].getC(),circles[i].getR()),heavygreen);
+}
+draw(MP("F",F,SE,s)--MP("E",E,SW,s)--MP("D",D,N,s)--cycle,orange);
+draw(scale(3.5,A,B,.5)^^scale(3.5,B,C,.5)^^scale(4,A,C,.5));
+draw(D--MP("A",A,scale(2)*S,s)^^F--MP("C",C,scale(2)*rotate(-20)*W,s)^^E--MP("B",B,scale(2)*NE,s),lightred);
+draw(rightanglemark(E,B,F,4)^^rightanglemark(D,A,E,4)^^rightanglemark(F,C,D,4));
+	dot(MP("Z",foot(F,A,B),rotate(180)*W,s));
+    dot(MP("Y",foot(E,A,C),SW,s));
+    dot(MP("X",foot(D,B,C),N,s));
+   	dot(F);dot(E);dot(D);
+    
+\end{asy}   
+\end{center}
+
+It's not just the interior angles that we can bisect. We can bisect the exterior angles as well. In the diagram, the sides of $DEF$ are the external bisectors of the angles of $ABC$. Note that the interior bisectors of $ABC$ meet these points as shown. $D$, $E$, and $F$ are the centers of the excircles, which have exradii $r_a$, $r_b$, $r_c$. Find or prove the following:
+
+1) Prove that $AI$ passes through $D$, and that $D$ is the center of an excircle as shown.
+
+2) Prove that $ABC$ is the orthic triangle of $DEF$.
+
+3) Find angle $D$ in terms of angles $A$, $B$, and $C$.
+
+4) Find angle $IEF$ in terms of angles $A$, $B$, and $C$.
+
+5) Determine lengths $AY$ and $CY$ in terms of $a$, $b$, and $c$.
+
+6) Express the area of $ABC$ in terms of the exradii and the sides of the triangle.
+
+\begin{mdsoln}
+(1) Since the $A$-excircle is tangent to lines $AB$ and $BC$, its center lies on the external angle bisector of $\angle ABC$. Similarly, the center also lies on the external angle bisector of $\angle ACB$. Therefore, $D$ is the $A$-excenter.
+
+Finally, the $A$-excircle is tangent to lines $AB$ and $AC$, so its center lies on the internal angle bisector of $\angle BAC$. In other words, $D$ lies on $AI$.
+
+(2) Since $AD$ and $EF$ are the internal and external angle bisectors of $\angle BAC$, respectively, they are perpendicular. Hence, $A$ is the foot of the altitude from $D$ to $EF$.
+
+Similarly, $B$ is the foot of the altitude from $E$ to $DF$, and $C$ is the foot of the altitude from $F$ to $DE$. Therefore, triangle $ABC$ is the orthic triangle of triangle $DEF$.
+
+(3) Since $\angle DBI = \angle DCI = 90^\circ$, quadrilateral $DBIC$ is cyclic, so $\angle BDC = 180^\circ - \angle BIC$. But by message board problem 9, $\angle BIC = \frac{A}{2} + 90^\circ$, so
+\[\angle BDC = 180^\circ - \left( \frac{A}{2} + 90^\circ \right) = 90^\circ - \frac{A}{2}.\]
+(4) Since $\angle IAE = \angle ICE = 90^\circ$, quadrilateral $IAEC$ is cyclic. Then
+\[\angle IEF = \angle IEA = \angle ICA = \frac{C}{2}.\]
+(5) Note that $AY + CY = AC = b$. Let the $B$-excircle be tangent to $AB$ and $BC$ at $T$ and $U$, respectively.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, E, T, U, Y;
+
+A = (0,0);
+B = 2*dir(60);
+C = 1.5*dir(120);
+E = (abs(B - C)*A - abs(C - A)*B + abs(A - B)*C)/(abs(B - C) - abs(C - A) + abs(A - B));
+T = (E + reflect(A,B)*(E))/2;
+U = (E + reflect(B,C)*(E))/2;
+Y = (E + reflect(C,A)*(E))/2;
+
+draw(A--C);
+draw((T + 0.2*(T - B))--B--(U + 0.2*(U - B)));
+draw(Circle(E,abs(E - T)));
+
+label("$A$", A, SE);
+label("$B$", B, NE);
+label("$C$", C, N);
+dot("$T$", T, SE);
+dot("$U$", U, N);
+dot("$Y$", Y, NE);
+    
+\end{asy}   
+\end{center}
+
+Then $AY = AT$ and $CY = CU$. But $BT = BU$ (since they are tangents from the same point to the $B$-excircle). Also, $BT = AB + AT = c + AY$, and $BU = BC + CU = a + CY$, so $c + AY = a + CY$.
+
+In other words $AY - CY = a - c$. Adding the equation $AY + CY = b$, we get $2AY = a + b - c = (a + b + c) - 2c = 2s - 2c$, so $AY = s - c$. Then $CY = s - a$.
+
+(6) We see that
+\[[BCE] = \frac{1}{2} BC \cdot EU = \frac{1}{2} ar_b.\]
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, E, T, U, Y;
+
+A = (0,0);
+B = 2*dir(60);
+C = 1.5*dir(120);
+E = (abs(B - C)*A - abs(C - A)*B + abs(A - B)*C)/(abs(B - C) - abs(C - A) + abs(A - B));
+T = (E + reflect(A,B)*(E))/2;
+U = (E + reflect(B,C)*(E))/2;
+Y = (E + reflect(C,A)*(E))/2;
+
+draw(A--C);
+draw((T + 0.2*(T - B))--B--(U + 0.2*(U - B)));
+draw(Circle(E,abs(E - T)));
+draw(E--T);
+draw(E--U);
+draw(E--Y);
+draw(E--B,dashed);
+draw(A--E--C,dashed);
+
+label("$A$", A, SE);
+label("$B$", B, NE);
+label("$C$", C, N);
+label("$E$", E, SW);
+dot("$T$", T, SE);
+dot("$U$", U, N);
+dot("$Y$", Y, NE);
+    
+\end{asy}   
+\end{center}
+
+Similarly,
+\[[ABE] = \frac{1}{2} AB \cdot ET = \frac{1}{2} cr_b.\]Also,
+\[[ACE] = \frac{1}{2} AC \cdot EY = \frac{1}{2} br_b.\]Hence,
+\begin{align*}
+[ABC] &= [BCE] + [ABE] - [ACE] \\
+&= \frac{1}{2} ar_b + \frac{1}{2} cr_b - \frac{1}{2} br_b \\
+&= r_b \cdot \frac{a + c - b}{2} \\
+&= r_b \cdot \frac{a + b + c - 2b}{2} \\
+&= r_b (s - b).
+\end{align*}
+Similarly, $[ABC] = r_a (s - a) = r_c (s - c)$.
+    
+\end{mdsoln}
+
+\subsection{Problem 12 - Constructions}
+
+The following constructions should be elementary (i.e. you shouldn't have to think to execute them, and you don't have to explicitly describe how you do them when you use them on a construction problem). If you don't know how to do any of these, post here.
+
+For all constructions, you have a straightedge and compass. Prove that your construction works.
+
+1) Construct the midpoint of a given segment $AB$.
+
+2) Given a point $A$ and a line $k$, construct a line through $A$ parallel to $k$ and a line through $A$ perpendicular to $k$.
+
+3) Construct the angle bisector of a given angle $ABC$.
+
+4) Given angle $ABC$ and segment $DE$, construct a point $F$ such that $\angle DEF = \angle ABC$.
+
+5) Trisect segment $AB$.
+
+\begin{mdsoln}
+(1) Draw a circle centered at $A$ and a circle centered at $B$, with the same radius. (The radius should be greater than $AB/2$, so that the circles intersect.) Let $P$ and $Q$ be the two intersection points.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, M, P, Q;
+
+A = (0,0);
+B = (1,0);
+P = intersectionpoints(Circle(A,1.5),Circle(B,1.5))[0];
+Q = intersectionpoints(Circle(A,1.5),Circle(B,1.5))[1];
+M = extension(A,B,P,Q);
+
+draw(Circle(A,1.5),red);
+draw(Circle(B,1.5),red);
+draw(P--Q,red);
+draw(A--B);
+
+dot("$A$", A, W);
+dot("$B$", B, E);
+dot("$M$", M, NE);
+dot("$P$", P, N);
+dot("$Q$", Q, S);
+    
+\end{asy}   
+\end{center}
+
+Let $AB$ and $PQ$ intersect at $M$. We claim that $M$ is the midpoint of $AB$.
+
+Since $AP = AQ = BP = BQ$, triangles $APB$ and $AQB$ are congruent and isosceles. Similarly, triangles $PAQ$ and $PBQ$ are congruent and isosceles, so $\angle APQ = \angle BPQ$. Hence, $PQ$ bisects $\angle APB$, which means $M$ is the midpoint of $AB$.
+
+(2) Draw a circle centered at $A$ so that it intersects line $k$ at two points, $P$ and $Q$. Draw a circle centered at $P$ and a circle centered at $Q$ with the same radius, so that these two circles intersect at $R$. We claim that $AR$ is perpendicular to $k$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, M, P, Q, R;
+
+A = (0,0);
+P = (-1,2);
+Q = (1,2);
+R = (0,3);
+M = extension(P,Q,A,R);
+
+draw(arc(A,abs(A - P),40,140),red);
+draw(arc(P,abs(P - R),30,60),red);
+draw(arc(Q,abs(Q - R),150,120),red);
+draw(A--R,red);
+draw((-2,2)--(2,2));
+
+dot("$A$", A, S);
+dot("$M$", M, SE);
+dot("$P$", P, NW);
+dot("$Q$", Q, NE);
+dot("$R$", R, N);
+label("$k$", (2,2), E);
+    
+\end{asy}   
+\end{center}
+
+Let $M$ be the intersection of $PQ$ and $AR$. Since $AP = AQ$ and $PR = QR$, triangles $APR$ and $AQR$ are congruent. Then $\angle PRM = \angle QRM$, so triangles $PRM$ and $QRM$ are congruent. This implies $\angle RMP = \angle RMQ$. But $\angle RMP + \angle RMQ = 180^\circ$, so $\angle RMP = 90^\circ$. In other words, $AR$ is perpendicular to $k$.
+
+We can use the same construction with line $AR$ taking the place of $k$ to construct a line passing through $A$ that is perpendicular to $AR$. This line will be parallel to $k$.
+
+(3) Draw a circle centered at $B$, and let this circle intersect $AB$ and $BC$ at $P$ and $Q$, respectively. Draw a circle centered at $P$ and a circle centered at $Q$ with the same radius, and let these circles intersect at $R$. We claim that $BR$ bisects $\angle ABC$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, M, P, Q, R;
+
+A = 3*dir(40);
+B = (0,0);
+C = (3,0);
+P = 1.5*dir(40);
+Q = (1.5,0);
+R = 2.5*dir(20);
+
+draw(arc(B,abs(B - P),-10,50),red);
+draw(arc(P,abs(P - R),-20,10),red);
+draw(arc(Q,abs(Q - R),30,60),red);
+draw(B--R,red);
+draw(A--B--C);
+
+label("$A$", A, NE);
+label("$B$", B, SW);
+label("$C$", C, E);
+dot("$P$", P, N);
+dot("$Q$", Q, SE);
+dot("$R$", R, E);
+    
+\end{asy}   
+\end{center}
+
+Since $BP = BQ$ and $PR = QR$, triangles $BPR$ and $BQR$ are congruent. Hence, $\angle PBR = \angle QBR$, which means $BR$ bisects $\angle ABC$.
+
+(4) Draw a circle centered at $E$ with radius $BC$, and let it intersect $DE$ at $Z$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, D, E, F, Z;
+
+A = (2,2);
+B = (0,0);
+C = (3,0);
+D = (5,1);
+E = (8,-1);
+Z = intersectionpoint(arc(E,abs(B - C),140,155),D--E);
+
+draw(arc(E,abs(B - C),140,155),red);
+draw(A--B--C--cycle);
+draw(D--E);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+dot("$D$", D, W);
+dot("$E$", E, dir(0));
+dot("$Z$", Z, S);
+    
+\end{asy}   
+\end{center}
+
+Next, draw a circle centered at $Z$ with radius $AC$, and draw a circle centered at $E$ with radius $AB$. Let these circles intersect at $F$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair A, B, C, D, E, F, Z;
+
+A = (2,2);
+B = (0,0);
+C = (3,0);
+D = (5,1);
+E = (8,-1);
+Z = intersectionpoint(arc(E,abs(B - C),140,155),D--E);
+F = intersectionpoint(arc(Z,abs(A - C),20,40),arc(E,abs(A - B),90,110));
+
+draw(arc(Z,abs(A - C),20,40),red);
+draw(arc(E,abs(A - B),90,110),red);
+draw(A--B--C--cycle);
+draw(D--E);
+
+label("$A$", A, N);
+label("$B$", B, SW);
+label("$C$", C, SE);
+dot("$D$", D, W);
+dot("$E$", E, dir(0));
+dot("$F$", F, NE);
+dot("$Z$", Z, SW);
+    
+\end{asy}   
+\end{center}
+
+Then by construction, $EF = AB$, $FZ = AC$, and $EZ = BC$, so triangles $ABC$ and $FEZ$ are congruent. Hence, $\angle DEF = \angle ZEF = \angle ABC$.
+
+(5) Choose a point $C_1$ in the plane, not on $AB$. Draw a circle centered at $C_1$ with radius $AC_1$, and let it intersect $AC_1$ at $C_2$. Draw another circle centered at $C_2$ with radius $AC_1$, and let it intersect $AC_1$ at $C_3$. Thus, $AC_1 = C_1 C_2 = C_2 C_3$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair B;
+pair[] A, C;
+
+A[0] = (0,0);
+B = (3,0);
+C[1] = dir(40);
+C[2] = 2*dir(40);
+C[3] = 3*dir(40);
+
+draw(arc(C[1],1,30,50),red);
+draw(arc(C[2],1,30,50),red);
+draw(A[0]--B);
+draw(A[0]--C[3]);
+
+label("$A$", A[0], SW);
+label("$B$", B, E);
+dot("$C_1$", C[1], N);
+dot("$C_2$", C[2], N);
+dot("$C_3$", C[3], N);
+    
+\end{asy}   
+\end{center}
+
+By part (2), we can draw a line through $C_1$ parallel to $BC_3$. Let this line intersect $AB$ at $A_1$. Similarly, we can draw a line through $C_2$ parallel to $BC_3$. Let this line intersect $AB$ at $A_2$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+unitsize(1.5 cm);
+
+pair B;
+pair[] A, C;
+
+A[0] = (0,0);
+B = (3,0);
+C[1] = dir(40);
+C[2] = 2*dir(40);
+C[3] = 3*dir(40);
+A[1] = extension(A[0],B,C[1],C[1] + B - C[3]);
+A[2] = extension(A[0],B,C[2],C[2] + B - C[3]);
+
+draw(C[1]--A[1],red);
+draw(C[2]--A[2],red);
+draw(A[0]--B);
+draw(A[0]--C[3]);
+draw(C[3]--B);
+
+label("$A$", A[0], SW);
+label("$A_1$", A[1], S);
+label("$A_2$", A[2], S);
+label("$B$", B, E);
+label("$C_1$", C[1], NW);
+label("$C_2$", C[2], NW);
+label("$C_3$", C[3], N);
+    
+\end{asy}   
+\end{center}
+
+We see that triangles $AA_1 C_1$, $AA_2 C_2$, and $ABC_3$ are all similar, so $A_1$ and $A_2$ are the trisection points of $AB$. We can use a similar construction to divide a line segment into $n$ equal segments, where $n$ is any positive integer.
+
+\end{mdsoln}
