@@ -574,7 +574,7 @@ which is what we had listed in Table \ref{tab:square-colors}.
     \[\frac{1}{6}(4^3 + 2 \cdot 4 + 3 \cdot 4^2) = \boxed{20} .\]
     \end{sketch}
 \end{problem}
-\begin{problem}[PUMaC 2012, Cominatorics A, \# 6]
+\begin{problem}[PUMaC 2012, Combinatorics A, \# 6]
     Two white pentagonal pyramids, with side lengths all the same, are glued to each other
 at their regular pentagon bases. Some of the resulting 10 faces are colored black. How many
 rotationally distinguishable colorings may result?
@@ -590,6 +590,299 @@ is
 \end{sketch}
 \end{problem}
 
+
+\begin{problem}[2006 AIME II, \#8]
+    There is an unlimited supply of congruent equilateral triangles made of colored paper. Each triangle is a solid color with the same color on both sides of the paper. A large equilateral triangle is constructed from four of these paper triangles. Two large triangles are considered distinguishable if it is not possible to place one on the other, using translations, rotations, and/or reflections, so that their corresponding small triangles are of the same color.
+
+
+    Given that there are six different colors of triangles from which to choose, how many distinguishable large equilateral triangles may be formed?
+
+    \begin{center}
+        \begin{asy}
+            unitsize(1cm);
+            pair A,B; 
+            A=(0,0); 
+            B=(2,0); 
+            pair C=rotate(60,A)*B; 
+            pair D, E, F; 
+            D = (1,0); 
+            E=rotate(60,A)*D; 
+            F=rotate(60,C)*E; 
+            draw(C--A--B--cycle); 
+            draw(D--E--F--cycle);
+        \end{asy}
+    \end{center}
+\begin{sketch}
+    There are 6 symmetries: identity, $e$, rotations of $120^\circ, 240^\circ$, let's call them $\pi_1, \pi_2$, reflections about the medians, let's call them $r_1, r_2, r_3$.
+
+    Let's count the fixes for each:
+    \begin{itemize}
+        \item $e$: Each trinagle can be selected independently, that is $6^4$ ways.
+        \item $\pi_1, \pi_2$: The triangle with constraints for $\pi_1$ is:
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    pair A,B; 
+                    A=(0,0); 
+                    B=(2,0); 
+                    pair C=rotate(60,A)*B; 
+                    pair D, E, F; 
+                    D = (1,0); 
+                    E=rotate(60,A)*D; 
+                    F=rotate(60,C)*E; 
+                    draw(C--A--B--cycle); 
+                    draw(D--E--F--cycle);
+
+                    label("A", (A+D+E)/3);
+                    label("A", (B+D+F)/3);
+                    label("A", (C+E+F)/3);
+
+                    label("B", (D+E+F)/3);
+                \end{asy}
+            \end{center}
+            Therfore, for each there are $6^2$ fixes.
+        \item $r_1, r_2, r_3$: The triangle with constraints for $r_1$ is:
+        \begin{center}
+            \begin{asy}
+                unitsize(1cm);
+                pair A,B; 
+                A=(0,0); 
+                B=(2,0); 
+                pair C=rotate(60,A)*B; 
+                pair D, E, F; 
+                D = (1,0); 
+                E=rotate(60,A)*D; 
+                F=rotate(60,C)*E; 
+                draw(C--A--B--cycle); 
+                draw(D--E--F--cycle);
+                draw((A-(F-A)*0.1)--(F + (F-A)*0.1), red+dashed);
+
+                label("A", (A+D+E)/3);
+                label("C", (B+D+F)/3);
+                label("C", (C+E+F)/3);
+
+                label("B", (D+E+F)/3);
+            \end{asy}
+        \end{center}  
+        Therefore, for each there are $6^3$ fixes.      
+    \end{itemize}
+    By Burnside's lemma, the number of ways is
+    \[\frac{1}{6} (6^4 + 2 \cdot 6^2 + 3 \cdot 6^3) = \boxed{336}.\]
+\end{sketch}
+\end{problem}
+\begin{problem}[Osman Nal YouTube]
+    Consider a $3\times 3$ square grid. How many different coloring patterns (upto rotation and reflection) with \textcolor{red}{$2$ red}, \textcolor{ForestGreen}{$3$ green}, and \textcolor{blue}{$4$ blue} squares?
+
+\begin{sketch}
+    First, let's count the fixes.
+    \begin{itemize}
+        \item $e$: Each cell can be colored independent of the other, so there are $ \binom{9}{2} \cdot \binom{7}{3} = 1260$ fixes.
+        \item $\pi_1, \pi_3$: The grid with the constraints is:
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"A", "B", "A"},
+                        {"B", "C", "B"},
+                        {"A", "B", "A"},
+                    };
+                    for (int i = 0; i < 3; ++i)
+                    for (int j = 0; j < 3; ++j) {
+                        draw((i,0)--(i,3)^^(0,j)--(3,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((3,0)--(3,3)^^(0,3)--(3,3));
+                    // draw((-0.5,-0.5)--(3.5,3.5), red+dashed);
+        
+                \end{asy}
+        \end{center}
+        There are $4 A$s and $4 B$s, where as we have only one color, \textcolor{blue}{blue} with 4 squares. So its not possible to get a grid with these constraints and the number of fixes is $0$.
+            \item $\pi_2$: The grid with the constraints is:
+            \begin{center}
+                \begin{asy}
+                    unitsize(1cm);
+                    string l[][] = {
+                        {"A", "B", "C"},
+                        {"D", "E", "D"},
+                        {"A", "B", "C"},
+                    };
+                    for (int i = 0; i < 3; ++i)
+                    for (int j = 0; j < 3; ++j) {
+                        draw((i,0)--(i,3)^^(0,j)--(3,j));
+                        label(l[j][i], (i+0.5, j+0.5));
+                    }
+                    draw((3,0)--(3,3)^^(0,3)--(3,3));
+                    // draw((-0.5,-0.5)--(3.5,3.5), red+dashed);
+        
+                \end{asy}
+        \end{center}
+        Since, \textcolor{ForestGreen}{green} is the only color with odd number of squares, $E$ must be \textcolor{ForestGreen}{green}. Then we have 4 pairs of $A, B, C, D$ and we have to choose from \textcolor{blue}{$2$ blue}, \textcolor{red}{$1$ red}, \textcolor{ForestGreen}{$1$ green} pairs. This can be done in $\binom{4}{2} \cdot \binom{2}{1} = 12$ ways. So the number of fixes is $12$.
+        
+        \item $r_1, r_2$: The grid with the constraints for $r_1$ is:
+        \begin{center}
+            \begin{asy}
+                unitsize(1cm);
+                string l[][] = {
+                    {"A", "B", "C"},
+                    {"D", "E", "F"},
+                    {"A", "B", "C"},
+                };
+                for (int i = 0; i < 3; ++i)
+                for (int j = 0; j < 3; ++j) {
+                    draw((i,0)--(i,3)^^(0,j)--(3,j));
+                    label(l[j][i], (i+0.5, j+0.5));
+                }
+                draw((3,0)--(3,3)^^(0,3)--(3,3));
+                // draw((-0.5,-0.5)--(3.5,3.5), red+dashed);
+    
+            \end{asy}
+        \end{center}
+
+        Now there are two cases:
+        \begin{itemize}
+            \item $D, E, F$ are all \textcolor{ForestGreen}{green}:  The reamining 3 pairs of $A, B, C$ can be chosen from \textcolor{blue}{$2$ blue}, \textcolor{red}{$1$ red} in $\binom{3}{2}$ ways.
+            \item One of $D, E, F$ is \textcolor{ForestGreen}{green}: This one can be chosen in 3 ways and then one of the remaiining three pairs of $A, B, C$ can be chosen for green in 3 ways and then the colors for remaining 3 pairs can be chosen in $\binom{3}{2}$ ways. That is the number of ways is $3 \cdot 3 \cdot \binom{3}{2}$ ways.
+        \end{itemize}
+            Then the total number of ways is $\binom{3}{2} + 3 \cdot 3 \cdot \binom{3}{2} = 30$. And since $r_2$ is symmetric to $r_1$, it will also have same $30$ fixes. Therefore, the total fixes for $r_1, r_2 = 60$.
+        
+        \item $r_3, r_4$: The grid with the constraints for $r_3$ is:
+        \begin{center}
+            \begin{asy}
+                unitsize(1cm);
+                string l[][] = {
+                    {"D", "C", "A"},
+                    {"C", "E", "B"},
+                    {"A", "B", "F"},
+                };
+                for (int i = 0; i < 3; ++i)
+                for (int j = 0; j < 3; ++j) {
+                    draw((i,0)--(i,3)^^(0,j)--(3,j));
+                    label(l[j][i], (i+0.5, j+0.5));
+                }
+                draw((3,0)--(3,3)^^(0,3)--(3,3));
+                draw((-0.5,-0.5)--(3.5,3.5), red+dashed);
+    
+            \end{asy}
+        \end{center}
+        As we can quickly see, the choices here are similar to the choices in the previous case, and so we have a total of $60$ fixes.
+    \end{itemize}
+    By Burnside's lemma, the number of distinct colorings upto rotations and reflextions is 
+    \[\frac{1}{8} (1260 + 12 + 60 + 60) = \boxed{174}. \]
+\end{sketch}
+\end{problem}
+
+\begin{problem}[2010 AIME II, \#10]
+    Find the number of second-degree polynomials $f(x)$ with integer coefficients and integer zeros for which $f(0)=2010$.
+
+    \begin{sketch}
+        Let $f(x) = a(x-r)(x-s)$. Then $ars=2010=2\cdot3\cdot5\cdot67$. Finding distinct polynomials is to find the distinct triplets $(a, r, s)$ with $r, s$ being swappable.
+
+        We can use Burnside's lemma. The two permutations that take a valid solution and yield another valid solution is the identity permutation, $e$ or $(a)(r)(s)$, and the permutation that swaps $r, s$, $(a)(rs)$.
+
+        Let's count the number of fixes for both:
+        \begin{itemize}
+            \item $e$: First, the 4 primes can be divided among $a, r, s$ in $3^4$ ways. Then there are $1 + \binom{3}{2} = 4$ ways of having positive and negatives such that the overall product is positive. So we have $4 \cdot 3^4$ fixes.
+            \item $(a)(r)(s)$: The only way we can have $r = s$ is to have $r = s = \pm 1$. Therefore, there are $2$ fixes.
+        \end{itemize}
+        By Burnside's lemma the number of distinct triples (with $r, s$ swappable) is
+        \[\frac{1}{2}(4 \cdot 3^4 + 2) = \boxed{163}.\]
+    \end{sketch}
+\end{problem}
+
+\begin{problem}
+    How many ways are there to color the 8 regions of a three-set Venn Diagram with 3 colors such that each color is used at least once? Two colorings are considered the same if one can be reached from the other by rotation and/or reflection.
+
+    \begin{sketch}
+        First, note that the symmetry actions on the three-set Venn Diagram is the same as that on the equilateral trinagle connecting the centers of the 3 circles. They are identity, $e$, rotations of $120^\circ, 240^\circ$, $\pi_1, \pi_2$, and reflections about the 3 medians, $r_1, r_2, r_3$.
+
+        \begin{center}
+        \begin{asy}
+            unitsize(1cm);
+            real r = 1.75;
+            pair A,B; 
+            A=(0,0); 
+            B=(2,0); 
+            pair C=rotate(60,A)*B; 
+            draw(C--A--B--cycle, gray(0.75)); 
+
+            draw(circle(A, r));
+            draw(circle(B, r));
+            draw(circle(C, r));
+
+        \end{asy}
+        \end{center}
+    Let's count the number of fixes with $n$ colors:
+    \begin{itemize}
+        \item $e$: $n^8$ fixes.
+        \item $\pi_1, \pi_2$: The constraints are:
+        \begin{center}
+        \begin{asy}
+            unitsize(1cm);
+            real r = 1.75;
+            pair A,B; 
+            A=(0,0); 
+            B=(2,0); 
+            pair C=rotate(60,A)*B; 
+            draw(C--A--B--cycle, gray(0.75)); 
+
+            draw(circle(A, r));
+            draw(circle(B, r));
+            draw(circle(C, r));
+
+            label("A", (C - (C - (A + B)/2)*(2.25)));
+            label ("B", (A+B+C)/3);
+
+            label("C", (C - (C - (A + B)/2)*(1.25)));
+            label("C", (B - (B - (A + C)/2)*(1.25)));
+            label("C", (A - (A - (C + B)/2)*(1.25)));
+
+            label("D", (C + (C - (A + B)/2)*(1/2)));
+            label("D", (B + (B - (A + C)/2)*(1/2)));
+            label("D", (A + (A - (C + B)/2)*(1/2)));
+
+        \end{asy}
+        \end{center}
+        Therefore, the number of fixes for each is $n^4$.
+        \item $r_1, r_2, r_3$: The constraints for $r_1$ are:
+        \begin{center}
+            \begin{asy}
+                unitsize(1cm);
+                real r = 1.75;
+                pair A,B; 
+                A=(0,0); 
+                B=(2,0); 
+                pair C=rotate(60,A)*B; 
+                draw(C--A--B--cycle, gray(0.75)); 
+    
+                draw(circle(A, r));
+                draw(circle(B, r));
+                draw(circle(C, r));
+    
+                label("A", (C - (C - (A + B)/2)*(2.25)));
+                label ("B", (A+B+C)/3);
+    
+                label("D", (C - (C - (A + B)/2)*(1.25)));
+                label("D", (B - (B - (A + C)/2)*(1.25)));
+                label("C", (A - (A - (C + B)/2)*(1.25)));
+    
+                label("F", (C + (C - (A + B)/2)*(1/2)));
+                label("F", (B + (B - (A + C)/2)*(1/2)));
+                label("E", (A + (A - (C + B)/2)*(1/2)));
+    
+                draw((A + (A - (C + B)/2)*(1.1))--(A - (A - (C + B)/2)*(2)), red+dashed);
+            \end{asy}
+            \end{center}   
+            Therefore, the number of fixes for each is $n^6$.     
+    \end{itemize}
+    So by Burnside lemma, the number of ways to color with at most $n$ colors accounting for rotation and reflection symmetries is
+    \[f(n) = \frac{1}{6}(n^8 + 2 \cdot n^4 + 3 \cdot n^6) .\]
+
+    We have $f(3) = 1485$, $f(2) = 80$, and $f(1) = 1$.
+
+    By PIE, the number of ways to do this such that each color is used at least once is 
+    \[f(3) - \binom{3}{2} \cdot f(2) + \binom{3}{1} \cdot f(1) = 1485 - 3\cdot80 + 3 = \boxed{1248}.\]
+    \end{sketch}
+\end{problem}
 \clearpage
 \section{Solution Sketches}
 \makehints
@@ -598,5 +891,6 @@ is
 \begin{itemize}
     \item \url{https://www.youtube.com/watch?v=wvofB5tZz3Y}
     \item \url{https://www.youtube.com/watch?v=6kfbotHL0fs}
+    \item \url{https://youtu.be/zQZ4kTiaqQI}
 \end{itemize}
 \end{document}
