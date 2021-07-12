@@ -3,6 +3,7 @@
 \newif\ifuseevan\useevantrue
 
 \DeclareOption{noevan}{\useevanfalse}
+\DeclareOption{fancy}{\usefancytrue}
 \ProcessOptions\relax
 
 \usepackage[colorlinks]{hyperref}
@@ -15,7 +16,7 @@
 
 \graphicspath{ {./images/} }
 
-\usepackage[letterpaper, top=2cm,bottom=3.5cm,left=1.5cm,right=1.5cm,includeheadfoot,asymmetric]{geometry}
+
 
 \newcommand{\org}[1]{\newcommand{\theorg}{#1}}
 \newcommand{\TBD}{\emph{\textcolor{red}{TBD\ }}}
@@ -34,7 +35,7 @@
 \usepackage{asymptote}
 \ifuseevan
 % \usepackage[sexy, nofancy, hints, noasy]{evan}
-\usepackage[sexy, nofancy, hints, noasy, nohref]{evan}
+\usepackage[sexy, nofancy, hints, noasy, nohref, noauthor]{evan}
 \Newassociation{sketch}{hintitem}{hints}
 \declaretheorem[name=Note,sibling=theorem]{note}
 \declaretheorem[name=Note,numbered=no]{note*}
@@ -64,28 +65,31 @@
   \renewcommand*{\subsubsectionformat}%
     {\color{purple}\S\thesubsubsection\enskip}
   \KOMAoptions{numbers=noenddot}
-  \usepackage[tocindentauto]{tocstyle}
-  \usetocstyle{KOMAlike}
+%   \usepackage[tocindentauto]{tocstyle}
+%   \usetocstyle{KOMAlike}
 }
 \fi
 
 \usepackage{lastpage}
 
 \ifusefancy
+\usepackage[letterpaper, top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm, includeheadfoot, asymmetric]{geometry}
+
+\usepackage{titling}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LE,RO]{\thetitle}
 \fancyhead[RE,LO]{\thedate}
 % \fancyfoot[CE,CO]{Page \thepage\ of \pageref{LastPage}}
-\fancyfoot[LE,RO]{\theorg}
+\fancyfoot[LE,RO]{\theauthor}
 \fancyfoot[RE,LO]{Page \thepage\ of \pageref{LastPage}}
 
 
 \fancypagestyle{plain}{%
   \renewcommand{\headrulewidth}{0pt}%
   \fancyhf{}%
-  \fancyfoot[LE,RO]{\theorg}
+  \fancyfoot[LE,RO]{\theauthor}
 \fancyfoot[RE,LO]{Page \thepage\ of \pageref{LastPage}}
 %   \fancyfoot[C]{\footnotesize Page \thepage\ of \pageref{LastPage}}%
 }
@@ -93,7 +97,12 @@
 \renewcommand{\headrulewidth}{2pt}
 \renewcommand{\footrulewidth}{1pt}
 
+\setlength{\headheight}{13.59999pt}
+\addtolength{\topmargin}{-1.59999pt}
+
 \else
+\usepackage[letterpaper, top=2cm,bottom=3.5cm,left=1.5cm,right=1.5cm,includeheadfoot,asymmetric]{geometry}
+
 \usepackage[headsepline, footsepline=2pt, plainfootsepline]{scrlayer-scrpage}
 \renewcommand{\headfont}{}
 \addtolength{\textheight}{3.14cm}
@@ -107,10 +116,12 @@
 
 % \ihead{\footnotesize\textbf{\theauthor} (\thedate)}
 \renewcommand*{\sectionmark}[1]{%
-    \markright{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}%
-    \markleft{\MakeMarkcase{\ifnumbered{section}{\sectionmarkformat}{}#1}}
+    \markright{\MakeMarkcase{\Ifnumbered{section}{\sectionmarkformat}{}#1}}%
+    \markleft{\MakeMarkcase{\Ifnumbered{section}{\sectionmarkformat}{}#1}}
 }
+% \@ifundefined{chaptermark}{}{
 % \renewcommand{\chaptermark}[1]{\markboth{\if@mainmatter\chaptername\ \thechapter~~\fi#1}{}}
+% }
 
 % \automark*{section}
 \ihead*{\footnotesize\textbf{\headmark}}
@@ -127,6 +138,11 @@
   }
 \setlength{\headheight}{14pt}
 \fi
+
+\Newassociation{mdsoln}{solnitem}{soln}
+\Opensolutionfile{soln}
+\newcommand{\makesoln}{\Closesolutionfile{soln}\input{soln.out}} % chktex 27
+
 
 \lstset{
     backgroundcolor=\color{TealBlue!5},
@@ -261,3 +277,33 @@
     basicstyle=\scriptsize,
     keywordstyle=\color{ipython_green}\ttfamily,
 }
+
+\usepackage{arcs}
+
+\makeatletter
+\providecommand\@gobblethree[3]{}
+\patchcmd{\over@under@arc}
+ {\@gobbletwo}
+ {\@gobblethree}
+ {}{}
+\makeatother
+
+\makeatletter
+\renewcommand{\Writetofile}[2]{%
+   \@bsphack
+   \Iffileundefined{#1}{}{%
+      \Ifopen{#1}{%
+         {%
+            \begingroup
+            %\let\protect\string %%% <----- removed
+            \Ifanswerfiles{%
+               \protected@iwrite{\@nameuse{#1@file}}{\afterassignment\let@protect@string}{#2}%
+            }{}%
+            \endgroup
+         }%
+      }{}%
+   }%
+   \@esphack
+}
+\def\let@protect@string{\let\protect\string}
+\makeatother
