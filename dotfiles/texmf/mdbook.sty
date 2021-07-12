@@ -1,0 +1,10 @@
+\renewcommand{\chaptermark}[1]{\markboth{\if@mainmatter\chaptername\ \thechapter~~\fi#1}{}}
+\renewcommand*{\sectionmark}[1]{%
+    \markright{\MakeMarkcase{\Ifnumbered{section}{\sectionmarkformat}{}#1}}%
+}
+
+\ihead*{}
+\ohead*{}
+\ihead{\footnotesize\textbf{\leftmark}}
+\ohead{\footnotesize\textbf{\rightmark}}
+\cfoot*{\footnotesize\textbf{\thetitle}}
