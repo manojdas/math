@@ -193,6 +193,32 @@ pair Q = (P.x,-P.y);
         draw((0,0) -- (0,sqrt(1.4)), L=L, arrow=Arrows(), bar=Bars);            
     \end{asy}
 \end{center}
+
+\subsection{Build Cycles for Fill}
+\begin{center}
+    \begin{asy}
+        pair A, B, C;
+        path w1, w2, w3;
+
+        unitsize (0.5 cm);
+        B = (0, 0);
+        C = (21, 0);
+        A = intersectionpoint (circle (B, 16), circle (C, 18));
+
+        w1 = circle (A, 6);
+        w2 = circle (B, 6);
+        w3 = circle (C, 6);
+
+        fill(buildcycle(w1, B--A, C--A),gray (0.85));
+        fill(buildcycle(reverse(w2), A--B, C--B),gray (0.85));
+        fill(buildcycle(reverse(w3), B--C, C--A),gray (0.85));
+
+        draw (A--B--C--A);
+        draw (w1^^w2^^w3);
+
+    \end{asy}
+\end{center}
+
 \subsection{Multiple Pictures}
 Sometimes we need to put two pictures side by side. While we can draw as a single picture and adjust our coordinates accordingly, it is simpler to draw two pictures independently and then place the pictures as desired. All the drawing commands take an optional \emph{picture pic} first parameter. This picture is added to the output picture using \emph{add} command. Any transformations including rotations and translations can be done at the time of add.
 \begin{center}
