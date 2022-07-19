@@ -27,6 +27,7 @@
 \newcommand{\stirlings}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
 \newcommand{\kc}{\mathfrak c}
 \newcommand{\PP}{\mathcal{P}}
+\newcommand{\NP}{\mathcal{N}}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 
 % \usepackage[automark,headwidth=textwithmarginpar,footwidth=text,
@@ -35,6 +36,9 @@
 %             plainfootsepline]{scrlayer-scrpage}  % Custom header and footer
 
 \usepackage{asymptote}
+\begin{asydef}
+    settings.outformat="pdf";
+\end{asydef}
 \ifuseevan
 % \usepackage[sexy, nofancy, hints, noasy]{evan}
 \usepackage[sexy, nofancy, hints, noasy, nohref, noauthor]{evan}
