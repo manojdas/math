@@ -1,0 +1,4681 @@
+\section{Lesson Transcript}
+%-- Message Achilleas ( moderator )
+% Hi, everyone!
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Hi 
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% hi!
+
+%------------------
+%-- Message bryanguo ( user )
+% hi!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% hi
+
+%------------------
+%-- Message renyongfu ( user )
+% hi
+
+%------------------
+%-- Message MathJams ( user )
+% hi!
+
+%------------------
+%-- Message pike65_er ( user )
+% hello
+
+%------------------
+%-- Message pritiks ( user )
+% hello!!
+
+%------------------
+%-- Message dvrdvr ( user )
+% hi
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% hi
+
+%------------------
+%-- Message Achilleas ( moderator )
+% \textbf{Olympiad GeometryWeek 9: 3-D Geometry}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we'll talk about three-dimensional geometry. Some 3D problems call for physical intuition to some degree, but most are simply 2D geometry problems in disguise. We'll do a few of each in class today, and there will be some of each on the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll start with a little warm-up that requires a bit of both of our approaches.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}    
+Two spheres with radius $6$ are inside a cylinder with radius $6.$ The centers of the spheres are $13$ apart. A plane tangent to both spheres intersects the cylinder in an ellipse. What is the sum of the major and minor axes of this ellipse?
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, let's describe in words what this 3D figure looks like.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Could you try?
+
+%------------------
+%-- Message dxs2016 ( user )
+% two not tangent spheres inside a cylinder with a slanted ellipse plane tangent to them
+
+%------------------
+%-- Message mark888 ( user )
+% There are two balls in a pipe and the pipe has a piece of paper stick at a slant through the middle.
+
+%------------------
+%-- Message Bimikel ( user )
+% there are two spheres that are 1 apart, a plane that's internally tangent to both spheres, and a cylinder inscribing both spheres
+
+%------------------
+%-- Message Ezraft ( user )
+% Two spheres are within a cylinder such that the spheres are tangent to the cylinder. A diagonal plane cuts the cylinder, forming an ellipse. This plane is tangent to both spheres.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the past, people were "seeing" tennis balls in a can/container. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Imagine a cylinder with a sphere in either end. Our tangent plane touches both spheres such that the plane separates the two spheres.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is the length of either axis of the ellipse immediately obvious?
+
+%------------------
+%-- Message coolbluealan ( user )
+% the minor axis is 12
+
+%------------------
+%-- Message B1002342 ( user )
+% the minor axis, it is 12 I believe
+
+%------------------
+%-- Message Ezraft ( user )
+% yes, one axis must have a length of $12$
+
+%------------------
+%-- Message Bimikel ( user )
+% the minor axis is just the diameter of 12
+
+%------------------
+%-- Message mustwin_az ( user )
+% minor axis is 12
+
+%------------------
+%-- Message Achilleas ( moderator )
+One axis is just the diameter of the cylinder, which is $12.$ How do we see this?
+
+%------------------
+%-- Message bryanguo ( user )
+% draw the diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we draw the diagram of?
+
+%------------------
+%-- Message dxs2016 ( user )
+% cross-section?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A cross section
+
+%------------------
+%-- Message RP3.1415 ( user )
+% the cross section or whatever its called
+
+%------------------
+%-- Message Bimikel ( user )
+% a 2d cross section of the spheres and the tangent plane
+
+%------------------
+%-- Message Achilleas ( moderator )
+Take a cross-section of the cylinder that includes the axis of the cylinder and the axis of the ellipse which is perpendicular to the cylinder axis.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+draw(Circle((0,13),6),heavygreen);
+draw(Circle((0,0),6),heavygreen);
+draw((6,19)--(-6,19)--(-6,-6)--(6,-6)--cycle^^(0,19)--(0,-6)^^(-6,6.5)--(6,6.5));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The length of this axis is clearly the diameter of the cylinder, or $12.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about the other axis? How do we go after it?
+
+%------------------
+%-- Message MathJams ( user )
+% draw a tangent line to both circles and determine it's length
+
+%------------------
+%-- Message coolbluealan ( user )
+% look at the plane from a side view
+
+%------------------
+%-- Message Achilleas ( moderator )
+We take the cross-section along the axis of the cylinder that includes the other axis:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+draw(Circle((0,13),6),heavygreen);
+draw(Circle((0,0),6),heavygreen);
+draw((6,19)--(-6,19)--(-6,-6)--(6,-6)--cycle^^(0,19)--(0,-6));
+draw(extension((-6,19),(-6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13)))--
+     extension((6,19),(6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13))));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message B1002342 ( user )
+% draw radii and use common tangents?
+
+%------------------
+%-- Message Ezraft ( user )
+% draw the radii from each circle to the plane
+
+%------------------
+%-- Message coolbluealan ( user )
+% draw perpendicular lines from the centers of the spheres to the line
+
+%------------------
+%-- Message Catherineyaya ( user )
+% draw the centers and lines to tangent points
+
+%------------------
+%-- Message pritiks ( user )
+% connect the tangent points to the center of the circles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw the radii to the points of tangency. Then what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+draw(Circle((0,13),6),heavygreen);
+draw(Circle((0,0),6),heavygreen);
+draw((6,19)--(-6,19)--(-6,-6)--(6,-6)--cycle^^(0,19)--(0,-6)^^(-6,6.5)--(6,6.5));
+draw(extension((-6,19),(-6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13)))--
+     extension((6,19),(6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13))));
+draw(origin--scale(6)*dir(90-aCos(12/13))^^(0,13)--shift(0,13)*scale(6)*dir(-90-aCos(12/13)));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message smileapple ( user )
+% we get two right triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We get four right triangles. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about them?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Four congruent right triangles, in fact.
+
+%------------------
+%-- Message Bimikel ( user )
+% they are all congruent
+
+%------------------
+%-- Message pritiks ( user )
+% they are all congruent
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They are all congruent
+
+%------------------
+%-- Message mark888 ( user )
+% they are all congruent
+
+%------------------
+%-- Message coolbluealan ( user )
+% they are congruent
+
+%------------------
+%-- Message Ezraft ( user )
+% they are all congruent
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% They are all congruent
+
+%------------------
+%-- Message razmath ( user )
+% they are congruent to each other since their long legs are all equal to 6 and they have the same angle proportions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+All four right triangles in the diagram are congruent. For instance $\triangle ABC\cong \triangle XYC$ since $AB=XY=6$ and $\angle YXC$ and $\angle XAB$ are both complements of $\angle AXB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+draw(Circle((0,13),6),heavygreen);
+draw(Circle((0,0),6),heavygreen);
+draw((6,19)--(-6,19)--(-6,-6)--(6,-6)--cycle^^(0,19)--(0,-6)^^(-6,6.5)--(6,6.5));
+draw(extension((-6,19),(-6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13)))--
+     extension((6,19),(6,-6),shift(0,13)*scale(6)*dir(-90-aCos(12/13)),scale(6)*dir(90-aCos(12/13))));
+draw(origin--scale(6)*dir(90-aCos(12/13))^^(0,13)--shift(0,13)*scale(6)*dir(-90-aCos(12/13)));
+
+pair X = (0,6.5), A = origin, B = scale(6)*dir(90-aCos(12/13)), C = X+scale(7)*dir(-aCos(12/13)), Y = (6,6.5);
+
+dot("$X$",X,NE,s);
+dot("$B$",B,S,s);
+dot("$A$",A,W,s);
+dot("$C$",C,E,s);
+dot("$Y$",Y,E,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So what's the answer?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the sum of the major and minor axes of this ellipse?
+
+%------------------
+%-- Message coolbluealan ( user )
+% 25
+
+%------------------
+%-- Message singingBanana ( user )
+% 25
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 13+12=25
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 13+12=25
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% 13 + 12 = 25
+
+%------------------
+%-- Message AOPS81619 ( user )
+% 25
+
+%------------------
+%-- Message singingBanana ( user )
+% 25 = 12 + 13
+
+%------------------
+%-- Message ww2511 ( user )
+% 13 + 12 = 25
+
+%------------------
+%-- Message ca981 ( user )
+% 25
+
+%------------------
+%-- Message dxs2016 ( user )
+% 25
+
+%------------------
+%-- Message Lucky0123 ( user )
+% 25
+
+%------------------
+%-- Message razmath ( user )
+% 12+13=25
+
+%------------------
+%-- Message Ezraft ( user )
+% $25$
+
+%------------------
+%-- Message Trollface60 ( user )
+% 25
+
+%------------------
+%-- Message pike65_er ( user )
+% 25
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% 25
+
+%------------------
+%-- Message smileapple ( user )
+% 25
+
+%------------------
+%-- Message Bimikel ( user )
+% 13+12=25
+
+%------------------
+%-- Message Achilleas ( moderator )
+We conclude that this ellipse axis equals the distance between the centers of our spheres, which is $13.$ Hence, the answer to our problem is $12+13 = 25.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Given a box with dimensions $a \times b \times c$, let $S$ be the set of points that are inside the box or within a distance of $r$ from the box. Find the volume of $S$ in terms of $a$, $b$, $c$, and $r.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+How should we start?
+
+%------------------
+%-- Message leoouyang ( user )
+% Draw a diagram
+
+%------------------
+%-- Message pritiks ( user )
+% draw a diagram
+
+%------------------
+%-- Message AOPS81619 ( user )
+% draw a diagram?
+
+%------------------
+%-- Message smileapple ( user )
+% draw a diagram
+
+%------------------
+%-- Message vsar0406 ( user )
+% try to draw a diagram?
+
+%------------------
+%-- Message Trollface60 ( user )
+% diagram
+
+%------------------
+%-- Message coolbluealan ( user )
+% draw a diagram
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Draw a figure
+
+%------------------
+%-- Message RP3.1415 ( user )
+% try to visualize it
+
+%------------------
+%-- Message MathJams ( user )
+% draw it out
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a diagram
+
+%------------------
+%-- Message ca981 ( user )
+% Draw a diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we draw a diagram of?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% cross sections
+
+%------------------
+%-- Message AOPS81619 ( user )
+% we should draw a diagram of a cross section?
+
+%------------------
+%-- Message pike65_er ( user )
+% cross section of the box?
+
+%------------------
+%-- Message xyab ( user )
+% the cross section vertically
+
+%------------------
+%-- Message Achilleas ( moderator )
+When we are solving a three-dimensional problem, one strategy is to look at the two-dimensional problem first, if it exists. So let's look at the two-dimensional problem here.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given an $a \times b$ rectangle, let $S$ be the set of points that are inside the rectangle or within a distance of $r$ from the rectangle. Find the area of $S$ in terms of $a$, $b$, and $r$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We start with the $a \times b$ rectangle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+unitsize(1 cm);
+
+draw((0,0)--(4,0)--(4,3)--(0,3)--cycle);
+
+label("$a$", (2,0), S);
+label("$b$", (4,3/2), E);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We then indicate the set $S.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+unitsize(1 cm);
+
+draw((0,0)--(4,0)--(4,3)--(0,3)--cycle);
+draw(arc((4,3),1,0,90));
+draw(arc((0,3),1,90,180));
+draw(arc((0,0),1,180,270));
+draw(arc((4,0),1,270,360));
+draw((0,-1)--(4,-1));
+draw((5,0)--(5,3));
+draw((4,4)--(0,4));
+draw((-1,3)--(-1,0));
+
+label("$a$", (2,0), S);
+label("$b$", (4,3/2), E);
+label("$S$", (4,3) + dir(45), NE);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we compute the area of $S?$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 4 rectangles + 4 quarter circles
+
+%------------------
+%-- Message dxs2016 ( user )
+% break it up into 4 rectangles, and 4 quarter circles
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% break S into circle sectors and rectangles
+
+%------------------
+%-- Message trk08 ( user )
+% split into rectangles and quarter circles
+
+%------------------
+%-- Message SlurpBurp ( user )
+% decompose into four rectangles and four quater-circles
+
+%------------------
+%-- Message coolbluealan ( user )
+% by splitting it into rectangular sections and quarter circle sections
+
+%------------------
+%-- Message mark888 ( user )
+% split the rounded corners into quarter circles and rectangles.
+
+%------------------
+%-- Message bigmath ( user )
+% divide it into 4 rectangles and 4 quarter circles
+
+%------------------
+%-- Message bryanguo ( user )
+% four quartercircles and then the four rectangular strips
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Split it up into parts rectangles and quarter circles.
+
+%------------------
+%-- Message xyab ( user )
+% split it into rectangles and sectors
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% split it into quarter circles and rectangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can divide the set $S$ into rectangles and circular sectors.
+
+%------------------
+%-- Message pritiks ( user )
+% extend the sides a and b and you will get rectangles and quarter circles which you can find the area of
+
+%------------------
+%-- Message singingBanana ( user )
+% divide it by extending the sides of the box
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+unitsize(1 cm);
+
+draw(arc((4,3),1,0,90));
+draw(arc((0,3),1,90,180));
+draw(arc((0,0),1,180,270));
+draw(arc((4,0),1,270,360));
+draw((-1,0)--(5,0));
+draw((-1,3)--(5,3));
+draw((0,-1)--(0,4));
+draw((4,-1)--(4,4));
+draw((0,-1)--(4,-1));
+draw((5,0)--(5,3));
+draw((4,4)--(0,4));
+draw((-1,3)--(-1,0));
+
+label("$a$", (2,0), S);
+label("$b$", (4,3/2), E);
+label("$S$", (4,3) + dir(45), NE);
+label("$r$", (4,3.5), E);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% how about the part of $S$ inside the rectangle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about it?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% That area is ab
+
+%------------------
+%-- Message trk08 ( user )
+% it is just $ab$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's just $a * b$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% the area of that part is just $a\cdot b$
+
+%------------------
+%-- Message dxs2016 ( user )
+% just a*b
+
+%------------------
+%-- Message mustwin_az ( user )
+% it's ab
+
+%------------------
+%-- Message Achilleas ( moderator )
+The area of the original rectangle is $ab.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the sum of the areas of the other four rectangles?
+
+%------------------
+%-- Message singingBanana ( user )
+% 2r(a + b)
+
+%------------------
+%-- Message razmath ( user )
+% (2a+2b)r
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 2r(a+b)
+
+%------------------
+%-- Message robertfeng ( user )
+% 2ar + 2br
+
+%------------------
+%-- Message Bimikel ( user )
+% 2br+2ar
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $2ar+2br$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $2r(a+b)$
+
+%------------------
+%-- Message mustwin_az ( user )
+% 2ar+2br
+
+%------------------
+%-- Message ay0741 ( user )
+% (2a + 2b) r
+
+%------------------
+%-- Message dxs2016 ( user )
+% 2br+2ar
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $2(a+b)r$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% 2(a+b)r
+
+%------------------
+%-- Message bryanguo ( user )
+% $2br+2ar$
+
+%------------------
+%-- Message coolbluealan ( user )
+% 2r*(a+b)
+
+%------------------
+%-- Message xyab ( user )
+% 2br+2ar
+
+%------------------
+%-- Message Trollface60 ( user )
+% 2r(a+b)
+
+%------------------
+%-- Message MathJams ( user )
+% 2r(a+b)
+
+%------------------
+%-- Message ww2511 ( user )
+% 2ra+ 2rb
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% 2r (a+b)
+
+%------------------
+%-- Message smileapple ( user )
+% $2r(a+b)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The sum of the areas of the other four rectangles is $2ar + 2br.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And what is the sum of the areas of the four circular sectors?
+
+%------------------
+%-- Message ww2511 ( user )
+% pi*r^2
+
+%------------------
+%-- Message robertfeng ( user )
+% pi r^2
+
+%------------------
+%-- Message dxs2016 ( user )
+% pi*r^2
+
+%------------------
+%-- Message Ezraft ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message pritiks ( user )
+% r^2*pi
+
+%------------------
+%-- Message bryanguo ( user )
+% pi*r^2
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% pi * r^2
+
+%------------------
+%-- Message leoouyang ( user )
+% pir^2
+
+%------------------
+%-- Message trk08 ( user )
+% r^2*pi
+
+%------------------
+%-- Message smileapple ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message Bimikel ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message ca981 ( user )
+% =one circle = pi*r^2
+
+%------------------
+%-- Message MathJams ( user )
+% r^2 * pi
+
+%------------------
+%-- Message singingBanana ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message razmath ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\pi{r^2}$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message mark888 ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message Trollface60 ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $\pi r^2$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $r^2 \pi$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The four circular sectors add up to a full circle of radius $r$, so the sum of their areas is $\pi r^2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, the area of $S$ is
+$$ab + 2(a + b) r + \pi r^2.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now that we have solved the two-dimensional version, we are more confident in solving the three-dimensional version.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have an $a \times b \times c$ box.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's start by adding the six boxes of height $r$ to each face.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+unitsize(0.6 cm);
+
+pair dx, dy, dz;
+
+dx = (0,-1);
+dy = 0.8*dir(20);
+dz = 0.8*dir(160);
+
+draw((0,0)--(4*dx));
+draw((0,0)--(5*dy));
+draw((0,0)--(6*dz));
+draw((0,0)--(-dx));
+draw((0,0)--(-dy));
+draw((0,0)--(-dz));
+draw((-dx)--(-dx + 4*dy)--(-dx + 4*dy + 5*dz)--(-dx + 5*dz)--cycle);
+draw((-dy)--(3*dx - dy)--(3*dx - dy + 5*dz)--(-dy + 5*dz)--cycle);
+draw((-dz)--(3*dx - dz)--(3*dx + 4*dy - dz)--(4*dy - dz)--cycle);
+draw((3*dx - dy)--(3*dx)--(3*dx - dz));
+draw((4*dy - dx)--(4*dy)--(4*dy - dz));
+draw((5*dz - dx)--(5*dz)--(5*dz - dy));
+draw(extension(4*dx + 4*dy, 3*dx + 4*dy, 3*dx - dz, 3*dx + 4*dy - dz)--(4*dx + 4*dy)--(4*dx)--(4*dx + 5*dz)--extension(4*dx + 5*dz, 3*dx + 5*dz, 3*dx - dy, 3*dx - dy + 5*dz));
+draw((5*dy)--(5*dy + dz));
+draw((6*dz)--(6*dz + dy));
+draw((5*dy)--(5*dy + dx));
+draw((6*dz)--(6*dz + dx));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the sum of the volumes of these six boxes?
+
+%------------------
+%-- Message razmath ( user )
+% (2ab+2bc+2ac)r
+
+%------------------
+%-- Message dxs2016 ( user )
+% 2(abr+acr+bcr)
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $2(ab + bc + ac)r$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 2r(ab+ac+bc)
+
+%------------------
+%-- Message pike65_er ( user )
+% 2r(ab+bc+ac)
+
+%------------------
+%-- Message ay0741 ( user )
+% 2(abr + acr + bcr)
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% 2r (ab + bc + ac)
+
+%------------------
+%-- Message Bimikel ( user )
+% $2r(ab+ac+bc)$
+
+%------------------
+%-- Message Trollface60 ( user )
+% $2r(ab+ac+bc)$
+
+%------------------
+%-- Message smileapple ( user )
+% $r\times\text{[surface area]}=2r(ab+bc+ca)$
+
+%------------------
+%-- Message trk08 ( user )
+% (2ab+2bc+2ca)*r
+
+%------------------
+%-- Message robertfeng ( user )
+% 2r(ab + bc + ac)
+
+%------------------
+%-- Message ay0741 ( user )
+% 2r(ab + ac + bc)
+
+%------------------
+%-- Message singingBanana ( user )
+% 2rab + 2rbc + 2rca
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $2r(ab+bc+ca)$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $2(ab+bc+ac)r$
+
+%------------------
+%-- Message pritiks ( user )
+% r(2ab+2bc+2ac)
+
+%------------------
+%-- Message mark888 ( user )
+% $2r(ab+ac+bc)$
+
+%------------------
+%-- Message bryanguo ( user )
+% $2abr+2acr+2bcr$
+
+%------------------
+%-- Message MathJams ( user )
+% 2ab+ 2bc + 2ac
+
+%------------------
+%-- Message coolbluealan ( user )
+% 2r*(ab+bc+ca)
+
+%------------------
+%-- Message ca981 ( user )
+% 2(ab+bc+ca)r
+
+%------------------
+%-- Message Achilleas ( moderator )
+The sum of the volumes of these six boxes is $2abr + 2acr + 2bcr.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else does $S$ consist of?
+
+%------------------
+%-- Message bryanguo ( user )
+% The quarter cylinders
+
+%------------------
+%-- Message leoouyang ( user )
+% parts of a cylinder
+
+%------------------
+%-- Message Achilleas ( moderator )
+$S$ also consists of a number of ``quarter-cylinders."  Here is one quarter-cylinder.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+unitsize(0.6 cm);
+
+pair dx, dy, dz;
+
+dx = (0,-1);
+dy = 0.8*dir(20);
+dz = 0.8*dir(160);
+
+draw((0,0)--(5*dy));
+draw((0,0)--(6*dz));
+draw((0,0)--(-dx));
+draw((0,0)--(-dy));
+draw((0,0)--(-dz));
+draw((-dx)--(-dx + 4*dy)--(-dx + 4*dy + 5*dz)--(-dx + 5*dz)--cycle);
+draw((-dy)--(3*dx - dy)--(3*dx - dy + 5*dz)--(-dy + 5*dz)--cycle);
+draw((-dz)--(3*dx - dz)--(3*dx + 4*dy - dz)--(4*dy - dz)--cycle);
+draw((4*dy - dx)--(4*dy)--(4*dy - dz));
+draw((5*dz - dx)--(5*dz)--(5*dz - dy));
+draw(extension(4*dx + 4*dy, 3*dx + 4*dy, 3*dx - dz, 3*dx + 4*dy - dz)--(4*dx + 4*dy)--(4*dx)--(4*dx + 5*dz)--extension(4*dx + 5*dz, 3*dx + 5*dz, 3*dx - dy, 3*dx - dy + 5*dz));
+draw((5*dy)--(5*dy + dz));
+draw((6*dz)--(6*dz + dy));
+draw((5*dy)--(5*dy + dx));
+draw((6*dz)--(6*dz + dx));
+draw((-dy)..(-dy/sqrt(2) - dz/sqrt(2))..(-dz));
+draw((3*dx - dy)..(3*dx - dy/sqrt(2) - dz/sqrt(2))..(3*dx - dz));
+draw((3*dx - dy/sqrt(2) - dz/sqrt(2))--(4*dx));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the sum of the volumes of all the quarter-cylinders?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% (instead of posting multiple answers too fast, it is best to take some time before you post  )
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $ \pi r^2 (a+b+c)$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% pi * r^2 * (a + b + c)
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\pi r^2(a+b+c)$
+
+%------------------
+%-- Message dxs2016 ( user )
+% pi*r^2(a+b+c)
+
+%------------------
+%-- Message Bimikel ( user )
+% $(a+b+c)\pi r^2$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $r^2\pi (a+b+c)$
+
+%------------------
+%-- Message leoouyang ( user )
+% pir^2 (a + b + c)
+
+%------------------
+%-- Message bryanguo ( user )
+% $\pi r^2 a + \pi r^2 b + \pi r^2 c$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\pi r^2(a+b+c)$
+
+%------------------
+%-- Message mark888 ( user )
+% $\pi r^2(a+b+c)$
+
+%------------------
+%-- Message ay0741 ( user )
+% r^2 pi (a + b + c)
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\pi r^2(a + b + c)$
+
+%------------------
+%-- Message smileapple ( user )
+% $\pi r^2(a+b+c)$ (imagine bringing the four quarter cylinders of length $a$ together, and envision the same for $b$ and $c$)
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% pi*r^2(a+b+c)
+
+%------------------
+%-- Message Trollface60 ( user )
+% $\pi r^2 (ac + bc + ab)$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\pi r^2(a+b+c)$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $(a+b+c)\pi r^2$
+
+%------------------
+%-- Message ca981 ( user )
+% pi*(a+b+c)*r^2
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\pi r^2(a+b+c)$
+
+%------------------
+%-- Message MathJams ( user )
+% r^2 pi (a+b+c)
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are four quarter-cylinders with height $a$ and radius $r,$ so the sum of the volumes of these quarter-cylinders is $\pi ar^2.$ The same holds for the quarter-cylinders with heights $b$ and $c.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, the sum of the volumes of all the quarter-cylinders is
+$$\pi (a + b + c) r^2.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, what else does $S$ consist of?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% eights of a sphere
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Eighth spheres.
+
+%------------------
+%-- Message singingBanana ( user )
+% 8 eigths of a sphere with radius r
+
+%------------------
+%-- Message renyongfu ( user )
+% eight 1/8 spheres of radius r
+
+%------------------
+%-- Message xyab ( user )
+% the eighth spheres at the corners
+
+%------------------
+%-- Message Achilleas ( moderator )
+$S$ also consists of eight eighths of a sphere of radius $r,$ so they add up to a whole sphere of radius $r.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, in the end, what is the volume of $S$?
+
+%------------------
+%-- Message vsar0406 ( user )
+% Don't the spheres overlap with some of the quarter cylinders?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% No, they don't.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $abc+ \pi r^2(a+b+c) + 2r(ab+bc+ca) + \frac{4}{3} \pi r^3$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $abc + \frac{4\pi r^3}{3} + 2(ab + bc + ac)r + \pi r^2(a + b + c)$
+
+%------------------
+%-- Message bryanguo ( user )
+% $\pi(a+b+c)r^2 +2abr+2acr+2bcr+\tfrac{4}{3} \pi r^3+abc$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $abc+2r(ab+ac+bc)+\pi r^2(a+b+c)+\frac{4\pi r^2}{3}$
+
+%------------------
+%-- Message pike65_er ( user )
+% $abc+2r(ab+ac+bc)+ \pi r^2(a+b+c)+\frac{4}{3}\pi r^3$
+
+%------------------
+%-- Message smileapple ( user )
+% $abc+2abr+2bcr+2car+\pi ra^2+\pi rb^2+\pi rc^2+\frac43\pi r^3$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $abc+2r(ab+ac+bc)+\pi r^2(a+b+c)+\frac{4}{3}\pi r^3$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% abc + 2r (ab + bc + ac) + pi * r^2 * (a + b + c) + 4*pi/3 r^3
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% abc+2r(ab+bc+ca)+pi*r^2(a+b+c)+4pi*r^3/3
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $abc+2r(ab+bc+ac)+\pi r^2(a+b+c) + \frac{4}{3} \pi r^3$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, the volume of $S$ is
+$$abc + 2(ab + ac + bc) r + \pi (a + b + c) r^2 + \frac{4}{3} \pi r^3.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moving on to the next one which is somehow related, but harder:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+In a certain country, if you want to send a box with dimensions $a \times b \times c$, then the post office charges an amount that is proportional to $a + b + c$.
+Baron Munchausen has an $a \times b \times c$ box, and claims he can save money by sending it in a $d \times e \times f$ box. In other words, he claims he can make
+$$d + e + f < a + b + c.$$
+Do you believe him?    
+\end{example}
+
+%------------------
+%-- Message dxs2016 ( user )
+% yes?
+
+%------------------
+%-- Message trk08 ( user )
+% possibly?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Baron Munchausen is a notorious fabricator, so we should be skeptical!
+
+%------------------
+%-- Message Yufanwang ( user )
+% who is baron munchausen
+
+%------------------
+%-- Message smileapple ( user )
+% who is munchausen?????
+
+%------------------
+%-- Message Achilleas ( moderator )
+Baron Munchausen is a fictional German nobleman created by a German writer.
+
+%------------------
+%-- Message Achilleas ( moderator )
+To begin, can we prove any inequality involving $a,b,c,d,e,f$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% (I can't see how you get $abc=def$.  )
+
+%------------------
+%-- Message Achilleas ( moderator )
+% One box is inside the other. How can they have the same volume?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $abc<def$
+
+%------------------
+%-- Message bigmath ( user )
+% def>abc
+
+%------------------
+%-- Message pritiks ( user )
+% abc>def
+
+%------------------
+%-- Message myltbc10 ( user )
+% def>abc
+
+%------------------
+%-- Message Bimikel ( user )
+% $abc<def$
+
+%------------------
+%-- Message vsar0406 ( user )
+% abc < def
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $a\cdot b\cdot c < d \cdot e \cdot f$, since the volume of the $a\times b\times c$ box is less than the volume of the $d\times e\times f$ box.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $a\cdot b\cdot c<d\cdot e \cdot f$, does this imply that $a+b+c<d+e+f$?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% No
+
+%------------------
+%-- Message Bimikel ( user )
+% no
+
+%------------------
+%-- Message vsar0406 ( user )
+% Not necessarily.
+
+%------------------
+%-- Message razmath ( user )
+% no
+
+%------------------
+%-- Message ay0741 ( user )
+% not necessarily
+
+%------------------
+%-- Message xyab ( user )
+% no
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% no
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message pritiks ( user )
+% not necessarily
+
+%------------------
+%-- Message MTHJJS ( user )
+% not necessarily
+
+%------------------
+%-- Message Catherineyaya ( user )
+% no
+
+%------------------
+%-- Message Yufanwang ( user )
+% no, not alone
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% no
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% not necessarily
+
+%------------------
+%-- Message mustwin_az ( user )
+% no
+
+%------------------
+%-- Message MathJams ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, it doesn't.
+
+%------------------
+%-- Message singingBanana ( user )
+% no, we could do 11, 1, 1 and 4, 4, 4
+
+%------------------
+%-- Message SlurpBurp ( user )
+% no, take 1 * 1 * 7 < 2 * 2 * 2 for example
+
+%------------------
+%-- Message pritiks ( user )
+% 13*2*1< 3*3*3 but 16 isnt less than 9
+
+%------------------
+%-- Message Achilleas ( moderator )
+For instance $1\cdot 2\cdot 7<1\cdot 3\cdot 5$, but $1+2+7>1+3+5$. Thus our desired inequality will not follow by just comparing volumes.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why did we think of comparing volumes to begin with?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% B/c one box is inside the other
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, because the new box must wholly contain the new box, we know its volume must be strictly greater.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we use this same logic of comparing volumes to generate any other inequalities?
+
+%------------------
+%-- Message MathJams ( user )
+% well we must have a's dimension < b's dimension i n some order
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Hmm..why is this true? Proof? Also, the box which is inside the other one could be a bit slanted.
+
+%------------------
+%-- Message Ezraft ( user )
+% WLOG assume $d > a, e > b, c > f$
+
+%------------------
+%-- Message Achilleas ( moderator )
+% The use of WLOG is not acceptable here.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% We cannot assume without loss of generality something that we wish to accept as true. This violates generality.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: Maybe by using the result we just proved...)
+
+%------------------
+%-- Message Achilleas ( moderator )
+For a distance $r$, let $S_r$ denote the set of points that are inside the $a \times b \times c$ box or within a distance of $r$ from the box, and let $T_r$ denote the set of points that are inside the $d \times e \times f$ box or within a distance of $r$ from the box.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the relationship between the sets $S_r$ and $T_r$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% (for sets, we do not use $<$ or $>$)
+
+%------------------
+%-- Message Achilleas ( moderator )
+% (using English is fine)
+
+%------------------
+%-- Message Ezraft ( user )
+% $S_r$ is contained in $T_r$
+
+%------------------
+%-- Message Yufanwang ( user )
+% Sr is contained in Tr
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $S_r$ is a subset of $T_r$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The set $S_r$ is a subset of $T_r$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The $a \times b \times c$ box is inside the $d \times e \times f$ box. If a point $P$ is within a distance of $r$ from the $a \times b \times c$ box, then $P$ is within a distance of $r$ from the $d \times e \times f$ box. (Here, the ``box'' refers to the part inside as well.) Hence, $S_r$ is a subset of $T_r$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This means that the volume of $S_r$ is less than or equal to the volume of $T_r$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the previous result,
+
+\begin{equation*}  
+\begin{split}  
+&abc + 2(ab + ac + bc) r + \pi (a + b + c) r^2 + \frac{4}{3} \pi r^3 \\  
+&\le def + 2(de + df + ef) r + \pi (d + e + f) r^2 + \frac{4}{3} \pi r^3.  
+\end{split}  
+\end{equation*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we simplify this?
+
+%------------------
+%-- Message mustwin_az ( user )
+% cancel last term
+
+%------------------
+%-- Message razmath ( user )
+% cancel out $\frac{4}{3}\pi r^3$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Cancel the $\frac{4}{3}\pi{r^3}$ from each side of the inequality
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can cancel the $\frac{4\pi r^3}{3}$
+
+%------------------
+%-- Message Ezraft ( user )
+% we can cancel $\frac{4}{3}\pi r^3$
+
+%------------------
+%-- Message dxs2016 ( user )
+% get rid of common (4/3)*pi*r^3
+
+%------------------
+%-- Message Achilleas ( moderator )
+This simplifies to
+
+
+\begin{equation*}  
+\begin{split}  
+&abc + 2(ab + ac + bc) r + \pi (a + b + c) r^2 \\  
+&\le def + 2(de + df + ef) r + \pi (d + e + f) r^2.  
+\end{split}  
+\end{equation*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about this inequality?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% true for all r>0
+
+%------------------
+%-- Message Achilleas ( moderator )
+This inequality holds for all $r > 0.$  So what must be true?
+
+%------------------
+%-- Message coolbluealan ( user )
+% let r approach infinity and then only consider the last term
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both sides are quadratic expressions in $r$ with entirely positive coefficients, so as $r$ increases, the quadratic terms dominate. Thus, for this inequality to hold true for arbitrarily large values of $r,$ we must have that the leading coefficient of the left-hand side is less than or equal to the leading coefficient of the right-hand side.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, what inequality do we get?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $a +b + c \leq d + e + f$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $a+b+c \leq d+e+f$
+
+%------------------
+%-- Message dxs2016 ( user )
+% d+e+f>=a+b+c
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $d+e+f\ge a+b+c$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $a + b + c \le d + e + f$
+
+%------------------
+%-- Message mark888 ( user )
+% $a+b+c\le d+e+f$
+
+%------------------
+%-- Message coolbluealan ( user )
+% a+b+c<=d+e+f
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $a+b+c\leq{d+e+f}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Comparing the two leading coefficients yields our desired inequality:
+$$a + b + c \le d + e + f.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, Baron Munchausen's claim is false, as we suspected.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where did this magical idea to compare polynomials of $r$ come from?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% From our previous problem
+
+%------------------
+%-- Message smileapple ( user )
+% comparing volume
+
+%------------------
+%-- Message AOPS81619 ( user )
+% volumes?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Our previous problem?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some of you noticed that the expressions $a+b+c$ and $abc$ are elementary symmetric polynomials; thus they make us think of the coefficients of the polynomial $(r+a)(r+b)(r+c)$. We want to create quantities we can compare (i.e. volumes) that involve such expressions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The most natural way to get to $(r+a)(r+b)(r+c)$ would be to just construct bigger boxes from our boxes, say $r/2$ bigger in each direction. In this case the volume of the new ``inside" box is exactly $(r+a)(r+b)(r+c)$. We obtain the inequality $$(r+a)(r+b)(r+c)<(r+d)(r+e)(r+f)$$ which leads to a similar proof.
+
+%------------------
+%-- Message Achilleas ( moderator )
+However, it is difficult to argue formally that our new boxes are still included one in the other (the corners are a problem). This makes us think of the solids which encompass each box at distance $r$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moving on:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+$A$, $B$, and $C$ are three interior points of a sphere $S$ such that $AB$ and $AC$ are perpendicular to the diameter of $S$ through $A$, and so that two spheres can be constructed through $A$, $B$, and $C$ which are both tangent to $S$. Prove that the sum of their radii is equal to the radius of $S$.
+    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where can we start?
+
+%------------------
+%-- Message xyab ( user )
+% draw a diagram
+
+%------------------
+%-- Message dxs2016 ( user )
+% diagram
+
+%------------------
+%-- Message Catherineyaya ( user )
+% draw a diagram
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% diagram
+
+%------------------
+%-- Message pritiks ( user )
+% a diagram
+
+%------------------
+%-- Message bryanguo ( user )
+% draw a diagram
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a diagram
+
+%------------------
+%-- Message mark888 ( user )
+% create a diagram
+
+%------------------
+%-- Message RP3.1415 ( user )
+% draw a diagram
+
+%------------------
+%-- Message MathJams ( user )
+% draw a diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+What diagram should we draw?
+
+%------------------
+%-- Message singingBanana ( user )
+% make a 2d case?
+
+%------------------
+%-- Message xyab ( user )
+% a cross section
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Draw a cross section
+
+%------------------
+%-- Message bryanguo ( user )
+% cross section
+
+%------------------
+%-- Message ay0741 ( user )
+% cross section
+
+%------------------
+%-- Message dxs2016 ( user )
+% cross-section?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should probably look for a cross-section, but which should we choose?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The problem provides three points $A,B,C$, but don't jump to conclusions! I don't have much idea what the intersection of the plane through $A,B,C$ with our three spheres is going to look like.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there three different points we could use?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% The one which opasses through the centers of all the spheres
+
+%------------------
+%-- Message xyab ( user )
+% the centers of the spheres
+
+%------------------
+%-- Message bigmath ( user )
+% the three centers of the spheres
+
+%------------------
+%-- Message bryanguo ( user )
+% the centers of the spheres
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have a problem with three spheres. That gives us three pretty important points - the centers. We consider the cross-section that contains these three points.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real p = 115, q = 32, t = .5;
+
+pair O = origin, O1 = scale(.63)*dir(q), O2 = scale(.37)*dir(p), F = dir(p), E=dir(q);
+path C2 = Circle(O2, length(O2-dir(115))), C1 = Circle(O1, length(O1-dir(32)));
+pair X = IPs(C1,C2)[1], Y = IPs(C1,C2)[0], D = extension(O1,O2,Y,X);
+
+draw(Circle(O,1)^^C1^^C2,heavygreen);
+
+dot(MP("O",O,S,s)^^MP("O'",O1,SE,s)^^MP("O''",O2,NE,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+That diagram looks pretty sparse. What should we add?
+
+%------------------
+%-- Message pritiks ( user )
+% segments connecting these centers
+
+%------------------
+%-- Message mustwin_az ( user )
+% connect centers
+
+%------------------
+%-- Message myltbc10 ( user )
+% the lines connecting the centers
+
+%------------------
+%-- Message Catherineyaya ( user )
+% lines connecting the centers?
+
+%------------------
+%-- Message Ezraft ( user )
+% we should connect the centers
+
+%------------------
+%-- Message Achilleas ( moderator )
+We add a few obvious lines, identify some points:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real p = 115, q = 32, t = .5;
+
+pair O = origin, O1 = scale(.63)*dir(q), O2 = scale(.37)*dir(p), F = dir(p), E=dir(q);
+path C2 = Circle(O2, length(O2-dir(115))), C1 = Circle(O1, length(O1-dir(32)));
+pair X = IPs(C1,C2)[1], Y = IPs(C1,C2)[0], D = extension(O1,O2,Y,X);
+
+draw(Circle(O,1)^^C1^^C2,heavygreen);
+draw(O--MP("E",E,NE,s)^^O--MP("F",F,NW,s)^^O1--O2);
+draw(MP("Y",Y,N,s)--MP("D",D,NW,s)--MP("X",X,S,s));
+dot(MP("O",O,S,s)^^MP("O'",O1,SE,s)^^MP("O''",O2,NE,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw radii through $O'$ and $O''$ to the points of tangency, and connect the two intersection points for our circles, as well as connecting $O'$ and $O''.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! Does this diagram incorporate everything from the problem statement, or are we leaving something out?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% points A,B,C
+
+%------------------
+%-- Message dxs2016 ( user )
+% A,B,C?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't know how those points relate, if at all, to this cross-section. 
+
+%------------------
+%-- Message MathJams ( user )
+% AB and AC are perpendicular to the diameter through A?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We don't have the diameter through $A$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% we didn't use the condition of "$AB$ and $AC$ are perpendicular to the diameter of $S$ through $A$".
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the information that $AB$ and $AC$ are perpendicular to a diameter through $A.$ Even worse, we don't really know where $A, B,$ and $C$ are in relation to this diagram. So, let's take a step back and try to visualize it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have two small spheres. What do we know about their intersection?
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is a circle
+
+%------------------
+%-- Message razmath ( user )
+% their intersection is a circle
+
+%------------------
+%-- Message ca981 ( user )
+% A circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it's a circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, the intersection of two distinct spheres is a circle (or a point, or nothing, but those are degenerate circles).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we determine this circle here?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Their intersection contains the points $A, B, C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Nice observation. So? What's this circle?
+
+%------------------
+%-- Message pritiks ( user )
+% circumcircle of ABC
+
+%------------------
+%-- Message coolbluealan ( user )
+% the circumcircle of ABC
+
+%------------------
+%-- Message Ezraft ( user )
+% the circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message mathlogic ( user )
+% circumcircle of triangle ABC
+
+%------------------
+%-- Message singingBanana ( user )
+% the circumcircle of ABC
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Second, we know that $A, B,$ and $C$ are on both spheres, thus belonging to their intersection.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since this intersection is a circle, we see that is is the circumcircle of $\triangle ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+By definition, we know that $OA$ is perpendicular to $AB$ and $AC.$ It follows that $OA$ is perpendicular to the plane containing $A,B,C,$ which is the same as the plane containing their circumcircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I claim that this implies that $A$ is in the plane of our diagram. Why?
+
+%------------------
+%-- Message razmath ( user )
+% OA being perpendicular to the plane through the circumcircle implies that OA is parallel to the plane we are viewing
+
+%------------------
+%-- Message Ezraft ( user )
+% $OA$ is perpendicular to the plane containing $A, B, C,$ and $XY$ is part of the plane containing these points; thus $A$ is in our diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that both $O'O''$ and $OA$ are perpendicular to the plane of the circle, so $O,$ $O',$ $O'',$ and $A$ are coplanar. Thus, $A$ lies in the plane of our diagram.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, the question is: where is point $A$ on our diagram?
+
+%------------------
+%-- Message Ezraft ( user )
+% either point $X$ or point $Y$
+
+%------------------
+%-- Message coolbluealan ( user )
+% either X or Y
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $A$ is on the circle that is perpendicular to the cross section and has $XY$ as a diameter. Only points $X$ and $Y$ are both in the cross-section and on this circle, so $A$ is one of these points. Without loss of generality, let $X$ be $A.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real p = 115, q = 32, t = .5;
+
+pair O = origin, O1 = scale(.63)*dir(q), O2 = scale(.37)*dir(p), F = dir(p), E=dir(q);
+path C2 = Circle(O2, length(O2-dir(115))), C1 = Circle(O1, length(O1-dir(32)));
+pair X = IPs(C1,C2)[1], Y = IPs(C1,C2)[0], D = extension(O1,O2,Y,X);
+
+draw(Circle(O,1)^^C1^^C2,heavygreen);
+draw(O--MP("E",E,NE,s)^^O--MP("F",F,NW,s)^^O1--O2);
+draw(MP("Y",Y,N,s)--MP("D",D,NW,s)--MP("A",X,S,s));
+draw(IPs(Circle(O,1),scale(8,O,X,.5))[0]--X);
+draw(dir(0)--X);
+dot(MP("O",O,S,s)^^MP("O'",O1,SE,s)^^MP("O''",O2,NE,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what do we want to prove?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% that the sum of the radii of the 2 inscribed circles is equal to the radius of the big circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that the sum of the radii of our little circles equals the radius of the larger circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $r,$ $r',$ $r''$ be the radii of the circles with centers $O,$ $O',$ and $O'',$ respectively. We want to show that $r' + r'' = r.  $ How do we do it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we make any useful observations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $OO''$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(in terms of the $r$'s)?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $OO''=r-r''$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $r-r''$
+
+%------------------
+%-- Message coolbluealan ( user )
+% OO"=r-r"
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $OO'' = r - r''$
+
+%------------------
+%-- Message Achilleas ( moderator )
+% How about $OO'$?
+
+%------------------
+%-- Message razmath ( user )
+% OO' = r-r'
+
+%------------------
+%-- Message mustwin_az ( user )
+% r-r'
+
+%------------------
+%-- Message dxs2016 ( user )
+% r-r'
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $OO' = r - r'$
+
+%------------------
+%-- Message mark888 ( user )
+% $OO'=r-r'$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $OO'=r-r'$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $OO'=r-r'$
+
+%------------------
+%-- Message pritiks ( user )
+% r-r'
+
+%------------------
+%-- Message Ezraft ( user )
+% $OO' = r - r'$
+
+%------------------
+%-- Message coolbluealan ( user )
+% OO'=r-r'
+
+%------------------
+%-- Message ca981 ( user )
+% OO'=r-r'
+
+%------------------
+%-- Message singingBanana ( user )
+% r - r'
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $r-r'$
+
+%------------------
+%-- Message Bimikel ( user )
+% $r-r'$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $r-r'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $OO'' = r - r''$ and that $OO' = r - r',$ so if we can show that $OO' = r''$ or $OO'' = r',$ we'd be set. How can we do it?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% If we can show that $OO'' = O'E$, then we are done
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we showed that $AO'' = OO'$ or $AO' = OO'',$ we'd also be done, since $AO'' = r''$ and $AO' = r'.$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We could show that $OAO'O''$ is cyclic and use the fact that it is a trapezoid
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do you all see that $AOO''O'$ is a trapezoid?
+
+%------------------
+%-- Message MathJams ( user )
+% yes, since YA perp OA, and YA is the radical axis of our two cricles
+
+%------------------
+%-- Message B1002342 ( user )
+% yes because $O''O'\perp YA \perp OA$
+
+%------------------
+%-- Message MTHJJS ( user )
+% angle OAY = angle YDO'' = 90
+
+%------------------
+%-- Message dxs2016 ( user )
+% because AY is perp to both O'O'' and OA I think
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that $\overline{OA}$ and $\overline{O''O}$ is perpendicular to $\overline{YA}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence $\overline{OA}$ is parallel to $\overline{O''O}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're pretty focused on trapezoid $AOO''O'$ now; if we could show that it's isosceles, we'd be finished. Here's what we have:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$OO'' = r - r'',$ $OO' = r - r',$ $AO'' = r'',$ and $AO' = r'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we deduce anything from these? Can we note anything interesting?
+
+%------------------
+%-- Message Achilleas ( moderator )
+An equation, maybe?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's $OO'' + AO'' ?$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $r$
+
+%------------------
+%-- Message singingBanana ( user )
+% r
+
+%------------------
+%-- Message mathlogic ( user )
+% r
+
+%------------------
+%-- Message coolbluealan ( user )
+% r
+
+%------------------
+%-- Message mark888 ( user )
+% r
+
+%------------------
+%-- Message dxs2016 ( user )
+% r
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $r$
+
+%------------------
+%-- Message pritiks ( user )
+% r
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $r$
+
+%------------------
+%-- Message bigmath ( user )
+% r
+
+%------------------
+%-- Message B1002342 ( user )
+% r
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $r$
+
+%------------------
+%-- Message ay0741 ( user )
+% r
+
+%------------------
+%-- Message bryanguo ( user )
+% $r-r'' + r''= r$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $OO' + AO'?$
+
+%------------------
+%-- Message mustwin_az ( user )
+% r
+
+%------------------
+%-- Message dxs2016 ( user )
+% also r
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% r
+
+%------------------
+%-- Message singingBanana ( user )
+% also r
+
+%------------------
+%-- Message Catherineyaya ( user )
+% also $r$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% also $r$
+
+%------------------
+%-- Message bryanguo ( user )
+% r
+
+%------------------
+%-- Message pritiks ( user )
+% also r
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Also $r$
+
+%------------------
+%-- Message coolbluealan ( user )
+% also r
+
+%------------------
+%-- Message razmath ( user )
+% also r
+
+%------------------
+%-- Message mathlogic ( user )
+% r again
+
+%------------------
+%-- Message leoouyang ( user )
+% r
+
+%------------------
+%-- Message bryanguo ( user )
+% $r-r'+r'=r$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% AO''+OO''=AO'+OO'
+
+%------------------
+%-- Message dxs2016 ( user )
+% OO''+AO''=r, OO'+AO'=r
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$OO'' + AO'' = r = OO' + AO'.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does this mean?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hint: Use the definition of an ellipse.
+
+%------------------
+%-- Message B1002342 ( user )
+% $O''$ and $O'$ lie on an ellipse with foci $O$ and $A$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $O'$ and $O''$ belong to an ellipse with foci $A$ and $O$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $O'$ and $O''$ fall on an ellipse with foci $O$ and $A$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% O' and O'' lie on an ellipse with foci A, O
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $O'$ and $O"$ lie on a ellipse with foci $A$ and $O$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% O" and O' are both on an ellipse with foci O and A
+
+%------------------
+%-- Message Achilleas ( moderator )
+This means that there's an ellipse with foci $O$ and $A$ that goes through $O''$ and $O'.$ What can we conclude?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $OO'' = AO'$ by symmetry?
+
+%------------------
+%-- Message pritiks ( user )
+% OO'' = O'A
+
+%------------------
+%-- Message mathlogic ( user )
+% O'A = O"O
+
+%------------------
+%-- Message mark888 ( user )
+% $OO''=AO'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+By symmetry, we can argue that since $O'O''$ and $AO$ are parallel, the line $O'O''$ cuts our ellipse at two points $O''$ and $O'$ such that $O''O = AO'.$ Thus, we have $O''O = r'$ and $OF = r = r' + r'' = OO'' + O''F,$ as desired.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+In tetrahedron $ABCD$, a plane intersects the edges $AB$, $BC$, $CD$, and $DA$ at $P$, $Q$, $R$, and $S$, respectively. Show that
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CR}{RD} \cdot \frac{DS}{SA} = 1.$$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+// find three-1
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, P, Q, R, S;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+P = (2*A + B)/3;
+Q = (2*B + C)/3;
+R = (C + 4*D)/5;
+S = lineintersectplan(A, A - D, P, cross(P - Q, P - R));
+
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(P--Q,dashed);
+draw(Q--R);
+draw(R--S,dashed);
+draw(S--P);
+
+dot("$A$", A, W);
+dot("$B$", B, dir(270));
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$P$", P, SW);
+dot("$Q$", Q, SE);
+dot("$R$", R, NE);
+dot("$S$", S, NW);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does anything about the problem look familiar?
+
+%------------------
+%-- Message razmath ( user )
+% looks like the condition for Menelaus
+
+%------------------
+%-- Message Ezraft ( user )
+% looks like Ceva's theorem
+
+%------------------
+%-- Message AOPS81619 ( user )
+% ceva?
+
+%------------------
+%-- Message MathJams ( user )
+% menelaus' and ceva's
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have ratios of line segments, and we have points on sides of triangles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+All these intersecting planes make us suspect concurrency or collinearity could be at play. This suggests Menelaus, or maybe Ceva.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So what do the fractions $AP/PB$ and $BQ/QC$ suggest doing in this case?
+
+%------------------
+%-- Message dxs2016 ( user )
+% extend PQ maybe?
+
+%------------------
+%-- Message Achilleas ( moderator )
+These fractions suggest looking at the point $X$ on $AC$ such that $X,$ $P,$ and $Q$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// find three-2
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, P, Q, R, S, X;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+P = (2*A + B)/3;
+Q = (2*B + C)/3;
+R = (C + 4*D)/5;
+S = lineintersectplan(A, A - D, P, cross(P - Q, P - R));
+X = lineintersectplan(A, A - C, P, cross(P - Q, P - R));
+
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(P--Q,dashed);
+draw(Q--R);
+draw(R--S,dashed);
+draw(S--P);
+draw(X--A);
+draw(X--P);
+
+dot("$A$", A, NW);
+dot("$B$", B, dir(270));
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$P$", P, SW);
+dot("$Q$", Q, SE);
+dot("$R$", R, NE);
+dot("$S$", S, NW);
+dot("$X$", X, NW);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+By Menelaus's theorem,
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CX}{XA} = -1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence,
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} = -\frac{AX}{XC}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+To complete the solution, we need to relate $X$ to $R$ and $S$ as well. How can we do that?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We need to show that they are collinear
+
+%------------------
+%-- Message Trollyjones ( user )
+% prove they are collinear
+
+%------------------
+%-- Message mustwin_az ( user )
+% collinear?
+
+%------------------
+%-- Message MathJams ( user )
+% show that X,S,R are collinear
+
+%------------------
+%-- Message singingBanana ( user )
+% X, S, and R should be collinear so we can apply menelaus again to ADC
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $X, R, S$ appear collinear
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We want to show that $S, R, X$ are colinear
+
+%------------------
+%-- Message christopherfu66 ( user )
+% show that they are collinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we do that?
+
+%------------------
+%-- Message coolbluealan ( user )
+% X is on plane PQRS
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where else is $X$ on?
+
+%------------------
+%-- Message dxs2016 ( user )
+% plane ACD
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% plane ACD
+
+%------------------
+%-- Message razmath ( user )
+% plane ACD
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we know that $X$ lies on planes $ACD$ and $PQRS.$ What's the intersection of two (non-parallel) planes?
+
+%------------------
+%-- Message razmath ( user )
+% a line
+
+%------------------
+%-- Message singingBanana ( user )
+% a line
+
+%------------------
+%-- Message vsar0406 ( user )
+% a line
+
+%------------------
+%-- Message dxs2016 ( user )
+% a line
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A line
+
+%------------------
+%-- Message Bimikel ( user )
+% a line
+
+%------------------
+%-- Message MathJams ( user )
+% a line
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% a line
+
+%------------------
+%-- Message ca981 ( user )
+% a line
+
+%------------------
+%-- Message SlurpBurp ( user )
+% a line
+
+%------------------
+%-- Message coolbluealan ( user )
+% a line
+
+%------------------
+%-- Message Lucky0123 ( user )
+% A line
+
+%------------------
+%-- Message B1002342 ( user )
+% a line
+
+%------------------
+%-- Message AOPS81619 ( user )
+% a line
+
+%------------------
+%-- Message Ezraft ( user )
+% a line
+
+%------------------
+%-- Message RP3.1415 ( user )
+% a line
+
+%------------------
+%-- Message Catherineyaya ( user )
+% a line
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% A Line
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is a line. Which line is it in our case?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $SR$
+
+%------------------
+%-- Message dxs2016 ( user )
+% X,S,R
+
+%------------------
+%-- Message singingBanana ( user )
+% RS
+
+%------------------
+%-- Message Bimikel ( user )
+% SR
+
+%------------------
+%-- Message ca981 ( user )
+% RS
+
+%------------------
+%-- Message Catherineyaya ( user )
+% line SR
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, $X$ lies on the intersection of planes $ACD$ and $PQRS$ (namely $RS$).
+
+%------------------
+%-- Message MathJams ( user )
+% it is on line RS so X is on it
+
+%------------------
+%-- Message Achilleas ( moderator )
+This intersection is line $RS,$ so $X,$ $R,$ and $S$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// find three-3
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, P, Q, R, S, X;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+P = (2*A + B)/3;
+Q = (2*B + C)/3;
+R = (C + 4*D)/5;
+S = lineintersectplan(A, A - D, P, cross(P - Q, P - R));
+X = lineintersectplan(A, A - C, P, cross(P - Q, P - R));
+
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(P--Q,dashed);
+draw(Q--R);
+draw(R--S,dashed);
+draw(S--P);
+draw(X--A);
+draw(X--P);
+draw(X--S);
+
+dot("$A$", A, NW);
+dot("$B$", B, dir(270));
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$P$", P, SW);
+dot("$Q$", Q, SE);
+dot("$R$", R, NE);
+dot("$S$", S, NW);
+dot("$X$", X, NW);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then by Menelaus's theorem,
+$$\frac{CR}{RD} \cdot \frac{DS}{SA} \cdot \frac{AX}{XC} = -1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence,
+$$\frac{CR}{RD} \cdot \frac{DS}{SA} = -\frac{CX}{XA}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+It follows that
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CR}{RD} \cdot \frac{DS}{SA} = \frac{AX}{XC} \cdot \frac{CX}{XA} = 1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is the converse true?
+
+%------------------
+%-- Message Achilleas ( moderator )
+In other words, if $P$, $Q$, $R$, and $S$ are points on edges $AB$, $BC$, $CD$, and $DA$, respectively, such that
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CR}{RD} \cdot \frac{DS}{SA} = 1,$$
+then is it true that $P$, $Q$, $R$ and $S$ are coplanar?
+
+%------------------
+%-- Message MathJams ( user )
+% Yes?
+
+%------------------
+%-- Message Bimikel ( user )
+% yeah
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message coolbluealan ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that the points $P,$ $Q,$ and $R$ determine a plane. Let this plane intersect $DA$ at $S'.$ What can we say about $S'?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% DS'/S'A=DS/SA
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the result we have just proven,
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CR}{RD} \cdot \frac{DS'}{S'A} = 1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+But we are given that
+$$\frac{AP}{PB} \cdot \frac{BQ}{QC} \cdot \frac{CR}{RD} \cdot \frac{DS}{SA} = 1,$$
+so
+$$\frac{DS'}{S'A} = \frac{DS}{SA}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message MathJams ( user )
+% S' is S
+
+%------------------
+%-- Message coolbluealan ( user )
+% S' is S
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $S'$ and $S$ are the same point
+
+%------------------
+%-- Message mathlogic ( user )
+% S'=S
+
+%------------------
+%-- Message ca981 ( user )
+% S and S' are the same point
+
+%------------------
+%-- Message Achilleas ( moderator )
+This implies that points $S$ and $S'$ coincide.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, $P,$ $Q,$ $R,$ and $S$ are coplanar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note*}
+Many important points in three-dimensional geometry problems arise as intersections of objects. For example, the point $X$ in our solution was the intersection of plane $PQRS$ with line $AC.$ Thus, it can help to look at intersections of lines and planes. Also, note how we rigorously argued that $R,$ $S,$ and $X$ were collinear using these intersections.    
+\end{note*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsection{Tetrahedron}
+For the rest of the lecture, we will look at the geometry of the tetrahedron.
+
+%------------------
+%-- Message Achilleas ( moderator )
+One of the first questions we can ask is how many main results of the triangle generalize to the tetrahedron.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Centroid of Tetrahedron}
+For example, how would you generalize the centroid of a triangle to the tetrahedron, say tetrahedron $ABCD?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the definition of the centroid of a triangle?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% point where medians intersect
+
+%------------------
+%-- Message dxs2016 ( user )
+% intersection of medians
+
+%------------------
+%-- Message Celwelf ( user )
+% The intersection of the medians
+
+%------------------
+%-- Message Ezraft ( user )
+% the intersection of the medians of the triangle
+
+%------------------
+%-- Message Bimikel ( user )
+% the intersection of the medians of the triangle
+
+%------------------
+%-- Message RP3.1415 ( user )
+% the intersection of the medians
+
+%------------------
+%-- Message Catherineyaya ( user )
+% intersection of the medians
+
+%------------------
+%-- Message singingBanana ( user )
+% the point where the medians meet
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% intersection of the medians of a triangle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% The point of concurrency of the medians
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Intersection of the medians
+
+%------------------
+%-- Message xyab ( user )
+% the point of intesection of the medians
+
+%------------------
+%-- Message coolbluealan ( user )
+% intersection of the medians
+
+%------------------
+%-- Message Trollyjones ( user )
+% the interesection of the medians
+
+%------------------
+%-- Message AOPS81619 ( user )
+% the intersection of the medians
+
+%------------------
+%-- Message Achilleas ( moderator )
+The centroid of a triangle is the point of concurrence of its three medians.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How would you generalize the centroid of a triangle to the tetrahedron, say tetrahedron $ABCD?$
+
+%------------------
+%-- Message MTHJJS ( user )
+% connect A to the centroid of DBC, repeat for B,C,D and find intersection of the 4 lines
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The intersection of the lines through one vertex and the centroid of the opposite side
+
+%------------------
+%-- Message Catherineyaya ( user )
+% intersection of lines connecting each vertex to the centroid of the opposite side
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% So the lines connecting a vertex to the opposite triangle's centroid are concurrent at the centroid.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could define $G_A$ to be the centroid of face $BCD$, and define points $G_B$, $G_C$, and $G_D$ similarly.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could then see if $AG_A$, $BG_B$, $CG_C$, and $DG_D$ concur.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] G;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+G[1] = (B + C + D)/3;
+G[2] = (A + C + D)/3;
+G[3] = (A + B + D)/3;
+G[4] = (A + B + C)/3;
+
+draw(A--G[1],red);
+draw(B--G[2],red);
+draw(C--G[3],red);
+draw(D--G[4],red);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$G_A$", G[1], E);
+dot("$G_B$", G[2], N);
+dot("$G_C$", G[3], N);
+dot("$G_D$", G[4], S);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The four lines appear to concur. How can we prove this?
+
+%------------------
+%-- Message coolbluealan ( user )
+% vectors
+
+%------------------
+%-- Message AOPS81619 ( user )
+% 3d vectors!!1!!1!
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can surely find a synthetic approach, and I recommend you think about this on your own. For now, let's explore a really nice way to prove this using vectors.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In vector form, what is $\vec{G_D}$, in terms of the vectors $\vec{A}$, $\vec{B}$, $\vec{C}$ and $\vec{D}$?
+
+%------------------
+%-- Message coolbluealan ( user )
+% (A+B+C)/3
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $(\vec{A} + \vec{B} + \vec{C}) / 3$
+
+%------------------
+%-- Message singingBanana ( user )
+% (A + B + C)/3
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\vec{G_D}$ is the centroid of $\triangle ABC$, we have
+$$ \vec{G_D} = \frac{1}{3}(\vec{A}+\vec{B}+\vec{C}) , $$
+in vector notation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any guesses for what the point of concurrence is?
+
+%------------------
+%-- Message coolbluealan ( user )
+% (A+B+C+D)/4
+
+%------------------
+%-- Message singingBanana ( user )
+% (A + B + C + D)/4
+
+%------------------
+%-- Message B1002342 ( user )
+% $\frac{1}{4}(A + B + C + D)$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\frac14\left( \vec{A} + \vec{B} + \vec{C} + \vec{D} \right)$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\frac{\vec{A}+\vec{B}+\vec{C}+\vec{D}}4$
+
+%------------------
+%-- Message mark888 ( user )
+% $\frac{1}{4}(A+B+C+D)$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\frac{1}{4}(A+B+C+D)$?
+
+%------------------
+%-- Message MathJams ( user )
+% (A+B+C+D)/4
+
+%------------------
+%-- Message Achilleas ( moderator )
+It seems like $\vec{G}=\frac{1}{4}(\vec{A}+\vec{B}+\vec{C}+\vec{D})$ is a pretty good guess. It is the average of our vertices, just like the 2D version.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we prove that $\vec{G}=\frac{1}{4}(\vec{A}+\vec{B}+\vec{C}+\vec{D})$ lies on line segment $DG_D$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need to show that $\vec{G}$ is a weighted average of $\vec{D}$ and $\vec{D_G}.$ In other words, we just need to find real numbers (or scalars, if we're being technical) $\alpha$ and $\beta$ such that $\alpha + \beta = 1$ and $\alpha \vec{D} + \beta \vec{G_D} = \vec{G}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What values of $\alpha$ and $\beta$ work?
+
+%------------------
+%-- Message singingBanana ( user )
+(singingBanana:) 2d medians have that 2:1 ratio thing so 3d medians should have a 3:1 ratio
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can you use this ``guess" to also guess $\alpha$ and $\beta$?
+
+%------------------
+%-- Message B1002342 ( user )
+% $\alpha = \frac{1}{4},\beta = \frac{3}{4}$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% 1/4 and 3/4 respectively
+
+%------------------
+%-- Message coolbluealan ( user )
+% alpha=1/4 and beta=3/4
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $(\alpha, \beta) = \left ( \frac{1}{4}, \frac{3}{4} \right)$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that $\alpha = \frac{1}{4}$ and $\beta = \frac{3}{4}$ work:
+$$ \frac{1}{4}\vec{D} + \frac{3}{4}\vec{D_G} = \frac{1}{4}\vec{D} + \frac{3}{4}\cdot \frac{1}{3}(\vec{A}+\vec{B}+\vec{C}) = \frac{1}{4}(\vec{A}+\vec{B}+\vec{C}+\vec{D}) = \vec{G}. $$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So $G$ lies on $DG_D$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By identical logic, $G$ also lies on $AG_A$, $BG_B$, and $CG_C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our choice of $\alpha$ and $\beta$ also show that $DG: G G_D = 3:1.$ The same is true if we replace $D$, with $A$, $B$, or $C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Circumcenter of Tetrahedron}
+If we wanted to define the \textbf{circumcenter} $O$ of tetrahedron $ABCD,$ what would the definition be?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our definition should be simple. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+No need to use any ``fancy" words or 3D objects.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% A point that is equidistant from $A,B,C,D$
+
+%------------------
+%-- Message MathJams ( user )
+% the point so that $OA=OB=OC= OD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We would define the circumcenter $O$ as the point that is equidistant from all four vertices. In other words, $OA = OB = OC = OD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we prove that such a point exists?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can start by looking at the condition $OA = OB = OC = OD$ one part at a time.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(as we did in the case of a triangle, remember?)
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, what is the set of points that are equidistant from $A$ and $B?$
+
+%------------------
+%-- Message myltbc10 ( user )
+% a plane
+
+%------------------
+%-- Message singingBanana ( user )
+% a plane
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Which plane?
+
+%------------------
+%-- Message Yufanwang ( user )
+% plane perpendicular to AB and passing through its midpoint
+
+%------------------
+%-- Message Yufanwang ( user )
+% plane normal to AB and passing through its midpoint
+
+%------------------
+%-- Message B1002342 ( user )
+% plane which is perpendicular to $AB$ and passes through its midpoint
+
+%------------------
+%-- Message SlurpBurp ( user )
+% perpendicular to $AB$ that passes through $A$ and $B$'s midpoint
+
+%------------------
+%-- Message Achilleas ( moderator )
+The set of points that are equidistant from $A$ and $B$ is the plane that passes through the midpoint of $AB$ that is perpendicular to $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+real s = 5;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--cycle);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot((A + B)/2);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, the set of points that are equidistant from $A$ and $C$ is the plane that passes through the midpoint of $AC $ that is perpendicular to $AC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// calculate circumcentre of space triangle ABC
+triple trianglecircumcentre(triple A, triple B, triple C)
+{
+  return lineintersectplan((A + C)/2, cross(cross(C - A, B - A), C - A), (A + B)/2, B - A);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] O;
+real s = 5;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+O[4] = trianglecircumcentre(A,B,C);
+
+draw((O[4] + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s))--(O[4] - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s)),red);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--cycle);
+draw(((A + C)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--cycle);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot((A + B)/2);
+dot((A + C)/2);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The intersection of these planes is a line. What can we say about this line?
+
+%------------------
+%-- Message myltbc10 ( user )
+% the points on it are equidistant to A,B,C
+
+%------------------
+%-- Message singingBanana ( user )
+% all the points on the line are equidistant from A, B, and C
+
+%------------------
+%-- Message Achilleas ( moderator )
+% What else?
+
+%------------------
+%-- Message mustwin_az ( user )
+% Perpendicular to plane ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both planes are perpendicular to plane $ABC,$ so the line is also perpendicular to plane $ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Furthermore, one plane is the set of all points that are equidistant to $A$ and $B,$ and another plane is the set of all points that are equidistant from $A$ and $C,$ so the line is the set of points that are equidistant from $A,$ $B,$ and $C.$
+
+%------------------
+%-- Message MathJams ( user )
+% through the circumcenter of ABC
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% this line passes through the circumcenter of triangle ABC
+
+%------------------
+%-- Message SlurpBurp ( user )
+% it intersects plane $ABC$ at $\triangle ABC$'s circumcenter
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It passes through the circumcenter of $\triangle{ABC}$?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Perpendicular to plane ABC and passing through the circumcenter of triangle ABC.
+
+%------------------
+%-- Message ca981 ( user )
+% the line perpendicular to plane ABC and passing circumcenter of ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+In particular, the line intersects plane $ABC$ at the circumcenter of $ABC,$ say $O_D$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// calculate circumcentre of space triangle ABC
+triple trianglecircumcentre(triple A, triple B, triple C)
+{
+  return lineintersectplan((A + C)/2, cross(cross(C - A, B - A), C - A), (A + B)/2, B - A);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] O;
+real s = 5;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+O[4] = trianglecircumcentre(A,B,C);
+
+draw((O[4] + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s))--(O[4] - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s)),red);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--cycle);
+draw(((A + C)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) - cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--
+((A + C)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s) + cross(A - C, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/s))--cycle);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$O_D$", O[4], SW);
+dot((A + B)/2);
+dot((A + C)/2);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, we can think of the line as the line passing through $O_D$ that is perpendicular to plane $ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(So far, everything we have said should be intuitive. However, in three-dimensional geometry, it is important to take small steps, because it is easy to make assumptions that are not true.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+So to find the circumcenter of tetrahedron $ABCD,$ we have planes we can play with, such as the set of points that are equidistant from $A$ and $B.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also have lines we can play with, such as the line passing through $O_D$ that is perpendicular to $ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that all these objects intersect at a single point. What combination of objects should we use?
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, taking the intersection of two planes does not result in a point, so that would not be a good combination to work with.
+
+%------------------
+%-- Message singingBanana ( user )
+% line + plane
+
+%------------------
+%-- Message Ezraft ( user )
+% we can take the intersection of this line and a plane
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% a line and a plane
+
+%------------------
+%-- Message Achilleas ( moderator )
+A combination of a plane and a line would be an appropriate combination, because the intersection of a plane and a line does result in a point, which we can work with (unless the plane and line are parallel).
+
+%------------------
+%-- Message RP3.1415 ( user )
+% two lines
+
+%------------------
+%-- Message myltbc10 ( user )
+% intersection of two lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another possible combination is a line and a line, but what must we be careful of?
+
+%------------------
+%-- Message coolbluealan ( user )
+% they must lie on the same plane
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two lines intersect only if they are contained in the same plane, so if we want to take the intersection of two lines, we must check that they are coplanar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, suppose we let $O_C$ be the circumcenter of triangle ABD and we draw the line through $O_C$ that is perpendicular to plane $ABD.$  Does this line intersect the first line?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// calculate circumcentre of space triangle ABC
+triple trianglecircumcentre(triple A, triple B, triple C)
+{
+  return lineintersectplan((A + C)/2, cross(cross(C - A, B - A), C - A), (A + B)/2, B - A);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] O;
+real s = 5;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+O[3] = trianglecircumcentre(A,B,D);
+O[4] = trianglecircumcentre(A,B,C);
+
+draw((O[3] + cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s))--(O[3] - cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s)),red);
+draw((O[4] + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s))--(O[4] - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s)),red);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$O_C$", O[3], NE);
+dot("$O_D$", O[4], SW);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Ezraft ( user )
+% yes
+
+%------------------
+%-- Message coolbluealan ( user )
+% yes
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message Yufanwang ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+The line through $O_D$ is the set of points that are equidistant to $A,$ $B,$ and $C.$ The line through $O_C$ is the set of points that are equidistant to $A,$ $B,$ and $D.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, both lines are contained in the first plane we defined (because it is the set of points that are equidistant to $A$ and $B$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// calculate circumcentre of space triangle ABC
+triple trianglecircumcentre(triple A, triple B, triple C)
+{
+  return lineintersectplan((A + C)/2, cross(cross(C - A, B - A), C - A), (A + B)/2, B - A);
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] O;
+real s = 5;
+real t = 6;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+O[3] = trianglecircumcentre(A,B,D);
+O[4] = trianglecircumcentre(A,B,C);
+
+draw((O[3] + cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s))--(O[3] - cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s)),red);
+draw((O[4] + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s))--(O[4] - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s)),red);
+draw(((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--cycle);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$O_C$", O[3], NE);
+dot("$O_D$", O[4], SW);
+dot((A + B)/2);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, if we let $O$ be the intersection of the two lines, then $O$ is equidistant to all four vertices. Thus, $O$ is the circumcenter of tetrahedron $ABCD.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// calculate circumcentre of space triangle ABC
+triple trianglecircumcentre(triple A, triple B, triple C)
+{
+  return lineintersectplan((A + C)/2, cross(cross(C - A, B - A), C - A), (A + B)/2, B - A);
+}
+
+// calculate signed volume of tetrahedron with vertices A, B, C, and D
+real tetrahedronsignedvolume(triple A, triple B, triple C, triple D)
+{
+  return dot(A - D, cross(B - D, C - D))/6;
+}
+
+// calculate circumcentre of tetrahedron with vertices A, B, C, and D
+triple tetrahedroncircumcentre(triple A, triple B, triple C, triple D)
+{
+  return (abs(A - D)^2 * cross(B - D, C - D) + abs(B - D)^2 * cross(C - D, A - D)
+  + abs(C - D)^2 * cross(A - D, B - D))/(12*tetrahedronsignedvolume(A, B, C, D)) + D;
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+triple[] O;
+real s = 5;
+real t = 6;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+O[0] = tetrahedroncircumcentre(A,B,C,D);
+O[3] = trianglecircumcentre(A,B,D);
+O[4] = trianglecircumcentre(A,B,C);
+
+draw((O[3] + cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s))--(O[3] - cross(A - B, A - D)/(abs(A - B)*abs(A - D)/s)),red);
+draw((O[4] + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s))--(O[4] - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/s)),red);
+draw(((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 + cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) - cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--
+((A + B)/2 - cross(A - B, A - C)/(abs(A - B)*abs(A - C)/t) + cross(A - B, cross(A - B, A - C))/(abs(A - B)*abs(A - B)*abs(A - C)/t))--cycle);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$O$", O[0], NE);
+dot("$O_C$", O[3], NE);
+dot("$O_D$", O[4], SW);
+dot((A + B)/2);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note*}
+The main idea here is that if we want to define points as intersections of other objects, such as lines and planes, then should be conscious of how they intersect. In two-dimensional geometry, generally any two lines intersect (unless they are parallel). In three-dimensional geometry, the addition of planes and the different ways they can intersect with lines and each other causes additional wrinkles.
+\end{note*}
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Incenter of Tetrahedron}
+If we wanted to define the incenter of a tetrahedron, what kind of planes would we work with first?
+
+%------------------
+%-- Message singingBanana ( user )
+% equidistant from two faces
+
+%------------------
+%-- Message Achilleas ( moderator )
+We would work with the sets of points that are equidistant to two of the faces of the tetrahedron.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, the set of points that are equidistant to faces $ABC$ and $ABD$ is a plane.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// projection of point A onto plane BCD
+triple projectionofpointontoplane(triple A, triple B, triple C, triple D)
+{
+  return lineintersectplan(A, cross(B - D, C - D), B, cross(B - D, C - D));
+}
+
+// calculate area of space triangle with vertices A, B, and C
+real trianglearea(triple A, triple B, triple C)
+{
+  return abs(cross(A - C, B - C)/2);
+}
+
+// calculate incentre of tetrahedron with vertices A, B, C, and D
+triple tetrahedronincentre(triple A, triple B, triple C, triple D)
+{
+  return (trianglearea(B, C, D) * A + trianglearea(A, C, D) * B
+  + trianglearea(A, B, D) * C + trianglearea(A, B, C) * D)/
+  (trianglearea(B, C, D) + trianglearea(A, C, D)
+  + trianglearea(A, B, D) + trianglearea(A, B, C));
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, I, P, Q, R;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+I = tetrahedronincentre(A,B,C,D);
+P = projectionofpointontoplane(I,A,B,C);
+Q = projectionofpointontoplane(I,A,B,D);
+R = lineintersectplan(C, C - D, I, cross(A - I, B - I));
+
+draw(P--I--Q,blue);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+draw(A--R--B);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot(I);
+dot(P);
+dot(Q);
+dot(R);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is the plane that bisects the dihedral angle between faces $ABC$ and $ABD.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Using the same kind of argument as above, we can prove that all six such planes intersect at a point. This point is the incenter of tetrahedron $ABCD,$ and it is equidistant to all four faces.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// projection of point A onto plane BCD
+triple projectionofpointontoplane(triple A, triple B, triple C, triple D)
+{
+  return lineintersectplan(A, cross(B - D, C - D), B, cross(B - D, C - D));
+}
+
+// calculate area of space triangle with vertices A, B, and C
+real trianglearea(triple A, triple B, triple C)
+{
+  return abs(cross(A - C, B - C)/2);
+}
+
+// calculate incentre of tetrahedron with vertices A, B, C, and D
+triple tetrahedronincentre(triple A, triple B, triple C, triple D)
+{
+  return (trianglearea(B, C, D) * A + trianglearea(A, C, D) * B
+  + trianglearea(A, B, D) * C + trianglearea(A, B, C) * D)/
+  (trianglearea(B, C, D) + trianglearea(A, C, D)
+  + trianglearea(A, B, D) + trianglearea(A, B, C));
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, I;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+I = tetrahedronincentre(A,B,C,D);
+
+draw(I--projectionofpointontoplane(I,A,B,C),blue);
+draw(I--projectionofpointontoplane(I,A,B,D),blue);
+draw(I--projectionofpointontoplane(I,A,C,D),blue);
+draw(I--projectionofpointontoplane(I,B,C,D),blue);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$I$", I, NW);
+dot(projectionofpointontoplane(I,A,B,C));
+dot(projectionofpointontoplane(I,A,B,D));
+dot(projectionofpointontoplane(I,A,C,D));
+dot(projectionofpointontoplane(I,B,C,D));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let the insphere of tetrahedron $ABCD$ be tangent to faces $BCD$, $ACD$, $ABD$, and $ABC$ at $T_1$, $T_2$, $T_3$, and $T_4$, respectively. Let $S_1$ be the set of angles $\{\angle BT_1 C, \angle BT_1 D, \angle CT_1 D\}$, and define sets $S_2$, $S_3$, and $S_4$ similarly. Show that all four sets of angles are identical.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is the insphere with the points of tangency.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// projection of point A onto plane BCD
+triple projectionofpointontoplane(triple A, triple B, triple C, triple D)
+{
+  return lineintersectplan(A, cross(B - D, C - D), B, cross(B - D, C - D));
+}
+
+// calculate area of space triangle with vertices A, B, and C
+real trianglearea(triple A, triple B, triple C)
+{
+  return abs(cross(A - C, B - C)/2);
+}
+
+// calculate incentre of tetrahedron with vertices A, B, C, and D
+triple tetrahedronincentre(triple A, triple B, triple C, triple D)
+{
+  return (trianglearea(B, C, D) * A + trianglearea(A, C, D) * B
+  + trianglearea(A, B, D) * C + trianglearea(A, B, C) * D)/
+  (trianglearea(B, C, D) + trianglearea(A, C, D)
+  + trianglearea(A, B, D) + trianglearea(A, B, C));
+}
+
+// returns mesh sphere with center O, radius r, 2m latitudes, and 2n longitudes
+path3[] spheremesh(triple O, real r, int m, int n) {
+  path3[] foo = circle(O, r, (0,0,1));
+
+  for(int i = 1; i <= m - 1; ++i) {
+    foo = foo^^circle(O + r*(0,0,Sin(90*i/m)), r*Cos(90*i/m), (0,0,1));
+    foo = foo^^circle(O - r*(0,0,Sin(90*i/m)), r*Cos(90*i/m), (0,0,1));
+  }
+
+  for(int i = 0; i <= n - 1; ++i) {
+    foo = foo^^circle(O, r, (Cos(180*i/n),Sin(180*i/n),0));
+  }
+
+  return foo;
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, I;
+triple[] T;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+I = tetrahedronincentre(A,B,C,D);
+T[1] = projectionofpointontoplane(I,B,C,D);
+T[2] = projectionofpointontoplane(I,A,C,D);
+T[3] = projectionofpointontoplane(I,A,B,D);
+T[4] = projectionofpointontoplane(I,A,B,C);
+
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+//draw(spheremesh(I, abs(I - T[1]), 4, 4), gray(0.7));
+draw(circle(I, abs(I - T[1]), (2,1,1)), gray(0.7));
+draw(I--T[1]);
+draw(I--T[2]);
+draw(I--T[3]);
+draw(I--T[4]);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$I$", I, NW);
+dot("$T_1$", T[1], E);
+dot("$T_2$", T[2], N);
+dot("$T_3$", T[3], W);
+dot("$T_4$", T[4], S);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that the angles formed around each $T_i$ are the same for each face.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// projection of point A onto plane BCD
+triple projectionofpointontoplane(triple A, triple B, triple C, triple D)
+{
+  return lineintersectplan(A, cross(B - D, C - D), B, cross(B - D, C - D));
+}
+
+// calculate area of space triangle with vertices A, B, and C
+real trianglearea(triple A, triple B, triple C)
+{
+  return abs(cross(A - C, B - C)/2);
+}
+
+// calculate incentre of tetrahedron with vertices A, B, C, and D
+triple tetrahedronincentre(triple A, triple B, triple C, triple D)
+{
+  return (trianglearea(B, C, D) * A + trianglearea(A, C, D) * B
+  + trianglearea(A, B, D) * C + trianglearea(A, B, C) * D)/
+  (trianglearea(B, C, D) + trianglearea(A, C, D)
+  + trianglearea(A, B, D) + trianglearea(A, B, C));
+}
+
+// returns mesh sphere with center O, radius r, 2m latitudes, and 2n longitudes
+path3[] spheremesh(triple O, real r, int m, int n) {
+  path3[] foo = circle(O, r, (0,0,1));
+
+  for(int i = 1; i <= m - 1; ++i) {
+    foo = foo^^circle(O + r*(0,0,Sin(90*i/m)), r*Cos(90*i/m), (0,0,1));
+    foo = foo^^circle(O - r*(0,0,Sin(90*i/m)), r*Cos(90*i/m), (0,0,1));
+  }
+
+  for(int i = 0; i <= n - 1; ++i) {
+    foo = foo^^circle(O, r, (Cos(180*i/n),Sin(180*i/n),0));
+  }
+
+  return foo;
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D, I;
+triple[] T;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+I = tetrahedronincentre(A,B,C,D);
+T[1] = projectionofpointontoplane(I,B,C,D);
+T[2] = projectionofpointontoplane(I,A,C,D);
+T[3] = projectionofpointontoplane(I,A,B,D);
+T[4] = projectionofpointontoplane(I,A,B,C);
+
+draw(T[1]--B,red);
+draw(T[1]--C,red);
+draw(T[1]--D,red);
+draw(T[2]--A,red+dashed);
+draw(T[2]--C,red+dashed);
+draw(T[2]--D,red+dashed);
+draw(T[3]--A,red);
+draw(T[3]--B,red);
+draw(T[3]--D,red);
+draw(T[4]--A,red+dashed);
+draw(T[4]--B,red+dashed);
+draw(T[4]--C,red+dashed);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+//draw(spheremesh(I, abs(I - T[1]), 3, 3), gray(0.7));
+draw(circle(I, abs(I - T[1]), (2,1,1)), gray(0.7));
+draw(I--T[1]);
+draw(I--T[2]);
+draw(I--T[3]);
+draw(I--T[4]);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot("$I$", I, NW);
+dot("$T_1$", T[1], E);
+dot("$T_2$", T[2], N);
+dot("$T_3$", T[3], W);
+dot("$T_4$", T[4], S);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is there any angle that is equal to $\angle BT_1 C?$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle  BT_4C$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have that $\angle BT_4 C$ is equal to $\angle BT_1 C$. Why?
+
+%------------------
+%-- Message coolbluealan ( user )
+% $BT_4=BT_1$ and $CT_4=CT_1$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $BT_1$ and $BT_4$ are tangents to the same sphere from the same point, they are equal. Similarly, $CT_1 = CT_4$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message coolbluealan ( user )
+% use SSS congruence
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle BT_4C \cong \triangle BT_1C$ by SSS congruence.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, triangles $BCT_1$ and $BCT_4$ are congruent. It follows that $\angle BT_1 C = \angle BT_4 C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, we can pair all the angles we are interested in. For example, we can write $\angle BT_1 D = \angle BT_3 D$, and so on.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can let $\theta_{BC} = \angle BT_1 C = \angle BT_4 C$, and define angles $\theta_{AB}$, $\theta_{AC}$, $\theta_{AD}$, $\theta_{BD}$, and $\theta_{CD}$ similarly.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we do with these angles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any equations we can write down?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\theta_{BC}+\theta_{AB}+\theta_{AC}=360^{\circ}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The sum of the angles around each $T_i$ is 360 degrees, so we can write down the corresponding equations.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This gives us
+
+
+\begin{align*}  
+\theta_{AB} + \theta_{AC} + \theta_{BC} &= 360^\circ, \\  
+\theta_{AB} + \theta_{AD} + \theta_{BD} &= 360^\circ, \\  
+\theta_{AC} + \theta_{AD} + \theta_{CD} &= 360^\circ, \\  
+\theta_{BC} + \theta_{BD} + \theta_{CD} &= 360^\circ.  
+\end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we do with these equations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Adding all of them seems too complicated to me. We have too many of them)
+
+%------------------
+%-- Message Achilleas ( moderator )
+It makes sense to add or subtract some combination of them.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Subtracting the first two equations, we get
+$$\theta_{AC} + \theta_{BC} = \theta_{AD} + \theta_{BD}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Subtracting the last two equations, we get
+$$\theta_{AC} + \theta_{AD} = \theta_{BC} + \theta_{BD}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we do with these two equations?
+
+%------------------
+%-- Message mark888 ( user )
+% subtract
+
+%------------------
+%-- Message Lucky0123 ( user )
+% subtract them again
+
+%------------------
+%-- Message MathJams ( user )
+% subtract them
+
+%------------------
+%-- Message pritiks ( user )
+% subtract them
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can subtract them again! This gives us
+$$\theta_{BC} - \theta_{AD} = \theta_{AD} - \theta_{BC},$$
+so $\theta_{AD} = \theta_{BC}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, we can show that $\theta_{AB} = \theta_{CD}$ and $\theta_{AC} = \theta_{BD}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+It follows easily that all the sets $S_i$ of angles are identical.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have found the centroid, circumcenter, and incenter of a tetrahedron.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Orthocenter of Tetrahedron}
+This leaves us with the one major center we haven't looked at, namely the orthocenter. We have left this center for last because it is also the most complicated case, and we'll see why.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we wanted to define the orthocenter of a tetrahedron, how would we define it?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% intersection of the altitudes
+
+%------------------
+%-- Message coolbluealan ( user )
+% drop altitudes from each vertex to the opposite face and find their intersection
+
+%------------------
+%-- Message dxs2016 ( user )
+% intersection of altitudes from a vertex to opposite face
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The intersection of the perpendiculars from a vertex to the opposite side
+
+%------------------
+%-- Message Catherineyaya ( user )
+% intersection of altitudes from vertices
+
+%------------------
+%-- Message MTHJJS ( user )
+% perpendiculars from vertices to the opposite triangle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We would define the orthocenter of a tetrahedron as the intersection of the altitudes (conditional on the proof that the altitudes are concurrent).
+
+%------------------
+%-- Message Achilleas ( moderator )
+There's just one problem with this definition. Sadly, the altitudes of a tetrahedron are not always concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import three;
+unitsize(1cm);
+
+// calculate intersection of line and plane
+// p = point on line
+// d = direction of line
+// q = point in plane
+// n = normal to plane
+triple lineintersectplan(triple p, triple d, triple q, triple n)
+{
+  return (p + dot(n,q - p)/dot(n,d)*d);
+}
+
+// projection of point A onto plane BCD
+triple projectionofpointontoplane(triple A, triple B, triple C, triple D)
+{
+  return lineintersectplan(A, cross(B - D, C - D), B, cross(B - D, C - D));
+}
+
+currentprojection=perspective(2,1,1);
+
+triple A, B, C, D;
+
+A = (-1,-5,0);
+B = (4,0,0);
+C = (-3,4,0);
+D = (0,0,6);
+
+draw(A--projectionofpointontoplane(A,B,C,D),blue);
+draw(B--projectionofpointontoplane(B,C,D,A),blue);
+draw(C--projectionofpointontoplane(C,D,A,B),blue);
+draw(D--projectionofpointontoplane(D,A,B,C),blue);
+draw(A--B);
+draw(A--C,dashed);
+draw(A--D);
+draw(B--C);
+draw(B--D);
+draw(C--D);
+
+dot("$A$", A, W);
+dot("$B$", B, S);
+dot("$C$", C, E);
+dot("$D$", D, N);
+dot(projectionofpointontoplane(A,B,C,D));
+dot(projectionofpointontoplane(B,C,D,A));
+dot(projectionofpointontoplane(C,D,A,B));
+dot(projectionofpointontoplane(D,A,B,C));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, the orthocenter of a triangle is not one of the points that generalizes easily to the tetrahedron. (This is somewhat surprising, given that the other points do, but it is true.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+In certain cases, the altitudes of a tetrahedron are concurrent. We won't prove it here, but there are exactly three ways that the altitudes of a tetrahedron can have intersections:
+
+%------------------
+%-- Message Achilleas ( moderator )
+(1) No two altitudes of the tetrahedron intersect.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(2) Two altitudes of the tetrahedron intersect, and the other two altitudes intersect, and these are the only intersections. (For example, the altitudes from $A$ and $B$ intersect, and the altitudes from $C$ and $D$ intersect.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(3) All four altitudes are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Naturally, if all four altitudes are concurrent, then point of concurrency is called the orthocenter of the tetrahedron. We also call the tetrahedron orthocentric.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In an orthocentric tetrahedron there is also a 3-dimensional version of the 9-point circle, called the \emph{24-point sphere}. This sphere contains the 9-point circle of each face. This means that the 24-point sphere contains the following for each face: the midpoints of the edges, the feet of the (face) altitudes, and the midpoints of the segments that join the vertices with the orthocenter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+With this sphere, we finish today's class. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you all!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Have a wonderful week and see you next time!
+
+%------------------

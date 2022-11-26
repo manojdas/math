@@ -1,0 +1,126 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 4.47}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+Given:
+\begin{itemize}
+    \item $\angle{Q_1BC} = \angle{ABP}$, \qquad $\angle{Q_1CB} = \angle{DCP}$
+    \item $\angle{Q_2AD} = \angle{BAP}$, \qquad $\angle{Q_2DA} = \angle{CDP}$
+\end{itemize}
+
+Prove $\overline{Q_1Q_2} \parallel \overline{AB}$ if and only if $\overline{Q_1Q_2} \parallel \overline{CD}$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, D, P, Q1, Q2, t1, t2, T, B1, D1, C1, A1;
+
+        P = (0,0);
+
+        A = dir(210)*1.1;
+        B = dir(115);
+        C = dir(75)*1.2;
+        D = dir(-28)*1.6;
+
+        A1 = rotate((angle(B-A)-angle(D-A))*90/pi, A)*D;
+        A1 = A + (A1 - A) * 0.25;
+        D1 = rotate((angle(A-D) - angle(C-D))*90/pi, D)*C;
+        D1 = D + (D1 - D) * 0.25;
+
+        C1 = rotate((angle(D-C)-angle(B-C))*90/pi, C)*B;
+        C1 = C + (C1 - C)*0.5;
+        B1 = rotate((angle(C-B)-angle(A-B))*90/pi, B)*A;
+        B1 = B + (B1 - B)*0.33;
+
+        t1 = rotate((angle(A-B)-angle(P-B))*180/pi,B)*C;
+        t2 = rotate((angle(D-C)-angle(P-C))*180/pi,C)*B;
+
+        // draw(B--t1^^C--t2, purple);
+
+        Q1 = extension(B,t1,C,t2);
+
+        t1 = rotate((angle(B-A)-angle(P-A))*180/pi,A)*D;
+        t2 = rotate((angle(C-D)-angle(P-D))*180/pi,D)*A;
+        // draw(A--t1^^D--t2, purple);
+
+        Q2 = extension(A,t1,D,t2);
+
+        T = extension(A, B, D, C);
+        
+
+        dot(P);
+        dot(Q1);
+        dot(Q2);
+
+        draw(A--B--C--D--cycle);
+        draw(B--P--C^^D--P--A, blue);
+
+        draw(B--Q1--C);
+        draw(A--Q2--D);
+
+        draw(B--T^^C--T, purple);
+        draw(Q2--T, purple);
+
+        draw(B--B1, red, arrow=ArcArrow(SimpleHead));
+        draw(C--C1, red, arrow=ArcArrow(SimpleHead));
+
+        draw(A--A1, orange, arrow=ArcArrow(SimpleHead));
+        draw(D--D1, orange, arrow=ArcArrow(SimpleHead));
+
+        draw(Q1--Q2, red+2);
+
+
+        markangle(Q1, B, C, green);
+        markangle(A, B, P, green);
+        markangle(2, B, C, Q1, green);
+        markangle(2, P, C, D, green);
+
+        markangle(P, B, B1, red);
+        markangle(B1, B, Q1, red);
+        markangle(2, Q1, C, C1, red);
+        markangle(2, C1, C, P, red);
+
+        markangle(Q2, A, B, blue);
+        markangle(D, A, P, blue);
+        markangle(2, P, D, A, blue);
+        markangle(2, C, D, Q2, blue);
+
+        markangle(P, A, A1, orange);
+        markangle(A1, A, Q2, orange);
+        markangle(2, Q2, D, D1, orange);
+        markangle(2, D1, D, P, orange);
+
+
+
+        label("$A$", A, SW);
+        label("$B$", B, NW);
+        label("$C$", C, NE);
+        label("$D$", D, SE);
+
+        label("$P$", P, S);
+        label("$Q_1$", Q1, S);
+        label("$Q_2$", Q2, N);
+        label("$T$", T, N);
+
+        label("$A'$", A1, dir(A1-A));
+        label("$B'$", B1, dir(B1-B));
+        label("$C'$", C1, dir(C1-C));
+        label("$D'$", D1, dir(D1-D));
+
+    \end{asy}
+\end{center}
+\textbf{Hints}:
+\begin{itemize}
+    \item Something is concurrent. Draw a good diagram.
+    \item Isogonal Conjugates.
+\end{itemize}
+\end{document}

@@ -1,0 +1,369 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\begin{document}
+\section{Centers of the Triangle}
+\begin{claim}
+    Let $I$ be the incenter, $H$ be the orthocenter, and $O$ be the circumcenter. Then we have the following:
+    \begin{enumerate}
+        \item $\angle BOC = 2 \angle A$.
+        \item $\angle BIC = 90 + \frac{\angle A}{2}$.
+        \item $\angle BHC = \angle B + \angle C$.
+    \end{enumerate}
+\end{claim}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        unitsize (2cm);
+        pair O, A, B, C, I, H, Ap;
+    
+        B = (-2, 0);
+        C = (2, 0);
+        A = (-1, 3);
+
+        O = circumcenter(A, B, C);
+        H = orthocenter(A, B, C);
+        I = incenter(A, B, C);
+        Ap = foot(A, B, C);
+
+        dot(O);
+        dot(I);
+        dot(H);
+
+        draw(A--B--C--cycle);
+        draw(A--Ap);
+        draw(A--I^^B--I^^C--I);
+        draw(B--foot(B, A, C), blue);
+        draw(C--foot(C, A, B), blue);
+        
+        draw(rightanglemark(B, Ap, A));
+        draw(rightanglemark(B, foot(B, A, C), C));
+        draw(rightanglemark(B, foot(C, A, B), C));
+
+        label("$O$", O, N);
+        label("$I$", I, S);
+        label("$H$", H, NW);
+        label("$B$", B, W);
+        label("$C$", C, E);
+        label("$A$", A, dir(A-C));
+
+    \end{asy}
+    
+\end{center}
+\begin{proof}
+    By inscribed angle theorem, $\angle BOC = 2 \angle A$.
+
+    \[\angle{BIC} = 180 - \angle{IBC} - \angle{ICB} = 180 - \frac{\angle B}{2} - \frac{\angle C}{2} = 90 + \frac{\angle A}{2}.\]
+
+    \begin{align*}
+        \angle{BHC} &= 180 - \angle{HBC} - \angle{HCB}, \\
+        &= 180 - (180 - 90 - \angle C) - (180 - 90 - \angle B), \\
+        &= \angle C + \angle B.
+    \end{align*}
+
+\end{proof}
+
+\subsection{Excenters}
+\begin{claim}
+    Let $I_A, I_B, I_C$ be the excenters of the triangle $ABC$, and $M$ be the second intersection of $AI_A$ with $(ABC)$. Then,
+    \begin{enumerate}
+        \item $I_BB \perp I_AI_C$.
+        \item $MB = MI_A = MC$, that is $M$ is the circumcenter of $(BIC)$ and $I_A$ is on $(BIC)$.   
+        
+    \end{enumerate}
+
+\end{claim}
+\begin{center}
+    \begin{asy}
+        import geometry;
+        import olympiad;
+        unitsize (1cm);
+
+
+        pair O, A, B, C, I, Ma, Mb, Mc, Ia, Ib, Ic, Bc, Ba;
+    
+        B = (-2, 0);
+        C = (2, 0);
+        A = (-1, 3);
+
+        Ba = B + dir(B-A);
+        Bc = B + dir(B-C);
+
+        O = circumcenter(A, B, C);
+        I = incenter(A, B, C);
+
+        Ma = circumcenter(B, C, I);
+        Mb = circumcenter(A, C, I);
+        Mc = circumcenter(A, B, I);
+
+        Ia = 2*Ma - I;
+        Ib = 2*Mb - I;
+        Ic = 2*Mc - I;
+
+        dot(O);
+        dot(I);
+        dot(Ia);
+        dot(Ib);
+        dot(Ic);
+        dot(Ma);
+
+        draw(A--B--C--cycle);
+        draw(circumcircle(A, B, C));
+        draw(A--Ia^^B--Ib^^C--I);
+        draw(Ia--Ic^^Ia--C);
+        draw(B--Ba^^B--Bc);
+        
+        draw (circumcircle(B, I, C), blue+dashed);
+        draw(C--Ma, blue+dashed);
+
+        markangle("$\alpha$", radius=10, Ic,B,Bc, red);
+        markangle("$\alpha$", radius=10, A,B,Ic, red);
+        markangle("$\alpha$", radius=10, Ia,B,C, red);
+        markangle("$\alpha$", radius=10, Ba,B,Ia, red);
+
+        markangle("$\frac{B}{2}$", radius=15, C,B,I, blue);
+        markangle("$\frac{B}{2}$", radius=15, I,B,A, blue);
+        markangle("$B$", radius=15, C,Ma,I, blue);
+        label("$O$", O, N);
+        label("$I$", I, S);
+        label("$I_A$", Ia, S);
+        label("$I_B$", Ib, NW);
+        label("$I_C$", Ic, NE);
+
+        label("$M$", Ma, SE);
+
+        label("$B$", B, W);
+        label("$C$", C, E);
+        label("$A$", A, dir(A-C));
+
+    \end{asy}
+    
+\end{center}
+\begin{proof}[Proof of Part 1]
+    Considering the extension of $BC$, we have $2 \alpha + 2 \frac{\angle B}{2} = 180$, and therefore, 
+    \[ \alpha + \frac{\angle B}{2} = 90^\circ.\]
+    That is $$\angle I_CBI = \angle{IBI_A} = 90^\circ.$$
+    This implies that $I_C, B, I_A$ are collinear. Also, $I_B \exists  \angle{B} \text{ bisector}$. Therefore, $I_BB\perp I_CI_A$.
+\end{proof}
+
+\begin{proof}[Proof of Part 2]
+    By exterior angle theorem, 
+    \[\angle{MIC} = \angle{IAC} + \angle{ICA} = \frac{\angle A}{2} + \frac{\angle C}{2}.\]
+    
+    Considering the angles subtended by the $\arc{AC}$, we have 
+    \[\angle IMC = \angle AMC = \angle B.\]
+
+    Therefore, 
+    \begin{align*}
+        \angle ICM = 180^\circ - \angle IMC - \angle{MIC}, \\
+        &= 180^\circ - \angle B - (\frac{\angle A}{2} + \frac{\angle C}{2}), \\
+        &= 180^\circ - (180^\circ - \angle A - \angle C) - (\frac{\angle A}{2} + \frac{\angle C}{2}), \\
+        &= \frac{\angle A}{2} + \frac{\angle C}{2}, \\
+        &= \angle MIC.
+    \end{align*}
+    Therefore, $MI = MC$. Similarly, we can show $MI = MB$.
+
+    Considering the angle subtended by $\arc{MC}$, and since $MB = MC$, we 
+    \[\angle BCM = \angle MBC = \angle MAC = \frac{\angle A}{2}.\]
+
+   From part 1, we have $\triangle ICI_A$ is right angled at $C$, therefore, 
+   \[\angle MI_AC = \angle II_AC = 90^\circ - \angle MIC = 90^\circ - \frac{\angle A}{2} + \frac{\angle C}{2} = \frac{\angle B}{2}.\]
+
+   
+    From the exterior angle of $\triangle CMB$ at $M$,
+    \[ \angle CMI = \angle B = \angle MI_AC + \angle MCI_A = \frac{\angle B}{2} + \angle MCI_A.\]
+    Therefore,
+    \[ \angle MCI_A = \frac{\angle B}{2} = \angle MI_AC,\]
+    and $MI_A = MC$.
+
+\end{proof}
+\section{Nine Point Circle}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        import cse5;
+
+        unitsize(5cm);
+
+        pathpen = black + linewidth(0.7);
+        pointpen = black;
+        pen s = fontsize(8);
+
+        pair A = dir(110), B = dir(-10), C = dir(260);
+        pair E = (A+C)/2, F = (A+B)/2, D = (C+B)/2;
+        pair Y = foot(B,A,C), X = foot(A,C,B), Z = foot(C,A,B);
+        pair H = orthocenter(A,B,C);
+        pair K = midpoint(H--A), L = midpoint(H--B), M = midpoint(H--C);
+        draw(MP("A",A,N,s)--MP("B",B,rotate(180)*W,s)--MP("C",C,SW,s)--cycle);
+        draw(MP("E",E,W,s)--MP("F",F,NE,s)--MP("D",D,S,s)--cycle);
+        draw(circumcircle(E,F,D),heavygreen);
+        draw(B--MP("Y",Y,W,s)^^A--MP("X",X,SE,s)^^C--MP("Z",Z,NE,s),lightred);
+        draw(rightanglemark(A,Y,B,1.5)^^rightanglemark(C,Z,B,1.5)^^rightanglemark(A,X,C,1.5));
+        MP("K",K,rotate(20)*NE,s);MP("M",M,rotate(15)*S,s);MP("L",L,NE,s);MP("H",H,N,s);
+    \end{asy}
+\end{center}
+\section{Examples}   
+\begin{example}[IMO 2010, \#4]
+    Let $P$ be a point interior to triangle $ABC$ (with $CA \neq CB$). The lines $AP$, $BP$ and $CP$ meet again its circumcircle $\Gamma$ at $K$, $L$, respectively $M$. The tangent line at $C$ to $\Gamma$ meets the line $AB$ at $S$. Show that from $SC = SP$ follows $MK = ML$.
+\end{example}
+\begin{center}
+    \begin{asy}
+    import olympiad;
+    unitsize (1cm);
+    pair O, A, B, C, P, K, L, M, S, Sb;
+
+    B = (-2, 0);
+    C = (2, 0);
+    A = (-1, 4);
+
+    path w = circumcircle (A, B, C);
+    O = circumcenter (A, B, C);
+
+    S = extension(A, B, C, rotate(90,C)*O);
+
+
+    P = rotate(10, S)*C;
+
+    K = intersectionpoints (w, P--P+dir(P-A)*10)[0];
+    L = intersectionpoints (w, P--P+dir(P-B)*10)[0];
+    M = intersectionpoints (w, P--P+dir(P-C)*10)[0];
+
+
+    dot(K);
+    dot(L);
+    dot(M);
+
+    dot (P);
+    dot(S);
+
+    // draw(B--(P-B)*2^^C--P+dir(P-C)*2.5^^A--(P-A)*2, red);
+
+    // draw(P--P+dir(P-B)*4, red);
+    draw(A--B--C--cycle);
+    draw(w);
+    draw(A--K^^L--B--S--C--M^^P--S);
+
+    // , # ticks, where, gap, size
+    add(pathticks(P--S, 1, 0.5, 0, 10));
+    add(pathticks(C--S, 1, 0.55, 0, 10));
+    // arrow((C+S)/2, dir(C-S), length=5, arrow = Arrow(TeXHead), green);
+    label("$B$", B, W);
+    label("$C$", C, E);
+    label("$A$", A, dir(A-C));
+    label("$P$", P, N);
+    label("$K$", K, NW);
+    label("$L$", L, dir(L-B));
+    label("$M$", M, dir(M-C));
+    label("$S$", S, dir (S-K));
+
+    \end{asy}        
+\end{center}
+
+\begin{remark}
+    To show $MK = ML$, we need to show $\arc{MK} = \arc{ML}$. There is one hard angle chase here, for which we use Power-of-Point. Since $S$, $P$ are the only 2 points not on the circle, they are candidates for Power-of-Point. Power-of-point for $S$ gives us the needed insight.
+\end{remark}
+
+\begin{soln}
+    We will show $\arc{MK} = \arc{ML}$ using angle chase. 
+    \begin{claim}
+        $SP$ is tangent to $(ABP)$.
+    \end{claim}
+    \begin{proof}
+        We have 
+        \[\text{Pow}_\Gamma (S) = SA\cdot SB = SC^2,\]
+        and we are given that $SC = SB$. Therefore,
+        \[SA \cdot SB = SC^2 = SP^2.\]
+        By inverse power of point, this implies that $SP$ is tangent to $(ABP)$. 
+    \end{proof}
+\end{soln}
+
+\begin{center}
+    \begin{asy}
+    import olympiad;
+    unitsize (1cm);
+    pair O, A, B, C, P, K, L, M, S, Sb;
+
+    B = (-2, 0);
+    C = (2, 0);
+    A = (-1, 4);
+
+    path w = circumcircle (A, B, C);
+    O = circumcenter (A, B, C);
+
+    S = extension(A, B, C, rotate(90,C)*O);
+
+
+    P = rotate(10, S)*C;
+
+    K = intersectionpoints (w, P--P+dir(P-A)*10)[0];
+    L = intersectionpoints (w, P--P+dir(P-B)*10)[0];
+    M = intersectionpoints (w, P--P+dir(P-C)*10)[0];
+
+
+    dot(K);
+    dot(L);
+    dot(M);
+
+    dot (P);
+    dot(S);
+
+    // draw(B--(P-B)*2^^C--P+dir(P-C)*2.5^^A--(P-A)*2, red);
+
+    // draw(P--P+dir(P-B)*4, red);
+    draw(A--B--C--cycle);
+    draw(w);
+    draw(A--K^^L--B--S--C--M^^P--S);
+    
+    // , # ticks, where, gap, size
+    add(pathticks(P--S, 1, 0.5, 0, 10));
+    add(pathticks(C--S, 1, 0.55, 0, 10));
+    // arrow((C+S)/2, dir(C-S), length=5, arrow = Arrow(TeXHead), green);
+    label("$B$", B, W);
+    label("$C$", C, E);
+    label("$A$", A, dir(A-C));
+    label("$P$", P, N);
+    label("$K$", K, NW);
+    label("$L$", L, dir(L-B));
+    label("$M$", M, dir(M-C));
+    label("$S$", S, dir (S-K));
+
+    draw(P--P+dir(P-S)*2, green+dashed);
+    draw(circumcircle(A, B, P), green + dashed);
+    draw(anglemark(B, A, P, 20), red);
+    draw(anglemark(B, P, S, 20), red);
+
+    draw(anglemark(P, B, A, 22, 23), purple);
+    draw(anglemark(S, P, K, 22, 23), purple);
+
+
+    draw(anglemark(B, A, P, 20), red);
+    draw(anglemark(B, P, S, 20), red);
+
+    draw(anglemark(S, P, C, 15));
+    draw(anglemark(P, C, S, 15));
+
+    \end{asy}        
+\end{center}
+    Since $SP$ is tangent to $(ABP)$, we have
+    \begin{align*}
+        \angle{BPS} &= \angle{BAP}, \text{ and} \\
+        \angle{ABP} &= \angle{SPK}.
+    \end{align*}
+
+    From the given conditions, we also have
+    \[\angle{SPC} = \angle{PCS} = \frac{\arc{MC}}{2}.\]
+
+    Considering the intersecting chords $AK$ and $MC$, we have $\angle{MPA} = \angle{CPK} = \frac{\arc{MA} + \arc{CK}}{2},$ that is 
+    \[\arc{MA} = 2 \angle{CPK} - \arc{CK}.\]
+
+    Combining the above,
+    \begin{align*}
+        \arc{ML} &= \arc{MA} + \arc{AL}, \\
+        &= (2 \angle{CPK} - \arc{CK}) + 2\angle{ABL}, \\
+        &= 2 (\angle{CPK} + \angle{ABL}) - \arc{CK}, \\
+        &= 2 (\angle{CPK} + \angle{SPK}) - \arc{CK}, \\
+        &= 2 \angle{SPC} - \arc{CK}, \\
+        &= \arc{MC} - \arc{CK}, \\
+        &= \arc{MK}.
+    \end{align*}
+\end{document}

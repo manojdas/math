@@ -1,0 +1,95 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 3.30}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+Given:
+\begin{itemize}
+    \item $\angle P = \angle Q = 90^\circ$.
+    \item $AP = AQ < BP$.
+    \item $\angle AXT = 90^\circ$.
+    \item $S \in \overarc{AQB}$.
+\end{itemize}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+        unitsize(5cm);
+
+        pair O, A, B, P, Q, S, X, T, Y, M, N, H, Z, G;
+        path w, nw;
+        // Change this to move X
+        real r = 0.35;
+
+        A = (0,0);
+        P = dir(55);
+        Q = dir(-55);
+
+        X = r*P + (1-r)*Q;
+
+        w = circumcircle(A, P, Q);
+        O = circumcenter(A, P, Q);
+
+        B = rotate(180, O)*A;
+        S = intersectionpoint(w, X--(X-A)*10);
+
+        T = X + ((rotate(90, X)*A)-X)*3;
+        T = intersectionpoint(w, X--T);
+        H = orthocenter(A, S, T);
+        G = (A + S + T)/3;
+
+        Z = intersectionpoint(P--Q,A--B);
+
+        M = (T + S) / 2;
+        Y = (A + S) / 2;
+
+        nw = circumcircle(X, Y, M);
+        N = circumcenter(X, Y, M);
+
+        dot(O);
+        dot(X);
+        dot(S);
+        dot(T);
+        dot(N, blue);
+        dot(Y, blue);
+        dot(M);
+        dot(H);
+        dot(G);
+        
+        draw(w);
+        draw(P--Q);
+        draw(A--S--T--cycle);
+        draw(X--T);
+
+        draw(nw, blue);
+        draw(H--N--O, red);
+
+        draw(A--B--S, green);
+
+        draw(rightanglemark(A,X,T,2));
+
+        draw(rightanglemark(B,S,A,2), green);
+        draw(rightanglemark(B,Z,P,2), green);
+
+        label("$O$", O, E);
+        label("$A$", A, W);
+        label("$B$", B, E);
+        label("$P$", P, N);
+        label("$Q$", Q, Q-P);
+
+        label("$X$", X, (X-T));
+        label("$T$", T, (T-X));
+        label("$S$", S, S-A);
+
+        label("$N$", N, N);
+        label("$M$", M, S);
+        label("$Y$", Y, NE);
+        label("$H$", H, E);
+        label("$G$", G, S);
+    \end{asy}
+\end{center}
+\end{document}

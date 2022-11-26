@@ -1,0 +1,85 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 2.35}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, P, Q, K, L, M, O, O1;
+        path w, w1, w2;
+
+        // where is P on AC
+        real x = 0.20;
+
+        O = (0,0);
+        w = circle(O, 1);
+
+        A = dir(110);
+        B = dir(210);
+        C = dir(330);
+
+        P = x*C + (1-x)*A;
+        // w2 - to get OP = OQ
+        w2 = circle(O, distance(P, O));
+        // only for debug
+        // draw(w2, green);
+
+        Q = intersectionpoints(w2, A--B)[0];
+
+        M = (P + Q) / 2;
+        L = (C + Q) / 2;
+        K = (B + P) / 2;
+
+        w1 = circumcircle(K, L, M);
+        O1 = circumcenter(K, L, M);
+
+        dot(O);
+        // dot(O1, blue);
+
+        dot(P);
+        dot(Q);
+        dot(L);
+        dot(M);
+
+        draw(w);
+        draw(A--B--C--cycle);
+        draw(B--P--Q--C);
+        // Comment this if you don't want circle in the inside
+        draw(K--L--M--cycle);
+        draw(w1);
+
+        arrow((B+Q)/2, dir(B-Q), length=10, arrow = Arrow(), black);
+        arrow((K+M)/2, dir(K-M), length=10, arrow = Arrow(), black);
+
+        arrow((C+P)/2, dir(C-P), length=10, arrow = Arrow(), black);
+        arrow((C+P)/2 + 0.05*dir(P-C), dir(C-P), length=10, arrow = Arrow(), black);
+        arrow((L+M)/2, dir(L-M), length=10, arrow = Arrow(), black);
+        arrow((L+M)/2 + 0.05*dir(M-L), dir(L-M), length=10, arrow = Arrow(), black);
+
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+
+        label("$P$", P, NE);
+        label("$Q$", Q, NW);
+        label("$O$", O, S);
+
+        label("$L$", L, NE);
+        label("$K$", K, SE);
+        label("$M$", M, NE);
+
+
+    \end{asy}
+\end{center}
+\textbf{Hints}:
+
+\end{document}

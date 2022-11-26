@@ -1,0 +1,65 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 2.28}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(4cm);
+
+        pair A, B, C, P, Q, O, R, S;
+        path w;
+
+        O = (0,0);
+        w = circle(O, 1);
+
+        A = dir(110)*2;
+        S = dir(210);
+        R = dir(330);
+
+        P = tangent(A, O, 1, 1);
+        Q = tangent(A, O, 1, 2);
+
+        B = extension(A, P, R, S);
+        C = extension(A, Q, R, S);
+
+        draw(w);
+        draw(A--B--C--cycle);
+        draw(S--P--R--Q--S);
+
+        markangle(B, P, S, red);
+        markangle(P, R, S, red);
+        markangle(2, R, Q, C, red);
+        markangle(2, R, S, Q, red);
+        
+        dot(P);
+        dot(Q);
+        dot(R);
+        dot(S);
+
+        // , # ticks, where, gap, size
+        add(pathticks(A--P, 1, 0.5, 0, 2));
+        add(pathticks(A--Q, 1, 0.5, 0, 2));
+
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+        label("$S$", S, SW);
+        label("$R$", R, SE);
+
+        label("$P$", P, NW);
+        label("$Q$", Q, NE);
+        // label("$O$", O, S);
+
+    \end{asy}
+\end{center}
+\textbf{Hints}:
+
+\end{document}

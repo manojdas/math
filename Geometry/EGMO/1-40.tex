@@ -1,0 +1,62 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 1.40}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+
+\begin{center}
+    \begin{asy}
+        // import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, D, P, E, F, M, O;
+        path w;
+
+        O = (0,0);
+
+        C = dir(210);
+        D = dir(30);
+        A = dir(195);
+        B = dir(95);
+        P = (A + B)/2;
+
+        w = circle(O, 1);
+        E = dir(165);
+        F = P + (rotate(180, P)*E - P)*4;
+        F = intersectionpoint(w, F--P);
+        M = (F + E)/2;
+
+        dot(O);
+        dot(P);
+        dot(M);
+
+        draw(w);
+        draw(C--D^^A--B^^E--F);
+        draw (circumcircle(O, M, P), red);
+
+        label("$A$", A, dir(A-B));
+        label("$B$", B, dir(B-A));
+        label("$C$", C, dir(C-D));
+        label("$D$", D, dir(D-C));
+        label("$E$", E, dir(E-F));
+        label("$F$", F, dir(F-E));
+
+        label("$P$", P, dir(P-O));
+        label("$M$", M, dir(rotate(90,M)*F - M));
+        label("$O$", O, dir(O-P));
+    \end{asy}
+\end{center}
+In the diagram above:
+\begin{itemize}
+    \item $CD$ is a diameter of circle $\omega$ with center $O$,
+    \item $AB$ is a random chord and $P$ is midpoint of $AB$,
+    \item $EF$ is another random chord through $P$ and $M$ is its midpoint.
+\end{itemize}
+
+\end{document}

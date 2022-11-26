@@ -1,0 +1,91 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 9}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 9}}
+
+\subsection{Problem 1}
+
+1) I was walking outside with Dave at midnight. I noticed a planet directly overhead. I wondered aloud what planet might it be? Dave quickly pointed out that it obviously wasn't Venus. How did he know?
+
+2) At my house, nights are so clear and dark that I can see the Milky Way. Some nights it appears to run North to South, sometimes East to West, and other times in between. Why does the Milky Way appear to turn?
+
+\begin{mdsoln}
+Solution outline to 1:
+Suppose it was Venus.
+
+Clearly, the sun is below the horizontal line; so angle Sun - Earth - Venus is greater than 90; that is, the length Sun - Venus is the longest side of triangle Sun-Earth-Venus, longer than Sun-Earth. But we know this is impossible. (Note that the distance between the center of the Earth and you is negligible.)
+
+\bigskip
+Solution outline to 2:
+(What is meant by “Milky Way” is the lighter colored band across the night sky which is created by looking along the plane of the Milky Way galaxy.)
+
+The rotation of the Milky Way during a given night is caused by the rotation of the Earth on its axis. Also, the position of the Milky Way at, say, midnight is different each night, since the rotation of the Earth about the Sun causes midnight to come at different times in the Earth’s rotation about its axis.
+    
+\end{mdsoln}
+
+\subsection{Problem 2}
+All edges of tetrahedron $ABCD$ are equal. The tetrahedron $ABCD$ is inscribed in a sphere. Points $E$ and $F$ are on the sphere such that $CE$ and $DF$ are diameters of the sphere. Find the angle between planes $ABE$ and $ACF$.
+
+\begin{mdsoln}
+Let $A,B,C,D$ be vertices of a cube so that the sides of $ABCD$ are face diagonals of the cube. Then, it is easy to see that the given sphere circumscribes the cube, and that $E$ and $F$ must therefore be the vertices of the cube diametrically opposite $C$ and $D$, respectively.
+
+Then, planes $ABE$ and $ACF$ include perpendicular faces of the cube and hence meet at an angle of $90^\circ$.    
+\end{mdsoln}
+
+\subsection{Problem 3}
+
+A sphere of radius r is inscribed in a tetrahedron. Planes tangent to this sphere and parallel to the faces of the tetrahedron cut off four small tetrahedra from the tetrahedron; these small tetrahedra have inscribed spheres with radii $a,b,c,d$. Show that $a + b + c + d = 2r$.
+
+\begin{mdsoln}
+Let $T$ be the large tetrahedron, with vertices $A,B,C,D$ and volume $V$. Let $T_A,T_B,T_C,T_D$ be the small tetrahedra created in the problem statement, with $T_A$ having inradius $a$ and $A$ as one of its vertices, and similar properties for $T_B,T_C,T_D$. Let $h_A $ be the length of the altitude from $A$ to face $BCD$. Define $h_B,h_C,h_D$ similarly.
+
+Note that $T_A$ is homothetic to $T$ with ratio equal to the ratio of their altitudes, which is $(h_A-2r)/h_A$. So $a=(h_A-2r)r/h_A$. Similar expressions can be derived for $b,c,d$. We conclude that\begin{align*} a+b+c+d&=r\left(\frac{h_A-2r}{h_A}+\frac{h_B-2r}{h_B}+\frac{h_C-2r}{h_C}+\frac{h_D-2r}{h_D}\right)\\ &=r\left(4-2r\left(\frac{1}{h_A}+\frac{1}{h_B}+\frac{1}{h_C}+\frac{1}{h_D}\right)\right)\\ &=r\left(4-\frac{2r}{V}\left(\frac{V}{h_A}+\frac{V}{h_B}+\frac{V}{h_C}+\frac{V}{h_D}\right)\right)\\ &=r\left(4-2\cdot\left(\frac{4}{[BCD]+[CDA]+[DAB]+[ABC]}\right)\left(\frac{1}{4}[BCD]+\frac{1}{4}[CDA]+\frac{1}{4}[DAB]+\frac{1}{4}[ABC]\right)\right)\\ &=r\left(4-2\right)\\ &=2r\end{align*}as desired.    
+\end{mdsoln}
+
+\subsection{Problem 4}
+
+Six segments are given in a plane. They are congruent to edges $AB, AC, AD, BC, BD$, and $CD$ of tetrahedron $ABCD$. Show how to construct a segment congruent to the altitude of the tetrahedron from vertex $A$ with straight-edge and compass.
+
+\textit{Has hints.}
+\begin{sketch}
+    \begin{enumerate}
+        \item Construct triangle $BCD$. Let $H$ be the foot of the altitude from $A$. What lengths might we be able to construct that would enable us to construct the length $AH$?
+        \item Let $X$ be the foot of the altitude from $A$ to $CD$ and $Y$ the foot of the altitude from $A$ to $BC$. If we could construct point $H$ in $BCD$, how could we then construct the length $AH$?
+        \item Unfold the tetrahedron so it lies in a plane. Make point $A'$ so that $A'CD$ is the same as $ACD$ and point $A''$ so that $A''BC$ is congruent to $ABC$. How can you now construct $H$ and thus get to the length of $AH$?
+        \item In our original tetrahedron, note that $AH$ is a leg of right triangle $ABH$. We can make $AB$, and if we find $H$, we can make $BH$. Thus, we could then make $AH$. So, how to make $H$? How do the altitudes from $A$ to $CD$ and $BC$ relate to the altitudes from $A'$ and $A''$ to those segments?
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+Let $H$ be the foot of the altitude from $A$ to $BCD$. Note that $AH$ must be the intersection of the planes $P_1$ and $P_2$ through $A$ perpendicular to $CD$ and $BC$ respectively. Let $X$ and $Y$ be the feet of the altitudes from $A$ to $CD$ and $BC$, respectively, so that $P_1$ goes through $X$ and $P_2$ goes through $Y$.
+
+``Flatten" the tetrahedron by rotating face $ACD$ about $CD$ to $A'CD$ in the plane of $BCD$ and rotating face $ABC$ about $BC$ to $A''BC$ in the plane of $BCD$. Note that $A'$ is in plane $P_1$ since $A'X\perp CD$. Likewise, $A''$ is in $P_2$. Hence, since $H$ is in both $P_1$ and $P_2$, $A'X$ and $A''Y$ must both pass through $H$.
+
+So our construction is as follows: Construct points $A',A'',B,C,D$ as above by means of the given edge lengths. Then, find the intersection of the altitude from $A'$ to $CD$ and the altitude from $A''$ to $BC$. This will be $H$.
+
+To find $AH$, we construct points $X,Y$ with $XY=AB$, and draw the circle with diameter $XY$. We let $Z$ be the intersection of this circle with the circle centered at $Y$ of radius $BH$ (which we know since we constructed $H$). Then, $\triangle XYZ$ is a right triangle with hypotenuse of length $AB$ and one leg of length $BH$. It is, hence, congruent to $\triangle ABH$, so $XZ$ is our desired length $AH$.    
+\end{mdsoln}
+
+\subsection{Problem 5}
+
+$O$ is the circumcenter of the tetrahedron $ABCD$. The midpoints of $BC, CA, AB$ are $L, M, N$ respectively. We also have that $AB + BC = AD + CD$, $CB + CA = BD + AD$ and $CA + AB = CD + BD$. Show that $\angle LOM = \angle MON = \angle NOL$.
+
+\textit{Has hints.}
+\begin{sketch}
+    \begin{enumerate}
+        \item Show that $AB = CD$, $BC = AD$, $AC = BD$. Let $X$ be the midpoint of $AD$, $Y$ the midpoint of $BD$, $Z$ the midpoint of $CD$. Show that $XY = LM$, and that these two segments are coplanar. Show that $XYLM$ is a rhombus.
+        \item Show that the midpoints of $LX, MY$, and $NZ$ coincide.
+        \item Show that $LX\perp MY$, $MY\perp NZ$, and $LX\perp NZ$.
+        \item Show that two edges of the tetrahedron are perpendicular to $NZ$.
+        \item Show that the circumcenter of the tetrahedron is on line $NZ$.
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+We are given that $AB+BC=AD+CD$, $CB+CA=BD+AD$, and $CA+AB=CD+BD$. Adding these equations and dividing by 2 yields$$AB+BC+CA=AD+BD+CD$$Subtracting from this equation each of the three initial equations yields the three equations $CA=BD$, $AB=CD$, and $BC=AD$.
+
+Let $X,Y,Z$ be the midpoints of $AD,BD,CD$, respectively. By our edge equalities, we see that $\triangle ABD\cong \triangle DCA$, so $XB=XC$, implying that $LX\perp BC$. Likewise, $LX\perp AD$.
+
+Hence, $LX$ must be the intersection of the planes which are the perpendicular bisectors of $BC$ and $AD$. Since $O$ must be on both of these planes, it must be on $LX$. Likewise, $O$ must be on $MY$ and $NZ$, so $LX$, $MY$, and $NZ$ must concur at $O$.
+
+Now, we see that $LM\parallel AB\parallel XY$ and $LY\parallel CD\parallel MX$, so $LMXY$ is a parallelogram. But $LM=AB/2=CD/2=LY$, so $LMXY$ must be a rhombus. We conclude that $LX\perp MY$, so, since $LX$ and $MY$ intersect at $O$, we must have $\angle LOM=90^\circ$. Likewise, $\angle MON=\angle NOL=90^\circ$, and we are done.    
+\end{mdsoln}

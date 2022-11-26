@@ -1,0 +1,89 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 1.50}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+
+Given:
+\begin{itemize}
+    \item $WX$ is diameter of $\omega_1 = (BWN)$,
+    \item $WY$ is diameter of $\omega_2 = (CWM)$,
+\end{itemize}
+\begin{center}
+    \begin{asy}
+        // import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, O, O1, O2, H, M, N, P, X, Y, W;
+        path w, w1, w2, w3;
+        real r = 0.75;
+
+        O = (0,0);
+
+        A = dir(110);
+        B = dir(210);
+        C = dir(330);
+
+        H = orthocenter(A, B, C);
+        M = foot(B, A, C);
+        N = foot(C, A, B);
+        W = r*C + (1-r)*B;
+
+        w = circle(O, 1);
+        w1 = circumcircle(B, N, W);
+        O1 = circumcenter(B, N, W);
+        X = rotate(180, O1)*W;
+
+        w2 = circumcircle(C, W, M);
+        O2 = circumcenter(C, W, M);
+        Y = rotate(180, O2)*W;
+
+        w3 = circumcircle(A, M, N);
+
+        P = intersectionpoint(A--W, X--Y);
+
+        dot(X, red);
+        dot(H, red);
+        dot(P);
+        dot(Y, red);
+        dot(M);
+        dot(N);
+
+        draw(w1);
+        draw(w2);
+        draw(w3);
+
+        draw(A--B--C--A);
+        draw(A--W);
+        draw(N--H--M, blue);
+        draw(X--Y, red);
+
+        draw(rightanglemark(H, N, A, 1), blue);
+        draw(rightanglemark(A, M, H, 1), blue);
+
+        label("$A$", A, dir(A-B));
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+        label("$H$", H, dir(H-A));
+
+        label(Label("$\omega_1$", Relative(0.65)), w1);
+        label(Label("$\omega_2$", Relative(0.85)), w2);
+
+        label("$W$", W, dir(W-A));
+        label("$X$", X, dir(X-C));
+        label("$Y$", Y, dir(Y-B));
+    
+        label("$P$", P, dir(rotate(50, P)*A));
+        label("$M$", M, dir(M-B));
+        label("$N$", N, dir(N-C));
+    \end{asy}
+\end{center}
+
+
+\end{document}

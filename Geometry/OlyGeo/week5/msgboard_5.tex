@@ -1,0 +1,104 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 5}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 5}}
+
+\subsection{Problem 1}
+
+In class, we found constructions for:
+\begin{enumerate}[a)]
+
+\item Construct a right triangle $ABC$ with a given hypotenuse $c$ such that two of its medians are perpendicular.
+
+\item Two distinct circles, O and M, are drawn in the plane. They intersect at points A and B, where AB is a diameter of O. Point P is on M and inside O. Using only a T-square (an instrument which can produce the straight line joining two points and the perpendicular to a line through a point on or off the line), find a construction for two points C and D on O such that CD is perpendicular to AB and CPD is a right angle.
+\end{enumerate}
+
+Prove that our constructions work.
+
+\begin{mdsoln}
+
+    \textbf{a):} We are given hypotenuse $AB$. We construct the midpoint $M$ of $AB$ and the midpoint $K$ of $MB$. Construct circle $\omega_1$ with diameter $AK$ and circle $\omega_2$ with diameter $MB$. They clearly must intersect in two points. Choose $N$ to be one of these points. Then, let $G$ be the intersection of $AN$ with the circle $\omega_3$ with diameter $AM$. Let $C$ be the intersection of $BN$ with the circle $\omega_4$ with diameter $AB$.
+
+Circle $\omega_4$ is the image of $\omega_2$ under a homothety of ratio 2 centered at $B$, so $N$ is the midpoint of $BC$. Therefore, $AN$ is a median of $\triangle ABC$. Moreover, $\triangle ABC$ is a right triangle with hypotenuse $AB$ since $\triangle MBN$ is a right triangle with hypotenuse $MB$.
+
+Circle $\omega_3$ is the image of $\omega_1$ under a homothety of ratio $2/3$ centered at $A$, so $AG=2AN/3$, implying that $G$ is the centroid of $\triangle ABC$. Since $G$ is on the circle with diameter $AM$, $\angle MGA=90^\circ$, so $AN\perp CM$.
+
+Hence, $\triangle ABC$ a right triangle with hypotenuse $AB$ with medians $AN$ and $CM$ perpendicular.
+
+~\paragraph{b):} 
+(We are modifying slightly the solution given in class to deal with the case in which $P'$ is outside circle $M$.)
+
+We construct $M$, the intersection (distinct from $A$) of line $AP$ with circle $O$. We then construct $N$, the intersection (distinct from $M$) of circle $O$ with the perpendicular from $M$ to $AB$. It is clear that $N$ is the reflection of $M$ over $AB$. Construct the intersection of $AN$ and the perpendicular to $AB$ through $P$; this must be the reflection $P'$ of $P$ over $AB$.
+
+We now construct the line $\ell$ through $P$ perpendicular to $PP'$. (This is where this construction diverges from that presented in class; the two constructions are almost exact mirror images of each other.) Since $P$ is inside circle $M$, $\ell$ must intersect $M$ in two points. Pick $Z$, one of these points. Let $ZP'$ intersect $AB$ at $X$. Since $P'$ is the reflection of $P$ across $AB$ and since $PZ\parallel AB$, points $Z$ and $P'$ must be equidistant from line $AB$. Hence, $ZX=P'X=PX$.
+
+Construct $C$ and $D$ as the intersections of circle $O$ with the perpendicular to $AB$ at $X$. Since $X$ is on the radical axis $AB$ of circles $O$ and $M$, it must have equal power with respect to both circles. Hence, $(CX)(DX)=(P'X)(ZX)=PX^2$. Since $CD\perp AB$, points $C$ and $D$ are reflections of each other about line $AB$, so $CX=DX$, implying that $CX=PX$. Then, $X$ must be the center of the circumcircle of $\triangle CDP$ with $CD$ a diameter of the circumcircle. Hence, $\angle CPD=90^\circ$ and we conclude that $C$ and $D$ are indeed the desired points.
+\end{mdsoln}
+\subsection{Problem 2}
+
+In class, we found a construction using straightedge and compass for:
+
+$ABCD$ and $A'B'C'D'$ are square maps of the same region, drawn to different scales and superimposed as shown in the figure. There is only one point $O$ on the small map which lies directly over point $O'$ on the large map such that $O$ and $O'$ each represent the same place of the region. Give a Euclidean construction that produces this point.
+
+Find a construction using only a straightedge.
+
+\begin{mdsoln}
+~\paragraph{Case 1:} $AB\parallel A'B'$. Then, there is some homothety $h$ with center $P$ taking $ABCD$ to $A'B'C'D'$. Clearly, $h$ takes $P$ to $P$, so $P$ must be the desired point $O$. Since $O$ is the center of $h$ it must be the intersection of lines $AA'$ and $BB'$ and we can construct it as such.
+
+
+~\paragraph{Case 2:} $AB\not\parallel A'B'$. Then, we construct $X$, the intersection of $AB$ and $A'B'$, and $Y$, $Z$, and $W$ as, respectively, the intersections of $BC$ and $B'C'$, $CD$ and $C'D'$, and $DA$ and $D'A'$. By our logic in class $A'OAX$ and $A'WOA$ are cyclic, so $A'WOX$ is cyclic, implying that $\angle WOX=\angle XA'W=90^\circ$. Likewise, $\angle XOY=90^\circ$, so $O$ lies on $WY$. Similarly, $O$ lies on $XZ$. Hence, we may construct $O$ as the intersection of lines $WY$ and $XZ$.
+
+\end{mdsoln}
+\subsection{Problem 3}
+
+Given angle $A$ and point $P$ inside angle $A$, show how to construct points $B$ and $C$ on the sides of the angle with $P$ on $BC$ that satisfy each of the following (these are 3 separate problems)
+1) $\dfrac 1{BP} + \dfrac 1{CP}$ is a maximum;
+2) $BP \cdot CP$ is a minimum;
+3) the area of triangle $ABC$ is a minimum;
+
+\begin{mdsoln}
+    \begin{note*}
+        In our solutions, we treat $B$ as a variable point that is, WLOG, only allowed to be on one of the rays forming angle $A$, and $C$ as a variable point that is constrained to be on the other ray.
+    \end{note*}
+
+~\paragraph{1:}
+Let $\angle BAC=\alpha$, $\angle BAP=\alpha_1$, $\angle PAC=\alpha_2$, $\angle CBA=\beta$, $\angle ACB=\gamma$, so that $\alpha,\alpha_1,\alpha_2$ are fixed and $\beta+\gamma$ is fixed at $180^\circ-\alpha$. Then, we seek to minimize$$\frac{AP}{BP}+\frac{AP}{CP}=\frac{\sin\beta}{\sin\alpha_1}+\frac{\sin\gamma}{\sin\alpha_2}$$
+Consider some fixed points $P,Q,R$, with $\angle PQR=180^\circ-\alpha$, and, for some fixed $r$, $PQ=r/\sin\alpha_1$ and $RQ=r/\sin\alpha_2$. Draw a (variable) ray $m$ from $Q$ that makes angles of $\beta$ and $\gamma$ with rays $PQ$ and $RQ$, respectively (this is possible since $\beta+\gamma=\angle PQR$). Let $M$ and $N$ be the feet of the altitudes to $m$ from $P$ and $R$, respectively. Then, we have\begin{eqnarray*}PM+NR&=&PQ\sin\beta+RQ\sin\gamma\\ &=&\frac{r\sin\beta}{\sin\alpha_1}+\frac{r\sin\gamma}{\sin\alpha_2}\end{eqnarray*}so we see that our problem corresponds to choosing ray $m$ so that $PM+NR$ is maximized.
+
+Let $X$ be the intersection of $m$ with segment $PR$. Then, the Triangle Inequality implies that $PM+NR\le PX+XM+RX+XN$. Equality holds iff $M$ and $N$ are at $X$, which occurs when $m$ is perpendicular to $PR$. In this case,\begin{eqnarray*}\frac{\cos\beta}{\cos\gamma}&=&\frac{XQ/PQ}{XQ/RQ}\\ &=&\frac{RQ}{PQ}\\ &=&\frac{\sin\alpha_1}{\sin\alpha_2}\end{eqnarray*}in which case $BC$ is perpendicular to $AP$ at $P$. We conclude that we may construct $BC$ simply by drawing the perpendicular to $AP$ at $P$.
+
+~\paragraph{2:}
+Construct the angle bisector of $\angle A$ and construct the perpendicular to it through $P$, so that this perpendicular intersects $BA$ and $CA$ at $D$ and $E$, respectively. We claim that $BP\cdot CP$ is minimized when $B$ is at $D$ and $C$ is at $E$.
+
+Consider some choice of $B$ and $C$ not at $D$ and $E$. WLOG, suppose $C$ is on segment $AE$. Then, $\angle CED=\angle EDA > \angle CBD $, so $B$ lies outside the circumcircle of $\triangle CDE$. Then, Power of a Point implies that $BP \cdot PC > DP\cdot PE$, completing the proof.
+
+3:
+Since $[ABC]$ varies continuously as $B$ varies, and since it gets infinitely big as $B$ or $C$ go infinitely far from $A$, elementary calculus implies that the desired minimum does actually exist.
+
+Let $B_1C_1$ be a minimizing choice of $BC$. We claim that $B_1P=C_1P$.
+
+Suppose to contradiction that this is not true - WLOG that $B_1P>C_1P$. Then, choose $B_2$ near $B_1$ on segment $AB_1$, and let $C_2$ be the intersection of rays $B_2P$ and $AC_1$. Let $\theta=\angle B_2PB_1=\angle C_2PC_1$. Since $B_1B_2$ is a minimizer, we have\begin{eqnarray*}0&\le&[AB_2C_2]-[AB_1C_1]\\ &=&[C_1C_2P]-[B_1B_2P]\\ &=&\frac{1}{2}\sin\theta\left(C_1P\cdot C_2P-B_1P\cdot B_2P\right)\end{eqnarray*}For $B_2$ very close to $B_1$, we must have $B_2P>C_2P$, since $B_1P>C_1P$. Hence, the RHS of the above equation is strictly less than $0$, a contradiction. We conclude that $B_1P=C_1P$.
+
+Since $P$ bisects $B_1C_1$, $P$ must be the center of a parallelogram $AB_1XC_1$, where $X$ is the point on ray $AP$ with $AX=2AP$. We can, evidently, construct $X$ simply by drawing a circle centered at $P$ of radius $AP$ and finding the intersection (distinct from $A$) of this circle with ray $AP$. After having found $X$, we can construct $B_1$ by drawing a parallel to $AC$ through $X$. Then, $C_1$ is the intersection of rays $B_1P$ and $AC$, and we are done.
+
+
+\end{mdsoln}
+\subsection{Problem 4}
+
+$ABC$ is an acute-angled triangle. $P$ is a point inside its circumcircle. The rays $AP$, $BP$, $CP$ intersect the circle again at $D$, $E$, $F$. Find $P$ so that $DEF$ is equilateral.
+
+\begin{mdsoln}
+This solution is slightly long, but the ideas behind it are quite simple.
+
+Construct circles of radius $AC$ centered at $A$ and $C$. Let $X$ be the intersection point of these circles which lies on the opposite side of $AC$ as $B$. Then, $\triangle ACX$ is equilateral, so $\angle XAB=60^\circ+\angle A$. Copy $\angle ABX$ so that one side of the angle becomes $BC$, and copy $\angle BXA$ so that one side of the angle becomes $CB$. We now can construct $Y$ such that $\triangle YBC\sim \triangle ABX$ and $Y$ is on the same side of $BC$ as $A$ is.
+
+Now, we draw the circumcircle $\omega_A$ of $\triangle YBC$. This circle clearly contains the locus of all points $P$ on the same side of $BC$ as $A$ such that $\angle CPB=60^\circ+\angle A$. Define $\omega_B$ similarly (as the circle containing the locus of all points $P$ on the same side of $CA$ as $B$ such that $\angle APC=60^\circ+\angle B$).
+
+Let $FC$ be tangent to $\omega_A$ at $C$, with $F$ on the same side of $BC$ as $A$. Let $GC$ be tangent to $\omega_B$ at $C$, with $G$ on the same side of $CA$ as $B$. Let $A_1$ be some point on $\omega_A$ on the opposite side of $BC$ from $A$, and let $B_1$ be some point on $\omega_B$ on the opposite side of $CA$ from $B$. Then, by the Tangent-secant Theorem\begin{eqnarray*}\angle BCF+\angle GCA&=&\angle BA_1C+\angle CB_2A\\ &=&120^\circ-\angle A+120^\circ -\angle B\\ &=&240^\circ-\angle A-\angle B\\ &=&60^\circ+\angle C\\ &>&\angle BCA\end{eqnarray*}This implies that $G$ lies on the same side of $FC$ as $B$, so the circles $\omega_A$ and $\omega_B$ must intersect at some point $P$ with $P$ on the same side of $BC$ as $A$ and on the same side of $CA$ as $B$.
+
+Since $P$ is on $\omega_A$, we must have $\angle CPB=60^\circ+\angle A$. Since the angles of quadrilateral $ABPC$ must add up to $360^\circ$, we get $\angle ABP+\angle PCA=60^\circ$. Likewise, since $P$ is on $\omega_B$, we must have $\angle BCP+\angle PAB=60^\circ$.
+
+Then, since $AFBDCE$ is cyclic,\begin{eqnarray*}\angle FDE&=&\angle ADE +\angle FDA \\ &=&\angle ABE +\angle FCA \\ &=&\angle ABP+\angle PCA\\ &=&60^\circ\end{eqnarray*}Likewise, $\angle DEF=60^\circ$. We conclude that $\triangle DEF$ is equilateral.
+
+It remains to show that $P$ is actually inside the circumcircle of $\triangle ABC$. Suppose that it were outside. Then, since it is on the same side of $BC$ as $A$, we would have $\angle CPB<\angle CAB$. But $\angle CPB=60^\circ+\angle CAB$, a contradiction, so we are, at last, done.
+
+\end{mdsoln}

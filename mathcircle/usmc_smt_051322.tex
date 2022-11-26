@@ -1,0 +1,176 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[#1]%
+	{Problem \theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Math Clinic - SMT}
+% \subtitle{Session 2 - Olympiad}
+\author{Rohan Das, Derrick Liu, Adam Tang}
+\institute{Upper School Math Circle}
+\date{May 13, 2022}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+% Adam
+\begin{probslide}[t]{SMT 2022, Algebra \#4}{}
+    \begin{block}{}
+        Let the roots of \[x^{2022} -7x^{2021} +8x^2 +4x+2\] be $r_1,r_2,\cdots ,r_{2022}$, the roots of \[x^{2022} -8x^{2021} +27x^2 +9x+3\] be $s_1,s_2,\cdots ,s_{2022}$, and the roots of \[x^{2022} -9x^{2021} +64x^2 +16x+4\] be $t_1, t_2, \cdots , t_{2022}$. Compute the value of \[\sum_{1\le i,j \le 2022} r_i s_j + \sum_{1\le i,j \le 2022} s_it_j+ \sum_{1\le i,j \le 2022} t_ir_j .\]
+    \end{block}
+\end{probslide}
+
+% Rohan
+\begin{probslide}[t]{SMT 2022, Geometry \#4}{}
+    \begin{block}{}
+        Let $ABC$ be a triangle with $A = \frac{135}{2}^\circ$ and $\overline{BC} = 15$. Square $WXYZ$ is drawn inside $ABC$ such that $W$ is on $AB$, $X$ is on $AC$, $Z$ is on $BC$, and triangle $ZBW$ is similar to triangle $ABC$, but $WZ$ is not parallel to $AC$. Over all possible triangles $ABC$, find the maximum area of $WXYZ$. 
+    \end{block}
+\end{probslide}
+
+% Derrick
+\begin{probslide}[t]{SMT 2022, Geometry \#5}{}
+    \begin{block}{}
+        In quadrilateral $ABCD$, $AB = 20, BC = 15, CD = 7, DA = 24$, and $AC = 25$. Let the midpoint of $AC$ be $M$, and let $AC$ and $BD$ intersect at $N$. Find the length of $MN$.
+    \end{block}
+\end{probslide}
+
+% Adam
+\begin{probslide}[t]{SMT 2022, Algebra \#5}{}
+    \begin{block}{}
+        $x$, $y$, and $z$ are real numbers such that $xyz = 10$. What is the maximum possible value of $x^3y^3z^3 - 3x^4 - 12y^2 - 12z^4$?
+    \end{block}
+\end{probslide}
+
+% Rohan, [Adam]
+\begin{probslide}[t]{SMT 2022, Discrete \#4}{}
+    \begin{block}{}
+        Frank mistakenly believes that the number 1011 is prime and for some integer $x$ writes down $(x + 1)^{1011} \equiv x^{1011} + 1 \pmod{1011}$. However, it turns out that for Frank's choice of $x$, this statement is actually true. If $x$ is positive and less than 1011, what is the sum of the possible values of $x$?
+    \end{block}
+\end{probslide}
+
+% Derrick
+\begin{probslide}[t]{SMT 2022, Geometry \#6}{}
+    \begin{block}{}
+        Let the incircle of $\triangle ABC$ be tangent to $AB, BC, AC$ at points $M, N, P$, respectively. If $\measuredangle BAC = 30^\circ$, find $\frac{[BPC]}{[ABC]} \cdot \frac{[BMC]}{[ABC]}$, where $[ABC]$ denotes the area of $\triangle ABC$.
+    \end{block}
+\end{probslide}
+
+% Adam
+\begin{probslide}[t]{SMT 2022, Discrete \#5}{}
+    \begin{block}{}
+        A classroom has 30 seats arranged into 5 rows of 6 seats. Thirty students of distinct heights come to class every day, each sitting in a random seat. The teacher stands in front of all the rows, and if any student seated in front of you (in the same column) is taller than you, then the teacher cannot notice that you are playing games on your phone. What is the expected number of students who can safely play games on their phone?
+    \end{block}
+\end{probslide}
+
+% Rohan, [Adam]
+\begin{probslide}[t]{SMT 2022, Discrete \#6}{}
+    \begin{block}{}
+        Let $\mathcal{A}$ be the set of finite sequences of positive integers $a_1, a_2, \ldots , a_k$ such that $|a_n - a_{n-1}| = a_{n-2}$ for all $3 \le n \le k$. If $a_1 =a_2 =1$, and $k=18$,determine the number of elements of $\mathcal{A}$.
+    \end{block}
+\end{probslide}
+
+% Derrick
+\begin{probslide}[t]{SMT 2022, Geometry \#7}{}
+    \begin{block}{}
+        $\triangle ABC$ has side lengths $AB = 20, BC = 15$, and $CA = 7$. Let the altitudes of $\triangle ABC$ be $AD, BE$, and $CF$. What is the distance between the orthocenter (intersection of the altitudes) of $\triangle ABC$ and the incenter of $\triangle DEF$?
+    \end{block}
+\end{probslide}
+
+% Adam, [Rohan]
+\begin{probslide}[t]{SMT 2022, Discrete \#7}{}
+    \begin{block}{}
+        Let $n_0$ be the product of the first 25 primes. Now, choose a random divisor $n_1$ of $n_0$, where a choice $n_1$ is taken with probability proportional to $\varphi(n1)$. ($\varphi(m)$ is the number of integers less than $m$ which are relatively prime to $m$.) Given this $n_1$, we let $n_2$ be a random divisor of $n_1$, again chosen with probability proportional to $\varphi(n_2)$. Compute the probability that $n_2 \equiv 0 \mod 2310$.
+    \end{block}
+\end{probslide}
+
+% Rohan
+\begin{probslide}[t]{SMT 2022, Guts \#2}{}
+    \begin{block}{}
+        William is popping 2022 balloons to celebrate the new year. For each popping round he has two attacks that have the following effects:
+
+        (a) halve the number of balloons (William can not halve an odd number of balloons) 
+        
+        (b) pop 1 balloon
+
+
+        How many popping rounds will it take for him to finish off all the balloons in the least amount of moves?
+    \end{block}
+\end{probslide}
+
+% Derrick
+\begin{probslide}[t]{SMT 2022, Team \#8}{}
+    \begin{block}{}
+        Let $\triangle ABC$ be a triangle whose $A$-excircle, $B$-excircle, and $C$-excircle have radii $R_A,R_B$, and $R_C$, respectively (the $A$-excircle is the circle outside $\triangle ABC$ that is tangent to BC, $\overrightarrow{AB}$, and  $\overrightarrow{AC}$ -- the other excircles are defined similarly). If $R_AR_BR_C = 384$ and the perimeter of $\triangle ABC$ is 32, what is the area of $\triangle ABC$?
+    \end{block}
+\end{probslide}
+
+% Adam
+\begin{probslide}[t]{SMT 2022, Discrete \#8}{}
+    \begin{block}{}
+        Given that $20^{22} + 1$ has exactly 4 prime divisors $p_1 < p_2 < p_3 < p_4$, determine $p_1 + p_2$.
+    \end{block}
+\end{probslide}
+
+
+
+% Rohan
+\begin{probslide}[t]{SMT 2022, Guts \#17}{}
+    \begin{block}{}
+    Compute the number of $1 \le n \le 100$ for which $b^n \equiv a \mod 251$ has a solution for at most half of all $1 \le a \le 251$.
+    \end{block}
+\end{probslide}
+
+% Adam
+\begin{probslide}[t]{SMT 2022, Algebra \#8}{}
+    \begin{block}{}
+        For all positive integers $m > 10^{2022}$, determine the maximum number of real solutions $x > 0$ of the equation $mx = \lfloor x^{11/10} \rfloor$.
+    \end{block}
+\end{probslide}
+
+
+
+
+% Rohan
+\begin{probslide}[t]{SMT 2022, Guts \#26}{}
+    \begin{block}{}
+        Consider the equation \[\frac{a^2 +ab+b^2}{ab - 1} = k,\] where $k \in \mathbb{N}$. Find the sum of all values of $k$, such that the equation has solutions $a, b \in \mathbb{N}$, $a > 1, b > 1$.
+    \end{block}
+\end{probslide}
+
+
+\end{document}

@@ -1,0 +1,655 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\title{Mathcounts National 2018}
+\subtitle{Mathcounts 20 - Session 6}
+\author{bisv.math@gmail.com}
+\institute{BISV Mathcounts Club 20}
+\date{January 19, 2021}
+\logo {Problems Copyright MATHCOUNTS, Inc. 2018. All rights reserved. }
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\titlepage
+
+% \begin{frame}
+
+%  \frametitle{TABLE OF CONTENTS}
+%  \tableofcontents
+% \end{frame}
+
+\section{Sprint}
+
+
+\section{Sprint}
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Alana can make a tutu in 40 minutes. Spencer takes 50\% longer. Working
+    together, how many minutes does it take them to make 20 tutus?
+        
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    What is the least positive two-digit base-three integer that is not divisible by 2? Express your answer in base three.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    If $ k $ and $ P $ are nonzero real numbers such that the sum of $ P\% $ of $ P\% $ of $ k $ and
+$ \frac{4}{5} $ of $ P\% $ of $ k $ is equal to $ P\% $ of $ k $, what is the value of $ P $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    In square $ ABCD $, shown here, point $ F $ is on side $ AB $ such that
+$ AF:FB =2:1 $, and point $ G $ is on side $ AD $ such that $ AG:GD = 3:1 $.
+What is the ratio of the area of triangle $ AFG $ to the area of
+pentagon $ FBCDG $? Express your answer as a common fraction.
+    
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        real s = 2;
+        pair A, B, C, D, F, G;
+
+        D = (0,0);
+        A = (0,s);
+        B = (s,s);
+        C = (s,0);
+        F = (2*B+A)/3;
+        G = (3*D+A)/4;
+
+        draw(A--B--C--D--cycle^^F--G);
+
+        label("$A$", A, N);
+        label("$F$", F, N);
+        label("$B$", B, N);
+        label("$C$", C, S);
+        label("$D$", D, S);
+        label("$G$", G, W);
+
+    \end{asy}
+\end{center}
+
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    In the sum shown, each letter stands for a different nonzero digit. What is the three-digit number $ IKA $?
+    \begin{center}
+        \begin{tabular}{cccc}
+            & A& P & I \\ 
+            & A& P & I \\ 
+            & A& P & I \\ 
+            + & A& P & I \\ \hline
+            & I & K & A
+    
+        \end{tabular}        
+    \end{center}
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    If the three lines $ 3x+y=-1,x+3y=-11 $ and $ ax-2y=3 $ all intersect at one point, what is the value of $ a $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Alice and Bob play a game that begins with flipping a fair coin twice. If the coin lands heads up on both flips,Bob wins. If the coin lands heads up on only one flip, Alice wins. If the coin lands tails up on both flips, they flip two more times, and this process continues until there is a winner. What is the probability that Bob wins the game? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The first and fourth terms of a geometric sequence are 4 and 9, respectively. What is the geometric mean of the second and third terms?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The mean, median and unique mode of a list of seven positive integers are all equal to 10. What is the greatest possible range of the list?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    What is the probability that a randomly chosen positive integer factor of 11,088 is not divisible by any perfect square greater than 1? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The graph of the line $ 2x+3y=8 $ intersects the $ x $-axis at $ A $ and intersects the $ y $-axis at $ B $. Points $ A,B $ and $ O(0,0) $ form right triangle $ ABO $. If triangle $ ABO $ is dilated about the origin by a scale factor of $ -\frac{3}{4} $, what is the area of dilated triangle $ A'B'O' $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Rudy has a basket of perfectly cylindrical cookies of varying sizes. He has seven cookies of radius 3 inches, eight cookies of radius 2 inches and seven cookies of radius 1 inch. All cookies are 0.25 inch thick. Rudy splits the cookies into 3 groups such that each group's cookies have the same total volume. If all the cookies remain whole, what is the fewest possible number of cookies in any group?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    What common fraction is equivalent to the sum shown?
+    \[ \frac{1}{2018+1} + \frac{1}{2018^2+2018+1} + \frac{1}{2018^4+2(2018^3)+2(2018^2)+2018} \]
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Jenny rolls four standard six-sided dice, each with faces numbered one through six.What is the probability that there is at least one pair of dice whose top faces sum to 12? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The faces of two cubes are painted so that the colors of the six faces on each cube are red,orange, yellow, green, blue and violet, in some random order. What is the probability that the two cubes can be rotated so that their colorings are identical? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    The bases of the right hexagonal prism shown are regular hexagons with sides of length 4 inches. Space diagonals $ AD' $ and $ CF' $ intersect at a right angle. What is the length of edge $ EE' $? Express your answer in simplest radical form.
+    
+\end{block}
+
+\begin{center}
+    \begin{asy}
+    import three;        
+    currentprojection=orthographic(3, -50, 20);
+
+    unitsize(0.5cm);
+    real s = 4;
+
+    pair A, A1, B, B1, C, C1, D, D1, E, E1, F, F1;
+
+    F = (0,0);
+    E = (s, 0);
+    A = rotate(120, F)*E;
+    D = rotate(-120, E)*F;
+    C = rotate(-120, D)*E;
+    B = rotate(-120, C)*D;
+
+    draw((F.x, F.y, 0)--(E.x, E.y, 0)--(D.x, D.y, 0)--(C.x, C.y, 0)--(B.x, B.y, 0)--(A.x, A.y, 0)--cycle);
+    draw((F.x, F.y, -s)--(E.x, E.y, -s)--(D.x, D.y, -s)--(C.x, C.y, -s)--(B.x, B.y, -s)--(A.x, A.y, -s)--cycle);
+    draw((F.x, F.y, 0)--(F.x, F.y, -s)^^(E.x, E.y, 0)--(E.x, E.y, -s)^^(D.x, D.y, 0)--(D.x, D.y, -s)^^(C.x, C.y, 0)--(C.x, C.y, -s)^^(B.x, B.y, 0)--(B.x, B.y, -s)^^(A.x, A.y, 0)--(A.x, A.y, -s));
+
+    draw((A.x, A.y, 0)--(D.x, D.y, -s)^^(C.x, C.y, 0)--(F.x, F.y, -s), dashed);
+
+    label("$A$", (A.x, A.y, 0), N);
+    label("$B$", (B.x, B.y, 0), N);
+    label("$C$", (C.x, C.y, 0), N);
+    label("$D$", (D.x, D.y, 0), N);
+    label("$E$", (E.x, E.y, 0), N);
+    label("$F$", (F.x, F.y, 0), N);
+
+    label("$A'$", (A.x, A.y, -s), S);
+    label("$B'$", (B.x, B.y, -s), S);
+    label("$C'$", (C.x, C.y, -s), S);
+    label("$D'$", (D.x, D.y, -s), S);
+    label("$E'$", (E.x, E.y, -s), S);
+    label("$F'$", (F.x, F.y, -s), S);
+
+    \end{asy}
+\end{center}
+
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    In a card game, Nora draws cards at random, without replacement,from a deck of 21 cards. Twenty of the cards are numbered 1 through 20, and the other card is marked ``Joker.'' Nora keeps all of the cards she draws before she draws the Joker. What is the probability that the cards Nora keeps include exactly four prime-numbered cards? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    How many assignments of digits $ A, B, C $ and $ D $ exist such that the four-digit numbers $ ABCD_6 $ and $ ABCD_{10} $ are both divisible by 5?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    In the figure, $ ABCD $ is a square with area $ 1024 \text{ cm}^2 $. $ P $ is the midpoint of side $ CD $. $ Q $ is the midpoint of segment $ BP $. $ R $ is the midpoint of segment $ AQ $. $ S $ is the midpoint of segment $ DR $. $ T $ is the midpoint of segment $ CS $. $ T $ is also the intersection of segments $ BP $ and $ CS $. What is the area of quadrilateral $ QRST $?
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(0.75cm);
+        real s = 5;
+        pair A, B, C, D, P, Q, R, S, T;
+
+        A = (s,s);
+        B = (0,s);
+        C = (0,0);
+        D = (s,0);
+
+        P = (C+D)/2;
+        Q = (B+P)/2;
+        R = (A+Q)/2;
+        S = (D+R)/2;
+        T = (C+S)/2;
+
+        draw(A--B--C--D--cycle);
+        draw(B--P^^A--Q^^D--R^^C--S);
+
+        label("$A$", A, NE);
+        label("$B$", B, NW);
+        label("$C$", C, SW);
+        label("$D$", D, SE);
+        label("$P$", P, SE);
+        label("$Q$", Q, SW);
+        label("$R$", R, NW);
+        label("$S$", S, NE);
+        label("$T$", T, N);
+
+    \end{asy}
+\end{center}
+
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Vanessa tosses a fair coin eight times. If the coin lands heads up, she steps 1 meter west. If the coin lands tails up, she steps 1 meter north. What is the probability that Vanessa ends a distance of at most 6 meters away from her starting position? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    What is the greatest integer that is less than or equal to $ \dfrac{3^{19} + 2^{19}}{3^{15} + 2^{15}} $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The polynomials $ x^3+5x^2-69x+180 $ and $ x^3+8x^2-36x+144 $ share a common
+factor of the form $ x + a $. What is the value of $ a $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    Xena and Yolanda toss an unfair coin that lands heads up $ 75\% $ of the time. If the coin lands heads up, Xena gets a point. Otherwise, Yolanda gets a point. The game ends when one player has a two-point lead over the other, and the player with the two-point lead is the winner. What is the probability that Xena wins the game? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    The figure shows isosceles right triangle $ ABC $ with $ AC=BC=16 $ units. Triangle $ ABD $ is constructed within triangle $ ABC $ with vertex $ D $ on side $ AC $ and $ AD = 4 $ units. Point $ E $ is drawn on side $ AB $ to form isosceles right triangle $ ADE $. A series of isosceles right triangles is constructed within triangle $ ABD $, such that the hypotenuse of each lies on side $ AB $, the 90-degree vertex of each lies on segment $ BD $, and each shares a vertex with the preceding triangle in the series, as shown. What is the combined area of the series of isosceles right triangles within triangle $ ABD $? Express your answer as a common fraction.    
+    
+\end{block}
+
+\begin{center}
+    \begin{asy}
+        import olympiad;
+
+        unitsize(0.35cm);
+        pair A, B, C, D, E, F, G, H, I, J, K, L;
+
+        A = (0,0);
+        B = (16, 0);
+        C = (8, 8);
+        D = (2, 2);
+        E = (4, 0);
+
+        F = (E.x+(3/4)*2, (3/4)*2);
+        G = (E.x+(3/4)*4, 0);
+
+        H = (G.x+(3/4)*(3/4)*2, (3/4)*(3/4)*2);
+        I = (G.x+(3/4)*(3/4)*4, 0);
+
+        J = (I.x+(3/4)*(3/4)*(3/4)*2, (3/4)*(3/4)*(3/4)*2);
+        K = (I.x+(3/4)*(3/4)*(3/4)*4, 0);
+
+        L = (K.x+(3/4)*(3/4)*(3/4)*(3/4)*2, (3/4)*(3/4)*(3/4)*(3/4)*2);
+
+        draw(A--B--C--cycle);
+        draw(B--D--E--F--G--H--I--J--K--L);
+
+        draw(rightanglemark(A, C, B));
+        draw(rightanglemark(A, D, E));
+        draw(rightanglemark(E, F, G));
+        draw(rightanglemark(G, H, I));
+        draw(rightanglemark(I, J, K));
+
+        label("$A$", A, SW);
+        label("$B$", B, SE);
+        label("$C$", C, N);
+        label("$D$", D, NW);
+        label("$E$", E, S);
+        label("$F$", F, N);
+        label("$G$", G, S);
+        label("$16$", B--C, NE);
+        label("$4$", A--D, NW);
+
+        label("$\ldots$", (L.x+0.4, L.y/2));
+    \end{asy}
+\end{center}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    If $ a_1,a_2,a_3,a_4,a_5 $ is an increasing geometric sequence of real numbers such that
+$ a_3=1 $ and $ a_1+a_5=10 $, then the value of $ a_4 $ can be expressed in simplest radical
+form as $ \sqrt{a} + \sqrt{b} $.What is the value of $ a+b $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    The rational number one-seventh can be written as a repeating base ten decimal as $ 0.\overline{142857} $. The same rational number can be written as a repeating ``decimal'' in base nine. What is the sum, in base nine, of the first hundred digits to the right of the ``decimal'' point?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    An equilateral triangle is divided into 16 congruent equilateral triangles, half of which are shaded, and point $ P $ lies at a vertex as shown. If a random line passing through point $ P $ is drawn,what is the probability that the line divides the total shaded area exactly in half? Express your answer as a common fraction.
+
+    
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        real s = 4, h = sqrt(3)*s/2;
+        pair P = (3*s/8, h/4);
+
+        for (int i = 0; i < 2; ++i) {
+            real x1, x2, y;
+            x1 = i*s/4+s/8;
+            x2 = s - x1;
+            y = (2*i+1)*h/4;
+
+            for (int j = 0; j < 3 - 2*i; ++j) {
+                real xj = x1 + j*s/4;
+
+                filldraw((xj, y)--(xj+s/8,y-h/4)--(xj+s/4,y)--(xj+s/8,y+h/4)--cycle, gray(0.5), black);
+            }
+            draw((x1,y)--(x2,y));
+        }
+        draw((0,0)--(s,0)--(s/2,h)--cycle^^(s/4,h/2)--(3*s/4,h/2));
+        dot(P, red);
+        label("$P$", P, N);
+    \end{asy}
+\end{center}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Sprint \insertframenumber}
+\begin{block}{}
+    How many six-digit positive integers containing six distinct nonzero digits are divisible by 99?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    Isosceles trapezoid $ ABCD $ has parallel bases $ AB $ and $ CD $. Point $ E $ is the intersection of diagonals $ AC $ and $ BD $.The height of the trapezoid is $ 20 $ cm. The area of triangle $ ADE $ is 75 cm. If bases $ AB $ and $ CD $ have integer lengths with $ AB< CD $, what is the sum of all possible values of $ AB $?
+ 
+\end{block}
+
+\begin{center}
+    \begin{asy}
+        unitsize(0.15cm);
+        pair A, B, C, D, E;
+    
+        D= (0,0);
+        C= (18,0);
+        A= (4, 20);
+        B = (12,20);
+    
+        E = intersectionpoint((D--B), (A--C));
+    
+        draw(D--C--B--A--cycle^^D--B^^C--A);
+        label("$D$", D, SW);
+        label("$C$", C, SE);
+        label("$B$", B, NE);
+        label("$A$", A, NW);
+        label("$E$", E, S);  
+        
+        // filltype = background color
+        Label L = Label("$20$", align=(0,0), position=MidPoint, filltype=Fill(white));
+        draw((C.x+4,C.y) -- (C.x+4,C.y+20), L=L, arrow=Arrows(), bar=Bars);   
+
+    \end{asy}
+\end{center}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Sprint \insertframenumber}
+\begin{block}{}
+    In the figure, $ AB=DA=5 $ units, $ AC=DE =4 $ units and $ BC=AE =3 $ units. Point $ C $ lies on segment $ AD $. It is possible to move triangle $ ABC $ onto triangle $ DAE $ by reflecting triangle $ ABC $ across a line $ m $, and then translating the image in a direction parallel to $ m $. Line $ m $ divides triangle $ ABC $ into two regions. What is the ratio of the area of the smaller region to the area of the larger region? Express your answer as a common fraction.
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(0.6cm);
+        pair A, B, C, D, E;
+
+        real xt = -3/2, yt = -1/2;
+
+        A = (0,4);
+        C = (0,0);
+        D = (0, -1);
+        B = (3,0);
+        E = (-12/5,11/5);    
+
+        draw(A--C--B--cycle--E--D--C);
+        
+
+        label("$A$", A, N);
+        label("$B$", B, SE);
+        label("$C$", C, SE);
+        label("$D$", D, S);
+        label("$E$", E, N);
+    \end{asy}
+\end{center}
+
+\end{frame}
+%--------------
+\newpage
+\section{Target}
+\begin{frame}
+    \begin{alertblock}{}
+        \begin{flushright}
+        {\huge Target}
+        \end{flushright}
+    \end{alertblock}
+\end{frame}
+
+\addtocounter{framenumber}{-31}
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    What is the slope of the line containing the point $ (5,-2) $ that is perpendicular to the line $ 2x+3y=4 $? Express your answer as a common fraction.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    A list contains 20 numbers. For each positive integer $ n $ from 1 to 20, the $ n $th number in the list is either $ \frac{1}{2}n $ or $ 2n $. If the mean of the numbers in the list is exactly 12 and the product of the numbers is $ P $, what is the greatest possible value of $ \frac{P}{20!} $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    If $ p\oplus q=\sqrt{p^2+q^2} $ and $ p \ominus q=\sqrt{p^2-q^2} $, what is the value of
+\[(1\oplus2\oplus3\oplus4\oplus5\oplus6\oplus7\oplus9\oplus10) \ominus(1\oplus2\oplus3\oplus4\oplus5\oplus6\oplus7\oplus8\oplus9)? \]
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Target \insertframenumber}
+\begin{block}{}
+    When completely filled in, each cell in the five-by-five array shown will contain integers an integer so that the sum of the integers in each contiguous two-by-two square block of cells is positive. What is the greatest possible number of negative integers in the array?
+
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(0.5cm);
+
+        for (int i = 0; i < 6; ++i) {
+            draw((i,0)--(i,5)^^(0,i)--(5,i));
+        }
+    \end{asy}
+\end{center}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    In equation $ AB+CD=EFG $, each letter represents a different digit. What is the greatest possible value of the three-digit number $ EFG $?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    Micaela randomly chooses a real number $ w $ between -20 and 20. What is the probability that the graphs of $ x -|y| = w $ and $ x^2 + y^2 = 50 $ intersect at exactly two points? Express your answer as a decimal to the nearest hundredth.
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t]{Target \insertframenumber}
+\begin{block}{}
+    A 4-up number is defined as a positive integer that is divisible by neither 2 nor 3 and does not have 2 or 3 as any of its digits. How many numbers from 400 to 600, inclusive, are 4-up numbers?
+    
+\end{block}
+\end{frame}
+%--------------
+
+\begin{frame}[t,fragile]{Target \insertframenumber}
+\begin{block}{}
+    Shane cuts out a paper circle of radius 7 cm. He then draws two perpendicular chords, as shown, with one a distance of 1 cm from the center and the other 3 cm from the center. Next, Shane folds the bottom of the circle up along the first chord and then folds the left side of the folded circle to the right along the second chord. If the folded arcs intersect at a point P, as shown, what is the distance from the vertex of the right angle formed by the folds to P? Express your answer in simplest radical form.
+\end{block}
+
+\begin{center}
+    \begin{asy}
+        unitsize(0.35cm);
+
+        picture p1, p2;
+        pair O, O1, O2, A1, A2, B1, B2, P, Q, M;
+        pair ip[];
+
+        path c, a1, a2;
+
+        O = (0, 0);
+        O1 = (-6, 0);
+        O2 = (0, -2);
+
+        M = (-3,-1);
+
+        c = circle(O, 7);
+
+        ip = intersectionpoints(c, (-3,-7)--(-3,7));
+        A1 = ip[0];
+        B1 = ip[1];
+
+        ip = intersectionpoints(c, (-7,-1)--(7,-1));
+        A2 = ip[0];
+        B2 = ip[1];
+
+        Q = intersectionpoints(circle(O1, 7), M--B2)[0];
+
+        a1 = arc(O1, Q, A1);
+
+        P = intersectionpoints(a1,circle(O2, 7))[0];
+        a2 = arc(O2, B2, P);
+
+        draw(p1, c);
+        dot(p1, O);
+        // dot(p1, A1, red);
+        // dot(p1, A2, blue);
+
+        draw(p1, A1--B1^^A2--B2, dashed);
+
+        draw(p2, arc(O, B2, A1)--M--cycle^^a1^^a2);
+        draw(p2, M--P, dashed);
+        dot(p2, P);
+        dot(p2, O);
+
+        label(p2, "$P$", P, NE);
+        label(p2, "?", M--P, SE);
+
+        add(p1);
+        add(shift(15*right)*p2);
+    \end{asy}
+\end{center}
+\end{frame}
+%--------------
+
+
+\end{document}

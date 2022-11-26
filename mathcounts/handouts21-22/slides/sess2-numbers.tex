@@ -1,0 +1,257 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[#1]%
+	{Problem \thesection.\theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Number Sense}
+\subtitle{Mathcounts 21 - Session 2}
+\author{Krishnaveni P., Irene W.}
+\institute{BISV Mathcounts Club 21}
+\date{November 30, 2021}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+\setcounter{section}{7}
+
+\section{Beginner Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    What is the sum of all two-digit multiples of three that have units digit 1?
+    
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    How many positive integers less than 101 are multiples of 3, 4 or 7?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    Given that the digits 1, 2, 3, 4, 5 and 6 are forms two three-digit numbers, what is the greatest possible positive difference that can be obtained from the two numbers?
+    
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    Let LCM (a, b) be the abbreviation for the least common multiple of a and b. What is LCM (LCM (8, 14), LCM (7, 12))?
+    
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    What is the sum of the three missing digits in the subtraction problem $5\Box, 661 - \Box 2,83\Box = 17,825?$
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AHSME 1987 \#3]
+    How many primes less than $100$ have $7$ as the ones digit? (Assume the usual base ten representation) 
+    
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AJHSME 1987 \#9]
+    When finding the sum $\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}+\frac{1}{7}$, what is the least common denominator used?
+    
+    \end{block}
+\end{probslide}
+
+\section{Intermediate Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    The product of three consecutive integers is 157,410. What is their sum?
+	
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[2021 Chapter Sprint \#13]
+    What is the fewest number of consecutive primes, starting with 2, that when added together produce a number divisible by 7?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     Find the remainder when $23^{19}$ is divided by 10.
+     
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    What is the value of $ \dfrac{4^{26}+8^{15}}{32^{9} + 16^{11}} $ ?
+     
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    Natural numbers of the form $F_n=2^{2^n} + 1 $ are called Fermat numbers. In 1640, Fermat conjectured that all numbers $F_n$, where $n\neq 0$, are prime. (The conjecture was later shown to be false.) What is the units digit of $F_{1000}$?
+	
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 8 2020 \#15]
+    Suppose 15\% of $x$ equals 20\% of $y$. What percentage of $x$ is $y$?
+    
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 8 2020 \#17]
+    How many positive integer factors of $2020$ have more than $3$ factors? (As an example, $12$ has $6$ factors, namely $1,2,3,4,6,$ and $12.$)
+    
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2017 State Sprint \#15]
+    What is the least positive base-10 integer that can be written as a 4-digit number in base 3 and as a 3-digit number in base 4?
+    
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     If $x^y = y^x$, and $x$ and $y$ are unequal positive integers, what is the smallest possible value of $x+y$?
+     
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    Friends Megan and Heather go to different schools.  Megan has math class during first period on each of the 96 days she goes to school.  She will be in math class a total of 8640 minutes this year.  Heather’s school year also has 96 days, but her math class only meets every other day, so her class periods are longer.  (One day she’ll have math class, and then the next day she won’t.)  If Megan and Heather end up with the same number of minutes of math class each year, how long are the class periods at Heather’s school?
+	
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook, 2012-13]
+    After Carlos accidentally spills water on his paper, he is left with the partial equation $1729^2 - 2 \times 1730^2 + 17\Box\Box^2 = 34\Box\Box,$ where each $\Box$ represents a smudged digit, not necessarily all the same. What is the sum of the four smudged digits? \textit{You may use calculator for this question.}
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2015-16]
+     How many whole numbers $n$, such that $100\le{n}\le1000$, have the same number of odd factors as even factors?
+     
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2009 State Target \#2]
+    Two arithmetic sequences $A$ and $B$ both begin with 30 and
+have common differences of absolute value 10, with sequence
+$A$ increasing and sequence $B$ decreasing. What is the absolute
+value of the difference between the 51st term of sequence $A$
+and the 51st term of sequence $B?$ \textit{You may use calculator for this question.}
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{} [AIME 2003, I \#1]
+    Given that $\frac{((3!)!)!}{3!} = k \cdot n!,$ where $k$ and $n$ are positive integers and $n$ is as large as possible, find $k + n.$ 
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2014-15]
+   To weigh an object by using a balance scale, Brady places the object on one side of the scale and places enough weights on each side to make the two sides of the scale balanced. Brady’s set of weights contains the minimum number necessary to measure the whole-number weight of any object from 1 to 40 pounds, inclusive. What is the greatest weight, in pounds, of a weight in Brady’s set?
+	
+    \end{block}
+\end{probslide}
+
+%----------------------------------------------------------
+\section{Challenge Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2005, National Target \#6]
+    For positive integer $n$ such that $n<10,000,$ the number $n+2005$ has exactly $21$ positive factors. What is the sum of all the possible values of $n?$ \textit{You may use calculator for this.}
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2017, National Sprint \#8]
+    Computing in base 8, a certain two-digit base-8 number $N$ is added to five times the sum of its digits. The sum has the same digits as $N$ but in reverse order. What is $N$ in base 8?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    In order, the first four terms of a sequence are $2, 6, 12$ and $72$, where each term, beginning with the third term, is the product of the two preceding terms. If the ninth term is $2^a3^b$, what is the value of $a + b$?
+    \end{block}
+\end{probslide}
+	
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Folklore]
+    How many zeros are there after the last nonzero digit of 125! ?
+	
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Pascal 2013, \#24]
+   Pascal High School organized three different trips. Fifty percent of the students went on the first trip, 80\% went on the second trip, and 90\% went on the third trip. A total of 160 students went on all three trips, and all of the other students went on exactly two trips. How many students are at Pascal High School?
+
+	
+    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10, 2004, \#13]
+    In the United States, coins have the following thicknesses: penny, $1.55$ mm; nickel, $1.95$ mm; dime, $1.35$ mm; quarter, $1.75$ mm. If a stack of these coins is exactly $14$ mm high, how many coins are in the stack?
+
+       
+    \end{block}
+\end{probslide}
+
+
+\end{document}

@@ -1,0 +1,412 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\title{Advanced Mixed}
+\subtitle{Mathcounts 20 - Session 5}
+\author{bisv.math@gmail.com}
+\institute{BISV Mathcounts Club 20}
+\date{January 5, 2021}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\titlepage
+
+% \begin{frame}
+
+%  \frametitle{TABLE OF CONTENTS}
+%  \tableofcontents
+% \end{frame}
+
+\section{Problems}
+
+
+\begin{frame}[t, fragile]{3.1}
+\begin{block}{}[Mathcounts National 2017, Sprint \#13]
+    In right triangle ABC with right angle at vertex C, a semicircle is constructed,
+as shown, with center P on leg AC, so that the semicircle is tangent to leg BC
+at C, tangent to the hypotenuse AB, and intersects leg AC at Q between
+A and C. The ratio of AQ to QC is 2:3. If BC = 12, then what is the
+value of AC? Express your answer in simplest radical form.
+\end{block}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        unitsize(0.25cm);
+        pair A, B, C, O, T;
+        real r = 24/sqrt(10);
+        C = (0, 0);
+        B = (0, 12);
+        A = (-8*sqrt(10), 0);
+        O = (-r, 0);
+        T = foot(O, A, B);
+        
+        draw(A--B--C--cycle);
+        draw(arc(O, r, 0, 180));
+
+        dot(O);
+        //dot(T);
+        label("$A$", A, SW);
+        label("$C$", C, SE);
+        label("$B$", B, NE);
+        label("$P$", O, S);
+        label("$Q$", O*2, S);
+        
+    \end{asy}    
+    \end{center}
+    % \boxed{8\sqrt{10}}
+\end{frame}
+
+\begin{frame}[t, fragile]{3.2}
+\begin{block}{}[Mathcounts National 2017, Sprint \#14]
+    Philippa stands on the shaded square of the 8-by-8 checkerboard
+shown. She moves to one of the four adjacent squares sharing
+an edge with her starting square, with each of the four squares
+equally likely to be chosen. She then makes two more moves
+to adjacent squares in the same way. Given any square $ S $, let $ P(S) $ be the
+probability that Philippa lands on that square after her third move. What is the
+greatest possible value of $ P(S) $? Express your answer as a common fraction.
+\end{block}
+
+\begin{center}
+    \begin{asy}
+        unitsize(0.5cm);
+        
+        pair pos;
+        pos = (3,4);
+        for (int i = 0; i < 9; ++i) {
+            draw((i,0)--(i,8)^^(0,i)--(8,i));
+        }
+        fill(pos--(pos.x + 1,pos.y)--(pos.x+1,pos.y+1)--(pos.x,pos.y+1)--cycle, grey);
+    \end{asy}
+    % \boxed{\frac{9}{64}}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[t]{3.3}
+\begin{block}{}[Mathcounts National 2017, Sprint \#19]
+    Sam creates a six-digit positive integer by writing the digit 7 in the
+hundred-thousands place, and then tossing a fair coin five times. If the coin
+comes up heads, he writes a 7 for the next digit; if the coin comes up tails,
+he writes a 0 for the next digit. What is the probability that Sam’s number is
+divisible by 77? Express your answer as a common fraction.
+	
+\end{block}
+    % \boxed{\frac{5}{16}}
+\end{frame}
+
+\begin{frame}[t, fragile]{3.4}
+\begin{block}{}[Mathcounts National 2017, Sprint \#22]
+    How many ways are there to fill in each empty square in the diagram below with
+a positive integer so that no integer appears more than once in the diagram, and
+every integer in the diagram is less than each integer to its right?
+\end{block}
+
+\begin{center}
+    \begin{asy}
+        unitsize(1cm);
+        
+        for (int i = 0; i < 8; ++i) {
+            if (i != 2 && i != 5) {
+                draw((i,0)--(i+1,0)--(i+1,1)--(i,1)--cycle);
+            } else {
+                draw((i,-0.5)--(i+1,-0.5)--(i+1,1.5)--(i,1.5)--cycle^^(i,0.5)--(i+1,0.5));
+            }
+        }
+        label("$12$", (7.5,0.5));
+    \end{asy}
+    % \boxed{220}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[t]{3.5}
+\begin{block}{}[Mathcounts National 2017, Sprint \#23]
+    What is the total surface area of the largest regular tetrahedron that can be
+    inscribed inside of a cube of edge length 1 cm? Express your answer in simplest
+    radical form.
+	
+\end{block}
+    % \boxed{2\sqrt{3}}
+\end{frame}
+
+\begin{frame}[t, fragile]{3.5 - With Solution Diagram}
+    \begin{block}{}[Mathcounts National 2017, Sprint \#23]
+        What is the total surface area of the largest regular tetrahedron that can be
+        inscribed inside of a cube of edge length 1 cm? Express your answer in simplest
+        radical form.
+        
+    \end{block}
+    \begin{center}
+        \begin{asy}
+        import three;
+        unitsize(3cm);
+    
+        real radius=1, theta=37, phi=60;
+    
+        currentprojection= orthographic(-500, -300, 400);
+    
+    
+        // Planes
+        pen bg=gray(1)+opacity(0.1);
+        pen solidp = green+opacity(0.6);
+    
+        real r=1.5;
+        draw(Label("$x$",1), O--r*X, Arrow3());
+        draw(Label("$y$",1), O--r*Y, Arrow3());
+        draw(Label("$z$",1), O--r*Z, Arrow3());
+    
+        draw(surface((0,0,1)--(0,1,0)--(1,0,0)--cycle),solidp, green);
+        draw(surface((1,1,1)--(0,0,1)--(0,1,0)--cycle),solidp, green);
+        draw(surface((1,1,1)--(0,0,1)--(1,0,0)--cycle),solidp, green);
+        draw(surface((1,1,1)--(1,0,0)--(0,1,0)--cycle),solidp, green);
+    
+        draw(surface((0,0,0)--(0,0,1)--(0,1,1)--(0,1,0)--cycle), bg);
+        draw(surface((0,0,0)--(1,0,0)--(1,1,0)--(0,1,0)--cycle), bg);
+        draw(surface((0,0,0)--(1,0,0)--(1,0,1)--(0,0,1)--cycle), bg);
+        draw(surface((0,1,0)--(1,1,0)--(1,1,1)--(0,1,1)--cycle), bg);
+        draw(surface((1,0,0)--(1,1,0)--(1,1,1)--(1,0,1)--cycle), bg);
+        draw(surface((0,0,1)--(1,0,1)--(1,1,1)--(0,1,1)--cycle), bg);
+    
+        //draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1)--(0,0,0)--(0,1,0)--(0,1,1)^^
+        //        (0,1,0)--(1,1,0)--(1,1,1)^^(1,1,0)--(1,0,0)--(1,0,1)^^(0,0,0)--(1,0,0));
+    
+    
+    
+    
+        label("$O$", O, S);
+        label("$1$", (0,0,1), NE);
+        label("$1$", (0,1,0), S);
+        label("$1$", (1,0,0), S);
+        label("$2$", (1,0,1), N);
+        label("$2$", (1,1,0), S);
+        label("$2$", (0,1,1), N);
+        label("$3$", (1,1,1), N);
+    
+        \end{asy}
+    \end{center}
+    
+        % \boxed{2\sqrt{3}}
+    \end{frame}
+
+\begin{frame}[t]{3.6}
+\begin{block}{}[Mathcounts National 2017, Sprint \#24]
+    Penny flips three fair coins into a box with two compartments. Each
+compartment is equally likely to receive each of the coins. What is the
+probability that either of the compartments has at least two coins that landed
+heads? Express your answer as a common fraction.
+	
+\end{block}
+    % \boxed{\frac{5}{16}
+\end{frame}
+
+
+\begin{frame}[t, fragile]{3.7}
+\begin{block}{}[Mathcounts National 2017, Sprint \#30]
+    In the figure shown, two lines intersect at a right angle, and two
+    semicircles are drawn so that each semicircle has its diameter on
+    one line and is tangent to the other line. The larger semicircle has
+    radius 1. The smaller semicircle intersects the larger semicircle,
+    dividing the larger semicircular arc in the ratio 1:5. What is the
+    radius of the smaller semicircle? Express your answer in simplest
+    radical form.
+    
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize(2cm);
+        import cse5;
+        pair O1, O2, T;
+
+        real r1 = 1, r2 = 2 - sqrt(3);
+
+        O1 = (0,r1);
+        O2 = (r2,0);
+        draw((2.5,0)--(0,0)--(0,2.5));
+
+        draw(arc(O1, r1, -90, 90));
+        draw(arc(O2, r2, 0, 180));
+
+    \end{asy}
+    \end{center}
+    % \boxed{2-\sqrt{3}}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[t, fragile]{3.8}
+\begin{block}{} [Mathcounts National 2017, Target \#6]
+Two congruent squares with side length 4 have equilateral triangles constructed
+in them as shown. In one square, one side of the equilateral triangle is a side
+of the square. In the other square, the equilateral triangle has one vertex at a
+vertex of the square and its other two vertices are on the sides of the square. The
+absolute difference of the areas of the two triangles can be expressed in simplest
+radical form as $a\sqrt{b} + c$. What is the value of $a + b + c$?
+
+\end{block}
+\begin{center}
+    \begin{asy}
+    unitsize(2cm);
+    pair A, B, C, D;
+    pair P1, P2, P3;
+    
+    picture pic1, pic2;
+    
+    A = (-2,0);
+    B = (-2,2);
+    C = (0,2);
+    D = (0,0);
+    
+    P1 = rotate(-60)*A;
+    P2 = extension(rotate(-15)*A, D, A, B);
+    P3 = extension(rotate(-75)*A, D, B, C);
+    
+    draw(pic1, A--B--C--D--cycle^^D--P1--A);
+    label(pic1, "$4$", A--D, S);
+    label(pic1, "$4$", A--B, W);
+	
+    draw(pic2, A--B--C--D--cycle^^D--P2--P3--cycle);
+    label(pic2, "$4$", A--D, S);
+    label(pic2, "$4$", D--C, E);
+
+    add(shift(2.5*right)*pic2);
+
+    add(pic1);
+    \end{asy}
+\end{center}
+    % \boxed{-17}
+\end{frame}
+
+\begin{frame}[t]{3.9}
+\begin{block}{}[Mathcounts National 2017, Target \#3]
+    There are a hundred competitors at the National Debating Contest, two from
+each of the 50 states. In how many ways can five finalists be chosen if no state
+may have more than one finalist?
+	
+\end{block}
+    % \boxed{67800320}
+\end{frame}
+
+\begin{frame}[t, fragile]{3.10}
+\begin{block}{}[Mathcounts National 2017, Target \#4]
+    Rays $AC$ and $AE$ intersect circle $O$ at $B$ and $D$, respectively. Segment $DE$ is a
+diameter of circle $O$ and $AB = \frac{1}{2}DE$. If the measure of $ \angle BAD$ is 24 degrees, what is the degree measure of $ \angle COE$ ?
+
+\end{block}
+\begin{center}
+    \begin{asy}
+    unitsize(2cm);
+    pair O, A, B, C, Cp, D, E;
+    
+    O = (0,0);
+    E = (1,0);
+    D = (-1,0);
+    C = rotate(72)*E;
+    B = rotate(-24)*D;
+    
+    Cp = -0.5*B+1.5*C;
+    
+    A = extension(C, B, E, D);
+    
+    draw(circle(O, 1));
+    dot(C);
+    dot(B);
+    dot(D);
+    dot(E);
+    dot(O);
+    dot(A);
+    draw(A--Cp, EndArrow);
+    draw(A--(1.5,0), EndArrow);
+    draw(O--C);
+    
+    label("$O$", O, S);
+    label("$D$", D, SW);
+    label("$E$", E, SE);
+    label("$C$", C, NE);
+    label("$B$", B, NW);
+    label("$A$", A, S);
+    
+    \end{asy}
+    % \boxed{72}
+\end{center}
+	
+\end{frame}
+
+
+\begin{frame}[t]{3.11}
+\begin{block}{}[Mathcounts National 2016, Sprint \#21]
+    Manny has two red socks, two white socks, and two blue socks. He plans to choose two socks at random to wear today, two of the remaining socks to wear tomorrow, and will wear the last two remaining socks the next day. What is the probability that on all three days, Manny wears two different colored socks? Express your answer as a common fraction.
+	
+\end{block}
+    % \boxed{\frac{8}{15}}
+\end{frame}
+
+\begin{frame}[t]{3.12}
+\begin{block}{}[Mathcounts National 2016, Sprint \#30]
+    In isoceles triangle $ABC$, with base $BC$ of length 23 cm, points $P$ and $Q$ are chosen such that $BP = CQ = 9$ cm. If segments $AP$ and $AQ$ trisect angle $BAC$, what is the perimeter of $\triangle ABC$? 
+	
+\end{block}
+    % \boxed{50}
+\end{frame}
+
+
+\newpage
+\section{Challenge Problems}
+\begin{frame}
+    \begin{alertblock}{}
+        \begin{flushright}
+        {\huge Challenge Problems}
+        \end{flushright}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{4.1}
+\begin{block}{}[2001 AIME I, \#7]
+    Triangle $ABC$ has $AB=21$, $AC=22$ and $BC=20$. Points $D$ and $E$ are located on $\overline{AB}$ and $\overline{AC}$, respectively, such that $\overline{DE}$ is parallel to $\overline{BC}$ and contains the center of the inscribed circle of triangle $ABC$. Then $DE=m/n$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$.	
+
+    \textit{Hint: The incenter is at the intersection of angle bisectors.}
+
+\end{block}
+    % \boxed{923}
+\end{frame}
+
+\begin{frame}[t]{4.2}
+\begin{block}{}[1998 AIME, \# 9]
+    Two mathematicians take a morning coffee break each day. They arrive at the cafeteria independently, at random times between 9 a.m. and 10 a.m., and stay for exactly $m$ minutes. The probability that either one arrives while the other is in the cafeteria is $40 \%,$ and $m = a - b\sqrt {c},$ where $a, b,$ and $c$ are positive integers, and $c$ is not divisible by the square of any prime. Find $a + b + c.$
+	
+\end{block}
+    % \boxed{87}
+\end{frame}
+
+\begin{frame}[t]{4.3}
+\begin{block}{}[HMMT 2003]
+    Find the smallest $n$ such that $n!$ ends in 290 zeroes.
+	
+\end{block}
+    % \boxed{1170}
+\end{frame}
+
+
+\end{document}

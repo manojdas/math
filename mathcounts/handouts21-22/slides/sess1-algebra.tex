@@ -1,0 +1,259 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[#1]%
+	{Problem \thesection.\theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Algebra, Word Problems, Logic}
+\subtitle{Mathcounts 21 - Session 1}
+\author{Krishnaveni P., Irene W.}
+\institute{BISV Mathcounts Club 21}
+\date{November 2, 2021}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\titlepage
+
+% \begin{frame}
+
+%  \frametitle{TABLE OF CONTENTS}
+%  \tableofcontents
+% \end{frame}
+% 4.3 \stepcounter{problem} \thesection.\theproblem
+\setcounter{section}{3}
+\section{Beginner Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     After a brisk workout, Justin counts 32 heartbeats in 15 seconds. Based on this count, what is Justin’s expected number of heartbeats in one minute?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2015]
+    % Difficulty 1, Topic: Logic, #274
+    Three identical boxes contain tennis balls, baseballs or both. A label is affixed to each box. The three labels correctly describe the three boxes, but none of the labels is on the correct box. Box 1 is labeled ``Tennis Balls.'' Box 2 is labeled ``Baseballs.'' Box 3 is labeled ``Tennis Balls \& Baseballs.'' Devon reaches into Box 3 and pulls out a baseball. Which box contains only tennis balls?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Exeter Math Club Competition, 2016]
+    Joanna has a fully charged phone. After using it for 30 minutes, she notices that 20 percent of the battery has been consumed. Assuming a constant battery consumption rate, for how many additional minutes can she use the phone until 20 percent of the battery remains?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    Dara is mixing her own paint color, using 3 parts green paint to 2 parts blue to 1 part white. Given that there are 4 quarts in a gallon, if she needs 3 gallons of her paint, how many quarts of white paint should she buy?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2017]
+    % Difficulty 3
+    Jana begins jogging along a path and, 5 minutes later, Zhao begins riding his bicycle along the same path, which has a length of 2 miles. Zhao rides his bicycle at a speed of 10 mi/h, and Jana’s jogging speed is 6 mi/h. If they both begin at one end of the path and end at the other, how many minutes after Zhao reaches the end of the path will Jana reach the end of the path?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     Bobby wants to purchase animal erasers as prizes for the school fair. The animal erasers cost $\$11.52$ per case or can be purchased individually. Bobby's parents gave him a limited allowance, and with the money he has, Bobby can either buy ten cases of animal erasers and eight individual animal erasers or he can buy 1160 animal erasers. In either situation he will not have any money remaining after the purchases. How much money does Bobby have?
+ 	    \end{block}
+\end{probslide}
+
+\section{Intermediate Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Chapter 2021 Sprint]
+    Eli started saving money in his empty piggy bank. He inserted \$1 on every Monday, \$2 on every Tuesday, \$3 on every Wednesday, \$4 on every Thursday, \$5 on every Friday, \$6 on every Saturday, and \$7 on every Sunday. At the end of 24 days, he opened his bank and found he had \$93. On which day of the week did he start inserting money into his piggy bank?
+    
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2015]
+    % Difficulty 4
+    Justin and Shelby board an escalator as it is moving down. Justin walks down 30 steps and reaches the bottom in 72 seconds, while Shelby walks down 40 steps and reaches the bottom in 60 seconds. If the escalator weren’t moving, how many steps would Justin and Shelby each have to walk down to reach the bottom?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     Eazin is traveling to visit Stefan at an average speed of $60$ mi/h. Eazin realizes that if he drives at an average speed of $75$ mi/h, his travel time will be reduced by $6$ minutes. How many miles per hour would Eazin's travel need to average for his travel time to increase by $6$ minutes?
+	    \end{block}
+\end{probslide}
+
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{} [Mathcounts 2021 Chapter Invitational]
+    %   Sprint \#14
+    Jasmine estimates her maximum heart rate, in beats per minute, by subtracting her age from 220. Jasmine’s heart rate during exercise should be between 50\% and 85\% of her maximum heart rate. If Jasmine is 20 years old, what is the highest heart rate, in beats per minute, that she should have during exercise? Express your answer to the nearest whole number.
+        \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+     Jerry lives 20 miles from work. If he drives to work at 50 mi/h, how fast will he need to drive home to average 60 mi/h for the round trip? Express your answer to the nearest whole number.
+ 	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2018]
+    % Difficulty 5, 86
+    If $x^2 - y^2 = 7, x = \frac{12}{y}$ and $y < 0$, what is the value of $x^4 + y^4$?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2019]
+    % Difficulty 4, #10
+    New packaging for fruit snacks contains 10\% less weight than the original packaging. If the new package costs 15\% more than the original package, by what fraction did the unit price increase? Express your answer as a common fraction.
+        \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Exeter Math Club Competition, 2016]
+    In a room of government officials, two-thirds of the men are standing and 8 women are standing. There are twice as many standing men as standing women and twice as many women in total as men in total.
+Find the total number of government officials in the room.
+
+	    \end{block}
+\end{probslide}
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Exeter Math Competition, 2017]
+Every day, Yannick submits 8 more problems to the EMCC problem database than he did the previous day. Every day, Vinjai submits twice as many problems to the EMCC problem database as he did the previous day. If Yannick and Vinjai initially both submit one problem to the database on a Monday, on what day of the week will the total number of Vinjai’s problems first exceed the total number of Yannick’s problems?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2021 State Sprint]
+    % Mathcounts 2021 State Sprint \#13
+    In Mr. Patterson’s class, the average score among students who studied for
+an exam was 78. The average among students who did not study was 54. The overall class average was 70. What portion of the class did not study? Express your answer as a common fraction.
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2012 State Sprint]
+    %2012 State Sprint Round, 17
+    Jack and Jill drove in separate cars to their favorite hill, leaving from the same place at the same time. Jill drove 20\% faster than Jack and arrived half an hour earlier. How many hours did Jack drive?
+
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Exeter Math Club Competition, 2015]
+    % Difficulty: ??, 9 pointer Guts
+    At 17:10, Totoro hopped onto a train traveling from Tianjin to Urumuqi. At 14:10 that same day,
+a train departed Urumuqi for Tianjin, traveling at the same speed as the 17:10 train. If the duration
+of a one-way trip is 13 hours, then how many hours after the two trains pass each other would Totoro
+reach Urumuqi?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Exeter Math Club Competition 2015]
+    % Difficulty : ??
+     In a town, each family has either one or two children. According to a recent survey, 40\% of the children in the town have a sibling. What fraction of the families in the town have two children?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts]
+      Otto's investment portfolio consisted of shares of internet stock and copper stock. During the year, the value of his internet shares increased $10\%$, but the value of his copper shares decreased from $\$10{,}000$ to $\$9{,}000$. During the same year, the total value of his portfolio increased by $6\%$. What was the dollar value of his internet shares at the end of the year?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2017]
+    % Difficulty 4, #92
+    In 2016 the Flying Turtles finished their baseball season with a record of 95 wins and 67 losses. The Dolphins finished the season with 84 wins and 78 losses. The Flying Turtles and Dolphins played each other 19 times during the season. If the Flying Turtles had F wins against teams other than the Dolphins, and the Dolphins had D wins against teams other than the Flying Turtles, what is the value of F + D?
+	    \end{block}
+\end{probslide}
+
+\section{Challenge Practice Problems}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2004 National, Team]
+    % Difficulty: ??, #3
+     The student council sold 661 T-shirts, some at $\$10$ and some at $\$12$. When recording the number of T-shirts they had sold at each of the two prices, they reversed the amounts. They thought they made $\$378$ more than they really did. How many T-shirts actually were sold at $\$10$ per shirt?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2005 National, Team]
+     A collection of nickels, dimes and pennies has an average value of 7 cents per coin. If a nickel were replaced by five pennies, the average would drop to 6 cents per coin. What is the number of dimes in the collection?
+        \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2017]
+    % Difficulty 6, #167
+    Edna enters a room with 1000 bottles lined up in a row left to right. One bottle contains a tasteless magic potion. All bottles to the left of the magic potion contain tasteless water. All bottles to the right of the magic potion contain a bitter poison. Edna can drink from no more than two bottles containing poison before becoming sick and being unable to drink anything else. She can take an unlimited number of drinks from any other bottle. What is the minimum number of bottles from which Edna may need to drink to ensure she can identify the bottle containing the magic potion no matter where it is in the lineup?
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    In Ms. Pham's third grade class, an election with two candidates was held in which the losing candidate received $31\%$ of the vote, expressed to the nearest whole percent. (If the percent is half-way between two integers, it is rounded up. For example, $47.5\%$ is rounded up to $48\%.$) Knowing that each student cast a vote for one or the other candidate, what is the minimum number of votes that could have been cast in the election?
+        \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[1991 Mathcounts National]
+    A man is running through a train tunnel. When he is $\frac{2}{5}$ of the way through, he nears a train that is approaching the tunnel from behind him at a speed of 60 mph. Whether he runs ahead or runs back, he will reach an end of the tunnel at the same time the train reaches that end. At what rate, in miles per hour, is he running? (Assume he runs at a constant rate.)
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2017 State, Team Round]
+    Eddie and Missy are swimming laps in parallel lanes of a swimming pool at different constant speeds. They start simultaneously at opposite ends of the pool. They first pass each other when Eddie has swum 72 feet. Both turn back when they reach the opposite ends, and they next pass each other when Eddie is 40 feet from Missy’s starting point. What is the length of a lap?
+    
+	    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2017 State, Target]
+    Nina’s two dogs, Biter and Nipper, normally eat an entire bag of dog food kibbles in 10 days. She has fed them both for 7 days when Biter breaks a tooth and stops eating the hard food. It takes Nipper 9 more days to finish the bag. What is the ratio of the number of days it would take Biter to eat the whole bag alone to the number of days it would take Nipper to eat the whole bag alone? Express your answer as a common fraction.
+	    \end{block}
+\end{probslide}
+
+
+% \begin{probslide}[t]{}{}
+% \begin{block}{}[HMMT 2003]
+%     Find the smallest $n$ such that $n!$ ends in 290 zeroes.
+	
+% \end{block}
+%     % \boxed{1170}
+% \end{probslide}
+
+
+\end{document}

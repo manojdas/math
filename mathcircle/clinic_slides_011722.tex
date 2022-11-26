@@ -1,0 +1,118 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[#1]%
+	{Problem \theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Math Clinic}
+\subtitle{Challenge Problems from Dr. Sega Handouts}
+\author{Rohan Das}
+\institute{Upper School Math Circle}
+\date{January 17, 2022}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+
+\begin{probslide}[t]{Handout 1, \#39}{2009 Japanese Math Olympiad, Preliminary Round, \#10}
+    \begin{block}{}
+    Evaluate:
+    \[\frac{\sqrt{10+\sqrt{1}} + \sqrt{10+\sqrt{2}} + \cdots + \sqrt{10+\sqrt{99}}}{\sqrt{10-\sqrt{1}} + \sqrt{10-\sqrt{2}} + \cdots + \sqrt{10-\sqrt{99}}}.\]
+
+    % Answer: $\sqrt{2} + 1$
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 1, \#40}{1961 K\"{u}rsch\'{a}k Math Competition, Hungary, \#2}
+    \begin{block}{}
+    Prove that if $a$, $b$, and $c$ are positive real numbers, each less than 1, then the products $(1 - a)b$, $(1 - b)c$, and $(1 - c)a$ cannot all be greater than $\frac{1}{4}$.
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 2, \#40}{2013 USAJMO, \#1}
+    \begin{block}{}
+    Are there integers $a$ and $b$ such that $a^5b + 3$ and $ab^5 + 3$ are both perfect cubes of integers?
+    \end{block}
+\end{probslide}
+
+
+\begin{probslide}[t]{Handout 4, \#36}{2015 Harvard-MIT Math Tournament, Combinatorics, \#3}
+    \begin{block}{}
+    Starting with the number 0, Casey performs an
+    infinite sequence of moves as follows: he chooses a number from $\{1,2\}$ at random (each with probability $\frac{1}{2}$) and adds it to the current number. Let $p_m$ be the probability that Casey ever reaches the number $m$. Find $p_{20} - p_{15}$.
+    % Answer: $\frac{11}{2^{20}}$
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 4, \#38}{}
+    \begin{block}{}
+    For $n \ge 2$, consider the numbers
+    \begin{align*}
+        a_n&= \binom{n}{0} + \binom{n}{3} + \binom{n}{6} + \binom{n}{9} +\ldots, \\
+        b_n&= \binom{n}{1} + \binom{n}{4} + \binom{n}{7} + \binom{n}{10} +\ldots, \\
+        c_n&= \binom{n}{2} + \binom{n}{5} + \binom{n}{8} + \binom{n}{11} +\ldots
+    \end{align*}
+    Prove that the following identity holds:
+    \[a^3_n +b^3_n +c^3_n - 3a_nb_nc_n =2^n.\]
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 5, \#38}{}
+    \begin{block}{}
+    Suppose that $f(x)$ is a polynomial of degree 3 with leading coefficient equal to 2, $f(2014) = 2015$, and
+$f (2015) = 2016$. Find the value of $f (2016) - f (2013)$. 
+    % Answer: 15
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 5, \#40}{}
+    \begin{block}{}
+    Let $a \ne 0$ and let the polynomial $P(x) = ax^4 +bx^3 +cx^2 -2bx+4a$ have two real roots $x_1$ and $x_2$ such that $x_1x_2 = 1$. Prove that $2b^2 + ac = 5a^2$.
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{Handout 9, \#40}{2014 MIT Math Prize for Girls, \#20}
+    \begin{block}{}
+    How many complex numbers $z$ such that $|z| < 30$ satisfy the equation
+    \[e^z = \frac{z-1}{z+1}?\]
+% Answer: 10
+    \end{block}
+\end{probslide}
+
+\end{document}

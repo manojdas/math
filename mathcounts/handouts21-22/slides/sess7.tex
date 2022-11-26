@@ -1,0 +1,499 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+\usepackage{arcs}
+\graphicspath{{./images}}
+
+\newcounter{problem}[section]
+
+\title{Mixed Practice}
+\subtitle{Mathcounts 21 - Session 7}
+\author{Krishnaveni P., Adam T., Irene W.}
+\institute{BISV Mathcounts Club 21}
+\date{February 1, 2022}
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+\section{Selected Problems from 21-22 Handbook}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#20}
+    \begin{block}{}
+    A circle of radius 17 units has its center in the second quadrant. The circle intersects the $y-$axis at $(0, 0)$ and $(0, 17\sqrt{2})$. What is the area of the region of the circle that lies in the third quadrant? Express your answer as a decimal to the nearest tenth. \textit{May use calculator.}
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#28}
+    \begin{block}{}
+    Marvin randomly places 7 Scuba Steve action figures and 6 Diving Dan action figures in 4 distinguishable boxes. If each box must have at least one of each type of action figure, how many ways can Marvin do this?
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#135}
+    \begin{block}{}
+    A fair coin is flipped 8 times. What is the probability that it lands heads up exactly 4 times? Express your answer as a common fraction.
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#195}
+    \begin{block}{}
+    A circle is inscribed in an equilateral triangle of side 12 meters. What is the diameter of the circle? Express your answer as a decimal to the nearest tenth.
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#210}
+    \begin{block}{}
+    Marcus and Malia have a kite in the shape of a kite with diagonals of 25 cm and 18 cm. The shorter portion of the longer strut along a diagonal is 7 cm, as shown. They want to add a new strut, parallel to the shorter diagonal, that divides the kite into two equal areas. How long will that strut be?
+    
+
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize (0.15cm);
+
+        pair O, A, B, C, D;
+
+        O = (0, 0);
+        A = (9, 0);
+        B = (0, 7);
+        C = (-9, 0);
+        D = (0, -18);
+
+        draw (A--B--C--D--A^^A--C^^D--B);
+        Label L = Label("$7$", align=(0,0), position=MidPoint, filltype=Fill(white));
+        draw((1,0) -- (1,7), L=L, arrow=Arrows(), bar=Bars); 
+    \end{asy}
+    \end{center}
+
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#211}
+    \begin{block}{}
+    The net of a certain rectangular pyramid is composed of a 6-inch by 12-inch rectangle surrounded by two pairs of congruent isosceles triangles as shown. Each triangle has two sides of length 7 inches. What is the volume of the pyramid?
+    
+
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize (0.25cm);
+        import olympiad;
+
+        pair O, A, B, C, D, E, F, G, H;
+        real x, y;
+
+        O = (0, 0);
+        A = (-6, -3);
+        B = (6, -3);
+        C = (6, 3);
+        D = (-6, 3);
+
+        x = sqrt(7**2-3**2);
+        E = (-6-x, 0);
+        G = rotate (180, O) * E;
+        
+        F = extension (E, A, O, (0, -1));
+
+        H = rotate (180, O) * F;
+
+        draw (A--B, L="12 in", dashed);
+        draw (B--C--D, dashed);
+        draw (D--A, L="6 in", dashed);
+
+        draw (E--A, L="7 in");
+        draw (A--F, L="7 in");
+
+        draw (F--G--H--E);
+
+
+        add(pathticks(E--A,1,0.5,0,25));
+        add(pathticks(A--F,1,0.5,0,25));
+        add(pathticks(F--B,1,0.5,0,25));
+        add(pathticks(B--G,1,0.5,0,25));
+        add(pathticks(G--C,1,0.5,0,25));
+        add(pathticks(C--H,1,0.5,0,25));
+        add(pathticks(H--D,1,0.5,0,25));
+        add(pathticks(D--E,1,0.5,0,25));
+
+        draw (rightanglemark (B, A, D, 15));
+        draw (rightanglemark (C, B, A, 15));
+        draw (rightanglemark (D, C, B, 15));
+        draw (rightanglemark (A, D, C, 15));
+
+
+    \end{asy}
+\end{center}
+
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#213}
+    \begin{block}{}
+    A circle is drawn inside triangle $ABC$ so that it is tangent to all three sides of the triangle. Triangle $ABC$ has perimeter $24$ cm and area $8 \text{ cm}^2$. What is the radius of the circle? Express your answer as a common fraction.
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#220}
+    \begin{block}{}
+    There are 30 balls, each a different color, and 30 boxes in the same 30 colors. One ball is placed in each box. How many ways can the balls be placed so that exactly 3 of the balls do not match the color of the box they are in?
+	
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#224}
+    \begin{block}{}
+    Danny and Mila are playing tic-tac-toe. Their game board is shown. A fly lands randomly on one of the squares of their game board and then randomly moves to one of the squares that is vertically or horizontally adjacent to the square it landed on. What is the probability that the fly ends on a square marked with an X? Express your answer as a common fraction.
+    
+
+\end{block}
+\begin{center}
+    \begin{asy}
+        unitsize (1cm);
+
+        for (int i = 0;  i < 4; ++i) {
+            draw ((i, 0) -- (i, 3));
+            draw ((0, i) -- (3, i));
+        }
+        label ("O", (1.5, 1.5));
+        label ("O", (0.5, 2.5));
+        label ("X", (1.5, 2.5));
+        label ("X", (2.5, 2.5));
+    \end{asy}
+    \end{center}
+
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#233}
+    \begin{block}{}
+    % Difficulty: 6, may use calculator
+    Suppose $100$ coins are flipped. If $H$ is the number of ways that exactly 48 of them can land heads up, how many zeros are to the right of the rightmost nonzero digit of $H?$ \textit{May use calculator}
+	
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#235}
+    \begin{block}{}
+    % Difficulty: 6, may use calculator
+In the figure shown, lines $AB$ and $CD$ are parallel, line $AB$ passes through the center of circle $O,$ $AB = 12$ cm, and the distance
+between lines $AB$ and $CD$ is $3$ cm. What is the area of the shaded region? Express your answer as a decimal to the nearest tenth. \textit{May use calculator.}
+
+
+\end{block}
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        pair O, A, A1, A2, B, B1, O1, C, C1, C2, D, D1, CD[];
+        path a1, a2;
+
+        unitsize(2cm);
+        O = (0, 0);
+        A = dir (-45);
+        A1 = 1.4 * A;
+        A2 = 1.2 * A;
+        B = rotate (180, O) * A;
+        B1 = rotate (180, O) * A1;
+
+        O1 = 0.25 * dir (45);
+        C1 = rotate (90, O1) * O;
+        C2 = O1 + 4 * 1.2 * (C1 - O1);
+        C1 = O1 + 4 * 1.4 * (C1 - O1);
+        
+        D1 = rotate (180, O1) * C1;
+
+        CD = intersectionpoints (C1--D1, circle(O, 1));
+        C = CD[0];
+        D = CD[1];
+
+        a1 = arc(O, A, C, direction=CCW);
+        a2 = arc(O, D, B, direction=CCW);
+        fill(buildcycle(a1,C1--D1,a2, B1--A1),gray (0.85));
+
+        draw (circle(O, 1));
+        draw (B1--A1, L="12", Arrows (4));
+        draw (A2--C2, L="3");
+
+        draw (D1--C1, Arrows (4));
+        draw (rightanglemark (C2, A2, A, 1));
+
+        dot ("$O$", O);
+        dot ("$A$", A, dir(-85));
+        dot ("$B$", B, 1.2*dir(185));
+
+        dot ("$C$", C, dir (10));
+        dot ("$D$", D, dir(100));
+
+    \end{asy}
+\end{center}
+
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#237}
+    \begin{block}{}
+    % Difficulty: 6, may use calculator
+    The numbers 1 through 10 are marked with points on the number line as shown. Two distinct points are chosen at random from these points. What is the expected value of the distance between the two points? Express your answer as a decimal to the nearest tenth.  \textit{May use calculator.}
+    
+
+\end{block}
+\begin{center}
+
+    \begin{asy}
+        unitsize (1cm);
+        
+        draw ((0, 0)--(11,0), black+1.25, Arrows(4));
+        for (int i = 1; i < 11; ++i) {
+            dot ((string)i, (i, 0), S);
+        }
+    \end{asy}
+    \end{center}
+
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#239}
+    \begin{block}{}
+    % Difficulty: 6, may use calculator
+    What is the smallest positive three-digit integer $n$ for which each of the expressions $\dfrac{3n+ 4}{5}, \dfrac{4n+ 5}{3}$ and $\dfrac{5n+ 3}{4}$ represents an integer? \textit{May use calculator.}
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#242}
+    \begin{block}{}
+    % Difficulty 5, may use calculator
+    Convex quadrilateral $ABCD$ has $AB = 4, BC = 5, AC = 5, AD = 3$ and $CD = 4.$ What is the area of quadrilateral $ABCD?$ Express your answer as a decimal to the nearest tenth. \textit{May use calculator.}
+	
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#249}
+    \begin{block}{}
+    % Difficulty: 6. May use calculator.
+    Art opened a savings account that earned compound interest, compounded monthly. After the initial deposit, Art made no deposits and no withdrawals. At the end of 8 months his account balance was \$499.54, and at the end of 18 months the balance was \$525.09. How much money did Art initially deposit in this account? Express your answer to the nearest whole dollar. \textit{May use calculator.}
+	
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts Handbook 21-22, \#250}
+    \begin{block}{}
+    % Difficulty: 7, Expected Value
+    Stacia has five pairs of gloves, each pair being a different color. She washed them all and now wants to match up the pairs. She randomly pairs each left glove with a right glove. If all five pairs do not match, she randomly pairs them all up again, and repeats until all five pairs do match. What is the expected number of times she will pair the gloves until all of them match? \textit{May use calculator.}
+	
+    \end{block}
+\end{frame}
+
+
+\section{Intermediate to Hard Problems}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#5}
+    \begin{block}{}
+    In the sum shown, each letter stands for a different nonzero digit. What is the three-digit number $ IKA $?
+    
+
+\end{block}
+\begin{center}
+        \begin{tabular}{cccc}
+            & A& P & I \\ 
+            & A& P & I \\ 
+            & A& P & I \\ 
+            + & A& P & I \\ \hline
+            & I & K & A
+    
+        \end{tabular}        
+    \end{center}
+
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#8}
+    \begin{block}{}
+    The first and fourth terms of a geometric sequence are 4 and 9, respectively. What is the geometric mean of the second and third terms?
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#12}
+    \begin{block}{}
+    Rudy has a basket of perfectly cylindrical cookies of varying sizes. He has seven cookies of radius 3 inches, eight cookies of radius 2 inches and seven cookies of radius 1 inch. All cookies are 0.25 inch thick. Rudy splits the cookies into 3 groups such that each group's cookies have the same total volume. If all the cookies remain whole, what is the fewest possible number of cookies in any group?
+    
+    \end{block}
+\end{frame}
+
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Target \#3}
+    \begin{block}{}
+    If $ p\oplus q=\sqrt{p^2+q^2} $ and $ p \ominus q=\sqrt{p^2-q^2} $, what is the value of
+\[(1\oplus2\oplus3\oplus4\oplus5\oplus6\oplus7\oplus9\oplus10) \ominus(1\oplus2\oplus3\oplus4\oplus5\oplus6\oplus7\oplus8\oplus9)? \] \textit{May use calculator.}
+    
+    \end{block}
+\end{frame}
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Target \#4}
+    \begin{block}{}
+    When completely filled in, each cell in the five-by-five array shown will contain integers an integer so that the sum of the integers in each contiguous two-by-two square block of cells is positive. What is the greatest possible number of negative integers in the array? \textit{May use calculator.}
+    
+
+\end{block}
+\begin{center}
+        \begin{asy}
+            unitsize(0.5cm);
+
+            for (int i = 0; i < 6; ++i) {
+                draw((i,0)--(i,5)^^(0,i)--(5,i));
+            }
+        \end{asy}
+    \end{center}
+
+\end{frame}
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Target \#5}
+    \begin{block}{}
+    In equation $ AB+CD=EFG $, each letter represents a different digit. What is the greatest possible value of the three-digit number $ EFG $? \textit{May use calculator.}
+    
+    \end{block}
+\end{frame}
+%--------------
+
+
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Target \#7}
+    \begin{block}{}
+    A 4-up number is defined as a positive integer that is divisible by neither 2 nor 3 and does not have 2 or 3 as any of its digits. How many numbers from 400 to 600, inclusive, are 4-up numbers? \textit{May use calculator.}
+    
+    \end{block}
+\end{frame}
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#22}
+    \begin{block}{}
+    The polynomials $ x^3+5x^2-69x+180 $ and $ x^3+8x^2-36x+144 $ share a common
+factor of the form $ x + a $. What is the value of $ a $?
+    
+    \end{block}
+\end{frame}
+
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#25}
+    \begin{block}{}
+    If $ a_1,a_2,a_3,a_4,a_5 $ is an increasing geometric sequence of real numbers such that
+$ a_3=1 $ and $ a_1+a_5=10 $, then the value of $ a_4 $ can be expressed in simplest radical
+form as $ \sqrt{a} + \sqrt{b} $.What is the value of $ a+b $?
+    
+    \end{block}
+\end{frame}
+%--------------
+
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#27}
+    \begin{block}{}
+    An equilateral triangle is divided into 16 congruent equilateral triangles, half of which are shaded, and point $ P $ lies at a vertex as shown. If a random line passing through point $ P $ is drawn, what is the probability that the line divides the total shaded area exactly in half? Express your answer as a common fraction.
+    
+
+\end{block}
+\begin{center}
+        \begin{asy}
+            unitsize(1.25cm);
+            real s = 4, h = sqrt(3)*s/2;
+            pair P = (3*s/8, h/4);
+
+            for (int i = 0; i < 2; ++i) {
+                real x1, x2, y;
+                x1 = i*s/4+s/8;
+                x2 = s - x1;
+                y = (2*i+1)*h/4;
+
+                for (int j = 0; j < 3 - 2*i; ++j) {
+                    real xj = x1 + j*s/4;
+
+                    filldraw((xj, y)--(xj+s/8,y-h/4)--(xj+s/4,y)--(xj+s/8,y+h/4)--cycle, gray(0.5), black);
+                }
+                draw((x1,y)--(x2,y));
+            }
+            draw((0,0)--(s,0)--(s/2,h)--cycle^^(s/4,h/2)--(3*s/4,h/2));
+            dot(P, red);
+            label("$P$", P, N);
+        \end{asy}
+    \end{center}
+
+\end{frame}
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#28}
+    \begin{block}{}
+    How many six-digit positive integers containing six distinct nonzero digits are divisible by 99?
+    
+    \end{block}
+\end{frame}
+%--------------
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem\ ---  Mathcounts 2018 National, Sprint \#29}
+    \begin{block}{}
+    Isosceles trapezoid $ ABCD $ has parallel bases $ AB $ and $ CD $. Point $ E $ is the intersection of diagonals $ AC $ and $ BD $.The height of the trapezoid is $ 20 $ cm. The area of triangle $ ADE $ is 75 cm. If bases $ AB $ and $ CD $ have integer lengths with $ AB< CD $, what is the sum of all possible values of $ AB $?
+
+    
+
+\end{block}
+\begin{center}
+        \begin{asy}
+            unitsize(0.15cm);
+            pair A, B, C, D, E;
+        
+            D= (0,0);
+            C= (18,0);
+            A= (4, 20);
+            B = (12,20);
+        
+            E = intersectionpoint((D--B), (A--C));
+        
+            draw(D--C--B--A--cycle^^D--B^^C--A);
+            label("$D$", D, SW);
+            label("$C$", C, SE);
+            label("$B$", B, NE);
+            label("$A$", A, NW);
+            label("$E$", E, S);  
+            
+            // filltype = background color
+            Label L = Label("$20$", align=(0,0), position=MidPoint, filltype=Fill(white));
+            draw((C.x+4,C.y) -- (C.x+4,C.y+20), L=L, arrow=Arrows(), bar=Bars);   
+
+        \end{asy}
+    \end{center}
+
+\end{frame}
+%--------------
+
+
+
+
+
+\end{document}

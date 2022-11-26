@@ -1,0 +1,3784 @@
+\section{Session Transcript}
+%------------------
+%-- Message Achilleas ( moderator )
+Today we will be discussing locus problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The word locus (plural loci) is Latin for "place”. In mathematics, the meaning of locus is the set of points satisfying a particular condition, often forming a certain curve.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll start off with an easier problem so everyone will know both just what I mean by 'locus problem' and what is required to present a full solution to a locus problem.
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Given two lines in a plane, find the locus of all points which are equidistant from the two lines.
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's wrong with the answer 'the angle bisector'?
+
+%------------------
+%-- Message Trollyjones ( user )
+% what if they are parallel
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% the lines could be parallel
+
+%------------------
+%-- Message bigmath ( user )
+% the lines can be parallel
+
+%------------------
+%-- Message Bimikel ( user )
+% it doesn't count the case when the lines are parallel
+
+%------------------
+%-- Message AOPS81619 ( user )
+% They might be parallel
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% What if the two lines are parallel?
+
+%------------------
+%-- Message pike65_er ( user )
+% the lines need to meet at a point
+
+%------------------
+%-- Message Catherineyaya ( user )
+% they might not intersect?
+
+%------------------
+%-- Message ca981 ( user )
+% If two lines are parallel ?
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are a lot of things wrong with this answer: first, it's not completely correct - what if the given lines are parallel? Second, where's the proof? Third, what should the proof consist of? Fourth, is the answer even accurate if the lines do intersect?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's take care of that first question first.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What if the given lines are parallel?
+
+%------------------
+%-- Message MTHJJS ( user )
+% well its the line midway between the 2 parallel lines
+
+%------------------
+%-- Message MathJams ( user )
+% Pick a line perpendicular to the two parallel lines, and let it intersect the lines at $A$ and $B$. Draw a line parallel to both of the lines through the midpoint of AB
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% we take the line that is parallel to the 2 lines and is the midway of the 2 given lines
+
+%------------------
+%-- Message shausa ( user )
+% then the locus is a parallel line that is the "middle" of both lines (not sure how to explain the middle)
+
+%------------------
+%-- Message Achilleas ( moderator )
+If the given lines are parallel, then our locus is a line parallel and midway between the two lines. How can we prove this?
+
+%------------------
+%-- Message MTHJJS ( user )
+% show that any point on the midline is equidistant
+
+%------------------
+%-- Message MathJams ( user )
+% pick any point on the line and prove it is equidistant
+
+%------------------
+%-- Message Achilleas ( moderator )
+Clearly every point on our line between the given lines is in the locus - every point on this line is equidistant from the two given lines basically by definition of the line. Does that prove that this line is our locus?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Show that no other points are in the locus
+
+%------------------
+%-- Message coolbluealan ( user )
+% we have to prove every other point doesn't work
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% No, one must prove that no other point satisfies the condition in the question
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% *show that a point not on this line doesn't work
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We have to show that no other points belong to the locus
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, it does not. It only proves that this line is in our locus. We must also prove that every point that is in the locus is on the line (i.e. that there aren't points not on this line that are still in the locus). How do we do so?
+
+%------------------
+%-- Message Ezraft ( user )
+% reach a contradiction using a point which is not on the line
+
+%------------------
+%-- Message Achilleas ( moderator )
+% How?
+
+%------------------
+%-- Message Trollyjones ( user )
+% show that it is must be  closer to one line than the other
+
+%------------------
+%-- Message Achilleas ( moderator )
+Call our given lines k and m; we note that every point on one side of the line we think is our locus is closer to either k or m than to the other and is thus not in the locus.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we tackle intersecting lines. Here, most of you know the answer to be the pair of lines which are angle bisectors (not just 1!) of the angles formed by the two lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we prove it?
+
+%------------------
+%-- Message bryanguo ( user )
+% similar strategy?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Meaning?
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark*}
+    (I see most of you omit ``from the two lines" when writing ``equidistant."
+    %------------------
+    %-- Message Achilleas ( moderator )
+    However, ``equidistant" must be used along with ``from the two lines".)        
+\end{remark*}
+
+%------------------
+%-- Message MTHJJS ( user )
+% well choose point on angle bisector and prove equidistant, and prove unique
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show the points on the angle bisectors are in the locus and that no other points work.
+
+%------------------
+%-- Message bryanguo ( user )
+% show that the distance from the angle bisectors to both k and m are equal, then show no other points other than the angle bisectors work
+
+%------------------
+%-- Message MTHJJS ( user )
+% choose point on angle bisector and prove equidistant to 2 lines, and prove that other points not on the line are closer to 1 line
+
+%------------------
+%-- Message Catherineyaya ( user )
+% show that every point on the angle bisectors is equidistant from the two lines, and that no other points are
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have two parts: proving that every point on the angle bisectors is in the locus, and proving that every point in the locus is on one of the angle bisectors.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we prove the first part (that every point on the angle bisectors is in the locus)?
+
+%------------------
+%-- Message Trollyjones ( user )
+% i think we can use triangle congruency
+
+%------------------
+%-- Message mustwin_az ( user )
+% draw perpendicular and use congruent triangles
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Just draw perpendiculars and then see that they for 2 congruent triangles
+
+%------------------
+%-- Message GFei ( user )
+% draw the height and make congruent triangles
+
+%------------------
+%-- Message ca981 ( user )
+% For any point on angle bisector, draw perpendicular lines to both lines, prove through congruent triangles.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Invoke the property that any point on an angle bisector is equidistant to the sides of the angle -- or use triangle congruence
+
+%------------------
+%-- Message vsar0406 ( user )
+% We could draw perpendicular lines from an arbitrary point on the angle bisector to each of the two original lines and use triangle congruency, I think.
+
+%------------------
+%-- Message Bimikel ( user )
+% we use triangle congruency
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is a simple exercise in congruent triangles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = origin, BB = dir(150), CC = dir(230);
+pair D = point(A--bisectorpoint(BB,A,CC),.6), B = foot(D,A,BB), C = foot(D,A,CC);
+draw(BB--A--CC);
+draw(anglemark(B,A,D,3)^^anglemark(D,A,C,3),cyan);
+draw(MP("A",A,dir(22),s)--bisectorpoint(BB,A,CC), arrow = ArcArrow(SimpleHead),green);
+draw(MP("D",D,NW,s)--MP("B",B,NE,s)^^D--MP("C",C,SE,s)^^rightanglemark(D,B,A,1)^^rightanglemark(D,C,A,1),red);
+draw(scale(1.5,CC,A,.05),arrow = ArcArrows(SimpleHead));
+draw(scale(1.8,BB,A,.3),arrow = ArcArrows(SimpleHead));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Catherineyaya ( user )
+% dropping perpendiculars to the two lines forms 2 congruent right triangles, so every point on the angle bisectors is equidistant from the two lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AD$ bisects the given lines as shown. Since triangles $ADB$ and $ADC$ are congruent, $DB = DC,$ so $D$ is equidistant from the two lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now the second part: prove that every point in the locus is on one of the angle bisectors. How do we prove that?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does it mean for a point to be in the locus?
+
+%------------------
+%-- Message Trollyjones ( user )
+% it is equidistant from the two lines
+
+%------------------
+%-- Message Ezraft ( user )
+% it means that it is equidistant from the two lines
+
+%------------------
+%-- Message bigmath ( user )
+% it's equidistant from the two lines
+
+%------------------
+%-- Message Catherineyaya ( user )
+% the point is equidistant from the two lines
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% the point is equidistant from the two lines
+
+%------------------
+%-- Message JamesSong ( user )
+% it is equal distance from btoh lines
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's equidistant from the 2 given lines
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Then the point is equidistant from the two lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+It means that it is equidistant from the two lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we assume a point is equidistant from the two lines. Then what do (we want to) show for this point?
+
+%------------------
+%-- Message MathJams ( user )
+% it is on the angle bisector
+
+%------------------
+%-- Message pritiks ( user )
+% it is on the angle bisector
+
+%------------------
+%-- Message bryanguo ( user )
+% that it must lie on one of the angle bisectors
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it has to be on the angle bisector
+
+%------------------
+%-- Message dxs2016 ( user )
+% we want to show that the point lies on the angle bisector
+
+%------------------
+%-- Message bigmath ( user )
+% show that it lies on one of the angle bisectors of the two lines
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% show that it lies on one of the two angle bisectors
+
+%------------------
+%-- Message Ezraft ( user )
+% we want to show that it is on the angle bisector
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% That it lies on the angle bisector
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then we show that it lives on an angle bisector. How?
+
+%------------------
+%-- Message ca981 ( user )
+% Still using congruent triangles, based on equal distance, then prove two angles are equal
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% congruent triangles
+
+%------------------
+%-- Message mark888 ( user )
+% Use congruent triangle again to show the angles are equal.
+
+%------------------
+%-- Message pritiks ( user )
+% could we use the triangle congruence strategy again?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Right!
+
+%------------------
+%-- Message coolbluealan ( user )
+% drop altitudes and use HL congruence
+
+%------------------
+%-- Message SlurpBurp ( user )
+% drop perpendiculars and use HL congruency
+
+%------------------
+%-- Message Yufanwang ( user )
+% Prove the two triangles formed by dropping perpendiculars to the two lines are congruent
+
+%------------------
+%-- Message mustwin_az ( user )
+% since it is equidistant, by HL triangle congruency the triangles it forms with k,m are congruent and thus it must be on the angle bisector
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = origin, BB = dir(150), CC = dir(230);
+pair D = point(A--bisectorpoint(BB,A,CC),.6), B = foot(D,A,BB), C = foot(D,A,CC);
+draw(BB--A--CC);
+//draw(anglemark(B,A,D,3)^^anglemark(D,A,C,3),cyan);
+draw(MP("A",A,dir(22),s)--bisectorpoint(BB,A,CC), arrow = ArcArrow(SimpleHead),green);
+draw(MP("D",D,NW,s)--MP("B",B,NE,s)^^D--MP("C",C,SE,s)^^rightanglemark(D,B,A,1)^^rightanglemark(D,C,A,1),red);
+draw(scale(1.5,CC,A,.05),arrow = ArcArrows(SimpleHead));
+draw(scale(1.8,BB,A,.3),arrow = ArcArrows(SimpleHead));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $D$ is equidistant from lines $AB$ and $AC.$ By HL Congruency, triangles $ADB$ and $ADC$ are congruent; therefore $\angle BAD = \angle CAD$ and $D$ is on the angle bisector of $\angle BAC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What have we left out?
+
+%------------------
+%-- Message mustwin_az ( user )
+% if the point is the intersection A
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our proofs didn't address the intersection point of the two lines, which is obviously in the locus, since that point has a distance of $0$ from both lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{6pt}
+So, to summarize:
+
+%------------------
+%-- Message Achilleas ( moderator )
+(1) You must consider all possible configurations and address them all in your solutions, as we did when we considered the given lines to be parallel;
+
+%------------------
+%-- Message Achilleas ( moderator )
+(2) Your proof of what is in the locus must contain two parts - proving that every point in your claimed locus is in fact in the locus, and also proving that every point that is in the locus is in your claimed locus (these proofs are usually very similar, but you have to do them both - I recommend clearly identifying both parts in your proof);
+
+%------------------
+%-- Message Achilleas ( moderator )
+(3) You must make sure your proof covers all possible points of the locus - sometimes points must be excluded and sometimes you need a line just to address a given point, as we did with the intersection point.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In general, the locus is usually a point, line, or a circle. To show the locus is a point, we usually show that it is the intersection of two fixed objects like lines or circles. Often when the locus is a line, we prove it by showing that $\angle PAB$ is fixed, where $A$ and $B$ are fixed and $P$ is in the locus.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, if the locus is a circle, we often prove either that the locus is a fixed distance from a point or that $\angle APB$ is fixed, where $A$ and $B$ are fixed and $P$ is in the locus (thus $\angle APB$ is inscribed in arc $AB$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice all the `fixed's in there -- `fixed' is very important in locus problems. We almost always solve locus problems by hunting for things which are fixed.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Now, on with more interesting problems. We won't always go through all the painstaking details of the proofs in class, but you better do so for contests (and you should for problems in your homework).
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Rays $OA$ and $OB$ are perpendicular. Points $M$ and $N$ are on rays $OA$ and $OB,$ respectively. Points $P$ and $Q$ are constructed such that $MNPQ$ is a square with $P$ on the opposite side of $MN$ from $O.$ Find the locus of the center of this square as $M$ and $N$ vary.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair O = origin, B = dir(90), A = scale(1.7)*dir(0), N = scale(.85)*B, M = scale(.25)*A, Q = M+rotate(-90)*(N-M), P = N+rotate(-90)*(N-M);
+draw(MP("O",O,SW,s)--scale(1.3)*B, arrow=ArcArrow(SimpleHead));
+draw(O--scale(1.7)*A, arrow=ArcArrow(SimpleHead));
+dot(MP("B",B,W,s)^^MP("A",A,S,s));
+draw(MP("N",N,W,s)--MP("M",M,S,s)--MP("Q",Q,E,s)--MP("P",P,NE,s)--cycle^^P--M^^N--Q);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's one way we can get a handle on locus problems when we first start?
+
+%------------------
+%-- Message dxs2016 ( user )
+% draw a few configurations?
+
+%------------------
+%-- Message pritiks ( user )
+% testing things out
+
+%------------------
+%-- Message Catherineyaya ( user )
+% draw different cases
+
+%------------------
+%-- Message MathJams ( user )
+% try a few examples
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Draw multiple (different) diagrams
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% draw multiple configurations
+
+%------------------
+%-- Message MathJams ( user )
+% try to find what the locus is by trying a few configurations
+
+%------------------
+%-- Message Trollyjones ( user )
+% try some diagrams and plot possibities
+
+%------------------
+%-- Message Yufanwang ( user )
+% Draw a few diagrams to see what the locus looks like, then try proving it?
+
+%------------------
+%-- Message leoouyang ( user )
+% Have different cases?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% try a few points for $M$ and $N$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Trying a few cases is a good first step. Which cases would we test?
+
+%------------------
+%-- Message pike65_er ( user )
+% A case where M or N is on O
+
+%------------------
+%-- Message Catherineyaya ( user )
+% M and/or N is O, A, B?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $M = O, N = O,$ and $OM = ON?$
+
+%------------------
+%-- Message dxs2016 ( user )
+% M is at O?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can consider simple cases, particularly extreme ones. Here we can place $M$ or $N$ at $O,$ or make them equidistant from $O.$ We see:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair O = origin, B = dir(90), A = scale(1.7)*dir(0), N = scale(.85)*B, M = origin, Q = M+rotate(-90)*(N-M), P = N+rotate(-90)*(N-M);
+
+picture pic1;
+size(pic1, 200);
+draw(pic1,O--scale(1.3)*B, arrow=ArcArrow(SimpleHead));
+draw(pic1,O--scale(1.7)*A, arrow=ArcArrow(SimpleHead));
+dot(pic1,B^^A);
+draw(pic1,N--M--Q--P--cycle^^P--M^^N--Q);
+label(pic1,"$B$",B,W,s);
+label(pic1,"$A$",A,S,s);
+label(pic1,"$O$",O,W,s);
+label(pic1,"$N$",N,W,s);
+label(pic1,"$M$",M,S,s);
+label(pic1,"$Q$",Q,S,s);
+label(pic1,"$P$",P,NE,s);
+draw(pic1,rightanglemark(B,O,A,2));
+//add(pic1.fit(),origin);
+
+picture pic2;
+size(pic2, 200);
+add(pic2, pic1.fit(),origin,10W);
+
+N = scale(.7)*B;
+M = rotate(-90)*N;
+Q = M+rotate(-90)*(N-M);
+P = N+rotate(-90)*(N-M);
+
+picture pic2;
+size(pic2, 200);
+draw(pic2,O--scale(1.3)*B, arrow=ArcArrow(SimpleHead));
+draw(pic2,O--scale(1.7)*A, arrow=ArcArrow(SimpleHead));
+dot(pic2,B^^A);
+draw(pic2,N--M--Q--P--cycle^^P--M^^N--Q);
+label(pic2,"$B$",B,W,s);
+label(pic2,"$A$",A,S,s);
+label(pic2,"$O$",O,W,s);
+label(pic2,"$N$",N,W,s);
+label(pic2,"$M$",M,S,s);
+label(pic2,"$Q$",Q,E,s);
+label(pic2,"$P$",P,NE,s);
+draw(pic2,rightanglemark(B,O,A,2));
+
+picture pic;
+add(pic, pic1.fit(),origin,(0,-1.5)+10W);
+add(pic, pic2.fit(pic1.ysize),origin,10E);
+
+add(pic.fit());
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do these suggest a guess as to our locus?
+
+%------------------
+%-- Message Yufanwang ( user )
+% A line?
+
+%------------------
+%-- Message dxs2016 ( user )
+% line?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Which line?
+
+%------------------
+%-- Message ay0741 ( user )
+% appears to be on angle bisector of BOA?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the angle bisector of $\angle BOA$
+
+%------------------
+%-- Message coolbluealan ( user )
+% the angle bisector of BOA
+
+%------------------
+%-- Message RP3.1415 ( user )
+% angle bisector of $\angle BOA$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It seems like it should be the angle bisector of $\angle BOA$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The two centers are along the angle bisector of $\angle AOB$. The locus sure doesn't look like it's a circle. (Most of the time answers to locus problems are points, lines, or circles - so we look for these first.)  We might guess that the locus is the angle bisector of $\angle AOB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we prove either direction easily (that every point on this angle bisector is in the locus or that every point in the locus is on the angle bisector)?
+
+%------------------
+%-- Message Yufanwang ( user )
+% We can prove that every point on this angle bisector is in the locus easily
+
+%------------------
+%-- Message Catherineyaya ( user )
+% every point on angle bisector is in locus by a construction
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's pretty easy to see that every point on the angle bisector is in the locus since we can drop perpendiculars from any point on the angle bisector to rays $OA$ and $OB$ and let the feet of these perpendiculars be $M$ and $N$ (you'd have to supply the details in a contest, of course).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now can we prove that every point in the locus is on this angle bisector (i.e. that no matter what $M$ and $N$ are, the center of square ends up on the bisector of $AOB$)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we have to prove in order to prove that every point in the locus is on the angle bisector?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If point $X$ is in the locus (i.e. $X$ is the intersection of diagonals for some square), then what do we have to show?
+
+%------------------
+%-- Message Yufanwang ( user )
+% We have to show that X is on the angle bisector.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% X is on the angle bisector
+
+%------------------
+%-- Message Catherineyaya ( user )
+% that it's on the angle bisector of <AOB
+
+%------------------
+%-- Message pritiks ( user )
+% angle XOA is always 45 degrees
+
+%------------------
+%-- Message Ezraft ( user )
+% we have to show that it is on the angle bisector of $\angle BOA$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is on the angle bisector
+
+%------------------
+%-- Message dxs2016 ( user )
+% it's on the angle bisector
+
+%------------------
+%-- Message Trollface60 ( user )
+% OX bisects angle BOA
+
+%------------------
+%-- Message mark888 ( user )
+% OX bisects angle BOA
+
+%------------------
+%-- Message GFei ( user )
+% X is on the angle bisector of AOB
+
+%------------------
+%-- Message razmath ( user )
+% angle XOA =45 degrees
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle XOA = \angle XOB$
+
+%------------------
+%-- Message MTHJJS ( user )
+% X is on angle bisector, or angle XMQ = 45 deg
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It lies on the angle bisector of $\angle AOB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that if point $X$ is in the locus (i.e. $X$ is the intersection of diagonals for some square), then $\angle XOA = 45 ^\circ$.
+
+%------------------
+%-- Message Trollyjones ( user )
+% point X is equidistant to OA and OB
+
+%------------------
+%-- Message MathJams ( user )
+% X is equidistant from OA and OB
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $X$ is equidistant from our two rays
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% The distances to the 2 rays are equal.
+
+%------------------
+%-- Message ca981 ( user )
+% Equal distance to both lines OA and OB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Every such point is equidistant from $OA$ and $OB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+These claims are equivalent to $X$ being on the angle bisector, as well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair O = origin, B = dir(90), A = scale(1.7)*dir(0), N = scale(.6)*B, M = scale(.6)*A, Q = M+rotate(-90)*(N-M), P = N+rotate(-90)*(N-M), X = extension(P,M,Q,N);
+
+picture pic1;
+size(pic1, 200);
+draw(pic1,O--scale(1.3)*B, arrow=ArcArrow(SimpleHead));
+draw(pic1,O--scale(1.7)*A, arrow=ArcArrow(SimpleHead));
+dot(pic1,B^^A);
+draw(pic1,N--M--Q--P--cycle^^P--M^^N--Q);
+label(pic1,"$B$",B,W,s);
+label(pic1,"$A$",A,S,s);
+label(pic1,"$O$",O,W,s);
+label(pic1,"$N$",N,W,s);
+label(pic1,"$M$",M,S,s);
+label(pic1,"$Q$",Q,E,s);
+label(pic1,"$P$",P,N,s);
+label(pic1,"$X$",X,dir(65),s);
+//add(pic1.fit(),origin);
+
+add(pic1.fit());
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note}
+    One of the standard ways to investigate locus problems is to look for items that are fixed. For example, look for angles that are always the same, or points that are always on some circle. 
+\end{note}
+What do we find in this problem?
+%------------------
+%-- Message Achilleas ( moderator )
+Is there a fixed angle?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% yes, angle MNX = 45 degrees
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle NXM$ is fixed
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle NXM=90^{\circ}$
+
+%------------------
+%-- Message MathJams ( user )
+% $\angle NXM=90, \angle XNM=\angle XMN=45$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle NXM$
+
+%------------------
+%-- Message pike65_er ( user )
+% $\angle XNM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Angle $XMN$ is always $45$ degrees (as are the other similar angles we can make from $X$).
+
+%------------------
+%-- Message mark888 ( user )
+% angle XOA or angle XOB is 45 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since we want to show that $\angle XOA = 45^\circ$, we look for ways to show $\angle XOA = \angle XNM$. What's the easiest way to do this?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% cyclic quads
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message Bimikel ( user )
+% using cyclic quadrilaterals
+
+%------------------
+%-- Message leoouyang ( user )
+% Cyclic quadrilateral?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Using a cyclic quadrilateral seems the easiest way.
+
+%------------------
+%-- Message Yufanwang ( user )
+% $OMXN$ is a cyclic quadrilateral as $\angle NXM = \angle NOM = 90^\circ$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $NOMX$ is cyclic
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle NXM = 90^\circ$, which implies that $NOMX$ is always cyclic. Furthermore, $\angle MNX = 45^\circ$. Because $NOMX$ is cyclic, this gives us that $\angle XOM = \angle XNM = 45^\circ$ and we are done
+
+%------------------
+%-- Message MathJams ( user )
+% cyclic quadrilateral ONXM
+
+%------------------
+%-- Message coolbluealan ( user )
+% quadrilateral XMON is cyclic
+
+%------------------
+%-- Message Catherineyaya ( user )
+% since NOMX is cyclic, $\angle XNM=\angle XOM=\angle XOA=45^\circ$
+
+%------------------
+%-- Message Trollyjones ( user )
+% ONXM is one
+
+%------------------
+%-- Message Achilleas ( moderator )
+These two angles are equal if $XMON$ is cyclic.
+
+%------------------
+%-- Message MTHJJS ( user )
+% prove ONXM is cyclic, but we know angle NXM = angle BOA = 90, and its cyclic
+
+%------------------
+%-- Message leoouyang ( user )
+% We can say that  NOMX is a cyclic quadrilateral because Angle NOM and Angle MXN are both 90 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right angles $MON$ and $MXN$ mean $XMON$ is cyclic and we're finished. Since $XMON$ is cyclic, we have $\angle XNM = \angle XOA = 45^\circ$, no matter where $M$ and $N$ are.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note}
+    Cyclic quadrilaterals are often extremely useful in locus problems, particularly since the answers to locus problems are often a circle or some portion thereof (cyclic quads are obviously helpful here) or a line/ray (in which cyclic quads can be used to fix an angle as we did above).    
+\end{note}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next Problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Given points $A$ and $B$ in the plane, what is the locus of all points $P$ in the plane such that $AP/BP = k$ for some positive constant $k?$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+There is a special value of $k$ that we should take care of first. Which value is that?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(well, it can't be 0)
+
+%------------------
+%-- Message MTHJJS ( user )
+% 1
+
+%------------------
+%-- Message Trollyjones ( user )
+% 1
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $k=1$?
+
+%------------------
+%-- Message razmath ( user )
+% 1?
+
+%------------------
+%-- Message pritiks ( user )
+% 1
+
+%------------------
+%-- Message SlurpBurp ( user )
+% 1
+
+%------------------
+%-- Message dxs2016 ( user )
+% 1?
+
+%------------------
+%-- Message Yufanwang ( user )
+% 1?
+
+%------------------
+%-- Message MathJams ( user )
+% 1
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $k=1$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% k = 1
+
+%------------------
+%-- Message leoouyang ( user )
+% 1
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% 1?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% 1
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 1
+
+%------------------
+%-- Message coolbluealan ( user )
+% 1
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 1
+
+%------------------
+%-- Message mark888 ( user )
+% k=1
+
+%------------------
+%-- Message bryanguo ( user )
+% $1$
+
+%------------------
+%-- Message myltbc10 ( user )
+% 1
+
+%------------------
+%-- Message Achilleas ( moderator )
+(k was given to be positive)
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $k=1$, then what do we have?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% if $k=1$, then it's the perpendicular bisector of $AB$
+
+%------------------
+%-- Message mustwin_az ( user )
+% the perpendicular bisector of AB
+
+%------------------
+%-- Message razmath ( user )
+% perpendicular bisector of AB
+
+%------------------
+%-- Message MTHJJS ( user )
+% perpendicular bisector of AB https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif
+
+%------------------
+%-- Message MathJams ( user )
+% P lies on the perpendicular bisector of $AB$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Then, it  the locus is the perpendicular bisector of $AB$
+
+%------------------
+%-- Message Bimikel ( user )
+% the perpendicular bisector of $AB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% the perpendicular bisector of line segment $AB$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% The perpendicular bisector of $AB$ is the locus
+
+%------------------
+%-- Message myltbc10 ( user )
+% the perpendicular bisector of AB
+
+%------------------
+%-- Message Catherineyaya ( user )
+% perpendicular bisector of AB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $P$ lies on the perpendicular bisector of $AB$
+
+%------------------
+%-- Message ay0741 ( user )
+% the perpendicular bisector of AB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the locus is the perpendicular bisector of $AB$
+
+%------------------
+%-- Message vsar0406 ( user )
+% Point P must lie on the perpendicular bisector of segment AB in that case.
+
+%------------------
+%-- Message tigerzhang ( user )
+% the perpendicular bisector of AB
+
+%------------------
+%-- Message ca981 ( user )
+% perpendicular bisector of segment AB
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $k=1$, then our locus is the perpendicular bisector of segment $AB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What if $k$ doesn't equal $1?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we do to see?
+
+%------------------
+%-- Message Trollyjones ( user )
+% try some cases i suppose
+
+%------------------
+%-- Message Yufanwang ( user )
+% Draw some examples
+
+%------------------
+%-- Message coolbluealan ( user )
+% test some cases
+
+%------------------
+%-- Message dxs2016 ( user )
+% some examples?
+
+%------------------
+%-- Message pritiks ( user )
+% try out some examples
+
+%------------------
+%-- Message Ezraft ( user )
+% draw out some cases?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then sketching a few points, we see that some sort of closed curve is our locus (there's one point between $A$ and $B$ on the locus, one on line $AB$ outside of $AB$, and so on). A closed curve... what is it probably?
+
+%------------------
+%-- Message MTHJJS ( user )
+% circle ;)
+
+%------------------
+%-- Message pritiks ( user )
+% a circle
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Circle
+
+%------------------
+%-- Message Ezraft ( user )
+% a circle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% A circle!
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% A circle?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% circle
+
+%------------------
+%-- Message sae123 ( user )
+% circle?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's probably a circle. How can we prove it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The center of this circle is somewhere on $AB.$  One of $A$ and $B$ is in the circle, one is outside it. Neither is on the locus circle. It doesn't look like finding a constant angle is going to be easy, or a fixed distance. What general tool might we try?
+
+%------------------
+%-- Message tigerzhang ( user )
+% coordinates
+
+%------------------
+%-- Message Achilleas ( moderator )
+In desperation, we take a look at analytic geometry. Let $P$ be $(x,y)$, $A$ be $(x_1,y_1)$ and $B$ be $(x_2,y_2)$. The solution is immediate:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\frac{\sqrt{(x-x_1)^2 + (y-y_1)^2}}{\sqrt{(x-x_2)^2 + (y-y_2)^2}} = k.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is there anything we can do to make this algebra easier?
+
+%------------------
+%-- Message sae123 ( user )
+% square and expand
+
+%------------------
+%-- Message dxs2016 ( user )
+% square both sides
+
+%------------------
+%-- Message MathJams ( user )
+% squaring
+
+%------------------
+%-- Message Ezraft ( user )
+% square both sides
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% get rid of the square roots
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Square each side
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Square both sides
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% square both sides
+
+%------------------
+%-- Message mark888 ( user )
+% square both sides
+
+%------------------
+%-- Message tigerzhang ( user )
+% square both sides
+
+%------------------
+%-- Message pritiks ( user )
+% square everything
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% square both sides and get rid of the fraction
+
+%------------------
+%-- Message Celwelf ( user )
+% square both sides
+
+%------------------
+%-- Message bryanguo ( user )
+% get rid of the square roots
+
+%------------------
+%-- Message Achilleas ( moderator )
+We will have to square both sides...eventually. But this does answer my previous question.
+
+%------------------
+%-- Message tigerzhang ( user )
+% we can assume A=(0,0) and B=(1,0)
+
+%------------------
+%-- Message coolbluealan ( user )
+% set A to be the origin
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can assume that point $A$ is at the origin
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We can choose $A$ and $B$ to both lie on the $x-$axis, such that $A$ is the origin
+
+%------------------
+%-- Message mark888 ( user )
+% Make A the origin?
+
+%------------------
+%-- Message Ezraft ( user )
+% we can set $(x_1, y_1) = (0, 0)$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% lets set A to be (0,0)
+
+%------------------
+%-- Message myltbc10 ( user )
+% make A (0,0)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Without loss of generality, we can assume that $A = (0,0)$ and $B = (1,0)$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$  
+\frac{\sqrt{(x-0)^2 + (y-0)^2}}{\sqrt{(x-1)^2 + (y-0)^2}} = k.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Squaring both sides and cross-multiplying, we get
+$$x^2 + y^2 = k^2 (x - 1)^2 + k^2 y^2.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This simplifies to
+$$(k^2 - 1) x^2 + (k^2 - 1)y^2 - 2k^2 x + k^2 = 0.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since the coefficients of $x^2$ and $y^2$ are equal, and there is no $xy$-term, we recognize that this is the equation of a circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is an example of a good use of analytic geometry - we spend a minute setting it up and the solution is right there. If the solution hadn't been immediate, we would pass on coordinates and try more Euclidean geometry before returning to nasty equations.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I include this example not so much to exhibit analytic geometry (yuck), but to point out this particular locus, which pops up in a variety of locus problems. It gives us another tool to prove a locus is a circle, namely to prove that every point $P$ in our locus satisfies $AP/BP = k$ for some fixed $A,$ $B,$ and $k.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note}
+    The locus we just discovered pops up surprisingly often. This is called by some the \emph{circle of Apollonius}. 
+\end{note}
+(As a challenge, try to find a synthetic solution (i.e. not analytic geometry).)    
+
+%------------------
+%-- Message Achilleas ( moderator )
+You can just cite this on an Olympiad. For example, if you find in a problem that $X$ and $Y$ are fixed and $Z$ is variable such that $ZX/ZY =$ some constant, you can say that $Z$ is on a circle.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Why can we assume coordinates for both $A$ and $B$ without losing generality? I don't quite understand
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Because we could scale our diagrams.
+
+%------------------
+%-- Message vsar0406 ( user )
+% Wouldn't the radius of the circle change then?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% It will, but we do not care. It is still a circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I am sure proof of this result (the Apollonian circle) is in most good geometry books.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Next problem
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Given equilateral triangle $ABC,$ find the locus of points $P$ such that one of the lengths of $PA,$ $PB,$ or $PC$ is equal to the sum of the lengths of the other two.   
+\end{example}
+%------------------
+%-- Message Achilleas ( moderator )
+How do we start?
+
+%------------------
+%-- Message MTHJJS ( user )
+% draw a diagram
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a diagram of a simple case
+
+%------------------
+%-- Message sae123 ( user )
+% diagram
+
+%------------------
+%-- Message vsar0406 ( user )
+% drawing a possible configuration?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% diagram
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Draw a diagram
+
+%------------------
+%-- Message JamesSong ( user )
+% diagram
+
+%------------------
+%-- Message pritiks ( user )
+% find some example diagrams that work
+
+%------------------
+%-- Message bryanguo ( user )
+% draw out some configuratoins
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% find and draw an example
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there some easy choices for $P$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can start by looking for any points that satisfy the problem. Are there any obvious ones?
+
+%------------------
+%-- Message sae123 ( user )
+% the vertices
+
+%------------------
+%-- Message tigerzhang ( user )
+% P can be one of the vertices
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $A,B,$ and $C$
+
+%------------------
+%-- Message coolbluealan ( user )
+% when P is A,B, or C
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% One of the vertices of the triangle
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% A, B, and C.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $P$ is $A$, $B$, or $C$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% P is one of A, B, C
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $P = A, B,$ or $C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The vertices obviously work: if $P$ is at $A,$ $B,$ or $C,$ then one of $PA,$ $PB,$ or $PC$ equals the sum of the other two (since $ABC$ is equilateral).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do any other points in or on the triangle work?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(100);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair A = dir(150), B = dir(30), C = dir(270), P = point(point(B--C,.45)--A,.1);
+draw(MP("A",A,dir(150),s)--MP("B",B,dir(30),s)--MP("C",C,dir(270),s)--cycle^^A--MP("P",P,N,s)--B^^P--C);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% no
+
+%------------------
+%-- Message sae123 ( user )
+% don't think so
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we prove that no other points in or on the triangle work?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% No, by the triangle inequality
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Triangle inequality
+
+%------------------
+%-- Message sae123 ( user )
+% triangle inequality
+
+%------------------
+%-- Message razmath ( user )
+% triangle inequality?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Triangle inequality?
+
+%------------------
+%-- Message ay0741 ( user )
+% triangle inequality?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the triangle inequality
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use the triangle inequality: $PA + PB > AB > PC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do any other points besides the vertices work? If there are any other points, where do we suspect they might be?
+
+%------------------
+%-- Message myltbc10 ( user )
+% outside the triangle
+
+%------------------
+%-- Message MTHJJS ( user )
+% must be outside triangle...
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We suspect they are outside the triangle
+
+%------------------
+%-- Message pritiks ( user )
+% maybe outside the triangle?
+
+%------------------
+%-- Message dxs2016 ( user )
+% outside the triangle?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% outside ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are no obvious special lines on which the points might live - is there a circle we should investigate?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the circumcircle of $ABC$
+
+%------------------
+%-- Message Trollyjones ( user )
+% circumcircle of triangle ABC i think
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% The circumcircle of triangle ABC?
+
+%------------------
+%-- Message ww2511 ( user )
+% the circumcircle of triangle ABC?
+
+%------------------
+%-- Message MTHJJS ( user )
+% circumcircle of triangle ABC
+
+%------------------
+%-- Message MathJams ( user )
+% the circumcircle of ABC
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% The circumcircle of ABC.
+
+%------------------
+%-- Message razmath ( user )
+% since A, B, and C are on the locus, if the locus is a circle it would be the circumcircle of ABC
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The circumcircle of $\triangle{ABC}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The only obvious candidate is the circumcircle. (The answer has to be something that is symmetric like the triangle and has to go through the vertices.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+draw(Circle(origin,1),heavygreen);
+pair A = dir(150), B = dir(30), C = dir(270), P = point(Circle(origin,1),215);
+draw(MP("A",A,dir(150),s)--MP("B",B,dir(30),s)--MP("C",C,dir(270),s)--cycle^^A--MP("P",P,W,s)--B^^P--C);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does it work? If so, why? What are we dealing with?
+
+%------------------
+%-- Message mustwin_az ( user )
+% cyclic quad
+
+%------------------
+%-- Message bryanguo ( user )
+% cyclic quadrilateral $APCB$
+
+%------------------
+%-- Message sae123 ( user )
+% cyclic quad
+
+%------------------
+%-- Message Achilleas ( moderator )
+Four points on a circle - cyclic quadrilaterals. What do we want to prove here?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% AP+CP=BP
+
+%------------------
+%-- Message dxs2016 ( user )
+% PB=PA+PC
+
+%------------------
+%-- Message myltbc10 ( user )
+% PA+PC=PB
+
+%------------------
+%-- Message MathJams ( user )
+% that PB=PA+PC
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% PA + PC = PB
+
+%------------------
+%-- Message MTHJJS ( user )
+% PB = PA + PC
+
+%------------------
+%-- Message pritiks ( user )
+% we want to show PA+PC=PB
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We want to prove that $PA + PC = PB$
+
+%------------------
+%-- Message tigerzhang ( user )
+% PB=PA+PC
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $PA + PC = PB$
+
+%------------------
+%-- Message Trollyjones ( user )
+% PA+PC=PB
+
+%------------------
+%-- Message Ezraft ( user )
+% $PB = AP + AC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to prove that $PA + PC = PB$ implies $PCBA$ is cyclic and vice versa. How can we do it? What could we prove to show that $PA + PC = PB$ implies that $PCBA$ is cyclic?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we show that $\angle APB = 60^\circ$ then we're set. Are we likely to be able to chase angles to show that $\angle APB = 60^\circ$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note what we said above:
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to prove that $PA + PC = PB$ implies $PCBA$ is cyclic and vice versa.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we do not have that $PCBA$ is cyclic. We have to prove that.
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Absolutely not.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% no
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message vsar0406 ( user )
+% no, since we aren't given any information about angles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moral: make sure what your assumptions are and what you want to prove.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll probably have a rough time chasing angles to get to our answer. The reason we're reluctant to dive into angle chasing is that our given information, $PA + PC = PB$, has to do with lengths, not angles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(While you shouldn't in general ever get locked into one line of inquiry, forsaking all others, you should use clues in the problem to decide which is best to try first. One specific question you'll face in geometry problems is `Should I chase angles or should I investigate segment lengths?' Many problems require both, but often one is much more fruitful than the other -- go for what looks most lucrative first.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we want to chase lengths instead of angles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Power of a point is not very useful either Some of the information we are given in this problem is that $AB = BC = AC$; it's difficult to incorporate $AB$ or $BC$ into power of a point.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can prove it works by Ptolemy's theorem
+
+%------------------
+%-- Message MathJams ( user )
+% We can use ptolemy's
+
+%------------------
+%-- Message tigerzhang ( user )
+% Ptolemy's Theorem
+
+%------------------
+%-- Message Ezraft ( user )
+% we can try Ptolemy's Theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+\emph{Ptolemy's Theorem} is one more way to show a quadrilateral is cyclic. When we think of Ptolemy, we think we might have a winner because it involves all of the lengths we have information about. Does it work?
+
+%------------------
+%-- Message MTHJJS ( user )
+% PA + PB = PC, multiply by AB on both sides, and use AB = BC = AC to get PA * BC + PC * AB = PB * AC and converse of Ptolemy tells us P lies on the circle. Then, if PCBA is cyclic, we have PA * BC + PC * AB = PB * AC but AB = BC = AC and we divide and we get the result PA + PC = PB and we are done
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% This is just Ptolemy's theorem: $PA \cdot BC + PC \cdot AB = PB \cdot AC$ iff $PCBA$ is cyclic. However, since $AB = AC = CB$, we can factor them out and we get $PA + PC = PB$ iff $PCBA$ is cyclic.
+
+%------------------
+%-- Message vsar0406 ( user )
+% $AP \cdot BC + AB \cdot PC = AC \cdot PB$ by ptolemy's theorem. Since we know that AC = AB = BC, we can divide both sides by that segment length to get that $AP + PC = PB.$
+
+%------------------
+%-- Message MathJams ( user )
+% Yes, multiply both sides by $AB$ and note that $AB=BC=AC$, so $AB\cdot PC+BC\cdot AP=PB\cdot AC$, but that means $ABPC$ is cyclic by Ptolemy's
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ptolemy tells us that $PABC$ is cyclic if and only if we have
+
+%------------------
+%-- Message Achilleas ( moderator )
+\[ (PB)(AC) = (AB)(PC) + (BC)(PA). \]
+
+%------------------
+%-- Message AOPS81619 ( user )
+% it works because $AB=BC=AC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AC,$ $AB,$ and $BC$ are all equal, we divide them out, leaving
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$ PB = PC + PA. $$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And we're done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do we have to do any work to prove the other `direction'?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% no
+
+%------------------
+%-- Message bryanguo ( user )
+% no because ptolemy's works both directions
+
+%------------------
+%-- Message MTHJJS ( user )
+% no because ptolemy's is iff
+
+%------------------
+%-- Message myltbc10 ( user )
+% no
+
+%------------------
+%-- Message coolbluealan ( user )
+% no because of if and only if
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% No, because the converse of Ptolemy's theorem is true
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since Ptolemy is an `if and only if' theorem, it takes care of both directions at once. (In other words, it proves both that every point on the circumcircle is in the locus and that every point not on the circumcircle isn't in the locus.)
+
+\vspace{10pt}
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    What is the locus of all points which have the same power with respect to two given non-concentric circles?    
+\end{example}
+%------------------
+%-- Message Achilleas ( moderator )
+We'll just tackle the case of circles which are non-intersecting and outside each other.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does it mean geometrically that a point has the same power with respect to two give non-concentric circles?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the lengths of the tangents from that point to each circle are the same
+
+%------------------
+%-- Message Achilleas ( moderator )
+We start with the easiest observation - that the tangents from the point to the circles have the same length:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = origin, Y = dir(20), X = dir(225);
+pair Oc = X+scale(.45)*rotate(90)*(X);
+real Or = length(Oc-foot(Oc,A,X));
+pair Pc = Y+scale(1)*rotate(-90)*(Y);
+real Pr = length(Pc-foot(Pc,A,Y));
+draw(MP("X",X,NW,s)--MP("A",A,NW,s)--MP("Y",Y,N,s));
+dot(A^^MP("O",Oc,S,s)^^MP("P",Pc,SE,s));
+draw(Circle(Oc,Or),heavygreen);
+draw(Circle(Pc,Pr),heavygreen);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AX = AY$ as given in the problem. So?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does the locus seem like it will be?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% A line
+
+%------------------
+%-- Message myltbc10 ( user )
+% a line
+
+%------------------
+%-- Message bryanguo ( user )
+% a line
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% A line.
+
+%------------------
+%-- Message Catherineyaya ( user )
+% a line
+
+%------------------
+%-- Message coolbluealan ( user )
+% a line
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sketching a few points in our locus suggest that the locus will be a line that goes between the two circles. How can we start from $AX = AY$ to prove it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we relate $AX$ and $AY$ to anything else in our diagram?
+
+%------------------
+%-- Message MTHJJS ( user )
+% connect OX and PY,
+
+%------------------
+%-- Message Bimikel ( user )
+% draw the radii from the centers to X and Y
+
+%------------------
+%-- Message bryanguo ( user )
+% construct $XO$ and $YP$
+
+%------------------
+%-- Message dxs2016 ( user )
+% OX and PY
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else?
+
+%------------------
+%-- Message myltbc10 ( user )
+% connect AO and AP
+
+%------------------
+%-- Message Catherineyaya ( user )
+% triangles AOX and APY?
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AXO$ and $AYP$ are right triangles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = origin, Y = dir(20), X = dir(225);
+pair Oc = X+scale(.45)*rotate(90)*(X);
+real Or = length(Oc-foot(Oc,A,X));
+pair Pc = Y+scale(1)*rotate(-90)*(Y);
+real Pr = length(Pc-foot(Pc,A,Y));
+draw(Circle(Oc,Or),heavygreen);
+draw(Circle(Pc,Pr),heavygreen);
+draw(MP("X",X,NW,s)--MP("A",A,NW,s)--MP("Y",Y,N,s)^^X--Oc--A--Pc--Y);
+dot(A^^MP("O",Oc,S,s)^^MP("P",Pc,SE,s));
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message myltbc10 ( user )
+% AX^2=AO^2-OX^2, AY^2=AP^2-PY^2
+
+%------------------
+%-- Message Achilleas ( moderator )
+From these triangles, we have: $AX^2 + XO^2 = AO^2$ and $AY^2+YP^2 = AP^2.$ So?
+
+%------------------
+%-- Message mustwin_az ( user )
+% AX^2=AY^2
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AX = AY,$ we can subtract these equations to get:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$ AO^2 - AP^2 = XO^2 - YP^2. $$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How does this help?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $XO^2$ and $YP^2$ are fixed so $AO^2-AP^2$ is fixed
+
+%------------------
+%-- Message Achilleas ( moderator )
+This tells us that $AO^2 - AP^2$ is constant, since $XO$ and $YP$ are constant (since they are radii of the two circles). So?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use this constant difference of squares now to show that A is on our suspected locus - a line that passes between the two circles and is perpendicular to the line connecting their centers.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = origin, Y = dir(20), X = dir(225);
+pair Oc = X+scale(.45)*rotate(90)*(X);
+real Or = length(Oc-foot(Oc,A,X));
+pair Pc = Y+scale(1)*rotate(-90)*(Y);
+real Pr = length(Pc-foot(Pc,A,Y));
+pair Z = foot(A,Oc,Pc);
+draw(Circle(Oc,Or),heavygreen);
+draw(Circle(Pc,Pr),heavygreen);
+draw(MP("X",X,NW,s)--MP("A",A,NW,s)--MP("Y",Y,N,s)^^X--Oc--A--Pc--Y^^Oc--Pc);
+draw(scale(3,A,Z,.4),arrow=ArcArrows(SimpleHead));
+dot(A^^MP("O",Oc,S,s)^^MP("P",Pc,SE,s)^^MP("Z",Z,dir(235),s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, $Z$ is the foot of the perpendicular from $A$ to line $OP$. What can we say about $Z$?
+
+%------------------
+%-- Message MathJams ( user )
+% We have $AZ^2+ZO^2=AO^2$ and $ZP^2+AZ^2=AP^2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+From right triangles $AZO$ and $AZP,$ we have $AO^2 = AZ^2 + ZO^2$ and $AP^2 = AZ^2 + ZP^2.$
+
+%------------------
+%-- Message MathJams ( user )
+% we have $ZO^2-ZP^2$ is constant
+
+%------------------
+%-- Message Achilleas ( moderator )
+Subtracting the latter from the former gives $AO^2 - AP^2 = ZO^2 - ZP^2.$  Thus, we see that point $Z$ is fixed - i.e. the foot of the perpendicular from $A$ to line $OP$ is always the same.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, all points such that the tangents from the points to the circles are equal must lie on the line through $Z.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's left?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Proving there's no other points that work
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to show that all points on the line are in the locus. I'll leave that for you to do on your own (it's not too hard).
+
+%------------------
+%-- Message MTHJJS ( user )
+% radical axis!!!
+
+%------------------
+%-- Message AOPS81619 ( user )
+% The radical axis
+
+%------------------
+%-- Message razmath ( user )
+% radical axis
+
+%------------------
+%-- Message myltbc10 ( user )
+% radical axis
+
+%------------------
+%-- Message Catherineyaya ( user )
+% it's on the radical axis
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% They are on the radical axis of the two circles
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Isn't this just the radical axis
+
+%------------------
+%-- Message RP3.1415 ( user )
+% radical axis stuff fun
+
+%------------------
+%-- Message sae123 ( user )
+% this is the radical axis
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note}
+    This line is very important - it's called the \emph{radical axis} of two circles. You'll be seeing it again in future classes. The radical axis consists of all points which have the same power with respect to two circles.    
+\end{note}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do you think the radical axis of two intersecting circles is?
+
+%------------------
+%-- Message MathJams ( user )
+% the line through the 2 intersection points
+
+%------------------
+%-- Message MTHJJS ( user )
+% line through the intersection points
+
+%------------------
+%-- Message myltbc10 ( user )
+% the line going through the intersection points
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% The line containing their common chord
+
+%------------------
+%-- Message bryanguo ( user )
+% the line through their common  chord
+
+%------------------
+%-- Message Catherineyaya ( user )
+% line connecting intersection points
+
+%------------------
+%-- Message tigerzhang ( user )
+% the line containing the points of intersection
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the line connecting the intersections of the circles
+
+%------------------
+%-- Message coolbluealan ( user )
+% the line through the intersections
+
+%------------------
+%-- Message Bimikel ( user )
+% the line that goes through the intersecting chord
+
+%------------------
+%-- Message ca981 ( user )
+% the line passing two intersection points
+
+%------------------
+%-- Message AOPS81619 ( user )
+% The line between the points of intersection
+
+%------------------
+%-- Message Achilleas ( moderator )
+The radical axis of two intersecting circles is the line through the points of intersection of the two circles. Make sure you see why!
+
+\vspace{10pt}
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Given non-equilateral triangle $ABC,$ find the locus of the centroids of those equilateral triangles $A'B'C'$ such that $A$ is on $B'C',$ $B$ is on $A'C'$ and $C$ is on $A'B'.$ 
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we do first?
+
+%------------------
+%-- Message myltbc10 ( user )
+% draw a picture
+
+%------------------
+%-- Message MathJams ( user )
+% draw a diagram
+
+%------------------
+%-- Message Catherineyaya ( user )
+% diagram
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% diagram
+
+%------------------
+%-- Message bigmath ( user )
+% diagram
+
+%------------------
+%-- Message dxs2016 ( user )
+% diagram?
+
+%------------------
+%-- Message Ezraft ( user )
+% draw some configurations
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Draw a few diagrams
+
+%------------------
+%-- Message Achilleas ( moderator )
+First we draw one of these $A'B'C'$ triangles and see if the centroid looks special.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("A",A,dir(-20),s)--MP("B",B,dir(120),s)--MP("C",C,dir(200),s)--cycle);
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),red);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that drawing one such diagram is easy, as you can just first draw the equilateral triangle, then pick any points on its sides.
+
+%------------------
+%-- Message Achilleas ( moderator )
+However, trying to draw more equilateral triangles for the same $A,B,C$  is quite challenging!
+
+%------------------
+%-- Message MathJams ( user )
+% circumcenter of ABC
+
+%------------------
+%-- Message tigerzhang ( user )
+% this looks like the circumcenter of ABC...
+
+%------------------
+%-- Message MTHJJS ( user )
+% uhh looks like circumcenter of triangle ABC
+
+%------------------
+%-- Message sae123 ( user )
+% *looks like the circumcenter
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Hmm... it is not the circumcenter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As the points  $A',B',C'$ vary, the center of the equilateral triangle will never be the same point for  $\triangle ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does the centroid of our $A'B'C'$ look special in any way? Does it look like a special point of $ABC$ (centroid, orthocenter, etc.)?
+
+%------------------
+%-- Message pritiks ( user )
+% it doesn't look special...
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, it doesn't look like a special point of $ABC.$  (This is why it is important to draw an accurate diagram.)  This makes us suspect the locus is not just a point (since if it were, it would almost certainly be a special point of $ABC$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we do next?
+
+%------------------
+%-- Message MTHJJS ( user )
+% draw a different diagram, maybe look for lines
+
+%------------------
+%-- Message apple.xy ( user )
+% try more configurations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we start chasing angles around, we could try drawing a few more potential $A'B'C'\text s.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+void triangler(pair A, pair B, pair C, real x, pen t) {
+    pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+    pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+    pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+    //draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,t);
+    draw(C1--A1--B1--cycle,t);
+    draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),t);
+    dot(centroid(A1,B1,C1));
+}
+
+pair A=dir(-25), B=dir(120), C=dir(205);
+triangler(A,B,C,55,red);
+triangler(A,B,C,30,green);
+triangler(A,B,C,85,orange);
+draw(MP("A",A,dir(-20),s)--MP("B",B,dir(120),s)--MP("C",C,dir(200),s)--cycle);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Trollyjones ( user )
+% it is not a line
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what are we thinking? The locus sure isn't a line.
+
+%------------------
+%-- Message bryanguo ( user )
+% it seems like the locus is a circle
+
+%------------------
+%-- Message Bimikel ( user )
+% it looks like a circle
+
+%------------------
+%-- Message pritiks ( user )
+% it looks like its starting to form a circle
+
+%------------------
+%-- Message Ezraft ( user )
+% it appears to form a circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it's probably a circle
+
+%------------------
+%-- Message Catherineyaya ( user )
+% circle?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Bet it's a circle?
+
+%------------------
+%-- Message ww2511 ( user )
+% looks like a circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% looks like a circle
+
+%------------------
+%-- Message Yufanwang ( user )
+% A circle?
+
+%------------------
+%-- Message apple.xy ( user )
+% the locus looks like a circle?
+
+%------------------
+%-- Message MathJams ( user )
+% a circle?
+
+%------------------
+%-- Message dxs2016 ( user )
+% circle with some special center maybe?
+
+%------------------
+%-- Message Celwelf ( user )
+% It looks like a circle
+
+%------------------
+%-- Message vsar0406 ( user )
+% It definitely looks like a circle.
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% circle
+
+%------------------
+%-- Message myltbc10 ( user )
+% a circle
+
+%------------------
+%-- Message SmartZX ( user )
+% It looks like a circle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It's probably a circle
+
+%------------------
+%-- Message tigerzhang ( user )
+% circle https://artofproblemsolving.com/assets/images/smilies/classroom-bigsmile.gif
+
+%------------------
+%-- Message ca981 ( user )
+% The locus looks like  a circle ?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not a point. Probably a circle, or part of one. So, we're thinking circles. Does it look like any specific circle?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Not really...
+
+%------------------
+%-- Message myltbc10 ( user )
+% no
+
+%------------------
+%-- Message MTHJJS ( user )
+% no https://artofproblemsolving.com/assets/images/smilies/classroom-frown.gif
+
+%------------------
+%-- Message MathJams ( user )
+% no..
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% no
+
+%------------------
+%-- Message coolbluealan ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nope, unfortunately, it sure isn't the circumcircle, the incircle, or even the 9-point circle of $ABC.$  (We think of all these because if the locus were one of these, we'd probably have a significant clue about how to approach the problem.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Maybe it's centered at somewhere special?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Maybe the center of the circle is a special point of the triangle
+
+%------------------
+%-- Message Achilleas ( moderator )
+% It will be "special" in a way. https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif But we are far from seeing it yet.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could try adding a bunch of lines and segments to our first sample triangle. Here are some:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),red);
+draw(A--foot(B1,A1,C1)--C^^B--foot(C1,A1,B1)--A,green);
+draw(scale(3.5,B,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+draw(scale(4,A,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+draw(scale(3.5,C,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+dot(centroid(C1,B1,A1));
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do we find anything really interesting?
+
+%------------------
+%-- Message Yufanwang ( user )
+% not really
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nothing terribly intriguing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else can we consider drawing?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We suspect our locus is a circle. Maybe the solution has something to do with circles. We can draw all sorts of circles - what circles can we draw?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% incircle of $ABC$
+
+%------------------
+%-- Message MTHJJS ( user )
+% circumcircle of triangle ABC
+
+%------------------
+%-- Message pritiks ( user )
+% the circumcircle of the triangles?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message Trollyjones ( user )
+% circumcircle, incircle, 9 point circle a lot
+
+%------------------
+%-- Message Ezraft ( user )
+% the incircle, circumcircle, and 9-point circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw incircles and circumcircles of $ABC$ and $A'B'C'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A,B,C)^^circumcircle(A1,B1,C1)^^incircle(A,B,C)^^incircle(A1,B1,C1),heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything look interesting? What are we looking for?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ideally, we look for something fixed (an angle that's fixed, a point, whatever, no matter which A'B'C' we choose). We don't see much with our circumcircles or incircles. Have we exhausted the circles?
+
+%------------------
+%-- Message coolbluealan ( user )
+% angle CB'A is fixed so B' is on a fixed circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, which circle(s) should we draw?
+
+%------------------
+%-- Message apple.xy ( user )
+% the circumcircle of CB'A
+
+%------------------
+%-- Message myltbc10 ( user )
+% circumcircle of AB'C
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nice! Which other circles should we draw?
+
+%------------------
+%-- Message Bimikel ( user )
+% circumcircles of CB'A, BA'C, and AC'B
+
+%------------------
+%-- Message coolbluealan ( user )
+% the circumcircles of CA'B and AC'B
+
+%------------------
+%-- Message bryanguo ( user )
+% circumcircles of $ABC', CAB'$
+
+%------------------
+%-- Message myltbc10 ( user )
+% circumcircle of A'BC and ABC'
+
+%------------------
+%-- Message christopherfu66 ( user )
+% the circumcircles of Triangles BA'C and AC'B
+
+%------------------
+%-- Message Yufanwang ( user )
+% Circumcircles of A'BC and C'AB?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can try circumcircles of $A'BC,$ $B'AC,$ $C'AB.$ (We also think of these because we want something that involves both $A'B'C'$ and $ABC$ - these circles do. This is very important - if you have two different `types' of figures involved in your problem, you want to find ways to relate them. We saw the power of this with homothety.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hmm. What's interesting about this?
+
+%------------------
+%-- Message MTHJJS ( user )
+% they intersect at 1 point
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% The circles seem to concur at a single point
+
+%------------------
+%-- Message Lucky0123 ( user )
+% All three circles intersect at one point
+
+%------------------
+%-- Message Yufanwang ( user )
+% The three circles are concurrent
+
+%------------------
+%-- Message MTHJJS ( user )
+% the circles intersect at 1 point
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% the 3 circles intersect at the same point
+
+%------------------
+%-- Message Bimikel ( user )
+% they all seem to intersect at 1 point
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% The three circles intersect at one point
+
+%------------------
+%-- Message Trollyjones ( user )
+% they all intersect at one point in the inside of triangle ABC
+
+%------------------
+%-- Message myltbc10 ( user )
+% the circles all go through a point
+
+%------------------
+%-- Message Lucky0123 ( user )
+% All three of the circumcircles of $\triangle A'BC,$ $\triangle ABC',$ and $\triangle AB'C$ intersect at one point
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circles look like they all pass through a common point. Do they? Will they for every possible $A'B'C'?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--foot(B1,A1,C1)^^C1--foot(C1,A1,B1),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],SE,s));
+//draw(A--foot(B1,A1,C1)--C^^B--foot(C1,A1,B1)--A,green);
+//draw(scale(3.5,B,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//draw(scale(4,A,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//draw(scale(3.5,C,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//dot(centroid(C1,B1,A1));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message bryanguo ( user )
+% they seem to concur
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we prove that the three circles will always be concurrent?
+
+%------------------
+%-- Message vsar0406 ( user )
+% Oh, the miquel point.
+
+%------------------
+%-- Message myltbc10 ( user )
+% miquel point?
+
+%------------------
+%-- Message tigerzhang ( user )
+% Miquel's Theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to prove it.
+%------------------
+%-- Message MathJams ( user )
+% Angle chasing, and it's the miquel point
+
+%------------------
+%-- Message bryanguo ( user )
+% angle chasing?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Call the intersection of the circumcircles of $A'BC$ and $B'AC$ point $P.$ We must show that $P$ is on the third circumcircle (we'll be seeing more of this approach when we discuss concurrency specifically later in the course).
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we do it?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% its just cyclic quadrialterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+Cyclic quadrilaterals...
+
+%------------------
+%-- Message MTHJJS ( user )
+% show C'BPA is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+% How?
+
+%------------------
+%-- Message coolbluealan ( user )
+% show $\angle BPA=120^\circ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Right! How?
+
+%------------------
+%-- Message dxs2016 ( user )
+% use cyclic quads in the other 2 circles somehow?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Angle chase using the other two cyclic quadrilaterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+% That's right!
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle BPC=180^\circ-\angle BA'C,\angle CPA=180^\circ-\angle CB'A,$ so $\angle APB=180^\circ-\angle BPC-\angle CPA=180^\circ-\angle AC'B$ so $APBC'$ cyclic
+
+%------------------
+%-- Message Bimikel ( user )
+% angles APC and CPB already equal 120 degrees
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle CPA = 360^{\circ} - \angle CPB - \angle APB = \angle BA'C + \angle BC'A = 180^{\circ} - \angle CB'A$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle BPA = 360^\circ - \angle BPC - \angle APC = 120^\circ$
+
+%------------------
+%-- Message MTHJJS ( user )
+% well, since angle BCP + angle C'A'B' = 180 and angle C'A'B' = 60, we have angle BCP is 120, and similarily we have angle CPA = 120 deg, and so angle BPA = 120
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% By cyclic quadrilaterals, we can see that $\angle CPA = 180^\circ - \angle CB'A = 120^\circ$, $\angle BPC = 180^\circ - \angle BA'C = 120^\circ$, so $\angle BPA = 360^\circ - \angle BA'C - \angle CPA = 120^\circ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle BPC = 180 - \angle BA'C = 120$ degrees. Similarly, $\angle APC = 120$ degrees. Therefore, $\angle APB = 360 - \angle BPC - \angle APC = 120$ degrees.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then $\angle APB + \angle AC'B = 180$ degrees, so $P$ is on the circumcircle of $AC'B.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, what's so special about this?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% all three circumcircles pass through the same point
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not only do we know these three circles are concurrent, but they are concurrent at the same point no matter which $A'B'C'$ we choose (since no matter which $A'B'C'$ we choose, point $P$ is the point such that $\angle APB = \angle APC = \angle BPC = 120$ degrees).
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is fixed! This is what's special about it.
+
+%------------------
+%-- Message tigerzhang ( user )
+% They intersect at one point (the Fermat point)
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note}
+    Some of you may know that this point $P$ is the \emph{Fermat point} of triangle $ABC,$ and is the point such that $AP + BP + CP$ is minimized.    
+\end{note}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else do we know is fixed in addition to point $P$?
+
+%------------------
+%-- Message Ezraft ( user )
+% The circumcircles, as well as $A, B,$ and \$C
+
+%------------------
+%-- Message tigerzhang ( user )
+% the circumcircles of A'BC, AB'C, and ABC'
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circumcircles of $A'BC,$ $B'AC,$ and $C'AB$ are fixed, since they are the circumcircles of $PBC,$ $PAC,$ and $PAB,$ and $P,$ $A,$ $B,$ and $C$ are all fixed.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is the point at which we think we're on the right track $\rightarrow$  we've found something surprising that's fixed, and something that's related to both triangles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the way, note that now we can construct equilateral triangles $A'B'C'$ by just taking $A'$ on the left circle, then letting $A'B$ intersect again the right circle at $C'$, and letting $A'C$ intersect again the lower circle at $B'$. This is a good example of why constructions are useful even in problems that are not explicitly about constructions: Thinking of how to construct triangles $A'B'C'$ makes us realize that we need to draw the three circles through the Fermat point.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% How are the circumcircles fixed? Don't they change when we switch how we draw triangle $ABC$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+$P, A,$ and $B$ are fixed points, so the circumcircle of $\triangle PAB$ is fixed. Same for the other ones.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% wait.... how are $A$ and $B$ fixed points?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The triangle $ABC$ does not change since it is given. $\triangle A'B'C'$ does.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We've found some items that are fixed that are related to both $ABC$ and $A'B'C'.$ It's not at all obvious why this will be helpful, but it does suggest we should investigate our diagram with these three circles more. Here I draw in the last median and add in some labels.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+pair D=foot(A1,C1,B1), E=foot(B1,A1,C1), F=foot(C1,A1,B1);
+draw(B1--MP("E",E,NW,s)^^C1--MP("F",F,SW,s)^^A1--MP("D",D,dir(30),s),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],E,s));
+//draw(A--foot(B1,A1,C1)--C^^B--foot(C1,A1,B1)--A,green);
+//draw(scale(3.5,B,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//draw(scale(4,A,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//draw(scale(3.5,C,centroid(C1,B1,A1),0),arrow=ArcArrow(SimpleHead),orange);
+//dot(centroid(C1,B1,A1));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we looking for?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Recall what shape the locus should be?
+
+%------------------
+%-- Message sae123 ( user )
+% circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% circle
+
+%------------------
+%-- Message bryanguo ( user )
+% the shape of the locus should be a circle
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A circle
+
+%------------------
+%-- Message mark888 ( user )
+% circle
+
+%------------------
+%-- Message myltbc10 ( user )
+% a circle
+
+%------------------
+%-- Message ww2511 ( user )
+% a circle
+
+%------------------
+%-- Message MTHJJS ( user )
+% circle
+
+%------------------
+%-- Message mustwin_az ( user )
+% circle
+
+%------------------
+%-- Message Trollyjones ( user )
+% circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're looking for our circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Specifically, we're looking for some more points that might be on the circle we think is our locus. (Remember, we think the locus is some little circle inside $ABC.$)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any likely candidates?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Or maybe P is on our circle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $P$ might be on the circle, but we want more than just point $P,$ since we need $3$ points to define a circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any other candidates? Do the medians that we drew help?
+
+%------------------
+%-- Message MathJams ( user )
+% its the centriod..
+
+%------------------
+%-- Message Trollyjones ( user )
+% the centriod
+
+%------------------
+%-- Message Ezraft ( user )
+% the intersection of the medians of $\triangle A'B'C'$ is clearly on the circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any other ones?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The points where the medians meet their respective circles are candidates as well (such as the intersection of $B'E$ and the circle through $ACB'$). We'll take a look at those, since that gives us a triangle to construct a circumcircle about.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair D=foot(A1,C1,B1), E=foot(B1,A1,C1), F=foot(C1,A1,B1);
+pair L = IPs(E--B1, circumcircle(B1,A,C))[0], G = centroid(A1,B1,C1), K = IPs(D--A1, circumcircle(A1,B,C))[0], M = IPs(F--C1, circumcircle(A,B,C1))[0];
+
+draw(circumcircle(K,L,M),green);
+
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--MP("E",E,NW,s)^^C1--MP("F",F,SW,s)^^A1--MP("D",D,dir(30),s),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],SW,s));
+dot(MP("K",K,NW,s)^^MP("L",L,NE,s)^^MP("M",M,S,s)^^MP("G",G,SE,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It looks like this might be our circle, but we can't be sure that our centroid is on it. Also, what else should we wonder about this circle?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Where is its center?
+
+%------------------
+%-- Message Trollyjones ( user )
+% what is the center of it
+
+%------------------
+%-- Message ca981 ( user )
+% Its center
+
+%------------------
+%-- Message pritiks ( user )
+% the center?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% center?
+
+%------------------
+%-- Message dxs2016 ( user )
+% what it's center is?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We might wonder about its center.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should wonder if this circle is even fixed (meaning that no matter what $A'B'C'$ we are using, we'll get the same little circle when we construct a circle as defined above - that is, drawing our circumcircles, then drawing lines $A'D,$ $B'E,$ $C'F$ to meet the circumcircles at $K,$ $L,$ $M,$ then constructing our little circle as the circumcircle of $KLM$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we make sure that this little circle is always the same?
+
+%------------------
+%-- Message Ezraft ( user )
+% prove that $K, L, M$ are always fixed
+
+%------------------
+%-- Message Achilleas ( moderator )
+The little circle is fixed if $K,$ $L,$ and $M$ are. Are they? More specifically, is $K$ fixed (if it is, we can argue the others are by symmetry)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that the circumcircle of $A'BC$ is fixed, since as we noted before it is the circumcircle of $BPC$ and point $P$ is fixed. We know that $K$ is on this fixed circle. What should we look for in general that would help prove that $K$ is at a fixed place on this circle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that $K$ is on some other fixed figure. What do we know about $K?$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $K$ is the point such that $KB=KC$
+
+%------------------
+%-- Message MathJams ( user )
+% It is the midpoitn of arc BC
+
+%------------------
+%-- Message MTHJJS ( user )
+% intersection of median with circle
+
+%------------------
+%-- Message dxs2016 ( user )
+% intersection of median and a circumcircle
+
+%------------------
+%-- Message Yufanwang ( user )
+% K is on a median of triangle $A'B'C'$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% intersection of the median and the circumcircle of $A'BC$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $K$ lies on the angle bisector of $\angle C'A'B'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$K$ is on the median of equilateral triangle $A'B'C'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Line $A'K$ also bisects $\angle BA'C,$ which means that $\angle KA'B = \angle KA'C.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle KA'B = \angle KA'C,$ we know that arcs $KB$ and $KC$ are equal; hence, the segments which subtend them are equal and $KB = KC.$ Does this mean $K$ is a fixed point?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% yeaa
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message MTHJJS ( user )
+% yes
+
+%------------------
+%-- Message pritiks ( user )
+% yes.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, $K$ is fixed. It is on the fixed circumcircle of $BPC,$ and since $KB = KC,$ it is also on the perpendicular bisector of $BC$ (which is fixed). Thus, $K,$ $L,$ and $M$ are fixed. Now we should be very confident that we are on the right track - we've found a small circle in our triangle that is fixed. Now we have to show that our centroid is on this circle. How can we do it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we looking for?
+
+%------------------
+%-- Message pritiks ( user )
+% show that G is on the circle
+
+%------------------
+%-- Message bryanguo ( user )
+% angles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% possibly angle chasing
+
+%------------------
+%-- Message Achilleas ( moderator )
+To show that the locus of the centroid is a circle (or a part of a circle), we think to look for a fixed angle $XGY,$ where $X$ and $Y$ are some fixed points. Can you see it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, what can you say about $\angle KGL?$
+
+%------------------
+%-- Message Yufanwang ( user )
+% oh it's $60^\circ$
+
+%------------------
+%-- Message MTHJJS ( user )
+% always 60?? https://artofproblemsolving.com/assets/images/smilies/classroom-bigsmile.gif
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% is always 60 degrees
+
+%------------------
+%-- Message coolbluealan ( user )
+% $60^\circ$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle KGL = 60^\circ$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 60 degrees
+
+%------------------
+%-- Message mark888 ( user )
+% 60 degrees
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle KGL = 60^{\circ}$
+
+%------------------
+%-- Message MathJams ( user )
+% equal to $\angle EGC'=60^{\circ}$\$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle KGL = 60^{\circ}$
+
+%------------------
+%-- Message ww2511 ( user )
+% angle KGL = 60 deg
+
+%------------------
+%-- Message sae123 ( user )
+% 60 degrees
+
+%------------------
+%-- Message SlurpBurp ( user )
+% it's $60^\circ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Angle $KGL$ is fixed at $60$ degrees when $G$ is on the same side of line $KL$ as $M$ is, and is $120$ degrees otherwise. Hence, $G$ must be on the circle that goes through $K$ and $L$ such that $KL$ cuts off a $120$ degree arc of the circle. Is this necessarily our little circle?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes - we can use the same argument to show that the locus of $G$ is also the circle that goes through $LM$ such that $LM$ cuts off a $120$ degree arc of the circle. Same for $KM.$ What does that mean?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $G$ varies, and is always on $3$ fixed circles, then the $3$ fixed circles must all be the same circle, namely in this case, the circumcircle of $KLM.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So - we know now that $G$ is always on the circumcircle of $KLM.$  What must we ask ourselves now?
+
+%------------------
+%-- Message MTHJJS ( user )
+% uniqueness
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Does every point on the circumcircle work?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we must wonder if every point on the circumcircle of $KLM$ is in the locus. How do we tackle this?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Mainly, we just go backward. Suppose $J$ is on the circumcircle of $KLM.$  How can we show that $J$ is in the locus?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We show that $J$ is in the locus by showing that some $A'B'C'$ exists that fits the definition of the problem and has $J$ as its centroid.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(300);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair D=foot(A1,C1,B1), E=foot(B1,A1,C1), F=foot(C1,A1,B1);
+pair L = IPs(E--B1, circumcircle(B1,A,C))[0], G = centroid(A1,B1,C1), K = IPs(D--A1, circumcircle(A1,B,C))[0], M = IPs(F--C1, circumcircle(A,B,C1))[0];
+pair J = point(circumcircle(K,L,M),250);
+draw(circumcircle(K,L,M),green);
+
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--MP("E",E,NW,s)^^C1--MP("F",F,SW,s)^^A1--MP("D",D,dir(30),s),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],SW,s));
+dot(MP("K",K,NW,s)^^MP("L",L,NE,s)^^MP("M",M,S,s)^^MP("G",G,SE,s)^^MP("J",J,SW,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we build the $A'B'C'$ that goes with our $J?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+If you're stuck, you can always look at how we went forwards, then just go backwards. How did we find $K,$ $L,$ $M?$
+
+%------------------
+%-- Message MTHJJS ( user )
+% intersection of medians with circle
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Intersection of circumcircles with medians
+
+%------------------
+%-- Message Achilleas ( moderator )
+$K,$ $L,$ $M $ are the other intersections of lines $A'G,$ $B'G,$ $C'G$ with the respective circumcircles of $A'BC,$ $B'AC,$ and $C'AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we use this to go backwards from our $K,$ $L,$ $M$ and new centroid, $J,$ to construct our equilateral triangle?
+
+%------------------
+%-- Message coolbluealan ( user )
+% extend JM,JK, and JL to meet the circumcircles
+
+%------------------
+%-- Message SlurpBurp ( user )
+% extend the medians $JK$, $JL$, and $JM$
+
+%------------------
+%-- Message Yufanwang ( user )
+% Extend KJ, LJ, and MJ on both sides
+
+%------------------
+%-- Message sae123 ( user )
+% extend $MJ,$ $KJ$, and $LJ$ to get $A',B',$ and $C'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $K,$ $L,$ $M$ are the other intersections of lines $A'G,$ $B'G,$ $C'G$ with the respective circumcircles of $A'BC,$ $B'AC,$ and $C'AB,$ once we have $K,$ $L,$ $M,$ we can construct $A',$ $B',$ $C'$ from centroid $G$ by drawing lines $KG,$ $LG,$ $MG $ and taking the other intersections with the respective circumcircles of $A'BC,$ $B'AC,$ and $C'AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+With $J,$ it looks like this:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(3cm);
+
+size(300);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+real x = 55;
+pair A=dir(-25), B=dir(120), C=dir(205);
+pair C1 = extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));
+pair A1 = extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair B1 = extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));
+pair D=foot(A1,C1,B1), E=foot(B1,A1,C1), F=foot(C1,A1,B1);
+pair L = IPs(E--B1, circumcircle(B1,A,C))[0], G = centroid(A1,B1,C1), K = IPs(D--A1, circumcircle(A1,B,C))[0], M = IPs(F--C1, circumcircle(A,B,C1))[0];
+pair J = point(circumcircle(K,L,M),250);
+draw(circumcircle(K,L,M),green);
+
+draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);
+draw(B1--MP("E",E,NW,s)^^C1--MP("F",F,SW,s)^^A1--MP("D",D,dir(30),s),red);
+draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);
+draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);
+
+draw(scale(13,J,L,.4),arrow=ArcArrows(SimpleHead),cyan);
+draw(scale(18,J,K,.6),arrow=ArcArrows(SimpleHead),cyan);
+draw(scale(28,J,M,.6),arrow=ArcArrows(SimpleHead),cyan);
+
+draw(IPs(scale(13,J,L,.4),circumcircle(A,B1,C))[0]--
+     IPs(scale(18,J,K,.6),circumcircle(A1,B,C))[0]--
+     IPs(scale(28,J,M,.6),circumcircle(A,B,C1))[1]--cycle,1.2+magenta);
+
+dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],SW,s));
+dot(MP("K",K,NW,s)^^MP("L",L,NE,s)^^MP("M",M,S,s)^^MP("G",G,SE,s)^^MP("J",J,SW,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We've drawn light blue lines $KJ,$ $LJ,$ and $MJ.$  Where these lines again intersect the circumcircles of $A'BC,$ $B'AC,$ and $C'AB$ give us the vertices of the purple triangle.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Quite a nightmare to draw by hand
+
+%------------------
+%-- Message Achilleas ( moderator )
+% https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif
+
+%------------------
+%-- Message Achilleas ( moderator )
+This purple triangle is equilateral and its sides (or extensions thereof) go through $A,$ $B,$ and $C,$ respectively. I'll post this on the message board and give you the opportunity to fill in the details (but this is what we'd need to prove to show that $J$ is in our locus).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, one more question: must we exclude any points?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We include, $K,$ $L,$ and $M,$ since we can still follow this construction to get our $A'B'C'$ (try it!). However, what about point $P?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $P$ is a problem - lines $KP,$ $LP,$ and $MP$ don't hit the respective circumcircles of $A'BC,$ $B'AC,$ and $C'AB$ again. Therefore, we can't construct an $A'B'C'.$ $P $ is not in the locus.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, our locus is the circumcircle of $KLM$ minus point $P.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark*}
+    This problem is probably the most challenging one we'll see in this course. It was proposed for the IMO many years ago. I imagine it was not accepted because it was simply too challenging. There's a lot we can learn from this problem, however.    
+\end{remark*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, we tried a few cases to get a guess at the shape of the locus. We decided we were probably seeking a circle. Next, we saw that it wasn't a simple circle to find.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then we went looking for fixed points, lines, or circles. We drew in some lines but found nothing. Then we drew in some circles. We tried the circumcircles of $A'BC,$ $B'AC,$ and $C'AB$ because they incorporated both $ABC$ and $A'B'C'$ and because we suspected our problem had something to do with circles (since the suspected locus was a circle).
+
+%------------------
+%-- Message Achilleas ( moderator )
+This brought us to our first significant discovery - these circles all met at a point. We investigated that point and found that it was fixed, and therefore these circumcircles were fixed. Now we were pretty confident we were on the right path.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We then investigated our diagram including these fixed circles and looked for points that might live on the circle we suspected was our locus - this led us to the intersections of the medians of $A'B'C'$ and the circumcircles, which we called $K,$ $L,$ and $M.$  We then asked 'are these points fixed?'  They are, so we strongly suspected we were home.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We then found that the centroid lives on the circumcircle of these three fixed points ($K,$ $L,$ and $M$). Finally, we ran our observations in reverse to see that $P$ is not in the locus and that every other point on the circumcircle of $KLM $ is (though we left out a couple details in class - you should try filling them in on your own, even these details are not trivial).
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Phewww... https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif
+
+%------------------
+%-- Message Achilleas ( moderator )
+% That's it for today! https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif
+
+%------------------
+%-- Message bryanguo ( user )
+% that last problem was hard
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Yes, the hardest in this class. Take your time to study the solution above at your own leisure.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% By the way, IMO2021 is almost over. Have you tried the geometry problems?
+
+%------------------
+%-- Message bryanguo ( user )
+% what are the problems
+
+%------------------
+%-- Message chardikala2 ( user )
+% they posted the problems online right?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Yes, they are available at the official site: https://www.imo-official.org/problems.aspx (and AoPS community, as well https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif )
+
+%------------------
+%-- Message MathJams ( user )
+% yeah , #4
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Awesome!
+
+%------------------
+%-- Message chardikala2 ( user )
+% How many days is IMO usually?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% The problem days are two. But there's grading, excursions, ceremonies etc.
+
+%------------------
+%-- Message vsar0406 ( user )
+% oh, when will, like, the shortlist be out?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% The IMO2020 shortlist is out. The IMO2021 shortlist will be published after the end of next year's IMO.
+
+%------------------
+%-- Message chardikala2 ( user )
+% Did anyone in this class attend IMO this year?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% I do not know. Did they?
+
+%------------------
+%-- Message Ezraft ( user )
+% There is a possibility that people in this class attended IMO?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% I guess there is. There are some very young people taking part in the IMO. They are not expected to know everything we will learn in this class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you everyone!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% See you next week. Until then, have a wonderful time!! https://artofproblemsolving.com/assets/images/smilies/classroom-smile.gif
+
+%------------------

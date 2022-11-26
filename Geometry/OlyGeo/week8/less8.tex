@@ -1,0 +1,3719 @@
+\section{Lesson Transcript}
+
+%-- Message Achilleas ( moderator )
+% Hi, everyone!
+
+%------------------
+%-- Message MTHJJS ( user )
+% hi!
+
+%------------------
+%-- Message Ezraft ( user )
+% hello!
+
+%------------------
+%-- Message Bimikel ( user )
+% hi!
+
+%------------------
+%-- Message pritiks ( user )
+% hi!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% \textbf{Olympiad GeometryWeek 8: Power of a Point and Radical Axis}
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Say hello to \textbf{Galin Milenov Totev} (popmath) who will be helping us today!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Galin Totev is currently at his senior year at the math school in his town. As a math competitor he has participated in many mathematical competitions. His greatest achievements include a gold medal from IZHO, a bronze medal from IZHO and second reserve for IMO. His favorite field of mathematics is geometry, but he loves number theory as well. He believes that every geometry problem can be solved with enough inversions.
+
+%------------------
+%-- Message popmath ( moderator )
+% Hello!
+
+%------------------
+%-- Message Gordonwong ( user )
+% hi
+
+%------------------
+%-- Message coolbluealan ( user )
+% hi
+
+%------------------
+%-- Message dvrdvr ( user )
+% HI!
+
+%------------------
+%-- Message Yufanwang ( user )
+% Hello!
+
+%------------------
+%-- Message Vishaln2024 ( user )
+% Hi popmath
+
+%------------------
+%-- Message sae123 ( user )
+% hi popmath!
+
+%------------------
+%-- Message MathJams ( user )
+% hi popmath!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we're going to be talking about the Radical Axis Theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does Power of a Point tell us in the configurations below?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(250);
+    pair A = dir(60), B = dir(140), C = dir(190), D = dir(310), P = extension(A,B,C,D), Q = extension(A,C,B,D);
+    draw(A--P--D^^Circle(origin,1));
+    pair point = Q;
+    pair[] p={A,B,C,D,P};
+    string s = "A,B,C,D,P";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    picture inside;
+    draw(inside, A--C^^B--D^^Circle(origin, 1));
+    pair point = Q+(-0.01,0);
+    pair[] p={A,B,C,D,Q};
+    string s = "A,C,B,D,P";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    mult[4] = 2;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot(inside,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    add(shift((3,0))*inside);
+    //string[] k= split(s,",");
+    //for(int i = 0;i<p.length;++i) {
+    // dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    //}
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $PB\cdot PA=PC\cdot PD$
+
+%------------------
+%-- Message mark888 ( user )
+% $PA(PB)=PD(PC)$
+
+%------------------
+%-- Message Bimikel ( user )
+% $PC*PD=PA*PB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% PB*PA=PC*PD
+
+%------------------
+%-- Message myltbc10 ( user )
+% PB*PA=PC*PD
+
+%------------------
+%-- Message dxs2016 ( user )
+% PB*PA = PC*PD
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $PA \cdot PB = PD \cdot PC$
+
+%------------------
+%-- Message Trollyjones ( user )
+% PB*PA=PC*PD
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% PB * PA = PC * PD
+
+%------------------
+%-- Message xyab ( user )
+% $PD\cdot PC = BP \cdot PA$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $CP*PD=BP*AP$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AP \cdot PB = CP \cdot PD$
+
+%------------------
+%-- Message sae123 ( user )
+% $PB \cdot PA = PC \cdot PD$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $PA \cdot PB = PD \cdot PC$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $PB\cdot PA=PC\cdot PD$
+
+%------------------
+%-- Message ww2511 ( user )
+% it tells us that PB*PA = PC*PD
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $PA \cdot PB = PD \cdot PC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+As we learned in Week 1, Power of a Point states that $PA\cdot PB = PC\cdot PD$ if and only if $A,B,C,D$ are concyclic. Here, the ``Point" in ``Power of a Point" refers to $P$. Remember that $P$ can be either inside or outside of the circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sometimes we'll be using the notation $\text{Pow}(P, \omega)$ to denote the power of a point $P$ with respect to a circle $\omega$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In Week 6 class, we found that the locus of all points $P$ that have equal power with respect to two given circles is a line called the \textbf{radical axis}. The radical axis of two circles is perpendicular to the line connecting their centers.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Actually, the statement above is not always true. When does it fail?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% when we have concentric circles
+
+%------------------
+%-- Message MathJams ( user )
+% when the two circles are concentric
+
+%------------------
+%-- Message SlurpBurp ( user )
+% when the circles are concentric?
+
+%------------------
+%-- Message coolbluealan ( user )
+% concentric circles
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% when the two circles are concentric
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% When the circles are concentric
+
+%------------------
+%-- Message shausa ( user )
+% when circles are concentric?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% When the circles are concentric
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two circles are concentric, then they do not have a radical axis. For today, we'll assume that the circles we have are not concentric.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two circles intersect, what can we say about their radical axis?
+
+%------------------
+%-- Message MTHJJS ( user )
+% its the line connecting the intersection points
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it is the line connecting the intersection points
+
+%------------------
+%-- Message MathJams ( user )
+% line through their intersection points
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% It is the line through the intersection points
+
+%------------------
+%-- Message pritiks ( user )
+% it's the line through the intersection
+
+%------------------
+%-- Message Catherineyaya ( user )
+% radical axis is the line through intersection point(s) perpendicular to the line connecting the centers
+
+%------------------
+%-- Message Ezraft ( user )
+% it is the line through the shared chord of the two circles
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It's the line through the intersection points
+
+%------------------
+%-- Message Achilleas ( moderator )
+The intersection points of the two circles each have a power of 0 with respect to both circles, so the radical axis of two intersecting circles is the line that coincides with their common chord.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(400);
+    void f(picture pic, pair O1, pair O2, real r1, real r2, real rady = 4) {
+        real x1 = O1.x, x2 = O2.x;
+        real radx = ((r1*r1 - x1*x1) - (r2*r2-x2*x2))/(2*x2-2*x1);
+        draw(pic, Circle(O1,r1)^^Circle(O2,r2));
+        draw(pic, (radx, rady)--(radx,-rady), Arrows(5)); 
+    }
+    picture inside, disjoint;
+    f(disjoint, origin, (5,0), 1.5, 2.5);
+    f(inside, origin, (1.5,0), 1.5, 3.5, 4);
+    f(currentpicture, origin, (3.5,0), 2, 3,4);
+    add(shift((12,0))*disjoint);
+    add(shift((-11,0))*inside);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's a picture of what the radical axis looks like for other configurations of circles. Any questions so far?
+
+%------------------
+%-- Message christopherfu66 ( user )
+% nope
+
+%------------------
+%-- Message MathJams ( user )
+% no 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try a problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}    
+Two circles on the Cartesian plane intersect at $A (x,1)$ and $B (y, 3)$ (with $y>x$). They are tangent to the $x$-axis at $P (0,0)$ and $Q (12,0)$ respectively. Find $x$.
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(200);
+    real r = 1/2, y=3, n = y*y, m = r*r, s = 36/sqrt(m + n),  k= s/(sqrt(m+n));
+    pair P = origin, Q = (12,0), M = midpoint(P--Q), A = (6+r, y), B = (6+k*r, k*y);
+    draw((-4,0)--(16,0), Arrows(7));
+    draw((0,-4)--(0,13), Arrows(7));
+    draw(circumcircle(P,A,B)^^circumcircle(A,B,Q)); 
+    //draw(M--B);
+    clip((-5,-5)--(17,-5)--(17,15)--(-5,15)--cycle);
+    pair point = midpoint(A--B);
+    pair[] p={A,B,P,Q};
+    string s = "A,B,P,Q";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[0] = -90; mult[0] = 2; mult[1]=2;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where's the radical axis in this problem?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Line $AB$
+
+%------------------
+%-- Message apple.xy ( user )
+% the line through AB
+
+%------------------
+%-- Message pritiks ( user )
+% the line through points A and B
+
+%------------------
+%-- Message Trollyjones ( user )
+% line AB
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% the line through AB
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $AB$ is the radical axis
+
+%------------------
+%-- Message SlurpBurp ( user )
+% line $AB$
+
+%------------------
+%-- Message MathJams ( user )
+% line trhough AB
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% line $AB$
+
+%------------------
+%-- Message Ezraft ( user )
+% line $AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which points on this radical axis might be useful to consider to explore?
+
+%------------------
+%-- Message sae123 ( user )
+% intersection with $PQ$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the intersection of the radical axis with $PQ$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The intersection of $AB$ and $PQ$
+
+%------------------
+%-- Message Ezraft ( user )
+% The intersection point of the radical axis and $PQ$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% the intersection of the radical axis and the x axis
+
+%------------------
+%-- Message apple.xy ( user )
+% where it intersects the x-axis?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% The intersection of $AB$ and the x axis
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The intersection of line $AB$ with the x-axis
+
+%------------------
+%-- Message nextgen_xing ( user )
+% The intersection with the x axis
+
+%------------------
+%-- Message Trollyjones ( user )
+% where it interesects the x-axis
+
+%------------------
+%-- Message AOPS81619 ( user )
+% The intersection with the $x$ axis?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The intersection of line $AB$ with the x and y axes
+
+%------------------
+%-- Message coolbluealan ( user )
+% the intersection of AB with the x axis
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's construct, $R$, the intersection of the radical axis $AB$ and the common external tangent $PQ$. What can we say about $R$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(200);
+    real r = 1/2, y=3, n = y*y, m = r*r, s = 36/sqrt(m + n),  k= s/(sqrt(m+n));
+    pair P = origin, Q = (12,0), M = midpoint(P--Q), A = (6+r, y), B = (6+k*r, k*y);
+    draw((-4,0)--(16,0), Arrows(7));
+    draw((0,-4)--(0,13), Arrows(7));
+    draw(circumcircle(P,A,B)^^circumcircle(A,B,Q)); 
+    draw(M--B);
+    clip((-5,-5)--(17,-5)--(17,15)--(-5,15)--cycle);
+    pair point = midpoint(A--B);
+    pair[] p={A,B,P,Q,M};
+    string s = "A,B,P,Q,R";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[0] = -90; mult[0] = 2; mult[1]=2;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is the midpoint of PQ
+
+%------------------
+%-- Message renyongfu ( user )
+% midpoint of PQ
+
+%------------------
+%-- Message dxs2016 ( user )
+% looks like midpoint of PQ
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% It's the midpoint of PQ which is (6,0)
+
+%------------------
+%-- Message bigmath ( user )
+% midpoint of PQ
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It seems that $R$ is the midpoint of segment $PQ$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $R$ is the midpoint of $PQ$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $R$ is the midpoint of $PQ$
+
+%------------------
+%-- Message MathJams ( user )
+% Since we have RP^2=RA*RB=RQ^2=RQ^2, RP=RQ meaning R is the midpoint
+
+%------------------
+%-- Message Ezraft ( user )
+% $R$ is the midpoint of $PQ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$R$ is on the radical axis, so it has equal powers with respect to both circles. Since $PQ$ is the common external tangent of the two circles, $RP^2 = RQ^2$, so $R$ is the midpoint of $PQ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Once we come to this realization, the remaining computation becomes easier, which we'll leave as an exercise for you. Here's an outline: We know that $RP^2 = RA\cdot RB = 6^2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $RA?$
+
+%------------------
+%-- Message MathJams ( user )
+% RA=RB/3
+
+%------------------
+%-- Message Achilleas ( moderator )
+From looking at the $y$-coordinates, $RA/RB = 1/3$, so $RA = 2\sqrt3$. By the Pythagorean Theorem, $x = 6+\sqrt{(2\sqrt3)^2 - 1^2} = 6+\sqrt{11}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The crux of this problem was the following lemma:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{lemma}
+    Let $ABC$ be a triangle and consider a point $P$ inside the triangle such that $BC$ is tangent to the circumcircles of triangles $ABP$ and $ACP$. Then $M$, the intersection of $BC$ and $AP$, is the midpoint of $BC$.    
+\end{lemma}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(200);
+    real r = -1, y=3, n = y*y, m = r*r, s = 36/sqrt(m + n),  k= s/(sqrt(m+n));
+    pair B = origin, C = (12,0), P = (6+r, y), A = (6+k*r, k*y), M = midpoint(B--C);
+    draw(circumcircle(A,B,P)^^circumcircle(A,C,P), gray(0.7));
+    draw(A--B--C--A--M);
+    pair point = midpoint(A--P);
+    pair[] p={A,B,C,P,M};
+    string s = "A,B,C,P,M";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    mult[0] = 2; mult[3] = 2; d[3] = -90;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any questions?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% no
+
+%------------------
+%-- Message Ezraft ( user )
+% nope
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Two circles $G_1$ and $G_2$ intersect at two points $M$ and $N$. Let $AB$ be the line tangent to these circles at $A$ and $B$, respectively, so that $M$ lies closer to $AB$ than $N$. Let $CD$ be the line parallel to $AB$ and passing through the point $M$, with $C$ on $G_1$ and $D$ on $G_2$. Lines $AC$ and $BD$ meet at $E$; lines $AN$ and $CD$ meet at $P$; lines $BN$ and $CD$ meet at $Q$. Show that $EP = EQ$.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(200);
+    real r1 = 1.7, r2 = 2.2;
+    pair A = origin, B = (3,1), G1 = A+r1*dir(A--B)*dir(-90), G2 = B+r2*dir(A--B)*dir(-90), M = intersectionpoints(Circle(G1,r1), Circle(G2, r2))[0], N = intersectionpoints(Circle(G1,r1), Circle(G2, r2))[1];
+    draw(Circle(G1,r1)^^Circle(G2,r2), gray(0.7));
+    pair E = reflect(A,B)*M, C = extension(E,A,M, M+dir(A--B)), D = extension(E,B,M, M+dir(A--B)), P = extension(A,N,C,D), Q = extension(B,N,C,D);
+    draw(E--C--D--E);
+    draw(B--N--A);
+    draw((-0.3*B)--(1.3*B), Arrows(5));
+    pair point = midpoint(A--B);
+    pair[] p={A,B,M,N,C,D,P,Q,E};
+    string s = "A,B,M,N,C,D,P,Q,E";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[0]=-80; d[1] = 90;d[2] = 180;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's not clear where to start on this problem. Any thoughts or guesses about the problem?
+
+%------------------
+%-- Message mustwin_az ( user )
+% E,M,N are collinear
+
+%------------------
+%-- Message apple.xy ( user )
+% E is on radical axis MN?
+
+%------------------
+%-- Message SmartZX ( user )
+% E lies on the radical axis?
+
+%------------------
+%-- Message pritiks ( user )
+% show that E lies on the radical axis? prove that E, M, and N are collinear?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try to disprove this. What must be true if $E$ lies on the radical axis?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $EA \cdot EC = EB \cdot ED$
+
+%------------------
+%-- Message bigmath ( user )
+% EA*EC=EB*ED
+
+%------------------
+%-- Message myltbc10 ( user )
+% the power of E to both circles is the same
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $EA\cdot{EC} = EB\cdot{ED}$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% EA(EC)=EB(ED)
+
+%------------------
+%-- Message Ezraft ( user )
+% $EA \cdot EC = EB \cdot ED$
+
+%------------------
+%-- Message coolbluealan ( user )
+% EA*EC=EB*ED
+
+%------------------
+%-- Message apple.xy ( user )
+% EA*EC=EB*ED=EM*EN
+
+%------------------
+%-- Message Bimikel ( user )
+% $EA*EC=EB*ED$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $EA \cdot EC = EB \cdot ED$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% EA * EC = EB * ED
+
+%------------------
+%-- Message Achilleas ( moderator )
+It means that $EA\cdot EC=EB\cdot ED$. What does this mean about $ABCD$?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it's cyclic
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It should be cyclic
+
+%------------------
+%-- Message Bimikel ( user )
+% it is cyclic
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% ABCD is cyclic
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $ABCD$ is cyclic
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is cyclic
+
+%------------------
+%-- Message pritiks ( user )
+% it is cyclic
+
+%------------------
+%-- Message Yufanwang ( user )
+% it's cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+$E$ is on line $MN$ only if $ABCD$ is cyclic. When is this true?
+
+%------------------
+%-- Message dxs2016 ( user )
+% isosceles trapezoid?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% isosceles trapezoid
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% It's an isosceles trapezoid
+
+%------------------
+%-- Message Ezraft ( user )
+% its an isosceles trapezoid
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is true only if $ABCD$ is an isosceles trapezoid.
+
+%------------------
+%-- Message Achilleas ( moderator )
+However, it's possible to construct $ABCD$ such that it's not isosceles, so this hypothesis is false.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What makes it difficult to directly go about hunting for the lengths of $EP$ and $EQ$?
+
+%------------------
+%-- Message Yufanwang ( user )
+% We don't know much about P and Q
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% We don't know much about points $P$ and $Q$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the intersection points $P$ and $Q$ are hard to deal with
+
+%------------------
+%-- Message mustwin_az ( user )
+% We dont have them drawn and no relationships involving P,Q
+
+%------------------
+%-- Message Trollyjones ( user )
+% we don't know a lot about P and Q
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $P$ and $Q$ are sort of just floating there.
+
+%------------------
+%-- Message dxs2016 ( user )
+% hard to relate to other lengths
+
+%------------------
+%-- Message Catherineyaya ( user )
+% we don't know any lengths
+
+%------------------
+%-- Message razmath ( user )
+% nothing really relates to them
+
+%------------------
+%-- Message apple.xy ( user )
+% we don't have any other lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $E$ is not very closely related to points $P$ and $Q$, and this configuration isn't friendly with lengths. This most likely rules out possibilities of directly using techniques like Law of Sines repeatedly to show that $EP = EQ$. We'll most likely need a different tool.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% angle chasing? (we're also given parallel lines)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try angle chasing. Are there any equal angles that we can find?
+
+%------------------
+%-- Message MathJams ( user )
+% <ACP=<EAB and <EBA=<EDC
+
+%------------------
+%-- Message apple.xy ( user )
+% <EAB=<ECD and <EBA=<EDC
+
+%------------------
+%-- Message Catherineyaya ( user )
+% <EAB=<ECD, <EBA=<EDC
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle EAB = angle ECD , etc through corresponding angles
+
+%------------------
+%-- Message pritiks ( user )
+% angle EAB = angle ECD, angle EBA = angle EDC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Parallel lines and the common exterior tangents suggest that we look at $\angle EBA$. We can compute $\angle EBA = \angle EDC$. What is $\angle EDC$ equal to?
+
+%------------------
+%-- Message sae123 ( user )
+% $\angle MNB$
+
+%------------------
+%-- Message bigmath ( user )
+% <BNM
+
+%------------------
+%-- Message nextgen_xing ( user )
+% angle BNM
+
+%------------------
+%-- Message mustwin_az ( user )
+% \angle BNM
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle MNB
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle MNB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% angle BNM
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle BNM$
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle BNM$
+
+%------------------
+%-- Message MathJams ( user )
+% <BNM
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is true that it is equal to $\angle BNM$, but I am not sure how useful this is. What haven't we used so far?
+
+%------------------
+%-- Message MathJams ( user )
+% the tangency!
+
+%------------------
+%-- Message Catherineyaya ( user )
+% tangents
+
+%------------------
+%-- Message dxs2016 ( user )
+% tangent AB?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the tangent condition
+
+%------------------
+%-- Message MathJams ( user )
+% that AB is tangent to the circles
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $AB$ is the tangent line
+
+%------------------
+%-- Message Trollyjones ( user )
+% AB is tangent to the circles
+
+%------------------
+%-- Message MTHJJS ( user )
+% tangency
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AB$ is tangent to the 2 circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have not used that $\overline{AB}$ is tangent to the two circles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we use this to find what $\angle EDC$ is equal to?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(write the full equation)
+
+%------------------
+%-- Message MathJams ( user )
+% <EDC=<ABM
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle EDC = \angle ABM$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle EDC = \angle MBA$
+
+%------------------
+%-- Message MathJams ( user )
+% <EDC=<BNM=<ABM
+
+%------------------
+%-- Message sae123 ( user )
+% $\angle EBA = \angle EDC = \angle MBA$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle EDC=\angle EBA=\angle ABM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AB$ is tangent to $G_2$, $\angle EDC = \angle MBA$. Why is this useful?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(we knew the similarity of the triangles  $EAB$ and $ECD$ already)
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle ABM \sim \triangle CDE$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\triangle EAB\cong\triangle MAB$?
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle EAB and triangle MAB similar
+
+%------------------
+%-- Message bigmath ( user )
+% AMB and EAB are congruent triangles
+
+%------------------
+%-- Message Trollyjones ( user )
+% so triangle MAB ~ triangle ECD?
+
+%------------------
+%-- Message pritiks ( user )
+% triangle MAB is similar to triangle ECD
+
+%------------------
+%-- Message Achilleas ( moderator )
+By symmetry, we can also conclude that $\angle EAB = \angle ECD = \angle MAB$. So $\triangle EAB$ and $\triangle MAB$ are similar. Anything else?
+
+%------------------
+%-- Message razmath ( user )
+% they are congruent
+
+%------------------
+%-- Message Yufanwang ( user )
+% They share a side so they are congruent
+
+%------------------
+%-- Message Bimikel ( user )
+% $\triangle EAB$ and $\triangle MAB$ are congruent
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% They are also congruent
+
+%------------------
+%-- Message Trollyjones ( user )
+% they are congruent they share a side
+
+%------------------
+%-- Message razmath ( user )
+% they are congruent since they share side $AB$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They are actually congruent triangles
+
+%------------------
+%-- Message pritiks ( user )
+% the triangles are congruent (triangle MAB and triangle EAB) by ASA
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% congruency by $ASA$
+
+%------------------
+%-- Message coolbluealan ( user )
+% they share a side so they're congruent
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $\triangle EAB\cong \triangle MAB$ by ASA, so $EBMA$ is a kite.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(200);
+anglepen = black;
+    real r1 = 1.7, r2 = 2.2;
+    pair A = origin, B = (3,1), G1 = A+r1*dir(A--B)*dir(-90), G2 = B+r2*dir(A--B)*dir(-90), M = intersectionpoints(Circle(G1,r1), Circle(G2, r2))[0], N = intersectionpoints(Circle(G1,r1), Circle(G2, r2))[1];
+    draw(Circle(G1,r1)^^Circle(G2,r2), gray(0.7));
+    pair E = reflect(A,B)*M, C = extension(E,A,M, M+dir(A--B)), D = extension(E,B,M, M+dir(A--B)), P = extension(A,N,C,D), Q = extension(B,N,C,D);
+    draw(E--C--D--E);
+    draw(B--N--A);
+    draw(A--M--B);
+    real anglerad = .5;
+    MA(E,B,A,anglerad); MA(A,B,M, anglerad*.9); MA(B,D,M, anglerad);
+    MA(B,A,E,anglerad,2); MA(M,A,B, anglerad*.9, 2); MA(M,C,A, anglerad, 2);
+    draw((-0.3*B)--(1.3*B), Arrows(5));
+    pair point = midpoint(A--B);
+    pair[] p={A,B,M,N,C,D,P,Q,E};
+    string s = "A,B,M,N,C,D,P,Q,E";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[0]=-80; d[1] = 90;d[2] = 180;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's a start. It's not immediately obvious how this might help us prove $EP = EQ$, but it looks promising. What now? Are there any ways we can work backwards from $EP = EQ$?
+
+%------------------
+%-- Message razmath ( user )
+% we could say that $E$ is on the perpendicular bisector of $PQ$
+
+%------------------
+%-- Message coolbluealan ( user )
+% EM is perpendicular to CD so we want M to be the midpoint of PQ
+
+%------------------
+%-- Message sae123 ( user )
+% $EM$ looks like the perpendicular to $CD$
+
+%------------------
+%-- Message tigerzhang ( user )
+% EM perpendicular to PQ
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% EM is perpendicular to CD and AB?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $E$ should on the perpendicular bisector of $PQ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $EBMA$ is a kite, $EM\perp AB$, so $EM\perp CD$. Thus, showing that $EP = EQ$ reduces to showing that $M$ is the midpoint of $PQ$. Is there an easy way to go about this?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we find any other midpoints?
+
+%------------------
+%-- Message coolbluealan ( user )
+% we proved MN bisects AB earlier
+
+%------------------
+%-- Message pritiks ( user )
+% the intersection of EM and AB is the midpoint of these segments
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Extend $MN$ to meet $AB$ (because we are motivated by the lemma from earlier)
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $MN$ contains the midpoint of $AB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% intersection between lines $MN$ and $AB$
+
+%------------------
+%-- Message MathJams ( user )
+% MN goes through the midpoint of AB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! It's our lemma! Since $MN$ is the radical axis of the two circles, it must bisect the common exterior tangent $AB$, so the homothety about point $N$ that maps $AB$ to $PQ$ maps that midpoint to point $M$.
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We can do this by a homothety centered at $N$. Let $X$ be the intersection of $MN$ and $AB$. Thus, $X$ is the midpoint of $AB$. However, $X$ is the image of $M$ under the homothety, so $M$ is the midpoint of $PQ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The motivation for making the last jump is as follows. Until that point, we haven't touched points $P$ and $Q$, so it makes sense to think about how they are defined: the intersections of $NA$ and $NB$ with a line parallel to $AB$. The parallel lines reminds us of a homothety, and taking this homothety brings us to a lemma that we recognize.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moving on:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Angle $\angle KOL$ and a real number $k$ are given, with points $A$ and $B$ chosen on rays $OK$ and $OL$ such that $OA+OB = k$. A circle centered at point $A$ with radius of length $OB$ and a circle centered at point $B$ with radius of length $OA$ intersect at points $M$ and $N$. Prove that for all choices of points $A$ and $B$, the line $MN$ passes through a fixed point.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(200);
+    real ab = 5, b = 3, a = ab-b;
+    pair O = origin, K = (7,0), L = 7*dir(60), B = (b,0), A = a*dir(O--L);
+    path wa = Circle(A,b), wb = Circle(B,a);
+    pair M = intersectionpoints(wa, wb)[0], N = intersectionpoints(wa, wb)[1];
+    pair X = ab*dir(O--L), Y = ab*dir(O--K), Z = extension(X, X+dir(90)*dir(O--L), Y, Y+dir(90)*dir(O--K));
+    draw(O--K, EndArrow(4));
+    draw(O--L, EndArrow(4));
+    draw(wa^^wb, gray(0.6));
+    pair point = midpoint(M--N);
+    pair[] p={O,A,B,M,N};
+    string s = "O,A,B,M,N";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[2]=180;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    label("$L$",K, S);
+    label("$K$",L, dir(L)*dir(90));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why does this problem make us think about radical axes?
+
+%------------------
+%-- Message Ezraft ( user )
+% line $NM$ is the radical axis of the two circles
+
+%------------------
+%-- Message MathJams ( user )
+% since we are considering the line MN, the radical axis of our two circles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% MN is the radical axis
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% we want to prove something about $MN$ which is the radical axis of the 2 circles
+
+%------------------
+%-- Message pritiks ( user )
+% since M and N are the points the radical axis goes through and we're trying to show the point is in this line
+
+%------------------
+%-- Message ww2511 ( user )
+% because MN is the radical axis of the two circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have two circles, and we'd like to show that its radical axis $MN$ passes through a fixed point. Unfortunately, we don't know anything about this fixed point. What can we do to gather more information about it?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% draw some more configurations
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Draw a few figures?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thinking backwards, we know that the corresponding $MN$ for any choice of $A$ and $B$ such that $OA+OB=k$ should pass through the fixed point. On our diagram, we can try choosing a couple different locations for $A$ and $B$ and eyeballing where the corresponding lines $MN$ intersect.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(10cm);
+    picture second;
+    real ab = 5, b = 3, a = ab-b, k = 1.3;
+    pen alternate = linewidth(0.3);
+    pair O = origin, K = (7,0), L = 7*dir(60), B = (b,0), A = a*dir(O--L);
+    path wa = Circle(A,b), wb = Circle(B,a);
+    pair M = intersectionpoints(wa, wb)[0], N = intersectionpoints(wa, wb)[1];
+    pair X = ab*dir(O--L), Y = ab*dir(O--K), Z = extension(X, X+dir(90)*dir(O--L), Y, Y+dir(90)*dir(O--K));
+    draw(O--K, EndArrow(4));
+    draw(O--L, EndArrow(4));
+    draw(wa^^wb, gray(0.6));
+    pair mid = midpoint(Z--N);
+    path line1 = (Z-mid)*k+mid--(N-mid)*k+mid;
+    draw(line1, linetype("3 3"), Arrows(4)); 
+    draw(second, line1, linetype("6 6")+alternate, Arrows(4));
+
+    real ab = 5, b = 1.5, a = ab-b, k = 1.3;
+    pair O = origin, K = (7,0), L = 7*dir(60), B = (b,0), A = a*dir(O--L);
+    path wa = Circle(A,b), wb = Circle(B,a);
+    pair M = intersectionpoints(wa, wb)[0], N = intersectionpoints(wa, wb)[1];
+    pair X = ab*dir(O--L), Y = ab*dir(O--K), Z = extension(X, X+dir(90)*dir(O--L), Y, Y+dir(90)*dir(O--K));
+    draw(second, O--K, EndArrow(4));
+    draw(second, O--L, EndArrow(4));
+    draw(second, wa^^wb, gray(0.6));
+    pair mid = midpoint(Z--N);
+    path line2 = (Z-mid)*k+mid--(N-mid)*k+mid;
+    draw(second, line2, linetype("3 3"), Arrows(4));
+    draw(line2, linetype("6 6")+alternate, Arrows(4));
+
+    dot("$O$", O, dir(210));
+    dot(second, "$O$", O, dir(210));
+    dot(Z);
+    dot(second, Z);
+    add(shift((12,0))*second);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message apple.xy ( user )
+% try more configurations
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a few configurations
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice anything about the point?
+
+%------------------
+%-- Message tigerzhang ( user )
+% It's the intersection of the tangents to the circles at the places where they intersect the two lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's label the outer intersections of the circles with their respective rays to be $X$ and $Y$. It looks like $P$, the intersection of the tangents to the two circles at points $X$ and $Y$, is our fixed point of interest.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else do we know about points $X$ and $Y$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+    real ab = 5, b = 3, a = ab-b;
+    pair O = origin, K = (7,0), L = 7*dir(60), B = (b,0), A = a*dir(O--L);
+    path wa = Circle(A,b), wb = Circle(B,a);
+    pair M = intersectionpoints(wa, wb)[0], N = intersectionpoints(wa, wb)[1];
+    pair X = ab*dir(O--L), Y = ab*dir(O--K), Z = extension(X, X+dir(90)*dir(O--L), Y, Y+dir(90)*dir(O--K));
+    pair P = Z;
+    draw(O--K, EndArrow(4));
+    draw(O--L, EndArrow(4));
+    draw(wa^^wb, gray(0.6));
+    draw(X--P+dir(X--P)^^Y--P+(0,1), linewidth(0.3));
+    pair point = midpoint(M--N);
+    pair[] p={O,A,B,M,N,X,Y,Z};
+    string s = "O,A,B,M,N,X,Y,P";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[2]=180;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message coolbluealan ( user )
+% OX=OY=k
+
+%------------------
+%-- Message razmath ( user )
+% OX=OY=k
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they are equidistant from $O$
+
+%------------------
+%-- Message nextgen_xing ( user )
+% X and Y are equidistant from O
+
+%------------------
+%-- Message mark888 ( user )
+% $OX=OA+OB$ and $OY=OB+OA$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything more than that?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% they are fixed
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since the radius of the circle centered at $B$ has a length of $OA$, then $OY = OB + OA$, which is a fixed value. Similarly, $OX = OA + OB$, so both $X$ and $Y$ are fixed points. Thus, $\triangle OXP\cong \triangle OYP$. What does this tell us about point $P$?
+
+%------------------
+%-- Message MathJams ( user )
+% PX=PY, so P is on the radical axis!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $PX$ is tangent to circle $A$, the power of $P$ with respect to circle $A$ is $PX^2$. Similarly, the power of $P$ with respect to circle $B$ is $PY^2$. Since $PX = PY$, $P$ must lie on $MN$, the radical axis of the two circles.
+
+%------------------
+%-- Message razmath ( user )
+% it is fixed
+
+%------------------
+%-- Message mark888 ( user )
+% $P$ must also be fixed
+
+%------------------
+%-- Message Trollyjones ( user )
+% it is also a fixed point
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we know that $P$ is fixed?
+
+%------------------
+%-- Message coolbluealan ( user )
+% it depends on X and Y and X and Y are fixed
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% since $X$ and $Y$ are fixed, which determines where $P$ is
+
+%------------------
+%-- Message MathJams ( user )
+% PX is perpendicular to OX and PY is perpendicular to OY, and OX=OY=k, so P is fixed
+
+%------------------
+%-- Message razmath ( user )
+% X and Y are fixed while P is just the unique point satisfying$PX \perp OX$ and $PY \perp OY$
+
+%------------------
+%-- Message mark888 ( user )
+% Because $P$ is the intersection of the perpendicular lines through $X$ and $Y$ which both are fixed and don't change meaning $P$ is fixed.
+
+%------------------
+%-- Message smileapple ( user )
+% the circles are fixed so the tangents are fixed, and $k$ is fixed too
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it is also the intersection of the tangents at fixed points
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $X$ and $Y$ satisfy $OX = OY = k$ (a fixed value), then the construction of $P$ does not rely on the choice of $A$ and $B$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any questions?
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message MathJams ( user )
+% nope !
+
+%------------------
+%-- Message Lucky0123 ( user )
+% No
+
+%------------------
+%-- Message Achilleas ( moderator )
+A radical axis isn't usually too helpful on its own. More frequently than not, olympiad problems that involve radical axes somehow make use of the \textbf{Radical Axis Theorem}:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{theorem}[Radical Axis Theorem]
+    Prove that for any three distinct circles in the plane (such that no two circles are concentric), the three pairwise radical axes all concur at a single point.    
+\end{theorem}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(4cm);
+    pair A = dir(60), C = dir(-60), B = dir(20), D = dir(100);
+    pair O1 = origin, O2 = (.88,0), O3 = .7*(B+D);
+    path c1 = Circle(O1,1), c2 = Circle(O2,abs(O2-A)), c3 = Circle(O3,abs(O3-B));
+    pair E = intersectionpoints(c2,c3)[0], F = intersectionpoints(c2,c3)[1], P = extension(A,C,B,D);
+    draw(c2^^c1^^c3^^A--C^^B--D^^E--F);
+    dot(P);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we prove this?
+
+%------------------
+%-- Message dxs2016 ( user )
+% ceva?
+
+%------------------
+%-- Message Ezraft ( user )
+% We can use Ceva
+
+%------------------
+%-- Message smileapple ( user )
+% Use Ceva's Theorem???
+
+%------------------
+%-- Message SlurpBurp ( user )
+% can we use ceva's theorem?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Ceva's theorem?
+
+%------------------
+%-- Message bigmath ( user )
+% Cevas
+
+%------------------
+%-- Message Achilleas ( moderator )
+Think simpler. 
+
+%------------------
+%-- Message Catherineyaya ( user )
+% show that the intersection point of 2 of the radical axes also lies on the third radical axis
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Power of point?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% The common point has equal power with respect to each of the 3 circles.
+
+%------------------
+%-- Message ay0741 ( user )
+% power of a point?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% the powers are all the same
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that the radical axis of two circles is the locus of all points with equal power with respect to both circles. We'll let $P$ be the intersection of the radical axes of $(\omega_1, \omega_3)$ and $(\omega_2, \omega_3)$. What can we say about $P$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(4cm);
+    pair A = dir(60), C = dir(-60), B = dir(20), D = dir(100);
+    pair O1 = origin, O2 = (.88,0), O3 = .7*(B+D);
+    path c1 = Circle(O1,1), c2 = Circle(O2,abs(O2-A)), c3 = Circle(O3,abs(O3-B));
+    pair E = intersectionpoints(c2,c3)[0], F = intersectionpoints(c2,c3)[1], P = extension(A,C,B,D);
+    draw(c2^^c1^^c3^^E--F^^B--D);
+    label("$\omega_1$", O1+dir(230), dir(230+180)*dir(180));
+    label("$\omega_2$", O2+abs(O2-A)*dir(-40), dir(140)*dir(180));
+    label("$\omega_3$", O3+abs(O3-B)*dir(90), dir(-90)*dir(180));
+    dot("$P$",P,dir(-90));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message MTHJJS ( user )
+% pow(P,w_1) = pow(P,w_3), pow(P,w_2) = pow(P,w_3), but then pow(P,w_1) = pow(P,w_3).
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\textrm{Pow}(P,\omega_1)=\textrm{Pow}(P,\omega_3),$ $\textrm{Pow}(P,\omega_2)=\textrm{Pow}(P,\omega_3)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\text{Pow}(P, \omega_1) = \text{Pow}(P, \omega_3)$ and $\text{Pow}(P, \omega_2) = \text{Pow}(P, \omega_3)$.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% so if the first power is the same as the second power and the second power is the same as the third power, then the first power must be the same as the third power
+
+%------------------
+%-- Message coolbluealan ( user )
+% it has equal power with w1 and w2 so it is on the radical axis of w1 and w2
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the transitive property, we can conclude that $\text{Pow}(P, \omega_1) = \text{Pow}(P, \omega_2)$, so $P$ must lie on the third radical axis as well!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Up until now, we haven't really had any good tools for proving concurrency and collinearity for problems that involve multiple circles and cyclic quadrilaterals. The radical axis theorem is usually a pretty strong bet. Often the difficulty is locating the circles on which to apply the theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's revisit the orthocenter and see if we can prove that the three altitudes are concurrent using the radical axis theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(4cm);
+    pair A = (5,12), B = origin, C = (14,0), D = foot(A,B,C), E = foot(B,A,C), F = foot(C,A,B);
+    markscalefactor = 0.08;
+    draw(A--B--C--A--D^^B--E^^C--F^^rightanglemark(A,D,B)^^rightanglemark(C,F,A)^^rightanglemark(B,E,C));
+    pair point = orthocenter(A,B,C);
+    pair[] p={A,B,C,D,E,F};
+    string s = "A,B,C,D,E,F";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     label("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In order to use the radical axis theorem, which three lines do we want to be the radical axes?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% AD, BE, CF
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AD, BE, FC$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $AD$, $FC$ and $EB$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $AD, CF,$ and $BE$
+
+%------------------
+%-- Message coolbluealan ( user )
+% AD,BE, and CF
+
+%------------------
+%-- Message Trollyjones ( user )
+% BE, CF, and AD
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% FC, BE and AD
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $AD$, $BE$, and $CF$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The altitudes, $AD,FC,BE$
+
+%------------------
+%-- Message Ezraft ( user )
+% $AD, CF, BE$
+
+%------------------
+%-- Message pritiks ( user )
+% AD, BE, and FC
+
+%------------------
+%-- Message trk08 ( user )
+% FC,BE,AD
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $BE$, $CF$, and $AD$
+
+%------------------
+%-- Message myltbc10 ( user )
+% AD,BE,CF
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want the altitudes, $AD$, $BE$, and $CF$, to be the three radical axes in our problem. Are there any notable pairs of cyclic quadrilaterals that both share $AD$ as a common chord?
+
+%------------------
+%-- Message coolbluealan ( user )
+% ACDF and BDEA
+
+%------------------
+%-- Message razmath ( user )
+% AFDC and AEDB
+
+%------------------
+%-- Message Trollyjones ( user )
+% FACD and AEDB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which line do the circumcircles of these cyclic quadrilaterals share?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AD$
+
+%------------------
+%-- Message razmath ( user )
+% AD
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They share line $AD$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% line AD
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $AD$
+
+%------------------
+%-- Message MathJams ( user )
+% AD
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% line AD
+
+%------------------
+%-- Message Bimikel ( user )
+% AD
+
+%------------------
+%-- Message chardikala2 ( user )
+% AD
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% They intersect each other at $A$ and $D$, thus their radical axis is $AD$
+
+%------------------
+%-- Message Trollyjones ( user )
+% AD
+
+%------------------
+%-- Message smileapple ( user )
+% $AD$
+
+%------------------
+%-- Message mustwin_az ( user )
+% AD
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both $AFDC$ and $AEDB$ are cyclic, since $\angle ADC = \angle AFC = 90^\circ$ and $\angle AEB = \angle ADB = 90^\circ$. Their circumcircles share chord $AD$. Which other circle do we need?
+
+%------------------
+%-- Message Ezraft ( user )
+% The circumcircle of $BFEC$
+
+%------------------
+%-- Message smileapple ( user )
+% $BFEC$'s circumcircle
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% circle through BFEC
+
+%------------------
+%-- Message Catherineyaya ( user )
+% circumcircle of BFEC
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can confirm that $BCEF$ is also cyclic, and that the three pairwise common chords are the altitudes $AD$, $BE$, and $CF$. Thus, the orthocenter exists.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Done!
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Let $A,B,C,D$ be four distinct points on a line, in that order. The circles with diameters $AC$ and $BD$ intersect at $X$ and $Y$. The line $XY$ meets $BC$ at $Z$. Let $P$ be a point on the line $XY$ other than $Z$. The line $CP$ intersects the circle with diameter $AC$ at $C$ and $M$, and the line $BP$ intersects the circle with diameter $BD$ at $B$ and $N$. Prove that the lines $AM,DN,XY$ are concurrent.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(250);
+    pair Z = origin, A = (-8,0), B = (-3,0), C = (3,0), D = (14,0);
+    path w1 = Circle(midpoint(A--C), abs(A-C)/2.0), w2 = Circle(midpoint(B--D), abs(B-D)/2.0);
+    pair X = intersectionpoints(w1, w2)[0], Y = intersectionpoints(w1, w2)[1];
+    real p_const = .3;
+    pair P = X+p_const*abs(Y-X)*dir(X--Y), N = foot(D,B,P), M = foot(A,C,P);
+    draw(w1^^w2, gray(0.7));
+    markscalefactor = 0.08;
+    draw(X--Y^^B--N--D--A--M--C^^rightanglemark(A,M,C)^^rightanglemark(B,N,D));
+    pair point = P+(-0.01,0);
+    pair[] p={A,B,C,D,P,X,Y,M,N};
+    string s = "A,B,C,D,P,X,Y,M,N";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+     dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What makes this problem scream radical axis theorem?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $XY$ is the radical axis
+
+%------------------
+%-- Message Catherineyaya ( user )
+% XY is radical axis
+
+%------------------
+%-- Message MathJams ( user )
+% we already have one radical axis! (XY)
+
+%------------------
+%-- Message dxs2016 ( user )
+% XY and concurrency
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $XY$ is the radical axis of 2 circles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% trying to show concurrency and XY is a radical axis
+
+%------------------
+%-- Message SmartZX ( user )
+% XY is the radical axis
+
+%------------------
+%-- Message mark888 ( user )
+% The fact that we are trying to prove that $AM$, $DN$, and $XY$ are concurrent and that $XY$ is a radical axis.
+
+%------------------
+%-- Message pritiks ( user )
+% the concurrent part and the line through XY
+
+%------------------
+%-- Message sae123 ( user )
+% $XY$ is a radical axis
+
+%------------------
+%-- Message Ezraft ( user )
+% we are proving concurrency and one of our lines is the radical axis of the two circles given
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $XY$ is the radical axis and we want to show it's concurrent to 2 other lines
+
+%------------------
+%-- Message christopherfu66 ( user )
+% We are trying to prove the concurrency of three lines, XY already being the radical axis of the two circles.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Concurrency of 3 lines that are chords of circles, one of which is already a radical axis
+
+%------------------
+%-- Message RP3.1415 ( user )
+% we need to show that a three lines (one being a radical axis) concur at a point on the radical axis
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We want to prove that three lines are concurrent in a problem involving a lot of circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're looking to prove that $AM$, $XY$ and $DN$ are concurrent. Furthermore, we already have that $(AM,XY)$ and $(XY,DN)$ are pairs of chords on the same circle. If we want to use the radical axis theorem, what else do we need to be on a circle?
+
+%------------------
+%-- Message sae123 ( user )
+% we just need $AMND$ to be cyclic
+
+%------------------
+%-- Message coolbluealan ( user )
+% we need ADNM to be cyclic
+
+%------------------
+%-- Message razmath ( user )
+% AMND should be cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we can prove $AMND$ is cyclic, then $AM$, $DN$, and $XY$ are the three radical axes. What angle relations do we need to show in order to conclude that $AMND$ is cyclic?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(it is best to use the vertices of the quadrilateral to denote angles)
+
+%------------------
+%-- Message Achilleas ( moderator )
+($\angle MAD$ is easier to check than $\angle MAC$)
+
+%------------------
+%-- Message pritiks ( user )
+% angle MAD+angle DNM=180 degrees
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle MAD+\angle MND = 180^\circ$
+
+%------------------
+%-- Message razmath ( user )
+% $\angle AMN+\angle ADN =180$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle MAD + \angle MND = 180$
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle MAD + angle MND = 180 degrees
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle MAD+\angle MND=180^\circ$
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle MAD + \angle MND = 180^\circ$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle MAD + \angle MND = 180^\circ$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle MAD + \angle ADN = 180^\circ$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle MAD$ is supplementary to $\angle DNM$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle MAD + angle MND = 180 degrees
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\angle{MAD} + \angle{MND} = 180^\circ$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle MAD+\angle MND=180$
+
+%------------------
+%-- Message MTHJJS ( user )
+% angle AMN + angle NDA = 180
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\angle DAM + \angle MND = 180^\circ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we simplify $\angle AMN + \angle NDA \stackrel{?}{=} 180$?
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle CMN + angle NDA = 90 degrees
+
+%------------------
+%-- Message Trollyjones ( user )
+% angle CMN+anlge NDA =90
+
+%------------------
+%-- Message Bimikel ( user )
+% $\angle CMN+\angle NDA=180^\circ$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle CMN + \angle NDA = 90^\circ$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle CMN+\angle CDN=90$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle CMN + \angle NDA = 90^{\circ}$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\angle{NMC} + \angle{NDA} = 90^\circ$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle NMC+\angle NDC=90^\circ$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle AMN = \angle AMC + \angle CMN = 90 + \angle CMN$, so we'd like to show $\angle CMN + \angle NDC \stackrel{?}{=} 90$. Are there any other angles we can express in terms of $\angle CMN$ or $\angle NDC$?
+
+%------------------
+%-- Message MathJams ( user )
+% <NDC=90-<NBD, so it suiffices to show that <NMC=<NBC
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle NDC = 90^\circ -\angle NBD$
+
+%------------------
+%-- Message ca981 ( user )
+% ∠NMC+∠NDA=90 or ∠NMC=∠NBC, seems that MNCB is cyclic
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle NBD = 90 - angle NDC?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle NDC = 90^{\circ} - \angle NBD = 90^{\circ} - \angle NBC$.
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle NBD = 90 - \angle NDC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle NBD = 90^\circ - \angle NDC$, we want to show $\angle CMN + (90^\circ - \angle NDC) \stackrel{?}{=} 90^\circ$, or $\angle CMN \stackrel{?}{=} \angle NBC$. What does this angle relation reduce into showing?
+
+%------------------
+%-- Message coolbluealan ( user )
+% show MBCN is cyclic
+
+%------------------
+%-- Message dxs2016 ( user )
+% MNCB cyclic
+
+%------------------
+%-- Message ay0741 ( user )
+% NMBC is cyclic
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $MBCN$ is cyclic
+
+%------------------
+%-- Message Yufanwang ( user )
+% MBCN is cyclic
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $CBMN$ is cyclic
+
+%------------------
+%-- Message sae123 ( user )
+% Need $BMNC$ to be cyclic
+
+%------------------
+%-- Message mustwin_az ( user )
+% NMBC is cyclic
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Showing MNCB is cyclic
+
+%------------------
+%-- Message christopherfu66 ( user )
+% MBCN is cyclic.
+
+%------------------
+%-- Message Trollyjones ( user )
+% BMNC
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% This reduces to showing that $NMBC$ is cyclic.
+
+%------------------
+%-- Message bigmath ( user )
+% show that BMNC is cyclic
+
+%------------------
+%-- Message razmath ( user )
+% MBCN is cyclic
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% MNCB is cyclic
+
+%------------------
+%-- Message Trollyjones ( user )
+% BMNC is cyclic
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $MNCB$ is cyclic
+
+%------------------
+%-- Message Ezraft ( user )
+% $MNCB$ is cyclic
+
+%------------------
+%-- Message Bimikel ( user )
+% MNCB is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! These angle relations are true if and only if $MNCB$ is cyclic. How do we prove it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+One concern with angle chasing is that we might end up working in circles. We want to prove $MNCB$ is cyclic because we'd like to use the angle relationships it gives us, so it's unlikely that we can use angles to show that it is cyclic. Are there other ways we can show four points lie on a circle?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Since $P$ is on the radical axis, we can see that $BP \cdot PN = CP \cdot PM$. However, by converse of power of a point, this implies that $NMBC$ is cyclic.
+
+%------------------
+%-- Message coolbluealan ( user )
+% use the radical axis theorem
+
+%------------------
+%-- Message razmath ( user )
+% CM, XN, and BN concur at P so could we use the reverse of Radical Axis Theorem (MNCB alongside the two drawn circles)
+
+%------------------
+%-- Message Achilleas ( moderator )
+The fact that chords $BN$ and $MC$ intersect at a point $P$ already in our diagram reminds us of Power of a Point. What equation do we need to show to use the converse of Power of a Point?
+
+%------------------
+%-- Message Bimikel ( user )
+% we know that $BP*PN=PC*PM$ is true
+
+%------------------
+%-- Message sae123 ( user )
+% oh $P$ is on the radical axis, so $PM\cdot PC = PB \cdot PN$
+
+%------------------
+%-- Message coolbluealan ( user )
+% PM*PC=PB*PN
+
+%------------------
+%-- Message dxs2016 ( user )
+% MP*PC = BP*PN
+
+%------------------
+%-- Message Yufanwang ( user )
+% $BP*PN = MP * PC$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% MP * PC = BP * PN
+
+%------------------
+%-- Message Trollyjones ( user )
+% PB*PN=PC*PM
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $CP\cdot PM=BP\cdot PN$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $BP \cdot PN = CP \cdot PM$
+
+%------------------
+%-- Message pritiks ( user )
+% BP*PN=PM*PC
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $MP \cdot CP = BP \cdot NP$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $CP \cdot PM = BP \cdot PN$
+
+%------------------
+%-- Message MathJams ( user )
+% PC*PM=PB*PN
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% BP * PN = CP * PM
+
+%------------------
+%-- Message Catherineyaya ( user )
+% PM(PC)=PN(PB)
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $BP \cdot PN = CP \cdot PM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need to show that $PN\cdot PB = PC\cdot PM$.
+
+%------------------
+%-- Message Yufanwang ( user )
+% P is on the radical axis, so this is true
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $P$ is on the radical axis $XY$, we know that its powers with respect to the two circles are the same. Hence $PM\cdot PC = PN\cdot PB$. By the converse of power of a point, $MNCB$ is a cyclic quadrilateral.
+
+%------------------
+%-- Message Achilleas ( moderator )
+And we're done! Even though we solved this problem by working backwards, remember that you need to write your solutions forwards.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Triangle $ABC$ has incircle $\gamma$. Point $A_0$ is chosen on $\gamma$ such that the circumcircle of $A_0BC$ is tangent to $\gamma$. The line through $A_0$ tangent to $\gamma$ intersects line $BC$ at point $A_1$. Define $B_1$ and $C_1$ analogously. Prove that $A_1$, $B_1$, and $C_1$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we were doing this on paper, we'd probably need to try drawing it a couple times before your circles are good enough and everything fits comfortably on a sheet of paper. But here's what you might end up with.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(0.3 cm);
+    defaultpen(fontsize(10));
+
+    pair D, E, F, I;
+    pair[] A, P, T;
+
+    A[0] = (2,10);
+    A[1] = (0,0);
+    A[2] = (14,0);
+    I = incenter(A[0],A[1],A[2]);
+    D = (I + reflect(A[1],A[2])*(I))/2;
+    E = (I + reflect(A[2],A[0])*(I))/2;
+    F = (I + reflect(A[0],A[1])*(I))/2;
+    P[0] = extension(A[1],A[2],(D + E)/2,(D + F)/2);
+    P[1] = extension(A[2],A[0],(E + F)/2,(E + D)/2);
+    P[2] = extension(A[0],A[1],(F + D)/2,(F + E)/2);
+    T[0] = reflect(P[0],I)*(D);
+    T[1] = reflect(P[1],I)*(E);
+    T[2] = reflect(P[2],I)*(F);
+
+    pen circlepen = gray(0.6);
+    draw(A[0]--A[1]--A[2]--cycle);
+    draw(incircle(A[0],A[1],A[2]));
+    draw(circumcircle(T[0],A[1],A[2]), circlepen);
+    draw(circumcircle(A[0],T[1],A[2]), circlepen);
+    draw(circumcircle(A[0],A[1],T[2]), circlepen);
+    draw(A[1]--P[0]--T[0]);
+    draw(A[0]--P[1]--T[1]);
+    draw(A[1]--P[2]--T[2]);
+    draw(P[1]--P[2],linetype("3 3")+gray(0.5));
+
+    dot("$A$", A[0], N);
+    dot("$B$", A[1], SW);
+    dot("$C$", A[2], SE);
+    dot("$A_1$", P[0], W);
+    dot("$B_1$", P[1], NW);
+    dot("$C_1$", P[2], S);
+    dot("$A_0$", T[0], SE);
+    dot("$B_0$", T[1], NE);
+    dot("$C_0$", T[2], NW);
+    label("$\gamma$", I + (1.5,1.5));
+    label("$\gamma_0$", circumcenter(T[0],A[1],A[2]) + circumradius(T[0],A[1],A[2])*dir(270), S);
+    label("$\gamma_1$", circumcenter(A[0],T[1],A[2]) + circumradius(A[0],T[1],A[2])*dir(45), NE);
+    label("$\gamma_2$", circumcenter(A[0],A[1],T[2]) + circumradius(A[0],A[1],T[2])*dir(120), NW);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Woah
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's a lot of stuff to take in all at once for sure. What's the first thing we should do when facing complicated diagrams like this?
+
+%------------------
+%-- Message MathJams ( user )
+% find some observations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's look at one part of the diagram at a time.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(0.3 cm);
+    defaultpen(fontsize(10));
+
+    pair D, E, F, I;
+    pair[] A, P, T;
+
+    A[0] = (2,10);
+    A[1] = (0,0);
+    A[2] = (14,0);
+    I = incenter(A[0],A[1],A[2]);
+    D = (I + reflect(A[1],A[2])*(I))/2;
+    E = (I + reflect(A[2],A[0])*(I))/2;
+    F = (I + reflect(A[0],A[1])*(I))/2;
+    P[0] = extension(A[1],A[2],(D + E)/2,(D + F)/2);
+    T[0] = reflect(P[0],I)*(D);
+
+    pen circlepen = gray(0.6);
+    draw(A[0]--A[1]--A[2]--cycle);
+    draw(incircle(A[0],A[1],A[2]));
+    draw(circumcircle(T[0],A[1],A[2]), circlepen);
+    draw(A[1]--P[0]--T[0]);
+
+    dot("$A$", A[0], N);
+    dot("$B$", A[1], SW);
+    dot("$C$", A[2], SE);
+    dot("$A_1$", P[0], W);
+    dot("$A_0$", T[0], SE);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to find out more about $A_1$, so let's take a look at how it's defined. What do we know about the line $A_0A_1$?
+
+%------------------
+%-- Message nextgen_xing ( user )
+% It is tangent to both circles at $A_0$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% it is the radical axis of the two circles
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is tangent to both circles
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It's a common tangent to the two circles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it's tangent to both $\gamma$ and $\odot (A_0BC)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since it's tangent to both circles at their tangency point, $A_0A_1$ is the radical axis of the two circles. What does this tell us about $A_1$?
+
+%------------------
+%-- Message Trollyjones ( user )
+% A_1B*A_1C=A_1A_0^2
+
+%------------------
+%-- Message Ezraft ( user )
+% $A_1$ has equal power with respect to both circles
+
+%------------------
+%-- Message sae123 ( user )
+% $A_1B \cdot A_1C = A_1A_0^2$
+
+%------------------
+%-- Message Bimikel ( user )
+% $A_1A_0^2=A_1B*A_1C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$A_1$ has the same power with respect to both circles. In particular, $A_1A_0^2 = A_1B\cdot A_1C$. Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What makes it useful to think about the power of $A_1$ with respect to a couple of circles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's look at this equation again: $A_1A_0^2 = A_1B\cdot A_1C$. What does the left-hand side represent?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% power of $A_1$ wrt $\gamma$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The left side represents the power of $A_1$ with respect to the incircle. Now think about what the right-hand side represents, aside from the power of $A_1$ with respect to circle $A_0BC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hint: One way to show that three points are collinear is to show that they are all on the radical axis of a fixed pair of circles. Can we find such a fixed pair of circles that works for $A_1, A_2, A_3$?
+
+%------------------
+%-- Message coolbluealan ( user )
+% the power with respect to the circumcircle of ABC
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The power of $A_1$ with respect to the circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+There certainly isn't much more information we can extract from this diagram. Try thinking about what kind of constructions might be handy in a configuration like this.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we wanted to construct a third circle to use the radical axis theorem on, we'd want it to share a 'notable' radical axis with one of our existing two circles. Which circle should we try constructing?
+
+%------------------
+%-- Message Ezraft ( user )
+% the circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's construct $\Gamma$, the circumcircle of $ABC$. What do we know about the power of $A_1$ with respect to $\Gamma$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(0.3 cm);
+    defaultpen(fontsize(10));
+
+    pair D, E, F, I;
+    pair[] A, P, T;
+
+    A[0] = (2,10);
+    A[1] = (0,0);
+    A[2] = (14,0);
+    I = incenter(A[0],A[1],A[2]);
+    D = (I + reflect(A[1],A[2])*(I))/2;
+    E = (I + reflect(A[2],A[0])*(I))/2;
+    F = (I + reflect(A[0],A[1])*(I))/2;
+    P[0] = extension(A[1],A[2],(D + E)/2,(D + F)/2);
+    P[1] = extension(A[2],A[0],(E + F)/2,(E + D)/2);
+    P[2] = extension(A[0],A[1],(F + D)/2,(F + E)/2);
+    T[0] = reflect(P[0],I)*(D);
+    T[1] = reflect(P[1],I)*(E);
+    T[2] = reflect(P[2],I)*(F);
+
+    pen circlepen = gray(0.6);
+    draw(A[0]--A[1]--A[2]--cycle);
+    draw(incircle(A[0],A[1],A[2]));
+    draw(circumcircle(T[0],A[1],A[2]), circlepen);
+    draw(circumcircle(A[0],A[1],A[2]), circlepen);
+    draw(A[1]--P[0]--T[0]);
+
+    dot("$A$", A[0], N);
+    dot("$B$", A[1], SW);
+    dot("$C$", A[2], SE);
+    dot("$A_1$", P[0], W);
+    dot("$A_0$", T[0], SE);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message sae123 ( user )
+% equal to power of $A_1$ with respect to $\gamma$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% It is $A_1A_0^2$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $A_1A^2 = A_1B\cdot{A_1C}$
+
+%------------------
+%-- Message MathJams ( user )
+% equal to A_1B*A_1C
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $A_1$ lies on $BC$, the radical axis of circle $A_0BC$ and $\Gamma$, we have that $\text{Pow}(A_1, \Gamma) = A_1B\cdot A_1C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Using our previous equation, $\text{Pow}(A_1, \Gamma) = A_1B\cdot A_1C = A_1A_0^2 = \text{Pow}(A_1, \gamma)$. Why is this useful?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $A_1$ lies on the radical axis of $\gamma$ and $\Gamma$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $A_1$ is on the radical axis of $\gamma$ and $\Gamma$.
+
+%------------------
+%-- Message razmath ( user )
+% A_1 is on the radical axis between the incircle and the circumcircle
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $A_1$ lies on the radical axis of the incircle and circumcircle of $\triangle ABC$. How do we use this information to tackle the original problem?
+
+%------------------
+%-- Message coolbluealan ( user )
+% B_1 and C_1 are also on the radical axis
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% By symmetry, this is true for $B_1$ and $C_1$ as well.
+
+%------------------
+%-- Message sae123 ( user )
+% but that means the powers of $A_1,B_1,C_1$ are all the same with respect to $\gamma,$ they all lie on the radical axis of $\gamma$ and $\Gamma,$ and we're done
+
+%------------------
+%-- Message razmath ( user )
+% Analogously B_1 and C_1 are on the same radical axis so they are all on the same line
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Thus, $A_1, B_1, C_1$ all lie on the radical axis of $\gamma$ and $\Gamma$, and so must be colinear.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Similarly, $B_1$ and $C_1$ are on the same radical axis
+
+%------------------
+%-- Message Achilleas ( moderator )
+By symmetry, $B_1$ and $C_1$ also lie on the radical axis of $\gamma$ and $\Gamma$, so we're done! That's a pretty neat way to prove collinearity with the radical axis theorem. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's reflect on this problem a bit. In your own words, what was the motivation for constructing the circumcircle?
+
+%------------------
+%-- Message Bimikel ( user )
+% finding something that is fixed
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The need for something new that had something in common with existing information (another radical axis)
+
+%------------------
+%-- Message MathJams ( user )
+% to construct equal powers to find a common radical axis
+
+%------------------
+%-- Message Ezraft ( user )
+% The motivation for constructing the circumcircle was to create a circle such that $BC$ would be the radical axis of the two circles (since this would imply that $A_1$ was on the radical axis)
+
+%------------------
+%-- Message Yufanwang ( user )
+% we wanted a third circle to use the radical axis theorem on and the circumcircle clearly shared a radical axis with the other two circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+The fact that the circumcircle and the incircle are fixed was important.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Also, it looks like a radical axis theorem problem, so we wanted a third circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the way, how did we use in this problem the fact that the smaller circle was the incircle?
+
+%------------------
+%-- Message MathJams ( user )
+% the tangency part
+
+%------------------
+%-- Message Achilleas ( moderator )
+Did we use that it is tangent to $BC$, $AC$, or $AB$?
+
+%------------------
+%-- Message razmath ( user )
+% we didnt?
+
+%------------------
+%-- Message Bimikel ( user )
+% no
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% no?
+
+%------------------
+%-- Message sae123 ( user )
+% none...
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% We didn't use any of these facts.
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% I don't think we did?
+
+%------------------
+%-- Message Achilleas ( moderator )
+It could have been any circle that doesn't depend on a specific vertex of the triangle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We did not use any of these. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we'll take a look at a problem from last week that we did not have time to solve. Try to solve it later using the material from the last class at your own leisure.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Let $ABCDE$ be a convex pentagon such that $\angle BAC = \angle CAD = \angle DAE$ and $\angle ABC = \angle ACD = \angle ADE$. The diagonals $BD$ and $CE$ meet at $P$. Prove that the line $AP$ bisects the side $CD$.
+    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+    real sc = 1.2, theta = -38;
+    pair A = origin, B = 1*dir(90), C = sc*B*dir(theta), D = sc*C*dir(theta), E = sc*D*dir(theta), P= extension(B,D,C,E), M = midpoint(C--D);
+    draw(C--B--A--C--D--A--E--D);
+    draw(B--D^^C--E);
+    draw(A--M, linetype("3 3"));
+
+    pair point = P/2;
+    pair[] p={A,B,C,D,E,P,M};
+    string s = "A,B,C,D,E,P,M";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[5] = -140;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's not immediately clear how radical axes will come into play in this problem, especially seeing as we don't have any circles! How might we create some circles?
+
+%------------------
+%-- Message Trollyjones ( user )
+% find cyclic quadrilaterals
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Cyclic quadrilaterals
+
+%------------------
+%-- Message tigerzhang ( user )
+% find some cyclic quadrilaterals in the diagram
+
+%------------------
+%-- Message trk08 ( user )
+% cyclic quadliraterals?
+
+%------------------
+%-- Message pritiks ( user )
+% find some cyclic quadrilaterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try looking for some cyclic quadrilaterals. Any leads?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We could try showing that $APDE$ and $ABCP$ are cyclic
+
+%------------------
+%-- Message tigerzhang ( user )
+% ABCP and AEDP
+
+%------------------
+%-- Message ay0741 ( user )
+% ABCP and APDE
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $ABCP$ looks cyclic
+
+%------------------
+%-- Message coolbluealan ( user )
+% ABCP and AEDP
+
+%------------------
+%-- Message Achilleas ( moderator )
+Maybe $APDE$ (and by symmetry, $ABCP$) is cyclic. Does anyone see a way to angle chase to show this?
+
+%------------------
+%-- Message MathJams ( user )
+% no.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't have to restrict ourselves to the original similarity given. Does anyone remember which similarity we used last week?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about a triangle similar to $\triangle ABD$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(the order of the vertices matters)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use "triangle" or $\triangle$)
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\triangle ACE \sim \triangle ABD$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\triangle ACE$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We want to prove that $\triangle ABD\sim \triangle ACE$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle ACE$?
+
+%------------------
+%-- Message ay0741 ( user )
+% triangle ACE
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\triangle ACE$
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Triangle ACE.
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\triangle ACE$
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle ACE
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\triangle{ACE}$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\triangle ACE$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that $\triangle ABD\sim\triangle ACE$ by SAS.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does this give us?
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $\angle AEP = \angle ADP$ so AEDP is cyclic.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle PDA=\angle PEA$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle PDA = angle PEA
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle PDA = \angle PEA$ so $PDEA$ is cyclic
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\angle{AEC} = \angle{BDA}$ and $APDE$ is cyclic
+
+%------------------
+%-- Message Trollyjones ( user )
+% angle AEC = angle ADB so APDE is cyclic right
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $\angle PEA = \angle PDA$, so $APDE$ is cyclic. By similar reasoning, $ABCP$ is cyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+    real sc = 1.2, theta = -38;
+    pair A = origin, B = 1*dir(90), C = sc*B*dir(theta), D = sc*C*dir(theta), E = sc*D*dir(theta), P= extension(B,D,C,E), M = midpoint(C--D);
+    draw(C--B--A--C--D--A--E--D);
+    draw(B--D^^C--E);
+    draw(A--P);
+    draw(circumcircle(A,P,D)^^circumcircle(A,P,C), gray(0.6));
+
+    pair point = P/2;
+    pair[] p={A,B,C,D,E,P,M};
+    string s = "A,B,C,D,E,P,M";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[5] = -140;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's the radical axis of the two (circum)circles?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AP$ is the radical axis 
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Line $AP$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% AP
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $AP$
+
+%------------------
+%-- Message coolbluealan ( user )
+% AP
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% line AP
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $AP$
+
+%------------------
+%-- Message MathJams ( user )
+% it is AP
+
+%------------------
+%-- Message ay0741 ( user )
+% AP
+
+%------------------
+%-- Message dxs2016 ( user )
+% AP
+
+%------------------
+%-- Message MathJams ( user )
+% line AP
+
+%------------------
+%-- Message Trollyjones ( user )
+% AP
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $AP$
+
+%------------------
+%-- Message pritiks ( user )
+% line going through AP
+
+%------------------
+%-- Message Yufanwang ( user )
+% AP
+
+%------------------
+%-- Message ca981 ( user )
+% AP is the radical axis
+
+%------------------
+%-- Message Bimikel ( user )
+% line AP
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hmm... The radical axis of the two circles is $AP$, and we'd like to show that this bisects $CD$. Have we seen something like this configuration before?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The lemma we proved earlier in class
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It's the lemma from before!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Yes, the lemma from earlier
+
+%------------------
+%-- Message Achilleas ( moderator )
+This looks a lot like our first lemma! However, what do we need to prove first before we can apply our lemma?
+
+%------------------
+%-- Message MathJams ( user )
+% We need to show that CD is tangent to both circumcircles
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% CD is a common tangent?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $CD$ is tangent to the 2 circles
+
+%------------------
+%-- Message ay0741 ( user )
+% CD is tangent to both circles
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $CD$ is a common external tangent to the two circles
+
+%------------------
+%-- Message Ezraft ( user )
+% $CD$ is tangent to both circles
+
+%------------------
+%-- Message Bimikel ( user )
+% CD is tangent to both circles
+
+%------------------
+%-- Message Yufanwang ( user )
+% CD is tangent to the two circles
+
+%------------------
+%-- Message Trollface60 ( user )
+% CD is tangent to both circles
+
+%------------------
+%-- Message MathJams ( user )
+% CD is tangent to both circumcircles
+
+%------------------
+%-- Message bigmath ( user )
+% CD is tangent to both circles
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $CD$ is tangent to both circumcircles
+
+%------------------
+%-- Message tigerzhang ( user )
+% CD is a common tangent
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We need to prove that $MC$ and $MD$ are tangent to the circumcircles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need to show that $CD$ is tangent to both circles, which looks reasonable in our diagram. How do we prove this?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Angle chasing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% They are tangent because $\angle CDP=\angle DEP$
+
+%------------------
+%-- Message Ezraft ( user )
+% Show $\angle CDP = \angle DEP$
+
+%------------------
+%-- Message ca981 ( user )
+% ∠DCP=∠CAP; ∠CDP=∠DEP
+
+%------------------
+%-- Message Achilleas ( moderator )
+From our initial given similarity, we know that $\angle CDA = \angle DEA$, which both subtend arc $APD$. Thus, $CD$ is tangent to circle $APDE$. By similar reasoning, $CD$ is tangent to circle $APCB$. How do we finish?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Apply our lemma
+
+%------------------
+%-- Message MathJams ( user )
+% Thus, from our lemma from the beginning, AP intersects CD at it's midpoint, so AP bisects CD
+
+%------------------
+%-- Message Ezraft ( user )
+% we can use the lemma from earlier
+
+%------------------
+%-- Message Trollyjones ( user )
+% use our lemma
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% We use our lemma.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since the midpoint $M$ satisfies $MC^2 = MD^2$, $M$ has equal power with respect to both circles, so it lies on $AP$, the radical axis of the two circles. And we're done!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Points $D$ and $E$ are on sides $AB$ and $AC$ of triangle $ABC$ such that $DE \parallel BC$.  Point $P$ is chosen inside triangle $ADE$.  Points $F$ and $G$ are the points where $BP$ and $CP$ intersect $DE$.  The circumcircles of $PFE$ and $PDG$ intersect again at $Q$.  Prove that $A$, $P$, and $Q$ are collinear.
+    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(10cm);
+real r = .4;
+pair A = origin, B = (-2,-10), C = (12,-10), D = r*B, E = r*C, P = .7*(3,-4), F = extension(P,B,D,E), G = extension(P,C,D,E), Q = reflect(circumcenter(P,E,F), circumcenter(P,D,G))*P;
+pair X = intersectionpoints(circumcircle(D,P,Q),A--B)[1], Y = intersectionpoints(circumcircle(P,E,Q),A--C)[1];
+draw(A--B--C--A^^P--D--E--P--B^^C--P);
+draw(circumcircle(P,D,Q)^^circumcircle(P,E,Q), gray(0.6));
+
+pair point = incenter(P,F,G);
+pair[] p={A,B,C,D,E,F,G,P,Q};
+string s = "A,B,C,D,E,F,G,P,Q";    
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+mult[6]=2; d[5] = 10;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why does this problem suggest the radical axis theorem?
+
+%------------------
+%-- Message pritiks ( user )
+% show that A lies on the radical axis (line through PQ)
+
+%------------------
+%-- Message RP3.1415 ( user )
+% We basically have to show that $A$ lies on the radical axis which passes through $PQ$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% PQ is the radical axis of two circles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% we want A, P, Q collinear and PQ is already radical axis
+
+%------------------
+%-- Message tigerzhang ( user )
+% PQ is the radical axis
+
+%------------------
+%-- Message coolbluealan ( user )
+% we want to prove a point is on a radical axis
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We want to show that $A$ lies on the radical axis line $PQ$ for collinearity
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% line PQ is the radical axis of the two circles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% We want to show $A, P, Q$ are collinear, and $PQ$ is the radical axis of 2 circles.
+
+%------------------
+%-- Message MathJams ( user )
+% we are trying to prove that A,P,Q are collinear and PQ is the radical axis of our two cricles
+
+%------------------
+%-- Message Bimikel ( user )
+% we have to show that A is on radical axis PQ
+
+%------------------
+%-- Message Achilleas ( moderator )
+$PQ$ is the radical axis of our two circles.  Thus, all we have to do is show that $A$ is on the radical axis of the two circles and we're done. We'd like to show that $A$ is on the radical axis of the two circles, but what's missing?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We need another circle
+
+%------------------
+%-- Message bigmath ( user )
+% a third circle
+
+%------------------
+%-- Message smileapple ( user )
+% a third circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're missing a third circle. Any leads for which points to define in order to maybe get a third circle?
+
+%------------------
+%-- Message MathJams ( user )
+% the intersections of the circles and AC, and AB?
+
+%------------------
+%-- Message coolbluealan ( user )
+% the second intersection of the circles with AB and AC
+
+%------------------
+%-- Message Achilleas ( moderator )
+We label the second points where the two circles hit $AB$ and $AC$ as $X$ and $Y$, respectively, as shown.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+size(10cm);
+real r = .4;
+pair A = origin, B = (-2,-10), C = (12,-10), D = r*B, E = r*C, P = .7*(3,-4), F = extension(P,B,D,E), G = extension(P,C,D,E), Q = reflect(circumcenter(P,E,F), circumcenter(P,D,G))*P;
+pair X = intersectionpoints(circumcircle(D,P,Q),A--B)[1], Y = intersectionpoints(circumcircle(P,E,Q),A--C)[1];
+draw(A--B--C--A^^P--D--E--P--B^^C--P);
+draw(circumcircle(P,D,Q)^^circumcircle(P,E,Q), gray(0.6));
+
+pair point = incenter(P,F,G);
+pair[] p={A,B,C,D,E,F,G,P,Q,X,Y};
+string s = "A,B,C,D,E,F,G,P,Q,X,Y";    
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+mult[6]=2; d[5] = 10;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we left to show? Which quadrilateral seems to be cyclic?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Or better, which quadrilateral "needs" to be cyclic?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show $DXEY$ is cyclic, and we're done.
+
+%------------------
+%-- Message coolbluealan ( user )
+% DXEY
+
+%------------------
+%-- Message tigerzhang ( user )
+% DXEY
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $YDXE$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $DXEY$ maybe
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% quadrilateral XDYE
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $DYEX$
+
+%------------------
+%-- Message ca981 ( user )
+% DXEY should be cyclic
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $DXEY$
+
+%------------------
+%-- Message Bimikel ( user )
+% DXEY
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're now left to show that $DYEX$ is cyclic. Looking at our diagram as a quick sanity check, it seems plausible that $DYEX$ might be cyclic. How might we try to show this?
+
+%------------------
+%-- Message mustwin_az ( user )
+% Angle chasing
+
+%------------------
+%-- Message AOPS81619 ( user )
+% angle chasing
+
+%------------------
+%-- Message MathJams ( user )
+% angle chasing?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Angle chasing is one of our first thoughts. What angle relation can we try to show?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use the vertices of the quadrilateral)
+
+%------------------
+%-- Message Achilleas ( moderator )
+($P$ is not one of them)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle DEY=\angle YXD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can try to show $\angle YED = \angle YXD$. Do we know anything about either of these two angles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use angle notation)
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle YED=\angle ACB$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle YED = \angle ACB$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle DEY = angle BCA
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle YED = \angle ACB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $DE\parallel BC$, we know that $\angle YED = \angle ACB$. Here we see why we choose to prove $\angle YED = \angle YXD$ instead of any other angle relation -- the left-hand side of our desired equality is equal to something else in our diagram, whereas other angles aren't as accessible.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we left to show?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle YXD = \angle ACB$
+
+%------------------
+%-- Message Bimikel ( user )
+% angle ACB=angle DXY
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle YXD= \angle ACB$
+
+%------------------
+%-- Message MathJams ( user )
+% <DXY=<ACB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we're left to show that $\angle ACB = \angle AXY$, assuming $DYEX$ is indeed cyclic. If it were true, what would this angle equality imply?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $XYCB$ is cyclic
+
+%------------------
+%-- Message tigerzhang ( user )
+% BCYX is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle AXY = \angle ACB$ would imply that $XYCB$ is cyclic! Any ideas for how to prove or disprove?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hint: Is there any information we haven't used yet?
+
+%------------------
+%-- Message Yufanwang ( user )
+% We haven't used F and G and Q yet
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the fact that $F$ and $G$ lie on the circles. Let's take a look at cyclic quadrilateral $PDXG$ first. Because it's cyclic, we can write 6 different angle equalities, but which one(s) look the most promising?
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle DXP = \angle DGP$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll study the angle relation $\angle PGD = \angle PXD$ first. Can we rewrite either side of the angle equality?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hint: We are given some parallel lines.
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle PGD=\angle PCB$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle PGD = \angle PCB$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle PGD = \angle PCB$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\angle PDG = \angle PCB$
+
+%------------------
+%-- Message Yufanwang ( user )
+% We can rewrite $\angle PGD$ as $\angle PCB$
+
+%------------------
+%-- Message sae123 ( user )
+% $\angle DGP = \angle BCP$
+
+%------------------
+%-- Message dxs2016 ( user )
+% ange PGD = angle PCB
+
+%------------------
+%-- Message MathJams ( user )
+% <PGD=<PCB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\angle{PGD} = \angle{PCB}$
+
+%------------------
+%-- Message bigmath ( user )
+% <PGD=<PCB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle PGD=\angle PCB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $DE\parallel BC$, $\angle PGD = \angle PCB$. Again: note that the reason we chose to work with $\angle PGD = \angle PXD$ instead of any other angle equality is because we saw that $\angle PGD$ can be expressed in terms of other quantities more easily.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can rewrite this as $\angle PCB = \angle PXD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So $\angle PCB = \angle PGD = \angle PXD$. Now what?
+
+%------------------
+%-- Message MathJams ( user )
+% so PCBX is cyclic!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $PCBX$ is a cyclic quad
+
+%------------------
+%-- Message coolbluealan ( user )
+% PCBX is cyclic
+
+%------------------
+%-- Message pritiks ( user )
+% prove that XYCB is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! This implies that $PXBC$ is cyclic! Why is this useful?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Remember: what were we trying to show again?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We are trying to show that $XYBC$ is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that $XYCB$ is cyclic.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Likewise, $PYCB$ is cyclic, so $XYCB$ is cyclic.
+
+%------------------
+%-- Message sae123 ( user )
+% but we also know that $PYCB$ is cyclic by symmetry, so if we define the circle using $PBC,$ we can see that both $X$ and $Y$ are on it
+
+%------------------
+%-- Message MTHJJS ( user )
+% PYCB is also cyclic, by symmetry
+
+%------------------
+%-- Message coolbluealan ( user )
+% PYCB is also cyclic so YCBX is cyclic
+
+%------------------
+%-- Message AOPS81619 ( user )
+% By symmetry $PYCB$ is cyclic, and we are done!
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can repeat the same argument for quadrilateral $PFQE$ to show that $PBCY$ is cyclic!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $PXBCY$ is cyclic as both $X$ and $Y$ lie on the circumcircle of $PBC$. Reversing the steps above shows that since $XYCB$ is cyclic, $DYEX$ is as well, and the conclusion follows from the radical axis theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Done! 
+
+%------------------
+%-- Message RP3.1415 ( user )
+% yay!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% That's it for today!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you all! Have a wonderful time! See you next week! 
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Thanks!
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Thanks, bye!
+
+%------------------
+%-- Message coolbluealan ( user )
+% thanks!
+
+%------------------
+%-- Message dxs2016 ( user )
+% thanks!
+
+%------------------
+%-- Message Trollyjones ( user )
+% thanks
+
+%------------------
+%-- Message SlurpBurp ( user )
+% bye!! thanks
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Thank you!
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% Thank you!
+
+%------------------
+%-- Message pritiks ( user )
+% thanks a lot!
+
+%------------------
+%-- Message Bimikel ( user )
+% thanks!
+
+%------------------
+%-- Message sae123 ( user )
+% thanks !
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Thank you!!
+
+%------------------
+%-- Message RP3.1415 ( user )
+% thanks
+
+%------------------
+%-- Message MathJams ( user )
+% thanks!
+
+%------------------
+%-- Message MTHJJS ( user )
+% thanks
+
+%------------------
+%-- Message Yufanwang ( user )
+% Thank you!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Thanks for the lesson!
+
+%------------------
+%-- Message vsar0406 ( user )
+% thank you so much for the class!
+
+%------------------
+

@@ -1,0 +1,113 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 6}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 6}}
+
+\subsection{Problem 1}
+
+If $A$ and $B$ are fixed points on a given circle and $XY$ is a variable diameter of the same circle, determine the locus of the point of intersection of lines $AX$ and $BY$. You may assume that $AB$ is not a diameter.
+
+\begin{mdsoln}
+    We will be using directed angles in this solution – i.e., all angles are read clockwise and are treated modulo $180^\circ$. For the case of this solution, suffice it to say that directed angles are a way of eliminating the need for casework. For instance, if $A,B,C,D$ are points on a circle, then $\angle ABC=\angle ADC$ with directed angles regardless of whether $B$ and $D$ are on the same side of $AC$ (because angles are read clockwise and treated modulo $180^\circ$) – so the two cases don’t need to be dealt with separately. One can often treat directed angles just like regular angles, but not quite - be careful about which way you write your angles, for instance: $\angle ABC\ne \angle CBA$! One also shouldn’t divide directed angles by 2, since then the modulo 180 starts to run into problems (since some angles are modulo 180 while other angles are modulo 90). Now for the solution:
+
+    Let $L$ be the desired locus. Let $\omega$ be the given circle. Let $P$ be a point on $\omega$, distinct from $A$ and $B$, such that $\angle APB$ is acute. Let $Q$ be a point on the opposite side of $AB$ from $P$ such that $\angle BQA=90^\circ-\angle APB$. Let $\omega_1$ be the circumcircle of $\triangle ABQ$. We prove that $\omega_1$ is our desired locus $L$.
+    
+    Let $Z$ in $L$ be the intersection of $AX$ and $BY$ for some choice of $XY$. If $Z$ is at $A$ or $B$, then it is clearly on $\omega_1$. Assume then that $Z$ is not at $A$ or $B$. Since $XY$ is a diameter of $\omega$, $\angle ZAY=\angle XAY=90^\circ$, so $\angle BZA=90^\circ-\angle AYB=90^\circ-\angle APB=\angle BQA$, so $Z$ must lie on $\omega_1$.
+    
+    Now suppose that $Z$ is on $\omega_1$. If $Z$ is at $A$ or $B$, then it is clearly in $L$. Suppose $Z$ is not at $A$ or $B$. Then, let $AZ$ intersect $\omega$ again at $X$ and let $BZ$ intersect $\omega$ again at $Y$. We have$$\angle YZA=\angle BZA=\angle BQA=90^\circ-\angle APB=90^\circ-\angle AYB$$so $\angle YZA=90^\circ-\angle AYZ=90^\circ-\angle $, implying that $\angle ZAY=90^\circ$, so $XY$ must be a diameter of $\omega$, showing that $Z$ is in $L$.
+    
+\end{mdsoln}
+\subsection{Problem 2}
+
+Let $PQRS$ be a cyclic quadrilateral (i.e. $P, Q, R$ and $S$ lie all on a circle) such that the segments $PQ$ and $RS$ are not parallel. Consider the set of circles through P and Q, and the set of circles through R and S. Determine the set A of points of tangency of circles in these two sets.
+
+    \begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(200);pathpen=black + linewidth(0.7);pointpen=black;pen s=fontsize(8);pair P=dir(190), Q=dir(140), R=dir(70), S=dir(10);path doot=Circle(extension(P,Q,R,S),sqrt(length(extension(P,Q,R,S)-P)*length(extension(P,Q,R,S)-Q)));draw(Circle(origin,1),heavygreen);draw(circumcircle(P,Q,point(doot,315))^^circumcircle(R,S,point(doot,315)),heavygreen);dot(MP("X",point(doot,315),E,s));draw(MP("P",P,W,s)--MP("Q",Q,NW,s)--MP("R",R,N,s)--MP("S",S,E,s)--cycle);            
+\end{asy}   
+\end{center}
+
+\begin{mdsoln}
+
+    Let $\omega$ be the circumcircle of $PQRS$. Let lines $PQ$ and $RS$ meet at $X$, and let $\omega_X$ be the circle centered at $X$ of radius $\sqrt{XP\cdot XQ}$. We claim that the desired locus is $\omega_X$, except for the four points of intersection of $\omega$ with the lines $PQ$ and $RS$.
+    
+    Suppose that some point $Z$ is in the locus, so that the circumcircles $\omega_1$ of $\triangle PQZ$ and $\omega_2$ of $\triangle RSZ$ are tangent at $Z$. $PQ$ is the radical axis of $\omega_1$ and $\omega$, while $RS$ is the radical axis of $\omega_2$ and $\omega$. Since $PQ$ and $RS$ intersect at $X$, we conclude that the radical axis of $\omega_1$ and $\omega_2$ must pass through $X$. Since the radical axis of $\omega_1$ and $\omega_2$ is the tangent through $Z$ to both circles, we conclude that $XZ$ is tangent to $\omega_1$ and $\omega_2$.
+    
+    Therefore, by Power of a Point, $XZ^2=XP\cdot XQ$, so $Z$ is on $\omega_X$. Clearly, $Z$ is not at any of the four intersection points of lines $PQ$ and $RS$ with $\omega_X$, since, if it were, then either $\omega_1$ or $\omega_2$ would fail to exist (i.e., would be an infinitely large circle = a line).
+    
+    Now suppose that some $Z$ is on our proposed locus ($\omega_X$ with the four points removed). Then, we can define $\omega_1$ and $\omega_2$ as the circumcircles of $\triangle PQZ$ and $\triangle RSZ$, respectively. Since $XZ^2=XP\cdot XQ$, $XZ$ must be tangent to $\omega_1$ at $Z$. Since $XP\cdot XQ=XR\cdot XS$ (by Power of a Point applied to $\omega$), we have $XZ^2=XR\cdot XS$, so $XZ$ must be tangent to $\omega_2$ at $Z$. Therefore, $\omega_1$ and $\omega_2$ must be tangent at $Z$, and we are done.
+        
+\end{mdsoln}
+ 
+
+
+\subsection{Problem 3}
+
+If $P$ is a point inside a convex quadrilateral $ABCD$, let the angle bisectors of angle $APB$, $BPC$, $CPD$, and $DPA$ meet $AB$, $BC$, $CD$ and $DA$ at $K$, $L$, $M$ and $N$, respectively. Find the locus of all points $P$ such that $KLMN$ is a parallelogram.
+
+\begin{mdsoln}
+
+We show that the locus consists of the single point $X$, the point of intersection of the perpendicular bisectors of diagonals $AC$ and $BD$.
+
+Suppose first that $P$ is not at $X$. Then, $P$ cannot be both equidistant from $A$ and $C$ and equidistant from $B$ and $D$. We assume WLOG that $P$ is not equidistant from $B$ and $D$, so that $PB/PD=k$, where $k\ne 1$. By the Angle-bisector Theorem,\begin{eqnarray*}k&=&\left(\frac{PB}{PA}\right)\left(\frac{PA}{PD}\right)\\ &=&\left(\frac{KB}{KA}\right)\left(\frac{NA}{ND}\right)\end{eqnarray*}Therefore, Menelaus Theorem implies that lines $NK$ and $BD$ intersect at some point $E$ with $EB/ED=k$. Similarly, we can discover that lines $LM$ and $BD$ intersect at some point $F$ with $FB/FD=k$. But there is only one point $Q$ on the line $BD$ and outside the segment $BD$ with $QB/QD=k$. This implies that $E$ and $F$ are the same, and hence that $NK$ and $LM$ intersect and therefore must not be parallel. We conclude that for $P\ne X$, $KLMN$ cannot be a parallelogram.
+
+Now suppose that $P=X$. Then, $PB=PD$ and $PA=PC$. By the Angle-bisector Theorem, applied as above, we get $1=PB/PD=(KB/KA)(NA/ND)$. Hence, $KN\parallel BD$. Likewise, $LM\parallel BD$. Hence, $KN\parallel LM$. Likewise, $KL\parallel NM$. So $KLMN$ is a parallelogram.
+
+
+\end{mdsoln}
+
+\subsection{Problem 4}
+
+The circles $S$ and $S'$ intersect at points $P$ and $Q$. The points $A$ and $B$ are distinct variable points on the circle $S$ not at $P$ or $Q$. The lines $AP$ and $BP$ meet the circle $S'$ again at $A'$ and $B'$ respectively. The lines $AB$, $A'B'$ meet at $C$. Show that the circumcenter of $AA'C$ lies on a fixed circle (as $A$, $B$ vary).
+
+\textit{Has hints.}
+\begin{sketch}
+    Look for Cyclic Quadrilaterals    
+\end{sketch}
+
+\begin{mdsoln}
+
+Let $X$ be the circumcenter of $AA'C$ and let $O$ and $O'$ be the centers of circles $S$ and $S'$, respectively.
+
+Observe that since $\angle QAB=\angle QPB=\angle QA'B'=\angle QA'C$, quadrilateral $CAQA'$ must be cyclic. Likewise, $CBQB'$ is cyclic.
+
+Since $CAQA'$ is cyclic, $X$ must be its circumcenter, so $\triangle QXC$ is isosceles. Since $\angle QXC=2\angle QA'C=2\angle QA'B'=\angle QO'B'$, and since $\triangle QXC$ and $\triangle QO'B'$ are both isosceles, we can conclude that $\triangle QXC\sim \triangle QO'B'$. This means that $QX/QO'=QC/QB'$ and$$\angle XQO'=\angle B'QO'+\angle XQB'=\angle CQX+\angle XQB'=\angle CQB'$$so $\triangle QXO'\sim QCB'$.
+
+Hence, $\angle O'XQ=\angle B'CQ$. Since $CBQB'$ is cyclic, this means that$$\angle O'XQ=\angle B'CQ=\angle B'BQ=\angle PBQ=\angle POQ/2=\angle O'OQ$$so $X$ lies on the (fixed) circumcircle of $\triangle OO'Q$.
+
+
+\end{mdsoln}
+
+
+\subsection{Problem 5}
+
+Fill in the rest of the proof of the last problem we worked through in class (the IMO Shortlist). Specifically, show that if J is some point on our proposed locus, then we can construct A', B', C' such that A'B'C' is equilateral and its sides (or the extensions thereof) go through A, B, C, respectively.
+
+The problem was as follows:
+Given non-equilateral triangle ABC, find the locus of the centroids of those equilateral triangles A'B'C' such that A is on B'C', B is on A'C' and C is on A'B'.
+
+\begin{mdsoln}
+    \ \\
+    \begin{center}
+        \begin{asy}
+        import cse5;
+        import olympiad;
+        unitsize(4cm);
+        
+        size(300);pathpen=black + linewidth(0.7);pointpen=black;pen s=fontsize(8);path scale(real s, pair D, pair E, real p){return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}real x=55;pair A=dir(-25), B=dir(120), C=dir(205);pair C1=extension(B,B+rotate(x)*(A-B),A,A+rotate(x-120)*(B-A));pair A1=extension(B,B+rotate(x)*(A-B),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));pair B1=extension(A,A+rotate(x-120)*(B-A),C,C+rotate(90)*(bisectorpoint(A,C1,B)-C1));pair D=foot(A1,C1,B1), E=foot(B1,A1,C1), F=foot(C1,A1,B1);pair L=IPs(E--B1, circumcircle(B1,A,C))[0], G=centroid(A1,B1,C1), K=IPs(D--A1, circumcircle(A1,B,C))[0], M=IPs(F--C1, circumcircle(A,B,C1))[0];pair J=point(circumcircle(K,L,M),250);draw(circumcircle(K,L,M),green);draw(MP("C'",C1,NE,s)--MP("A'",A1,W,s)--MP("B'",B1,S,s)--cycle,red);draw(B1--MP("E",E,NW,s)^^C1--MP("F",F,SW,s)^^A1--MP("D",D,dir(30),s),red);draw(MP("A",A,SE,s)--MP("B",B,NW,s)--MP("C",C,SW,s)--cycle);draw(circumcircle(A1,B,C)^^circumcircle(A,B1,C)^^circumcircle(A,B,C1),heavygreen);draw(scale(13,J,L,.4),arrow=ArcArrows(SimpleHead),cyan);draw(scale(18,J,K,.6),arrow=ArcArrows(SimpleHead),cyan);draw(scale(28,J,M,.6),arrow=ArcArrows(SimpleHead),cyan);draw(IPs(scale(13,J,L,.4),circumcircle(A,B1,C))[0]-- IPs(scale(18,J,K,.6),circumcircle(A1,B,C))[0]-- IPs(scale(28,J,M,.6),circumcircle(A,B,C1))[1]--cycle,1.2+magenta);dot(MP("P",IPs(circumcircle(A1,B,C),circumcircle(A,B1,C))[1],SW,s));dot(MP("K",K,NW,s)^^MP("L",L,NE,s)^^MP("M",M,S,s)^^MP("G",G,SE,s)^^MP("J",J,SW,s));
+
+    \end{asy}
+\end{center}
+
+First, a review. We construct $P$, the Fermat Point of $ABC$ (the point such that $\angle BPA=\angle CPB=\angle APC=120^\circ$). Let $\omega_A$, $\omega_B$, and $\omega_C$ be the circumcircles of $\triangle PBC$, $\triangle PCA$, and $\triangle PAB$, respectively. Then, we construct $K$, the intersection of $\omega_A$ with the perpendicular bisector of $BC$, with $K$ on the same side of $BC$ as $A$. We define $L$ and $M$ similarly on $\omega_B$ and $\omega_C$, respectively. Let $\omega$ be the circumcircle of $KLM$. We claim that the desired locus (which we will call $L$) is in fact $\omega$ without the point $P$. In class, we didn’t actually prove that $P$ was on $\omega$. Here is a proof of that:
+
+Pick some point $A'$ on the arc of $\omega_A$ that does not contain $K$. Let $B'$ be the intersection (distinct from $C$) of $A'C$ with $\omega_B$. Let $C'$ be the intersection (distinct from $A$) of $B'A$ with $\omega_C$. Then $\angle BA'C=\angle A'B'C'=\angle AC'B=60^\circ$. This implies that $A',B,C'$ are collinear, so $\triangle A'B'C'$ is an equilateral triangle of the desired form. By our logic in class, the centroid $G$ of $\triangle A'B'C'$ lies on $\omega$. We have $\angle KML=\angle KGL=60^\circ$. Likewise, we may conclude that $\angle LKM=\angle MLK=60^\circ$, so $\triangle KLM$ is equilateral.
+
+Then,\begin{eqnarray*}\angle KPL&=&360^\circ-\angle CPK-\angle LKC\\ &=&360^\circ-(180^\circ-\angle KBC)-(180^\circ-\angle CAL)\\ &=&\angle KBC+\angle CAL\\ &=&30^\circ+30^\circ\\ &=&60^\circ\\ &=&\angle KML\end{eqnarray*}So $P$ must lie on $\omega$.
+
+Now suppose that $J$ is any point on our proposed locus, the circle $\omega$ without the point $P$. Let line $KJ$ meet $\omega_A$ again at $A_1$, line $LJ$ meet $\omega_B$ again at $B_1$, and line $MJ$ meet $\omega_C$ again at $C_1$. Then, $\angle B_1JA_1=120^\circ$. We also have $\angle CB_1J=\angle CB_1L=30^\circ$ (from the definition of $L$). Likewise, $\angle JA_1C=30^\circ$. Since $\angle B_1JA_1+\angle CB_1J+\angle JA_1C=180^\circ$, point $C$ must lie on $A_1B_1$. In like manner we can conclude that $A$ is on $B_1C_1$ and $B$ on $C_1A_1$. Finally, we observe that $\angle C_1A_1B_1=BA_1C=60^\circ$, and likewise $\angle A_1B_1C_1=\angle B_1C_1A_1=60^\circ$, so $\triangle A_1B_1C_1$ is an equilateral triangle of the desired form.
+\end{mdsoln}
+
+

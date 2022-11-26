@@ -1,0 +1,3690 @@
+
+I will place several posts on the message board regarding the special points and lines of a triangle. I will assume you have looked them over by the next class, as we will be tackling many problems which use these concepts.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our topic for today is homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two figures are said to be homothetic if one is essentially a blown up version of the other. (You may also have learned this as a 'dilation'.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is an example of a pair of figures which illustrate homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.5cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair O = origin, A = (10,4), B = (10.1,9), C = (13,6), D = (19,5), E = (15,1), F = (14.9,-3);
+draw(MP("A'",A,scale(0.1)*E,s)--MP("B'",B,N,s)--MP("C'",C,NE,s)--MP("D'",D,SE,s)--MP("E'",E,SE,s)--MP("F'",F,S,s)--cycle);
+pair AA = scale(.5)*A, BB = scale(.5)*B, CC = scale(.5)*C, DD = scale(.5)*D, EE = scale(.5)*E, FF = scale(.5)*F;
+draw(AA--BB--CC--DD--EE--FF--cycle);
+draw(MP("A",AA,SW,s)--MP("B",BB,N,s)--MP("C",CC,NE,s)--MP("D",DD,SE,s)--MP("E",EE,SE,s)--MP("F",FF,S,s)--cycle);
+dot(O);
+draw(MP("O",O,W,s)--A--AA,heavygreen);
+draw(O--B--BB,heavygreen);
+draw(O--C--CC,heavygreen);
+draw(O--D--DD,heavygreen);
+draw(O--E--EE,heavygreen);
+draw(O--F--FF,heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+A homothety with center $O$ maps every point $X$ of a figure to a point $Y$ such that $O$, $X$, $Y$ are collinear and $OY = k(OX)$ for a fixed constant $k$. (In other words, the vector $OY$ is $k$ times the vector $OX$. If you aren't familiar with vectors, we'll be getting to them in another course. You won't really need them today.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, two equilateral triangles which have the same orientation are homothetic:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair O = origin, E=shift((-4,0))*dir(45), F=shift((-4,0))*dir(165),D=shift((-4,0))*dir(-75);
+pair N = (E+D)/2;
+pair B=scale(.5)*shift((-4,0))*dir(45), C=scale(.5)*shift((-4,0))*dir(165),A=scale(.5)*shift((-4,0))*dir(-75);
+pair M = scale(.5)*(N);
+draw(MP("E",E,NE,s)--MP("F",F,W,s)--MP("D",D,S,s)--cycle);
+draw(MP("B",B,NE,s)--MP("C",C,NNW,s)--MP("A",A,S,s)--cycle);
+draw(E--MP("O",O,shift((.25,0))*O,s)--F,heavygreen);
+draw(D--O--MP("N",N,SE,s)--MP("M",M,SE,s),heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message vsar0406 ( user )
+% so the corresponding points in each figure are collinear?
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note in the diagram that every line through corresponding parts of the two triangles also passes through $O.$ Specifically, the line through $A$ and $D$ (corresponding vertices) goes through $O,$ as does the line through $B$ and $E,$ and the line through $C$ and $F.$ The line through $M,$ the midpoint of $AB;$ and $N,$ the midpoint of $DE,$ also goes through $O,$ as these are corresponding parts of the triangle as well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two figures are homothetic, must they be similar?
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message Celwelf ( user )
+% Yes
+
+%------------------
+%-- Message pritiks ( user )
+% yes
+
+%------------------
+%-- Message mustwin_az ( user )
+% yes
+
+%------------------
+%-- Message mathlogic ( user )
+% yes
+
+%------------------
+%-- Message Ezraft ( user )
+% yes
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Yes
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% I think so
+
+%------------------
+%-- Message dxs2016 ( user )
+% yes
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% yes
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message pike65_er ( user )
+% yes
+
+%------------------
+%-- Message ca981 ( user )
+% Yes!
+
+%------------------
+%-- Message Bimikel ( user )
+% yes
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% yes
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% YES.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, homothetic figures are similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two figures are similar, must they be homothetic?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% no
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Not necessarily
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% no
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% no
+
+%------------------
+%-- Message bigmath ( user )
+% no
+
+%------------------
+%-- Message Apollomindstorms ( user )
+% Not necessarily
+
+%------------------
+%-- Message mustwin_az ( user )
+% no
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% no
+
+%------------------
+%-- Message mathlogic ( user )
+% no
+
+%------------------
+%-- Message RP3.1415 ( user )
+% nope!
+
+%------------------
+%-- Message MathJams ( user )
+% no
+
+%------------------
+%-- Message Bimikel ( user )
+% no
+
+%------------------
+%-- Message pike65_er ( user )
+% no
+
+%------------------
+%-- Message renyongfu ( user )
+% not necessarily
+
+%------------------
+%-- Message Vishaln2024 ( user )
+% no
+
+%------------------
+%-- Message bryanguo ( user )
+% not necessarily
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, not necessarily.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Must homothetic figures have parallel sides?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% yes
+
+%------------------
+%-- Message Vishaln2024 ( user )
+% yeah
+
+%------------------
+%-- Message pike65_er ( user )
+% yes
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% yes.
+
+%------------------
+%-- Message Bimikel ( user )
+% yes
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Yes
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message pritiks ( user )
+% yes
+
+%------------------
+%-- Message ca981 ( user )
+% Yes, if there are segments
+
+%------------------
+%-- Message Trollface60 ( user )
+% yes
+
+%------------------
+%-- Message mark888 ( user )
+% yes!
+
+%------------------
+%-- Message Ezraft ( user )
+% Yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+As long as they have sides, yes.
+
+%------------------
+%-- Message Achilleas ( moderator )
+They could be circles.
+
+%------------------
+%-- Message vsar0406 ( user )
+% oh
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% oh lol
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two triangles have parallel sides, are they homothetic?
+
+%------------------
+%-- Message Yufanwang ( user )
+% yes?
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message ww2511 ( user )
+% yes
+
+%------------------
+%-- Message GFei ( user )
+% yes
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% yes
+
+%------------------
+%-- Message MTHJJS ( user )
+% yeah
+
+%------------------
+%-- Message pike65_er ( user )
+% Yes
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Yes.
+
+%------------------
+%-- Message vsar0406 ( user )
+% yes
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, they are, as long as they have the same orientation.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% they have to be similar and have parallel sides
+
+%------------------
+%-- Message Achilleas ( moderator )
+If two quadrilaterals have parallel sides, are they homothetic
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% not necessarily
+
+%------------------
+%-- Message ca981 ( user )
+% Not necessary
+
+%------------------
+%-- Message bryanguo ( user )
+% not necessarily?
+
+%------------------
+%-- Message Vishaln2024 ( user )
+% no .
+
+%------------------
+%-- Message GFei ( user )
+% no
+
+%------------------
+%-- Message Yufanwang ( user )
+% not always
+
+%------------------
+%-- Message pike65_er ( user )
+% no
+
+%------------------
+%-- Message SlurpBurp ( user )
+% not necessarily
+
+%------------------
+%-- Message Trollface60 ( user )
+% noo
+
+%------------------
+%-- Message ww2511 ( user )
+% not necessarily
+
+%------------------
+%-- Message Celwelf ( user )
+% Not always
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message RP3.1415 ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not necessarily: think of a square and a rectangle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How could we use homothety to prove concurrence?
+
+%------------------
+%-- Message renyongfu ( user )
+% what does concurrence mean
+
+%------------------
+%-- Message study2know ( user )
+% what do you mean by concurrence?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Three or more lines are concurrent when they pass through the same point.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% if 2 figures are homothetic about some point, the corresponding points on the figures form lines that meet at some point
+
+%------------------
+%-- Message Celwelf ( user )
+% If two shapes are homothetic, then the lines connecting corresponding points are concurrent?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If the figures are homothetic, then the lines connecting corresponding points are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some properties of homothety which are useful in problems (and you can assume to be true unless you're specifically asked to prove them) are:
+
+%------------------
+%-- Message Achilleas ( moderator )
+If segments $AB$ and $XY$ are homothetic, then $AB$ and $XY$ are parallel. (The same goes for rays and lines.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Homothetic figures are similar, with a ratio equal to that of the homothety ratio $k$ that maps one figure to the other.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about homothetic angles?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They are congruent?
+
+%------------------
+%-- Message Trollyjones ( user )
+% they are congruent
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% They would be congruent
+
+%------------------
+%-- Message Bimikel ( user )
+% they are congruent
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% They're congruent.
+
+%------------------
+%-- Message Ezraft ( user )
+% they are congruent
+
+%------------------
+%-- Message pritiks ( user )
+% they are congruent
+
+%------------------
+%-- Message Achilleas ( moderator )
+Homothetic angles are congruent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Homothety preserves tangency (i.e. if line $m$ is tangent to circle $A$, then line $m'$ is tangent to circle $A'$, where $m'$ and $A'$ are homothetic to $m$, $A$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+These are all fairly 'obvious' results - you should take the time to prove some of them to see how they nearly all result from basic triangle similarity. (In fact, homothety is largely just a set of tools that all follow from triangle similarity; most homothety problems can be tackled with triangle similarity and plenty of work rather than simply invoking homothety.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+You may invoke all the above statements regarding homothetic figures when you are writing a solution for, say, the USAMO. You just note that two figures are homothetic, and away you go.
+
+%------------------
+%-- Message Achilleas ( moderator )
+But when you write a solution, you must be very clear about which homothety you are using. It is best to explicitly state the center of the homothety, and state that it takes $P$ to $Q$, where $P$ and $Q$ are two points in your diagram. If you don't make it clear what homothety you intend and say something handwavy like "by homothety", the graders may not have much mercy on you if the homothety isn't obvious.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we dive into problems, note that the homothety constant ratio need not be positive:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair O = origin, A = (3,1),B=(5,1),C=(5,-1),D=(3,-1);
+pair P = (6,0), W=scale(2.5)*A, X=scale(2.5)*B, Y=scale(2.5)*C, Z=scale(2.5)*D;
+draw(MP("A",A,NW,s)--MP("B",B,NE,s)--MP("C",C,SE,s)--MP("D",D,SW,s)--cycle);
+draw(MP("W",W,NW,s)--MP("X",X,NE,s)--MP("Y",Y,SE,s)--MP("Z",Z,SW,s)--cycle);
+draw(W--MP("O",O,shift(-2,0)*E,s)--X,heavygreen);
+draw(Y--O--Z,heavygreen);
+draw(MP("P",P,scale(2)*NW,s));
+draw(A--Y,red);
+draw(D--X,red);
+draw(B--Z,red);
+draw(C--W,red);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, $ABCD$ can be mapped to $WXYZ$ by either the green homothety with center $O$, or the red homothety with center $P$. The green homothety maps points in the obvious way $A \mapsto W$, $B \mapsto X$, $C \mapsto Y$, $D \mapsto Z$, and our ratio is positive.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The red homothety maps $A$ to a point on the opposite side from $P$ as $A$ (namely, point $Y$), so the ratio is negative, since the vector $PA$ is in the opposite direction of vector $PY$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try some simple problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two circles are externally tangent at $A.$ $A$ line passing through the intersection point of their common external tangents meets the circles at $B,$ $C,$ $D,$ and $E$ as shown. Prove that $BA$ is perpendicular to $AD.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(3cm);
+
+size(250);
+pathpen = black + linewidth(0.7); 
+pointpen = black; 
+pen s = fontsize(8);
+
+pair x=origin;
+path p = (Circle((-2.7,0),1));
+path q = (Circle(scale(17/37)*(-2.7,0), (17/37)*1));
+draw(p,heavygreen);
+draw(q,heavygreen);
+pair m = tangent(x,(-2.7,0),1,1), n = tangent(x,(-2.7,0),1,2), A=point(p,0),E=point(p,150);
+pair D = IPs(E--x,p)[1],C = IPs(E--x,q)[0],B = IPs(E--x,q)[1];
+draw(x+scale(1.5)*(m-x)--x--x+scale(1.5)*(n-x));
+draw(MP("A",A,W,s)--MP("B",B,S,s));
+draw(MP("E",E,NW,s)--MP("D",D,SW,s)--MP("C",C,SSE,s)--B--MP("X",x,shift(.5,0)*x,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message bryanguo ( user )
+% homothety!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where's the homothety?
+
+%------------------
+%-- Message Trollyjones ( user )
+% the two circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circles are homothetic. (Every pair of circles is homothetic.)  We think of homothety here because the center of homothety is part of the problem. What is the center of homothety?
+
+%------------------
+%-- Message Yufanwang ( user )
+% The two green circles. The homothety is centered at $X$ (positive) or $A$ (negative).
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The homothety centered at X takes the small circle to the big one
+
+%------------------
+%-- Message ww2511 ( user )
+% X
+
+%------------------
+%-- Message trk08 ( user )
+% X
+
+%------------------
+%-- Message dxs2016 ( user )
+% X
+
+%------------------
+%-- Message Trollface60 ( user )
+% X
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% X
+
+%------------------
+%-- Message maxlangy ( user )
+% X
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% X
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $X$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% point X
+
+%------------------
+%-- Message study2know ( user )
+% X
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% X
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Point X
+
+%------------------
+%-- Message bigmath ( user )
+% X
+
+%------------------
+%-- Message Yufanwang ( user )
+% Either $X$ (if positive) or $A$ (if negative)
+
+%------------------
+%-- Message ca981 ( user )
+% X
+
+%------------------
+%-- Message MTHJJS ( user )
+% X
+
+%------------------
+%-- Message mustwin_az ( user )
+% X
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $X$
+
+%------------------
+%-- Message pike65_er ( user )
+% X
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The homothety centered at $X$ takes the smaller green circle to the larger green circle.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% X
+
+%------------------
+%-- Message bryanguo ( user )
+% point $X$
+
+%------------------
+%-- Message MathJams ( user )
+% Centered at X
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are two centers of homothety. Both $A$ and $X$ can be considered centers of homothety that map one circle to the other (the homothety with center $A$ has a negative ratio). Which should we work with?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% probably X
+
+%------------------
+%-- Message MathJams ( user )
+% X
+
+%------------------
+%-- Message myltbc10 ( user )
+% X
+
+%------------------
+%-- Message Yufanwang ( user )
+% $X$ is more useful.
+
+%------------------
+%-- Message pritiks ( user )
+% X.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% X is easier to work with
+
+%------------------
+%-- Message Achilleas ( moderator )
+We work with $X$, since the line with $B$, $C$, $D$, and $E$ on it goes through $X$.
+
+%------------------
+%-- Message study2know ( user )
+% X, since you already have the lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now that we know what homothety we're working with, what corresponding parts do we see? (In other words, what points on the small circle correspond to what points on the big circle?)
+
+%------------------
+%-- Message Bimikel ( user )
+% B to D and C to E
+
+%------------------
+%-- Message study2know ( user )
+% B corresponds to D, and C corresponds to E
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $B$ corresponds to $D$ and $C$ to $E$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $B$ corresponds to $D$ and $C$ corresponds to $E$.
+
+%------------------
+%-- Message pritiks ( user )
+% B and C in the small circle correspond to D and E in the big circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% C corresponds to E and B corresponds to D
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $B$ to $D$, $C$ to $E$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $B$ and $C$ from the small circle correspond with $D$ and $E$ from the big circle
+
+%------------------
+%-- Message Trollface60 ( user )
+% $B \rightarrow D$ and  $C\rightarrow E$
+
+%------------------
+%-- Message Ezraft ( user )
+% $B \rightarrow D, C  \rightarrow E$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% B corresponds to D, C corresponds to E
+
+%------------------
+%-- Message bryanguo ( user )
+% $B$ corresponds to $D$, $C$ corresponds to $E$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$B$ corresponds to $D$ and $C$ corresponds to $E$. (We can also write this as $h(B) = D$, $h(C) = E$, where we define $h$ to be our homothety.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is this enough to solve the problem?
+
+%------------------
+%-- Message study2know ( user )
+% no
+
+%------------------
+%-- Message pritiks ( user )
+% no
+
+%------------------
+%-- Message MathJams ( user )
+% No
+
+%------------------
+%-- Message mustwin_az ( user )
+% No
+
+%------------------
+%-- Message mark888 ( user )
+% Noooo
+
+%------------------
+%-- Message bigmath ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why not?
+
+%------------------
+%-- Message ca981 ( user )
+% No. We also need A
+
+%------------------
+%-- Message dxs2016 ( user )
+% we need A somehow
+
+%------------------
+%-- Message study2know ( user )
+% you don't have any relationship (or any mention) of A
+
+%------------------
+%-- Message ww2511 ( user )
+% this doesn't tell us anything about point A
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can't really relate anything to A
+
+%------------------
+%-- Message vsar0406 ( user )
+% Because we need to show that two segments are perpendicular, and we also have to find a way to involve A
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, this isn't enough. We haven't said anything about $A$ yet, and we want to show that $BA$ and $AD$ are perpendicular. How can we incorporate $A$?
+
+%------------------
+%-- Message pritiks ( user )
+% draw an additional line
+
+%------------------
+%-- Message Achilleas ( moderator )
+What line should we add to the diagram?
+
+%------------------
+%-- Message bigmath ( user )
+% draw line XA
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% AX
+
+%------------------
+%-- Message Bimikel ( user )
+% the line that goes through AX
+
+%------------------
+%-- Message Yufanwang ( user )
+% Extend $XA$ to meet the big circle again at some point, say, $P$?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $XA$?
+
+%------------------
+%-- Message study2know ( user )
+% AX, extended further past A?
+
+%------------------
+%-- Message trk08 ( user )
+% XA
+
+%------------------
+%-- Message RP3.1415 ( user )
+% add $AX$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% line XA
+
+%------------------
+%-- Message Trollface60 ( user )
+% XA
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% AX
+
+%------------------
+%-- Message ca981 ( user )
+% connect XA and extend to the other side of big circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw $XA$ (extended), and have some more corresponding points. What are they?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(3cm);
+
+size(250);
+pathpen = black + linewidth(0.7); 
+pointpen = black; 
+pen s = fontsize(8);
+
+pair x=origin;
+path p = (Circle((-2.7,0),1));
+path q = (Circle(scale(17/37)*(-2.7,0), (17/37)*1));
+pair Y = scale(17/37)*(-1.7,0);
+draw(MP("Z",(-3.7,0),W,s)--MP("Y",Y,SE,s)--x);
+draw(p,heavygreen);
+draw(q,heavygreen);
+pair m = tangent(x,(-2.7,0),1,1), n = tangent(x,(-2.7,0),1,2), A=point(p,0),E=point(p,150);
+pair D = IPs(E--x,p)[1],C = IPs(E--x,q)[0],B = IPs(E--x,q)[1];
+draw(x+scale(1.5)*(m-x)--x--x+scale(1.5)*(n-x));
+draw(D--MP("A",A,SW,s)--MP("B",B,S,s));
+draw(MP("E",E,NW,s)--MP("D",D,SW,s)--MP("C",C,SSE,s)--B--MP("X",x,shift(.5,0)*x,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message mustwin_az ( user )
+% A to  Z and Y to A
+
+%------------------
+%-- Message Bimikel ( user )
+% Y to A and A to Z
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $Y \mapsto A$ and $A \mapsto Z$
+
+%------------------
+%-- Message MathJams ( user )
+% Y->A and A->Z
+
+%------------------
+%-- Message ww2511 ( user )
+% Y to A, A to Z
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Y to A, A to Z
+
+%------------------
+%-- Message dxs2016 ( user )
+% Y to A and A to Z
+
+%------------------
+%-- Message trk08 ( user )
+% Y to A, A to Z
+
+%------------------
+%-- Message mustwin_az ( user )
+% $h(Y)=A$ and $h(A)=Z$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $Y$ corresponds to $A$ and $A$ corresponds to $Z$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $Y \mapsto A$, $A \mapsto Z$
+
+%------------------
+%-- Message renyongfu ( user )
+% Y to A and A to Z
+
+%------------------
+%-- Message Ezraft ( user )
+% $Y \rightarrow A, A \rightarrow Z$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $A\mapsto Z$ and $Y\mapsto A$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $h(Y) = A$ and $h(A) = Z$. Now what?
+
+%------------------
+%-- Message Trollyjones ( user )
+% looks like AZ and AY are diameters
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AZ$ and $AY$ are diameters of the two circles, since by symmetry we see that $A$, $X$, and the centers of the two circles must be collinear. How does this help?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle ABY=\angle ZDA=90$
+
+%------------------
+%-- Message MathJams ( user )
+% We can angle chase using the fact that <ADZ=<ABY=90
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle ABY$ and $\angle ZDA$ are right angles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AZ$ and $AY$ are diameters, angles $ADZ$ and $YBA$ are right angles. Now what?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% AD || BY, so angle ABY = angle DAB
+
+%------------------
+%-- Message bryanguo ( user )
+% since $AD$ and $YB$ are parallel we are done
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $YB$ and $AD$ are homothetic, they are parallel (as are $DZ$ and $BA$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AD \parallel BY$ and $\angle ABY = 90^\circ$, we have $\angle DAB = 90^\circ$, as desired.
+
+%------------------
+%-- Message JamesSong ( user )
+% how do we know that they have to be diameters
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Wait why does AY and AZ pass through the center of the 2 circles?
+
+%------------------
+%-- Message vsar0406 ( user )
+% how do we know that AZ and AY are diameters though?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Wait why does AY and AZ pass through the center of the 2 circles???
+
+%------------------
+%-- Message Achilleas ( moderator )
+$XA$ passes through the center of the circles because $X$ is the intersection point of their common external tangents and the two circles are tangent at  $A$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$XA$ is the angle bisector of the angle with vertex at  $X$ and also the perpendicular bisector of the common interior tangent of the two circles at $A$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Congruent (right) triangles prove all these claims.)
+
+%------------------
+%-- Message smileapple ( user )
+% why AD||BY
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $h(Y)=A$ and $h(B)=D$ by our homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's what a full solution looks like:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $h$ be the homothety with center $X$ that maps the smaller circle to the larger circle. Draw $XA$, meeting the smaller circle a second time at $Y$. $\angle ABY$ is inscribed in a semicircle, so $\angle ABY = 90^\circ$. Since $h$ maps segment $BY$ to $DA$, we have $BY \parallel DA$, so $\angle DAB = \angle ABY = 90^\circ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can certainly get through this problem without homothety, and we'd use essentially the same steps as just used; however, we'd need a lot more work to get from step to step without taking the convenient leap of observing $AD \parallel BY$ or $YB \parallel AD$ due to our homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Problems involving tangent circles are often solvable with homothety, primarily because the center of homothety is usually part of the given problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Also, when we have problems that include the two common external tangents to a pair of circles, we should think of homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next we'll find a quick proof of Steiner's Theorem. Steiner's Theorem states that the midpoints of the parallel sides of a trapezoid, the intersection of the diagonals of the trapezoid, and the intersection of the extensions of the non-parallel sides are all collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.75cm);
+
+size(150);
+pathpen = black + linewidth(0.7); 
+pointpen = black; 
+pen s = fontsize(8);
+
+pair A=(1,4),B=(5,4),C=(7,0),D=origin,X=extension(A,D,B,C),M=(B+A)/2,N=(C+D)/2,Y=IPs(B--D,A--C)[0];
+dot(M);dot(N);
+draw(MP("A",A,W,s)--MP("M",M,rotate(210)*S,s)--MP("B",B,E,s)--MP("C",C,SE,s)--MP("N",N,S,s)--MP("D",D,SW,s)--cycle);
+draw(C--A--MP("X",X,NW,s)--B--MP("Y",Y,scale(2)*S,s)--D,red);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Steiner's Theorem: $M$ and $N$ are midpoints of parallel sides $AB$ and $CD$ of trapezoid $ABCD.$ $X,$ $M,$ $Y,$ $N,$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where's the homothety?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do you see any homothetic segments?
+
+%------------------
+%-- Message bigmath ( user )
+% Y is the center of the homothety
+
+%------------------
+%-- Message mark888 ( user )
+% AB and DC
+
+%------------------
+%-- Message ca981 ( user )
+% AB and DC
+
+%------------------
+%-- Message xyab ( user )
+% $AB$ and $CD$?
+
+%------------------
+%-- Message ww2511 ( user )
+% AB and DC are homothetic
+
+%------------------
+%-- Message Ezraft ( user )
+% $AB$ and $CD$ are homothetic
+
+%------------------
+%-- Message Trollyjones ( user )
+% AB and DC?
+
+%------------------
+%-- Message Bimikel ( user )
+% AB and DC
+
+%------------------
+%-- Message bryanguo ( user )
+% $AB$ and $CD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Parallel segments $AB$ and $CD$ are homothetic. What is the center of homothety?
+
+%------------------
+%-- Message maxlangy ( user )
+% X or Y
+
+%------------------
+%-- Message Trollyjones ( user )
+% X or Y
+
+%------------------
+%-- Message trk08 ( user )
+% X or Y
+
+%------------------
+%-- Message dxs2016 ( user )
+% Y or X?
+
+%------------------
+%-- Message mark888 ( user )
+% X or Y
+
+%------------------
+%-- Message ca981 ( user )
+% Point X or Y
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% X or Y.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are two homotheties which map $AB$ to $CD$. One has center $Y$ and a negative ratio and the other has center $X$ and a positive ratio.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How does this prove Steiner's Theorem?  Take it in two steps - show first that $Y$ is on $MN$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why is $Y$ on $MN$?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $Y$ takes $M$ to $N$ so it must be on $MN$
+
+%------------------
+%-- Message dxs2016 ( user )
+% h(M) = N via homothety with Y?
+
+%------------------
+%-- Message maxlangy ( user )
+% M, Y and N are collinear as Y is the centre of homothety
+
+%------------------
+%-- Message MathJams ( user )
+% since there is a negative homothety centered at Y mapping M to N
+
+%------------------
+%-- Message Yufanwang ( user )
+% Oh because a homothety centered at Y maps M to N or vice versa so Y is on MN
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Center of homothety is collinear with homothetic segments/parts about that center
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Since M is the image of N under the homothety centered at Y
+
+%------------------
+%-- Message RP3.1415 ( user )
+% The homothety centered at $Y$ maps $AB \mapsto CD$. Hence, their midpoints map to each other, so $M,N,Y$ are collinear
+
+%------------------
+%-- Message vsar0406 ( user )
+% Y is on MN because M and N are homothetic with respect to Y
+
+%------------------
+%-- Message Bimikel ( user )
+% Y maps M to N by homothety so Y is on MN
+
+%------------------
+%-- Message smileapple ( user )
+% $Y$ maps $M$ to $N$ so $Y, M, N$ are collinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+$Y$ is the center of a homothety that maps $AB$ to $CD$. Therefore, it maps the midpoint of $AB$, $M$, to the midpoint of $CD$, $N$. Since $M$ and $N$ are corresponding parts of homothetic figures $AB$ and $CD$, the line through $M$ and $N$ must go through the center of homothety, $Y$. Hence $M$, $Y$, and $N$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we take care of point $X$?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Homothety with X as center
+
+%------------------
+%-- Message dxs2016 ( user )
+% M and N are homothetic with respect to X, so X, M, N collinear
+
+%------------------
+%-- Message smileapple ( user )
+% $X$ maps $M$ to $N$ so $X, M, N$ are collinear
+
+%------------------
+%-- Message MathJams ( user )
+% Using homothety centered at X
+
+%------------------
+%-- Message ca981 ( user )
+% X is another homothety center, map M to N
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% X maps the M to N, so they are also collinear
+
+%------------------
+%-- Message maxlangy ( user )
+% similar reasoning, as X is also a center of homothety sending M to N
+
+%------------------
+%-- Message Yufanwang ( user )
+% Redo what we just did for Y only center the homothety at X
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $X$ is another center of homothety, and it takes $M$ to $N,$ so it must lie on $MN$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Do the same thing but with $X$ as the center of homothety instead of $Y$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A similar logic based on the fact that $AB$ and $CD$ are homothetic w/respect to $X$, and therefore $X$ maps $M$ to $N$ and is collinear with $MN$ via homothety
+
+%------------------
+%-- Message Bimikel ( user )
+% X maps AB to DC so X maps M to N. This means X, M, and N are collinear.
+
+%------------------
+%-- Message mark888 ( user )
+% X maps M to N so X, M, and N are collinear also.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Using a similar fashion: The homothety at $X$ maps $AB$ to $CD$, and $M$ to $N$, since they are the midpoints of $AB$ and $CD$, respectively. Thus, $M, X, N$ are collinear. It follows that $M, N, X, Y$ are collinear.
+
+%------------------
+%-- Message Ezraft ( user )
+% $X$ maps $M$ to $N$ as well, so $X,M,N$ are collinear
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% X is the center of the other homothety that maps AB onto DC, hence X, M, N are colinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can do the same with point $X$ as we did with point $Y$ -- it is the center of a homothety that maps $AB$ to $DC$, so the line through corresponding parts $M$ and $N$ will go through $X$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is an example of using homothety to prove collinearity.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AD$, $BE$, and $CF$ are medians of triangle $ABC$. $G$ is the centroid of $ABC$, $H$ is the orthocenter (intersection of the altitudes) and $O$ is the circumcenter. Prove that $2OG = GH$ and that $O$, $G$, and $H$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some of you may be familiar with this -- the line through $O$, $G$, and $H$ is called the Euler line of triangle $ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7); 
+pointpen = black; 
+pen s = fontsize(8);
+
+pair C=(2,4),B=(7,0),A=origin;
+pair E=(A+C)/2,D=(C+B)/2,F=(A+B)/2;
+pair H = orthocenter(A,B,C), G = centroid(A,B,C), O = circumcenter(A,B,C);
+draw(C--F^^E--B^^A--D,lightred);
+draw(C--foot(C,A,B)^^B--foot(B,A,C)^^A--foot(A,B,C),lightgreen);
+draw(MP("E",E,NW,s)--O--MP("F",F,S,s)^^O--MP("D",D,NE,s),lightblue);
+draw(E--F--D--cycle,orange);
+draw(MP("A",A,SW,s)--MP("B",B,SE,s)--MP("C",C,N,s)--cycle);
+draw(H--O);
+dot(MP("H",H,NW,s));
+dot(MP("G",G,NE,s));
+dot(MP("O",O,SE,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Such a hideous diagram. Hard to see the forest through the trees here. We can pound away with Euclidean geometry and get to the answer. But... is there a slicker way?
+
+%------------------
+%-- Message Yufanwang ( user )
+% HOMOTHETY
+
+%------------------
+%-- Message smileapple ( user )
+% homothety??
+
+%------------------
+%-- Message pritiks ( user )
+% use homothety?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is there a homothety we can take advantage of?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% homothety centered at $G$
+
+%------------------
+%-- Message dxs2016 ( user )
+% use homothety with G as the point?
+
+%------------------
+%-- Message ay0741 ( user )
+% is there a homothety around G
+
+%------------------
+%-- Message sae123 ( user )
+% center G I assume, since centroid is the easiest to work with usually.
+
+%------------------
+%-- Message nextgen_xing ( user )
+% homothety around G
+
+%------------------
+%-- Message Achilleas ( moderator )
+Medial triangle $DEF$ is homothetic to $ABC$. $G$ is the centroid of both triangles, and hence the center of homothety. Thus, our homothety with center $G$ is such that $h(ABC) = DEF$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?  We want to show that $O$, $G$, and $H$ are collinear. How might we show this?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show O maps to H (or vice versa)
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we could show that $O$ and $H$ are corresponding points under our homothety, we're done. Which are we trying to show: $h(H) = O$ or $h(O) = H$?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $h(H) = O$
+
+%------------------
+%-- Message mathlogic ( user )
+% h(H) = O
+
+%------------------
+%-- Message Ezraft ( user )
+% $h(H) = O$
+
+%------------------
+%-- Message Bimikel ( user )
+% $h(H)=O$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since we want to show that $2OG = GH$, we wish to show that $h(H) = O$. In English, what does this mean we are trying to show?
+
+%------------------
+%-- Message mark888 ( user )
+% $O$ is the orthocenter of $\triangle DEF$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $O$ looks like the orthocenter of $\triangle EDF$
+
+%------------------
+%-- Message Bimikel ( user )
+% first show that O is the orthocenter of DEF
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% O is the orthocenter of $DEF$
+
+%------------------
+%-- Message Ezraft ( user )
+% $O$ is the orthocenter of $\triangle DEF$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$H$ is the orthocenter of $ABC$. If we show that $O$ is the orthocenter of $DEF$, then $h(H) = O$, because we already know the image of $H$ under homothety $h$ is the orthocenter of $DEF$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we show that $O$ is the orthocenter of $DEF$?
+
+%------------------
+%-- Message mustwin_az ( user )
+% DO, DF, DE extended are perpendicular to EF,FD,ED
+
+%------------------
+%-- Message SlurpBurp ( user )
+% show that the extensions of $DO, EO, FO$ are altitudes of triangle $DEF$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% show that OE, OF, and OD are perpendicular to the sides of $\triangle DEF$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that $OD$, $OE$, and $OF$ are the altitudes of triangle $DEF$.
+
+%------------------
+%-- Message MathJams ( user )
+% We know OF is perpendicular to AB, but AB//ED, so OF is also perpendicular to ED, the rest are symmetrical to what we just did
+
+%------------------
+%-- Message Ezraft ( user )
+% $O$ is the circumcenter and $AB \parallel DE$ so $OF$ is an altitude of $\triangle DEF$; we can use similar reasoning for the other points
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $DF$ is parallel to $AC$ and $OE$ is perpendicular to $AC$ (since $O$ is on the perpendicular bisector of $AC$ and $E$ is the midpoint of $AC$), line $OE$ must be perpendicular to $DF$. Thus, line $OE$ contains the altitude from $E$ of triangle $DEF$. Similarly, we can show that $OD$ and $OF$ contain altitudes of $DEF$ and $O$ is the orthocenter of $DEF$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, $O$ is the image of $H$ under homothety $h$ with center G and ratio $-1/2$. Therefore, $O$, $G$, and $H$ must be collinear and $OG = GH/2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yet another example of the machinery of homothety dismantling a seemingly complicated problem swiftly.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $D$ the point where the incircle of $ABC$ is tangent to side $BC. $ Let the excircle which touches $BC$ and the extensions of sides $AB$ and $AC$ meet $BC$ at the point $E.$ Prove that $AE$ meets the incircle at the point $P$ diametrically opposite to $D.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(An excircle is a circle tangent to the extensions of two sides of a triangle and the third side. )
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = origin, C = dir(25), B = scale(1.4)*dir(-25);
+pair C1 = scale(2.7)*C, B1 = scale(2.1)*B;
+pair Ic = incenter(A,B,C);
+pair Ir = length(Ic-foot(Ic,C,A));
+pair Oc = extension(C,bisectorpoint(C1,C,B),A,Ic);
+real Or = length(Oc-foot(Oc,A,C));
+pair D = foot(Ic,C,B);
+pair E = foot(Oc,C,B);
+pair P = IPs(A--E,incircle(A,B,C))[0];
+dot(MP("I",Ic,N,s));
+dot(MP("O",Oc,N,s));
+draw(Circle(Oc,Or),heavygreen);
+draw(incircle(A,B,C),heavygreen);
+MP("D",D,rotate(15)*NE,s);
+draw(MP("A",A,W,s)--MP("C",C,NW,s)--MP("B",B,SW,s)--cycle);
+draw(A--C1^^A--B1^^A--scale(3.1)*bisectorpoint(C,A,B));
+draw(A--MP("P",P,SW,s)--MP("E",E,E,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where should we start?
+
+%------------------
+%-- Message bryanguo ( user )
+% homothety again!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we start drawing in extra lines, and chasing angles and such, we note that we have circles and common tangents, so there might be a quick approach using homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which figures are homothetic in our diagram?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(specify the figures and the center of homothety)
+
+%------------------
+%-- Message smileapple ( user )
+% circles via center A
+
+%------------------
+%-- Message renyongfu ( user )
+% circle I and O, with center at A
+
+%------------------
+%-- Message MathJams ( user )
+% Our circles, with center A
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Circle I and circle O, with respect to point A
+
+%------------------
+%-- Message Trollyjones ( user )
+% circle centered at I and circle centered at O with center of homothety at A
+
+%------------------
+%-- Message bryanguo ( user )
+% point $A$ is the center of homothety and the circles are the figures
+
+%------------------
+%-- Message ww2511 ( user )
+% the two circles, the center of homothety is A
+
+%------------------
+%-- Message dxs2016 ( user )
+% Circle I and circle O with center of homthety A
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the incircle and excircle are homothetic with respect to $A$
+
+%------------------
+%-- Message mark888 ( user )
+% circle I is being mapped to circle O from point $A$.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Circle $I$ and $O$ with center of homothety being $A$
+
+%------------------
+%-- Message vsar0406 ( user )
+% circles I and O are homothetic with center A
+
+%------------------
+%-- Message study2know ( user )
+% Circle I is homothetic to circle O at center A
+
+%------------------
+%-- Message Achilleas ( moderator )
+The two circles are homothetic with $A$ as the center of homothety. How does this help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $P$ be the point shown that is the intersection of $AE$ and the incircle. Since we wish to prove something about $P$, we ask ourselves, what does our homothety tell us about point $P$?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% h(P) = E
+
+%------------------
+%-- Message dxs2016 ( user )
+% P corresponds with E
+
+%------------------
+%-- Message Bimikel ( user )
+% h(P)=E
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% P maps to E?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $P \mapsto E$
+
+%------------------
+%-- Message smileapple ( user )
+% $h(P)=E$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $P$ maps to $E$ with homothety
+
+%------------------
+%-- Message vsar0406 ( user )
+% P is homothetic to E with respect to A
+
+%------------------
+%-- Message pritiks ( user )
+% it corresponds to point E in circle O
+
+%------------------
+%-- Message mustwin_az ( user )
+% h(P)=E
+
+%------------------
+%-- Message Ezraft ( user )
+% $P \mapsto E$
+
+%------------------
+%-- Message bryanguo ( user )
+% By the homothety $P \to E$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $P$ corresponds to point $E$, which is the point of tangency of $BC$ to the excircle. What does this tell us about $P$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw in the tangent to the incircle through point $P$, since that's the information we have about $E$ (that it's a point of tangency). What do we know about this tangent segment?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = origin, C = dir(25), B = scale(1.4)*dir(-25);
+pair C1 = scale(2.7)*C, B1 = scale(2.1)*B;
+pair Ic = incenter(A,B,C);
+pair Ir = length(Ic-foot(Ic,C,A));
+pair Oc = extension(C,bisectorpoint(C1,C,B),A,Ic);
+real Or = length(Oc-foot(Oc,A,C));
+pair D = foot(Ic,C,B);
+pair E = foot(Oc,C,B);
+pair P = IPs(A--E,incircle(A,B,C))[0];
+dot(MP("I",Ic,N,s));
+dot(MP("O",Oc,N,s));
+draw(Circle(Oc,Or),heavygreen);
+draw(incircle(A,B,C),heavygreen);
+MP("D",D,rotate(15)*NE,s);
+draw(MP("A",A,W,s)--MP("C",C,NW,s)--MP("B",B,SW,s)--cycle);
+draw(A--C1^^A--B1^^A--scale(3.1)*bisectorpoint(C,A,B));
+draw(A--MP("P",P,SW,s)--MP("E",E,E,s));
+draw(extension(P,P+rotate(90)*(Ic-P),A,C)--extension(P,P+rotate(90)*(Ic-P),A,B));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Bimikel ( user )
+% it's parallel to BC
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% This new tangent is parallel  to $BC$
+
+%------------------
+%-- Message mustwin_az ( user )
+% It is parallel to BC
+
+%------------------
+%-- Message smileapple ( user )
+% the new line segment is parrelel to $CB$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's parallel to $BC$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% This tangent segment is parallel to BC
+
+%------------------
+%-- Message dxs2016 ( user )
+% tangent segment || to CB?
+
+%------------------
+%-- Message pritiks ( user )
+% its parallel to CB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is parallel to CB
+
+%------------------
+%-- Message SlurpBurp ( user )
+% it is parallel to $BC$
+
+%------------------
+%-- Message Trollface60 ( user )
+% it is parallel to BC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because $P$ corresponds to $E$ in our homothety, the tangent line through $E$ to the excircle corresponds to the tangent line through $P$ to the incircle. Hence, these lines are parallel. So?
+
+%------------------
+%-- Message vsar0406 ( user )
+% we know that the tangent through P is parallel to BC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our new tangent and $BC$ are parallel and both tangent to the incircle. How about their points of tangency to the incircle (circle $I$)?
+
+%------------------
+%-- Message Trollyjones ( user )
+% they are diametrically opposite
+
+%------------------
+%-- Message mustwin_az ( user )
+% diametrically opposite
+
+%------------------
+%-- Message dxs2016 ( user )
+% "diametrically opposite"?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they are parallel and both tangent to the incircle, so their points of tangency must be diametrically opposite
+
+%------------------
+%-- Message RP3.1415 ( user )
+% they are diametrically opposite
+
+%------------------
+%-- Message sae123 ( user )
+% we can see that $PD \perp BC,$ and also $ID \perp BC,$ so $P,I,D$ are collinear, done.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the points of tangency and I are collinear
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They must be diametrically opposite
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Connect the points of tangency of the incircle to center I and it forms a right angle, and since the 2 tangent lines are parallel, it has to add up to 180, so 90+90=180 shows that P, I, and D are collinear
+
+%------------------
+%-- Message Ezraft ( user )
+% they are collinear to point $I$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = origin, C = dir(25), B = scale(1.4)*dir(-25);
+pair C1 = scale(2.7)*C, B1 = scale(2.1)*B;
+pair Ic = incenter(A,B,C);
+pair Ir = length(Ic-foot(Ic,C,A));
+pair Oc = extension(C,bisectorpoint(C1,C,B),A,Ic);
+real Or = length(Oc-foot(Oc,A,C));
+pair D = foot(Ic,C,B);
+pair E = foot(Oc,C,B);
+pair P = IPs(A--E,incircle(A,B,C))[0];
+dot(MP("I",Ic,N,s));
+dot(MP("O",Oc,N,s));
+draw(Circle(Oc,Or),heavygreen);
+draw(incircle(A,B,C),heavygreen);
+MP("D",D,rotate(15)*NE,s);
+draw(MP("A",A,W,s)--MP("C",C,NW,s)--MP("B",B,SW,s)--cycle);
+draw(A--C1^^A--B1^^A--scale(3.1)*bisectorpoint(C,A,B));
+draw(A--MP("P",P,SW,s)--MP("E",E,E,s));
+draw(extension(P,P+rotate(90)*(Ic-P),A,C)--extension(P,P+rotate(90)*(Ic-P),A,B));
+draw(P--D);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Their points of tangency to the incircle (circle $I$) are the endpoints of a diameter. Therefore, $P$ is diametrically opposite $D$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice our use of homothety here: it's a very common approach. We have a point we know little about, $P$, that maps to a point we know something about, $E$. So we take all we know about $E$ and apply it to $P$ and see if that solves the problem for us. It does, so we are happy!
+
+%------------------
+%-- Message vsar0406 ( user )
+% I don't completely understand why they are the endpoints of a diameter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two distinct parallel lines can only be tangent to the same circle if the points of tangency are diametrically opposed
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+real x = .65;
+real a = 145;
+pair A = dir(a);
+pair M = dir(180);
+draw(Circle(origin,1),heavygreen);
+draw(Circle(rotate(a)*(x,0),1-x),heavygreen);
+pair P = tangent(M,rotate(a)*(x,0),1-x);
+draw(MP("A",A,NW,s)--MP("M",M,W,s)--MP("P",P,S,s)--MP("N",IPs(M--M+scale(5)*(P-M),Circle(origin,1))[1],E,s)--A--P);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two circles are internally tangent at $A.$ Chord $MN$ of the larger circle touches the smaller circle at $P.$  Prove that $AP$ bisects angle $MAN.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+A couple of tangent circles. Question involving a line drawn through the common tangent point. Hmmm. . .
+
+%------------------
+%-- Message bryanguo ( user )
+% homothety once again
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where is the homothety?
+
+%------------------
+%-- Message MathJams ( user )
+% homothety centered at A mapping two circles
+
+%------------------
+%-- Message study2know ( user )
+% The center is point A
+
+%------------------
+%-- Message Trollyjones ( user )
+% homothety centered at A with the circles
+
+%------------------
+%-- Message smileapple ( user )
+% circles are homothetic; center at $A$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% the two circles from point A
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Centered at A, mapping the smaller circle onto the larger circle
+
+%------------------
+%-- Message bigmath ( user )
+% point A maps the smaller circle to the big circle
+
+%------------------
+%-- Message mark888 ( user )
+% The smaller circle maps to the larger one with the center at $A$.
+
+%------------------
+%-- Message Ezraft ( user )
+% centered at point $A$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% centered at $A$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $A$ is our center of homothety -- our two circles are homothetic. We let our homothety with center $A$ be such that $h(\text{little circle}) = \text{big circle}$. Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we going to get anywhere with what we have?  Should we add anything to the diagram?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% label points and possibly extend AP to meet the big circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Extend AP to intersect the big circle
+
+%------------------
+%-- Message MathJams ( user )
+% Intersection of AM and small circle, intersection of AN with small circle, and AP with big circle
+
+%------------------
+%-- Message mark888 ( user )
+% Extend AP to meet the larger circle
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% extend $AP$ to the larger circle
+
+%------------------
+%-- Message bigmath ( user )
+% extend AP to intersect the bigger circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can label a few points. We should definitely extend $AP$. This is the alleged bisector, after all.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+real x = .65;
+real a = 145;
+pair A = dir(a);
+pair M = dir(180);
+draw(Circle(origin,1),heavygreen);
+path lilC = Circle(rotate(a)*(x,0),1-x);
+draw(lilC,heavygreen);
+pair P = tangent(M,rotate(a)*(x,0),1-x);
+pair N = IPs(M--M+scale(5)*(P-M),Circle(origin,1))[1];
+draw(MP("A",A,NW,s)--MP("E",IPs(M--A,lilC)[0],E,s)--MP("M",M,W,s)--MP("P",P,rotate(15)*SW,s)--MP("N",N,E,s)--MP("F",IPs(N--A,lilC)[0],NE,s)--A--P--MP("D",IPs(A--A+scale(5)*(P-A),Circle(origin,1))[1],S,s));
+
+draw(P);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we wish to prove? (I'll say it again: geometry proofs are often meant to be worked at from both directions.)
+
+%------------------
+%-- Message bryanguo ( user )
+% we want to show $AP$ bisects $\angle MAN$
+
+%------------------
+%-- Message mark888 ( user )
+% Prove that AP bisects $\angle MAN$
+
+%------------------
+%-- Message dxs2016 ( user )
+% AP is the angle bisector of angle MAN
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $AP$ bisects $\angle{MAN}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to show that $AP$ bisects angle $MAN$. How might we show that?  What are some equalities from which we could infer that $AP$ bisects $MAN$ immediately?
+
+%------------------
+%-- Message apple.xy ( user )
+% <MAP = <NAP
+
+%------------------
+%-- Message Bimikel ( user )
+% $\angle MAP=\angle PAN$
+
+%------------------
+%-- Message pritiks ( user )
+% arc MD = arc ND
+
+%------------------
+%-- Message MathJams ( user )
+% Arc MD is equal to arc ND
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Angle MAP = Angle NAP
+
+%------------------
+%-- Message myltbc10 ( user )
+% <MAP=<PAN
+
+%------------------
+%-- Message SmartZX ( user )
+% Angle MAD = Angle DAN
+
+%------------------
+%-- Message RP3.1415 ( user )
+% We need to show that $D$ is the midpoint of arc $MN$
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are several.  Here are a few:  $\angle PAM = \angle PAN$.  $\overset{\frown}{PE} = \overset{\frown}{FP}$.  $\overset{\frown}{MD} = \overset{\frown}{DN}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we prove any of these easily?  Is there anything particularly special about any of the points $E$, $F$, or $D$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: Use our homothety $h$)
+
+%------------------
+%-- Message smileapple ( user )
+% $h(E)=M,h(P)=D,h(F)=N$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $h(E) = M$, $h(P) = D,$ $h(F) = N$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$h(E) = M$, $h(F) = N$, $h(P) = D$. Are any of these correspondences useful?
+
+%------------------
+%-- Message pritiks ( user )
+% h(P) = D?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $h(P) = D$ looks promising
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does $h(P)=D$ give us about the line through $D$ which is tangent to the big circle?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% It's parallel to MN.
+
+%------------------
+%-- Message SmartZX ( user )
+% It is parallel to MN
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is parallel to $MN$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's parallel to $MN$
+
+%------------------
+%-- Message Ezraft ( user )
+% it is parallel to $MN$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It's parallel to $MN$
+
+%------------------
+%-- Message vsar0406 ( user )
+% it's parallel to MN
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $h(P) = D$, the line through $D$ tangent to the big circle must be parallel to $MN$. Does that finish the problem for us?
+
+%------------------
+%-- Message smileapple ( user )
+% yes, $\overset{\frown}{MD} = \overset{\frown}{DN}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, it does. Since the tangent to the large circle through $D$ is parallel to $MN$, arcs $MD$ and $DN$ must be equal. Hence, $\angle MAD = \overset{\frown}{DM}/2 = \overset{\frown}{DN}/2 = \angle DAN$ and we're done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can anyone give a brief proof that the tangent to the large circle through $D$ being parallel to $MN$ means that $\overset{\frown}{DM} = \overset{\frown}{DN}$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's one rigorous proof; there are many. Let $C$ be the center of the big circle and let line $CD$ meet $MN$ at $X$. $CD$ is perpendicular to the tangent at $D$, so is perpendicular to $MN$ at $X$. It therefore bisects chord $MN$ and triangle $MXD$ is congruent to $NXD$. Thus, $\angle MND = \angle NMD$, and we're done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+At this point, hopefully you see the types of problems homothety is useful on. It's particularly useful on problems involving circles with common tangents. It's also helpful with tangent circles or problems involving the medial triangle (the triangle formed by connecting the midpoints of the sides of a triangle).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Inside square $ABCD$ inscribe a circle, and we create square $A'B'C'D'$ by drawing lines $a$ and $b$ parallel to $AB$ and lines $c$ and $d$ parallel to $AD$ (where $a$ and $b$ are just as far apart as $c$ and $d$ are).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(3 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, B, C, D, O;
+
+A[0] = (-1,1);
+B[0] = (1,1);
+C[0] = (1,-1);
+D[0] = (-1,-1);
+A[1] = (0.2,0.7);
+B[1] = (0.5,0.7);
+C[1] = (0.5,0.4);
+D[1] = (0.2,0.4);
+A[2] = intersectionpoint(A[1]--(5*A[1] - 4*C[0]),Circle((0,0),1));
+B[2] = intersectionpoint(B[1]--(5*B[1] - 4*D[0]),Circle((0,0),1));
+C[2] = intersectionpoint(C[1]--(5*C[1] - 4*A[0]),Circle((0,0),1));
+D[2] = intersectionpoint(D[1]--(5*D[1] - 4*B[0]),Circle((0,0),1));
+O[1] = (abs(A[1] - C[0])*A[2] + abs(A[1] - A[2])*(0,0))/abs(A[2] - C[0]);
+O[2] = (abs(B[1] - D[0])*B[2] + abs(B[1] - B[2])*(0,0))/abs(B[2] - D[0]);
+O[3] = (abs(C[1] - A[0])*C[2] + abs(C[1] - C[2])*(0,0))/abs(C[2] - A[0]);
+O[4] = (abs(D[1] - B[0])*D[2] + abs(D[1] - D[2])*(0,0))/abs(D[2] - B[0]);
+
+draw(Circle((0,0),1),red);
+draw(A[0]--B[0]--C[0]--D[0]--cycle);
+draw((-1.2,0.4)--(1.2,0.4));
+draw((-1.2,0.7)--(1.2,0.7));
+draw((0.2,-1.2)--(0.2,1.2));
+draw((0.5,-1.2)--(0.5,1.2));
+
+label("$a$", (-1.2,0.7), W, s);
+label("$b$", (-1.2,0.4), W, s);
+label("$c$", (0.2,-1.2), S, s);
+label("$d$", (0.5,-1.2), S, s);
+label("$A$", A[0], NW, s);
+label("$B$", B[0], NE, s);
+label("$C$", C[0], SE, s);
+label("$D$", D[0], SW, s);
+dot("$A'$", A[1], NW, s);
+dot("$B'$", B[1], NE, s);
+dot("$C'$", C[1], SE, s);
+dot("$D'$", D[1], SW, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We then draw four circles. The first is tangent to lines $a$ and $c$ and to the big circle, and it is inside the upper left rectangle (the one with $A$ and $A'$ as opposite vertices). Let this circle be tangent to the large circle at point $C''$. Let the similarly defined circle in the upper right corner be tangent to the big circle at $D''$, the one in the lower left be tangent to the big circle at $B''$, and the one in the bottom right at $A''$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(3 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, B, C, D, O;
+
+A[0] = (-1,1);
+B[0] = (1,1);
+C[0] = (1,-1);
+D[0] = (-1,-1);
+A[1] = (0.2,0.7);
+B[1] = (0.5,0.7);
+C[1] = (0.5,0.4);
+D[1] = (0.2,0.4);
+A[2] = intersectionpoint(C[1]--(5*C[1] - 4*A[0]),Circle((0,0),1));
+B[2] = intersectionpoint(D[1]--(5*D[1] - 4*B[0]),Circle((0,0),1));
+C[2] = intersectionpoint(A[1]--(5*A[1] - 4*C[0]),Circle((0,0),1));
+D[2] = intersectionpoint(B[1]--(5*B[1] - 4*D[0]),Circle((0,0),1));
+O[1] = (abs(C[1] - A[0])*A[2] + abs(C[1] - A[2])*(0,0))/abs(A[2] - A[0]);
+O[2] = (abs(D[1] - B[0])*B[2] + abs(D[1] - B[2])*(0,0))/abs(B[2] - B[0]);
+O[3] = (abs(A[1] - C[0])*C[2] + abs(A[1] - C[2])*(0,0))/abs(C[2] - C[0]);
+O[4] = (abs(B[1] - D[0])*D[2] + abs(B[1] - D[2])*(0,0))/abs(D[2] - D[0]);
+
+draw(Circle((0,0),1),red);
+draw(Circle(O[1],abs(O[1] - A[2])),red);
+draw(Circle(O[2],abs(O[2] - B[2])),red);
+draw(Circle(O[3],abs(O[3] - C[2])),red);
+draw(Circle(O[4],abs(O[4] - D[2])),red);
+draw(A[0]--B[0]--C[0]--D[0]--cycle);
+draw((-1.2,0.4)--(1.2,0.4));
+draw((-1.2,0.7)--(1.2,0.7));
+draw((0.2,-1.2)--(0.2,1.2));
+draw((0.5,-1.2)--(0.5,1.2));
+
+label("$a$", (-1.2,0.7), W, s);
+label("$b$", (-1.2,0.4), W, s);
+label("$c$", (0.2,-1.2), S, s);
+label("$d$", (0.5,-1.2), S, s);
+label("$A$", A[0], NW, s);
+label("$B$", B[0], NE, s);
+label("$C$", C[0], SE, s);
+label("$D$", D[0], SW, s);
+dot("$A'$", A[1], SW, s);
+dot("$B'$", B[1], SE, s);
+dot("$C'$", C[1], NE, s);
+dot("$D'$", D[1], NW, s);
+dot("$A''$", A[2], E, s);
+dot("$B''$", B[2], SW, s);
+dot("$C''$", C[2], N, s);
+dot("$D''$", D[2], NE, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Prove that $AA''$, $BB''$, $CC''$, $DD''$ are concurrent.
+
+%------------------
+%-- Message Yufanwang ( user )
+% homothety?
+
+%------------------
+%-- Message MathJams ( user )
+% homothety
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why do we think about homothety?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% circles with tangent points
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% many common tangents
+
+%------------------
+%-- Message dxs2016 ( user )
+% circles with inner tangents
+
+%------------------
+%-- Message smileapple ( user )
+% circles and tangents
+
+%------------------
+%-- Message bryanguo ( user )
+% because of the circles that are internally tangent
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% There's a lot of tangent lines and circles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have tangent circles and lots of tangent lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also have squares with the same orientation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What homotheties might be useful?  What do we want to map to what?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% the $4$ homotheties that take the small circle to the large circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can map each of our little circles to the big circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Consider the circle in the upper left, which is tangent to our big circle at $C''$. What is the center of homothety that maps this circle to the big one?
+
+%------------------
+%-- Message dxs2016 ( user )
+% C''
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $C''$
+
+%------------------
+%-- Message Bimikel ( user )
+% $C''$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $C''$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% C"
+
+%------------------
+%-- Message Ezraft ( user )
+% $C''$
+
+%------------------
+%-- Message bryanguo ( user )
+% $C''$
+
+%------------------
+%-- Message mustwin_az ( user )
+% C''
+
+%------------------
+%-- Message Achilleas ( moderator )
+The center is $C''$. What else does this homothety do?
+
+%------------------
+%-- Message Yufanwang ( user )
+% it maps A' to C
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it sends $A'$ to $C$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it maps $A'$ to $C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This homothety takes line $a$ to $CD$ and line $c$ to $BC$. Therefore, it also takes $A'$ to $C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does this tell us?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $C'', A', C$ are collinear
+
+%------------------
+%-- Message dxs2016 ( user )
+% A',C'',C collinear
+
+%------------------
+%-- Message bryanguo ( user )
+% $C'', A', C$ are collinear
+
+%------------------
+%-- Message Yufanwang ( user )
+% C'', A', and C are collinear
+
+%------------------
+%-- Message smileapple ( user )
+% $C'', A', C$ are collinear
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $C'', A',$ and $C$ are collinear
+
+%------------------
+%-- Message MathJams ( user )
+% C",A',C are collinear
+
+%------------------
+%-- Message Ezraft ( user )
+% $C'', A',$ and $C$ are collinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since a homothety with center $C''$ takes $A'$ to $C$, we conclude that $C''$, $A'$, and $C$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(3 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, B, C, D, O;
+
+A[0] = (-1,1);
+B[0] = (1,1);
+C[0] = (1,-1);
+D[0] = (-1,-1);
+A[1] = (0.2,0.7);
+B[1] = (0.5,0.7);
+C[1] = (0.5,0.4);
+D[1] = (0.2,0.4);
+A[2] = intersectionpoint(C[1]--(5*C[1] - 4*A[0]),Circle((0,0),1));
+B[2] = intersectionpoint(D[1]--(5*D[1] - 4*B[0]),Circle((0,0),1));
+C[2] = intersectionpoint(A[1]--(5*A[1] - 4*C[0]),Circle((0,0),1));
+D[2] = intersectionpoint(B[1]--(5*B[1] - 4*D[0]),Circle((0,0),1));
+O[1] = (abs(C[1] - A[0])*A[2] + abs(C[1] - A[2])*(0,0))/abs(A[2] - A[0]);
+O[2] = (abs(D[1] - B[0])*B[2] + abs(D[1] - B[2])*(0,0))/abs(B[2] - B[0]);
+O[3] = (abs(A[1] - C[0])*C[2] + abs(A[1] - C[2])*(0,0))/abs(C[2] - C[0]);
+O[4] = (abs(B[1] - D[0])*D[2] + abs(B[1] - D[2])*(0,0))/abs(D[2] - D[0]);
+
+draw(C[0]--C[2],red);
+draw(Circle((0,0),1));
+draw(Circle(O[1],abs(O[1] - A[2])));
+draw(Circle(O[2],abs(O[2] - B[2])));
+draw(Circle(O[3],abs(O[3] - C[2])));
+draw(Circle(O[4],abs(O[4] - D[2])));
+draw(A[0]--B[0]--C[0]--D[0]--cycle);
+draw((-1.2,0.4)--(1.2,0.4));
+draw((-1.2,0.7)--(1.2,0.7));
+draw((0.2,-1.2)--(0.2,1.2));
+draw((0.5,-1.2)--(0.5,1.2));
+
+label("$a$", (-1.2,0.7), W, s);
+label("$b$", (-1.2,0.4), W, s);
+label("$c$", (0.2,-1.2), S, s);
+label("$d$", (0.5,-1.2), S, s);
+label("$A$", A[0], NW, s);
+label("$B$", B[0], NE, s);
+label("$C$", C[0], SE, s);
+label("$D$", D[0], SW, s);
+dot("$A'$", A[1], SW, s);
+dot("$B'$", B[1], SE, s);
+dot("$C'$", C[1], NE, s);
+dot("$D'$", D[1], NW, s);
+dot("$A''$", A[2], E, s);
+dot("$B''$", B[2], SW, s);
+dot("$C''$", C[2], N, s);
+dot("$D''$", D[2], NE, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can define other homotheties (one per little circle) to prove similar collinearities.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We then have that $\{C'',A',C\}$, $\{D'',B',D\}$, $\{A'',C',A\}$, and $\{B'',D',B\}$ are collinear sets.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(3 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, B, C, D, O;
+
+A[0] = (-1,1);
+B[0] = (1,1);
+C[0] = (1,-1);
+D[0] = (-1,-1);
+A[1] = (0.2,0.7);
+B[1] = (0.5,0.7);
+C[1] = (0.5,0.4);
+D[1] = (0.2,0.4);
+A[2] = intersectionpoint(C[1]--(5*C[1] - 4*A[0]),Circle((0,0),1));
+B[2] = intersectionpoint(D[1]--(5*D[1] - 4*B[0]),Circle((0,0),1));
+C[2] = intersectionpoint(A[1]--(5*A[1] - 4*C[0]),Circle((0,0),1));
+D[2] = intersectionpoint(B[1]--(5*B[1] - 4*D[0]),Circle((0,0),1));
+O[1] = (abs(C[1] - A[0])*A[2] + abs(C[1] - A[2])*(0,0))/abs(A[2] - A[0]);
+O[2] = (abs(D[1] - B[0])*B[2] + abs(D[1] - B[2])*(0,0))/abs(B[2] - B[0]);
+O[3] = (abs(A[1] - C[0])*C[2] + abs(A[1] - C[2])*(0,0))/abs(C[2] - C[0]);
+O[4] = (abs(B[1] - D[0])*D[2] + abs(B[1] - D[2])*(0,0))/abs(D[2] - D[0]);
+
+draw(A[0]--A[2],red);
+draw(B[0]--B[2],red);
+draw(C[0]--C[2],red);
+draw(D[0]--D[2],red);
+draw(Circle((0,0),1));
+draw(Circle(O[1],abs(O[1] - A[2])));
+draw(Circle(O[2],abs(O[2] - B[2])));
+draw(Circle(O[3],abs(O[3] - C[2])));
+draw(Circle(O[4],abs(O[4] - D[2])));
+draw(A[0]--B[0]--C[0]--D[0]--cycle);
+draw((-1.2,0.4)--(1.2,0.4));
+draw((-1.2,0.7)--(1.2,0.7));
+draw((0.2,-1.2)--(0.2,1.2));
+draw((0.5,-1.2)--(0.5,1.2));
+
+label("$a$", (-1.2,0.7), W, s);
+label("$b$", (-1.2,0.4), W, s);
+label("$c$", (0.2,-1.2), S, s);
+label("$d$", (0.5,-1.2), S, s);
+label("$A$", A[0], NW, s);
+label("$B$", B[0], NE, s);
+label("$C$", C[0], SE, s);
+label("$D$", D[0], SW, s);
+dot("$A'$", A[1], SW, s);
+dot("$B'$", B[1], SE, s);
+dot("$C'$", C[1], NE, s);
+dot("$D'$", D[1], NW, s);
+dot("$A''$", A[2], E, s);
+dot("$B''$", B[2], SW, s);
+dot("$C''$", C[2], N, s);
+dot("$D''$", D[2], NE, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why do we care about these collinearities?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% because we can prove the concurrence of these lines easier?
+
+%------------------
+%-- Message Trollyjones ( user )
+% it gets us closer to proving concurrency since we now have connnected points
+
+%------------------
+%-- Message Yufanwang ( user )
+% We can now just prove that A'C, B'D, C'A, and D'B are concurrent?
+
+%------------------
+%-- Message apple.xy ( user )
+% we can use them to prove that AA" BB" CC" and DD" are concurrent\
+
+%------------------
+%-- Message Achilleas ( moderator )
+These are the 4 lines we wish to prove are concurrent. Therefore, what should we be thinking about?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% They involve the A, B, C, and D to the smaller circles, which is related of what we are trying to prove
+
+%------------------
+%-- Message Achilleas ( moderator )
+True. What other points do they involve?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $A', B', C', D'$
+
+%------------------
+%-- Message bigmath ( user )
+% A',B',C',D'
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Vertices of the squares
+
+%------------------
+%-- Message Yufanwang ( user )
+% A', B', C', D'
+
+%------------------
+%-- Message bryanguo ( user )
+% $A', B', C'$ and $D'$
+
+%------------------
+%-- Message mustwin_az ( user )
+% A',B', C', D'
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% A' B' C' D'
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should be wondering if it's important that the vertices of A'B'C'D' are on these 4 lines we found concurrent. Specifically, what should we wonder?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can now change the problem from 'Prove that $AA''$, $BB''$, $CC''$, and $DD''$ are concurrent' to either 'Prove that $C'A''$, $D'B''$, $A'C''$, and $B'D''$ are concurrent,' or 'Prove that $AC'$, $BD'$, $CA'$, and $DB'$ are concurrent.'
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are either of these easy to do?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show $A'B'C'D'$ and $ABCD$ are homothetic, but this follows from the sides being parallel and both figures being squares.
+
+%------------------
+%-- Message MathJams ( user )
+% the last one is
+
+%------------------
+%-- Message RP3.1415 ( user )
+% the second is easier
+
+%------------------
+%-- Message mustwin_az ( user )
+% The second
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% The 2nd one is a homothecy that proves it directly.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The second one seems more direct
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $ABCD$ and $A'B'C'D'$ are squares with sides parallel, they are homothetic. Therefore there is a homothety that takes one square to the other, which thus means that lines connecting corresponding points are concurrent. Is this enough to solve the problem?
+
+%------------------
+%-- Message Yufanwang ( user )
+% yes
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% yes
+
+%------------------
+%-- Message pritiks ( user )
+% yes now the lines are concurrent
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Yes!
+
+%------------------
+%-- Message SlurpBurp ( user )
+% yes!!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, this is enough, but we have to be careful. If we take the homothety that takes $ABCD$ to $A'B'C'D'$, then we take $A$ to $A'$, $B$ to $B'$, $C$ to $C'$, $D$ to $D'$. Thus, $AA'$, $BB'$, $CC'$, $DD'$ are concurrent. But that's not what we want. What do we do?
+
+%------------------
+%-- Message MathJams ( user )
+% use the other homothety
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which other homothety should we use?
+
+%------------------
+%-- Message dxs2016 ( user )
+% A to C', B to D', C to A', and D to B'
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $A \mapsto C', B \mapsto D', C \mapsto A', D \mapsto B'$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% We take $A' \mapsto C$ and so on for the other points
+
+%------------------
+%-- Message Achilleas ( moderator )
+We must consider the other homothety, the less obvious one. We want the one that takes $A$ to $C'$, so we take the homothety that carries $ABCD$ to $C'D'A'B'$. This will give us that $AC'$, $BD$', $CA'$, and $DB'$ are concurrent, and from this we can infer that $AA''$, $BB''$, $CC''$, and $DD''$ are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(3 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, B, C, D, O;
+
+A[0] = (-1,1);
+B[0] = (1,1);
+C[0] = (1,-1);
+D[0] = (-1,-1);
+A[1] = (0.2,0.7);
+B[1] = (0.5,0.7);
+C[1] = (0.5,0.4);
+D[1] = (0.2,0.4);
+A[2] = intersectionpoint(C[1]--(5*C[1] - 4*A[0]),Circle((0,0),1));
+B[2] = intersectionpoint(D[1]--(5*D[1] - 4*B[0]),Circle((0,0),1));
+C[2] = intersectionpoint(A[1]--(5*A[1] - 4*C[0]),Circle((0,0),1));
+D[2] = intersectionpoint(B[1]--(5*B[1] - 4*D[0]),Circle((0,0),1));
+O[1] = (abs(C[1] - A[0])*A[2] + abs(C[1] - A[2])*(0,0))/abs(A[2] - A[0]);
+O[2] = (abs(D[1] - B[0])*B[2] + abs(D[1] - B[2])*(0,0))/abs(B[2] - B[0]);
+O[3] = (abs(A[1] - C[0])*C[2] + abs(A[1] - C[2])*(0,0))/abs(C[2] - C[0]);
+O[4] = (abs(B[1] - D[0])*D[2] + abs(B[1] - D[2])*(0,0))/abs(D[2] - D[0]);
+
+draw(Circle((0,0),1),gray(0.7));
+draw(Circle(O[1],abs(O[1] - A[2])),gray(0.7));
+draw(Circle(O[2],abs(O[2] - B[2])),gray(0.7));
+draw(Circle(O[3],abs(O[3] - C[2])),gray(0.7));
+draw(Circle(O[4],abs(O[4] - D[2])),gray(0.7));
+draw((-1.2,0.4)--(1.2,0.4),gray(0.7));
+draw((-1.2,0.7)--(1.2,0.7),gray(0.7));
+draw((0.2,-1.2)--(0.2,1.2),gray(0.7));
+draw((0.5,-1.2)--(0.5,1.2),gray(0.7));
+draw(A[0]--A[2],red);
+draw(B[0]--B[2],red);
+draw(C[0]--C[2],red);
+draw(D[0]--D[2],red);
+draw(A[0]--B[0]--C[0]--D[0]--cycle);
+draw(A[1]--B[1]--C[1]--D[1]--cycle);
+
+label("$a$", (-1.2,0.7), W, s);
+label("$b$", (-1.2,0.4), W, s);
+label("$c$", (0.2,-1.2), S, s);
+label("$d$", (0.5,-1.2), S, s);
+label("$A$", A[0], NW, s);
+label("$B$", B[0], NE, s);
+label("$C$", C[0], SE, s);
+label("$D$", D[0], SW, s);
+dot("$A'$", A[1], SW, s);
+dot("$B'$", B[1], SE, s);
+dot("$C'$", C[1], NE, s);
+dot("$D'$", D[1], NW, s);
+dot("$A''$", A[2], E, s);
+dot("$B''$", B[2], SW, s);
+dot("$C''$", C[2], N, s);
+dot("$D''$", D[2], NE, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's what a full solution looks like: 
+
+
+Because the sides of square $A'B'C'D'$ are parallel to corresponding sides of square $CDAB$, there is a homothety that maps $A'B'C'D'$ to $CDAB$. So $A'C$, $B'D$, $C'A$, and $D'B$ are concurrent at the center of homothety. Call this point $X$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Consider the smaller circle that is tangent to lines $a$ and $c$. There is a homothety about $C''$ that maps the smaller circle to the larger. This homothety also maps $c$ to line $BC$ and $a$ to line $CD$, so it maps $A'$ to $C$. Therefore, $C''$, $A'$, and $C$ are collinear, so $CC''$ passes through $X$. Similarly, $AA''$, $BB''$, and $DD''$ pass through $X$, so the lines $AA''$, $BB''$, $CC''$, and $DD''$ are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is an 8-line proof for such a beautiful problem! 
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% elegant
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Non-isosceles triangle $A_1A_2A_3$ is given with sides $a_1, a_2, a_3$ (each side $a_i$ is opposite vertex $A_i$). For each $i$, $M_i$ is the midpoint of $a_i$, $T_i$ is where $a_i$ meets the incircle of $A_1A_2A_3$, and $S_i$ is reflection of $T_i$ over the angle bisector of angle $A_i$. Prove that the lines $M_1S_1$, $M_2S_2$, and $M_3S_3$ are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How should we start?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% diagram
+
+%------------------
+%-- Message pritiks ( user )
+% draw a diagram
+
+%------------------
+%-- Message bryanguo ( user )
+% construct a diagram
+
+%------------------
+%-- Message mark888 ( user )
+% Draw a diagram?
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% diagram
+
+%------------------
+%-- Message Yufanwang ( user )
+% draw a diagram
+
+%------------------
+%-- Message SlurpBurp ( user )
+% diagram
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Draw a diagram
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A diagram for visualization
+
+%------------------
+%-- Message xyab ( user )
+% diagram
+
+%------------------
+%-- Message beibeizhu ( user )
+% a good diagram would be helpful
+
+%------------------
+%-- Message Bimikel ( user )
+% draw a diagram
+
+%------------------
+%-- Message renyongfu ( user )
+% diagram please
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a diagram
+
+%------------------
+%-- Message bigmath ( user )
+% draw a diagram
+
+%------------------
+%-- Message dxs2016 ( user )
+% diagram?
+
+%------------------
+%-- Message MathJams ( user )
+% draw a diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+Oh, yeah! We need a diagram. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(0.5 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, M, S, T;
+pair I;
+
+A[1] = (1,10);
+A[2] = (0,0);
+A[3] = (14,0);
+I = incenter(A[1],A[2],A[3]);
+M[1] = (A[2] + A[3])/2;
+M[2] = (A[3] + A[1])/2;
+M[3] = (A[1] + A[2])/2;
+T[1] = (I + reflect(A[2],A[3])*(I))/2;
+T[2] = (I + reflect(A[3],A[1])*(I))/2;
+T[3] = (I + reflect(A[1],A[2])*(I))/2;
+S[1] = reflect(A[1],I)*(T[1]);
+S[2] = reflect(A[2],I)*(T[2]);
+S[3] = reflect(A[3],I)*(T[3]);
+
+draw(A[1]--(I + 0.8*(I - A[1])),gray(0.7));
+draw(A[2]--(I + (I - A[2])),gray(0.7));
+draw(A[3]--(I + 0.6*(I - A[3])),gray(0.7));
+draw(incircle(A[1],A[2],A[3]),red);
+draw(A[1]--A[2]--A[3]--cycle);
+
+label("$A_1$", A[1], N, s);
+label("$A_2$", A[2], SW, s);
+label("$A_3$", A[3], SE, s);
+dot("$M_1$", M[1], dir(270), s);
+dot("$M_2$", M[2], NE, s);
+dot("$M_3$", M[3], W, s);
+dot("$S_1$", S[1], SE, s);
+dot("$S_2$", S[2], NE, s);
+dot("$S_3$", S[3], NW, s);
+dot("$T_1$", T[1], dir(270), s);
+dot("$T_2$", T[2], NE, s);
+dot("$T_3$", T[3], W, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+There it is! All those points - pretty scary.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Looking at our diagram, do we see anything interesting that might be true and might be useful?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% each of the $S_i$'s also lie on the incircle
+
+%------------------
+%-- Message Achilleas ( moderator )
+Interesting! Are the $S_i$ on the incircle?  If so, why?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Reading the problem statement again helps)
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% It can be shown by the fact that they are the reflection across the angle bisector, and the angle bisectors pass through the incenter and symmetry
+
+%------------------
+%-- Message Ezraft ( user )
+% The $S_i$ are on the incircle because the angle bisectors are diameters of the incircle
+
+%------------------
+%-- Message bryanguo ( user )
+% yes, since every $S_i$ is a reflection of $T_i$ over the angle bisectors
+
+%------------------
+%-- Message mustwin_az ( user )
+% Since all $T_i$ are on the circle and the angle bisector goes through the center of the circle
+
+%------------------
+%-- Message Trollyjones ( user )
+% All the T_i lie on the circle so the reflection S_i should also
+
+%------------------
+%-- Message smileapple ( user )
+% yes, since $T_i$ on the circles and reflect across angle bisectors still keeps $S_i$ on circle since the incenter is teh itneresection of angle bisectors
+
+%------------------
+%-- Message maxlangy ( user )
+% Angle bisectors through $A_i$ go through center of circle, and hence $T_i$ is reflected by a diameter onto $S_i$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, the $S_i$ are all on the incircle. Since each $S_i$ is formed by reflecting a point on the incircle over a line through the center of the incircle, each $S_i$ must also be on the circle (because reflecting a circle over a line through its center maps every point on the circle to a point on the circle).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what can we do?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we wish to prove again?
+
+%------------------
+%-- Message dxs2016 ( user )
+% M_iS_i are concurrent for i=1,2,3
+
+%------------------
+%-- Message MathJams ( user )
+% M_iS_i for 1<=i<=3 are concurrent
+
+%------------------
+%-- Message Trollyjones ( user )
+% M_1S_1 and M_2S_2 and M_3S_3 are concurrent
+
+%------------------
+%-- Message bryanguo ( user )
+% that lines $M_1S_1, M_2S_2,$ and $M_3S_3$ are concurrent
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can draw $M_1 S_1$, $M_2 S_2$, and $M_3 S_3$, and find the point of concurrency.
+
+%------------------
+%-- Message Yufanwang ( user )
+% Draw the lines mentioned in the problem?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yup! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(0.5 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, M, S, T;
+pair I, X;
+
+A[1] = (1,10);
+A[2] = (0,0);
+A[3] = (14,0);
+I = incenter(A[1],A[2],A[3]);
+M[1] = (A[2] + A[3])/2;
+M[2] = (A[3] + A[1])/2;
+M[3] = (A[1] + A[2])/2;
+T[1] = (I + reflect(A[2],A[3])*(I))/2;
+T[2] = (I + reflect(A[3],A[1])*(I))/2;
+T[3] = (I + reflect(A[1],A[2])*(I))/2;
+S[1] = reflect(A[1],I)*(T[1]);
+S[2] = reflect(A[2],I)*(T[2]);
+S[3] = reflect(A[3],I)*(T[3]);
+X = extension(M[1],S[1],M[2],S[2]);
+
+draw(A[1]--(I + 0.8*(I - A[1])),gray(0.7));
+draw(A[2]--(I + (I - A[2])),gray(0.7));
+draw(A[3]--(I + 0.6*(I - A[3])),gray(0.7));
+draw(X--M[1],blue);
+draw(X--M[2],blue);
+draw(X--M[3],blue);
+draw(incircle(A[1],A[2],A[3]),red);
+draw(A[1]--A[2]--A[3]--cycle);
+
+label("$A_1$", A[1], N, s);
+label("$A_2$", A[2], SW, s);
+label("$A_3$", A[3], SE, s);
+dot("$M_1$", M[1], dir(270), s);
+dot("$M_2$", M[2], NE, s);
+dot("$M_3$", M[3], W, s);
+dot("$S_1$", S[1], E, s);
+dot("$S_2$", S[2], NE, s);
+dot("$S_3$", S[3], NW, s);
+dot("$T_1$", T[1], dir(270), s);
+dot("$T_2$", T[2], NE, s);
+dot("$T_3$", T[3], W, s);
+dot(X);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do you notice anything interesting?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It looks like they intersect on the circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% that point looks like it's on the incircle
+
+%------------------
+%-- Message SlurpBurp ( user )
+% the point of concurrency looks like it's on the circle!!
+
+%------------------
+%-- Message Bimikel ( user )
+% the lines intersect on the incircle
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It seems that the intersection of the lines is on the incircle
+
+%------------------
+%-- Message smileapple ( user )
+% the $S_iM_i$ meet on the circle 
+
+%------------------
+%-- Message Ezraft ( user )
+% The intersection appears to be on the incircle as well
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% The lines appear to intersect on the circle
+
+%------------------
+%-- Message bigmath ( user )
+% the intersection point appears to be on the incircle
+
+%------------------
+%-- Message Trollyjones ( user )
+% they seem to meet on the incircle of triangle A_1A_2A_3
+
+%------------------
+%-- Message sae123 ( user )
+% the intersection point seems to be on the incircle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% The intersection of the 3 lines also appears to be on the incircle
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the point of concurrency is on the incircle
+
+%------------------
+%-- Message vsar0406 ( user )
+% the point of concurrence lies on the incircle?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% The concurrent point is on the incircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The point of concurrence seems to lie on the incircle. That's very interesting, but it's not obvious how we can use that.
+
+%------------------
+%-- Message Achilleas ( moderator )
+When we want to prove that three lines are concurrent, we should think about how we can prove the lines are concurrent. What strategy can we try here?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% homothety
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can look at triangles $M_1 M_2 M_3$ and $S_1 S_2 S_3$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(0.5 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, M, S, T;
+pair I;
+
+A[1] = (1,10);
+A[2] = (0,0);
+A[3] = (14,0);
+I = incenter(A[1],A[2],A[3]);
+M[1] = (A[2] + A[3])/2;
+M[2] = (A[3] + A[1])/2;
+M[3] = (A[1] + A[2])/2;
+T[1] = (I + reflect(A[2],A[3])*(I))/2;
+T[2] = (I + reflect(A[3],A[1])*(I))/2;
+T[3] = (I + reflect(A[1],A[2])*(I))/2;
+S[1] = reflect(A[1],I)*(T[1]);
+S[2] = reflect(A[2],I)*(T[2]);
+S[3] = reflect(A[3],I)*(T[3]);
+
+draw(A[1]--(I + 0.8*(I - A[1])),gray(0.7));
+draw(A[2]--(I + (I - A[2])),gray(0.7));
+draw(A[3]--(I + 0.6*(I - A[3])),gray(0.7));
+draw(M[1]--M[2]--M[3]--cycle,blue);
+draw(S[1]--S[2]--S[3]--cycle,blue);
+draw(incircle(A[1],A[2],A[3]),red);
+draw(A[1]--A[2]--A[3]--cycle);
+
+label("$A_1$", A[1], N,s);
+label("$A_2$", A[2], SW,s);
+label("$A_3$", A[3], SE,s);
+dot("$M_1$", M[1], dir(270),s);
+dot("$M_2$", M[2], NE,s);
+dot("$M_3$", M[3], W,s);
+dot("$S_1$", S[1], SE,s);
+dot("$S_2$", S[2], NE,s);
+dot("$S_3$", S[3], NW,s);
+dot("$T_1$", T[1], dir(270),s);
+dot("$T_2$", T[2], NE,s);
+dot("$T_3$", T[3], W,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do you notice anything interesting about this diagram?
+
+%------------------
+%-- Message Yufanwang ( user )
+% the sides are parallel
+
+%------------------
+%-- Message xyab ( user )
+% the lines are parallel
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We have parallel lines
+
+%------------------
+%-- Message dxs2016 ( user )
+% we seem to get parallele lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our new triangles look like they might have parallel sides. Why would this help us?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% the two triangles seem to be homothetic
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle M_1M_2M_3$ and $\triangle S_1S_2S_3$ look homothetic
+
+%------------------
+%-- Message Achilleas ( moderator )
+If the sides of triangles $M_1M_2M_3$ and $S_1S_2S_3$ are parallel, then the two triangles are homothetic. If they are homothetic, then we know that lines through corresponding parts (such as the vertices) are concurrent at the center of homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So our strategy is to prove that the corresponding sides of triangles $M_1 M_2 M_3$ and $S_1 S_2 S_3$ are parallel. (We'll see other strategies for concurrent lines in the Concurrency lecture.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, can we prove the corresponding sides, such as $S_3S_2$ and $M_3M_2$, are parallel?  If so, how?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do we know anything about $S_3S_2$ or $M_3M_2$ that might be helpful?
+
+%------------------
+%-- Message tigerzhang ( user )
+% M_1M_2M_3 is the medial triangle
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right! How does this help?
+
+%------------------
+%-- Message dxs2016 ( user )
+% M_3M_2 || A_2A_3
+
+%------------------
+%-- Message maxlangy ( user )
+% $M_2M_3$ is parallel to $A_2A_3$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know from earlier that $M_3M_2$ is parallel to $A_2A_3$, so if we could prove that $A_2A_3 \parallel S_3S_2$, we'd be set. How can we prove $A_2A_3$ and $S_3S_2$ are parallel?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $S_2$ and $S_3$ lie on the incircle, so we should use that. How can we describe where $S_2$ and $S_3$ lie on the incircle?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% They are points obtained by reflecting $T_i$ over angle bisector $A_i$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right! So, we can use angles. (This makes sense, because $S_2$ and $S_3$ are the results of reflections.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+However, to describe where $S_2$ and $S_3$ are on the incircle, we need a reference point, so we can state exactly where $S_2$ and $S_3$ are in relation to the reference point. What would be a good choice of a reference point?
+
+%------------------
+%-- Message MathJams ( user )
+% T_1?
+
+%------------------
+%-- Message Trollyjones ( user )
+% T_1
+
+%------------------
+%-- Message Achilleas ( moderator )
+The point $T_1$ is a good choice of reference point because $A_2 A_3$, one of the lines we are interested in, is tangent to the incircle at $T_1$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to write an equation in terms of angles involving $T_1$ that would show that $S_2 S_3$ is parallel to $A_2 A_3$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+unitsize(0.5 cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair[] A, M, S, T;
+pair I;
+
+A[1] = (1,10);
+A[2] = (0,0);
+A[3] = (14,0);
+I = incenter(A[1],A[2],A[3]);
+M[1] = (A[2] + A[3])/2;
+M[2] = (A[3] + A[1])/2;
+M[3] = (A[1] + A[2])/2;
+T[1] = (I + reflect(A[2],A[3])*(I))/2;
+T[2] = (I + reflect(A[3],A[1])*(I))/2;
+T[3] = (I + reflect(A[1],A[2])*(I))/2;
+S[1] = reflect(A[1],I)*(T[1]);
+S[2] = reflect(A[2],I)*(T[2]);
+S[3] = reflect(A[3],I)*(T[3]);
+
+draw(A[1]--(I + 0.8*(I - A[1])),gray(0.7));
+draw(A[2]--(I + (I - A[2])),gray(0.7));
+draw(A[3]--(I + 0.6*(I - A[3])),gray(0.7));
+draw(M[1]--M[2]--M[3]--cycle,blue);
+draw(S[1]--S[2]--S[3]--cycle,blue);
+draw(incircle(A[1],A[2],A[3]),red);
+draw(A[1]--A[2]--A[3]--cycle);
+
+label("$A_1$", A[1], N,s);
+label("$A_2$", A[2], SW,s);
+label("$A_3$", A[3], SE,s);
+dot("$M_1$", M[1], dir(270),s);
+dot("$M_2$", M[2], NE,s);
+dot("$M_3$", M[3], W,s);
+dot("$S_1$", S[1], SE,s);
+dot("$S_2$", S[2], NE,s);
+dot("$S_3$", S[3], NW,s);
+dot("$T_1$", T[1], dir(270),s);
+dot("$T_2$", T[2], NE,s);
+dot("$T_3$", T[3], W,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any arc lengths starting at $T_1$ that would give us such an equation?
+
+%------------------
+%-- Message dxs2016 ( user )
+% arc T_1S_3 = arc T_1S_2 
+
+%------------------
+%-- Message MathJams ( user )
+% arc T_1S_3=arc T_1S_2
+
+%------------------
+%-- Message bryanguo ( user )
+% both arcs $T_1S_3$ and arc $T_1S_2$
+
+%------------------
+%-- Message sae123 ( user )
+% we need to prove that arc $T_1S_3$ is equal to arc $T_1S_2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(We already saw in a previous problem that the tangent at a point is parallel to a chord if and only if that point is the midpoint of the arc determined by the chord.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $\angle S_2T_1A_3 = \angle T_1S_2S_3$, then $A_2A_3 \parallel S_3S_2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use arcs as another way of expressing this equation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that $\angle S_2 T_1 A_3$ half of arc $T_1 S_2$, and $\angle T_1 S_2 S_3$ is half of arc $T_1 S_3$, so we have reduced the problem to showing that arcs $T_1 S_2$ and $T_1 S_3$ are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Arcs $T_1 S_2$ and $T_2 T_3$ are equal because these two arcs are symmetric about the angle bisector from $A_2$. (Remember that $S_2$ is the reflection of $T_2$ in the angle bisector at $A_2$.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+So now we want to show that arcs $T_1 S_3$ and $T_2 T_3$ are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why are these equal?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use the same reflection argument.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The points $S_3$ and $T_2$ are the reflections of $T_3$ and $T_1$ through the angle bisector at $A_3$, so arcs $T_1 S_3$ and $T_2 T_3$ are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, $S_2 S_3$ is parallel to $A_2 A_3$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we done?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% yes
+
+%------------------
+%-- Message Bimikel ( user )
+% yep
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes. Similarly, we can show that the other pairs of sides of $S_1S_2S_3$ and $M_1M_2M_3$ are parallel and thus the triangles are homothetic. Hence the lines through corresponding points are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For writing a full solution, I'd start with a diagram. Then, I'd prove that the $S_i$ are on the incircle, and state that $M_1M_2M_3$ is homothetic to $A_1A_2A_3$, so sides of $M_1M_2M_3$ are parallel to corresponding sides of $A_1A_2A_3$. Finally, I'd go through the arc and angle chasing to show that $S_2S_3 \parallel A_2A_3$, and argue that similarly, each side of $S_1S_2S_3$ is parallel to a corresponding side of $A_1A_2A_3$. Therefore, corresponding sides of $S_1S_2S_3$ and $M_1M_2M_3$ are parallel, which means the triangles are homothetic. This tells us that $M_1S_1$, $M_2S_2$, and $M_3,S_3$ are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We did not have to find the homothety explicitly! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+We just know that it exists and solves our problem.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% nice!
+
+%------------------
+%-- Message Yufanwang ( user )
+% this problem was interesting 
+
+%------------------
+%-- Message bryanguo ( user )
+% nice problem!
+
+%------------------
+%-- Message Achilleas ( moderator )
+In this problem we invoked homothety to prove concurrence. Later in the course we will be discussing more methods to prove concurrence. We won't be revisiting this method, but you should file it away and remember it when tackling concurrence problems (particularly those in which you discover parallel segments, as in this problem).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Remember how the point of concurrence seemed to lie on the incircle?  We leave that as an exercise.
+
+%------------------
+%-- Message mark888 ( user )
+% Wow :o
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is our stopping point for today's class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\textbf{SUMMARY}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today, we covered homothety, which can feel somewhat close to magic when used effectively. It's really just a fancy application of similarity. You should consider it when you have tangent circles, intersecting common tangents of circles, or parallel line segments.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next week, we'll be talking about special parts of a triangle. I've placed a whole mess of information on the message board for you to look over. Most of it will be review for many of you, but make sure you are comfortable with the material in all the problems for next week's lecture.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Also, reviewing the class transcript before grappling with any homework problems is highly recommended.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thank you all and see you next time! 
+

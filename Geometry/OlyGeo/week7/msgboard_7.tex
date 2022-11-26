@@ -1,0 +1,218 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 7}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 7}}
+
+\subsection{Problem 1}
+
+A circle meets sides $BC$, $CA$, $AB$ at $A_1$, $A_2$, $B_1$, $B_2$, $C_1$, $C_2$. Prove that the lines $AA_1$, $BB_1$, $CC_1$ are concurrent if and only if $AA_2$, $BB_2$, $CC_2$ are.
+
+\begin{mdsoln}
+If $AA_1$, $BB_1$, and $CC_1$ are concurrent, by Ceva's Theorem, we have:
+
+\[\frac{AB_1}{B_1C}\cdot\frac{CA_1}{A_1B}\cdot\frac{BC_1}{C_1A} = 1\]
+By Power of a Point, we can write:
+
+\[\frac{AB_1}{C_1A} = \frac{AC_2}{B_2A}\]\[\frac{BC_1}{A_1B} = \frac{BA_2}{C_2B}\]\[\frac{CA_1}{B_1C} = \frac{CB_2}{A_2C}\]
+Substituting these into the Ceva expression above gives:
+
+\[\frac{AC_2}{C_2B}\cdot\frac{BA_2}{A_2C}\cdot\frac{CB_2}{B_2A} = 1\]
+so $AA_2$, $BB_2$, $CC_2$ are concurrent.
+\end{mdsoln}
+
+
+\subsection{Problem 2}
+
+Let $A_1$ be the center of the square inscribed in acute triangle $ABC$ with two vertices of the square on side $BC$. Thus one of the two remaining vertices of the square is on side $AB$ and the other is on $AC$. Points $B_1, C_1$ are defined in a similar way for inscribed squares with two vertices on sides $AC$ and $AB$, respectively. Prove that lines $AA_1, BB_1, CC_1$ are concurrent.
+
+\begin{mdsoln}
+
+Consider square $A_1$ first. Let $W$ and $X$ be vertices of the square on $BC$ as shown, and $Y$ and $Z$ be on $AC$ and $AB$ respectively. Let $Q$ be the intersection of $YZ$ with $AA_1$ and $P_A$ be the intersection of $BC$ with $AA_1$. Define $P_B$ and $P_C$ analogously.
+
+Our goal is to express $BP_A/P_AC$ in terms of the sides and angles of $\triangle ABC$ so that we can use Ceva's theorem on $AP_A$, $BP_B$, and $CP_C$. Let $\alpha$, $\beta$, and $\gamma$ be the angle measures of $A, B, C$ in that order.
+
+Since $AP_A$ cuts through the center of square $WXYZ$, we know that $XP_A = QZ$ and $WP_A = YQ$. By similar triangles $AZY$ and $ABC$,\[\frac{BP_A}{P_AC} = \frac{ZQ}{QY} = \frac{BP_A + ZQ}{P_AC+QY} = \frac{BP_A + P_AX}{P_AC+WP_A} = \frac{BX}{WC} = \frac{BW + WX}{WX+XC}\]
+Since $WXYZ$ is a square, we can write that $WZ/BW = WX/BW = \tan\beta$ so $BW = \frac{WX}{\tan\beta}$. Similarly, $XC = \frac{WX}{\tan\gamma}$, and substituting these values into the above fraction gives\[\frac{BP_A}{P_AC} = \frac{\frac{WX}{\tan\beta}+WX}{\frac{WX}{\tan\gamma}+WX} = \frac{1+\cot\beta}{1+\cot\gamma}.\]
+By symmetry, we can write\[\frac{CP_B}{P_BA} = \frac{1+\cot\gamma}{1+\cot\alpha}\]\[\frac{AP_C}{P_CB} = \frac{1+\cot\alpha}{1+\cot\beta},\]so by Ceva's theorem $\frac{BP_A}{P_AC}\cdot\frac{CP_B}{P_BA}\cdot\frac{AP_C}{P_CB} = 1$ as desired.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(8cm);
+pair A = (4,9), B = origin, C = (14,0), A2 = extension(B, B+dir(-45)*dir(B--C), C, C+dir(45)*dir(C--B)), P = extension(A,A2,B,C), Pp = extension(A,P,B-(0,abs(B-C)), C-(0,abs(B-C))), Q = (P-A)*(P-A)/(Pp-A)+A, A1 = midpoint(P--Q), Y = extension(Q, Q+dir(B--C), A,C), Z = extension(Y,Q,A,B), W = foot(Z,B,C), X = foot(Y,B,C);
+draw(A--B--C--cycle^^X--Y--Z--W);
+draw(A--P);
+pair point = A1-(.01,0);
+pair[] p={A,B,C,P,Q,W,X,Y,Z,A1};
+string s = "A,B,C,P_A,Q,W,X,Y,Z,A_1";	
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+d[4] = -50; d[5] = 45; d[6] = -45;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+	dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}   
+\end{center}
+
+
+
+\end{mdsoln}
+
+\subsection{Problem 3}
+
+Let $ABCD$ be a circumscribed quadrilateral and let $M$, $N$, $P$, $Q$ be the tangent points of the incircle with the sides $AB$, $BC$, $CD$, $DA$. Prove that the lines $AC$, $BD$, $MP$, $NQ$ are concurrent.
+
+\textit{Has hints.}
+\begin{sketch}
+    Let $S$ be the intersection of $NQ$ and $AC$. Prove that $M$, $S$, $P$ are collinear.    
+\end{sketch}
+
+\begin{mdsoln}
+
+(Newton's Theorem) Let $S$ be the intersection of lines $AC$ and $NQ$. Additionally, let $X$ be the intersection of $AD$ and $BC$ and $Y$ the intersection of $AB$ and $CD$. By Menelaus on $\triangle AXC$ on transversal $NSQ$, we have\[\frac{AS}{SC}\cdot\frac{CN}{NX}\cdot\frac{XQ}{QA} = -1. \]From equal tangents, we know that $XN = XQ$, $AQ = AM$, and $CN = CP$, so the above equation simplifies to\[\frac{AS}{SC}\cdot \frac{CP}{1}\cdot\frac{1}{MA} = -1.\]Multiplying the left hand side by $\frac{YM}{PY} = 1$ gives\[\frac{AS}{SC}\cdot\frac{CP}{PY}\cdot\frac{YM}{MA} = -1,\]so $M$, $S$, and $P$ are collinear. This shows that $MP$, $NQ$, and $AC$ are concurrent.
+
+Similarly, we can show that $MP$, $NQ$, and $BD$ are concurrent, so the four lines intersect at the same point.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(10cm);
+pair M = dir(100), N = dir(20), P = dir(260), Q = dir(150);
+pair A = extension(M, M+dir(90)*dir(M), Q, Q+dir(90)*dir(Q)), C = extension(N, N+dir(90)*dir(N), P, P+dir(90)*dir(P)), B = extension(C,N,A,M), D = extension(C,P,A,Q), X = extension(A,D,B,C), S = extension(A,C,N,Q), Y = extension(A,B,C,D);
+draw(A--B--X--D--C--B^^A--Y--D^^Circle(origin,1));
+draw(A--C^^N--Q, gray(0.6));
+pair point = origin;
+pair[] p={A,B,C,D,M,N,P,Q,X,S,Y};
+string s = "A,B,C,D,M,N,P,Q,X,S,Y";	
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+	dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}   
+\end{center}
+
+
+\end{mdsoln}
+
+\subsection{Problem 4}
+
+Let $D$ be the foot of $A$ onto side $BC$ of triangle $ABC$. Points $E$ and $F$ are on sides $AC$ and $AB$ respectively. Prove that $AD$, $BE$, and $CF$ are concurrent if and only if $AD$ bisects $\angle EDF$.
+
+\begin{mdsoln}
+
+Assume that $AD$, $BE$, and $CF$ are concurrent. Define $P,Q,R,S,T$ as shown in the diagram below. Then by the duality of Ceva and Menelaus as proved in class, we know that $(P,D; B,C)$ is harmonic (in other words, $\frac{PB}{BD} = -\frac{PC}{CD}$).
+
+We now look at $\triangle RBC$. Since $(P,D; B,C)$ is harmonic, then so is $(B,C; D, P)$ by rearranging the fractions. Using this in combination with the fact that $C, T, F$ are collinear, we conclude that $DF$, $EB$, and $PT$ are concurrent cevians in $\triangle EPD$ by the Ceva-Menelaus duality. Thus, $P,S,T$ are collinear.
+
+We use the duality again. In triangle $DEF$, since cevians $FT$, $ES$, and $DQ$ are concurrent and $P, S, T$ are collinear, then $(E,F; P,Q)$ is harmonic. Since $\angle QDP = 90^\circ$, by the lemma from class we conclude that $\angle FDQ = \angle QDE$.
+
+All steps in this proof are reversible, so the converse also holds.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(10cm);
+pair A = (4,12), B = (0,0), C = (14,0), D = foot(A,B,C), R = .3*(A-D)+D, E = extension(B,R,A,C), F = extension(C,R,A,B), P = extension(E,F,B,C), Q = extension(A,D,E,F), S = extension(D,F,B,R), T = extension(D,E,C,R);
+markscalefactor = 0.08;
+draw(D--A--B--C--A^^F--D--E^^rightanglemark(A,D,C));
+draw(E--P--B--E^^F--C, gray(0.6));
+pair point = extension(S,T,A,D);
+pair[] p={A,B,C,D,E,F,P,Q,R,S,T};
+string s = "A,B,C,D,E,F,P,Q,R,S,T";	
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+d[7] = -40; d[8] = -20; mult[8] = 1.5;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+	dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}   
+\end{center}
+
+
+\end{mdsoln}
+
+\subsection{Problem 5}
+
+The points $A'$, $B'$, and $C'$ are chosen on the sides $BC$, $CA$, and $AB$ of triangle $ABC$, so that $AA'$, $BB'$, and $CC'$ are concurrent. Let $M$ be on $B'C'$ such that $MA'$ is perpendicular to $B'C'$. Prove that $MA'$ bisects angle $BMC$.
+
+\begin{mdsoln}
+
+Let $P$ be the intersection of $B'C'$ with $BC$.
+
+Since $AA'$, $BB'$, and $CC'$ are concurrent, by the duality of Ceva and Menelaus, we know that $(B,C; P, A')$ is harmonic. Since $\angle A'MP = 90^\circ$, by the lemma from class, we conclude that $MA'$ is the angle bisector of $\angle BMC$.
+
+
+\end{mdsoln}
+
+\subsection{Problem 6}
+
+$C$ and $D$ are points on a semicircle. The tangent at $C$ meets the extended diameter of the semicircle at $B$, and the tangent at $D$ meets it at $A$, so that $A$ and $B$ are on opposite sides of the center. The lines $AC$ and $BD$ meet at $E$. Point $F$ is the foot of the perpendicular from $E$ onto $AB$. Show that $EF$ bisects angle $CFD$.
+
+\textit{Has hints.}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+ 
+size(8cm);
+pair O = origin, D = dir(65), C = dir(140), P = extension(C, C+dir(90)*dir(C), D, D+dir(90)*dir(D)), A = extension(P,D,O,O+(1,0)), B=extension(O,A,P,C), F = foot(P,A,B), E = extension(A,C,B,D);
+markscalefactor = 0.01;
+draw(rightanglemark(P,C,O)^^rightanglemark(P,D,O)^^rightanglemark(P,F,B));
+draw(Arc(O,1,0,180)^^A--B--P--A--C^^D--B);
+draw(C--O--D,linetype("3 3"));
+
+pair point = midpoint(E--F);
+pair[] p={A,B,C,D,E,F,O,P};
+string s = "A,B,C,D,E,F,O,P";	
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+	dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}   
+\end{center}
+
+\begin{sketch}
+    \begin{enumerate}
+        \item Let the lines $BC$ and $AD$ meet at $P$. Let $PX$ be the altitude from $P$ to $AB$. Show that $PX$, $AC$, and $BD$ are concurrent, thus proving that $X$ is $F$ (i.e. that $PF$ goes through $E$.)
+
+        \item Find similar triangles and use the most likely tool to prove the concurrence of Hint 1.
+
+        \item Right angles = cyclic quadrilaterals.
+
+        \item Look at $PCFO$.
+    \end{enumerate}
+\end{sketch}
+
+\begin{mdsoln}
+
+    (ISL 1994) Let $O$ be the center of the given semicircle, let the lines $BC$ and $AD$ meet at $P$, and let $PX$ be the altitude from $P$ to $AB$.
+    
+    Since $\angle PCO=\angle PXO=180^\circ-\angle ODP=90^\circ$, $PCXOD$ must be cyclic. Hence, $\angle XCB=180^\circ-\angle ADX$, so $\sin \angle XCB=\sin \angle ADX$. Also,$$\angle CXP=\angle COP=\angle POD=\angle PXD$$so $\angle BXC=\angle DXA$, implying that $\sin \angle BXC=\sin \angle DXA$. Therefore,$$\frac{\sin\angle XCB}{\sin\angle BXC}=\frac{\sin\angle ADX}{\sin\angle DXA}$$so, by the Law of Sines,$$\frac{XB}{CB}=\frac{XA}{DA}$$Since $CP=DP$ (equal tangents), we conclude that$$\frac{XB}{XA}\cdot \frac{DA}{DP}\cdot \frac{CP}{CB}=1$$which, by Ceva’s Theorem, implies that $PX$, $AC$, and $BD$ are concurrent. Then, $E$ must be on $PX$, so $F=X$, implying that$$\angle CFP=\angle CXP=\angle PXD=\angle PFD$$as desired.    
+\end{mdsoln}
+
+
+

@@ -1,0 +1,50 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{OTIS - C5}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(2cm);
+
+        pair H, H1, R, R1;
+        path w;
+        Label L;
+
+        real d = 0.5, x = 4;
+
+        H = (0,0);
+        H1 = (0, x);
+        R = (0, d);
+
+        w = arc(R, x, 0, 90);
+        R1 = intersectionpoint(w, (1,d)--(1,5));
+
+        L = Label("$l$", align=(0,-0.75), position=BeginPoint);
+        draw(L, (0,-0.5)--(0,4.5));
+        draw(R--(1,d)--R1--R);
+
+        label("$1$", R--(1,d));
+        label("$x$", R--R1);
+        // label("$d$", H--R, W);
+
+        L = Label("$x$", align=(0,0), position=MidPoint, filltype=Fill(white));
+        draw((-0.6,0) -- (-0.6,x), L=L, arrow=Arrows(), bar=Bars);            
+        L = Label("$d$", align=(0,0), position=MidPoint, filltype=Fill(white));
+        draw((-0.4,0) -- (-0.4,d), L=L, arrow=Arrows(), bar=Bars);    
+
+        dot("$H$", H, W);
+        dot("$H'$", H1, W);
+        dot("$R$", R, W);
+        dot("$R'$", R1, dir(R1-R));
+
+    \end{asy}
+\end{center}
+\end{document}

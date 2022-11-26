@@ -1,0 +1,116 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 4.53}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, K, D, M, N, I, L, I_A, X, Y, Z;
+        path w, w1, w2;
+        real r;
+
+        A = dir(110);
+        B = dir(210);
+        C = dir(330);
+
+        w = incircle(A, B, C);
+        I = incenter(A, B, C);
+
+        K = tangent(B, I, inradius(A, B, C));
+        D = foot(A, B, C);
+        M = (A+D)/2;
+
+        N = M + (M - K);
+        N = intersectionpoint(w, M--N);
+        w1 = circumcircle(B, C, N);
+
+        w2 = excircle(B, C, A);
+        I_A = excenter(B, C, A);
+        r = exradius(B, C, A);
+
+        X = intersectionpoint(B--C, w2);
+        Y = intersectionpoint(K--I_A, w1);
+
+        Z = (B+C)/2;
+
+
+        dot(K);
+        dot(I);
+        dot(I_A);
+        dot(M);
+        dot(N);
+        dot(X);
+        dot(Y);
+
+        draw(D--A--B--C--A);
+        draw(w);
+        draw(w1);
+        draw(arc(I_A, r, 0, 180), blue);
+        draw(K--N);
+        draw(B--N--C);
+        draw(rightanglemark(A, D, B, 1));
+        draw(Y--Z, blue);
+        
+        draw(rightanglemark(K, Z, Y, 1), blue);
+
+        draw(K--I_A, blue);
+        draw(X--M, blue);
+
+
+        draw(I_A--I, blue);
+        draw(I_A--X^^I--K, blue);
+        draw(B--I--C--I_A--B, blue);
+        draw(rightanglemark(I_A, X, C, 1), blue);
+        draw(rightanglemark(X, K, I, 1), blue);
+        
+        draw(rightanglemark(I, C, I_A, 1), blue);
+        draw(rightanglemark(I_A, B, I, 1), blue);
+
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+
+        label("$D$", D, S);
+        label("$K$", K, NW);
+        label("$M$", M, NE);
+        label("$M_A$", Z, SE);
+        label("$N$", N, S);
+        label("$I$", I, NE);
+        label("$I_A$", I_A, S);
+        label("$X$", X, NE);
+        label("$T$", Y, NE);
+
+        label(Label("$\Omega$", Relative(0.9)), w);
+        label(Label("$(BCN)$", Relative(0.15)), w1);
+
+    \end{asy}
+\end{center}
+Given: 
+\begin{itemize}
+    \item $\Omega$ incenter of acute triangle $ABC$ and is tangent to $BC$ at $K$
+    \item $AD$ is an altitude of triangle $ABC$
+    \item $M$ is the midpoint of $AD$
+    \item $N$ is the common point of the circle $\Omega$ and $KM$
+\end{itemize}
+Prove $\Omega$ and $(BCN)$ are tangent to each other.
+
+\textbf{Hints}:
+\begin{itemize}
+    \item 205: Which configurations come to mind?
+    \item 634: Begin with Lemma 4.14 and 4.33.
+    \item 450: Let ${\overline{KI_A}}$ meet the perpendicular bisector of $\overline{BC}$ at $T$. Show that $BNCT$ is cyclic.
+    \item 177: Try using power of a point.
+    \item 276: You can compute $KN$ using $I_AN \cdot I_AK = I_AI^2 - r^2$.
+\end{itemize}
+\end{document}

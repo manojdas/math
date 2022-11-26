@@ -1,0 +1,4055 @@
+\section{Lesson Transcript}
+%-- Message Achilleas ( moderator )
+\textbf{Olympiad Geometry Week 1: Fundamentals: Similar Triangles, Power of a Point, and Cyclic Quadrilaterals}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Loosely speaking, the structure of this course will be as follows:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Most classes will start with a brief discussion of a specific geometric concept or problem type. After that, we'll go through 1-4 pretty simple problems to illustrate the concept. Finally, we'll do 1-3 harder problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Predicting how long it will take for us to go through Olympiad-level problems is pretty difficult. Some classes may end a little early. More commonly we'll run a little over. Sometimes, we'll stop at a good breaking point and leave the rest of a problem for message board discussion.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Normally, an Olympiad Geometry class lasts about 2 hours)
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll start today with three simple ideas that you will use in nearly all Olympiad geometry problems. Over the next couple of classes we'll work on several problems which rely primarily on these tools. However, throughout the rest of the course, you'll see that even as we get into other types of problems and use other tools, often the problems will come down to using these advanced approaches in concert with these simple three:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similar Triangles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Power of a Point.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Cyclic Quadrilaterals.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Most of you are probably familiar with all three. We'll quickly review each, and when they're useful.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, similar triangles. (I consider congruent triangles to be a subset of similar triangles, but it's important to notice them, too.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+More than simple basic geometry, finding a pair of similar triangles is often the key to taking apart a problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are two general ways similar triangles can help us out. First, similar triangles give us equal angles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+pair B=(0,0),C=(5,0),A=(1,4);
+//draw(A--B--C--cycle);
+draw(MP("A",A,(0,1),s)--MP("B",B,SW,s)--MP("C",C,SE,s)--cycle); 
+markscalefactor=0.1;
+D(anglemark(B,A,C));
+D(anglemark(B,A,C,6));
+D(anglemark(C,B,A,6));
+D(anglemark(C,B,A,4));
+D(anglemark(C,B,A));
+D(anglemark(A,C,B));
+
+//draw(shift(10,0)*rotate(90)*A--shift(10,0)*rotate(90)*B--shift(10,0)*rotate(90)*C--cycle);
+draw(MP("D",shift(10,0)*rotate(90)*A,W,s)--MP("E",shift(10,0)*rotate(90)*B,SE,s)--MP("F",shift(10,0)*rotate(90)*C,N,s)--cycle); 
+D(shift(10,0)*rotate(90)*anglemark(B,A,C));
+D(shift(10,0)*rotate(90)*anglemark(B,A,C,6));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A,6));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A,4));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A));
+D(shift(10,0)*rotate(90)*anglemark(A,C,B));
+
+\end{asy}
+\end{center}
+
+\vskip -35pt
+\begin{align*}
+\triangle ABC &\sim \triangle DEF\\
+\angle A &= \angle D\\
+\angle B &= \angle E \\
+\angle C &= \angle F
+\end{align*}
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $\triangle ABC \sim \triangle DEF,$ then $\angle A = \angle D,\, \angle B = \angle E,\, \angle C = \angle F.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Note how the vertices match)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Second, similar triangles give us relationships between lengths of segments.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+pair B=(0,0),C=(5,0),A=(1,4);
+//draw(A--B--C--cycle);
+draw(MP("A",A,(0,1),s)--MP("B",B,SW,s)--MP("C",C,SE,s)--cycle); 
+markscalefactor=0.1;
+D(anglemark(B,A,C));
+D(anglemark(B,A,C,6));
+D(anglemark(C,B,A,6));
+D(anglemark(C,B,A,4));
+D(anglemark(C,B,A));
+D(anglemark(A,C,B));
+
+//draw(shift(10,0)*rotate(90)*A--shift(10,0)*rotate(90)*B--shift(10,0)*rotate(90)*C--cycle);
+draw(MP("D",shift(10,0)*rotate(90)*A,W,s)--MP("E",shift(10,0)*rotate(90)*B,SE,s)--MP("F",shift(10,0)*rotate(90)*C,N,s)--cycle); 
+D(shift(10,0)*rotate(90)*anglemark(B,A,C));
+D(shift(10,0)*rotate(90)*anglemark(B,A,C,6));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A,6));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A,4));
+D(shift(10,0)*rotate(90)*anglemark(C,B,A));
+D(shift(10,0)*rotate(90)*anglemark(A,C,B));
+
+\end{asy}
+\end{center}
+
+\vskip -35pt
+\begin{align*}
+\triangle ABC &\sim \triangle DEF\\
+\angle A &= \angle D\\
+\angle B &= \angle E \\
+\angle C &= \angle F \\
+\frac{AB}{DE} = &\frac{BC}{EF} = \frac{CA}{FD}
+\end{align*}
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $\triangle ABC \sim \triangle DEF,$ then $AB/DE = AC/DF = BC/EF.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should particularly think of this second use of similar triangles if a problem involves ratios or products of lengths.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Usually if similar triangles are useful in a problem, we use it by showing $\angle A = \angle D$ and $\angle B = \angle E,$ and infer that $\angle C = \angle F$ (and we infer the aforementioned side ratio equalities).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Rarely (but it does occur), we show the triangles are similar by showing $AB/DE = AC/DF = BC/EF$ and deduce the angles are equal. We also sometimes show triangles are similar by showing pairs of sides have equal ratio and the included angle is equal - if $AB/DE = AC/DF$ and $\angle BAC = \angle EDF,$ then $\triangle ABC \sim \triangle DEF.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's the abbreviation of the last similarity theorem, do you remember?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% SAS
+
+%------------------
+%-- Message dxs2016 ( user )
+% SAS
+
+%------------------
+%-- Message christopherfu66 ( user )
+% SAS
+
+%------------------
+%-- Message michaellikemath ( user )
+% SAS
+
+%------------------
+%-- Message ca981 ( user )
+% SAS
+
+%------------------
+%-- Message RP3.1415 ( user )
+% SAS
+
+%------------------
+%-- Message pritiks ( user )
+% SAS
+
+%------------------
+%-- Message shausa ( user )
+% SAS
+
+%------------------
+%-- Message vsar0406 ( user )
+% SAS
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% SAS
+
+%------------------
+%-- Message mustwin_az ( user )
+% SAS
+
+%------------------
+%-- Message Ezraft ( user )
+% SAS
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% SAS
+
+%------------------
+%-- Message chardikala2 ( user )
+% SAS
+
+%------------------
+%-- Message geoblazarnixsquirrel ( user )
+% SAS
+
+%------------------
+%-- Message bigmath ( user )
+% SAS similarity
+
+%------------------
+%-- Message aaravdodhia ( user )
+% SAS
+
+%------------------
+%-- Message robertfeng ( user )
+% SAS
+
+%------------------
+%-- Message MathJams ( user )
+% SAS
+
+%------------------
+%-- Message coolbluealan ( user )
+% SAS
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is SAS.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Side-Angle-Side)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we dive into the problems, one note:  When we write $\triangle ABC \sim \triangle DEF,$ we must be very careful about the order in which we write the vertices. We must match up the vertices in the way they correspond in the similar triangle. Thus, when we write $\triangle ABC \sim \triangle DEF,$ we are implicitly saying $\angle A = \angle D,\, \angle B = \angle E,\, \angle C = \angle F.$ Be very careful about how you write triangle similarities.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here are a couple basic applications:
+
+%------------------
+%-- Message Achilleas ( moderator )
+The Angle Bisector Theorem states that if $D$ is on $BC$ such that $AD$ bisects angle $BAC,$ then $AB/BD = AC/CD.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to prove it, of course. Seeing the ratios, we think similar triangles. Where are they?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we need for similar triangles?
+
+%------------------
+%-- Message chardikala2 ( user )
+% equal angles
+
+%------------------
+%-- Message bryanguo ( user )
+% two angles to be equal
+
+%------------------
+%-- Message dragondemon ( user )
+% equal angles
+
+%------------------
+%-- Message ca981 ( user )
+% two angles equal
+
+%------------------
+%-- Message smileapple ( user )
+% equal angles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need equal angles to get similar triangles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have a couple at the angle bisector, but no obvious similar triangles. What in geometry gives us equal angles?
+
+%------------------
+%-- Message dxs2016 ( user )
+% parallel lines
+
+%------------------
+%-- Message vsar0406 ( user )
+% parallel lines
+
+%------------------
+%-- Message singingBanana ( user )
+% parallel lines
+
+%------------------
+%-- Message Trollyjones ( user )
+% parallel lines could
+
+%------------------
+%-- Message aaravdodhia ( user )
+% parallel lines
+
+%------------------
+%-- Message robertfeng ( user )
+% parallel lines
+
+%------------------
+%-- Message ca981 ( user )
+% parallel lines: alternate interior angles, ...
+
+%------------------
+%-- Message mark888 ( user )
+% parallel lines
+
+%------------------
+%-- Message smileapple ( user )
+% paralel lines
+
+%------------------
+%-- Message sae123 ( user )
+% parallel lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Parallel lines result in equal angles, so we think to introduce a strategically chosen parallel line. We choose to draw one through $C$ parallel to $AB$ and extend $AD$ to $E$ on this new line. We think to do this because (a) we want similar triangles and (b) we know this builds a pair of similar triangles ($\triangle ABD \sim \triangle ECD$; always be careful to order the vertices properly) that contains several lengths in the relationship we wish to prove.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We mark our equal angles (always mark equal angles as you find them in a diagram so you don't forget them):
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.25cm);
+
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair B=(-1,-10),A=(0,0), E=scale(2.586)*rotate(36)*B,C=scale(1.7)*rotate(72)*B;
+
+//intersection for E
+path p = (C--shift(-3,-30)*C);
+path q = (A--scale(10)*rotate(36)*B);
+real[] inter1 = intersect(p,q);
+pair E = point(p,inter1[0]);
+
+//intersection for D
+path x = (A--E);
+path y = (B--C);
+real[] inter2 = intersect(x,y);
+pair D = point(x,inter2[0]);
+
+draw(D("A",A,s,dir(90))--D("B",B,s,SW)--D("C",C,s,SE)--A--D("E",E,s,S)--C--D("D",D,s,scale(2)*SSW));
+
+/*Angle Marks*/
+markscalefactor=0.2;
+D(anglemark(B,A,D));
+D(anglemark(D,A,C));
+D(anglemark(C,E,D));
+D(anglemark(D,B,A));
+D(anglemark(D,B,A,6));
+D(anglemark(D,C,E));
+D(anglemark(D,C,E,6));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we finish?
+
+%------------------
+%-- Message michaellikemath ( user )
+% write out the ratios
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\triangle ABD \sim \triangle ECD,$ we have $AB/BD = EC/CD.$
+
+%------------------
+%-- Message Bimikel ( user )
+% note that $AC=CE$
+
+%------------------
+%-- Message robertfeng ( user )
+% AC = CE
+
+%------------------
+%-- Message aaravdodhia ( user )
+% and AC = CE
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\triangle ECA$ is isosceles (this is why we mark our angles as we find them), $AC = EC$ and we're done: $$\frac{AB}{BD} = \frac{AC}{CD}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(There are lots of ways to prove the Angle Bisector Theorem; see if you can find one with area after class.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: We know that if two triangles share an altitude, then the ratio of their areas equals the ratio of their bases. Also, a point on the angle bisector of an angle is equidistant from the angle's sides.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's one more quick example.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given that $AB\;||\;CD\;||\;EF,$ prove that $\dfrac1{AB} + \dfrac1{EF} = \dfrac1{CD}$ in the following diagram:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.5cm);
+
+size(250); pathpen = black + linewidth(0.7);
+pointpen = black; 
+defaultpen(fontsize(8));
+//pair B=(-1,-10),A=(0,0), E=scale(2.586)*rotate(36)*B,C=scale(1.7)*rotate(72)*B; 
+pair A=(0,0), B=(2,6),E=(10,0),F=E+scale(.7)*B ;
+
+//intersection for D
+path p = (B--E);
+path q = (A--F);
+real[] inter1 = intersect(p,q);
+pair D = point(p,inter1[0]);
+
+//intersection for C
+path x = (D--shift(-3,-9)*D);
+path y = (A--E);
+real[] inter2 = intersect(x,y);
+pair C = point(x,inter2[0]);
+
+draw(D("B",B,(0,1))--D("A",A,SW)--D("E",E,SE)--D("F",F,NE)--A--B--E--D("C",C,SW)--D("D",D,scale(2)*N)); 
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we write this problem as one involving ratios of lengths?
+
+%------------------
+%-- Message Bimikel ( user )
+% multiply both sides by CD
+
+%------------------
+%-- Message Achilleas ( moderator )
+What equation do we get if we multiply through by $CD$?
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message vsar0406 ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message dxs2016 ( user )
+% CD/AB+CD/EF=1
+
+%------------------
+%-- Message pritiks ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message myltbc10 ( user )
+% CD/AB+CD/EF=1
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% (CD / AB) + (CD / EF) = 1
+
+%------------------
+%-- Message silver_maple ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message mathlogic ( user )
+% CD/AB+CD/EF=1
+
+%------------------
+%-- Message MTHJJS ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message chardikala2 ( user )
+% $\frac{CD}{AB} + \frac{CD}{EF} = 1$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% CD/AB + CD / EF = 1
+
+%------------------
+%-- Message smileapple ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message aidan0626 ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message GFei ( user )
+% CD/AB+CD/EF=1
+
+%------------------
+%-- Message Trollface60 ( user )
+% $\frac{CD}{AB} + \frac{CD}{EF} = 1$
+
+%------------------
+%-- Message xyab ( user )
+% $\frac{CD}{AB} + \frac{CD}{EF}=1$
+
+%------------------
+%-- Message MathJams ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message Bimikel ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\frac{CD}{AB}+\frac{CD}{EF}=1$
+
+%------------------
+%-- Message renyongfu ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message study2know ( user )
+% CD/AB + CD/EF = 1
+
+%------------------
+%-- Message Achilleas ( moderator )
+We get $$CD/AB + CD/EF = 1.$$We have our ratios. Where are the similar triangles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(write "triangle" or $\triangle$ for triangles, please)
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\triangle CDE \sim \triangle ABE$ and $\triangle CDA \sim \triangle EFA$
+
+%------------------
+%-- Message pritiks ( user )
+% triangle ABE~triangle CDE and triangle FEA~triangle DCA
+
+%------------------
+%-- Message dvrdvr ( user )
+% triangle ACD and Triangle AEF
+
+%------------------
+%-- Message coolbluealan ( user )
+% triangle EDC ~ triangle EBA
+
+%------------------
+%-- Message mathlogic ( user )
+% triangle EFA ~ triangle CDA,  triangle BAE ~ triangle DCE
+
+%------------------
+%-- Message study2know ( user )
+% Triangle ABE is similar to Triangle CDE
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% △ECD∼△EAB and △ADC∼△AFE
+
+%------------------
+%-- Message Trollface60 ( user )
+% triangle EDC triangle EBA and triangle ADC triangle AFE
+
+%------------------
+%-- Message Achilleas ( moderator )
+Parallel lines lead to similar triangles. Whenever you see parallel lines and have a problem involving lengths, similar triangles should come automatically to mind.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\triangle ABE \sim \triangle CDE$ and $\triangle EFA \sim \triangle CDA.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we're home:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$CD/AB = CE/AE$ and $CD/EF = CA/AE.$ Now what?
+
+%------------------
+%-- Message dxs2016 ( user )
+% add the two
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Add the two equations
+
+%------------------
+%-- Message MathJams ( user )
+% Add them together, and $CA+CE=AE$
+
+%------------------
+%-- Message michaellikemath ( user )
+% Add the two equations together
+
+%------------------
+%-- Message pritiks ( user )
+% add them
+
+%------------------
+%-- Message smileapple ( user )
+% add both equalities
+
+%------------------
+%-- Message MTHJJS ( user )
+% add the new ratios! CE + CA = AE and we are done!
+
+%------------------
+%-- Message SlurpBurp ( user )
+% add them up
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% CE/AE + CA/AE = AE/AE = 1
+
+%------------------
+%-- Message mustwin_az ( user )
+% Add them
+
+%------------------
+%-- Message Achilleas ( moderator )
+We add them up to get $$\frac{CD}{AB} + \frac{CD}{EF} = \frac{CE}{AE} + \frac{CA}{AE} = \frac{AE}{AE} = 1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next up: Power of a Point.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Take a point $P$ and a circle $O.$  For any line that passes through $P$ and intersects $O$ at two points $X$ and $Y,$ the product $(PX)(PY)$ is constant. We call this product the power of point $P$ with respect to circle $O.$  (If the line is tangent to $O,$ then $X = Y,$ and our product is $(PX)^2.$)  Here are a few possible locations of $P$ and a few locations of a line through $P:$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Power of a point:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+//unitsize(2cm); 
+size(400);
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+
+path O = circle((0,0), 2);
+pair origin = (0,0);
+pair P = (-4,0);
+pair E = rotate(-60)*(-2,0);
+pair D = rotate(50)*(2,0);
+pair B = rotate(-30)*(2,0);
+
+draw(O);
+dot(origin);
+draw((0,0)--E);
+draw(P--rotate(-60)*(-2,0));
+draw(P--D);
+draw(P--B);
+draw(rightanglemark(P,E,origin,5));
+
+//intersection for C
+path p = (P--D);
+real[] inter1 = intersect(p,O);
+pair C = point(p,inter1[0]);
+
+//intersection for A
+path q = (P--B);
+real[] inter2 = intersect(q,O);
+pair A = point(q,inter2[0]);
+draw(MP("P",P,W,s),MP("A",A,SW,s),MP("B",B,SE,s));
+draw(MP("C",C,NW,s));
+draw(MP("D",D,NE,s),MP("E",E,NW,s),MP("O",origin,SE,s));
+
+pen w = fontsize(10);
+draw(MP("PC\cdot PD = PA\cdot PB = PE\,^2",origin,(0,-25),w));
+
+//second diagram
+
+path O = circle((0,0), 2);
+pair origin = (0,0);
+pair P = (-4,0);
+pair E = rotate(-60)*(-2,0);
+pair D = rotate(50)*(2,0);
+pair B = rotate(-30)*(2,0);
+draw(shift(5,0)*O);
+
+//intersection for C
+path p = (P--D);
+real[] inter1 = intersect(p,O);
+pair C = point(p,inter1[0]);
+
+//intersection for A
+path q = (P--B);
+real[] inter2 = intersect(q,O);
+pair A = point(q,inter2[0]);
+
+//intersection for new-P
+path x = (A--D);
+path y = (B--E);
+real[] inter3 = intersect(x,y);
+pair Q = point(x,inter3[0]);
+draw(P,white);
+draw(MP("A",shift(5,0)*A,SW,s)--MP("B",shift(5,0)*D,NE,s));
+draw(MP("D",shift(5,0)*B,SE,s)--MP("C",shift(5,0)*E,NW,s));
+draw(MP("P",shift(5,0)*Q,scale(2)*W,s));
+
+pen w = fontsize(10);
+draw(MP("PC\cdot PD = PA\cdot PB",shift(5,0)*origin,(0,-25),w));
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we prove power of a point?
+
+%------------------
+%-- Message bryanguo ( user )
+% similar triangles!
+
+%------------------
+%-- Message dxs2016 ( user )
+% similar triangles
+
+%------------------
+%-- Message MTHJJS ( user )
+% similar triangles
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Similar triangles!
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We use similar triangles
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% similar triangles
+
+%------------------
+%-- Message xyab ( user )
+% similar triangles
+
+%------------------
+%-- Message Trollyjones ( user )
+% similar triangles
+
+%------------------
+%-- Message MathJams ( user )
+% Similar triangles
+
+%------------------
+%-- Message dragondemon ( user )
+% similar triangles?
+
+%------------------
+%-- Message smileapple ( user )
+% similar triangles
+
+%------------------
+%-- Message ca981 ( user )
+% Similar Triangles 
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% similar triangles
+
+%------------------
+%-- Message Ezraft ( user )
+% similar triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Power of a Point is really just a version of similar triangles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(400); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+pen w = fontsize(10);
+
+path O = circle((0,0), 2);
+pair origin = (0,0);
+pair P = (-4,0);
+pair E = rotate(-60)*(-2,0);
+pair D = rotate(50)*(2,0);
+pair B = rotate(-30)*(2,0);
+
+//intersection for C
+path p = (P--D);
+real[] inter1 = intersect(p,O);
+pair C = point(p,inter1[0]);
+
+//intersection for A
+path q = (P--B);
+real[] inter2 = intersect(q,O);
+pair A = point(q,inter2[0]);
+
+draw(O);
+dot(origin);
+draw((0,0)--E);
+draw(P--rotate(-60)*(-2,0));
+draw(P--D--E--C);
+draw(P--B);
+draw(rightanglemark(P,E,origin,5));
+markscalefactor=0.05;
+draw(anglemark(E,D,C));
+draw(anglemark(P,E,C));
+draw(MP("P",P,W,s),MP("A",A,SW,s),MP("B",B,SE,s));
+draw(MP("C",C,NW,s));
+draw(MP("\triangle PCE \sim \triangle PED",origin,(0,-25),w));
+draw(MP("D",D,NE,s),MP("E",E,NW,s),MP("O",origin,SE,s)); 
+//draw(MP("B",B,(0,1),s)--MP("A",A,SW,s)--MP("E",E,SE,s)--MP("F",F,NE,s)--A--B--E--MP("C",C,SW,s)--MP("D",D,scale(2)*N,s));
+
+path O = circle(shift(5,0)*(0,0), 2);
+pair origin = shift(5,0)*(0,0);
+pair P = shift(5,0)*(-4,0);
+pair E = shift(5,0)*rotate(-60)*(-2,0);
+pair D = shift(5,0)*rotate(50)*(2,0);
+pair B = shift(5,0)*rotate(-30)*(2,0);
+draw(O);
+
+//intersection for C
+path p = (P--D);
+real[] inter1 = intersect(p,O);
+pair C = point(p,inter1[0]);
+
+//intersection for A
+path q = (P--B);
+real[] inter2 = intersect(q,O);
+pair A = point(q,inter2[0]);
+
+//intersection for new-P
+path x = (A--D);
+path y = (B--E);
+real[] inter3 = intersect(x,y);
+pair Q = point(x,inter3[0]);
+markscalefactor=0.05;
+draw(anglemark(D,A,E));
+draw(anglemark(D,B,E));
+draw(anglemark(A,E,B));
+draw(anglemark(A,E,B,6));
+draw(anglemark(A,D,B));
+draw(anglemark(A,D,B,6));
+draw(P,white);
+draw(MP("\triangle PCA \sim \triangle PBD",origin,(0,-25),w));
+draw(MP("A",A,SW,s)--MP("B",D,NE,s)--MP("D",B,SE,s)--MP("C",E,NW,s)--cycle);
+draw(MP("P",Q,scale(2)*W,s));
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice that we use the fact that two angles which are inscribed in the same arc of a circle are equal in finding our similar triangles. You will be using this fact in at least a quarter, if not a half, of all Olympiad geometry problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In general, we think of Power of a Point when we are dealing with lengths in a problem involving circles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's an example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AB$ is a diameter of circle $O.$  Points $C$ and $D$ are on the circle such that $D$ bisects arc $AC.$  Point $E$ is on the extension of $BC$ such that $BE$ is perpendicular to $DE.$ $F$ is the intersection of $AE$ and circle $O.$  Prove that the extension of $BF$ bisects segment $DE$ at $M.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(200); pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+
+path O = circle((0,0), 2);
+pair origin = (0,0);
+pair A = (-2,0);
+pair B = (2,0);
+pair C = rotate(70)*B;
+pair D = rotate(125)*B;
+pair X = D+(rotate(35)*B);
+pair Y = B+(scale(2)*rotate(125)*B);
+path temp = (D--origin);
+//draw(MP("B",B,(0,1),s)--MP("A",A,SW,s);
+draw(O);
+
+draw(temp);
+
+//intersection for E
+path p = (D--X);
+path q = (B--Y);
+real[] inter1 = intersect(p,q);
+pair E = point(p,inter1[0]);
+
+pair M = (D+E)/2;
+
+//intersection for F
+path z = (A--E);
+path a = (B--M);
+real[] inter2 = intersect(z,a);
+pair F = point(z,inter2[0]);
+
+draw(MP("A",A,W,s)--MP("B",B,SE,s)--MP("C",C,NE,s)--MP("E",E,NE,s)--MP("D",D,NW,s));
+draw(A--E);
+draw(B--M);
+draw(MP("F",F,scale(2)*S,s));
+draw(MP("M",M,NW,s));
+draw(MP("O",origin,S,s));
+draw(rightanglemark(D,E,B,4));
+//draw(rightanglemark(origin,D,E,4));
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have a circle and a problem involving lengths, so we should consider power of a point. Before we dive in and start writing all the zillions of power of a point equations we could write, we should first figure out exactly what we want to prove (so we know where we should start looking) and we should look around for any obvious facts that might help us.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First: what do we want to show?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% We want to show that DM = ME or that M bisects DE
+
+%------------------
+%-- Message vsar0406 ( user )
+% DM = DE
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% DM = ME
+
+%------------------
+%-- Message bigmath ( user )
+% DM = ME
+
+%------------------
+%-- Message MathJams ( user )
+% EM=MD
+
+%------------------
+%-- Message mustwin_az ( user )
+% DM=ME
+
+%------------------
+%-- Message Trollface60 ( user )
+% DM = ME
+
+%------------------
+%-- Message Ezraft ( user )
+% $DM = EM$
+
+%------------------
+%-- Message mark888 ( user )
+% DM=ME
+
+%------------------
+%-- Message MTHJJS ( user )
+% EM = MD
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that $EM = MD.$  So, for example, labeling the intersection of $OD$ and $AE$ and using power of a point there is unlikely to help us.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any obvious facts about lengths or angles or segments that we can see (or prove quickly)?  (One way to look for these is look at the diagram for what looks like it's true, then see if there's a quick proof for it.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+I see some of considered $\angle AFB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about it?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% <AFB=90 degrees
+
+%------------------
+%-- Message maxben ( user )
+% Angle AFB = 90 degrees
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle AFB = 90 degrees 
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% angle $AFB$ is right
+
+%------------------
+%-- Message Celwelf ( user )
+% its 90 degrees
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% AFB is a right angle
+
+%------------------
+%-- Message Trollyjones ( user )
+% it is right
+
+%------------------
+%-- Message MTHJJS ( user )
+% its a right angle
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Its a right angle
+
+%------------------
+%-- Message michaellikemath ( user )
+% its 90 degrees
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% its 90 degrees
+
+%------------------
+%-- Message pritiks ( user )
+% equals 90 degrees
+
+%------------------
+%-- Message Bimikel ( user )
+% it's a right angle
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% angle AFB is 90
+
+%------------------
+%-- Message bryanguo ( user )
+% it is a right angle
+
+%------------------
+%-- Message SmartZX ( user )
+% It is a right angle
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle AFB$ is right, since it is inscribed in a semicircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$ED$ is tangent to the circle. Why?
+
+%------------------
+%-- Message robertfeng ( user )
+% because OD is parallel to BE
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why is $OD$ parallel to $BC$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(please write a complete answer. Partial answers cannon be passed into class)
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle AOD=angle ABC as angle AOD is the central angle for arc AD and angle ABC is the inscribed angle for art AC=2AD
+
+%------------------
+%-- Message Trollyjones ( user )
+% well we have arc AD= arc DC, therefore arc AD is half of arc AC, by inscribed angle therorem we also have angle AOD = angle OBC since OBC is the inscirbed angle of AC and AOD is the central angle of arc AD
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Arc AD is half of  arc AC, and angle AOD contains the center, so angle AOD is just the degree measure of arc AD. Angle ABC is on the circle, which means that it's half of arc AC, which is also equal to arc AD. Thus, the two angles are equal. Because angle AOD is equal to angle ABC, the two lines are parallel.
+
+%------------------
+%-- Message aaravdodhia ( user )
+% Angle AOD is half the measure of arc AC, as is angle ABC. Hence, lines OD and BC are parallel.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right - $\angle AOD = \text{arc}(AD),$ $\angle ABC = \text{arc}(AC)/2,$ and $\text{arc}(AD) = \text{arc}(AC)/2,$ so $\angle AOD = \angle ABC$ and thus $OD\;||\;BC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Or, since $D$ is the midpoint of $\text{arc}(AC),$ $OD$ is perpendicular to $AC. $ $\angle ACB$ is $90$ degrees since it is inscribed in a semicircle. Hence $AC\; || \;DE, $ so $DE$ is perpendicular to radius $OD$ and is therefore tangent to the circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(200); pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8);
+
+path O = circle((0,0), 2);
+pair origin = (0,0);
+pair A = (-2,0);
+pair B = (2,0);
+pair C = rotate(70)*B;
+pair D = rotate(125)*B;
+pair X = D+(rotate(35)*B);
+pair Y = B+(scale(2)*rotate(125)*B);
+path temp = (D--origin);
+//draw(MP("B",B,(0,1),s)--MP("A",A,SW,s);
+draw(O);
+
+draw(temp);
+
+//intersection for E
+path p = (D--X);
+path q = (B--Y);
+real[] inter1 = intersect(p,q);
+pair E = point(p,inter1[0]);
+
+pair M = (D+E)/2;
+
+//intersection for F
+path z = (A--E);
+path a = (B--M);
+real[] inter2 = intersect(z,a);
+pair F = point(z,inter2[0]);
+
+draw(MP("A",A,W,s)--MP("B",B,SE,s)--MP("C",C,NE,s)--MP("E",E,NE,s)--MP("D",D,NW,s));
+draw(A--E);
+draw(B--M);
+draw(MP("F",F,scale(2)*S,s));
+draw(MP("M",M,NW,s));
+draw(MP("O",origin,S,s));
+draw(rightanglemark(D,E,B,4));
+draw(rightanglemark(origin,D,E,4));
+draw(rightanglemark(E,F,B,4));
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show $EM = MD.$  We have a circle... what point should we use power of a point on?
+
+%------------------
+%-- Message MTHJJS ( user )
+% M?
+
+%------------------
+%-- Message MathJams ( user )
+% on M or E
+
+%------------------
+%-- Message RP3.1415 ( user )
+% M and then again on E
+
+%------------------
+%-- Message xyab ( user )
+% M
+
+%------------------
+%-- Message Achilleas ( moderator )
+We zero in on point $M,$ since it includes one of our lengths. (We can also try $E,$ which leads to a more complicated solution.) The power of point $M$ gives us what?
+
+%------------------
+%-- Message Yufanwang ( user )
+% $MD^2=MF*MB$
+
+%------------------
+%-- Message MTHJJS ( user )
+% MD^2 = MF* MB
+
+%------------------
+%-- Message smileapple ( user )
+% $MD^2=MF\cdot MB$
+
+%------------------
+%-- Message dxs2016 ( user )
+% MD^2 = MF*MB
+
+%------------------
+%-- Message MathJams ( user )
+% MD^2=MF*MB
+
+%------------------
+%-- Message Bimikel ( user )
+% $MD^2=MF*MB$
+
+%------------------
+%-- Message silver_maple ( user )
+% MD^2 = MF * MB
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% DM^2 = MF * MB
+
+%------------------
+%-- Message myltbc10 ( user )
+% MF*MB=MD^2
+
+%------------------
+%-- Message mark888 ( user )
+% MD^2=MF*FB
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $MD^2=MF \cdot MB$
+
+%------------------
+%-- Message sae123 ( user )
+% $DM^2 = MF \cdot MB$
+
+%------------------
+%-- Message Trollface60 ( user )
+% $(MD)^2 = MF\cdot MB$
+
+%------------------
+%-- Message mustwin_az ( user )
+% MD^2=MF* FB
+
+%------------------
+%-- Message shausa ( user )
+% $MD^2 = MF \cdot MB$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% MD^2 = MF * MB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% MD^2=MF*MB
+
+%------------------
+%-- Message aaravdodhia ( user )
+% MD^2 = MF * BM
+
+%------------------
+%-- Message nextgen_xing ( user )
+% $MD^2 = MF\cdot MB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% MD^2=MF*MB
+
+%------------------
+%-- Message michaellikemath ( user )
+% MD^2=MF*MB
+
+%------------------
+%-- Message chardikala2 ( user )
+% $MD^2 = MF \cdot MB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$MD\,^2 = MF\cdot MB.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what do we have to prove to finish?
+
+%------------------
+%-- Message ca981 ( user )
+% $ME^2 = MF * MB $
+
+%------------------
+%-- Message dxs2016 ( user )
+% ME^2 = MF*MB?
+
+%------------------
+%-- Message michaellikemath ( user )
+% ME^2=MF*MB?
+
+%------------------
+%-- Message shausa ( user )
+% $EM^2 = MF \cdot MB$
+
+%------------------
+%-- Message pritiks ( user )
+% EM^2 = MF*MB
+
+%------------------
+%-- Message coolbluealan ( user )
+% MF*MB=ME^2
+
+%------------------
+%-- Message MathJams ( user )
+% EM^2=MF*MB
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% ME^2=MF*MB
+
+%------------------
+%-- Message bryanguo ( user )
+% ME^2=MF*MB
+
+%------------------
+%-- Message mathlogic ( user )
+% MF*MB = ME^2
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $MF \cdot MB = ME^2$
+
+%------------------
+%-- Message Ezraft ( user )
+% $(ME)^2 = MF \cdot MB$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $MF \cdot MB = EM^2$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show $ME^2=MF\cdot MB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we can show that $EM\,^2 = MF\cdot MB,$ we're home, since we can conclude that $EM\,^2 = MD\,^2.$ Can we?
+
+%------------------
+%-- Message mustwin_az ( user )
+% yes
+
+%------------------
+%-- Message Yufanwang ( user )
+% Yes
+
+%------------------
+%-- Message robertfeng ( user )
+% yes
+
+%------------------
+%-- Message mathlogic ( user )
+% Yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message ay0741 ( user )
+% use similar trianbles
+
+%------------------
+%-- Message MTHJJS ( user )
+% Similar Triangles
+
+%------------------
+%-- Message Ezraft ( user )
+% using similar triangles
+
+%------------------
+%-- Message myltbc10 ( user )
+% similar triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right triangles - look for similar triangles.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% AFB is also a right angle, meaning that there are similar right triangles within triangle MEB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which similar right triangles do have?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(both should involve the vertex M)
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Similar triangles $\triangle MEF$ and $\triangle MBE$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle MFE \sim \triangle MEB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% triangle MFE ~ triangle MEB
+
+%------------------
+%-- Message xyab ( user )
+% $\triangle FME \sim \triangle EMB$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% triangle MEF and triangle MBE
+
+%------------------
+%-- Message bigmath ( user )
+% triangle MEF and triangle MBE
+
+%------------------
+%-- Message Trollyjones ( user )
+% triangle MEF - triangle EBF - triangle MBE
+
+%------------------
+%-- Message smileapple ( user )
+% $\triangle MEF\sim\triangle MBE$
+
+%------------------
+%-- Message Yufanwang ( user )
+% triangle MFE is similar to triangle MEB
+
+%------------------
+%-- Message silver_maple ( user )
+% triangle FEM is similar to triangle EBM
+
+%------------------
+%-- Message Trollyjones ( user )
+% triangle MEF- triangle MBE
+
+%------------------
+%-- Message pritiks ( user )
+% triangle MEB~triangle MFE
+
+%------------------
+%-- Message leoouyang ( user )
+% △EMF and △BME
+
+%------------------
+%-- Message mathlogic ( user )
+% triangle MEF ~ triangle MBE
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% triangle MFE is similar to MEB
+
+%------------------
+%-- Message Bimikel ( user )
+% triangle EFM and triangle BEM
+
+%------------------
+%-- Message bryanguo ( user )
+% Triangles $FME$ and $EMB$
+
+%------------------
+%-- Message apple.xy ( user )
+% triangles MFE and MEB
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle MFE \sim \triangle MEB$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle MEF \sim \triangle MBE$ by AA.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% triangle MFE and triangle MEB
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\triangle EMF \sim \triangle BME$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\Delta MFE \sim \Delta MEB$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Triangle MEF ~ Triangle MBE
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\triangle BEM \sim \triangle EFM.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, what?
+
+%------------------
+%-- Message pritiks ( user )
+% write out the ratios
+
+%------------------
+%-- Message bryanguo ( user )
+% ratio of lengths!
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Set up side ratios
+
+%------------------
+%-- Message dxs2016 ( user )
+% similarity ratios
+
+%------------------
+%-- Message Achilleas ( moderator )
+We write the ratios of corresponding side-lenghts.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We then obtain the ratio $ME/MB = MF/ME$ due to proportional side lengths, which leads to $ME^2 = MB\cdot{MF}$
+
+%------------------
+%-- Message Trollyjones ( user )
+% BM/EM=EM/FM and EM^2=BM*FM
+
+%------------------
+%-- Message mustwin_az ( user )
+% $EM/MF=BM/EM$
+
+%------------------
+%-- Message MTHJJS ( user )
+% ME/MB = MF/ME
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% EM / FM = BM / EM
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\frac{EM}{FM}=\frac{BM}{EM}$
+
+%------------------
+%-- Message silver_maple ( user )
+% ME / MB =  MF / ME or ME^2 = MB * MF
+
+%------------------
+%-- Message MTHJJS ( user )
+% ME/MB = MF/ME, and thus ME^2 = MB * MF = MD^2, concluding that ME = ME. QED
+
+%------------------
+%-- Message Achilleas ( moderator )
+From this, we have $EM/MB = MF/EM,$ from which $EM\,^2 = MF \cdot MB$ and we're home.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice that we spent a lot of time thinking about what we wanted in order to focus our attention. We could easily have gone all over the place proving random stuff in this problem, but by focusing on what we want to prove, we were able to go straight to what we needed rather than doing a bunch of aimless wandering. Aimless wandering has its place (grad school), but not so much in geometry problems unless you're hopelessly stuck.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, cyclic quadrilaterals.
+
+%------------------
+%-- Message Achilleas ( moderator )
+A quadrilateral is called cyclic if a circle can be drawn that passes through all four vertices.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(200);
+
+pathpen = black + linewidth(0.7); 
+pointpen = black; 
+pen s = fontsize(8); 
+path O = circle((0,0), 2); 
+pair origin = (0,0); 
+pair I = (2,0); 
+pair A = rotate(-100)*I; 
+pair Q = scale(1.8)*rotate(5)*I; 
+pair D = rotate(115)*I;
+//intersection for C
+pair C = intersectionpoints(D--Q, O)[0];
+
+//intersection for B
+//path q = (A--Q);
+//real[] inter1 = intersect(q,O);
+//pair B = point(q,inter1[0]);
+pair B = intersectionpoints(A--Q, O)[0];
+
+//intersection for P
+path x = (A--C);
+path y = (D--B);
+real[] inter2 = intersect(x,y);
+pair P = point(x,inter2[0]);
+
+//draw(MP("B",B,(0,1),s)--MP("A",A,SW,s);
+draw(O);
+draw(MP("A",A,S,s)--MP("Q",Q,E,s)--MP("D",D,NW,s)--MP("B",B,SE,s)--MP("C",C,NE,s)--A--D);
+draw(MP("P",P,scale(2)*N,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are several ways to prove that a quadrilateral is cyclic. The most commonly used two ways to show that ABCD is cyclic are:
+
+%------------------
+%-- Message Achilleas ( moderator )
+1) $\angle ABD = \angle ACD.$  (Or any of the other pairs of similarly defined angles, such as $\angle ADB = \angle ACB.$)
+
+%------------------
+%-- Message MTHJJS ( user )
+% opposite angles add up to 180
+
+%------------------
+%-- Message dxs2016 ( user )
+% sum of opposite angles is 180
+
+%------------------
+%-- Message Achilleas ( moderator )
+2) A pair of opposite angles sum to $180$ degrees.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two less commonly used ways are:
+
+%------------------
+%-- Message Achilleas ( moderator )
+1) The converse of the Power of a Point. If $P$ is the intersection of lines $AB$ and $CD$ and 
+
+
+\begin{align*}  
+PA\cdot PC&= PB\cdot PD\quad\text{ or}\\  
+QC\cdot QD&= QB\cdot QA,  
+\end{align*} then $A,$ $B,$ $C,$ and $D$ are all on a circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything else that uses side-lengths?
+
+%------------------
+%-- Message SmartZX ( user )
+% Ptolemy's theorem?
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% ptolemy's theorem
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Ptolemy's theorem
+
+%------------------
+%-- Message silver_maple ( user )
+% ptolemy's theorem holding true?
+
+%------------------
+%-- Message chardikala2 ( user )
+% Ptolemy's theorem
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Ptolmy's theorem?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Ptolemy's theorem ...
+
+%------------------
+%-- Message andromeda7 ( user )
+% ptolemy's throrem
+
+%------------------
+%-- Message vsar0406 ( user )
+% ptolemy's theorem?
+
+%------------------
+%-- Message maxben ( user )
+% ptolemy
+
+%------------------
+%-- Message Achilleas ( moderator )
+2) The equality condition of Ptolemy's Inequality, which states that in quadrilateral $ABCD,$ $$AB\cdot CD + BC\cdot DA \ge AC\cdot BD,$$ with equality holding if and only if $ABCD$ is cyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Those of you preparing for the AIME - know the equality form of Ptolemy well. It's a favorite of AIME test writers.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The most common use of cyclic quadrilaterals is identifying equal angles. As soon as we find a cyclic quadrilateral, we draw the diagonals and have equal angles galore:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+ import markers; size(150); pathpen = black + linewidth(0.7); pointpen = black; pen s = fontsize(8); path O = circle((0,0), 2); pair origin = (0,0); pair I = (2,0); pair A = rotate(-100)*I; pair Q = scale(1.8)*rotate(5)*I; pair D = rotate(115)*I; path p = (D--Q); real[] inter0 = intersect(p,O); pair C = point(p,inter0[0]); path q = (A--Q); real[] inter1 = intersect(q,O); pair B = point(q,inter1[0]); path x = (A--C); path y = (D--B); real[] inter2 = intersect(x,y); pair P = point(x,inter2[0]); draw(O,heavygreen); draw(MP("A",A,S,s)--MP("B",B,SE,s)--MP("C",C,NE,s)--MP("D",D,NW,s)--A--C--B--D); draw(MP("P",P,scale(2)*N,s)); markangle(n=2,radius=8,D,C,P); markangle(n=2,radius=8,D,B,A); markangle(n=1,radius=12,P,D,C); markangle(n=1,radius=12,B,A,C); markangle(n=3,radius=8,A,D,P); markangle(n=3,radius=8,P,C,B); 
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+(In general, when you find a cyclic quadrilateral, if it doesn't immediately solve the problem for you at a glance, draw the circle to help you see the equal angles.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's a simple example of how useful these equal angles can be. We can do this example using more elementary tools than cyclic quadrilaterals, but as we'll see, cyclic quads make this problem trivial.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, $\angle DOB = 50$ degrees, where $O$ is the center of the circle. Given $\angle PCO = \angle PDO = 10$ degrees, what is the measure of arc $CD?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(150); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+dotfactor = 4;
+pair O = origin, A = (-1,0), B = (1,0), D = dir(50), C = dir(150), P = intersectionpoints(A--B, circumcircle(O,C,D))[0];
+draw(MP("A",A,W,s)--MP("B",B,E,s)^^Circle(O,1)^^MP("P",P,S,s)--MP("C",C,NW,s)--MP("O",O,S,s)--MP("D",D,NE,s)--P);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the first thing you should think on glancing at this problem?
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% quadrilateral CPOD is cyclic
+
+%------------------
+%-- Message silver_maple ( user )
+% constructing quadrilateral CPOD
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% PODC is cyclic
+
+%------------------
+%-- Message coolbluealan ( user )
+% CPOD is cyclic
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% OPCD is cyclic
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $PODC$ is cyclic
+
+%------------------
+%-- Message Bimikel ( user )
+% CDOP is a cyclic quad
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% CDOP is cyclic
+
+%------------------
+%-- Message SmartZX ( user )
+% Quadrilateral CDOP is cyclic
+
+%------------------
+%-- Message ww2511 ( user )
+% quadrilateral PCDO is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+The first thing I think is '$CDOP$ is cyclic.'
+
+%------------------
+%-- Message Achilleas ( moderator )
+You need to get to where this observation is automatic - these equal 'inscribed angles' mean cyclic quadrilateral. I glance at this problem and I can't even think about anything else before this observation pops into my head. $CDOP$ is cyclic - I draw the quadrilateral with diagonals and the circle:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(170); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+dotfactor = 4;
+pair O = origin, A = (-1,0), B = (1,0), D = dir(50), C = dir(150), P = intersectionpoints(A--B, circumcircle(O,C,D))[0];
+draw(MP("A",A,W,s)--MP("B",B,E,s)^^Circle(O,1)^^MP("P",P,S,s)--MP("C",C,NW,s)--MP("O",O,S,s)--MP("D",D,NE,s)--P);
+draw(circumcircle(C,O,D),heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we can chase angles. How do we finish?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use "angle" or $\angle$ for angles)
+
+%------------------
+%-- Message Lucky0123 ( user )
+% angle CPD = angle COD
+
+%------------------
+%-- Message Yufanwang ( user )
+% We need to find either angle CPD or angle COD, doesn't really matter because they're equal
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right!
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\angle DPO?$
+
+%------------------
+%-- Message trk08 ( user )
+% 40 degrees
+
+%------------------
+%-- Message MTHJJS ( user )
+% 40 degrees
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% its 40 degrees
+
+%------------------
+%-- Message Trollyjones ( user )
+% 40 degrees since angle POD is 130
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% 40 degrees
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Angle DPO = 40 degrees
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\angle DPO=180^\circ - 10^\circ -130^\circ=40^\circ$
+
+%------------------
+%-- Message mark888 ( user )
+% 40 degrees
+
+%------------------
+%-- Message MathJams ( user )
+% it is 40 degrees
+
+%------------------
+%-- Message pritiks ( user )
+% 40 degrees
+
+%------------------
+%-- Message Yufanwang ( user )
+% we have $\angle PDO=10$ degrees and $\angle DOB=50$ degrees, so $\angle DOA=130 $ degrees, so $\angle DPO=40$ degrees.
+
+%------------------
+%-- Message myltbc10 ( user )
+% <DPO=40
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle DOB=50^\circ,$ so $\angle DOA = 130^\circ.$ $\angle ODP = 10^\circ,$ so $\angle DPO = 40^\circ.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we reach for our cyclic quads.
+
+%------------------
+%-- Message Bimikel ( user )
+% angle DPO=angle DCO
+
+%------------------
+%-- Message Lucky0123 ( user )
+% angle DPO = angle DCO
+
+%------------------
+%-- Message robertfeng ( user )
+% angle DPO = angle DCO
+
+%------------------
+%-- Message smileapple ( user )
+% angle DPO=angle DCO
+
+%------------------
+%-- Message sae123 ( user )
+% its equal to angle DCO
+
+%------------------
+%-- Message SmartZX ( user )
+% Angle DPO = Angle DCO
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have : $\angle OCD = \angle DPO = 40^\circ.$ $\angle ODC = \angle OCD = 40^\circ$ (since $OD = OC$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, what's $\angle DOC?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use degrees)
+
+%------------------
+%-- Message MathJams ( user )
+% so <COD=100 deg
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 100 degrees
+
+%------------------
+%-- Message Trollyjones ( user )
+% 100 degrees
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $100$ degrees
+
+%------------------
+%-- Message Yufanwang ( user )
+% $100$ degrees
+
+%------------------
+%-- Message Ezraft ( user )
+% $100^{\circ}$
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% 100 degrees
+
+%------------------
+%-- Message silver_maple ( user )
+% 100 degrees
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle COD = 100^\circ$
+
+%------------------
+%-- Message Bimikel ( user )
+% 100 degrees
+
+%------------------
+%-- Message coolbluealan ( user )
+% 100 degrees
+
+%------------------
+%-- Message Lucky0123 ( user )
+% 100 degrees
+
+%------------------
+%-- Message smileapple ( user )
+% $100^{\circ}$
+
+%------------------
+%-- Message bryanguo ( user )
+% $100^{\circ}$
+
+%------------------
+%-- Message sae123 ( user )
+% $m\angle DOC = 100^\circ$
+
+%------------------
+%-- Message leoouyang ( user )
+% 100 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+So $\angle DOC = 180^\circ - 40^\circ - 40^\circ = 100^\circ$ and we're done.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% cool
+
+%------------------
+%-- Message MTHJJS ( user )
+% 
+
+%------------------
+%-- Message chardikala2 ( user )
+% So cool
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(170); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+dotfactor = 4;
+pair O = origin, A = (-1,0), B = (1,0), D = dir(50), C = dir(150), P = intersectionpoints(A--B, circumcircle(O,C,D))[0];
+draw(MP("A",A,W,s)--MP("B",B,E,s)^^Circle(O,1)^^MP("P",P,S,s)--MP("C",C,NW,s)--MP("O",O,S,s)--MP("D",D,NE,s)--P);
+draw(circumcircle(C,O,D),heavygreen);
+markangle(Label("$130^\circ$",O,scale(4)*NW,s),n=2,radius=6,D,O,A);
+markangle(n=1,radius=20,P,C,O);
+markangle(Label("$10^\circ$",D,scale(2)*W,s),n=1,radius=20,P,D,O);
+markangle(Label("$50^\circ$",O,scale(2.5)*E,s),n=3,radius=-7,D,O,B);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Did you follow our solution?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(if you didn't, feel free to say so, please)
+
+%------------------
+%-- Message mkannan ( user )
+% How did angle DPO equal angle DCO?
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is where we used the fact that CDOP is cyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that $\angle DPO$ and $\angle DCO$ are inscribed in the same arc, namely arc $OD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence $\angle DPO=\angle DCO$ from the cyclic quadrilateral $CDOP$.
+
+%------------------
+%-- Message renyongfu ( user )
+% how did we know CDPO was cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+We got this from the given information about $\angle PCO=\angle PDO$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another tip on geometry problems: Don't just stare. Label things. Mark equal angles and equal segments. You will not solve hard geometry problems with one brilliant stroke. You will solve them with a series of observations. As you make those observations, you add them to your diagram so you can use them. Here, you write the angles you know so you can chase angles to solve the problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another less common use of cyclic quadrilaterals is to get a relationship between opposite angles (namely, that they are supplementary). This is particularly useful when we are trying to prove an angle is a right angle. For example, if angle $BAD$ is right in quadrilateral $ABCD$ and we can prove that $ABCD$ is cyclic, then we know immediately that $BCD$ is a right angle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Speaking of right angles, a stack of right angles in a problem should scream cyclic quadrilaterals to you - if you ever have two right angles that intersect such that the vertices of the angles are opposite angles of a quadrilateral, you have a cyclic quadrilateral.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here are a few problems that involve identifying and using cyclic quadrilaterals:
+
+%------------------
+%-- Message Achilleas ( moderator )
+A chord $ST$ of constant length slides around a semicircle with diameter $AB.$ $M$ is the midpoint of $ST$ and $P$ is the foot of the perpendicular from $S$ to $AB.$  Prove that the angle $SPM$ is constant for all positions of $ST.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(3cm);
+ import markers; size(200); pathpen = black + linewidth(0.7); pointpen = black; pen s = fontsize(8); pair O=origin, B=(1,0), A=dir(180), T=dir(75), S=dir(145), P=(S.x,0), M=(S+T)/2; draw(Circle(O,1)); dot(origin); draw(MP("O",O,SE,s)); draw(MP("A",A,W,s)--MP("B",B,E,s)); draw(MP("T",T,NE,s)--MP("S",S,NW,s)--MP("P",P,SW,s)--MP("M",M,N,s)); draw(rightanglemark(S,P,O,2)); 
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any suggestions?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What should we look for or try to build?
+
+%------------------
+%-- Message pritiks ( user )
+% use cyclic quadrilaterals
+
+%------------------
+%-- Message MathJams ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message BigBrain23567 ( user )
+% cyclic quadrelaterials
+
+%------------------
+%-- Message mustwin_az ( user )
+% cyclic
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Cyclic Quadrilaterals
+
+%------------------
+%-- Message study2know ( user )
+% Cyclic quadrilateral?
+
+%------------------
+%-- Message sae123 ( user )
+% cyclic quads
+
+%------------------
+%-- Message Lucky0123 ( user )
+% A cyclic quadrilateral
+
+%------------------
+%-- Message myltbc10 ( user )
+% cyclic quadrilateral
+
+%------------------
+%-- Message Trollyjones ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message trk08 ( user )
+% cyclic quadlirateral?
+
+%------------------
+%-- Message Yufanwang ( user )
+% A cyclic quadrilateral? Preferably containing some stagnant points
+
+%------------------
+%-- Message Achilleas ( moderator )
+Seeing one right angle, we look for another to build a cyclic quadrilateral. (This isn't as contrived as it seems - every time I see a right angle in a geometry proof that I'm confident involves angles, I take a quick glance for another right angle.) Where is it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(that is, where's the cyclic quadrilateral  )
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A cyclic quadrilateral, possibly SPOM
+
+%------------------
+%-- Message bryanguo ( user )
+% SMOP is cyclic!
+
+%------------------
+%-- Message MathJams ( user )
+% SMOP is cyclic
+
+%------------------
+%-- Message coolbluealan ( user )
+% SPOM is cyclic
+
+%------------------
+%-- Message ww2511 ( user )
+% quadrilateral SMOP is cyclic
+
+%------------------
+%-- Message mark888 ( user )
+% MSPO
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% SPOM is a cycle quadrilateral
+
+%------------------
+%-- Message Trollyjones ( user )
+% PSMO
+
+%------------------
+%-- Message bryanguo ( user )
+% SMOP is the cyclic quadrilateral because when we have a chord on a circle it's perpendicular bisector passes through the center, which is $O.$ so $\angle SMO$ is right angle, so $\angle SPO+\angle SMO = 180^{\circ},$
+
+%------------------
+%-- Message Bimikel ( user )
+% SMOP
+
+%------------------
+%-- Message SmartZX ( user )
+% OM is perpendicular to ST, so quadrilateral SPOM is cyclic
+
+%------------------
+%-- Message silver_maple ( user )
+% SMO is right because OM bisects ST, so SPMO is cyclic
+
+%------------------
+%-- Message Yufanwang ( user )
+% The cyclic quadrilateral is at PSMO — angle SMO is a right angle.
+
+%------------------
+%-- Message bryanguo ( user )
+% SMOP is the cyclic quadrilateral because when we have a chord on a circle it's perpendicular bisector passes through the center, which is $O.$ so $\angle SMO$ is right angle, so $\angle SPO+\angle SMO = 180^{\circ},$ meaning it is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+$M$ is the midpoint of chord $ST,$ so $OM$ is perpendicular to $ST.$  We draw it in, along with our circle that passes through $S,$ $M,$ $O,$ and $P$ (since $\angle SMO + \angle OPS = 180$ degrees). We also draw in diagonal $OS$ (note that this is also a diameter of our new circle - another sometimes useful item in problems with right angles and cyclic quadrilaterals).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(3cm);
+ import markers; size(200); pathpen = black + linewidth(0.7); pointpen = black; pen s = fontsize(8); pair O=origin, B=(1,0), A=dir(180), T=dir(75), S=dir(145), P=(S.x,0), M=(S+T)/2; draw(Circle(O,1)); dot(origin); draw(MP("O",O,SE,s)); draw(MP("A",A,W,s)--MP("B",B,E,s)); draw(MP("T",T,NE,s)--MP("S",S,NW,s)--MP("P",P,SW,s)--MP("M",M,N,s)--O--S); draw(rightanglemark(S,P,O,2)); draw(rightanglemark(S,M,O,2)); draw(circumcircle(S,M,O)); 
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we finish?
+
+%------------------
+%-- Message smileapple ( user )
+% Why $OM \perp ST$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because $M$ is the midpoint of $ST$.
+
+%------------------
+%-- Message MathJams ( user )
+% <SPM=<SOM, whcih is constant
+
+%------------------
+%-- Message MTHJJS ( user )
+% angle SPM =angle SOM so  angle SOM cannot be variable
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\angle SPM=\angle SOM$ which clearly stays constant as $ST$ moves
+
+%------------------
+%-- Message dxs2016 ( user )
+% show that angle SOM is fixed (angle SOM = angle SPM by inscribed angles)
+
+%------------------
+%-- Message SmartZX ( user )
+% Angle SPM = Angle SOM, which is constant.
+
+%------------------
+%-- Message coolbluealan ( user )
+% angle SPM= angle SOM which is constant
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our problem asks to prove that $\angle SPM$ is constant, so we focus on it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since our problem involves $\angle SPM,$ we focus on it and see that $\angle SPM =\angle SOM.$  Are we done? Why is $\angle SOM$ constant?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% It's the angle of arc SM which is constant
+
+%------------------
+%-- Message Celwelf ( user )
+% length ST is constant
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Because the length of $ST$ is fixed, so the arc $ST$ is fixed, and $SM$ is just half the arc of $ST$.
+
+%------------------
+%-- Message mark888 ( user )
+% Because ST is of constant length
+
+%------------------
+%-- Message MathJams ( user )
+% since ST is constant, and so the arc it subtends is also
+
+%------------------
+%-- Message sae123 ( user )
+% $\angle SPM = \angle SOM = (1/2)\angle SOT$ which is constant because $ST$ is constant, so we are done.
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% That's because ST is constant.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle SOM$ is $1/2$ of $\angle SOT,$ which is constant since $ST$ is constant. Since $\angle SPM = \angle SOM,$ we deduce that $\angle SPM$ is constant as well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next problem:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$ABC$ is an acute triangle with $O$ as its circumcenter. Let $S$ be the circle through $C,$ $O,$ and $B.$ The lines $AB$ and $AC$ meet circle $S$ again at $P$ and $Q,$ respectively. Prove that the lines $AO$ and $PQ$ are perpendicular.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The first step, of course, is to draw it. Generally, when working Olympiad problems, you should draw diagrams as accurately as possible. On a contest, break out your ruler and compass - it will definitely be worth the extra time you spend drawing the diagram. If you sketch freehand, you can often be tricked into trying to prove something that isn't true.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Also, draw your scratch diagram fairly large. You'll often end up labeling lengths or angles with variables, and a large diagram helps keep them all clear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(220);
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair A, B, C, O, P, Q, Z;
+
+pair circumcenter(pair A=(0,0), pair B=(0,0), pair C=(0,0)) { 
+    pair M,N,P,Q; 
+    M=midpoint(A--B); 
+    N=midpoint(B--C); 
+    P=rotate(90,M)*A; 
+    Q=rotate(90,N)*B; 
+    return extension(M,P,N,Q);
+}
+
+O = (0,0);
+A = dir(225);
+B = dir(-15);
+C = dir(120);
+P = intersectionpoint(circumcircle(B,O,C),(B + 0.1*(B - A))--(B + 3*(B - A)));
+Q = intersectionpoint(circumcircle(B,O,C),(C + 0.1*(C - A))--(C + 3*(C - A)));
+Z = extension(A,O,P,Q);
+
+draw(circumcircle(B,O,C),heavygreen);
+draw(Circle(O,1));
+draw(MP("P",P,SE,s)--A--MP("Q",Q,W,s)--MP("Z",Z,scale(2)*S,s)--cycle);
+draw(MP("B",B,SE,s)---MP("C",C,NW,s)--O--cycle);
+draw(MP("A",A,SW,s)--(Z + 0.5*(Z - A)));
+
+dot(circumcenter(C,O,B));
+dot(O);
+draw(MP("S",circumcenter(C,O,B),NW,s));
+draw(MP("O",O,S,s));
+//draw(MP("A",A,W,s)--MP("F",F,N,s)--MP("B",B,E,s)--MP("D",D,NW,s)--MP("C",C,NE,s)--A--B);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice in our diagram that we include the circles and all the relevant segments - the sides of triangle $OBC,$ the segment $PQ,$ the extension of $AO$ to $PQ $ (and a little beyond). Generally, include everything that is part of the problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $Z$ be the intersection of $AO$ and $PQ.$  What do we want to prove?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle AZQ = 90^\circ$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Angle AZP is a right angle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Angle AZQ is a right angle
+
+%------------------
+%-- Message smileapple ( user )
+% <AZP=90 degrees
+
+%------------------
+%-- Message Yufanwang ( user )
+% that angle AZQ (or angle AZP) is equal to 90 degrees
+
+%------------------
+%-- Message pritiks ( user )
+% angle PZA=angle AZQ = 90 degrees
+
+%------------------
+%-- Message Bimikel ( user )
+% angle AZP=90 degrees
+
+%------------------
+%-- Message bryanguo ( user )
+% $\angle PZA$ is right
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $AO$ and $PQ$ are perpendicular, or $\angle AZP = 90$ degrees.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to show that $\angle AZP$ is a right angle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+One cyclic quad $(PBCQ)$ is pretty obvious; we already have the circle drawn in.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Keep in mind that all proofs, particularly geometry problems, can be worked on from two directions. We can start with what we're given and try to work forwards to what we want, and we can work backwards from what we want to prove. Working backwards involves looking at what we want to prove and asking ourselves 'What do I wish were true so I could prove what I want immediately?'
+
+%------------------
+%-- Message Achilleas ( moderator )
+Working backwards here, what is equivalent to proving that $AZP$ is right?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: The sum of the angles of a triangle is equal to $180^\circ$.)
+
+%------------------
+%-- Message pritiks ( user )
+% angle ZAQ + angle AQZ = 90 degrees
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle ZAP and angle APZ are complementary?
+
+%------------------
+%-- Message pritiks ( user )
+% angle PAZ + angle APZ = 90 degrees
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Angle ZAP + Angle ZPA = 90 degrees
+
+%------------------
+%-- Message ca981 ( user )
+% ∠ZAP + ∠ZPA = 90
+
+%------------------
+%-- Message apple.xy ( user )
+% <ZAP + <ZPA = 90 degrees
+
+%------------------
+%-- Message Bimikel ( user )
+% $\angle ZAP+\angle ZPA=90^\circ$
+
+%------------------
+%-- Message smileapple ( user )
+% <ZAP+<APZ=90 deg
+
+%------------------
+%-- Message MathJams ( user )
+% <ZAP=90-<ZPA
+
+%------------------
+%-- Message SmartZX ( user )
+% Angle ZAQ + Angle AQZ = 90
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle QPA + \angle PAZ =90^\circ$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Angle ZAP + Angle APZ = 90
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we show that $\angle PAZ + \angle APZ = 90$ degrees, we are set. Can we do it?
+
+%------------------
+%-- Message mathlogic ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message bryanguo ( user )
+% cyclic quads ?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do circles and angles beg us for?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(time to chase....)
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% angle chasing
+
+%------------------
+%-- Message apple.xy ( user )
+% ohh angle chasing
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% angle chasing and cyclic quadrilaterals
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% angle chasing solution
+
+%------------------
+%-- Message Yufanwang ( user )
+% Rabbits! Angles!
+
+%------------------
+%-- Message dvrdvr ( user )
+% angle chasing
+
+%------------------
+%-- Message Achilleas ( moderator )
+Again, we chase angles. Circles and angles beg for us to chase angles. We want to focus on angles $AZP,$ $PAZ,$ $APZ$ since those are the angles we want to prove something about.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can't see too much obvious about $\angle AZP.$  How about the others?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\angle ZPA$?
+
+%------------------
+%-- Message MathJams ( user )
+% $\angle APZ=180-\angle QCP$
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle ZPA=180^\circ - \angle BCQ$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle ZPA = \angle ACB$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle ZPA = \angle BCA$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle ZPA = \angle ACB$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle ZPA=180^\circ-\angle QCB$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle ZPA = angle BCA
+
+%------------------
+%-- Message Bimikel ( user )
+% angle ZPA=angle ACB
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle ZPA = 180 - \angle QCB$
+
+%------------------
+%-- Message apple.xy ( user )
+% oops typo <ZPA + <QCB = 180 degrees
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle ZPA = \angle ACB$
+
+%------------------
+%-- Message sae123 ( user )
+% prove that it equals $\angle CBA$
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle ZPA =  angle ACB via cyclic quad QCBP
+
+%------------------
+%-- Message pritiks ( user )
+% angle ZPA + angle QCB = 180 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+From cyclic quadrilateral $PBCQ,$ we see that $\angle ZPA = 180^\circ - \angle BCQ = \angle BCA$ (remember this angle manipulation; this won't be the last time you'll see it with cyclic quadrilaterals). Does $\angle ZPA = \angle BCA$ help?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Yes, because we eliminated the point $Z$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle BCA$ and $\angle ZAP$ together sum to $90$ degrees, since they are inscribed in arcs which together are a semicircular arc (if you don't see it, let $K$ be the intersection of $AZ$ with circle $O;$ $\angle ZAP = \text{arc}(KB)/2,$ $\angle BCA = \text{arc}(AB)/2,$ so $\angle ZAP + \angle BCA = \text{arc}(KB)/2 + \text{arc}(AB)/2 = \text{arc}(KBA)/2 = 90^\circ.$)  So...
+
+%------------------
+%-- Message dxs2016 ( user )
+% we indeed do get 90 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle ZPA = \angle BCA,$ we have $\angle ZAP + \angle ZPA = 90^\circ,$ as desired. Thus, we use triangle $AZP$ to deduce that $\angle AZP = 90$ degrees and we're done.
+
+%------------------
+%-- Message MTHJJS ( user )
+% nice!
+
+%------------------
+%-- Message bryanguo ( user )
+% :o nice problem
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yup! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Take a look at what we did here: we listed a bunch of things that would get us the result immediately. Then we put aside the one about lengths because we didn't know anything about lengths. Then we threw out the things that just plain weren't true. We then investigated the most promising angle approach.
+
+%------------------
+%-- Message Achilleas ( moderator )
+When looking at proving $\angle PAZ + \angle APZ = 90^\circ,$ we chased angles, substituting in once we found $\angle APZ = \angle BCA. $ (Always do this when you find something new.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+--
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try another problem:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $ABC$ be a triangle and $D$ be the foot of the altitude from $A.$  Let $E$ and $F$ be on a line passing through $D$ such that $AE$ is perpendicular to $BE,$ $AF$ is perpendicular to $CF,$ and $E$ and $F$ are different from $D.$  Let $M$ and $N$ be the midpoints of the line segments $BC$ and $EF,$ respectively. Prove that $AN$ is perpendicular to $NM.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+import markers;
+size(300); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair B=origin, C=(10,0), A=(3,2),D=(A.x,0),E = point(circumcircle(A,D,B),265), M=(B+C)/2;
+//draw(circumcircle(A,D,B));
+//draw(circumcircle(A,D,C));
+draw(MP("A",A,N,s)--MP("D",D,S,s));
+draw(A--MP("B",B,NW,s)--MP("C",C,SE,s)--cycle);
+path temp = shift(E)*(scale(6)*(origin--D-E));
+//intersection for F
+pair F = intersectionpoints(temp,circumcircle(A,D,C))[1];
+pair N=(E+F)/2;
+draw(B--MP("E",E,S,s)--A--MP("F",F,NE,s)--C);
+draw(E--F);
+draw(A--MP("N",N,NNE,s)--MP("M",M,S,s));
+draw(rightanglemark(B,D,A,6));
+draw(rightanglemark(A,F,C,6));
+draw(rightanglemark(B,E,A,6));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where should we start?  Are there any observations?  Any useful lines to draw in?
+
+%------------------
+%-- Message pritiks ( user )
+% maybe draw in line AM
+
+%------------------
+%-- Message Yufanwang ( user )
+% Draw AM? It makes triangle AMN look similar to triangle ABE 
+
+%------------------
+%-- Message dxs2016 ( user )
+% AM?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We want to show that $ADMN$ is cyclic with diameter $AM$.
+
+%------------------
+%-- Message silver_maple ( user )
+% line segment AM?
+
+%------------------
+%-- Message Ezraft ( user )
+% $\overline{AM}$ could be useful
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AM$ is begging to be drawn (we want to show that $\angle ANM$ is a right angle - $AM$ is the hypotenuse of triangle $ANM$ if $\angle ANM$ is right) - so we do that.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+import markers;
+size(300); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair B=origin, C=(10,0), A=(3,2),D=(A.x,0),E = point(circumcircle(A,D,B),265), M=(B+C)/2;
+//draw(circumcircle(A,D,B));
+//draw(circumcircle(A,D,C));
+draw(MP("A",A,N,s)--MP("D",D,S,s));
+draw(A--MP("B",B,NW,s)--MP("C",C,SE,s)--cycle);
+path temp = shift(E)*(scale(6)*(origin--D-E));
+//intersection for F
+pair F = intersectionpoints(temp,circumcircle(A,D,C))[1];
+pair N=(E+F)/2;
+draw(B--MP("E",E,S,s)--A--MP("F",F,NE,s)--C);
+draw(E--F);
+draw(A--MP("N",N,NNE,s)--MP("M",M,S,s)--A);
+draw(rightanglemark(B,D,A,6));
+draw(rightanglemark(A,F,C,6));
+draw(rightanglemark(B,E,A,6));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+The right angles scream cyclic quadrilaterals. Which quads are cyclic?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(give us a couple of cyclic quads in one post, please)
+
+%------------------
+%-- Message SmartZX ( user )
+% Quadrilaterals ADEB and AFCD
+
+%------------------
+%-- Message mark888 ( user )
+% ABED and ADCF
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% ADEB, ADCF
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% BADE and AFCD
+
+%------------------
+%-- Message mustwin_az ( user )
+% AFCD and ADEB
+
+%------------------
+%-- Message silver_maple ( user )
+% AFCD and ABED are
+
+%------------------
+%-- Message myltbc10 ( user )
+% ABED and ADCF
+
+%------------------
+%-- Message MTHJJS ( user )
+% BEDA, ADFC,
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Quadrilaterals ABED and ADCF
+
+%------------------
+%-- Message renyongfu ( user )
+% BADE and AFCD
+
+%------------------
+%-- Message Bimikel ( user )
+% ADEB and AFCD
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $ADCF$ and $BADE$ are cyclic
+
+%------------------
+%-- Message smileapple ( user )
+% $ABED,ADCF$
+
+%------------------
+%-- Message bigmath ( user )
+% AFCD, EBAD
+
+%------------------
+%-- Message michaellikemath ( user )
+% ABED & AFCD
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $AFCD$ is cyclic, $BEDA$ Is cyclic I think...
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% AFCD, ADBE
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% AFCD, ADEB
+
+%------------------
+%-- Message apple.xy ( user )
+% ADCF and ABED
+
+%------------------
+%-- Message chardikala2 ( user )
+% AFCD, ABED
+
+%------------------
+%-- Message Celwelf ( user )
+% ADEB, AFCD
+
+%------------------
+%-- Message tigerzhang ( user )
+% ABED, AFCD
+
+%------------------
+%-- Message Ezraft ( user )
+% $ADCF, BEDA$
+
+%------------------
+%-- Message Trollyjones ( user )
+% ADCF, ABED
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% ADCF, ABED
+
+%------------------
+%-- Message Achilleas ( moderator )
+$ADEB$ is cyclic since $\angle AEB = \angle ADB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AFCD$ is cyclic since $\angle AFC + \angle ADC = 180^\circ.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Here we have both ways intersecting right angles can give us a cyclic quadrilateral.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw in our circles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+import markers;
+size(300); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair B=origin, C=(10,0), A=(3,2),D=(A.x,0),E = point(circumcircle(A,D,B),265), M=(B+C)/2;
+draw(circumcircle(A,D,B),heavygreen);
+draw(circumcircle(A,D,C),heavygreen);
+draw(MP("A",A,N,s)--MP("D",D,S,s));
+draw(A--MP("B",B,NW,s)--MP("C",C,SE,s)--cycle);
+path temp = shift(E)*(scale(6)*(origin--D-E));
+//intersection for F
+pair F = intersectionpoints(temp,circumcircle(A,D,C))[1];
+pair N=(E+F)/2;
+draw(B--MP("E",E,S,s)--A--MP("F",F,NE,s)--C);
+draw(E--F);
+draw(A--MP("N",N,NNE,s)--MP("M",M,S,s)--A);
+draw(rightanglemark(B,D,A,6));
+draw(rightanglemark(A,F,C,6));
+draw(rightanglemark(B,E,A,6));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we have lots to play with. We have tons of equal angles - which ones are useful?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can list out tons of angle equalities now. Before we just go after them like crazy, is there anything in the diagram that looks like it might be true (aside from what we already know we have to prove)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Things to look for are: angles that look like they might be right, triangles that look like they might be congruent or similar, quadrilaterals that look like they might be cyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(This is why it's important to draw your diagrams precisely. It can be an excellent guide. However, if you see something that might be true, don't assume it is - you might have just drawn one case in which it looks true. Spend a few minutes trying to prove your hunch. If you fail, but still want to pursue the hunch, try drawing a very different diagram first to see if your hunch still looks true.)
+
+%------------------
+%-- Message mark888 ( user )
+% ADMN might be cyclic
+
+%------------------
+%-- Message SmartZX ( user )
+% Quadrilateral ANMD might be cyclic
+
+%------------------
+%-- Message chardikala2 ( user )
+% ANMD looks cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is what we have to show.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which angle of this quadrilateral should we focus on?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% showing $\angle ANM = 90$ is equivalent to showing $A$, $N$, $M$, and $D$ are concyclic.
+
+%------------------
+%-- Message mark888 ( user )
+% \angle ANM
+
+%------------------
+%-- Message apple.xy ( user )
+% <ANM
+
+%------------------
+%-- Message pritiks ( user )
+% angle ANM
+
+%------------------
+%-- Message bryanguo ( user )
+% probably angle ANM
+
+%------------------
+%-- Message chardikala2 ( user )
+% ANM since if its 90 degrees we win?
+
+%------------------
+%-- Message michaellikemath ( user )
+% Angle MNA
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Angle ANM
+
+%------------------
+%-- Message Achilleas ( moderator )
+We look around triangle $ANM$ since that's what we want to prove something about. We see that if $\angle ANM$ is right, then $ANMD$ is cyclic. $ANMD$ sure looks cyclic. What else looks true in this diagram that might help us get there?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about triangles $ABC$ and $AEF$?
+
+%------------------
+%-- Message MathJams ( user )
+% They are similar
+
+%------------------
+%-- Message mustwin_az ( user )
+% they look similar
+
+%------------------
+%-- Message coolbluealan ( user )
+% they are similar
+
+%------------------
+%-- Message mathlogic ( user )
+% they're similar
+
+%------------------
+%-- Message Bimikel ( user )
+% triangles ABC and AEF are similar
+
+%------------------
+%-- Message michaellikemath ( user )
+% they look similar
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% they're similar
+
+%------------------
+%-- Message nextgen_xing ( user )
+% ABC and AEF look similar
+
+%------------------
+%-- Message silver_maple ( user )
+% triangle ABC is similar to triangle AEF
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% They're similar.
+
+%------------------
+%-- Message mkannan ( user )
+% They look similar.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% they look similar
+
+%------------------
+%-- Message ca981 ( user )
+% I meant Similar
+
+%------------------
+%-- Message Ezraft ( user )
+% they are similar
+
+%------------------
+%-- Message Achilleas ( moderator )
+Congruence is out, since $AE < AB$ ($AB$ is the hypotenuse of $ABE.$)  How about similarity?
+
+%------------------
+%-- Message dxs2016 ( user )
+% yes, AA via cyclic quads
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they are similar $\angle ABD = \angle AED, \angle ACD = \angle AFD$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% angle AED = angle ABD, and angle AFD = angle ACD
+
+%------------------
+%-- Message SmartZX ( user )
+% Congruent angles
+
+%------------------
+%-- Message michaellikemath ( user )
+% 2 angles equal
+
+%------------------
+%-- Message silver_maple ( user )
+% angle ABD is congruent to angle AED because they inscribe the same arc
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our cyclic quadrilaterals give the similarity right away: $\angle ABD = \angle AED$ (inscribed in arc $AD$ of the left circle), $ACD = \angle AFD$ (inscribed in arc $AC$ of the right circle). Therefore, $\triangle ABC \sim \triangle AEF.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Whenever you feel like you've made some progress in a problem but have become stuck, try going back to the problem and looking for a piece of information that you haven't already used. Here's the problem again:
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $ABC$ be a triangle and $D$ be the foot of the altitude from $A.$  Let $E$ and $F$ be on a line passing through $D$ such that $AE$ is perpendicular to $BE,$ $AF$ is perpendicular to $CF,$ and $E$ and $F$ are different from $D.$ Let $M$ and $N$ be the midpoints of the line segments $BC$ and $EF,$ respectively. Prove that $AN$ is perpendicular to $NM.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+import markers;
+size(300); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair B=origin, C=(10,0), A=(3,2),D=(A.x,0),E = point(circumcircle(A,D,B),265), M=(B+C)/2;
+//draw(circumcircle(A,D,B));
+//draw(circumcircle(A,D,C));
+draw(MP("A",A,N,s)--MP("D",D,S,s));
+draw(A--MP("B",B,NW,s)--MP("C",C,SE,s)--cycle);
+path temp = shift(E)*(scale(6)*(origin--D-E));
+//intersection for F
+pair F = intersectionpoints(temp,circumcircle(A,D,C))[1];
+pair N=(E+F)/2;
+draw(B--MP("E",E,S,s)--A--MP("F",F,NE,s)--C);
+draw(E--F);
+draw(A--MP("N",N,NNE,s)--MP("M",M,S,s));
+draw(rightanglemark(B,D,A,6));
+draw(rightanglemark(A,F,C,6));
+draw(rightanglemark(B,E,A,6));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What haven't we used?
+
+%------------------
+%-- Message pritiks ( user )
+% we didn't use that M and N are the midpoints
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We haven't used the fact that $N$ and $M$ are midpoints
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% The midpoints M and N
+
+%------------------
+%-- Message Ezraft ( user )
+% $M$ and $N$ are midpoints, I think we can use that
+
+%------------------
+%-- Message Bimikel ( user )
+% the midpoints
+
+%------------------
+%-- Message bigmath ( user )
+% Midpoints M and N
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% midpoints
+
+%------------------
+%-- Message MathJams ( user )
+% the midpoint condition
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% M, N are midpoints
+
+%------------------
+%-- Message bryanguo ( user )
+% midpoint condition
+
+%------------------
+%-- Message coolbluealan ( user )
+% midpoints
+
+%------------------
+%-- Message mustwin_az ( user )
+% M,N are midpoints
+
+%------------------
+%-- Message smileapple ( user )
+% M,N are midpoints
+
+%------------------
+%-- Message ww2511 ( user )
+% the fact that M and N are midpoints
+
+%------------------
+%-- Message MTHJJS ( user )
+% midpoints!
+
+%------------------
+%-- Message christopherfu66 ( user )
+% M and N are the midpoints of the line segments BC and EF, respectively.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the fact that $M$ and $N$ are midpoints of $BC$ and $EF.$ Why is this useful?
+
+%------------------
+%-- Message Bimikel ( user )
+% we get triangles ABM and AEN to be similar
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\triangle ABC $ and $\triangle AEF$ are similar and $M$ and $N$ are midpoints of corresponding sides, we have $\triangle ABM \sim \triangle AEN. $ Given our earlier similarity, it's intuitively clear that these two are similar, but can anyone tell us exactly why they are similar?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which similarity theorem should we apply?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% SAS
+
+%------------------
+%-- Message Bimikel ( user )
+% SAS
+
+%------------------
+%-- Message coolbluealan ( user )
+% SAS
+
+%------------------
+%-- Message MathJams ( user )
+% SAS is true
+
+%------------------
+%-- Message pritiks ( user )
+% SAS
+
+%------------------
+%-- Message sae123 ( user )
+% SAS
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% SAS
+
+%------------------
+%-- Message ww2511 ( user )
+% SAS
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% SAS
+
+%------------------
+%-- Message Ezraft ( user )
+% SAS
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% SAS
+
+%------------------
+%-- Message Achilleas ( moderator )
+The angles $\angle ABM$ and $\angle AEN$ are equal and $AB/BM = AE/EN,$ so $\triangle ABM \sim \triangle AEN.$
+
+%------------------
+%-- Message smileapple ( user )
+% SAS: <ABM=<AEN, and AB:AE=BM:EN, so SAS gives similar
+
+%------------------
+%-- Message Achilleas ( moderator )
+How does this help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+When we discover two similar triangles with SAS, we should always check out the new angle equalities we have from the similarity. One of the first things we should ask ourselves is 'Can these angles identify any new cyclic quadrilaterals?'
+
+%------------------
+%-- Message MathJams ( user )
+% that gives $\angle AMD=\angle AND$ so $ANMD$ is cyclic
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% This shows that $\angle AND = \angle AMD$, which shows that $ADMN$ is cyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In this case, yes: $\angle AND = \angle AMD,$ so $ANMD$ is cyclic. Are we home now?
+
+%------------------
+%-- Message mustwin_az ( user )
+% angle AMD = angle AND, thus AMND is cyclic which means opposite angles add up to 180
+
+%------------------
+%-- Message Yufanwang ( user )
+% Yes! We now have $\angle ANM=90^\circ$ because $\angle ADM=90^\circ$ and ANMD is cyclic!
+
+%------------------
+%-- Message MathJams ( user )
+% Yes, since this means $\angle ADM=180-\angle ANM=90$, so $\angle ANM$ is right
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% yes, since angle ADM is 90 degrees, thus ANM is also 90 degrees
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% yes, $\angle ANM + ADM = 180^\circ \implies \angle ANM = 90^\circ$
+
+%------------------
+%-- Message Trollyjones ( user )
+% yes since opposite angles add up to 180 than angle ANM is 90 degrees therefore AN is perpendicular to NM
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We just use the property that opposite angles of this quad are supplementary, and since angle ADM is 90 degrees, ANM is 90 degrees
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $ANMD$ is cyclic so $\angle ANM = \angle ADM = 90^\circ$
+
+%------------------
+%-- Message michaellikemath ( user )
+% yes because <ADM + <ANM = 180 and <ADM = 90
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Angles ADM and ANM are supplementary, so since one is 90 degrees, they both are.
+
+%------------------
+%-- Message renyongfu ( user )
+% yes, because ADM is right, meaning AMN is also right
+
+%------------------
+%-- Message sae123 ( user )
+% yes this means that $\angle ANM + \angle ADM = 180,$ but $\angle ADM = 90$ so $\angle ANM = 90$ and we're done
+
+%------------------
+%-- Message ca981 ( user )
+% Yes. Angle ADM is 90, so Angle ANM is also 90.
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\angle ADM + \angle ANM = 180^\circ $ Clearly, $\angle ANM = 90^\circ$ so we can conclude
+
+%------------------
+%-- Message Celwelf ( user )
+% Yes, the opposite angles add to 180 degrees, so <ANM is 90 degrees
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Yes. Since angle ADM is 90 degrees, and opposite angles in a cyclic quadrilateral add up to 180, angle ANM is also 180 - 90 = 90 degrees.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, we're finished: since $ANMD$ is cyclic, $$\angle ANM = 180^\circ - \angle ADM = 90^\circ.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similar triangles + cyclic quadrilaterals. Nothing fancy. We just used basic tools and asked ourselves the right questions (``What looks true?  What would I like to be true?  What haven't I used in the problem yet?'').
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another general comment: Think of how you would construct the diagram with ruler and compass \& the problem will sometimes become clear. In this case, in order to construct the diagram, we must draw a line through $D,$ then find some point $E$ on it such that $\angle AEB$ is right - how would you construct that?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Make AB the diameter of the circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We construct this $E$ by drawing a circle with diameter $AB$ - where it intersects our line is point $E.$ When we do this, we note that it looks like this circle goes through $D,$ too. We think - ah-ha! - we may have a cyclic quadrilateral. We investigate, and... the rest of the problem unfolds.
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's also interesting to think about the role of geometric transformations in this problem. Sometimes, when we know that two triangles are similar, it's fruitful to think about what geometric transformation takes one triangle to the other one. (We'll see more of this in the class on homethety.) In this case, a rotation-dilation (also known as a spiral similarity) centered at $A$ takes $ABC$ to $AEF.$ The rotation-dilation also takes $M$ to $N.$ Once we know this, the definition of a rotation-dilation tells us that triangles $ABE,$ $AMN, $ and $ACF$ all have to be similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $ABCD$ be a convex quadrilateral inscribed in a semicircle with diameter $AB.$  The lines $AC$ and $BD$ intersect at $E$ and the lines $AD$ and $BC$ meet at $F.$  The line $EF$ meets the semicircle at $G$ and $AB$ at $H.$  Prove that $E$ is the midpoint of $GH$ if and only if $G$ is the midpoint of the line segment $FH.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair O=origin, A=(-1,0), B=(1,0), C=dir(40), D=dir(115);
+pair X=shift(A)*scale(3)*(D-A), Y=shift(B)*scale(3.5)*(C-B);
+//intersection for F
+pair F = intersectionpoints(A--X,B--Y)[0];
+pair H = (F.x,0);
+draw(Circle(O,1),heavygreen);
+draw(MP("A",A,W,s)--MP("F",F,N,s)--MP("B",B,E,s)--MP("D",D,NW,s)--MP("C",C,NE,s)--A--B);
+draw(F--MP("H",H,S,s));
+//intersection for G
+pair G = intersectionpoints(F--H,Circle(O,1))[0];
+draw(MP("G",G,NE,s));
+//intersection for E
+pair E = intersectionpoints(F--H,A--C)[0];
+draw(MP("E",E,scale(2)*rotate(10)*SW,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Uh-oh two directions!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yup!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where do we start?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What tools are we likely to use?
+
+%------------------
+%-- Message MTHJJS ( user )
+% Similar triangels, cyclic quad 
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Power of a point?
+
+%------------------
+%-- Message robertfeng ( user )
+% power of a point, similar triangles
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Power of point
+
+%------------------
+%-- Message bryanguo ( user )
+% similar triangles
+
+%------------------
+%-- Message mustwin_az ( user )
+% similar triangles
+
+%------------------
+%-- Message Ezraft ( user )
+% cyclic quadrilaterals ($ADCB$) and Power of a Point
+
+%------------------
+%-- Message SmartZX ( user )
+% Power of a point?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have a problem involving lengths and segments in a circle. Power of a point seems likely. We also may use similar triangles. As it stands, though, nothing yet is obvious. What should we do?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Angle chase
+
+%------------------
+%-- Message Achilleas ( moderator )
+An early step in any geometry problem should be identifying equal angles - in particular, you should identify any right angles you see. Are there any right angles in the diagram?
+
+%------------------
+%-- Message Bimikel ( user )
+% angles ADB and ACB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% angles FDB and FCA
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Angle ADB, angle ACB
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle ACB$ and $\angle ADB$
+
+%------------------
+%-- Message MTHJJS ( user )
+% angle ADB and angle ACB
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle ADC = \angle ACB = 90^\circ$
+
+%------------------
+%-- Message michaellikemath ( user )
+% <ADB and <ACB is right
+
+%------------------
+%-- Message silver_maple ( user )
+% angles ADB and ACB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle ADB$ and $\angle ACB$
+
+%------------------
+%-- Message mustwin_az ( user )
+% angle ADB and angle ACB
+
+%------------------
+%-- Message MathJams ( user )
+% $\angle ACB=\angle ADB=90$
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% angles ACB and BDA
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle FDE$ and $\angle FCE$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle ADB and angle ACB
+
+%------------------
+%-- Message smileapple ( user )
+% angle ADB & angle ACB
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% angle ADB and angle ACB
+
+%------------------
+%-- Message smileapple ( user )
+% $\angle ABD$ and $\angle ACB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle ADB$ and $\angle ACB$ are right, as they're inscribed in a semicircle:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair O=origin, A=(-1,0), B=(1,0), C=dir(40), D=dir(115);
+pair X=shift(A)*scale(3)*(D-A), Y=shift(B)*scale(3.5)*(C-B);
+//intersection for F
+pair F = intersectionpoints(A--X,B--Y)[0];
+pair H = (F.x,0);
+draw(Circle(O,1),heavygreen);
+draw(MP("A",A,W,s)--MP("F",F,N,s)--MP("B",B,E,s)--MP("D",D,NW,s)--MP("C",C,NE,s)--A--B);
+draw(F--MP("H",H,S,s));
+//intersection for G
+pair G = intersectionpoints(F--H,Circle(O,1))[0];
+draw(MP("G",G,NE,s));
+//intersection for E
+pair E = intersectionpoints(F--H,A--C)[0];
+draw(MP("E",E,scale(2)*rotate(10)*SW,s));
+draw(rightanglemark(A,D,B,3));
+draw(rightanglemark(A,C,B,3));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message MathJams ( user )
+% $\angle ACB=\angle ADB=90$ meaning $E$ is the orthrocenter of $ABF$, implying $\angle AHF=90$ as well
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we see that $FH$ is perpendicular to $AB,$ since $E$ is the orthocenter (intersection point of the altitudes) of $\triangle AFB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+import markers;
+size(200); 
+pathpen = black + linewidth(0.7);
+pointpen = black; 
+pen s = fontsize(8); 
+pair O=origin, A=(-1,0), B=(1,0), C=dir(40), D=dir(115);
+pair X=shift(A)*scale(3)*(D-A), Y=shift(B)*scale(3.5)*(C-B);
+//intersection for F
+pair F = intersectionpoints(A--X,B--Y)[0];
+pair H = (F.x,0);
+draw(Circle(O,1),heavygreen);
+draw(MP("A",A,W,s)--MP("F",F,N,s)--MP("B",B,E,s)--MP("D",D,NW,s)--MP("C",C,NE,s)--A--B);
+draw(F--MP("H",H,S,s));
+//intersection for G
+pair G = intersectionpoints(F--H,Circle(O,1))[0];
+draw(MP("G",G,NE,s));
+//intersection for E
+pair E = intersectionpoints(F--H,A--C)[0];
+draw(MP("E",E,scale(2)*rotate(10)*SW,s));
+draw(rightanglemark(A,D,B,3));
+draw(rightanglemark(A,C,B,3));
+draw(rightanglemark(A,H,E,3));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message coolbluealan ( user )
+% cyclic quadrilaterals!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right angles... cyclic quadrilaterals.
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $ADEH$, $EHBC$ and $FDEC$ are all cyclic
+
+%------------------
+%-- Message MTHJJS ( user )
+% ADEH is cyclic, EHBC is cyclic, ADEC is cyclic 
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $FCED$, $CEHB$, and $ADEH$ are cyclic
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% ADEH and HECB are both cyclic
+
+%------------------
+%-- Message silver_maple ( user )
+% ADEH and HECB are cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have cyclic quadrilaterals $AHED,$ $ECBH,$ and $ECFD. $ Before we draw circles like mad, let's take a breather and ask: what do we want to prove?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $E$ is the midpoint of $GH$ if and only if $G$ is the midpoint of $FH$.
+
+%------------------
+%-- Message pritiks ( user )
+% E is the midpoint of GH if and only if G is the midpoint of FH
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that if $EG = EH,$ then $FG = GH$ (and vice versa).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are these extra circles going to get us there in any obvious way?
+
+%------------------
+%-- Message MathJams ( user )
+% no
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% no
+
+%------------------
+%-- Message mark888 ( user )
+% Nope
+
+%------------------
+%-- Message silver_maple ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's not apparent that they will since they don't involve $G$ at all - let's focus on lengths. Specifically, the ones we care about - those along $FH. $ Can we find any interesting relationships?
+
+%------------------
+%-- Message Achilleas ( moderator )
+In addition to cyclic quadrilaterals, what do right triangles often feed us?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Similar triangles
+
+%------------------
+%-- Message sae123 ( user )
+% similar triangles
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Similar triangles
+
+%------------------
+%-- Message michaellikemath ( user )
+% similar triangles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% similar triangles
+
+%------------------
+%-- Message mustwin_az ( user )
+% similar triangles
+
+%------------------
+%-- Message robertfeng ( user )
+% similar triangles
+
+%------------------
+%-- Message pritiks ( user )
+% similar triangles so ratio of lengths
+
+%------------------
+%-- Message Trollyjones ( user )
+% similar triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+In addition to cyclic quadrilaterals, right triangles often feed us similar triangles. For example, $\triangle FHB$ is similar to $\triangle ACB.$  In fact, we can find a zillion similar triangles in this diagram. What ones might help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'd like to include $FE,$ $FH,$ and/or $EH,$ since we want to prove something involving these lengths, and at this point we don't have any obvious similarities involving $G.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are a few candidates: $\triangle EDF \sim \triangle EHB,$ $\triangle AHF \sim \triangle EHB,$ $\triangle AEH \sim \triangle FBH. $ Do any of these help?
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle AEH \sim \triangle FBH$ helps
+
+%------------------
+%-- Message Achilleas ( moderator )
+From either of the last two we'll find that $HE/HA = HB/HF,$ so $$HA\cdot HB = HE\cdot HF.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is this useful?
+
+%------------------
+%-- Message Achilleas ( moderator )
+It may be, but it doesn't include $HG$ or $EG,$ which we'd sure like to include. Can we relate either of these to $HG?$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Power of point showing that it's cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does the power of point $H$ yield?
+
+%------------------
+%-- Message silver_maple ( user )
+% HG^2 = HA * HB
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% HA * HB = (HG)^2
+
+%------------------
+%-- Message Achilleas ( moderator )
+The power of point $H$ yields $HG\,^2 = HA\cdot HB,$  (you could also get here by noting that $\triangle AGH$ and $\triangle GBH$ are similar). Make sure you see why power of a point gives us $HG\,^2 = HA\cdot HB.$  If we extend $GH$ past $H$ to $G'$ on the circle, we have $HG = HG'$ since $GH$ is perpendicular to diameter $AB,$ so power of a point gives us $$HG\,^2 = HA\cdot HB.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we home?
+
+%------------------
+%-- Message silver_maple ( user )
+% yes
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Almost
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $HG\,^2 = HA\cdot HB = HE\cdot HF,$ we have $HG/HF = HE/HG. $ Thus, if $G$ is the midpoint of $FH,$ then $E$ is the midpoint of $HG,$ and vice versa (both fractions will be 1/2).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Make sure you review this solution at your own leisure after class.
+
+%------------------
+%-- Message vsar0406 ( user )
+% did we prove both directions at the same time?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, we did.
+
+%------------------
+%-- Message chardikala2 ( user )
+% Really cool
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yup! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsection{SUMMARY}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we introduced the main tools that are used on 90\% (if not more) of all Olympiad Geometry problems - power of a point, similarity, and cyclic quadrilaterals. These are so important that in the next class, we'll continue our work with these tools.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In addition to discussing these fundamental tools, we learned a few very important general strategies:
+
+%------------------
+%-- Message Achilleas ( moderator )
+1) Work both backwards and forwards. Keep this work clearly separated. Use your backwards work to guide your forwards work.
+
+%------------------
+%-- Message Achilleas ( moderator )
+2) Draw large, precise diagrams. Use a compass, protractor, and ruler.
+
+%------------------
+%-- Message Achilleas ( moderator )
+3) Use your precise diagrams to look for things to prove. But don't trust them entirely. If you see something surprising, draw a couple more, very different diagrams to make sure you don't waste time trying to prove something that is not true.
+
+%------------------
+%-- Message Achilleas ( moderator )
+4) Don't just stare. Most tough geometry problems require a series of small observations, not just one big one. So, you have to make those observations, mark them on your diagram, and then make more observations. If you're stuck staring, you're really stuck.
+
+%------------------
+%-- Message Achilleas ( moderator )
+5) Be flexible. Many of these problems can be solved in numerous ways. Mastery of the fundamental tools and a willingness to experiment with them (rather than staring) will often bring you to the solution in many different ways. This is why staring is so bad - try something, anything, and you will get more than the nothing you get from staring. Since there are so many paths to the solution, trying several will often lead you to a good one.

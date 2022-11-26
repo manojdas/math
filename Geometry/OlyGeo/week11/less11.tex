@@ -1,0 +1,2470 @@
+\section{Lesson Transcript}
+%-- Message Achilleas ( moderator )
+% Hi, everyone!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Hi!
+
+%------------------
+%-- Message MathJams ( user )
+% hi！！
+
+%------------------
+%-- Message Ezraft ( user )
+% hello!
+
+%------------------
+%-- Message chardikala2 ( user )
+% Hello!
+
+%------------------
+%-- Message bryanguo ( user )
+% hi
+
+%------------------
+%-- Message pike65_er ( user )
+% hi
+
+%------------------
+%-- Message RP3.1415 ( user )
+% HI!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% \textbf{Olympiad GeometryWeek 11: Trigonometry}
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Quick reminder before class starts: I'd like to mention that a class survey has been posted on the course homepage. Please fill the survey out when you get a chance. It helps us to improve our courses and best meet student needs. You can find the survey in the Announcements under the Overview tab.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we'll be talking about applying trigonometry to geometry problems.  Many of you probably do or will use trig as a major crutch for AIME problems, since you can often trig your way through them (with a lot of patience and careful attention to detail).  Unfortunately, slugging through Olympiad problems with trig and analytic geometry usually doesn't work out so well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we'll discuss some problems in which the tools of trig are either essential or at least very useful.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sometimes it's very obvious that trig will help, such as in problems in which some terms in the problem are sines, cosines, or tangents.  Other times it's less obvious.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As a quick review, here are some important trigonometric formulas. In general, we'll be working with $\triangle ABC$ whose sidelengths are $AB = c, BC = a,$ and $CA = b.$ Additionally, for shorthand, we write $A = \angle BAC, B = \angle ABC,$ and $C = \angle BCA.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The \textbf{Law of Cosines} states that $$c^2 = a^2 + b^2 - 2ab\cos{C}.$$ This is crucial for converting between synthetic geometry and algebra.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The \textbf{Law of Sines} states that $$\frac{a}{\sin{A}} = \frac{b}{\sin{B}} = \frac{c}{\sin{C}} = 2R.$$ That final equality (with $2R$) makes the Law of Sines useful for circumcircles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There is also a trigonometric formula for the area of a triangle: $$[ABC] = \frac{1}{2}ab\sin{C}.$$ We'll see this applied in clever ways, especially in conjunction with other area formulas.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are plenty of other trigonometric relationships that are useful, and we'll encounter some here and on the message board.  The above are the most frequently useful; many of the others fall under the category 'know that you can prove it quickly, but don't bother memorizing'.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we'll try some problems.  We'll start by discussing some of these trigonometric relationships that you don't need to memorize but should be able to derive should you need them.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Express $\displaystyle \tan{\frac{A}{2}}$ in terms of $a,b,$ and $c.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+To begin, let's think about the argument: $\displaystyle \tfrac{A}{2}.$ How might we find this angle in $\triangle ABC?$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% angle bisector of angle A
+
+%------------------
+%-- Message vsar0406 ( user )
+% constructing the angle bisector of angle A
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the internal angle bisector of $\angle BAC$.
+
+%------------------
+%-- Message Catherineyaya ( user )
+% draw angle bisector of <BAC
+
+%------------------
+%-- Message Bimikel ( user )
+% we get the angle bisector of $\angle CAB$
+
+%------------------
+%-- Message ca981 ( user )
+% using angle bisector on angle A
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes! The angle $\frac{A}{2}$ suggests we use the angle bisector of $\angle A.$  But to use the tangent function, we'll need a right angle.  Where will we find one?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Most of you suggest drawing an altitude. However, what does having an angle bisector already suggests instead?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% (make sure you give a complete answer; one-word answers are rarely complete)
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Draw the incircle?
+
+%------------------
+%-- Message coolbluealan ( user )
+% drawing the incircle
+
+%------------------
+%-- Message Achilleas ( moderator )
+% How do we get a right angle?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% connect the center of the incircle to the tangent point on $AB$
+
+%------------------
+%-- Message vsar0406 ( user )
+% draw a radius at a point of tangency between the incircle and a side of the triangle
+
+%------------------
+%-- Message chardikala2 ( user )
+% draw the line connecting the centre of the incircle to the point of tangency of the incircle and the triangles side
+
+%------------------
+%-- Message Catherineyaya ( user )
+% line between incenter and tangency point on a side of the triangle is perpendicular to that side (we will use AB or AC)
+
+%------------------
+%-- Message Achilleas ( moderator )
+As soon as we're talking angle bisectors, we're talking incircle - drawing an inradius gives us our right triangle:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = dir(210), C = dir(-30), B = dir(110), I = incenter(A,B,C), Y = foot(I,A,C);
+draw(incircle(A,B,C),heavygreen);
+draw(MP("A",A,dir(210),s)--MP("B",B,dir(110),s)--MP("C",C,dir(-30),s)--cycle);
+draw(MP("Y",Y,S,s)--MP("I",I,NE,s)--A^^rightanglemark(I,Y,A,2));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $Y$ be the tangency point of the incircle with side $AC.$ Now what?
+
+%------------------
+%-- Message dxs2016 ( user )
+% tan (A/2) = IY/AY
+
+%------------------
+%-- Message Catherineyaya ( user )
+% tan(A/2)=IY/AY
+
+%------------------
+%-- Message mustwin_az ( user )
+% tan(A/2)=IY/AY
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\tan \frac{A}{2} = \frac{IY}{AY}$
+
+%------------------
+%-- Message bryanguo ( user )
+% $\tan (\angle IAY) = IY/AY$
+
+%------------------
+%-- Message pritiks ( user )
+% tan (A/2) = IY/AY
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because $\displaystyle \angle IAY = \frac{A}{2},$ we have $\displaystyle \tan\frac{A}{2} = \frac{IY}{AY}.$  How can we express $IY$ and $AY?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should be familiar with these calculations involving the incircle by now. How about $IY$ first? What is it equal to?
+
+%------------------
+%-- Message dxs2016 ( user )
+% radius of incircle
+
+%------------------
+%-- Message Ezraft ( user )
+% the inradius
+
+%------------------
+%-- Message chardikala2 ( user )
+% the inradius
+
+%------------------
+%-- Message bryanguo ( user )
+% $IY$ is the inradius
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $IY$ is the inradius, $r.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $AY?$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $AY=s-a$
+
+%------------------
+%-- Message smileapple ( user )
+% $AY=s-BC$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $AY=s-a$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AY = s - a,$ where $s$ is the semiperimeter of $\triangle ABC.$ Hence, we have $$\displaystyle\tan\frac{A}{2} = \frac{ r}{s-a}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we done?
+
+%------------------
+%-- Message MathJams ( user )
+% No, r and s are not in terms of a,b,c
+
+%------------------
+%-- Message Catherineyaya ( user )
+% we want to express in terms of a,b,c
+
+%------------------
+%-- Message RP3.1415 ( user )
+% get $r$ and $s$ in terms of $a,b,c$ first
+
+%------------------
+%-- Message pritiks ( user )
+% no we have to write this expression in terms of a,b, and c
+
+%------------------
+%-- Message Bimikel ( user )
+% no, we need to express in terms of a, b, and c
+
+%------------------
+%-- Message Celwelf ( user )
+% No we must convert to a, b, and c
+
+%------------------
+%-- Message Lucky0123 ( user )
+% No, $r$ and $s$ are not in terms of $a,b,c$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not yet. We need our expression to just be in terms of the sidelengths. It's easy to write $s$ like that; by definition, $\displaystyle s = \frac{a+b+c}{2}.$ Now, how can we do it for $r?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(be careful; $A$ denotes an angle so far; we can't use for area)
+
+%------------------
+%-- Message maxlangy ( user )
+% $r=\frac{K}{s} = \frac{\sqrt{(s)(s-a)(s-b)(s-c)}}{s}$, where K denotes area of triangle.
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% r = sqrt((s-a)(s-b)(s-c)/s)
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% $r=\sqrt{\frac{(s-a)(s-b)(s-c)}{s}}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! We can write the area of $\triangle ABC$ in two different ways: with Heron's formula (which exclusively involves the sidelengths) and our handy formula $[ABC] = rs,$ which involves the sidenlenghts and the inradius. Perfect! Setting these two formula equal yields:
+\begin{align*} rs &= \sqrt{s(s-a)(s-b)(s-c)} \\ \implies r &= \sqrt{\frac{(s-a)(s-b)(s-c)}{s}} \end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we can finish our original problem. We discovered that $\displaystyle\tan\frac{A}{2} = \frac{r}{s-a}.$ So what's our final answer?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(we are looking for an equation)
+
+%------------------
+%-- Message smileapple ( user )
+% $\tan\dfrac{A}{2}=\sqrt{\dfrac{(s-b)(s-c)}{s(s-a)}}$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% tan(A/2) = sqrt( (s-b)*(s-c) / (s*(s-a)) )
+
+%------------------
+%-- Message vsar0406 ( user )
+% tan(A/2) = sqrt((s-b)(s-c)/(s)(s-a))
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\tan(A/2) = \sqrt{\frac{(s-b)(s-c)}{s(s-a)}}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Plugging in, we see that $$\displaystyle\tan\frac{A}{2} = \frac{ r}{s-a}= \frac{\sqrt{\frac{(s-a)(s-b)(s-c)}{s}}} {s-a} = \sqrt{\frac{(s-b)(s-c)}{s(s-a)}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! Now that we're done with that tangent, let's try for cosine!
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Express $\displaystyle \cos{\frac{A}{2}}$ in terms of $a,b,$ and $c.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+How could we begin?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Express $\cos x$ in terms of $\tan x$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Algebraically, how can we relate cosine and tangent?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(you should not have $\sin x$ in your answers)
+
+%------------------
+%-- Message Bimikel ( user )
+% $1+\tan^2x=sec^2x$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\tan^2x+1=\frac{1}{\cos^2x}$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\cos x=\sqrt{\frac{1}{1+\tan^2x}}$
+
+%------------------
+%-- Message mark888 ( user )
+% $\cos(x)=\frac{1}{\sqrt{\tan^2(x)+1}}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+By Pythagoras, we have $\tan^2\theta + 1 = \sec^2\theta$  so using the fact that secant is the reciprocal of cosine, we can write
+$$\cos \theta = \sqrt{\frac{1}{1+\tan^2(\theta)}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, let's substitute our expression for $\displaystyle \tan\frac{A}{2}$ here:
+$$\cos\frac{A}{2} = \sqrt{\frac{1}{1+\frac{(s-b)(s-c)}{s(s-a)}}}= \sqrt{\frac{s(s-a)}{s(s-a)+(s-b)(s-c)}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+That denominator is a bit of a mess.  Let's see if we can clean that up.  Where might we start?
+
+%------------------
+%-- Message maxlangy ( user )
+% expand everything?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Expanding it?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% expand
+
+%------------------
+%-- Message Achilleas ( moderator )
+We expand the products, and we have
+$$s(s-a) + (s-b)(s-c) = s^2 - as +s^2-bs-cs+bc.$$
+That doesn't look much better.  What now?
+
+%------------------
+%-- Message MathJams ( user )
+% a+b+c = 2s
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, we can use the fact that $a+b+c = 2s.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $-as-bs-cs?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is -2s^2
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $-as-bs-cs=-(a+b+c)s=-2s^2$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it equals $-2s^2$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It is $-2s^2.$
+
+%------------------
+%-- Message smileapple ( user )
+% $-as-bs-cs=-2s^2$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $-as-bs-cs=-s(a+b+c)=-2s^2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our expression has $-as-bs-cs,$ which is just $-(a+b+c)(s) = -2s^2.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, what's $s(s-a) + (s-b)(s-c)?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $bc$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $bc$
+
+%------------------
+%-- Message mustwin_az ( user )
+% bc
+
+%------------------
+%-- Message MathJams ( user )
+% bc
+
+%------------------
+%-- Message Ezraft ( user )
+% $bc$
+
+%------------------
+%-- Message razmath ( user )
+% bc
+
+%------------------
+%-- Message Trollyjones ( user )
+% bc
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $bc$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% bc
+
+%------------------
+%-- Message dxs2016 ( user )
+% bc
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $s(s-a)+(s-b)(s-c)=bc$
+
+%------------------
+%-- Message Bimikel ( user )
+% $bc$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% s(s-a) + (s-b)(s-c) = bc
+
+%------------------
+%-- Message pritiks ( user )
+% bc
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's nice! We have:
+
+
+\begin{align*}  
+    s(s-a) + (s-b)(s-c) &= s^2 - as +s^2-bs-cs+bc\\  
+    &=2s^2 -(a+b+c)s + bc\\  
+    &=2s^2 -2s^2 + bc\\  
+    &= bc.  
+    \end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+In conclusion, we see that
+$$\cos\frac{A}{2} = \sqrt{\frac{s(s-a)}{s(s-a)+(s-b)(s-c)}}= \sqrt{\frac{s(s-a)}{bc}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And we're done! To finish with all the half-angle trig functions, it's easy to find $\displaystyle \sin \frac{A}{2}$ by multiplying our two previous results.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{6pt}
+\textbf{Geometric Solution}
+
+
+Now, let's look for a geometric solution. Seeing that $bc$ sitting in there, and that $s(s-a),$ what tool are we likely to use?
+
+%------------------
+%-- Message razmath ( user )
+% area?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% areas?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the area formula?
+
+%------------------
+%-- Message smileapple ( user )
+% area
+
+%------------------
+%-- Message mustwin_az ( user )
+% area
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll probably break out area.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't have an area expression with cosine.  Where could we start instead?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Using the area is $\frac{bc\sin(\angle A)}{2}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, we know that $[ABC] = \frac{1}{2}bc\sin{A}.$ But we want $\cos \frac{A}{2}.$ Any ideas?
+
+%------------------
+%-- Message razmath ( user )
+% $\frac{\sin{A}}{2\cos{\frac{A}{2}}} = \sin{\frac{A}{2}}$
+
+%------------------
+%-- Message coolbluealan ( user )
+% sin(A)=2sin(A/2)cos(A/2)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha, we can apply the double-angle formula for sine. Specifically, $$[ABC] = \frac{1}{2}bc \sin A = \frac{1}{2}bc \cdot 2 \sin \frac{A}{2} \cos \frac{A}{2} = bc \sin \frac{A}{2} \cos \frac{A}{2}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Okay, we're halfway there! How can we get rid of that pesky $\displaystyle \sin \frac{A}{2} ?$
+
+%------------------
+%-- Message mustwin_az ( user )
+% its $\cos(A/2) \cdot \tan(A/2)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's use our previous work. We already discovered that
+$$\tan\frac{A}{2} = \sqrt{\frac{(s-b)(s-c)}{s(s-a)}},$$
+so we can write
+$$\sin\frac{A}{2} = \sqrt{\frac{(s-b)(s-c)}{s(s-a)}}\cdot \cos\frac{A}{2}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Substituting this into our area formula yields: $$[ABC] = bc \cdot \sqrt{\frac{(s-b)(s-c)}{ s(s-a)}} \cdot \left(\cos\frac{A}{2}\right)^2$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Plug in heron's formula for $[ABC]$
+
+%------------------
+%-- Message coolbluealan ( user )
+% use heron's formula
+
+%------------------
+%-- Message maxlangy ( user )
+% use heron's formula for LHS
+
+%------------------
+%-- Message razmath ( user )
+% $[ABC] = \sqrt{s(s-a)(s-b)(s-c)}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because we need everything in terms of sidelengths, we use Heron to finish. We can substitute $[ABC] = \sqrt{s(s-a)(s-b)(s-c)}$ on the left side. So what's our answer?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(again, you should give an equation)
+
+%------------------
+%-- Message razmath ( user )
+% $\cos{\frac{A}{2}} = \sqrt{\frac{s(s-a)}{bc}}$
+
+%------------------
+%-- Message dxs2016 ( user )
+% cos(A/2)=sqrt(s(s-a)/(bc))
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\cos\frac A2=\sqrt{\frac{s(s-a)}{bc}}$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\cos\frac{A}{2}=\sqrt{\frac{s(s-a)}{bc}}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+A lot of terms cancel, and we find that $$\cos\frac{A}{2} = \sqrt{\frac{s(s-a)}{ bc}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Once again, no need to memorize these formulas.  Try to work through the proofs on your own - once you've done so once or twice, it should be clear how you can do so very quickly in the future.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    These two basic examples show how we can relate angles to the sides and use our knowledge of trig functions and identities to find more relationships.  As we've seen above, half-angles are particularly ripe for such approaches.
+
+    %------------------
+    %-- Message Achilleas ( moderator )
+    Also, area can be a very powerful conduit!
+        
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Let $ABCD$ be a convex quadrilateral such that $\angle ABC = \angle ADC.$ Define points $M$ and $N$ on $BC$ and $CD$ such that $AM$ is perpendicular to $BC$ and $AN$ is perpendicular to $CD.$  Let point $K$ be the intersection of $BN$ and $DM.$  Prove that line $AK$ is perpendicular to $MN.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, let's draw ALL of the information into one diagram, so we can understand what it's asking.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+import markers;
+size(225);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair D = origin, C = (10,0), B = (12,8), A = extension(D,r(C,D,80),B,r(C,B,-80)) ;
+pair M = foot(A,B,C), N = foot(A,C,D), K =extension(B,N,D,M), Q = extension(A,K,N,M);
+
+draw(MP("A",A,NW,s)--MP("B",B,NE,s)--MP("C",C,SE,s)--MP("D",D,SW,s)--cycle);
+draw(D--MP("M",M,E,s)--MP("N",N,S,s)--B^^N--A--M^^A--MP("K",K,scale(2)*dir(80),s)--MP("Q",Q,SE,s));
+draw(rightanglemark(A,N,D,10)^^rightanglemark(A,M,C,10));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Looking at this diagram at a glance, the thing we want to prove involves point $K,$ at the intersection of a lot of lines. What tool does this make us think of?
+
+%------------------
+%-- Message dxs2016 ( user )
+% ceva
+
+%------------------
+%-- Message coolbluealan ( user )
+% Ceva's theorem
+
+%------------------
+%-- Message Trollface60 ( user )
+% ceva's
+
+%------------------
+%-- Message MathJams ( user )
+% Cevas?
+
+%------------------
+%-- Message MTHJJS ( user )
+% ceva
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ceva on $\triangle AMN$ looks like a good choice! If we let $AQ$ be the altitude, then we can re-draw our diagram to focus on these three (hopefully) concurrent cevians.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+unitsize(.8 cm);
+
+pair A, B, D, M, N, Q, K;
+
+A = (0, 0);
+D = rotate(315)*(-4,-8);
+B = rotate(315)*(6,3);
+M = rotate(315)*(6, 0);
+N = rotate(315)*(0, -8);
+Q = foot(A, M, N);
+K = extension(B, N, D, M); 
+draw((A--M--N--cycle));
+draw(A--D);
+draw(A--B);
+draw(D--N);
+draw(B--M);
+draw(N--B, dashed);
+draw(M--D, dashed);
+draw(A--Q, dashed);
+draw(rightanglemark(A,N,D,10)^^rightanglemark(A,M,B,10)^^rightanglemark(A, Q, M, 10));
+markscalefactor = 0.1;
+draw(anglemark(A,B,M));
+draw(anglemark(N,D,A));
+
+label("$A$", A, NE);
+label("$B$", B, NE);
+label("$D$", D, W);
+label("$N$", N, SW);
+label("$M$", M, S);
+dot("$K$", K, NE);
+label("$Q$", Q, S);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In effect, we've changed our task from ``Prove that $AK \perp MN$" into ``Prove that $BN, DM,$ and $AQ$ are concurrent."
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% ceva trig?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% trig cevas
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because today is trigonometry day, we won't use typical Ceva. We'll use the sine formulation instead. Thus, we want to prove $$\frac{\sin{\angle ANB}}{\sin{\angle BNM}} \cdot \frac{\sin{\angle NMD}}{\sin{\angle DMA}} \cdot \frac{\sin{\angle MAQ}}{\sin{\angle QAN}} = 1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we dive into the sines, we are going to want to work with very simple angles. So, let's make observations about the angles in the diagram. What do you notice?
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle DAN = angle BAM
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle DAN=\angle BAM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, we observe that $\triangle AND$ and $\triangle AMB$ share two equal angles, so they are similar. In particular, this tells us that $\angle DAN = \angle MAB.$ Let's call this $\alpha.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since we want Ceva to be easy to use, let's define more variables. We can set $\angle MAN = \lambda$ (this is ``lambda.") We can define $\angle ANB = \nu_1$ and $\angle BNM = \nu_2$ (this is pronounced ``nu" for N). Similarly, let $\angle NMD = \mu_1$ and $\angle DMA = \mu_2$ (this is pronounced ``mu" for M). By definitions, $\angle AMN = \mu_1 + \mu_2$ and $ANM = \nu_1 + \nu_2.$ Here's a diagram that shows all these new variables!
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+unitsize(.8 cm);
+
+pair A, B, D, M, N, Q, K;
+pen s = fontsize(9);
+
+A = (0, 0);
+D = rotate(315)*(-4,-8);
+B = rotate(315)*(6,3);
+M = rotate(315)*(6, 0);
+N = rotate(315)*(0, -8);
+Q = foot(A, M, N);
+K = extension(B, N, D, M); 
+draw((A--M--N--cycle));
+draw(A--D);
+draw(A--B);
+draw(D--N);
+draw(B--M);
+draw(N--B);
+draw(M--D);
+draw(A--Q, dashed);
+draw(arc(A,1/10*length(A-M),degrees(M-A),degrees(N-A)));
+draw(rightanglemark(A,M,B,10)^^rightanglemark(A,N,D,10)^^rightanglemark(A,Q,M,10));
+
+//label("$A$", A, scale(3)*dir(-100));
+label("$\alpha$",A, scale(5)*dir(-30));
+label("$\alpha$",A,scale(4)*dir(-150));
+label("$\lambda$",A,scale(4)*dir(-105));
+label("$B$", B, NE);
+label("$D$", D, W);
+label("$\nu_1$", N, scale(10)*dir(30), s);
+label("$\nu_2$", N, scale(22)*dir(12), s);
+label("$\mu_1$", M, scale(12)*dir(180), s);
+label("$\mu_2$", M, scale(6)*dir(150), s);
+label("$A$", A, NE);
+label("$B$", B, NE);
+label("$D$", D, W);
+label("$N$", N, SW);
+label("$M$", M, S);
+dot("$K$", K, NE);
+label("$Q$", Q, S);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The cevian $AQ$ splits $A$ into two angles: $\angle MAQ$ and $\angle NAQ.$ What are the values of these angles in terms of our new variables?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\angle MAQ$ first?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle MAQ= 90- \mu_1 - \mu_2$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle MAQ=90-\mu_1-\mu_2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And how about $\angle NAQ$ first?
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle NAQ = 90 - v_1 - v_2
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle NAQ=90^\circ-\nu_1-\nu_2$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle NAQ =90-\nu_1-\nu_2$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle NAQ=90-\nu_1-\nu_2$
+
+%------------------
+%-- Message vsar0406 ( user )
+% angle NAQ = 90 - v_1 - v_2
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Angle NAQ = 90 - v1 - v2
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $NAQ = 90^{\circ} - \nu_1 - \nu_2$
+
+%------------------
+%-- Message Trollface60 ( user )
+% $\angle NAQ = 90 - v1 - v2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, because $\triangle AMQ$ and $\triangle ANQ$ are right triangles, we have that 
+
+
+\begin{align*} \angle MAQ &= 90^{\circ} - (\mu_1+\mu_2) \\ \angle NAQ &= 90^{\circ} - (\nu_1+\nu_2). \end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! Let's rewrite the claim we are trying to prove now: $$\frac{\sin{\nu_1}}{\sin{\nu_2}} \cdot \frac{\sin{\mu_1}}{\sin{\mu_2}} \cdot \frac{\sin{(90^{\circ}-(\mu_1+\mu_2))}}{\sin{(90^{\circ}-(\nu_1+\nu_2))}} = 1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's a good tool to help deal with the sines?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The law of sines
+
+%------------------
+%-- Message mustwin_az ( user )
+% Law of Sines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, with the Law of Sines! Let's start with $\sin \nu_1.$ What triangle should we apply the Law of Sines to?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Keep in mind, while there are many candidates, we're looking for triangles that work with the variables we've already defined. There's like five of them, after all.)
+
+%------------------
+%-- Message pritiks ( user )
+% triangle ABN
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle ANB$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle BAN$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% triangle NAB
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle BNA
+
+%------------------
+%-- Message Trollface60 ( user )
+% triangle ABN
+
+%------------------
+%-- Message Achilleas ( moderator )
+It looks like $\triangle BAN$ is a great candidate, and we can rewrite the Law of Sines to see that $$\sin \nu_1 = \frac{AB}{BN}\cdot \sin{(\angle BAN)}.$$ Notice that $\angle BAN = \lambda + \alpha,$ which also happens to be $\angle DAM$. This gives me a good feeling things will cancel eventually.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What triangle can we use to break down $\sin \nu_2?$
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle BNM
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle NBM$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\triangle BMN$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% triangle BNM
+
+%------------------
+%-- Message pritiks ( user )
+% triangle NMB
+
+%------------------
+%-- Message renyongfu ( user )
+% triangle BNM
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% triangle NBM
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\triangle BNM$
+
+%------------------
+%-- Message bryanguo ( user )
+% $\triangle BNM$
+
+%------------------
+%-- Message Trollface60 ( user )
+% triangle BMN
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use $\triangle BMN$ and apply the Law of Sines to see that $\displaystyle \sin \nu_2 = \frac{BM}{BN} \cdot \sin{\angle BMN}.$ What is $\angle BMN$ in terms of our variables?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle BMN=90^\circ+\mu_1+\mu_2$
+
+%------------------
+%-- Message bryanguo ( user )
+% $\angle BMN = 90^\circ +\mu_1+\mu_2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see $\angle BMN = 90^{\circ} + (\mu_1 + \mu_2).$ Now, we can combine our knowledge about $\sin \nu_1$ and $\sin \nu_2$ to find their ratio! $$\frac{\sin \nu_1}{\sin \nu_2} = \frac{\frac{AB}{BN}\cdot \sin{(\lambda+\alpha)}}{\frac{BM}{BN}\cdot \sin{(90^{\circ}+(\mu_1 + \mu_2))}} = \frac{AB}{BM} \cdot \frac{\sin{(\lambda+\alpha)}}{\sin{(90^{\circ}+(\mu_1+\mu_2))}}.$$ Notice how the $BN$'s cancelled because of our well-chosen ratios.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! Now we can attack the next sine ratio on $\mu_1$ and $\mu_2.$ It will be the same process as above, just flipped in the diagram.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What triangle can we use for $\sin \mu_1?$
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle MDN
+
+%------------------
+%-- Message Catherineyaya ( user )
+% triangle DMN
+
+%------------------
+%-- Message pritiks ( user )
+% triangle MDN
+
+%------------------
+%-- Message mark888 ( user )
+% $\triangle DNM$
+
+%------------------
+%-- Message vsar0406 ( user )
+% triangle DNM
+
+%------------------
+%-- Message Bimikel ( user )
+% triangle DNM
+
+%------------------
+%-- Message ca981 ( user )
+% triangle DMN
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\triangle DMN$
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\triangle DMN$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% triangle NDM
+
+%------------------
+%-- Message Trollyjones ( user )
+% triangle DNM
+
+%------------------
+%-- Message mathlogic ( user )
+% triangle DNM
+
+%------------------
+%-- Message razmath ( user )
+% $\triangle MDN$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\triangle MND$
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle MDN.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% triangle MND
+
+%------------------
+%-- Message pritiks ( user )
+% triangle MDN.
+
+%------------------
+%-- Message bryanguo ( user )
+% triangle DNM
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle DNM$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $\triangle MND$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And what is the resulting equation?
+
+%------------------
+%-- Message Achilleas ( moderator )
+($\sin \mu_1=?$)
+
+%------------------
+%-- Message razmath ( user )
+% $\sin{\mu_1} = \sin{(90^{\circ}+\nu_1+\nu_2)}\cdot \frac{DN}{DM}$
+
+%------------------
+%-- Message Bimikel ( user )
+% $\sin\mu_1=DN/DM*\sin(90^\circ+\nu_1+\nu_2)$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\sin \mu_1=\sin(90^\circ+\nu_1+\nu_2)\cdot \frac{DN}{DM}$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\sin \mu_1 = DN \cdot \sin(90 + \nu_1 + \nu_2) / DM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We apply the Law of Sines to $\triangle MND$ to get that $\sin \mu_1 = \frac{DN}{DM} \cdot \sin{(90^{\circ}+(\nu_1 + \nu_2))}.$ And what about for $\sin \mu_2?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(note that we use the letters $\mu$ and $\nu$, not u and v)
+
+%------------------
+%-- Message Achilleas ( moderator )
+% ($\lambda$ is \lambda)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $$\sin \mu_2=\frac{DA}{DM}\sin(\lambda+\alpha)$$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\sin \mu_2=\sin(\alpha+\lambda)\cdot \frac{DA}{DM}$
+
+%------------------
+%-- Message dxs2016 ( user )
+% $\sin (\mu_2)=\sin(\lambda + \alpha)\cdot\frac{DA}{DM}$
+
+%------------------
+%-- Message Bimikel ( user )
+% $\sin \mu_2=(AD/MD)*\sin(\lambda+\alpha)$
+
+%------------------
+%-- Message Trollyjones ( user )
+% $\sin(\mu_2)=\sin(\alpha+\lambda) \cdot \frac{DA}{DM}$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\sin \mu_2 = \frac{AD}{MD} \cdot \sin (\lambda + \alpha)$
+
+%------------------
+%-- Message razmath ( user )
+% $\sin{\mu_2} = \sin{(\lambda+\alpha)}\cdot \frac{AD}{DM}$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% triangle AMD, $\sin \mu_2=\frac{AD}{DM}\cdot\sin(\alpha+\lambda)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can apply the Law of Sines to $\triangle AMD$ to get that $\sin \mu_2 = \frac{AD}{MD} \cdot \sin{(\lambda + \alpha)}.$ So, we get the ratio:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\frac{\sin \mu_1}{\sin \mu_2} = \frac{\frac{DN}{DM}\cdot \sin{(90^{\circ}+(\nu_1 + \nu_2))}}{\frac{AD}{MD}\cdot \sin{(\lambda + \alpha)}} = \frac{DN}{AD} \cdot \frac{\sin{(90^{\circ}+(\nu_1 + \nu_2))}}{\sin{(\lambda+\alpha)}}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! We've computed our various sine ratios. What now?
+
+%------------------
+%-- Message razmath ( user )
+% substitute
+
+%------------------
+%-- Message mustwin_az ( user )
+% Subsitute back in
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Plug them in and let them cancel
+
+%------------------
+%-- Message dxs2016 ( user )
+% plug them back in
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yeah, we plug into Ceva and hope we get $1!$ We substitute to see:
+\begin{align*}
+&\frac{\sin{\nu_1}}{\sin{\nu_2}} \cdot \frac{\sin{ \mu_1}}{\sin{\mu_2}} \cdot \frac{\sin{(90^{\circ}-(\mu_1+\mu_2))}}{\sin{(90^{\circ}-(\nu_1+\nu_2))}} \\
+&\qquad\qquad= \left( \frac{AB}{BM} \cdot \frac{\sin{(\lambda+\alpha)}}{\sin{(90^{\circ}+(\mu_1+\mu_2))}} \right) \left( \frac{DN}{AD} \cdot \frac{\sin{(90^{\circ}+(\nu_1+\nu_2))}}{\sin{(\lambda+\alpha)}} \right) \left( \frac{\sin{(90^{\circ}-(\mu_1+\mu_2))}}{\sin{(90^{\circ}-(\nu_1+\nu_2))}} \right).
+\end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's see how this cancels! Obviously, $\sin{(\lambda+\alpha)}$ cancels. What else?
+
+%------------------
+%-- Message coolbluealan ( user )
+% use $\sin(90^\circ+x)=\sin(90^\circ-x)$
+
+%------------------
+%-- Message razmath ( user )
+% $\sin{(90^{\circ}+X)} = \sin{(90^{\circ}-X)}$
+
+%------------------
+%-- Message pritiks ( user )
+% sin(90+x) and sin (90-x) cancel eachother
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\sin(90 + (\mu_1 + \mu_2)) = \sin(90 - (\mu_1 + \mu_2))$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Neat! We notice that $\sin{(90^{\circ} - \theta)} = \sin{(90^{\circ} + \theta)}$ since both are just $\cos \theta.$ So all of the sines cancel out, leaving us with $\frac{AB \cdot DN}{BM \cdot AD}.$ What now?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\triangle AND\sim\triangle AMB$, so $\frac{AB}{BM}=\frac{AD}{DN}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ah, because $\triangle AMB \sim \triangle AND,$ we know that $\frac{AB}{BM} = \frac{AD}{DN},$ which means our desired fraction is just $1!$ We're done.
+
+%------------------
+%-- Message razmath ( user )
+% is there a non trig way?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Try to find a non-trig way at your own leisure after class.
+
+%------------------
+%-- Message Yufanwang ( user )
+% Can we have an idea of a general non-trig path to take?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The above way does not show a way to think about it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Maybe $K$ is the orthocenter of a triangle, but who knows?
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+In triangle $ABC,$ $AC$ is not equal to $BC.$  Assume that the internal bisector of angle $ACB$ bisects also the angle formed by the altitude and the median emanating from vertex $C.$  Show that $ABC$ is a right triangle.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+import markers;
+size(250);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = dir(180), B = dir(0), C = dir(120), D = foot(C,A,B), E = extension(C,bisectorpoint(A,C,B),A,B), M = (A+B)/2;
+draw(MP("A",A,SW,s)--MP("B",B,SE,s)--MP("C",C,N,s)--cycle);
+draw(rightanglemark(C,D,A,2)^^MP("D",D,S,s)--C--MP("M",M,S,s)^^C--MP("E",E,S,s));
+markangle(n=2,radius=30,A,C,E,blue);markangle(n=2,radius=32,E,C,B,blue);
+markangle(n=1,radius=20,D,C,E,heavyred);markangle(n=1,radius=22,E,C,M,heavyred);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are some slick synthetic methods, but since we see lots of angles, we can pursue a trigonometric approach.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First I'd do a little angle labeling and some angle chasing.  In particular, with a little work we can get all the angles in the diagram in terms of $A$ and $B.$  At that point, the altitude and bisector (and points $D$ and $E$) don't really even need to be in the diagram, since we're not given any information about them.  The problem then will just be about the median and a handful of angles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So let's do this angle chasing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $\angle DCE = \angle ECM = x$ and $\angle ACD = \angle MCB = y.$  What else do we know?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle A = 90^{\circ}-y$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle CBA=90-2x-y$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle A = 90^{\circ} - y$ from right triangle $ACD,$ and $\angle B = 90^{\circ} - 2x - y$ from right triangle $CBD.$ Hence we can write $y = 90^{\circ} - A$ and $x = \frac{A-B}{2}.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Notice that if we had drawn $AC$ as the larger leg, then $\angle B > \angle A$ and then $x$ would be $\frac{B-A}{2}.$ We won't worry about details like that, but noticing how your diagram affects your results is important!)
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we want to prove?
+
+%------------------
+%-- Message Trollyjones ( user )
+% 2x+2y=90
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $2x + 2y = 90^\circ$
+
+%------------------
+%-- Message mustwin_az ( user )
+% 2x+2y=90
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that $2x+2y = 90,$ which is equivalent to showing that $A + B = 90.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does the law of cosines look helpful?
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not particularly.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What about the Law of Sines?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% I feel like law of sines is better
+
+%------------------
+%-- Message Achilleas ( moderator )
+On what triangles?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\triangle AMC$ and $\triangle BMC$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\triangle CAM$, $\triangle CBM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why might we focus on triangles $ACM$ and $BCM?$
+
+%------------------
+%-- Message razmath ( user )
+% since we have $AM = BM$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Because we know that $AM=BM$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they share side $CM$ and that $AM = MB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Triangles $ACM$ and $BCM$ share two side lengths ($CM = CM$ and $AM = BM$), so we can write a relationship regarding the angles of these triangles via the law of sines.  What can we write?
+
+%------------------
+%-- Message razmath ( user )
+% $\frac{\sin{\angle ACM}}{AM} = \frac{\sin{\angle CAM}}{CM}$ and $\frac{\sin{\angle BCM}}{BM} = \frac{\sin{\angle CBM}}{CM}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, we have that $$\frac{AM}{CM} = \frac{\sin \angle ACM}{\sin A}$$ and $$\frac{BM}{CM} = \frac{\sin \angle BCM}{\sin B}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know these two are equal, since $AM = BM,$ so we have $$\frac{\sin \angle ACM}{\sin A} = \frac{\sin \angle BCM}{\sin B}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Plug in $\angle ACM=y+2x$, $\angle BCM=y$, $\angle A=90-y$, $\angle B=90-2x-y$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, we can write these angles in terms of $A$ and $B.$ Specifically, $\angle ACM = 2x + y = 90^{\circ} - B$ and $\angle BCM = 90^{\circ} - A.$ Plugging this in, we have: $$\frac{\sin{(90^{\circ}-B)}}{\sin A} = \frac{\sin{(90^{\circ}-A)}}{\sin B}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We finally have our equation relating $A$ and $B!$ What now?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can convert this to $\sin(B)\cos(B) = \sin(A)\cos(A)$
+
+%------------------
+%-- Message dxs2016 ( user )
+% cosBsinB=sinAcosA?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We use the fact that $\sin(90^{\circ} - \theta) = \sin \theta.$ Cross-multiplying yields $$\sin A \cos A = \sin B \cos B.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+And now?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\sin B\cos B=\sin A\cos A$, so $\sin 2B=\sin 2A$
+
+%------------------
+%-- Message dxs2016 ( user )
+% sin(2A)=sin(2B)?
+
+%------------------
+%-- Message coolbluealan ( user )
+% sin(2A)=sin(2B)
+
+%------------------
+%-- Message mark888 ( user )
+% sin2A=sin2B
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! We multiply both sides by $2$ to apply the sine-double angle formula! This leaves us with $\sin 2A = \sin 2B.$ What can we conclude?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Either $A=B$ or $A+B=90$
+
+%------------------
+%-- Message mark888 ( user )
+% either A=B or 2A+2B=180^circ
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which case is it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+And why?
+
+%------------------
+%-- Message razmath ( user )
+% second case since $BC\neq AC$
+
+%------------------
+%-- Message pritiks ( user )
+% AC is not equal to BC so A+B=90
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $A+B = 90^\circ$ since $AC \neq BC$
+
+%------------------
+%-- Message coolbluealan ( user )
+% A+B=90 becuase AC=/=BC
+
+%------------------
+%-- Message mathlogic ( user )
+% A+B = 90 beause AC is not equal to BC
+
+%------------------
+%-- Message smileapple ( user )
+% $A+B=90$, since we are given $\triangle ABC$ is non-iscosceles
+
+%------------------
+%-- Message Yufanwang ( user )
+% $A+B=90^\circ$ because $AC\neq BC$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $A+B = 90$ since if $A = B$, triangle ABC is isosceles and the problem tells us $AC$ is not equal to $BC$
+
+%------------------
+%-- Message Ezraft ( user )
+% $A + B = 90^{\circ}$ as $A = B$ implies $AC = BC$ and $AC$ is not equal to $BC$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $A+B = 90^{\circ}$ because $AC \neq BC$, or $\angle CAB \neq \angle CBA$
+
+%------------------
+%-- Message mark888 ( user )
+% Because AC is not equal to BC, A+B=90 is the answer
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% A + B = 90, since AC is not equal BC
+
+%------------------
+%-- Message ca981 ( user )
+% because AC is not equal to BC, so A+B = 90
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $A+B=90$ because $ABC$ is not isosceles
+
+%------------------
+%-- Message AOPS81619 ( user )
+% The problem says that $AC\neq BC$, so we cannot have $A=B$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because we are given that $AC \neq BC,$ we know $A \neq B.$ Since the sines of $2A$ and $2B$ are equal, and the angles themselves are not the same, they must be supplementary. This means $2A + 2B = 180^{\circ},$ and thus $A + B = 90^{\circ}.$ Therefore, $\angle C = 90^{\circ},$ so triangle $ABC$ is right.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Let $ABCDEF$ be a convex hexagon of perimeter $p$ such that $AB$ is parallel to $DE,$ $BC$ is parallel to $EF$ and $CD$ is parallel to $FA.$ Let $R_A,$ $R_C,$ and $R_E$ denote the circumradii of triangles $FAB,$ $BCD,$ $DEF$ respectively.  Prove that: $$R_A + R_C + R_E \ge \frac{p}{2}$$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+size(250);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B+rotate(d)*(A-B);}
+
+pair A = origin, B = dir(25), C = B+(.8,0), D = C+scale(.9)*rotate(130)*(B-C);
+pair E = D+scale(.9)*(A-B), F = extension(A,A+(D-C),E,E+(B-C));
+pair W = extension(B,C,A,(0,1)+A), X = extension(B,C,D,(D.x,0)), Y = extension(F,E,D,X), Z = extension(F,E,A,W);
+draw(MP("A",A,dir(180),s)--MP("B",B,N,s)--MP("C",C,N,s)--MP("D",D,dir(0),s)--MP("E",E,S,s)--MP("F",F,S,s)--cycle);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+This problem looks simple.  After working on it a little it may look terrifying.  I'll give you a few minutes to play with it before proceeding.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's our initial clue that we might have a trigonometric approach (aside from 'nothing else worked and I pulled out trig in a panic')?
+
+%------------------
+%-- Message dxs2016 ( user )
+% sine law and its relationship to R
+
+%------------------
+%-- Message Ezraft ( user )
+% we are given circumradii
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circumradii suggest that we might use the Law of Sines.  How can we use the Law of Sines here?  Start with $R_A$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(we need to use three letters for most angles in this figure)
+
+%------------------
+%-- Message dxs2016 ( user )
+% FB/sin(FAB) = AF/sin(ABF) = AB/sin(AFB)=2R_A
+
+%------------------
+%-- Message Achilleas ( moderator )
+Well, the Law of Sines tells us that $$R_A = \frac{BF}{2 \sin A} = \frac{AB}{2 \sin BFA} = \frac{AF}{2 \sin FBA}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which of these is most likely to be useful?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $R_A=\frac{BF}{2\sin A}$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $R_A = \frac{BF}{2 \sin A}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll start with the $\sin A$ relationship, because it involves an angle we know something significant about.  What do we know about $\angle A?$
+
+%------------------
+%-- Message MathJams ( user )
+% <A = <D
+
+%------------------
+%-- Message tigerzhang ( user )
+% $\angle A=\angle D$
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle A=\angle D$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle A=\angle D$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle A = \angle D$ because $BA \parallel DE$ and $AF \parallel CD.$  Now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we rewrite $R_A + R_C + R_E $?
+
+%------------------
+%-- Message dxs2016 ( user )
+% BF/(2sinA)+BD/(2sinC)+DF/(2sinE)
+
+%------------------
+%-- Message smileapple ( user )
+% $\dfrac{FB}{2\sin A}+\dfrac{BD}{2\sin C}+\dfrac{DF}{2\sin E}$
+
+%------------------
+%-- Message mark888 ( user )
+% $\frac{BF}{2\sin(A)}+\frac{BD}{2\sin(C)}+\frac{DF}{2\sin(E)}$
+
+%------------------
+%-- Message smileapple ( user )
+% $R_A+R_C+R_E=\dfrac{FB}{2\sin A}+\dfrac{BD}{2\sin C}+\dfrac{DF}{2\sin E}$
+
+%------------------
+%-- Message MathJams ( user )
+% BF/(2sin A) +BD/(2sin C) +DF/(2sin E)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right, we can do the same for the others, and we thus have: $$R_A + R_C + R_E = \frac{BF}{2\sin A} + \frac{BD}{2 \sin C} + \frac{DF}{2 \sin E}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hmm…  Now what?  We need to knock out those sines, and we need to convert the $BF, BD, DF$ to the sides of the hexagon somehow.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'm going to let you all think about this for a few minutes before continuing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(no, the law of cosines does not help)
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have sines, we want to relate them to side lengths.  We've already used the law of sines.  What other way can we relate sines to side lengths?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(area is a popular idea, but nope)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Recall how you first learned or defined what the sine of an angle is)
+
+%------------------
+%-- Message Achilleas ( moderator )
+What shapes did you use?
+
+%------------------
+%-- Message MathJams ( user )
+% making some right triangles?
+
+%------------------
+%-- Message pritiks ( user )
+% creating some right triangles
+
+%------------------
+%-- Message mustwin_az ( user )
+% Right triangles
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% right triangles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% right triangles
+
+%------------------
+%-- Message Ezraft ( user )
+% right triangles
+
+%------------------
+%-- Message AOPS81619 ( user )
+% right triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right triangles give us a way to relate sines to side lengths.  Do we have any right triangles?
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message bryanguo ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nope.  No right triangles.  Can we construct any?  We want right triangles that involve the sides of the hexagon and the angles of the hexagon.  What's hard about making right triangles that involve the angles of the hexagon?
+
+%------------------
+%-- Message Trollyjones ( user )
+% we don't know the angles measurements
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they can be obtuse?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The angles of the hexagon might all be obtuse - tough to make right triangles with obtuse angles.  Are we stuck?  Should we give up on right triangles?
+
+%------------------
+%-- Message dxs2016 ( user )
+% exterior ones?
+
+%------------------
+%-- Message Bimikel ( user )
+% maybe extend some lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't have to give up on right triangles quite yet.  Because $\sin(x) = \sin(180-x),$ we'd be happy to find right triangles with angles which are supplementary to the angles of the hexagon.  This gives us a huge clue where to look for them - where?
+
+%------------------
+%-- Message bryanguo ( user )
+% extend side lenghts?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We look outside the hexagon.  We can extend two opposite sides and ultimately build a rectangle around our hexagon:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+size(250);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B+rotate(d)*(A-B);}
+
+pair A = origin, B = dir(25), C = B+(.8,0), D = C+scale(.9)*rotate(130)*(B-C);
+pair E = D+scale(.9)*(A-B), F = extension(A,A+(D-C),E,E+(B-C));
+pair W = extension(B,C,A,(0,1)+A), X = extension(B,C,D,(D.x,0)), Y = extension(F,E,D,X), Z = extension(F,E,A,W);
+draw(MP("A",A,dir(180),s)--MP("B",B,N,s)--MP("C",C,N,s)--MP("D",D,dir(0),s)--MP("E",E,S,s)--MP("F",F,S,s)--cycle);
+
+draw(MP("W",W,NW,s)--MP("X",X,NE,s)--MP("Y",Y,SE,s)--MP("Z",Z,SW,s)--cycle);
+draw(rightanglemark(B,W,A,2)^^rightanglemark(A,Z,F,2)^^rightanglemark(E,Y,D,2)^^rightanglemark(D,X,C,2),heavyred);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we have right triangles!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Throughout the problem, I will continue to use just $A, B,$ etc to refer to the angles of the hexagon.  Use three letters if you want to talk about the angles outside the hexagon in the right triangle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The right triangles come in two pairs of similar triangles: $\triangle ABW \sim \triangle DEY$ and $\triangle DCX \sim \triangle AFZ.$   How does this help us with our problem?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that we are interested in the sines of the acute angles in the right triangles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Specifically, we see that: $$R_A + R_C + R_E = \frac{BF}{2\sin A} + \frac{BD}{2 \sin C} + \frac{DF}{2 \sin E}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message MathJams ( user )
+% We have more ratios?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to relate these to lengths, so we use our right triangles: $$\frac{AW}{AB} = \sin \angle ABW = \sin B = \sin E = \sin \angle DEY = \frac{DY}{DE}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, we have $$\frac{AZ}{AF} = \sin \angle AFZ = \sin F = \sin C = \sin \angle DCX = \frac{DX}{CD}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Have you followed everything in this problem so far?
+
+%------------------
+%-- Message pritiks ( user )
+% yes.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% yes
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message Ezraft ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! In our complicated expression for $R_A + R_C + R_E,$ we have expressions for our sines. Now, onto the sidelengths.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also know we need to have an inequality in the end, and we need to get rid of those 2's.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we deal with $BF, BD, DF?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $BF$ first?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Well, the triangle inequality gives us $BF < AB + AF$, so that
+$$\frac{BF}{2 \sin A} < \frac{AB + AF}{2 \sin A}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Is this going to help?  Why or why not?
+
+%------------------
+%-- Message smileapple ( user )
+% no because we want $BF$ to be in the upper bound
+
+%------------------
+%-- Message coolbluealan ( user )
+% no, the problem has a greater than or equal to
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is probably not going to help because the inequality is going the wrong way.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we shelve the triangle inequality for now and look for others.  Don't forget it entirely, just don't bother wasting an hour barking up that tree right now.  You should in general always be doing this before barreling down a path you find - ask yourself how feasible it is to be helpful.  Make sure there aren't any pretty clear negative signs like the one we just found before wasting 30 minutes digging yourself deeper.  Consider your alternatives first.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is especially important on harder problems - red herrings and blind alleys can cost you tons of time.  I imagine most students who saw this problem when it was first given in a contest got stuck right here - heading down the triangle inequality path, never to be heard from again.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'd like $BF \geq something,$ so we want $BF$ on the big side.  What is it larger than or equal to?
+
+%------------------
+%-- Message MTHJJS ( user )
+% BF >= WZ
+
+%------------------
+%-- Message smileapple ( user )
+% $BF\ge WZ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $BF \geq WZ = AW + AZ.$  Why does this look promising?
+
+%------------------
+%-- Message MathJams ( user )
+% Since they are parts of our sin ratios
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Expressible in terms of side lengths and angle measures.
+
+%------------------
+%-- Message Achilleas ( moderator )
+One reason is that this inequality is sharp (in other words, for some configurations of the diagram, it becomes an equality) and the corresponding inequalities for the other two lengths can simultaneously be equalities.  (Think of a regular hexagon.)  It's nice to have a sharp inequality because it gives us a reason to think the right hand side might be provably greater than or equal to what we want (in this case, $\frac{p}{2}$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+It also looks promising because we can write $AW$ and $AZ$ in terms of sines: $AW = AB\sin B$; $AZ = AF\sin F = AF\sin C$ .  Now, substitution is much happier:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\frac{BF}{2 \sin A}\ge \frac{AW + AZ}{2 \sin A} = \frac{AB}{2}\cdot \frac{\sin B}{\sin A} + \frac{AF}{2}\cdot \frac{\sin C}{\sin A}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This expression looks considerably nicer.  What happens if we try it on the other two terms in our expression for $R_A + R_C + R_E?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What would we need to do first, though?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(recall how we found the above inequality)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Draw different rectangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can construct rectangles around the hexagon in other orientations to show that: $$ \frac{BD}{2 \sin C} \ge\frac{CD}{2}\cdot \frac{\sin A}{\sin C}  + \frac{BC}{2} \cdot \frac{\sin B}{\sin C} $$ and  $$\frac{DF}{2 \sin E} \ge \frac{DE}{2}\cdot \frac{\sin A}{\sin B} + \frac{EF}{2}\cdot \frac{\sin C}{\sin B}. $$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+size(500);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B+rotate(d)*(A-B);}
+
+pair A = origin, B = dir(25), C = B+(.8,0), D = C+scale(.9)*rotate(130)*(B-C);
+pair E = D+scale(.9)*(A-B), F = extension(A,A+(D-C),E,E+(B-C));
+//pair W = extension(B,C,A,(0,1)+A), X = extension(B,C,D,(D.x,0)), Y = extension(F,E,D,X), Z = extension(F,E,A,W);
+pair O = extension(A,B,D,D+rotate(-90)*(E-D)), N = foot(C,B,O), P = foot(C,O,D);
+pair L = extension(E,D,A,A+rotate(-90)*(B-A)), M = foot(F,E,D), K = foot(F,A,L);
+
+draw(MP("A",A,dir(180),s)--MP("B",B,dir(90),s)--MP("C",C,dir(-130),s)--MP("D",D,dir(0),s)--MP("E",E,S,s)--MP("F",F,dir(70),s)--cycle);
+
+draw(B--MP("O",O,dir(90),s)--D^^MP("N",N,dir(130),s)--C--MP("P",P,dir(0),s)^^A--MP("L",L,dir(-90),s)--E^^MP("K",K,SW,s)--F--MP("M",M,SE,s));
+
+//draw(MP("W",W,NW,s)--MP("X",X,NE,s)--MP("Y",Y,SE,s)--MP("Z",Z,SW,s)--cycle);
+draw(rightanglemark(K,L,M,1.5)^^rightanglemark(L,K,F,1.5)^^rightanglemark(K,F,M,1.5)^^rightanglemark(B,N,C,1.5)^^rightanglemark(N,O,P,1.5)^^rightanglemark(O,P,C,1.5)^^rightanglemark(O,D,L,1.5),heavyred);
+
+draw(minipage("Here the rectangle $LAOD$ has $AB$ and $DE$ along its sides. We project $C$ and $F$ onto the rectangle sides to see the right triangles.",8cm),D,shift(0,15)*scale(15)*dir(0),s);
+
+draw(minipage("\centering$BD\geq PD+ CN$",8cm),D,shift(0,10)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{PD}{CD} = \cos PDC = \sin D \quad$ (from ${PCD})$",8cm),D,shift(13,3)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{CN}{BC} = \sin CBN = \sin B \quad$ (from ${BCD})$",8cm),D,shift(13,-4)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{BC}{2 \sin C} \geq \frac{PD + CN}{2 \sin C}$",8cm),D,shift(0,-11)*scale(15)*dir(0),s);
+draw(minipage("\centering$= \frac{CD \sin D}{2 \sin C} + \frac{BC\sin B}{2\sin C}$",8cm),D,shift(14,-20)*scale(15)*dir(0),s);
+draw(minipage("\centering$= \frac{CD \sin A}{2 \sin C} + \frac{BC\sin C}{2\sin C}$",8cm),D,shift(14,-29)*scale(15)*dir(0),s);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+size(500);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B+rotate(d)*(A-B);}
+
+pair A = origin, B = dir(25), C = B+(.8,0), D = C+scale(.9)*rotate(130)*(B-C);
+pair E = D+scale(.9)*(A-B), F = extension(A,A+(D-C),E,E+(B-C));
+//pair W = extension(B,C,A,(0,1)+A), X = extension(B,C,D,(D.x,0)), Y = extension(F,E,D,X), Z = extension(F,E,A,W);
+pair R = extension(C,D,A,A+rotate(90)*(F-A)), Q = foot(B,R,A), S = foot(B,R,D);
+pair U = extension(A,F,D,D+rotate(-90)*(C-D)), T = foot(E,U,D), V = foot(E,A,F);
+
+draw(MP("A",A,dir(180),s)--MP("B",B,dir(-90),s)--MP("C",C,dir(-130),s)--MP("D",D,dir(0),s)--MP("E",E,dir(90),s)--MP("F",F,dir(70),s)--cycle);
+draw(A--MP("R",R,dir(90),s)--D^^MP("Q",Q,dir(135),s)--B--MP("S",S,dir(45),s)^^F--MP("U",U,dir(-90),s)--D^^MP("V",V,dir(-150),s)--E--MP("T",T,dir(-45),s));
+
+draw(rightanglemark(Q,A,V,1.5)^^rightanglemark(F,V,E,1.5)^^rightanglemark(F,U,T,1.5)^^rightanglemark(E,T,D,1.5)^^rightanglemark(T,D,C,1.5)^^rightanglemark(C,S,B,1.5)^^rightanglemark(C,R,Q,1.5)^^rightanglemark(R,Q,B,1.5),heavyred);
+
+draw(minipage("Here the rectangle $RDUA$ has $AF$ and $CD$ along its sides. We project $B$ and $E$ onto the rectangle sides to see the right triangles.",8cm),D,shift(0,15)*scale(15)*dir(0),s);
+
+draw(minipage("\centering$DF\geq DT+ EV$",8cm),D,shift(0,10)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{DT}{DE} = \cos EDT = \sin D \quad$ (from ${DET})$",8cm),D,shift(13,3)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{EV}{EF} = \sin EFV = \sin F \quad$ (from ${EFV})$",8cm),D,shift(13,-4)*scale(15)*dir(0),s);
+draw(minipage("\centering$\frac{DF}{2 \sin E} \geq \frac{DT + EV}{2 \sin E}$",8cm),D,shift(0,-11)*scale(15)*dir(0),s);
+draw(minipage("\centering$= \frac{DE \sin D}{2 \sin E} + \frac{EF\sin F}{2\sin E}$",8cm),D,shift(14,-20)*scale(15)*dir(0),s);
+draw(minipage("\centering$= \frac{DE \sin A}{2 \sin B} + \frac{EF\sin C}{2\sin B}$",8cm),D,shift(14,-29)*scale(15)*dir(0),s);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What happens when we add these?
+
+%------------------
+%-- Message Achilleas ( moderator )
+When we add these we see that we are painfully close to the solution, as we then have
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{align*}  
+    R_A + R_C + R_E &\ge \frac{AB}{2}\cdot\frac{\sin B}{\sin A} + \frac{AF}{2}\cdot \frac{\sin C}{\sin A} + \frac{BC}{2}\cdot \frac{\sin B}{\sin C} \\  
+    &\quad+ \frac{CD}{2}\cdot\frac{\sin A}{\sin C} + \frac{DE}{2}\cdot \frac{\sin A}{\sin B} + \frac{EF}{2}\cdot\frac{\sin C}{\sin B}.\end{align*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do you notice?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% There is a factor of $1/2$ on the RHS, as desired
+
+%------------------
+%-- Message pritiks ( user )
+% when the sine terms are all multiplied together they equal 1 and the other terms equal p/2
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% reciprocals of each other for the ratio of the sines
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see terms like $\frac{\sin B}{\sin A}$ and their reciprocal. If we could just get these added together, we'd be able to get rid of them since their sum must be greater than or equal to $2$ (since $x + x^{-1} \geq 2$ for all positive $x$).  Unfortunately, we can't group them.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some of you suggest AM-GM but it is not immediately clear how this applies, since we would get the product of side-lengths of the hexagon.
+
+%------------------
+%-- Message smileapple ( user )
+% $\dfrac{\sin B}{\sin A}+\dfrac{\sin A}{\sin B}\ge 2$ by AM-GM
+
+%------------------
+%-- Message Achilleas ( moderator )
+True, but what happens to the side-lengths in front of these fractions?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If only we had a ($AB/2)(\sin A/\sin B)$ term to go with the $(AB/2)(\sin B/\sin A)$ term.  Add em up, say they're $\ge AB$.  Same goes for each of the other terms.  This gets us thinking what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{6pt}
+\textbf{Hint:} The side-lengths appear only once on the right side above.
+
+%------------------
+%-- Message smileapple ( user )
+% double it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Double what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need to double the number of terms we have somewhere in our string of reasoning.  Now we wander deep into wishful thinking land (where many wonderful solutions are hiding) and go looking for our extra terms.  We go step by step through our solution so far:
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, Law of Sines gave us:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$R_A + R_C + R_E = \frac{BF}{2\sin A} + \frac{BD}{2 \sin C} + \frac{DF}{2 \sin E}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything there?
+
+%------------------
+%-- Message Ezraft ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nothing really looks good here.  Take a look at the next step:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$BF \ge ZW = AW + AZ.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Could we have doubled the number of terms here by doing something different?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We can also say that $BF \geq XD + DY$
+
+%------------------
+%-- Message Trollyjones ( user )
+% how about BF >=XY=XD+DY
+
+%------------------
+%-- Message coolbluealan ( user )
+% XD+DY=AW+AZ
+
+%------------------
+%-- Message smileapple ( user )
+% $2BF\ge WA+AZ+XD+DY?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Aha! Because we inscribed the hexagon into a rectangle, the opposite sides are equal. Specifically, this means that $ZW = \frac{ZW + XY}{2}.$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% So we can write $BF \geq \frac{AW + AZ + XD + DY}{2}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, $$BF \geq ZW = \frac{ZW + XY}{2} = \frac{AW+AZ+XD+XY}{2}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because of all the rectangles, we can rewrite all four terms of the above using sines. We observe: $$\frac{BF}{2 \sin A}\ge \frac{AW+AZ+XD+XY}{4 \sin A} =\frac{AB}{4}\cdot \frac{\sin B}{\sin A} + \frac{AF}{4}\cdot\frac{\sin C}{\sin A} + \frac{CD}{4}\cdot \frac{\sin C}{\sin A} + \frac{DE}{4}\cdot \frac{\sin B}{\sin A}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are our extra terms!  Let's do the same for the other two: 
+
+
+$$\frac{BD}{2 \sin C} \geq \frac{CD}{4} \cdot \frac{\sin A}{\sin C} + \frac{BC}{4} \cdot \frac{\sin B}{\sin C} + \frac{AF}{4} \cdot \frac{\sin A}{\sin C} + \frac{EF}{4} \cdot \frac{\sin B}{\sin C}$$
+
+
+    and
+
+
+$$\frac{DF}{2 \sin E} \geq \frac{DE}{4} \cdot \frac{\sin A}{\sin B} + \frac{EF}{4} \cdot \frac{\sin C}{\sin B} + \frac{AB}{4} \cdot \frac{\sin A}{\sin B} + \frac{BC}{4} \cdot \frac{\sin C}{\sin B}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How many times does $AB$, for example, appear in the above sums (in total)?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Twice
+
+%------------------
+%-- Message mustwin_az ( user )
+% twice
+
+%------------------
+%-- Message Trollyjones ( user )
+% two times
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Twice
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Twice
+
+%------------------
+%-- Message dxs2016 ( user )
+% 2
+
+%------------------
+%-- Message coolbluealan ( user )
+% 2
+
+%------------------
+%-- Message ca981 ( user )
+% twice
+
+%------------------
+%-- Message Achilleas ( moderator )
+It appears twice.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Great! What now?
+
+%------------------
+%-- Message dxs2016 ( user )
+% add them up?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Addition brings us home.  If we add our expressions that are less than or equal to $R_A, R_C,$ and $R_E,$ we see that we can pair up all the terms to create our $x + x^{-1}$ scenarios.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, what is the sum of the terms that involve $DE$?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\frac{DE}{4} \cdot \frac{\sin A}{\sin B} + \frac{DE}{4} \cdot \frac{\sin B}{\sin A} $
+
+%------------------
+%-- Message dxs2016 ( user )
+% (DE/4) * (sinB/sinA + sinA/sinB)
+
+%------------------
+%-- Message Trollyjones ( user )
+% $\frac{DE}{4} \cdot \frac{\sin B}{\sin A}+\frac{DE}{4} \cdot \frac{\sin A}{\sin B}$
+
+%------------------
+%-- Message smileapple ( user )
+% $\dfrac{DE}{4}\left(\dfrac{\sin B}{\sin A}+\dfrac{\sin A}{\sin B}\right)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is  $$\frac{DE}{4}\cdot\frac{\sin A}{\sin B} + \frac{DE}{4}\cdot\frac{\sin B}{\sin A} $$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, what?
+
+%------------------
+%-- Message smileapple ( user )
+% $\dfrac{DE}{4}\left(\dfrac{\sin B}{\sin A}+\dfrac{\sin A}{\sin B}\right)\ge \dfrac{DE}{2}$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\frac{DE}{4} \cdot \frac{\sin A}{\sin B} + \frac{DE}{4} \cdot \frac{\sin B}{\sin A} \geq \frac{DE}{4} \cdot 2 = \frac{DE}{2}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that $$\frac{DE}{4}\cdot\frac{\sin A}{\sin B} + \frac{DE}{4}\cdot\frac{\sin B}{\sin A} = \frac{DE}{4}\left(\frac{\sin A}{\sin B} + \frac{\sin B}{\sin A}\right) \ge \frac{DE}{4}\cdot 2 = \frac{DE}{2}.$$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We know that this sum $\ge \frac{DE}{2},$ so adding up all the other terms of this type will get $p/2$
+
+%------------------
+%-- Message Trollyjones ( user )
+% similar for the oterh terms
+
+%------------------
+%-- Message Achilleas ( moderator )
+Summing across all of our expressions yields $$R_A + R_C + R_E \ge \frac{AB}{2} + \frac{BC}{2} + \frac{CD}{2} + \frac{DE}{2} + \frac{EF}{2} + \frac{FA}{2} = \frac{AB+BC+CD+DE+EF+FA}{2},$$ as desired. Problem complete!
+
+%------------------
+%-- Message RP3.1415 ( user )
+% nice!
+
+%------------------
+%-- Message Ezraft ( user )
+% that was a really long problem
+
+%------------------
+%-- Message bryanguo ( user )
+% hard problem
+
+%------------------
+%-- Message Achilleas ( moderator )
+This problem has been described by some as the most difficult IMO problem ever (judging by the scores of the participants, I think it was the hardest through the late 90s or so).
+
+%------------------
+%-- Message smileapple ( user )
+% it was in the IMO!????!??
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Yup!
+
+%------------------
+%-- Message Achilleas ( moderator )
+If you got a little lost as we went through the problem, take the time to walk through the steps again later.  Try to understand both why each step is true, and why we thought to make each step.
+
+%------------------
+%-- Message RP3.1415 ( user )
+% oh wow what problem was it?!
+
+%------------------
+%-- Message Achilleas ( moderator )
+\#5 in IMO 1996.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ciprian Manolescu's beautiful solution during the contest used and proved a generalization of the Erdos-Mordell inequality.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This problem was proposed by Nairi Sedrakyan of Armenia in IMO96.
+
+%------------------
+%-- Message bryanguo ( user )
+% wasn't ciprian manolescu the only person to ever get 3 perfect scores in a row
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right. I believe he is the only person that has received 3 perfect scores at all.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sedrakyan described the discovery path of his creation in an article that appeared in the WFNMC Journal, Mathematics Competitions, Vol. 9, NO.2, 1996: Nairi M Sedrakyan,  The Story of Creation of a 1996 IMO Problem, pp. 53-57. He also notes there: ``It seems natural to think that this inequality holds for any hexagon. However, there exists a hexagon for which this inequality is not true: $\angle A=90^\circ$, $\angle B=\angle C=135^\circ$, $\angle C=\angle D=\angle E=120^\circ$, and $BC=CD=DE=EF.$"
+
+%------------------
+%-- Message sae123 ( user )
+% what's the Erdos-Mordell inequality?
+
+%------------------
+%-- Message Achilleas ( moderator )
+You may view the Erdos-Mordell inequality at : \url{https://artofproblemsolving.com/wiki/index.php/Geometric_inequality#Erdos-Mordell_inequality}
+
+%------------------
+%-- Message Achilleas ( moderator )
+This inequality could also be used for IMO91 \#5.
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is a great result with many published proofs.
+
+%------------------
+%-- Message Trollyjones ( user )
+(Trollyjones) so there is one hexagon this inequality doesn't work on?
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Perhaps you can find other examples on your own. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anyway. Only six students got 7/7 on the problem.
+
+%------------------
+%-- Message smileapple ( user )
+% which problem was that IMO prob? (1,2,3,4,5 or 6)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% I think it was \#5.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% That's all for today!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you all! Have a wonderful week! See you next time!
+
+%------------------

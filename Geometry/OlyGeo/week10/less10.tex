@@ -1,0 +1,3575 @@
+\section{Lesson Transcript}
+
+%-- Message Achilleas ( moderator )
+% Hi, everyone!
+
+%------------------
+%-- Message mark888 ( user )
+% Hello!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Hi
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% hi! 
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Hi
+
+%------------------
+%-- Message Ezraft ( user )
+% hello!
+
+%------------------
+%-- Message pike65_er ( user )
+% helloo
+
+%------------------
+%-- Message xyab ( user )
+% hi!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% \textbf{Olympiad GeometryWeek 10: Transformations}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we're going to talk about using geometric transformations to solve problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are many types of transformations.  You've already learned about one.  Dilations (scaling figures up or down about a point) result in homothetic figures, which we've already studied.  In our last class, we'll discuss inversion.  In this class we'll add rotations and reflections to our tools.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Rotations are particularly useful in problems involving regular polygons, perpendicular lines, and midpoints.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What type of transformations might we use in problems involving equilateral triangles?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Rotate by 60 degrees
+
+%------------------
+%-- Message MTHJJS ( user )
+% rotation by 60 deg
+
+%------------------
+%-- Message pritiks ( user )
+% a 60 degree rotation
+
+%------------------
+%-- Message razmath ( user )
+% rotation by 60 degrees
+
+%------------------
+%-- Message RP3.1415 ( user )
+% rotation by 60 degrees
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $60^\circ$ rotations
+
+%------------------
+%-- Message Achilleas ( moderator )
+Rotations of $60$ or $120$ degrees are useful in problems involving equilateral triangles.  For example, we can show that $ABC$ is equilateral by showing that a $60$ degree rotation about $A$ maps $B$ to $C.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about perpendicular lines?  What transformations should we use with them?
+
+%------------------
+%-- Message pritiks ( user )
+% 90 degree rotation
+
+%------------------
+%-- Message christopherfu66 ( user )
+% a 90 degree rotation
+
+%------------------
+%-- Message renyongfu ( user )
+% 90 degree rotations?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 90 degree rotation
+
+%------------------
+%-- Message B1002342 ( user )
+% rotations of 90 degrees
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $90^\circ$ degree rotation
+
+%------------------
+%-- Message Trollface60 ( user )
+% rotation by 90 degrees
+
+%------------------
+%-- Message Bimikel ( user )
+% rotate by 90 degrees
+
+%------------------
+%-- Message chardikala2 ( user )
+% 90 degrees rotation?
+
+%------------------
+%-- Message mustwin_az ( user )
+% rotation 90 degrees
+
+%------------------
+%-- Message smileapple ( user )
+% 90 degree rotations
+
+%------------------
+%-- Message pike65_er ( user )
+% 90 deg rotations?
+
+%------------------
+%-- Message ww2511 ( user )
+% 90 degree rotation
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Rotate by 90 degrees or reflection?
+
+%------------------
+%-- Message mathlogic ( user )
+% reflections
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% reflections?
+
+%------------------
+%-- Message Ezraft ( user )
+% reflections, rotations by 90 degrees
+
+%------------------
+%-- Message razmath ( user )
+% reflection across lines is pretty good
+
+%------------------
+%-- Message chardikala2 ( user )
+% or reflections across some line or axis
+
+%------------------
+%-- Message dxs2016 ( user )
+% reflections?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Naturally, rotations of $90$ degrees usually work well with perpendicular lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Reflections are also pretty good with perpendicular lines; if $A'$ is the reflection of $A$ over line $m,$ then $AA'$ is perpendicular to $m$ and $m$ bisects segment $AA'.$ Thus, perpendicular bisectors often make us consider reflections.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What kind of transformation can we use to work with midpoints of line segments?  (Say, if we want to show that a certain point was a midpoint.)
+
+%------------------
+%-- Message B1002342 ( user )
+% reflections across that midpoint
+
+%------------------
+%-- Message RP3.1415 ( user )
+% 180 degree rotation about the midpoint
+
+%------------------
+%-- Message ay0741 ( user )
+% 180 rotation around midpoint
+
+%------------------
+%-- Message Achilleas ( moderator )
+Reflection through a point is a $180$ degree rotation about the point.  Rotating a figure $180$ degrees around a midpoint maps one endpoint to another.
+
+%------------------
+%-- Message Achilleas ( moderator )
+These concepts are pretty uselessly abstract until we try them on a few problems.  Before we dive into the problems, I'll introduce a little notation.  \textbf{This is not standard notation} - I just need something I can convey easily in class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We write $\{P,60\}$ if we mean rotate $60$ degrees clockwise (cw) about $P.$ Similarly, $\{P,-60\}$ means rotate $60$ counterclockwise (ccw).
+
+%------------------
+%-- Message Achilleas ( moderator )
+We write $\{AB\}$ if we mean reflect over $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We use $*$ to denote doing a series of transformations.  We read this right to left, though, so that $\{P,60\} * \{AB\}$ means reflect over $AB,$ then rotate $60$ degrees clockwise around $P.$ To apply this to a specific point, we write the point after the transformation in parentheses:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{P,60\} * \{AB\} (C) = D$ means that reflecting $C$ over $AB$ then rotating the result $60$ degrees clockwise around $P$ gives point $D.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+To make sure we have our notation down, take square $ABCD$ as shown in the diagram:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(100);
+draw(MP("A",dir(45),dir(45),fontsize(8))--MP("D",dir(45+90),dir(45+90),fontsize(8))--MP("C",dir(45+180),dir(45+180),fontsize(8))--MP("B",dir(45-90),dir(45-90),fontsize(8))--cycle);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is $\{AC\} (D)?$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% B
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% B
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $B$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $B$
+
+%------------------
+%-- Message coolbluealan ( user )
+% B
+
+%------------------
+%-- Message dxs2016 ( user )
+% B
+
+%------------------
+%-- Message myltbc10 ( user )
+% B
+
+%------------------
+%-- Message Yufanwang ( user )
+% B
+
+%------------------
+%-- Message Lucky0123 ( user )
+% B
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% B
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $B$
+
+%------------------
+%-- Message pritiks ( user )
+% B
+
+%------------------
+%-- Message ca981 ( user )
+% B
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% B
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% B
+
+%------------------
+%-- Message razmath ( user )
+% B
+
+%------------------
+%-- Message B1002342 ( user )
+% $B$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $B$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% {AC} (D) = B
+
+%------------------
+%-- Message mathlogic ( user )
+% B
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $B$
+
+%------------------
+%-- Message renyongfu ( user )
+% B
+
+%------------------
+%-- Message Bimikel ( user )
+% B
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $B$
+
+%------------------
+%-- Message bigmath ( user )
+% B
+
+%------------------
+%-- Message Ezraft ( user )
+% $B$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The reflection of $D$ in $AC$ is $B,$ so $\{AC\} (D) = B.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\{C,-90\} (B)?$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% D
+
+%------------------
+%-- Message coolbluealan ( user )
+% D
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $D$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $D$
+
+%------------------
+%-- Message pike65_er ( user )
+% D
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% D
+
+%------------------
+%-- Message mathlogic ( user )
+% D
+
+%------------------
+%-- Message Catherineyaya ( user )
+% D
+
+%------------------
+%-- Message renyongfu ( user )
+% D
+
+%------------------
+%-- Message mustwin_az ( user )
+% D
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% D
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $D$
+
+%------------------
+%-- Message mark888 ( user )
+% D
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% D
+
+%------------------
+%-- Message ca981 ( user )
+% D
+
+%------------------
+%-- Message B1002342 ( user )
+% $D$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% D
+
+%------------------
+%-- Message pritiks ( user )
+% D
+
+%------------------
+%-- Message Bimikel ( user )
+% D
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% D
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $D$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $D$
+
+%------------------
+%-- Message smileapple ( user )
+% $D$
+
+%------------------
+%-- Message Trollface60 ( user )
+% D
+
+%------------------
+%-- Message Achilleas ( moderator )
+Rotating $B$ $90$ degrees counterclockwise about $C$ gives $D,$ so $\{C,-90\} (B) = D.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is $\{AC\} * \{C,-90\} (B)?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% B
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $B$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% B
+
+%------------------
+%-- Message MTHJJS ( user )
+% B
+
+%------------------
+%-- Message mustwin_az ( user )
+% B
+
+%------------------
+%-- Message pritiks ( user )
+% B
+
+%------------------
+%-- Message mathlogic ( user )
+% B
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $B$
+
+%------------------
+%-- Message mark888 ( user )
+% B
+
+%------------------
+%-- Message Bimikel ( user )
+% B
+
+%------------------
+%-- Message razmath ( user )
+% B.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% B
+
+%------------------
+%-- Message pike65_er ( user )
+% B
+
+%------------------
+%-- Message ca981 ( user )
+% B
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $B$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% B
+
+%------------------
+%-- Message Achilleas ( moderator )
+Well, $\{C,-90\} (B) = D,$ and $\{AC\} * D = B,$ so that's our answer.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What about $\{C,-90\} * \{AC\} (B)?$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Its not one of the points on the figure
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's not $A$, $B$, $C$, or $D$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, $\{AC\} (B) = D.$  Is $\{C,-90\} * D$ a point on the square?
+
+%------------------
+%-- Message razmath ( user )
+% not any of the labelled points
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Doesn't appear as a point on the diagram
+
+%------------------
+%-- Message mathlogic ( user )
+% it's not on the square
+
+%------------------
+%-- Message Ezraft ( user )
+% not one of $A, B, C, D$
+
+%------------------
+%-- Message Achilleas ( moderator )
+No, it is not.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Its the reflection of $B$ across $C$
+
+%------------------
+%-- Message myltbc10 ( user )
+% reflection of B over CD
+
+%------------------
+%-- Message pritiks ( user )
+% B reflected over DC
+
+%------------------
+%-- Message mustwin_az ( user )
+% Reflection B across C
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% No it's the reflection of B across C
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's a point $P$ on line $BC$ such that $C$ is the midpoint of $BP$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the point $P$ such that $C$ is the midpoint of $BP$
+
+%------------------
+%-- Message dxs2016 ( user )
+% reflection of B across DC
+
+%------------------
+%-- Message Catherineyaya ( user )
+% the point E such that E is on line BC and C is the midpoint of BE
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% No, its the point $E$ on  the extension of $BC$ such that $EC=BC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{C,-90\} * D$ is a point to the left of $C.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice that $\{C,-90\} * \{AC\} (B)$ is not the same thing as $\{AC\} * \{C,-90\} (B).$ When you're applying several different transformations, it often matters what order you do them in.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, what about $\{AC\} * \{A,-90\} * \{AD\} (B)?$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $B$
+
+%------------------
+%-- Message coolbluealan ( user )
+% B
+
+%------------------
+%-- Message razmath ( user )
+% B
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% B
+
+%------------------
+%-- Message B1002342 ( user )
+% $B$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $B$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $B$
+
+%------------------
+%-- Message Bimikel ( user )
+% B
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% B
+
+%------------------
+%-- Message mathlogic ( user )
+% B
+
+%------------------
+%-- Message MTHJJS ( user )
+% B
+
+%------------------
+%-- Message dxs2016 ( user )
+% B
+
+%------------------
+%-- Message mark888 ( user )
+% B
+
+%------------------
+%-- Message Ezraft ( user )
+% $B$
+
+%------------------
+%-- Message pritiks ( user )
+% B
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% B
+
+%------------------
+%-- Message Trollface60 ( user )
+% B
+
+%------------------
+%-- Message Catherineyaya ( user )
+% B
+
+%------------------
+%-- Message pike65_er ( user )
+% $B$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $B$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Reflecting $B$ over $AD$ puts $B$ above $AD,$ then rotating that $90$ degrees counterclockwise takes the point to $D,$ and reflecting that over $AC$ brings us back home to $B,$ so:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\{AC\} * \{A,-90\} * \{AD\} (B) = B.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that the transformation $\{AC\} * \{A,-90\} * \{AD\}$ also maps $A,$ $C,$ and $D$ to themselves. In fact, it can be shown that it maps any point in the plane to itself (try to show this after class). Thus, this transformation is a long-winded way of saying 'do nothing'.  We usually call this 'do nothing' transformation the 'identity' and denote it $I.$  Thus $\{AC\} * \{A,-90\} * \{AD\} = I$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Make sure you understand these notations.  If you do not, this class will be extremely confusing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As one more test, what does $\{U, 20\} (X) = Z$ mean?
+
+%------------------
+%-- Message razmath ( user )
+% Rotating X 20 degrees clockwise about U gives Z
+
+%------------------
+%-- Message dxs2016 ( user )
+% rotating X 20 degrees cw around U gives the point Z
+
+%------------------
+%-- Message Catherineyaya ( user )
+% Z is X rotated by 20 degrees clockwise about U
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% The rotation of $X$ $20^{\circ}$ clockwise about $U$ results in $Z$.
+
+%------------------
+%-- Message mathlogic ( user )
+% rotating X about U 20 degrees clockwise gives point Z
+
+%------------------
+%-- Message mark888 ( user )
+% rotating point $X$ clockwise $20$ degrees around point $U$ gives point $Z$.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Rotate $X$ 20 degrees clockwise around $U$ and the result is $Z$
+
+%------------------
+%-- Message coolbluealan ( user )
+% you get Z when you rotate X 20 degrees clockwise about U
+
+%------------------
+%-- Message pritiks ( user )
+% rotation U 20 degrees CW around X gives us point Z
+
+%------------------
+%-- Message Ezraft ( user )
+% $Z$ is $X$ rotated $20^{\circ}$ clockwise around $U$
+
+%------------------
+%-- Message Trollface60 ( user )
+% rotating X 20 degrees clockwise about U gives Z
+
+%------------------
+%-- Message B1002342 ( user )
+% $Z$ is the point obtained by a $20^{\circ}$ rotation of $X$ about $U$ in the clockwise direction
+
+%------------------
+%-- Message ca981 ( user )
+% rotate X about point U by 20 degree clockwise, obtain point Z
+
+%------------------
+%-- Message pike65_er ( user )
+% rotating point $X$ 20 degrees clockwise around $U$ gives point $Z$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Rotating X twenty degrees clockwise about U results in Z.
+
+%------------------
+%-- Message smileapple ( user )
+% Rotating $X$ about $U$ for $20^{\circ}$ clockwise will result in the point $Z$.
+
+%------------------
+%-- Message ay0741 ( user )
+% X rotated 20 degrees clockwise around point U would map it to Z
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{U, 20\} (X) = Z$ means that rotating $X$ $20$ degrees clockwise about $U$ results in point $Z.$ (Or 'the image of rotating $X$ $20$ degrees clockwise about $U$ is $Z$.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsection{Properties of Rotations and Reflections}
+There are three general properties of rotations and reflections that will be useful in problems involving rotation and reflection.  We won't prove all of these in class - I'll post some on the message board for you to prove.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{First Property}
+Given intersecting lines $m$ and $n$, what is the result of reflecting a figure over $m$, then over $n$?    
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, this combination takes quadrilateral $ABCD$ to $A'B'C'D'$ to $A''B''C''D''.$ What is the net transformation?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = dir(120), B = dir(15), C = dir(-70), D = scale(.8)*dir(190);
+pair P = (-1,-1), Q = (5,2), R = (5,-1), S = (-1,2), X = extension(P,Q,R,S);
+pair AA = reflect(P,Q)*A, BB = reflect(P,Q)*B, CC = reflect(P,Q)*C, DD = reflect(P,Q)*D;
+pair AAA = reflect(R,S)*AA, BBB = reflect(R,S)*BB, CCC = reflect(R,S)*CC, DDD = reflect(R,S)*DD;
+
+draw(MP("A",A,N,s)--MP("B",B,E,s)--MP("C",C,SE,s)--MP("D",D,W,s)--cycle);
+draw(MP("A'",AA,SE,s)--MP("B'",BB,NE,s)--MP("C'",CC,N,s)--MP("D'",DD,SW,s)--cycle,orange);
+draw(MP("A''",AAA,E,s)--MP("B''",BBB,dir(-90),s)--MP("C''",CCC,W,s)--MP("D''",DDD,N,s)--cycle,heavygreen);
+draw(P--Q^^R--S^^MP("X",X,scale(2)*dir(-90),s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message MathJams ( user )
+% A rotation about X?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% rotation about X
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Rotation around $X$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The result is a rotation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The rotation has center $X,$ and the angle of rotation is twice the angle between our two lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's prove this quickly.  Consider what happens to point $B.$  First, both transformations preserve the distance from $X,$ so it's unsurprising that $B''$ is a rotation of $B$ about $X.$  The question is the angle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Imagine that $X$ is the origin, and the ray starting at $X$ and going to the upper left along the line is the positive x-axis.  We'll measure our angles counterclockwise from that ray.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $b$ be the initial angle of point $B,$ and let $r$ be the angle of the other line (doesn't matter which ray we use).  Then the first flip takes us from b to $r + (r-b) = 2r-b.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The second takes us to the opposite of that, $b-2r$ (since we're reflecting across our "x-axis").  So the net effect is a clockwise rotation by $2r.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+\textbf{So the rule is this:} if line 2 is $r$ degrees clockwise from line $1,$ then reflecting over line $1$ and then line $2$ rotates you $2r$ clockwise.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What if the two lines $m$ and $m'$ are parallel? What is the composition of the two reflections in this case?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% a translation?
+
+%------------------
+%-- Message B1002342 ( user )
+% translation
+
+%------------------
+%-- Message ca981 ( user )
+% pure translation
+
+%------------------
+%-- Message Yufanwang ( user )
+% A translation
+
+%------------------
+%-- Message AOPS81619 ( user )
+% A translation
+
+%------------------
+%-- Message Trollface60 ( user )
+% a translation
+
+%------------------
+%-- Message Catherineyaya ( user )
+% translation
+
+%------------------
+%-- Message mustwin_az ( user )
+% translation
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% a translation
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% A translation.
+
+%------------------
+%-- Message pritiks ( user )
+% translation
+
+%------------------
+%-- Message Achilleas ( moderator )
+A composition of reflections over two parallel lines is a translation. I'll leave this as an exercise.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Second Property}
+Now let's move to the second important property, involving rotations. How about rotating a figure about two different points $Y$ and $Z$ in succession?
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, if we rotate around a point $Y$ by $40$ degrees counterclockwise, then rotate around a point $Z$ by $80$ degrees counterclockwise, then what is the net transformation?
+
+%------------------
+%-- Message razmath ( user )
+% another rotation?
+
+%------------------
+%-- Message B1002342 ( user )
+% a rotation
+
+%------------------
+%-- Message myltbc10 ( user )
+% rotation 120 degrees counterclockwise
+
+%------------------
+%-- Message mark888 ( user )
+% a rotation
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% another rotation I think
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+
+pair A = dir(120), B = dir(15), C = dir(-70), D = scale(.8)*dir(190);
+pair X = (.5,1.3), Z = (1,3), Y = (-3,.6);
+pair AA = Y + rotate(40)*(A-Y), BB = Y + rotate(40)*(B-Y), CC = Y + rotate(40)*(C-Y), DD = Y + rotate(40)*(D-Y);
+pair AAA = Z + rotate(80)*(AA-Z), BBB = Z + rotate(80)*(BB-Z), CCC = Z + rotate(80)*(CC-Z), DDD = Z + rotate(80)*(DD-Z);
+
+//dot(origin^^(1,1));
+draw(MP("X",X,S,s)--MP("Y",Y,W,s)--MP("Z",Z,NE,s)--cycle);
+draw(MP("A",A,N,s)--MP("B",B,E,s)--MP("C",C,SE,s)--MP("D",D,W,s)--cycle);
+draw(MP("A'",AA,N,s)--MP("B'",BB,E,s)--MP("C'",CC,E,s)--MP("D'",DD,W,s)--cycle,orange);
+draw(MP("A''",AAA,SW,s)--MP("B''",BBB,N,s)--MP("C''",CCC,NE,s)--MP("D''",DDD,SE,s)--cycle,heavygreen);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, $ABCD$ has been rotated $40$ degrees counterclockwise about $Y$ to $A'B'C'D'$ then $A'B'C'D'$ is rotated $80$ degrees counterclockwise about $Z$ to $A''B''C''D''.$  The result is a $40+80 = 120$ degree rotation about $X,$ where $X$ is the point such that $\angle ZYX = 40/2 = 20$ degrees and $\angle YZX = 80/2 = 40$ degrees.
+
+%------------------
+%-- Message Achilleas ( moderator )
+More precisely, $X$ is obtained by taking the line $YZ$ and rotating $40/2=20$ clockwise, and (separately) $80/2=40$ counterclockwise, and taking the intersection.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I think it's intuitive that the net angle of rotation is the sum of the two individual angles, so we won't worry about explaining why that works.  As for the center:
+
+%------------------
+%-- Message Achilleas ( moderator )
+The first rotation flips $X$ across $YZ;$ the second flips it back. So $X$ is ultimately fixed.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, we could write:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\{Z,-80\} * \{Y,-40\} = \{X,-120\}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need to be able to know precisely the angles of this triangle, to identify  $X$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(The two angles at  $Y$, $Z$ of the triangle are half of the angles of rotation.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+I will leave this proof as a message board problem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This result is true for most angles of rotation. However, for certain angles of rotation (instead of $40$, $80$) the construction of $X$ won't work. When does that happen?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Two rotations that add to 360 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+The case where this fails is when your two rotations of the line $YZ$ are parallel. Say the first rotation is $\alpha$ counterclockwise and the second $\beta$ counterclockwise. The two lines end up parallel if $-\alpha/2 = \beta/2 + 180k,$ or equivalently if $\alpha+\beta = 360k.$  So what happens in this case?
+
+%------------------
+%-- Message MathJams ( user )
+% a translation instead?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% probably also translation
+
+%------------------
+%-- Message dxs2016 ( user )
+% translation?
+
+%------------------
+%-- Message Achilleas ( moderator )
+You just get a translation.  (I'll let you figure out for yourselves what the exact translation is.)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% translation is like rotation about an infinitely far away point
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is intuitive if you think of a translation as a rotation around the point at infinity. In this case the lines through $Y, Z$ are parallel, so they meet at infinity.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The important thing to remember is that the composition of $2$ rotations is a rotation, even if the $2$ rotations are not about the same point.  This holds if and only if the sum of the angles in the two rotations is not $360$ degrees, in which case the result is a translation.  Translations are essentially slides -- you slide the figure to another place without turning it or dilating it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsubsection{Third Property}
+Finally, if we have a rotation in which some point other than the center of the rotation is mapped to itself, what is the rotation?
+
+%------------------
+%-- Message B1002342 ( user )
+% the identity
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Identity rotation
+
+%------------------
+%-- Message razmath ( user )
+% identity
+
+%------------------
+%-- Message Achilleas ( moderator )
+A rotation that maps some point other than the center of the rotation to itself is the identity - it maps everything to itself.  (Translations also have a similar property - any translation that maps a point to itself is the identity.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'll post these three tools on the message board for proof.  At this point, we'll move on to some problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In general in Olympiads you can assert the aforementioned facts without proof.  However, I highly recommend you work through the proofs yourselves.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsection{Examples}
+\begin{example}
+Given the funky polygon in the diagram, construct an equilateral triangle $XYZ $ whose vertices are on the perimeter of the polygon.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pen s = fontsize(8);
+pair A = (-43.74,-56.54), B = (-10.62,-18.4), C = (-78.32,3.7), D = (-31.81,-2.25), E = (-19.86,14.92), F = (33.74,26.3), G = (54.36,-23.12);
+draw(MP("A",A,SW,s)--MP("B",B,dir(0),s)--MP("C",C,W,s)--MP("D",D,SE,s)--MP("E",E,NW,s)--MP("F",F,NE,s)--MP("G",G,dir(0),s)--cycle);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What sort of transformation might we think of and why?
+
+%------------------
+%-- Message pritiks ( user )
+% 60 degree rotations since we see equilateral triangle
+
+%------------------
+%-- Message AOPS81619 ( user )
+% rotation by 60 degrees because it's equilateral triangles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% rotation by 60 degrees because equilateral triangles
+
+%------------------
+%-- Message MathJams ( user )
+% rotation of 60 degrees, beacuse we are working with equilateral triangles
+
+%------------------
+%-- Message Ezraft ( user )
+% rotation by $60^{\circ}$ because we have equilateral triangles
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% a rotation of $60^{\circ}$ clockwise or counterclockwise because those work well with equilateral triangles
+
+%------------------
+%-- Message B1002342 ( user )
+% rotation of $60^{\circ}$ because all angles of an equilateral triangle are $60^{\circ}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Seeing ``equilateral triangle," we think of $60$ degree rotations.  How will a $60$ degree rotation relate to this problem?
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we have $XYZ,$ then what is $\{X, -60\} (Y) $ if $XYZ$ is equilateral?
+
+%------------------
+%-- Message dxs2016 ( user )
+% Z
+
+%------------------
+%-- Message coolbluealan ( user )
+% Z
+
+%------------------
+%-- Message MathJams ( user )
+% Z
+
+%------------------
+%-- Message myltbc10 ( user )
+% Z
+
+%------------------
+%-- Message Trollface60 ( user )
+% Z
+
+%------------------
+%-- Message razmath ( user )
+% Z
+
+%------------------
+%-- Message Catherineyaya ( user )
+% Z
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $Z$
+
+%------------------
+%-- Message pritiks ( user )
+% Z
+
+%------------------
+%-- Message Ezraft ( user )
+% $Z$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Z
+
+%------------------
+%-- Message ca981 ( user )
+% Z
+
+%------------------
+%-- Message B1002342 ( user )
+% $Z$
+
+%------------------
+%-- Message renyongfu ( user )
+% Z
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Z
+
+%------------------
+%-- Message ay0741 ( user )
+% Z
+
+%------------------
+%-- Message smileapple ( user )
+% $Z$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $Z$
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we have $XYZ,$ we know that $\{X, -60\} (Y) = Z$ if $XYZ$ is equilateral. How does this help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Say we have an $X. $ How can we use a rotation to find $Y$ and $Z?$
+
+%------------------
+%-- Message MathJams ( user )
+% rotate the figure 60 deg about X and find the intersections of the new figure and the old one
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% rotate the polygon 60 degrees about X. The intersection(s) of the rotated and original polygons may be another vertex of XYZ.
+
+%------------------
+%-- Message coolbluealan ( user )
+% rotate 60 degrees about X and find where the rotated diagram intersects the original diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+Suppose we had $Y$ and $Z$ already. We know that $\{X, -60\} (Y) = Z,$ so if we pick a point $X$ on one of the sides and rotate our whole figure $60$ degree counterclockwise about it, the image, $Y',$ of $Y$ must coincide with our original $Z.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$Y'$ must be on the rotated figure and $Z$ on the original figure, so this point must be on both the original and rotated figures.  (Any such point will do.)  Here's one possibility:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = (-43.74,-56.54), B = (-10.62,-18.4), C = (-78.32,3.7), D = (-31.81,-2.25), E = (-19.86,14.92), F = (33.74,26.3), G = (54.36,-23.12);
+pair X = point(A--G,.55);
+pair Z = extension(E,D,r(F,X,60),r(G,X,60));
+pair Y = r(Z,X,-60);
+dot(MP("X",X,SE,s)^^MP("Y'=Z",Z,scale(2)*dir(-55),s));
+draw(MP("A",A,SW,s)--MP("B",B,dir(0),s)--MP("C",C,W,s)--MP("D",D,SE,s)--MP("E",E,NW,s)--MP("F",F,NE,s)--MP("G",G,dir(0),s)--cycle);
+draw(r(A,X,60)--r(B,X,60)--r(C,X,60)--r(D,X,60)--r(E,X,60)--r(F,X,60)--r(G,X,60)--cycle,mediumred);
+
+//dot(MP("Y",Y,dir(0),s));
+//draw(X--Y--Z--cycle,lightblue);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could have rotated clockwise, too.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we find $Y?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(about what? direction?)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Rotate $Z$ clockwise 60 degrees around $X$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Rotate $Z$ 60 degrees clockwise about $X$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% rotate Y' 60 degrees clockwise about X
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that rotating $Y'$ clockwise $60$ degrees around $X$ gives us a point on the original polygon; this is our $Y$ (i.e. $\{X,-60\} (Y') = Y$).  Thus, we draw $XY',$ then construct a $60$ degree angle on side $XY',$ producing $Y$ as shown:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = (-43.74,-56.54), B = (-10.62,-18.4), C = (-78.32,3.7), D = (-31.81,-2.25), E = (-19.86,14.92), F = (33.74,26.3), G = (54.36,-23.12);
+pair X = point(A--G,.55);
+pair Z = extension(E,D,r(F,X,60),r(G,X,60));
+pair Y = r(Z,X,-60);
+dot(MP("X",X,SE,s)^^MP("Y'=Z",Z,scale(2)*dir(-55),s));
+draw(MP("A",A,SW,s)--MP("B",B,dir(0),s)--MP("C",C,W,s)--MP("D",D,SE,s)--MP("E",E,NW,s)--MP("F",F,NE,s)--MP("G",G,dir(0),s)--cycle);
+draw(r(A,X,60)--r(B,X,60)--r(C,X,60)--r(D,X,60)--r(E,X,60)--r(F,X,60)--r(G,X,60)--cycle,mediumred);
+
+dot(MP("Y",Y,dir(0),s));
+draw(X--Y--Z--cycle,lightblue);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Each of the other points of intersection of the two polygons gives us another equilateral triangle solution:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+pen red(real s){return rgb(255,255*s,255*s);}
+
+//****************************************
+pen original_funky_polygon = gray(.2); //higher the value, the lighter it gets
+pen transform_funky_polygon = red(.8);
+//****************************************
+
+size(250);
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = (-43.74,-56.54), B = (-10.62,-18.4), C = (-78.32,3.7), D = (-31.81,-2.25), E = (-19.86,14.92), F = (33.74,26.3), G = (54.36,-23.12);
+pair X = point(A--G,.60), Z = extension(E,D,r(F,X,60),r(G,X,60)), Y = r(Z,X,-60);
+    pair P = extension(A,X,r(D,X,60),r(E,X,60)); draw(X--P--r(P,X,-60)--cycle,orange);
+    pair Q = extension(A,B,r(D,X,60),r(E,X,60)); draw(X--Q--r(Q,X,-60)--cycle,green);
+    pair R = extension(C,B,r(E,X,60),r(F,X,60)); draw(X--R--r(R,X,-60)--cycle,heavycyan);
+    pair S = extension(C,D,r(F,X,60),r(E,X,60)); draw(X--S--r(S,X,-60)--cycle,magenta);
+draw(MP("A",A,SW,s)--MP("B",B,dir(0),s)--MP("C",C,W,s)--MP("D",D,SE,s)--MP("E",E,NW,s)--MP("F",F,NE,s)--MP("G",G,dir(0),s)--cycle, original_funky_polygon);
+draw(r(A,X,60)--r(B,X,60)--r(C,X,60)--r(D,X,60)--r(E,X,60)--r(F,X,60)--r(G,X,60)--cycle, transform_funky_polygon);
+
+dot(MP("Y",Y,dir(0),s));
+draw(X--Y--Z--cycle,lightblue);
+dot(MP("X",X,SE,s)^^MP("Y'=Z",Z,scale(2)*dir(-55),s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+One thing we glossed over in this problem was choosing $X.$  Depending on the figure, you might not be guaranteed that the rotation of the figure intersects the original figure for any $X. $ So to be fully rigorous, you would want to choose your $X$ carefully and prove that an intersection exists.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, $ABC$ is equilateral.  Point $R$ is on $AB,$ $P$ on $BC,$ and $Q$ on $AC$ such that $ARQ$ and $BRP$ are equilateral. Point $N$ is constructed such that $PQN$ is equilateral. Prove that $NR,$ $BQ,$ and $AP$ are equal in length.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+real r = .4;
+
+pair A = dir(210), B = dir(-30), C = dir(90);
+pair R = point(A--B,.4), Q = r(R,A,60), P = r(R,B,-60);
+pair N = r(P,Q,60), F = extension(N,R,A,P);
+
+draw(MP("Q",Q,W,s)--MP("R",R,S,s)--MP("P",P,dir(30),s)--cycle--MP("N",N,dir(100),s)--P);
+draw(MP("A",A,dir(210),s)--MP("B",B,dir(-30),s)--MP("C",C,dir(90),s)--cycle);
+draw(N--R^^A--P^^Q--B,red);
+dot(MP("F",F,scale(3)*dir(-60),s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Equilateral triangles galore.  What should we consider?
+
+%------------------
+%-- Message razmath ( user )
+% rotation by 60 degrees
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% 60 degree rotations again
+
+%------------------
+%-- Message mark888 ( user )
+% Rotations
+
+%------------------
+%-- Message pritiks ( user )
+% 60 degree rotations
+
+%------------------
+%-- Message dxs2016 ( user )
+% rotations by 60 deg
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Rotation 60 degrees.
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% rotations
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 60 degree rotation
+
+%------------------
+%-- Message mustwin_az ( user )
+% rotation by 60 degrees
+
+%------------------
+%-- Message Ezraft ( user )
+% rotations by $60^{\circ}$
+
+%------------------
+%-- Message Trollface60 ( user )
+% rotate by 60 degrees
+
+%------------------
+%-- Message ca981 ( user )
+% rotations
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll consider rotations.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we can map the segments to each other via rotation, we'll be able to show that they are equal in length.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we map $AP$ to $QB$? What rotation could we apply?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(you need to specify the center, the angle, and the direction)
+
+%------------------
+%-- Message razmath ( user )
+% rotation at R by 60 degrees clockwise
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Rotate AP about R by 60 degrees clockwise
+
+%------------------
+%-- Message coolbluealan ( user )
+% rotate 60 degrees clockwise about R
+
+%------------------
+%-- Message B1002342 ( user )
+% Rotation of $60^{\circ}$ clockwise about $R$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{R,60\} (A) = Q$ and $\{R,60\} (P) = B,$ so $\{R, 60\} (AP) = QB;$ thus, $AP = QB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we map $BQ$ to $RN$? What rotation could we apply?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(you need to specify the center, the angle, and the direction)
+
+%------------------
+%-- Message MathJams ( user )
+% Rotate about P 60 deg clockwise
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Rotate around $A$ by 60 degrees clockwise
+
+%------------------
+%-- Message razmath ( user )
+% rotation at P by 60 degrees clockwise
+
+%------------------
+%-- Message Yufanwang ( user )
+% Rotation aboutP by 60° clockwise
+
+%------------------
+%-- Message coolbluealan ( user )
+% rotation 60 degrees clockwise about P
+
+%------------------
+%-- Message Trollface60 ( user )
+% 60 degree cw rotation around P
+
+%------------------
+%-- Message Yufanwang ( user )
+% Rotation about P by 60° clockwise
+
+%------------------
+%-- Message Catherineyaya ( user )
+% rotate about P by 60 degrees clockwise
+
+%------------------
+%-- Message Ezraft ( user )
+% rotation of $60^{\circ}$ colckwise about $P$
+
+%------------------
+%-- Message pritiks ( user )
+% rotate BQ 60 degrees clockwise about P
+
+%------------------
+%-- Message Ezraft ( user )
+% rotation of $60^{\circ}$ clockwise about $P$
+
+%------------------
+%-- Message B1002342 ( user )
+% similar thing, rotate about $P$ $60^{\circ}$ clockwise
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Rotation about P by 60 degrees clockwise
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{P, 60\} (B) = R$ and $\{P, 60\} (Q) = N,$ so $\{P, 60\} (BQ) = RN$ and $BQ = RN.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is the sort of magic we'll be doing with rotations (and reflections) - these transformations preserve length, so if we can rotate or reflect one segment onto another, they have the same length.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As for concurrence: one way to prove it is to apply Miquel's theorem (which we mentioned in a previous class and is not hard to prove).  This says that the circumcircles of $AQR,$ $BPR,$ $CPQ$ are concurrent.  Now consider the intersection of $AP$ and $BQ.$  Let $F$ be their intersection.  Those two lines are related by a rotation of $60^\circ,$ so $\angle QFA=60^\circ.$  Then $F$ is on the circumcircle of $QRA.$  By the same logic it is on the circumcircle of $BPR.$  Therefore it is the Miquel Point for our configuration in triangle $ABC$. Since $N,C,P,F,Q$ are cocyclic, it follows that angle $NFQ$ equals $60^\circ$, thus $N,F,R$ are collinear (since angle $QFR$ is $120^\circ$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moving on:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Squares of centers $P,$ $Q,$ and $R$ are constructed on the sides of a triangle $ABC$ outside the triangle.  Squares of centers $X,$ $Y,$ and $Z$ are constructed on the sides of the triangle $PQR$ inside the triangle.  Prove that $X,$ $Y,$ and $Z$ are the midpoints of the sides of triangle $ABC.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we get going on this problem, do I have to tackle each of the points $X,$ $Y,$ and $Z? $ In other words, do I have to prove that the center of the square constructed on $PQ$ is the midpoint of $BC,$ the center of the square constructed on $PR$ is the midpoint of $AC,$ etc., each individually?
+
+%------------------
+%-- Message dxs2016 ( user )
+% perhaps just one, then everything follows similarly
+
+%------------------
+%-- Message Achilleas ( moderator )
+No.  We only have to prove one.  The same proof will hold for all three since there's nothing special about any one side of $ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we draw our diagram for proving $X$ is the midpoint of $BC:$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair B = dir(200), C = dir(-20), A = dir(110);
+pair c1 = r(A,B,90), c2 = r(B,c1,90);
+pair b1 = r(C,A,90), b2 = r(A,b1,90);
+pair P = point(B--c2,.5), Q = point(C--b1,.5);
+
+draw(A--B--c1--c2--A--c1--B--c2,heavygreen);
+draw(A--C--b2--b1--A--b2--b1--C,heavygreen);
+draw(MP("P",P,dir(70),s)--MP("Q",Q,dir(50),s)--r(P,Q,90)--r(Q,P,-90)--P--r(P,Q,90)^^Q--r(Q,P,-90),red);
+MP("X",point(B--C,.5),scale(2)*S,s);
+draw(MP("A",A,scale(2)*dir(100),s)--MP("B",B,S,s)--MP("C",C,S,s)--cycle);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why do we think of transformations?
+
+%------------------
+%-- Message Yufanwang ( user )
+% So many squares
+
+%------------------
+%-- Message mark888 ( user )
+% Because there are three squares.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Many $90^\circ$ angles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% lots of squares
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have squares, we have midpoints.  $90$ degree rotations can be useful in square problems, $180$ degree rotations useful in midpoint problems.  $90$ degree rotations.  $180$ degree rotations.  Hmmm. . .   What do we wonder?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% we proved that two 90 degree rotations makes a 180 degree rotation
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that the result of two $90$ degree rotations is a $180$ degree rotation.  We think to look for a pair of useful $90$ degree rotations that we can prove result in a useful $180$ degree rotation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is the most likely candidate for the center of our $180$ degree rotation?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(we do not have $X$ yet)
+
+%------------------
+%-- Message SlurpBurp ( user )
+% the midpoint of $BC$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The midpoint of $BC$
+
+%------------------
+%-- Message mustwin_az ( user )
+% Midpoint of BC
+
+%------------------
+%-- Message MTHJJS ( user )
+% midpoint of BC?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We focus on our midpoint: Let $M$ be the midpoint of $BC;$ a $180$ degree rotation about $M$ takes $C$ to $B.$  What are we looking for now?
+
+%------------------
+%-- Message coolbluealan ( user )
+% two rotations 90 degrees each that when combined also takes C to B
+
+%------------------
+%-- Message razmath ( user )
+% two rotations which send B to C
+
+%------------------
+%-- Message SlurpBurp ( user )
+% two rotations of $90^\circ$ that brings $B$ to $C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We seek a couple $90$ degree rotations which together result in $\{M,180\}.$ $90$ degree rotations - we should focus on our squares.  What rotations do we want?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Notice that $\{Q,-90\}*\{P,-90\}B=C$, and we can use our previous lemma I think
+
+%------------------
+%-- Message coolbluealan ( user )
+% one with center Q 90 degrees clockwise and one with center P 90 degrees clockwise
+
+%------------------
+%-- Message mustwin_az ( user )
+% Rotate C 90 degrees clockwise about Q to A then rotate A 90 degrees counterclockwise about P to B
+
+%------------------
+%-- Message ay0741 ( user )
+% {P, 90} {Q, 90} (C) = B
+
+%------------------
+%-- Message Ezraft ( user )
+% a rotation by $90^{\circ}$ clockwise about $Q,$ and a clockwise rotation by $90^{\circ}$ about $P$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that $\{Q,90\}$ takes $C$ to $A$ and $\{P,90\}$ takes $A$ to $ B.$  Therefore, what do we conclude?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\{P,90\} * \{Q,90\} (C) = B,$ and we know that $\{P,90\} * \{Q,90\}$ is a $180$ degree rotation about some point, what do we have about $\{P, 90\} * \{Q,90\} ?$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Its a 180 degrees rotation about the midpoint of BC
+
+%------------------
+%-- Message Catherineyaya ( user )
+% {P, 90} * {Q, 90} = {M, 180}
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% {P, 90} * {Q, 90} is the same as {M, 180}
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\{P, 90 \} * \{Q, 90 \} = \{M, 180 \}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $\{P, 90\} * \{Q,90\} = \{T,180\}$ for some point $T.$  The fact that $\{T,180\} (C) = B$ means that $T$ must be the midpoint of $BC$, so $T = M.$  Are we finished?
+
+%------------------
+%-- Message B1002342 ( user )
+% the point $X$ for which $\angle XPQ = \angle XQP = 45^{\circ}$ is the center of the rotation, but this is also the rotation about the midpoint of $BC$
+
+%------------------
+%-- Message Ezraft ( user )
+% it is equal to a rotation by $180^{\circ}$ about a point on the intersection of lines which form $45^{\circ}$ angles with $PQ,$ which is $X;$ Thus, $X$ is the midpoint of $BC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Almost.  We can note that given $\{P, 90\} * \{Q,90\} = \{T,180\},$ we have $\angle TPQ = \angle TQP = 45$ degrees (from the information we discussed earlier about composition of rotations).  Since $T = M,$ we know that $MPQ$ is an isosceles right triangle.  Hence, $M$ is the center of the square constructed on side $PQ.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+In this problem we see the general technique of finding a group of transformations and showing that together they equal some other useful transformation.  This is often the key to breaking apart problems with transformations.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Trapezoid $ABCD$ has $AB \parallel CD.$  Point $P$ is on line $BC$ such that $P$ is not $B$ or $C$ and $M$ is the midpoint of $AB.$ $X$ is the intersection of line $PD$ and $AB,$ $Q$ the intersection of line $PM$ and $AC,$ and $Y$ the intersection of $DQ$ and $AB.$  Show that $M$ is the midpoint of $XY.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = origin, B = (5,0), C = (4,2), D = (2,2), M = point(A--B,.5), P = C+scale(1.8)*(B-C), X = extension(D,P,A,B), Q = extension(P,M,A,C), Y = extension(D,Q,A,B);
+
+draw(MP("A",A,dir(-160),s)--MP("B",B,dir(0),s)--MP("C",C,NE,s)--MP("D",D,N,s)--cycle);
+draw(B--MP("P",P,dir(-60),s)--D--MP("Q",Q,NW,s)--P^^A--C^^Q--MP("Y",Y,S,s));
+MP("M",M,dir(-120),s);
+MP("X",X,dir(60),s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What sort of transformations are we likely to be looking at in this problem?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% reflections or rotation by 180 degrees
+
+%------------------
+%-- Message Ezraft ( user )
+% reflections or $180^{\circ}$ rotations
+
+%------------------
+%-- Message pritiks ( user )
+% 180 degree rotations since we're trying to show M is a midpoint
+
+%------------------
+%-- Message RP3.1415 ( user )
+% 180 degree rotations
+
+%------------------
+%-- Message ca981 ( user )
+% rotation about M by 180 degree ?
+
+%------------------
+%-- Message mustwin_az ( user )
+% Rotations of 180 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+$M$ is the midpoint of $AB,$ so we know that $\{M,180\} (A) = B.$  What would we like to show?
+
+%------------------
+%-- Message dxs2016 ( user )
+% {M,180}Y=X
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\{M,180\}(Y)=X$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $ \{M, 180^{\circ} \}(Y) = X$
+
+%------------------
+%-- Message dxs2016 ( user )
+% {M,180}(Y)=X
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\{M,180\}(Y)=X$
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% {M, 180}(X)=Y
+
+%------------------
+%-- Message Lucky0123 ( user )
+% {M,180}(X) = Y
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{M,180\}(Y) = X$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% {M, 180}(X)=Y
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\{M, 180 \}(X) = Y$
+
+%------------------
+%-- Message smileapple ( user )
+% $\{M,180\}(X)=Y$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% {M, 180}(Y)=X
+
+%------------------
+%-- Message mark888 ( user )
+% {M,180}(X)=Y
+
+%------------------
+%-- Message mustwin_az ( user )
+% {M,180}(X)=Y
+
+%------------------
+%-- Message Ezraft ( user )
+% $\{ M, 180\}(X) = Y$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We would like to show that $\{M,180\} (Y) = X$ as well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, what are we hunting for?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A series of rotations that add up to $180^\circ$ that brings $X$ to $Y$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do they have to be rotations?
+
+%------------------
+%-- Message Ezraft ( user )
+% they could also be reflections
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We're hunting for two transformations that when composed take $B$ to $A$, but also take $X to $Y\$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're looking for a sequence of transformations that is equivalent to $\{M,180\},$ such that the sequence maps $Y$ to $X.$  How will we know we've found a sequence of transformations equivalent to $\{M,180\}?$  (We speak here of transformations which together make a rotation.)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% If it takes $A$ to $B$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% and it takes $M$ to $M$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it takes $M$ to $M$?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It fixes $M$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll know we've found a series of transformations equivalent to $\{M,180\}$ if $M$ is the only fixed point and the transformations all together map $A$ to $B.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, what other transformations might we use?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any obvious rotations or reflections?
+
+%------------------
+%-- Message MathJams ( user )
+% No?
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are no obvious rotations or reflections.  What other transformations might we consider?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given that we have some parallel lines, which other transformation might be useful?
+
+%------------------
+%-- Message B1002342 ( user )
+% homotheties
+
+%------------------
+%-- Message mustwin_az ( user )
+% dilation?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% homothety, there seems to be similar triangles
+
+%------------------
+%-- Message pritiks ( user )
+% dialations
+
+%------------------
+%-- Message myltbc10 ( user )
+% dilation
+
+%------------------
+%-- Message coolbluealan ( user )
+% homothety
+
+%------------------
+%-- Message ca981 ( user )
+% Dilation ?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Homothety?
+
+%------------------
+%-- Message mark888 ( user )
+% Dilation
+
+%------------------
+%-- Message Yufanwang ( user )
+% Dilation
+
+%------------------
+%-- Message Achilleas ( moderator )
+A dilation (homothety) might be useful.  Are there any potentially useful homotheties?
+
+%------------------
+%-- Message coolbluealan ( user )
+% a homothety centered at P taking XB to DC
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% There is a homothety centered at $P$ which takes $XB$ to $DC$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% homothety centered at P mapping B to C, X to D
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% There is a homothety from $\triangle PXB$ to $\triangle PDC$ centered at $P$
+
+%------------------
+%-- Message MathJams ( user )
+% Centered at P mapping C to B and D to X?
+
+%------------------
+%-- Message Ezraft ( user )
+% the homothety about $P$ which maps $BX$ to $CD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Triangle $PCD$ is homothetic to triangle $PBX$ with center $P.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about another one?
+
+%------------------
+%-- Message B1002342 ( user )
+% homothety centered at $Q$ brining $AY$ to $CD$?
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle QAY$ is homothetic to $\triangle QCD$ about point $Q$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Triangle QDC is homothetic to triangle QYA with center Q
+
+%------------------
+%-- Message mark888 ( user )
+% Triangle AYQ and CDQ is homothetic about center Q
+
+%------------------
+%-- Message Catherineyaya ( user )
+% centered at Q mapping AY to CD
+
+%------------------
+%-- Message Achilleas ( moderator )
+Triangle $QYA$ is homothetic to triangle $QDC$ with center $Q.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we trying to build with these transformations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'd like to build a series of transformations that take $A$ to $B$ but leave $M$ unchanged.  Can we do it with these two homotheties?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Let $\{J\}$ be the homothety that maps $QAY$ to $QCD$ and let $\{K\}$ be the homothety that takes $PCD$ to $PBX.$)
+
+%------------------
+%-- Message myltbc10 ( user )
+% A goes to C and then to B
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(use the notation from this class)
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Currently, $\{K \} * \{J \} (A) = B$
+
+%------------------
+%-- Message MathJams ( user )
+% A under {J} goes to C, then under {K} goes to B
+
+%------------------
+%-- Message Ezraft ( user )
+% $\{K\} * \{J\}(A) = B$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% {K}*{J}(A)=B
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{K\}*\{J\}(A) = B$
+
+%------------------
+%-- Message coolbluealan ( user )
+% {J}(A)=C and {K}(C)=B so {K}*{J}(A)=B
+
+%------------------
+%-- Message renyongfu ( user )
+% {K} * {J}(A) = B
+
+%------------------
+%-- Message dxs2016 ( user )
+% {K}*{J}(A) =B
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that homothety $\{J\}$ takes $A$ to $C,$ then homothety $\{K\}$ takes $C$ to $B.$  Hence $\{K\} * \{J\}(A) = B.$  This makes us happy.  What do we have to test?
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{K\}*\{J\}(M) = M$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% If {K} * {J} (M) = M
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to make sure that $\{K\} * \{J\} (M) = M.$  Is it?
+
+%------------------
+%-- Message ay0741 ( user )
+% yeah, just extend MQ until it meets line CD
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{J\}$ (which takes $QAY$ to $QCD$) takes $M$ to a point on $CD$ that is on the extension of $PQ.$  Call this point $M'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about $\{K\} (M')?$
+
+%------------------
+%-- Message MathJams ( user )
+% {K}(M') = M as desired
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{K\}(M') = M$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is M
+
+%------------------
+%-- Message Ezraft ( user )
+% $\{K\}(M') = M$
+
+%------------------
+%-- Message ca981 ( user )
+% {K}(M')=M
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It is point $M$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{K\}$ (which takes $PCD$ to $PBX$) takes $M'$ from a point on lines $CD$ and $PM$ to a point on lines $BX$ and $PM$ - that point is $M.$  Hence $\{K\} * \{J\} (M) = \{K\} (M') = M.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else do we want to test about $\{K\} * \{J\}?$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It maps $Y$ to $X$
+
+%------------------
+%-- Message coolbluealan ( user )
+% {K}*{J}(Y)=X
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% If {K}*{J}(Y)=X
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Show $ \{K \} * \{ J \} (Y) = X$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We want to test that $\{K \} * \{J \} (Y) = X$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to show that $\{K\} * \{J\} (Y) = X.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's $\{J\} (Y) ?$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% D
+
+%------------------
+%-- Message Ezraft ( user )
+% $D$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $D$
+
+%------------------
+%-- Message coolbluealan ( user )
+% D
+
+%------------------
+%-- Message dxs2016 ( user )
+% D
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% D
+
+%------------------
+%-- Message ca981 ( user )
+% {J}(Y)=D
+
+%------------------
+%-- Message mark888 ( user )
+% point $D$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $ \{J \}(Y) = D$
+
+%------------------
+%-- Message myltbc10 ( user )
+% D
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $D$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\{J \} (Y) = D$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{J\} (Y) = D,$ How about $\{K\} (D) ?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% X
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $X$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $X$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\{K \} (D) = X$
+
+%------------------
+%-- Message ca981 ( user )
+% {K} (D) = X
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% X
+
+%------------------
+%-- Message mustwin_az ( user )
+% X
+
+%------------------
+%-- Message MathJams ( user )
+% {K}(D) = X
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $ \{ K \} (D) = X$
+
+%------------------
+%-- Message myltbc10 ( user )
+% X
+
+%------------------
+%-- Message dxs2016 ( user )
+% X
+
+%------------------
+%-- Message mark888 ( user )
+% $X$
+
+%------------------
+%-- Message pritiks ( user )
+% X
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\{K\}(D)=X$
+
+%------------------
+%-- Message Ezraft ( user )
+% $X$
+
+%------------------
+%-- Message renyongfu ( user )
+% {K}(D) = X
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{J\} (Y) = D, \{K\} (D) = X,$ so $\{K\} * \{J\} (Y) = \{K\} (D) = X$. Why are we are done?
+
+%------------------
+%-- Message Achilleas ( moderator )
+In general, a composition of two homotheties of different centers is again a homothety.
+
+%------------------
+%-- Message Ezraft ( user )
+% we have shown that this sequence of transformations is equivalent to a $180^{\circ}$ rotation about $M$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Because our transformations must be equivalent to rotation of 180 degrees around $M$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have two homotheties and the product of their scale factors is $-1.$  (We know this since $MA$ maps to $MB.$)  This means their composition preserves lengths.  Since $XM$ maps to $YM,$ $XM=YM.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+In general, a composition of two homotheties of different centers is again a homothety. The only exception to this rule is if the product of the scale factors of the homotheties is $1$, in which case their composition is a translation. In our case the product of the scale factors is $-1$, so the result is a length-preserving homothety which is just the reflection over $M$. We did not need these general facts in our proof though; all we used is that the composition is length preserving, since the product of the scale factors is $-1$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+These transformation proofs may look like magic, but they're really not.  We have a handful of indicators that suggest looking for a transformational approach - namely, midpoints, equilateral triangles, squares, homotheties.  From our initial indicators, the transformational solution, if there is one, is usually pretty short.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, when you hit a problem that you think might have a transformational solution, spend about 10 minutes or so looking for it.  Since the solution is usually pretty quick once you note that a transformational solution is possible, if you can't find it in 10 minutes or so, it's usually time to go after something else.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+Angle $A$ is the smallest angle of triangle $ABC.$  Let point $U$ be on the circumcircle of triangle $ABC$ between points $B$ and $C$ (not the arc including $A$).  The perpendicular bisectors of $AB$ and $AC$ meet line $AU$ at $V$ and $W,$ respectively.  The lines $BV$ and $CW$ meet at $T.$  Show that $AU = TB + TC.$
+    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = dir(-20), B = dir(125), C = dir(205), U = point(Circle(origin,1),205), K = IPs(Circle(origin,1),point(A--B,.5)--bisectorpoint(A,B))[0];
+pair M = IPs(Circle(origin,1),point(A--C,.5)--point(A--C,.5)+scale(2)*(bisectorpoint(A,C)-point(A--C,.5)))[0];
+pair V = extension(K,rotate(180)*K,A,U), W = extension(M,rotate(180)*M,A,U);
+pair T = extension(B,V,C,W);
+
+draw(Circle(origin,1),heavygreen);
+dot(MP("T",T,scale(2)*dir(-110),s)^^MP("V",V,scale(2)*dir(80),s)^^MP("W",W,scale(2)*dir(55),s)^^MP("U",U,dir(180),s));
+draw(rightanglemark(M,point(A--C,.5),A,2)^^rightanglemark(rotate(180)*K,point(A--B,.5),A,2),red);
+draw(scale(2.1,B,V,.13),arrow=ArcArrows(SimpleHead));
+draw(scale(2.4,C,W,.13),arrow=ArcArrows(SimpleHead));
+draw(scale(1.2,M,rotate(180)*M,.5),arrow=ArcArrows(SimpleHead));
+draw(scale(1.2,K,rotate(180)*K,.5),arrow=ArcArrows(SimpleHead));
+draw(U--MP("A",A,dir(-20),s)--MP("B",B,scale(2)*dir(170),s)--MP("C",C,scale(2)*dir(240),s)--A);
+MP("m",M,dir(50),s);
+MP("k",K,scale(2)*dir(15),s);
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why try transformations?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% There are a lot of $90^\circ$ angles
+
+%------------------
+%-- Message dxs2016 ( user )
+% perpendicular bisectors?
+
+%------------------
+%-- Message MathJams ( user )
+% We have a lot of right angles, and a circle?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% because we have perpendicular bisectors so we could use reflection
+
+%------------------
+%-- Message Ezraft ( user )
+% we have perpendicular bisectors, meaning $90^{\circ}$ angles and midpoints
+
+%------------------
+%-- Message Achilleas ( moderator )
+We might think to try them just because we know that transformations will sometimes give a fast solution.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have midpoints, but rotating $180$ degrees about the midpoints of $AB$ or $AC$ doesn't seem too helpful.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What other transformation might we consider?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% reflections!
+
+%------------------
+%-- Message MTHJJS ( user )
+% reflection
+
+%------------------
+%-- Message Achilleas ( moderator )
+Perpendicular bisectors sometimes offer quick solutions through reflection.  In this problem, how might reflections over $k$ and $m$ help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What relationships can we find from reflections over $k$ or $m?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, how about $\{m\} (A)$ and $\{k\} (A) ?$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\{k\}(A) = B, \{m\}(A) = C$
+
+%------------------
+%-- Message MathJams ( user )
+% {k}(A) = B and {m} (A) = C
+
+%------------------
+%-- Message dxs2016 ( user )
+% {m}(A) = C and {k}(A)=B
+
+%------------------
+%-- Message renyongfu ( user )
+% {m}(A) = C and {k}(A) = B
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{m\}(A) = C$ and $\{k\}(A) = B$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $\{ m \} (A)=C$ and $\{ k \} (A)=C$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $\{m\} (A) = C$ and $\{k\} (A) = B$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Also, $\{m\} (AW) = CW$ (so $AW = CW$) and $\{k\} (AV) = BV.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What point given in the problem have we not used?
+
+%------------------
+%-- Message B1002342 ( user )
+% $T$
+
+%------------------
+%-- Message coolbluealan ( user )
+% T
+
+%------------------
+%-- Message dxs2016 ( user )
+% T
+
+%------------------
+%-- Message ca981 ( user )
+% T
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $T$
+
+%------------------
+%-- Message renyongfu ( user )
+% T
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $T$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% T
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used $T,$ but it's not too clear yet how to, since it doesn't map to anything obvious via reflection over $m$ or $k.$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $U$
+
+%------------------
+%-- Message MTHJJS ( user )
+% U
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used $U.$  How can we?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's $\{m\}(U)$?
+
+%------------------
+%-- Message dxs2016 ( user )
+% intersection of CW and circumcircle?
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{m\}(U) = CW\cap (ABC)$
+
+%------------------
+%-- Message mustwin_az ( user )
+% Intersection of CW and circumcircle not C
+
+%------------------
+%-- Message coolbluealan ( user )
+% where CW intersects the circle again
+
+%------------------
+%-- Message MathJams ( user )
+% {m} (U ) is the interscetion of CW with the circle
+
+%------------------
+%-- Message ca981 ( user )
+% on point where CW intersect circle
+
+%------------------
+%-- Message mark888 ( user )
+% the intersection point of $CW$ with the circumcircle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let the extension of $CW$ hit the circle again at $E$ and the extension of $BV$ hit the circle again at $D.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+/* independent points */
+pair A = dir(-20), B = dir(125), C = dir(205), U = point(Circle(origin,1),205);
+
+pair K = IPs(Circle(origin,1),point(A--B,.5)--bisectorpoint(A,B))[0];
+pair M = IPs(Circle(origin,1),point(A--C,.5)--point(A--C,.5)+scale(2)*(bisectorpoint(A,C)-point(A--C,.5)))[0];
+pair V = extension(K,rotate(180)*K,A,U), W = extension(M,rotate(180)*M,A,U);
+pair T = extension(B,V,C,W);
+pair D = IPs(Circle(origin,1),scale(3,B,V,0))[1];
+pair E = IPs(Circle(origin,1),scale(3,C,W,0))[0];
+
+draw(Circle(origin,1),heavygreen);
+dot(MP("T",T,scale(2)*dir(-110),s)^^MP("V",V,scale(2)*dir(80),s)^^MP("W",W,scale(2)*dir(55),s)^^MP("U",U,dir(180),s));
+draw(rightanglemark(M,point(A--C,.5),A,2)^^rightanglemark(rotate(180)*K,point(A--B,.5),A,2),red);
+draw(scale(2.1,B,V,.13),arrow=ArcArrows(SimpleHead));
+draw(scale(2.4,C,W,.13),arrow=ArcArrows(SimpleHead));
+draw(scale(1.2,M,rotate(180)*M,.5),arrow=ArcArrows(SimpleHead));
+draw(scale(1.2,K,rotate(180)*K,.5),arrow=ArcArrows(SimpleHead));
+draw(U--MP("A",A,dir(-20),s)--MP("B",B,scale(2)*dir(170),s)--MP("C",C,scale(2)*dir(240),s)--A);
+MP("m",M,dir(50),s);
+MP("k",K,scale(2)*dir(15),s);
+MP("D",D,scale(2)*dir(-25),s);
+MP("E",E,scale(2)*dir(-40),s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we have?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's $\{m\} (AU) ?$
+
+%------------------
+%-- Message pritiks ( user )
+% CE
+
+%------------------
+%-- Message Ezraft ( user )
+% $CE$
+
+%------------------
+%-- Message coolbluealan ( user )
+% CE
+
+%------------------
+%-- Message mustwin_az ( user )
+% CE
+
+%------------------
+%-- Message dxs2016 ( user )
+% CE
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% CE
+
+%------------------
+%-- Message B1002342 ( user )
+% $\{m\}(AU) = CE$
+
+%------------------
+%-- Message myltbc10 ( user )
+% CE
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's $\{m\} (AU) = CE.$ How about $\{k\} (AU) ?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% BD
+
+%------------------
+%-- Message B1002342 ( user )
+% $BD$
+
+%------------------
+%-- Message Ezraft ( user )
+% $BD$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% BD
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% BD
+
+%------------------
+%-- Message myltbc10 ( user )
+% BD
+
+%------------------
+%-- Message MathJams ( user )
+% {k}(AU) = BD
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $BD$
+
+%------------------
+%-- Message dxs2016 ( user )
+% BD
+
+%------------------
+%-- Message mustwin_az ( user )
+% BD
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\{k\}(AU) = BD$
+
+%------------------
+%-- Message pritiks ( user )
+% BD
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\{k\} (AU) = BD.$ So?
+
+%------------------
+%-- Message ca981 ( user )
+% BD = CE
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $BD = AU = CE$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $AU = CE$ and $AU = BD,$ so $BD = CE.$  Can we use this to show $AU = TB + TC?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% we want CT=TD
+
+%------------------
+%-- Message B1002342 ( user )
+% yes, if we can show $BT = TE$ or $CT = TD$ we are done
+
+%------------------
+%-- Message Achilleas ( moderator )
+What kind of quadrilateral is $BCDE?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(of course, it is cyclic.  )
+
+%------------------
+%-- Message Achilleas ( moderator )
+(can you say more about it?)
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Isosceles trapezoid.
+
+%------------------
+%-- Message ay0741 ( user )
+% also isoceles trapezoid
+
+%------------------
+%-- Message Ezraft ( user )
+% its an isosceles trapezoid
+
+%------------------
+%-- Message ca981 ( user )
+% isosceles trapezoid
+
+%------------------
+%-- Message leoouyang ( user )
+% An isosceles trapezoid
+
+%------------------
+%-- Message MTHJJS ( user )
+% isosceles trapezoid
+
+%------------------
+%-- Message Achilleas ( moderator )
+$BD = EC$ implies that $BEDC$ is an isosceles trapezoid.  So what can we say about triangle $TCD?$
+
+%------------------
+%-- Message myltbc10 ( user )
+% it is isosceles
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% It is isosceles
+
+%------------------
+%-- Message pritiks ( user )
+% it is also isosceles
+
+%------------------
+%-- Message dxs2016 ( user )
+% isosceles
+
+%------------------
+%-- Message ay0741 ( user )
+% isosceles triangle
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Triangle TCD is isosceles
+
+%------------------
+%-- Message ca981 ( user )
+% isosceles triangle
+
+%------------------
+%-- Message AOPS81619 ( user )
+% it is isosceles
+
+%------------------
+%-- Message renyongfu ( user )
+% TCD is isosceles
+
+%------------------
+%-- Message coolbluealan ( user )
+% isosceles
+
+%------------------
+%-- Message leoouyang ( user )
+% It is isosceles and thus TC = TD
+
+%------------------
+%-- Message mark888 ( user )
+% Isosceles triangle
+
+%------------------
+%-- Message Ezraft ( user )
+% it is isosceles, so $TC = TD$ and we're done
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's isosceles
+
+%------------------
+%-- Message MathJams ( user )
+% isoscelese triangle!
+
+%------------------
+%-- Message B1002342 ( user )
+% isosceles, because $\angle TDC = \angle TCD$ from looking at arcs
+
+%------------------
+%-- Message Achilleas ( moderator )
+Triangle $TCD$ is isosceles. (Proof: $BEDC$ is an isosceles trapezoid.  Equal chords cut off equal arcs, so $\text{arc }(CE) =\text{arc }(DB),$ so $\text{arc } (BC) = \text{arc }(DE),$ so $\angle BDC = \angle DCE.$  Thus $TCD$ is isosceles and $TC = TD.$)
+
+%------------------
+%-- Message Achilleas ( moderator )
+You can see this because $\angle TCD = \angle ECD = \angle BDC = \angle TDC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we finish?
+
+%------------------
+%-- Message MathJams ( user )
+% TB+TC = TB+TD = BD = CE = AU
+
+%------------------
+%-- Message coolbluealan ( user )
+% TC+TB=TD+TB=BD=AU
+
+%------------------
+%-- Message dxs2016 ( user )
+% TB+TC=TD+TB=DB=EC=AU
+
+%------------------
+%-- Message ay0741 ( user )
+% AU = BD = BT + TD = BT + TC
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Because $\triangle TCD$ is iscoceles, we have $TC = TD$. Therefore, $BT + TC = BT + TD = BD = AU$ as desired
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence $TB + TC = TB + TD = BD = AU,$ and we are done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\subsection{Spiral Similarity}
+One final transformation that we want to introduce is called a \textbf{spiral similarity}.
+
+%------------------
+%-- Message Achilleas ( moderator )
+A spiral similarity is the composition of a homothety and a rotation, both having the same center.  Thus, a spiral similarity is specified by a center (of homothety and rotation), a scaling factor, and an angle of rotation. In this case it does not matter in which order we compose the two transformations, as the result is the same.
+
+%------------------
+%-- Message Yufanwang ( user )
+% Don't we usually use spiral similarity with complex numbers?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% We do no have to use complex numbers for a spiral similarity.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% I guess you have seen an article or a handout doing it. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the following diagram, a spiral similarity takes $A$ to $A'$ and $B$ to $B'.$  We see that triangles $AOB$ and $A'OB'$ are similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+size(200);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+/* independent values */
+real rot = 100, sca = 1.8, A_deg = 25, B_deg = 45, B_sca = .78;
+
+pair A = dir(A_deg), B = scale(B_sca)*dir(B_deg);
+
+pair AA = scale(sca)*rotate(rot)*A, BB = scale(sca)*rotate(rot)*B;
+
+draw(arc(origin,.3,25,25+rot,true),arrow=ArcArrow(SimpleHead),linewidth(.5));
+draw(arc(origin,.2,45,45+rot,true),arrow=ArcArrow(SimpleHead),linewidth(.5));
+draw(MP("O",origin,S,s)--MP("A",A,E,s)--MP("B",B,N,s)--cycle);
+draw(origin--MP("A'",AA,N,s)--MP("B'",BB,W,s)--cycle);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given points $A$, $B$, $A'$, and $B'$ in the plane, construct the center of the spiral similarity that takes $A$ to $A'$ and $B$ to $B'$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As in other construction problems, let's start with a complete diagram, so we know what to look for.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+real rotate_angle = 20;
+pair O = (.8,.8);
+pair A = origin, B = (.6,.05);
+
+pair AA = r(A,O,rotate_angle), BB = r(B,O,rotate_angle);
+
+draw(MP("A'",AA,S,s)--O--MP("B'",BB,SE,s)--cycle);
+draw(MP("A",A,W,s)--MP("O",O,N,s)--MP("B",B,SE,s)--cycle);
+markangle(radius=20,B,A,O,marker(markinterval(stickframe(n=1),true)));
+markangle(radius=20,BB,AA,O,marker(markinterval(stickframe(n=1),true)));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do you see about triangles $OAB$ and $OA'B'$?
+
+%------------------
+%-- Message Ezraft ( user )
+% they are similar
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% They're similar
+
+%------------------
+%-- Message tigerzhang ( user )
+% They are similar
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Similar.
+
+%------------------
+%-- Message MathJams ( user )
+% triangle OAB similar to triangle OA'B'
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% They are similar
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\triangle OAB\sim\triangle OA'B'$
+
+%------------------
+%-- Message mustwin_az ( user )
+% similar
+
+%------------------
+%-- Message coolbluealan ( user )
+% they are similar
+
+%------------------
+%-- Message Achilleas ( moderator )
+We see that triangles $OAB$ and $OA'B'$ are similar, so $\angle OAB = \angle OA'B'.$  Based on this observation, what construction might we try?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% A circle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which circle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(we are not given $O$)
+
+%------------------
+%-- Message pritiks ( user )
+% circle through points A,A',B'
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% The circumcircle of $AA'B'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How does the circumcircle of $AA'B'$ work?
+
+%------------------
+%-- Message coolbluealan ( user )
+% extend AB and A'B' to meet at P and then draw the circumcircle of AA'P
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Maybe let $P$ be the intersection between $BA'$ and $AB'$. Draw the circumcircles of $\triangle APB$ and $\triangle A'PB'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $AB$ and $A'B'$ intersect at $P.$  Then points $O,$ $A,$ $A',$ and $P$ are concyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+real rotate_angle = 20;
+pair O = (.8,.8);
+pair A = origin, B = (.6,.05);
+
+pair AA = r(A,O,rotate_angle), BB = r(B,O,rotate_angle);
+pair P = extension(A,B,AA,BB);
+
+draw(circumcircle(A,O,AA),heavygreen);
+draw(B--MP("P",P,E,s)--BB);
+draw(MP("A'",AA,S,s)--O--MP("B'",BB,S,s)--cycle);
+draw(MP("A",A,W,s)--MP("O",O,N,s)--MP("B",B,S,s)--cycle);
+markangle(radius=20,B,A,O,marker(markinterval(stickframe(n=1),true)));
+markangle(radius=20,BB,AA,O,marker(markinterval(stickframe(n=1),true)));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle ABO = \angle A'B'O,$ we have that $\angle OBP = \angle OB'P.$  Therefore, points $O,$ $B,$ $B',$ and $P$ are also concyclic.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+real rotate_angle = 20;
+pair O = (.8,.8);
+pair A = origin, B = (.6,.05);
+
+pair AA = r(A,O,rotate_angle), BB = r(B,O,rotate_angle);
+pair P = extension(A,B,AA,BB);
+
+draw(circumcircle(A,O,AA));
+draw(circumcircle(O,B,P));
+draw(B--MP("P",P,E,s)--BB);
+draw(MP("A'",AA,S,s)--O--MP("B'",BB,S,s)--cycle);
+draw(MP("A",A,W,s)--MP("O",O,N,s)--MP("B",B,S,s)--cycle);
+markangle(radius=20,B,A,O,marker(markinterval(stickframe(n=1),true)));
+markangle(radius=20,BB,AA,O,marker(markinterval(stickframe(n=1),true)));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So how can we construct point $O?$
+
+%------------------
+%-- Message B1002342 ( user )
+% $P:= AB \cap C'B'$, then $O:= (AA'P)\cap (BB'P)$ where $O\neq P$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Draw the circumcircles of $\triangle ABP$ and $\triangle A'B'P$. The second intersection of these circles besides $P$ is $O$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can construct the center of the spiral similarity $O$ as follows: Let $P$ be the intersection of $AB$ and $A'B'.$  Construct the circumcircles of triangles $PAA'$ and $PBB'.$  Then these two circumcircles intersect at $P$ and $O.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(The only time this fails will be if $AB \parallel A'B'.$  In that case, a spiral similarity with angle 0 might work (i.e., a pure homothety), or if also $AB=A'B',$ no spiral similarity works but a translation does.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since triangles $OAB$ and $OA'B'$ are similar, $OA/OA' = OB/OB'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+It follows that $ OA/OB = OA'/OB'.$  In other words, triangles $OAA'$ and $OBB'$ are similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, the center of the spiral similarity that takes $AB$ to $A'B'$ is also the center of the spiral similarity that takes $AA'$ to $BB'.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We now give a proof of Ptolemy's Theorem using spiral similarity.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $ABCD$ be a cyclic quadrilateral.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+pair A = dir(125), B = dir(40), C = dir(-20), D = dir(200);
+
+draw(Circle(origin,1));
+draw(MP("A",A,dir(125),s)--MP("B",B,dir(40),s)--MP("C",C,dir(-20),s)--MP("D",D,dir(200),s)--A--C^^B--D);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Consider the spiral similarity, centered at $A, $ that takes $C$ to $D.$  Let this spiral similarity take $B$ to $X,$ so triangles $ABC$ and $AXD$ are similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+
+
+import markers;
+size(150);
+pen s = fontsize(8);
+
+/* helper functions */
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair r(pair A, pair B, real d){return B = B+rotate(d)*(A-B);}
+
+real A_deg = 125, B_deg = 40, C_deg = 340, D_deg = 200;
+pair A = dir(A_deg), B = dir(B_deg), C = dir(C_deg), D = dir(200);
+pair X = extension(D,B,A,r(B,A,(D_deg-C_deg)/2));
+dot(X);
+
+draw(Circle(origin,1));
+draw(A--MP("X",X,SE,s));
+draw(MP("A",A,dir(125),s)--MP("B",B,dir(40),s)--MP("C",C,dir(-20),s)--MP("D",D,dir(200),s)--A--C^^B--D);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we notice about $X?$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% it lies on $DB$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it appears to lie on $BD$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is on BD
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since triangles $ABC$ and $AXD$ are similar, $\angle ADX = \angle ACB.$  But $\angle ADB = \angle ACB.$  Therefore, $X$ lies on $BD.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So what is $DX?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(time for those ratios of corresponding side lengths)
+
+%------------------
+%-- Message B1002342 ( user )
+% $DX = BC\cdot \frac{AD}{AC}$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $DX = \frac{CB \cdot AD}{AC}$
+
+%------------------
+%-- Message dxs2016 ( user )
+% DX=BC*AD/AC
+
+%------------------
+%-- Message Achilleas ( moderator )
+$DX/BC = AD/AC,$ so $DX = BC \cdot  AD/AC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else can we say about the diagram?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about triangle $AXB$, for example?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Its similar to triangle $ADC$
+
+%------------------
+%-- Message B1002342 ( user )
+% AXB similar to ADC
+
+%------------------
+%-- Message myltbc10 ( user )
+% it is similar to ADC
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is similar to $\triangle ADC$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Spiral similarity with center $A$, similar to $\triangle{ADC}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+From our observation above about spiral similarities, triangles $AXB$ and $ADC$ are also similar.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What is $BX?$
+
+%------------------
+%-- Message myltbc10 ( user )
+% BX=CD*AB/AC
+
+%------------------
+%-- Message dxs2016 ( user )
+% BX=DC*AB/AC
+
+%------------------
+%-- Message Achilleas ( moderator )
+$BX/CD = AB/AC,$ so $BX = AB \cdot CD/AC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then $BD = BX + DX = BC \cdot AD/AC + AB \cdot CD/AC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next, what?
+
+%------------------
+%-- Message B1002342 ( user )
+% multiply by AC
+
+%------------------
+%-- Message dxs2016 ( user )
+% multiply both sides by AC
+
+%------------------
+%-- Message coolbluealan ( user )
+% multiply both sides by AC
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% multiply both sides by AC
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $BD \cdot AC = AD \cdot BC + AB \cdot CD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, $AC \cdot BD = AB \cdot CD + AD \cdot BC.$
+
+%------------------
+%-- Message Ezraft ( user )
+% which is precisely Ptolemy's Theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Yup! Awesome work everyone! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+% That's all for today!
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you all! Have a wonderful week! See you next time! 
+
+%------------------
+%-- Message mark888 ( user )
+% Thank you!
+
+%------------------
+%-- Message coolbluealan ( user )
+% thanks!
+
+%------------------
+%-- Message Apollomindstorms ( user )
+% Thanks, bye!
+
+%------------------
+%-- Message Ezraft ( user )
+% thank you!
+
+%------------------
+%-- Message dxs2016 ( user )
+% thanks!
+
+%------------------
+%-- Message Catherineyaya ( user )
+% thank you!
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Thank you!
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% thank you!
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Thank you for class!
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Thanks, bye!
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% Thank you!
+
+%------------------
+%-- Message Ezraft ( user )
+% Thank you!
+
+%------------------
+%-- Message AOPS81619 ( user )
+% thanks
+
+%------------------
+%-- Message B1002342 ( user )
+% thank you !
+
+%------------------
+%-- Message smileapple ( user )
+% thanks
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Thank you!
+
+%------------------
+%-- Message mustwin_az ( user )
+% thank you
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Thank you!
+
+%------------------
+%-- Message MathJams ( user )
+% thank you!
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% TY!
+
+%------------------
+%-- Message RP3.1415 ( user )
+% thanks for class
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Bye, everyone!
+
+%------------------

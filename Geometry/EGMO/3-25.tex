@@ -1,0 +1,88 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 3.25}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, D, E, X, X1, Y, Y1, Z, Z1, W, W1;
+        int or = 10;
+        A = dir(90+or)*1.1;
+        D = dir(180+or);
+        C = dir(270+or)*1.35;
+        B = dir (or)*1.25;
+        E = (0,0);
+
+        X1 = foot(E, B, C);
+        Y1 = foot(E, A, B);
+        Z1 = foot(E, A, D);
+        W1 = foot(E, C, D);
+
+        X = rotate(180, X1)*E;
+        Y = rotate(180, Y1)*E;
+        Z = rotate(180, Z1)*E;
+        W = rotate(180, W1)*E;
+
+        draw(A--B--C--D--A^^A--C^^B--D);
+        draw(E--Y^^E--X^^E--Z^^E--W);
+        draw(X1--Y1--Z1--W1--cycle);
+
+        dot (E);
+        dot(X);
+        dot(X1);
+        dot(Y);
+        dot(Y1);
+        dot(Z);
+        dot(Z1);
+        dot(W);
+        dot(W1);
+
+        draw(rightanglemark(C,E,B,2));
+        draw(MA("\alpha", red, E, D, A, 0.1, red));
+        draw(MA("\alpha", red, E, W1, Z1, 0.1, red));
+        draw(MA("90 - \alpha", red, D, A, E, 0.1, 2, red));
+        draw(MA("90 - \alpha", red, Z1, Y1, E, 0.1, 2, red));
+        
+        draw(MA("\beta", blue, B, C, A, 0.1, blue));
+        draw(MA("\beta", blue, X1, W1, E, 0.1, blue));
+        draw(MA("90 - \beta", blue, E, B, C, 0.1, 2, blue));
+        draw(MA("90 - \beta", blue, E, Y1, X1, 0.1, 2, blue));
+
+        label("$A$", A, dir(A-C));
+        label("$B$", B, dir(B-D));
+        label("$C$", C, dir(C-A));
+        label("$D$", D, dir(D-B));
+        label("$E$", E, NE);
+
+        label("$X$", X, dir(X-E));
+        label("$Y$", Y, dir(Y-E));
+        label("$Z$", Z, dir(Z-E));
+        label("$W$", W, dir(W-E));
+
+        label("$X'$", X1, dir(rotate(45,X1)*X));
+        label("$Y'$", Y1, dir(rotate(45,Y1)*Y));
+        label("$Z'$", Z1, dir(rotate(45,Z1)*Z));
+        label("$W'$", W1, dir(rotate(45,W1)*W));
+
+
+
+    \end{asy}
+\end{center}
+In the diagram above:
+\begin{itemize}
+    \item \TBD
+    \item \TBD
+    \item \TBD
+\end{itemize}
+
+\end{document}

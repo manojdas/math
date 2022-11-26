@@ -1,0 +1,205 @@
+\section{Message Board}
+\Writetofile{hints}{\protect\section{Message Board 8}}
+\Writetofile{soln}{\protect\newpage\protect\section{Message Board 8}}
+
+\subsection{Problem 1}
+
+In acute triangle $ABC,$ $M$ is the midpoint of $\overline{AB}$ and $N$ is the midpoint of $\overline{BC}.$ Let $H$ be the foot of the perpendicular from $B$ to $\overline{AC}.$ The circumcircles of triangles $AHN$ and $CHM$ intersect at $H$ and $P.$ Show that line $PH$ contains the midpoint of $\overline{MN}.$
+
+\begin{mdsoln}
+    Let $\omega_1$ and $\omega_2$ denote the circumcircles of triangles $AHN$ and $CHM,$ respectively. Then line $PH$ is the radical axis of $\omega_1$ and $\omega_2.$
+
+    Let line $MN$ intersect $\omega_1$ again at $X.$ Since $\overline{MN}$ is parallel to $\overline{AC},$ chord $\overline{XN}$ is parallel to chord $\overline{AH}.$ Furthermore, the projection of $M$ onto $\overline{AH}$ is the midpoint of $\overline{AH},$ so $M$ is the midpoint of chord $\overline{XN}.$ Similarly, if line $MN$ intersects $\omega_2$ again at $Y,$ then $N$ is the midpoint of chord $\overline{MY}.$
+    
+    \begin{center}
+        \begin{asy}
+            import cse5;
+            import olympiad;
+     
+    unitsize(1 cm);
+    
+    pair A, B, C, H, M, N, P, X, Y, Z;
+    
+    A = (0,0);
+    H = (1,0);
+    B = (1,3);
+    C = (5,0);
+    M = (A + B)/2;
+    N = (B + C)/2;
+    P = reflect(circumcenter(A,H,N),circumcenter(C,H,M))*(H);
+    X = 2*M - N;
+    Y = 2*N - M;
+    Z = (M + N)/2;
+    
+    draw(A--B--C--cycle);
+    draw(B--H);
+    draw(circumcircle(A,H,N));
+    draw(circumcircle(C,H,M));
+    draw(H--P);
+    draw(X--Y);
+    
+    dot("$A$", A, S);
+    dot("$B$", B, NW);
+    dot("$C$", C, SE);
+    dot("$H$", H, S);
+    dot("$M$", M, NW);
+    dot("$N$", N, NE);
+    dot("$P$", P, NE);
+    dot("$X$", X, SW);
+    dot("$Y$", Y, E);
+    dot("$Z$", Z, SE);
+    label("$\omega_1$", circumcenter(A,H,N) + circumradius(A,H,N)*dir(135), NW);
+    label("$\omega_2$", circumcenter(C,H,M) + circumradius(C,H,M)*dir(45), NE);
+    
+    \end{asy}   
+    \end{center}
+     
+    
+    Let $Z$ be the midpoint of $\overline{XY}.$ Then the power of $Z$ with respect to $\omega_1$ is
+    \[ZX \cdot ZN = \frac{3}{2} MN \cdot \frac{1}{2} MN = \frac{3}{4} MN^2,\]and the power of $Z$ with respect to $\omega_2$ is
+    \[ZY \cdot ZM = \frac{3}{2} MN \cdot \frac{1}{2} MN = \frac{3}{4} MN^2.\]Therefore, $Z$ lies on the radical axis of $\omega_1$ and $\omega_2,$ i.e. $Z$ lies on line $PH.$        
+\end{mdsoln}
+
+\subsection{Problem 2}
+
+Let $ABC$ be a triangle. Take points $D$, $E$, $F$ on the perpendicular bisectors of $BC$, $CA$, $AB$ respectively. Show that the lines through $A$, $B$, $C$ perpendicular to $EF$, $FD$, $DE$ respectively are concurrent.
+
+
+
+\subsection{Problem 3}
+
+Acute triangle $ABC$ is inscribed in circle $\omega$. Let $H$ and $O$ denote its orthocenter and circumcenter, respectively. Let $M$ and $N$ be the midpoints of sides $AB$ and $AC$, respectively. Rays $MH$ and $NH$ meet $\omega$ at $P$ and $Q$, respectively. Lines $MN$ and $PQ$ meet at $R$. Prove that $OA\perp RA$.
+
+\begin{mdsoln}
+    (TSTST 2011)
+
+    \begin{center}
+        \begin{asy}
+            import cse5;
+            import olympiad;
+     
+    size(9cm);
+    real big = 6;
+    pair A = (3,10), B = (0,0), C = (14,0), H = orthocenter(A,B,C), O = circumcenter(A,B,C), M = midpoint(A--B), N = midpoint(A--C), P = intersectionpoints(circumcircle(A,B,C), M--(H+big*(H-M)))[0], Q = intersectionpoints(circumcircle(A,B,C), N--(H+big*(H-N)))[0], R = extension(M,N,P,Q);
+    pair Bp = 2*M-H, Cp = 2*N-H;
+    
+    markscalefactor = 0.08;
+    draw(A--B--C--A--O^^Q--N--M--P^^circumcircle(A,B,C)^^P--R--M);
+    draw(rightanglemark(R,A,O));
+    draw(circumcircle(A,M,N)^^circumcircle(M,N,P), gray(0.6));
+    draw(R--A, linetype("5 5"));
+    draw(Bp--M^^Cp--N, linetype("2 5"));
+    
+    pair point = O+dir(210);
+    pair[] p={A,B,C,M,N,O,P,Q,R,H,Bp,Cp};
+    string s = "A,B,C,M,N,O,P,Q,R,H,B',C'";	
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[3]=-30; d[7]=20; mult[9]=2;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    
+    
+    \end{asy}   
+    \end{center}
+     
+    
+    We'd like to show that $RA$ is tangent to $\omega$. This reminds us of the radical axis theorem because both $RA$ and $PQ$ can be radical axes with $\omega$. Thus, we'd like to find a pair of circles such that their radical axis is line $MN$ that share these two lines as radical axes.
+    
+    Let $B'$ and $C'$ be the reflections of $H$ about $M$ and $N$ respectively. It is well-known that $B'$ and $C'$ are the reflections of $B$ and $C$ about the circumcenter $O$ (why?), so they lie on $\omega$. Notice that since $B'C'\parallel MN\parallel BC$, so $\angle MNQ = \angle B'C'Q = \angle B'PQ$, so $MNPQ$.
+    
+    Consider $\omega_1$ the circumcircle of $AMN$ and $\omega_2$ the circumcircle of $MNPQ$. Since a homothety at $A$ maps $\triangle AMN$ to $\triangle ABC$, the circles are tangent so the radical axis of $\omega_1$ and $\omega$ is the line through $A$ tangent to $\omega$. Furthermore the radical axis of $\omega_2$ and $\omega$ is $PQ$, and the radical axis of $\omega_1$ and $\omega_2$ is $MN$. The conclusion follows.        
+\end{mdsoln}
+
+
+\subsection{Problem 4}
+
+Point $P$ is arbitrarily chosen on side $AB$ of triangle $ABC$, and points $M$ and $N$ are constructed on $BC$ and $AC$ respectively such that $MP\parallel AC$ and $NP\parallel BC$. The circumcircles of $APN$ and $BPM$ intersect at point $Q\neq P$. Prove that as point $P$ varies, $PQ$ passes through a fixed point.
+
+\begin{mdsoln}
+    \begin{center}
+        \begin{asy}
+            import cse5;
+            import olympiad;
+     
+    size(8cm);
+    pair A = (4,12), B = (0,0), C = (14,0), P = .33*A, M = extension(B,C,P,P+dir(A--C)), N = extension(A,C,P,P+dir(B--C)), Q = intersectionpoints(circumcircle(A,P,N), circumcircle(B,P,M))[1], O = circumcenter(A,B,C);
+    
+    draw(A--B--C--A^^M--P--N^^circumcircle(A,P,N)^^circumcircle(B,P,M));
+    draw(circumcircle(A,B,C), gray(0.6));
+    pair T = extension(A, A+dir(O--A)*dir(90), B, B+dir(O--B)*dir(90));
+    draw(A--T--B, linetype("4 4"));
+    
+    pair point = midpoint(Q--P);
+    pair[] p={A,B,C,M,N,P,Q,T};
+    string s = "A,B,C,M,N,P,Q,T";	
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[5] = 10; d[6] = -20;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    
+    
+    \end{asy}   
+    \end{center}
+     
+    
+    Construct $\omega$, the circumcircle of $\triangle ABC$. Let $T$ be the intersection of the tangents to $\omega$ at $A$ and $B$.
+    
+    Since $NP\parallel CB$, a homothety at $A$ maps $\triangle APN$ to $\triangle ABC$. Thus, their circumcircles are tangent at at point $A$, so their radical axis is the line through $A$ tangent to the circles. Similarly, the circumcircle of $\triangle BPM$ and $\omega$ are tangent at $B$, so their radical axis is the line through $B$ tangent to the circumcircles.
+    
+    $T$ is a fixed point that does not rely on the definition of $P$. By the radical axis theorem, the circumcircles of $\triangle ANP$ and $\triangle BPM$, which is $PQ$, passes through the fixed point $T$.
+        
+\end{mdsoln}
+
+
+\subsection{Problem 5}
+
+Let circles $\mathcal{C}_1$ and $\mathcal{C}_2$ with centers $O_1$ and $O_2$ intersect at $A$ and $B$. The common tangent closer to $A$ touches $\mathcal{C}_1$ at $M$ and $\mathcal{C}_2$ at $N$. Line $MA$ meets $\mathcal{C}_2$ again at $Q$ and line $NA$ meets $\mathcal{C}_1$ again at $P$. $F$ is the intersection of $NQ$ and $MP$, and the circumcircles of $FMN$ and $FPQ$ intersect again at $E$. Prove that $EF$, $MN$, and $O_1O_2$ are concurrent.
+
+\begin{mdsoln}
+    \begin{center}
+        \begin{asy}
+            import cse5;
+            import olympiad;
+     
+    size(12cm);
+    pair M = (-1,3), N = (2,4), MN = midpoint(M--N), B = (0.7,0), A = extension(B,MN,M,M+dir(M--N)/(dir(B--M)/dir(B--MN)));
+    path C1 = circumcircle(A,M,B), C2 = circumcircle(A,N,B); 
+    pair O1 = circumcenter(A,M,B), O2 = circumcenter(A,N,B);
+    pair Z = extension(M,N,O1,O2);
+    pair P = (N-B)*(N-B)/(M-B)+B, Q = B+(M-B)*(M-B)/(N-B), F = extension(M,Q,N,P);
+    pair E = intersectionpoints(circumcircle(F,M,N),circumcircle(F,P,Q))[1], R = Z;
+    pair Y = intersectionpoints(C2, circumcircle(F,Q,P))[1], X = (Q-R)*abs(R-N)/abs(R-M)+R;
+    draw(C1^^C2^^N--Z--O2^^M--P--F--Q--N);
+    draw(circumcircle(F,M,N)^^circumcircle(F,P,Q)^^Z--Y, gray(0.6));
+    
+    pair point = B+.01*dir(90);
+    pair[] p={M,N,A,B,P,Q,Z,E,F,O1,O2,X,Y};
+    string s = "M,N,A,B,Q,P,R,E,F,O_1,O_2,X,Y";	
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[9] = 150; d[2] = 30; d[11] = -70; d[5]=70;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));	
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    
+    
+    \end{asy}   
+    \end{center}
+     
+    Let $NM$ intersect $O_2O_1$ at $R$. Then $R$ is the center of homothety mapping $\mathcal{C}_1$ to $\mathcal{C}_1$. Let $RP$ intersect $\mathcal{C}_2$ at 2 points $X,Y$, with $MP\parallel NX$. Then $\angle NYX=\angle MAP=\angle MNA+\angle AMN=\angle MNA+\angle MPN=\angle NMF$, so $PMNY$ is cyclic. Also $\angle XYQ=180-\angle XNQ=180-\angle PFQ$, so $PFQY$ is also cyclic. By radical axis theorem, $FE,NM,YP$ are concurrent at $R$, so $FE,NM,O_2O_1$ are concurrent.    
+\end{mdsoln}
+
+
+
+
+

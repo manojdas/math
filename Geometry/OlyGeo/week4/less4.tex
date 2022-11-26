@@ -1,0 +1,2928 @@
+\section{Session Transcript}
+%------------------
+%-- Message Achilleas ( moderator )
+Today's class will include a few construction problems. Construction problems are so important that we will spend all of next class discussing them as well. Construction problems call for a very fundamental understanding of geometry - if you can tackle this class of problems, most typical Euclidean geometry problems should become easy for you. (In fact, considering how to construct a diagram for a problem can often help lead you to a solution.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+A construction (also called Euclidean construction, classical construction, compass-and-straightedge construction, or ruler-and-compass construction) is the creation of a certain geometric figure by using only a compass and a straightedge. Many problems also give us some initial data, which we may use for our construction.
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here are some of the most common compass-and-straightedge constructions: 
+\begin{itemize}
+    \item constructing the perpendicular bisector from a segment
+    \item finding the midpoint of a segment
+    \item drawing a perpendicular line from a point to a line
+    \item bisecting an angle
+    \item mirroring a point in a line
+    \item constructing a line through a point tangent to a circle
+    \item constructing a circle through 3 non-collinear points
+    \item duplicating the length of a segment or the measure of an angle.    
+\end{itemize}
+
+%------------------
+%-- Message Achilleas ( moderator )
+If the notion of construction is new to you, take some time after class to prove all these common constructions. In our problems we will often use them to build more complex constructions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There's this super nifty website where you can try them on your own: \url{https://sciencevsmagic.net/geo/} after class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we dive into some constructions and other problems, we will discuss one special circle in a triangle. Many of you may already be familiar with it - you've seen it many times already, even if you aren't aware of it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = dir(110), B = dir(-10), C = dir(260);
+pair E = (A+C)/2, F = (A+B)/2, D = (C+B)/2;
+pair Y = foot(B,A,C), X = foot(A,C,B), Z = foot(C,A,B);
+pair H = orthocenter(A,B,C);
+pair K = midpoint(H--A), L = midpoint(H--B), M = midpoint(H--C);
+draw(MP("A",A,N,s)--MP("B",B,rotate(180)*W,s)--MP("C",C,SW,s)--cycle);
+draw(MP("E",E,W,s)--MP("F",F,NE,s)--MP("D",D,S,s)--cycle);
+draw(circumcircle(E,F,D),heavygreen);
+draw(B--MP("Y",Y,W,s)^^A--MP("X",X,SE,s)^^C--MP("Z",Z,NE,s),lightred);
+draw(rightanglemark(A,Y,B,1.5)^^rightanglemark(C,Z,B,1.5)^^rightanglemark(A,X,C,1.5));
+MP("K",K,rotate(20)*NE,s);MP("M",M,rotate(15)*S,s);MP("L",L,NE,s);MP("H",H,N,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message bryanguo ( user )
+% 9 point circle !!
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 9 point circle
+
+%------------------
+%-- Message vsar0406 ( user )
+% 9 point circle?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% nine point circle
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% 9 point circle.
+
+%------------------
+%-- Message MTHJJS ( user )
+% 9 point circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% 9 point circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+The image depicts the circumcircle of the medial triangle. In addition to passing through the midpoints of the sides of triangle $ABC$, this circle also passes through the feet of the altitudes of $ABC$ ($X$, $Y$, and $Z$ in the diagram), and the midpoints of the segments connecting the orthocenter of $ABC$ to the vertices of $ABC$ (these points are called $K$, $L$, and $M$ in the diagram).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since it passes through these 9 points, this circle is usually called the \textbf{9-point circle}.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Of course, the next thing we'll do is prove that this circle does in fact pass through all these points. What tool will we likely make use of?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% homothety
+
+%------------------
+%-- Message vsar0406 ( user )
+% homothety
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Cyclic quadrilaterals?
+
+%------------------
+%-- Message coolbluealan ( user )
+% homothety
+
+%------------------
+%-- Message xyab ( user )
+% homothety
+
+%------------------
+%-- Message bigmath ( user )
+% homothety
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Homothety?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message pritiks ( user )
+% cyclic quadrilaterals?
+
+%------------------
+%-- Message ww2511 ( user )
+% cyclic quadrilaterals?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% homothety
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% homothety
+
+%------------------
+%-- Message apple.xy ( user )
+% cyclic quadrilaterals?
+
+%------------------
+%-- Message mark888 ( user )
+% cyclic quadrilaterals
+
+%------------------
+%-- Message mustwin_az ( user )
+% homothety
+
+%------------------
+%-- Message bryanguo ( user )
+% cyclic quadrilaterals?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both homothety and cyclic quadrilaterals apply.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We will present the latter as our way.
+
+%------------------
+%-- Message razmath ( user )
+% right angles?
+
+%------------------
+%-- Message MathJams ( user )
+% angle chase
+
+%------------------
+%-- Message Achilleas ( moderator )
+Trying to prove that points are concyclic - we'll be looking for cyclic quadrilaterals. Since we're trying to prove that some groups of 4 of the 9 points are cyclic, we should be looking for equal angles or right angles among these points. A search for equal angles suggests we seek what?
+
+%------------------
+%-- Message Ezraft ( user )
+% similar triangles
+
+%------------------
+%-- Message Bimikel ( user )
+% similar triangles
+
+%------------------
+%-- Message coolbluealan ( user )
+% parallel lines
+
+%------------------
+%-- Message mustwin_az ( user )
+% similar triangles
+
+%------------------
+%-- Message myltbc10 ( user )
+% similarity
+
+%------------------
+%-- Message vsar0406 ( user )
+% similar triangles
+
+%------------------
+%-- Message dxs2016 ( user )
+% parallel lines?
+
+%------------------
+%-- Message Achilleas ( moderator )
+A search for equal angles suggests we hunt for similar triangles and parallel lines. Where are they?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(the parallel lines, for starters)
+
+%------------------
+%-- Message Trollyjones ( user )
+% FD parallel to AC, BC parallel to EF, AB parallel to ED
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\triangle ABC \sim \triangle DEF$ and $AB \parallel ED$, $EF \parallel BC$, $FD \parallel AC$
+
+%------------------
+%-- Message mark888 ( user )
+% FD||AC, EF||BC, ED||AB
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $FD \parallel AC, ED \parallel AB,$ and $EF \parallel CB$
+
+%------------------
+%-- Message bigmath ( user )
+% the sides of the medial triangle and the corresponding sides of triangle ABC
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Pairs of parallel lines are between the sides of ABC and its medial triangle
+
+%------------------
+%-- Message dxs2016 ( user )
+% EF||BC, FD||AC, ED||AB
+
+%------------------
+%-- Message SmartZX ( user )
+% AC and FD, EF and CB, ED and AB
+
+%------------------
+%-- Message christopherfu66 ( user )
+% EF and BC, FD and AC, ED and AB are parallel
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% AB is parallel to DE, BC is parallel to EF, and AC is parallel to DF
+
+%------------------
+%-- Message bryanguo ( user )
+% $ED \parallel AB, EF \parallel CB, FD \parallel AC$
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% FD and AC, DE and BA, EFand CB
+
+%------------------
+%-- Message Ezraft ( user )
+% $FE \parallel BC, FD \parallel AC, ED \parallel AB$
+
+%------------------
+%-- Message myltbc10 ( user )
+% FD||AC, EF||CB, ED||AB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given that we have lots of midpoints of various segments, we figure we can find parallel lines galore among them. For example, $K$ and $F$ are midpoints of $AH$ and $AB$, so we have $KF \parallel HB$ (since $AK/AH = AF/AB$ and $\angle HAB = \angle KAF$ implies $\triangle HAB \sim KAF$, so $KF \parallel HB$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the same argument, we can show $MD \parallel HB$, so we have $MD \parallel KF$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $F$ and $D$ are midpoints of $BA$ and $BC$, we have $FD \parallel AC$ (since $FA/BA = DC/BC$ and $\angle FBD = \angle ABC$ implies $\triangle FDB \sim  \triangle ABC$, so $FD \parallel AC$). By the same argument, we have $KM \parallel AC$, so $KM \parallel FD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we tell about $KFDM?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% parallelogram
+
+%------------------
+%-- Message Trollyjones ( user )
+% parallelogram
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's a parallelogram
+
+%------------------
+%-- Message Bimikel ( user )
+% it is a parallelogram
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $KM \parallel FD$ and $MD \parallel KF$, we know $KFDM$ is a parallelogram. Can we say even more about it?
+
+%------------------
+%-- Message razmath ( user )
+% its a rectangle
+
+%------------------
+%-- Message christopherfu66 ( user )
+% it is a rectangle
+
+%------------------
+%-- Message bryanguo ( user )
+% rectangle
+
+%------------------
+%-- Message RP3.1415 ( user )
+% its a rectangle
+
+%------------------
+%-- Message bryanguo ( user )
+% it's a rectangle
+
+%------------------
+%-- Message bigmath ( user )
+% its a rectangle
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's a rectangle
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's a rectangle.
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it's a rectangle
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's a rectangle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $AC$ is perpendicular to $BY$ and $FD \parallel AC$, we know $FD$ is perpendicular to $BY$. Since $BY$ is parallel to $MD$ and $KF$, $MD$ and $KF$ are perpendicular to $FD$ and $KFDM$ is a rectangle:
+
+%------------------
+%-- Message xyab ( user )
+% its cyclic
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It's cyclic
+
+%------------------
+%-- Message sae123 ( user )
+% cyclic because $\angle FKX = \angle FDX = 90^\circ$
+
+%------------------
+%-- Message leoouyang ( user )
+% It is cyclic
+
+%------------------
+%-- Message pritiks ( user )
+% it is cyclic?
+
+%------------------
+%-- Message MathJams ( user )
+% so it is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = dir(110), B = dir(-10), C = dir(260);
+pair E = (A+C)/2, F = (A+B)/2, D = (C+B)/2;
+pair Y = foot(B,A,C), X = foot(A,C,B), Z = foot(C,A,B);
+pair H = orthocenter(A,B,C);
+pair K = midpoint(H--A), L = midpoint(H--B), M = midpoint(H--C);
+draw(MP("A",A,N,s)--MP("B",B,rotate(180)*W,s)--MP("C",C,SW,s)--cycle);
+draw(MP("E",E,W,s)--MP("F",F,NE,s)--MP("D",D,S,s)--cycle,gray);
+draw(circumcircle(E,F,D),heavygreen);
+draw(B--MP("Y",Y,W,s)^^A--MP("X",X,SE,s)^^C--MP("Z",Z,NE,s),lightred);
+draw(K--F--D--M--cycle);
+draw(rightanglemark(M,K,F,1.5)^^rightanglemark(K,F,D,1.5)^^rightanglemark(F,D,M,1.5)^^rightanglemark(D,M,K,1.5));
+draw(rightanglemark(A,Y,B,1.5)^^rightanglemark(C,Z,B,1.5)^^rightanglemark(A,X,C,1.5));
+MP("K",K,rotate(20)*NE,s);MP("M",M,rotate(15)*S,s);MP("L",L,NE,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+That puts 4 of our 9 points on a circle. Now what?
+
+%------------------
+%-- Message pritiks ( user )
+% try finding another cyclic quadrilateral
+
+%------------------
+%-- Message xyab ( user )
+% find another cyclic quad
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's another rectangle and hence a cyclic quadrilateral?
+
+%------------------
+%-- Message Achilleas ( moderator )
+The most popular answer is $EZLY$. This does not share anything with our previous rectangle, though. How about another one?
+
+%------------------
+%-- Message MathJams ( user )
+% KELD and LFEM
+
+%------------------
+%-- Message ww2511 ( user )
+% can't we do the same thing on the other two sides of the triangle, so EKLD and EFLM
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $EFLM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can similarly show that $KEDL$ and $EFLM$ are rectangles:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pen t = black + 1.2;
+
+pair A = dir(110), B = dir(-10), C = dir(260);
+pair E = (A+C)/2, F = (A+B)/2, D = (C+B)/2;
+pair Y = foot(B,A,C), X = foot(A,C,B), Z = foot(C,A,B);
+pair H = orthocenter(A,B,C);
+pair K = midpoint(H--A), L = midpoint(H--B), M = midpoint(H--C);
+draw(MP("A",A,N,s)--MP("B",B,rotate(180)*W,s)--MP("C",C,SW,s)--cycle);
+draw(MP("E",E,W,s)--MP("F",F,NE,s)--MP("D",D,S,s)--cycle,gray);
+draw(circumcircle(E,F,D),heavygreen);
+draw(B--MP("Y",Y,W,s)^^A--MP("X",X,SE,s)^^C--MP("Z",Z,NE,s),lightred);
+draw(K--F--D--M--cycle,blue);
+draw(K--E--D--L--cycle,cyan);
+draw(E--F--L--M--cycle,magenta);
+draw(E--L^^K--D^^F--M,t);
+draw(rightanglemark(M,K,F,1.5)^^rightanglemark(K,F,D,1.5)^^rightanglemark(F,D,M,1.5)^^rightanglemark(D,M,K,1.5));
+draw(rightanglemark(A,Y,B,1.5)^^rightanglemark(C,Z,B,1.5)^^rightanglemark(A,X,C,1.5));
+MP("K",K,rotate(20)*NE,s);MP("M",M,rotate(15)*S,s);MP("L",L,NE,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The diagram shows the 3 rectangles in different colors, along with bold diagonals of the rectangles. How can we use those diagonals to show that the circumcircle of $KFDM$ is the circumcircle of the other two rectangles ($KEDL$ and $EFLM$)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How is the diagonal of a rectangle related to the rectangle's circumcircle?
+
+%------------------
+%-- Message dxs2016 ( user )
+% diagonal is diameter
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% The diagonals are diameters of the circumcircle
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's a diameter
+
+%------------------
+%-- Message Trollface60 ( user )
+% diameter
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% It's a diameter.
+
+%------------------
+%-- Message Bimikel ( user )
+% diagonal=diameter of circumcircle
+
+%------------------
+%-- Message christopherfu66 ( user )
+% it is a diameter of the circumcircle
+
+%------------------
+%-- Message trk08 ( user )
+% diameter
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The diagonal of a rectangle is a diameter of the rectangle's circumcircle
+
+%------------------
+%-- Message ca981 ( user )
+% diameter
+
+%------------------
+%-- Message pritiks ( user )
+% it is a diameter
+
+%------------------
+%-- Message Yufanwang ( user )
+% It's a diameter
+
+%------------------
+%-- Message Achilleas ( moderator )
+The diagonal of a rectangle is a diameter of its circumcircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $KFDM$ shares a diagonal with each of $KEDL$ and $EFLM$, it shares a diameter with their circumcircles. So?
+
+%------------------
+%-- Message dxs2016 ( user )
+% they are all inscribed in the same circle
+
+%------------------
+%-- Message AOPS81619 ( user )
+% They have the same circumcircle
+
+%------------------
+%-- Message coolbluealan ( user )
+% They have the same circumcircle
+
+%------------------
+%-- Message christopherfu66 ( user )
+% They all share the same circumcircle
+
+%------------------
+%-- Message mark888 ( user )
+% It's the same circle!
+
+%------------------
+%-- Message ca981 ( user )
+% They are all on same circle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% they are on the same circle
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Their circumcircles are the same.
+
+%------------------
+%-- Message Trollyjones ( user )
+% they all have the same circumcircle
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% The rectangles have the same circumcircle.
+
+%------------------
+%-- Message SlurpBurp ( user )
+% they are all inscribed in the same circle
+
+%------------------
+%-- Message Ezraft ( user )
+% the circumcircles of all the rectangles are the same circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+In other words, their circumcircles are the same.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what's left?
+
+%------------------
+%-- Message MathJams ( user )
+% X,Y,Z
+
+%------------------
+%-- Message razmath ( user )
+% feet of the altitudes
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Proving that $X, Y,$ and $Z$ lie on the circle
+
+%------------------
+%-- Message mark888 ( user )
+% X, Y, and Z
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We need to prove that $X$, $Y$, and $Z$ are on the circle
+
+%------------------
+%-- Message dxs2016 ( user )
+% Y, X, Z
+
+%------------------
+%-- Message ay0741 ( user )
+% X Y and Z
+
+%------------------
+%-- Message Ezraft ( user )
+% $X$, $Z$, and $Y$
+
+%------------------
+%-- Message Trollyjones ( user )
+% point Y and Z and X
+
+%------------------
+%-- Message pritiks ( user )
+% the point Y, Z, and X
+
+%------------------
+%-- Message SlurpBurp ( user )
+% we need to prove that the points Y, X, and Z lie on this circle
+
+%------------------
+%-- Message apple.xy ( user )
+% X,Y, and Z
+
+%------------------
+%-- Message bryanguo ( user )
+% X, Y, and Z
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to prove that one of $X$, $Y$, or $Z$ is on this circle. How do we do it?
+
+%------------------
+%-- Message razmath ( user )
+% right angles
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Right angles.
+
+%------------------
+%-- Message pritiks ( user )
+% use the right triangles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Feet of altitudes - right angles. We turn to our right angles.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Cyclic quadrilaterals created by equal right inscribed angles
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\triangle XDK,$ $\triangle YEL,$ and $\triangle ZFM$ are right triangles with the hypotenuses as diameters of the circle, so $X, Y,$ and $Z,$ as the angles with the right angle, must also lie on the circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we show that $X$ is on our circle?
+
+%------------------
+%-- Message MathJams ( user )
+% Since <KXD=90 and KD is a diameter
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% KFDX is cyclic because KDX is a right angle
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% KXM is a right angle and KM is a diameter.
+
+%------------------
+%-- Message apple.xy ( user )
+% since <X = 90 degrees in triangle XDK, and KD is a diameter of the circle
+
+%------------------
+%-- Message pritiks ( user )
+% use right triangle DXK
+
+%------------------
+%-- Message bigmath ( user )
+% KD is the diameter of the circle, and angle DXK is 90 degrees, so X must be on the circle
+
+%------------------
+%-- Message mark888 ( user )
+% the circumcircle of triangle KDX would have diameter KD
+
+%------------------
+%-- Message dxs2016 ( user )
+% since angle KXD=90 degrees due to altitude, thus KD is diameter of circumcircle of cyclic quad KMDX
+
+%------------------
+%-- Message mustwin_az ( user )
+% Since KD is diameter and $\angle KXD=90$ X must be on circle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle DXK = 90^{\circ}$ and $KD$ is a diameter
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are many ways we can prove that $X$ is on our circle. $\angle KXD = \angle KFD = 90^\circ$ is one way to show that $X$ is on the circumcircle of $KFD$ (which is our circle).angle KXD
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, $Y$ and $Z$ are on the circle, and our proof is complete. Cyclic quadrilaterals and similar triangles strike again.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The 9-point circle does pop up in a variety of olympiad problems, so it's good to be aware of it. If you're dealing with the circumcircle of the medial triangle, for example, you know that it also intersects the triangle at the feet of the altitudes of the triangle (and vice versa - the circumcircle of the orthic triangle passes through the midpoints of the side).
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{6pt}
+\textbf{One more question} about the 9-point circle. What is its radius (in terms of some significant segment lengths of triangle ABC)?
+
+%------------------
+%-- Message razmath ( user )
+% half of the circumradius of ABC
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Half the radius of the circumcircle of $\triangle ABC$
+
+%------------------
+%-- Message bryanguo ( user )
+% half the radius of the circumcircle of $ABC$
+
+%------------------
+%-- Message MathJams ( user )
+% half the radius of the circumcircle oftriangle ABC
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Half of the circumradius of $\odot (ABC)$
+
+%------------------
+%-- Message Trollyjones ( user )
+% half of the circumradius of triangle ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+The radius of the 9-point circle is one-half the circumradius of ABC because the medial triangle is similar (homothetic!) to ABC with ratio -1/2.
+
+%------------------
+%-- Message Achilleas ( moderator )
+All these facts about the 9-point circle can be invoked without proof in an Olympiad, but you should be able to rederive them if you need to.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As we noted, one could give an alternate proof using homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is a sketch of a proof. Fill in the details at your own leisure after class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Reflect the orthocenter over the midpoints of the sides and the feet of the altitudes. The resulting points are on the circumcircle of ABC. It follows that there is a homothety with center at the orthocenter, taking the circumcircle to the nine-point circle. There is also a second center of homothety for these circles, given by the centroid. The two homothety centers must be collinear with the centers of the two circles (by symmetry), showing that the center of the nine-point circle is on the Euler line.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Moving on.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we apply our understanding of parts of a triangle to some elementary construction problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll start with a pretty simple one. 
+\begin{example}
+    Construct a triangle $ABC$ given three points, $D$, $E$, and $F$, which are the midpoints of the sides of $ABC$.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+The first question we ask ourselves in most construction problems is `How does what I am given relate to what I want to construct?'
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's the answer here?  How are the midpoints related to sides of the triangle?
+
+%------------------
+%-- Message myltbc10 ( user )
+% they divide the sides into two equal parts
+
+%------------------
+%-- Message xyab ( user )
+% they divide the sides in half
+
+%------------------
+%-- Message Bimikel ( user )
+% the midpoints are in the middle of each side of ABC
+
+%------------------
+%-- Message ca981 ( user )
+% dividing side into two equal parts
+
+%------------------
+%-- Message Achilleas ( moderator )
+The midpoints of the sides bisect the sides. That's not immediately helpful in the construction. How else are $D,$ $E,$ and $F$ related to the sides?
+
+%------------------
+%-- Message xyab ( user )
+% $\triangle DEF \sim \triangle ABC$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle DEF \sim \triangle ABC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is true that the medial triangle $\triangle DEF$ is similar to $\triangle ABC$. But we can say more about it.
+
+%------------------
+%-- Message ca981 ( user )
+% this small triangle is homothety to original triangle ABC
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% there's a homothety between the two triangles
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Like I said, the sides are parallel, they're homothetic through their common centroid.
+
+%------------------
+%-- Message pike65_er ( user )
+% ABC and DEF are homothetic?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that triangle $DEF$ is homothetic to $ABC.$
+
+%------------------
+%-- Message Bimikel ( user )
+% the sides of DEF are parallel to sides of ABC
+
+%------------------
+%-- Message apple.xy ( user )
+% DE || AC, DF || BC, and FE || AB
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $DE$, $EF$, and $DF$ are parallel to $AB$, $BC$, and $AC$
+
+%------------------
+%-- Message dxs2016 ( user )
+% DE||AB, EF||BC, DF||AC
+
+%------------------
+%-- Message leoouyang ( user )
+% The corresponding sides are parallel with one another
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we construct the line $BC$?
+
+%------------------
+%-- Message Bimikel ( user )
+% we draw a line through D that's parallel to EF
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% make line parallel to EF that goes through point D
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $BC$ is parallel to $EF$ and passes through $D,$ we can construct the line which contains segment $BC$ by constructing a line through $D$ parallel to $EF.$ Doing similarly for lines containing $AB$ and $AC$ gives us our triangle (the intersections of these lines):
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+
+pair A = dir(80),C=dir(180+25),B=dir(-25), O=centroid(A,B,C);
+draw(MP("A",A,E,s)--MP("B",B,NE,s)--MP("C",C,SE,s)--cycle);
+draw(scale(1.5,A,B,.5),arrow=ArcArrows(SimpleHead));
+draw(scale(1.5,C,B,.5),arrow=ArcArrows(SimpleHead));
+draw(scale(1.5,A,C,.5),arrow=ArcArrows(SimpleHead));
+pair D = (B+C)/2, E = (A+C)/2, F = (B+A)/2;
+dot(E);dot(F);dot(D);
+draw(MP("D",D,S,s)--MP("E",E,NW,s)--MP("F",F,rotate(180)*W,s)--cycle);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message MathJams ( user )
+% How do you draw a line through D // to EF?
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is one of the basic constructions that we see in the Introduction to Geometry. Please take some time after class to think about how to do it. One way would be to construct two lines: one perpendicular to the given line and another line perpendicular to the 2nd one.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Can you mention that you can draw parallel lines on olympiad without proving it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, you can. It is a standard construction. Of course, it is better to be able to do it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+One very important note on construction problems:
+
+%------------------
+%-- Message Achilleas ( moderator )
+When you write up solutions to construction problems, your solution should consist of two parts:
+
+%------------------
+%-- Message Achilleas ( moderator )
+1) A description of the construction, complete with an example of the construction.
+
+%------------------
+%-- Message Achilleas ( moderator )
+2) Proof that the construction actually produces what you claim it produces.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Many, many students will leave off one or the other in their proofs. If you want to lose half credit, that's a good way to do it. Part 2 is probably the most frequently forgotten - you figure out the construction, scribble out how you do it, and think you're finished, then grumble when you only get 3 or 4 out of 7 points.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sometimes in class I'll let that second part slide (and ask for the proof on the message board). This, of course, is not one of those times. What do we have to prove to finish the problem?
+
+%------------------
+%-- Message pritiks ( user )
+% that the construction actually works
+
+%------------------
+%-- Message Achilleas ( moderator )
+Meaning?
+
+%------------------
+%-- Message dvrdvr ( user )
+% that D, E, and F are indeed midpoints
+
+%------------------
+%-- Message Trollyjones ( user )
+% D, E, F are the mid points
+
+%------------------
+%-- Message MathJams ( user )
+% show that D,E,F are the midpoitns
+
+%------------------
+%-- Message christopherfu66 ( user )
+% prove that D, E, and F are in fact the midpoints of the sides of ABC
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $D,E,$ and $F$ are the midpoints between the intersections
+
+%------------------
+%-- Message dvrdvr ( user )
+% That D, E, and F are indeed midpoints, which means that the construction works
+
+%------------------
+%-- Message pike65_er ( user )
+% show EA=EC, DC=DB, FA=FB
+
+%------------------
+%-- Message Trollface60 ( user )
+% D,E, and F are in fact the midpoints in the construction
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to show that $D,$ $E,$ and $F$ are in fact the midpoints of the sides of the triangle $ABC$ we have constructed. (Make sure you understand that we haven't already proven this - our construction just describes our building a triangle $ABC$ with sides parallel to those of $DEF;$ we haven't explicitly proven that $D,$ $E,$ and $F$ are the midpoints of the sides of ABC.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we finish off this proof?
+
+%------------------
+%-- Message pritiks ( user )
+% D is the midpoint of BC
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know $D,$ $E,$ and $F$ are on the sides of $ABC$ - now we just have to show that, for example, $D$ is the midpoint of $BC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Using parallelograms.
+
+%------------------
+%-- Message razmath ( user )
+% show that CDFE is a parallelogram (among others)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since we constructed the sides of $ABC$ to be parallel to those of $DEF,$ $EFDC$ and $EFBD$ are parallelograms. Therefore, $CD = EF = BD$ and we're done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Usually proving that the construction works is pretty simple, so don't mess up by forgetting it. I guarantee that every time there's a construction problem on the USAMO, a significant portion of the students who figure out the construction don't prove that it works and they lose points they shouldn't have missed out on.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Let's try a few somewhat more challenging constructions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Construct triangle $ABC$ given point $C$ and the lines that contain the angle bisectors of angles $A$ and $B$.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+pair C=dir(140),A=dir(220),B=dir(-70);
+dot(MP("C",C,N,s),heavyblue);
+//draw(C--A--B--cycle);
+draw(scale(5,A,bisectorpoint(C,A,B),.5),heavyblue,arrow=ArcArrows(SimpleHead));
+draw(scale(5.2,B,bisectorpoint(C,B,A),.35),heavyblue,arrow=ArcArrows(SimpleHead));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we make any initial observations?
+
+%------------------
+%-- Message razmath ( user )
+% we can find the incenter of ABC
+
+%------------------
+%-- Message smileapple ( user )
+% the intersection of the blue lines is the incenter of $\triangle ABC$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the intersection of the given lines is the incenter of $\triangle ABC$
+
+%------------------
+%-- Message coolbluealan ( user )
+% the intersection of the lines is the incenter of ABC
+
+%------------------
+%-- Message bigmath ( user )
+% the intersection point is the incenter of triangle ABC
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% The angle bisector of $\angle C$ will concur with the given lines.
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the angle bisector of $C$ passes through the same intersection point
+
+%------------------
+%-- Message Achilleas ( moderator )
+The intersection of our lines must be the incenter of triangle $ABC$ since it is the intersection of two angle bisectors. If we call that point $I$, we know that $CI$ bisects angle $C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+pair C=dir(140),A=dir(220),B=dir(-70);
+dot(MP("C",C,N,s),heavyblue);
+pair I = incenter(A,B,C);
+draw(C--MP("I",I,S,s),heavyblue);
+//draw(C--A--B--cycle);
+draw(scale(5,A,bisectorpoint(C,A,B),.5),heavyblue,arrow=ArcArrows(SimpleHead));
+draw(scale(5.2,B,bisectorpoint(C,B,A),.35),heavyblue,arrow=ArcArrows(SimpleHead));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Trollyjones ( user )
+% wouldn't A and B have to lie on these two lines, one on each
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, $A$ and $B$ must lie on the given lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't have a whole lot of information - there are two notable (and closely related) approaches to construction problems we can take from here.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, we could ask ourselves, what information do we have from the pieces we are given, and how can we use that information to determine anything about $ABC$?
+
+%------------------
+%-- Message sae123 ( user )
+% why don't we draw $\triangle ABC$, construct the angle bisectors, and see what observations we can make?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Second, working backwards, we assume we've completed the construction, then look at our diagram:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+pair C=dir(140),A=dir(220),B=dir(-70);
+pair I = incenter(A,B,C);
+pair Y = extension(A,C,I,B), X = extension(B,C,I,A);
+MP("Y",Y,SW,s);
+MP("X",X,scale(1.5)*E,s);
+draw(C--MP("I",I,S,s),heavyblue);
+draw(C--MP("A",A,S,s)--MP("B",B,NE,s)--cycle,red);
+draw(scale(5,A,bisectorpoint(C,A,B),.5),heavyblue,arrow=ArcArrows(SimpleHead));
+draw(scale(5.2,B,bisectorpoint(C,B,A),.35),heavyblue,arrow=ArcArrows(SimpleHead));
+dot(MP("C",C,N,s),heavyblue);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The diagram has what we'd like to construct in red and what we know how to construct (or are given) in blue. We ask ourselves how quantities (lengths or angles, for example) that we can find from just the blue items are related to other lengths or angles in the diagram.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Often we use a combination of these approaches - working forwards and backwards - to solve geometry problems. What now?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some of you suggest drawing the incircle of $ABC$. The issue is that we do not know its radius.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that the inradius is not equal to $CI$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is one problem in which knowing about the special lines of a triangle is crucial.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Have you seen the message board problems? How about $\angle AIB?$
+
+%------------------
+%-- Message razmath ( user )
+% its equal to $90+\angle ACB/2$
+
+%------------------
+%-- Message MathJams ( user )
+% it is equal to 90+<C/2
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle AIB = 180 - angle A/2 - angle B/2
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle AIB=90^\circ+\frac{\angle{ACB}}{2}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+As you should have seen on the message board, the angles formed by the angle bisectors such as $\angle AIB$ and $\angle AIY$ in the diagram are related to the angles of triangle $ABC$. Thus, we can tie something we are given ($\angle AIB$ or $\angle AIY$) to something we want to find $\angle C$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle AIB$ is $180^\circ - \angle A/2 - \angle B/2$ from triangle $AIB$, and its supplement is $\angle AIY = \angle A/2 + \angle B/2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle A + \angle B + \angle C = 180^\circ$, we have $\angle C = 180^\circ - \angle A - \angle B = 180^\circ - 2(\angle AIY)$. Since we know $\angle AIY$, we can now construct $\angle C$. Why does knowing $\angle C$ help?
+
+%------------------
+%-- Message Trollyjones ( user )
+% it can help us get two sides of triangle ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+How? For example, how do we construct the line $CB$?
+
+%------------------
+%-- Message Ezraft ( user )
+% draw a line that makes an angle of $\angle C/2$ with $CI$
+
+%------------------
+%-- Message coolbluealan ( user )
+% draw a line from CI that forms an angle of C/2
+
+%------------------
+%-- Message sae123 ( user )
+% construct $\angle C / 2$ with one side as $CI.$ This is $CB$. Same for $CA.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Knowing angle $C$ allows us to construct an angle with measure $\angle C/2$ with $C$ as a vertex and $IC$ as one side of the angle. The intersection of the other side of our angle with one of the lines will give us $A$, and constructing an angle with measure $\angle C/2$ on the other side of $IC$ will give us $B$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does this make sense?
+
+%------------------
+%-- Message Trollyjones ( user )
+% yes
+
+%------------------
+%-- Message dxs2016 ( user )
+% yes
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% completely
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we do our construction most quickly?  We could start from $\angle AIY$, double it, subtract from $180^\circ$ and so on. Is there a faster way?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is one:
+
+%------------------
+%-- Message dxs2016 ( user )
+% 90 - angle XIB?
+
+%------------------
+%-- Message sae123 ( user )
+% no you just subtract $\angle AIY$ from $90$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since we want to construct an angle at $C$ with side $CI$ and measure $C/2$, we want to make an angle with measure $C/2$ to copy. Rather than make $C$ and bisect it, we note that $\angle C/2 = 90^\circ - \angle A/2 - \angle B/2 = 90^\circ - (\angle A/2 + \angle B/2) = 90^\circ - (\angle AIY)$, so we can construct an angle with measure $C/2$ by drawing a perpendicular to $AI$ through $I$. The angle $ZIY$ has measure $90^\circ - \angle AIY = \angle C/2$. We copy this angle at $C$ with side $CI$ on either side of $CI$, and we find $A$ and $B$ as shown:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) {
+    return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));
+}
+pair C=dir(140),A=dir(220),B=dir(-70);
+pair I = incenter(A,B,C);
+pair Y = extension(A,C,I,B), X = extension(B,C,I,A);
+MP("Y",Y,SW,s);
+MP("X",X,scale(1.5)*E,s);
+draw(C--MP("I",I,S,s),heavyblue);
+draw(C--MP("A",A,S,s)--MP("B",B,NE,s)--cycle,red);
+draw(scale(4.4,A,bisectorpoint(C,A,B),.5),heavyblue,arrow=ArcArrows(SimpleHead));
+draw(scale(4.6,B,bisectorpoint(C,B,A),.35),heavyblue,arrow=ArcArrows(SimpleHead));
+draw(scale(6,I,I+rotate(-90)*(A-I),.5),green,arrow=ArcArrows(SimpleHead));
+dot(MP("Z",point(scale(6,I,I+rotate(-90)*(A-I),.5),.75),N,s));
+draw(A--I);
+
+dot(MP("C",C,N,s),heavyblue);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% and do we just pick A randomly
+
+%------------------
+%-- Message Achilleas ( moderator )
+% $A$ is determined as the intersection of the side of the angle that we construct with vertex at $C$ and the line $CI$ as one of its sides, with the blue line.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's left?
+
+%------------------
+%-- Message smileapple ( user )
+% proving that this works
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% proving this works
+
+%------------------
+%-- Message MathJams ( user )
+% show that this satisfies
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% part 2: showing it actually works
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% proving that our construction is correct
+
+%------------------
+%-- Message dxs2016 ( user )
+% prove AI, BI, CI are the angle bisectors?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Proving that this construction works
+
+%------------------
+%-- Message Achilleas ( moderator )
+We still have to prove the construction works.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Clearly our construction creates a triangle with $C$ as a vertex. We must prove that our two lines do in fact bisect angles $CAB$ and $CBA$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'll leave that proof for you to tackle on the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Next construction + parts of a triangle problem:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Construct a triangle $ABC$ given that the feet of the altitudes are $D$, $E$, and $F$ (assume points $D$, $E$, and $F$ are distinct, and not collinear).    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+With just points $D$, $E$, and $F$, we can't determine much. What is about the only thing we can do with these points?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% connect them?
+
+%------------------
+%-- Message dxs2016 ( user )
+% connect them
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% connect them
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Connect them?
+
+%------------------
+%-- Message smileapple ( user )
+% connect them
+
+%------------------
+%-- Message Ezraft ( user )
+% connect them to form a triangle
+
+%------------------
+%-- Message smileapple ( user )
+% connect them to form a triangle
+
+%------------------
+%-- Message Trollyjones ( user )
+% connect them
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% connect them?
+
+%------------------
+%-- Message MathJams ( user )
+% connect them
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can construct triangle $DEF$, which is the orthic triangle of $ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, what?
+
+%------------------
+%-- Message dxs2016 ( user )
+% work backwards?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Going forwards we feel a little stuck, so we try backwards, imagining we are finished with our construction:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+
+pair A = dir(27), B = dir(140), C = dir(270);
+draw(A--B--C--cycle);
+draw(MP("A",A,NE,s)--MP("D",foot(A,B,C),SW,s)^^MP("B",B,NW,s)--MP("E",foot(B,A,C),SE,s)^^MP("C",C,S,s)--MP("F",foot(C,A,B),N,s),heavygreen);
+draw(foot(A,B,C)--foot(B,A,C)--foot(C,A,B)--cycle,blue);
+draw(rightanglemark(C,foot(C,A,B),A,2)^^rightanglemark(B,foot(B,A,C),C,2)^^rightanglemark(A,foot(A,B,C),B,2));
+MP("H",orthocenter(A,B,C),NW,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have our triangle $ABC$, our orthic triangle $DEF$, and the altitudes (in green). We include the altitudes since they obviously may have something to do with finding our construction. Now what?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% we can use the 6 cyclic quadrilaterals in that diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+We look for ways that what we have, triangle $DEF$, is related to what we want (either triangle $ABC$ or the altitudes). What relationships can we find?
+
+%------------------
+%-- Message bryanguo ( user )
+% quadrilaterals $BFHD, AEHF,$ and $CDHE$ are cyclic.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% a lot of cyclic quadrilaterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+Quadrilaterals like $ECDH$ are cyclic, but without $C$ or $H$, we can't construct the circle. What other relationships do we have when we draw the altitudes of a triangle?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Maybe $H$ is a special point in $\triangle DEF$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nice observation. Is it?
+
+%------------------
+%-- Message coolbluealan ( user )
+% H is the incenter of DEF
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% H is the incenter of DEF.
+
+%------------------
+%-- Message Trollyjones ( user )
+% the incenter of DEF
+
+%------------------
+%-- Message mustwin_az ( user )
+% H is the incenter of triangle DEF
+
+%------------------
+%-- Message Ezraft ( user )
+% is it the intersection of the angle bisectors of $\triangle DEF$?
+
+%------------------
+%-- Message apple.xy ( user )
+% the incenter of triangle DEF
+
+%------------------
+%-- Message ca981 ( user )
+% H is the incenter of triangle DEF
+
+%------------------
+%-- Message bigmath ( user )
+% incenter of triangle DEF
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's see. We know that $AD$ bisects $\angle EDF$. Why?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can angle chase using cyclic quadrilaterals
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, this is the idea. How?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle ADE=\angle ABE=\angle FDH$ from cyclic quads $ABDE$ and $FBHD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle ADF = \angle EBF$ (since $BFHD$ is cyclic, $\angle ADF$ and $\angle EBF$ are inscribed in the same arc). $\angle EBF = \angle EBA = 90^\circ - \angle BAC = \angle ACF = \angle EDA$ (the last equality comes from cyclic quadrilateral $ECDH$). Thus, $\angle ADF = \angle EDA$ and $AD$ bisects $\angle EDF$. Are we basically there?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Yes, just do the same thing for the other angles
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% yes, it works for the other angles as well by symmetry
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes. We can construct the lines which contain the altitudes by bisecting the angles of $DEF$. We then get the sides of $ABC$ by drawing perpendiculars to these lines. For example, the perpendicular to the angle bisector of $EDF$ contains side $BC$. We construct these three perpendiculars, and their intersections give us our vertices $A$, $B$, and $C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    Note that we could have jumped straight to this construction if `orthic triangle' had made us think `where have we seen orthic triangles before'. What could we have thought of?    
+\end{remark}
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% 9 point circle.
+
+%------------------
+%-- Message Ezraft ( user )
+% drawing the 9-point circle?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 9 point circle?
+
+%------------------
+%-- Message MathJams ( user )
+% 9 point circle
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the 9 point circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+% How about \_ \_ circle?
+
+%------------------
+%-- Message vsar0406 ( user )
+% excircle?
+
+%------------------
+%-- Message Ezraft ( user )
+% the excircle of $\triangle DEF$?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% excircle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We might then have recalled that in any triangle $XYZ,$ $XYZ $ is the \emph{orthic triangle} of triangle $ABC,$ where $A,$ $B,$ and $C$ are the \emph{centers of the excircles} of $XYZ.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This observation makes us see that `construct triangle $ABC$ given its orthic triangle $DEF$' is the same problem as `find the excenters of triangle $DEF$', since we know that $DEF$ is the orthic triangle of the triangle with vertices at the excenters of $DEF$. Finding the excenters of $DEF$ is easy - we just construct the external bisectors of $DEF$ and find where they intersect.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'll leave the proof that our construction works, and another interesting question about this problem, for the message board.
+
+%------------------
+%-- Message Ezraft ( user )
+% that simplifies things a lot
+
+%------------------
+%-- Message Achilleas ( moderator )
+% True! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Construct a triangle given the length $c$ of $AB$, the radius $r$ of its incircle, and the radius $r_c$ of the excircle tangent to $AB$ and the extensions of $BC$ and $CA$.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where should we begin?  What should we draw?
+
+%------------------
+%-- Message smileapple ( user )
+% a finished diagram
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the finished diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not really clear on exactly what we have when we are given $c$, $r$, and $r_c$, we draw a diagram of triangle ABC with the incircle and the appropriate excircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(275);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(2)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+draw(scale(2.3,C,B,0),arrow=ArcArrow(SimpleHead));
+draw(A--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1.7,C,Z,0),arrow=ArcArrow(SimpleHead));
+dot(MP("I",I,N,s)^^MP("Z",Z,S,s));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+This clearly isn't enough. At the very least, we need to label a few more points. We probably need to draw in some more lines. What points should we label and what lines should we draw?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Notice that we don't immediately go nuts drawing in lines and labeling things - we should take a more orderly approach so our diagram doesn't become horrifying. We should start with what we think will be most useful.)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Are we given any random radius?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% I am not sure what you mean by random. We are given the inradius of $\triangle ABC$, and the radius of one of its excircles.
+
+%------------------
+%-- Message mustwin_az ( user )
+% Points of tangency
+
+%------------------
+%-- Message trk08 ( user )
+% the tangent points to the excircle
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Connect Point I with the points of tangency at AB, AC, and BC?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We are given $r$ and $r_c$, so we should probably sketch in a few radii. The most useful typically are those drawn to points of tangency since they give us perpendicular lines. We sketch in the two obvious radii of each circle and label the tangent points.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another point that might be useful is the point where $CI$ hits $AB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that we don't draw in the other angle bisectors immediately; only $CI$ relates both circles. Furthermore, do we think we're going to get through this problem by chasing lengths or by chasing angles?
+
+%------------------
+%-- Message mark888 ( user )
+% lengths
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% lengths?
+
+%------------------
+%-- Message pritiks ( user )
+% chasing lengths
+
+%------------------
+%-- Message Ezraft ( user )
+% chasing lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're somewhat confident we're going to get through this with lengths rather than angles; it's possible we'll use angles, but at this point, there doesn't appear any way at all to relate $c$, $r$, and $r_c$ to angles in any way.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, here's what we have now:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(275);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(2)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(2)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(2.3,C,B,0),arrow=ArcArrow(SimpleHead));
+draw(A--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1.7,C,Z,0),arrow=ArcArrow(SimpleHead));
+//draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2));
+MP("K",K,NW,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our radii are perpendicular at the points of tangency. We draw in our little boxes. Always draw in these little boxes to show right angles - it's too easy to forget they're there if you don't (also, one of those little boxes could catch your eye later in the problem at just the right time).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(275);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(2)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(2)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(2.3,C,B,0),arrow=ArcArrow(SimpleHead));
+draw(A--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1.7,C,Z,0),arrow=ArcArrow(SimpleHead));
+draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2));
+MP("K",K,NW,s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know $IF \parallel ZY$ and $ID \parallel XZ$. Does this help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Reading the message board problems before class would have helped so much)
+
+%------------------
+%-- Message Achilleas ( moderator )
+This may help enormously. We know $IF = ID = r$ and $ZY = ZX = r_c$, so if we could figure out either length $FY$ or $XD$, we'd be plenty happy, as we could then make a big step in our construction.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For example, we could construct a segment with length $FY$, draw perpendiculars $ZY$ and $IF$ with lengths $r_c$ and $r$. We then have an excenter ($Z$), an incenter ($I$), and pick up a vertex, $C$, from the intersection of lines $ZI$ and $FY$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hmmm. Can we figure out $FY$ or $XD$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Time to break out what we know about lengths of various segments when dealing with incircles and excircles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $BF$ in terms of $a,b,c$, the side lengths of $\triangle ABC$, and its semiperimeter?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Triangle similarity does not help right now)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Again, this was a week 3 message board problem)
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $BF = s-b$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $s-b$
+
+%------------------
+%-- Message coolbluealan ( user )
+% s-b
+
+%------------------
+%-- Message Bimikel ( user )
+% BF=s-b
+
+%------------------
+%-- Message MathJams ( user )
+% s-b
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $s-b$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $CF$?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% $CF=s-c$
+
+%------------------
+%-- Message MathJams ( user )
+% s-c
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $s-c$
+
+%------------------
+%-- Message coolbluealan ( user )
+% s-c
+
+%------------------
+%-- Message Bimikel ( user )
+% $s-c$
+
+%------------------
+%-- Message dxs2016 ( user )
+% s-c
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $s - c$
+
+%------------------
+%-- Message maxlangy ( user )
+% CF = s-c
+
+%------------------
+%-- Message Achilleas ( moderator )
+And how about $AD$?
+
+%------------------
+%-- Message MathJams ( user )
+% s-a
+
+%------------------
+%-- Message Trollyjones ( user )
+% s-a
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $s-a$
+
+%------------------
+%-- Message coolbluealan ( user )
+% s-a
+
+%------------------
+%-- Message mark888 ( user )
+% s-a
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $s -a$
+
+%------------------
+%-- Message Bimikel ( user )
+% $s-a$
+
+%------------------
+%-- Message leoouyang ( user )
+% s - a
+
+%------------------
+%-- Message dxs2016 ( user )
+% s-a
+
+%------------------
+%-- Message pritiks ( user )
+% s-a
+
+%------------------
+%-- Message maxlangy ( user )
+% AD = s-a
+
+%------------------
+%-- Message vsar0406 ( user )
+% s-a
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $BF = BD = s - b$ and $CF = s - c$ and $AD = s - a$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about lengths $BY$ and $AX$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(which is which?)
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% BY=s-a and AX=s-b.
+
+%------------------
+%-- Message coolbluealan ( user )
+% BY=s-a and AX=s-b
+
+%------------------
+%-- Message Achilleas ( moderator )
+As you should have learned from working the Week 3 message board problems, $BY = s - a$ and $AX = s - b$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we're getting somewhere. What next?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $FY?$
+
+%------------------
+%-- Message mustwin_az ( user )
+% 2s-a-b
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% 2s - a - b
+
+%------------------
+%-- Message Trollyjones ( user )
+% 2s-a-b
+
+%------------------
+%-- Message mark888 ( user )
+% FY=2s-b-a
+
+%------------------
+%-- Message dxs2016 ( user )
+% 2s-b-a
+
+%------------------
+%-- Message Achilleas ( moderator )
+How does this simplify?
+
+%------------------
+%-- Message coolbluealan ( user )
+% FY=s-b+s-a=c
+
+%------------------
+%-- Message MathJams ( user )
+% c
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $c$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $c$
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% c
+
+%------------------
+%-- Message Ezraft ( user )
+% $c$
+
+%------------------
+%-- Message Bimikel ( user )
+% $c$
+
+%------------------
+%-- Message coolbluealan ( user )
+% c
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% simplifies to c
+
+%------------------
+%-- Message Achilleas ( moderator )
+$FY = BY + BF = s - b + s - a = 2s - a - b = c$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Jackpot. We know $c.$ Now what do we do? Can we start our construction?
+
+%------------------
+%-- Message Yufanwang ( user )
+% Yes
+
+%------------------
+%-- Message MathJams ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $FY$, so we can start our construction. We start with our segment of length $c$ (which we call $FY$ to match our diagram) and draw perpendiculars of length $IF$ and $ZY.$ $I$ and $Z$ are the centers of our incircle and excircle. Then we extend lines $IZ$ and $FY$ to meet at $C.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(2)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+//draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+MP("C",C,W,s);
+//draw(incircle(A,B,C),heavygreen);
+//draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+//draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(2)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(MP("F",F,S,s)--MP("I",I,N,s)^^MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(1,C,Y,0));
+//draw(A--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1,C,Z,0));
+//draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2));
+draw(rightanglemark(I,F,C,2)^^rightanglemark(Z,Y,B,2),heavyred);
+//MP("K",K,NW,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we done?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need $A$ and $B.$ How are we going to get them?  What else can we easily construct?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% construct the circles first?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Construct the circles
+
+%------------------
+%-- Message bryanguo ( user )
+% excircle and incircle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can construct our incircle and excircle, as well as the ray through $C$ on which point $A$ must lie (since $\angle ICY = \angle ICA$):
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(1.7)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+//draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+MP("C",C,W,s);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+//draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(2)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(MP("F",F,S,s)--MP("I",I,N,s)^^MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(1,C,Y,0));
+draw(C--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1,C,Z,0));
+//draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2));
+draw(rightanglemark(I,F,C,2)^^rightanglemark(Z,Y,B,2),heavyred);
+//MP("K",K,NW,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+$A$ and $B$ elude us yet. Don't forget we can look back at our 'done' diagram for hints:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(1.7)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+MP("C",C,W,s);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(3)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(1.4,C,Y,0),arrow=ArcArrow(SimpleHead));
+draw(C--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1.6,C,Z,0),arrow=ArcArrow(SimpleHead));
+draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2),heavyred);
+MP("K",K,NW,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Draw a common internal tangent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could just construct the internal tangent to the two circles - we know that $AB$ is tangent to both circles. This isn't an entirely trivial construction. See if you can figure it out. In this case, we have plenty of extra information, so the construction of $AB$ is even easier. What's a quicker way than finding the general construction of an internal tangent?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(If you don't see it - parallel and perpendicular lines are always good things to find. Are there any in our 'done' diagram that we haven't identified?  Keep in mind we're looking for $A$ and $B$ - so you should focus on those.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: How about the line $IB$? How is it related to $BZ$?)
+
+%------------------
+%-- Message Yufanwang ( user )
+% Perpendicular!
+
+%------------------
+%-- Message Yufanwang ( user )
+% IB is perpendicular to BZ
+
+%------------------
+%-- Message dxs2016 ( user )
+% perpendicular?
+
+%------------------
+%-- Message MathJams ( user )
+% <IBZ=90
+
+%------------------
+%-- Message Achilleas ( moderator )
+In our `done' diagram, we know that $IB$ is perpendicular to $BZ$ ($IB$ is an internal angle bisector and $BZ$ an external one). Given this, how can we find point $B$ given points $I,$ $Z$ and line $FY?$
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Okay, we draw the circle with diameter IZ, we know A and B are both on it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We construct a circle with diameter $IZ.$ Where this circle meets our rays from $C$ at $A$ and $B$ (as we see, it produces two possibilities for $AB,$ denoted in the diagram as $AB$ and $A'B'$)
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+size(275);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(40), B = dir(-40), C = dir(210),C1 = C+scale(1.7)*(A-C);
+pair I = incenter(A,B,C), D = foot(I,A,B), F = foot(I,C,B);
+pair K = extension(C,I,A,B);
+pair Z = extension(A,bisectorpoint(C1,A,B),C,I), X = foot(Z,A,B), Y = foot(Z,C,B);
+pair A1 = IPs(C--A,Circle((I+Z)/2,length(I-Z)/2))[0];
+pair B1 = IPs(C--Y,Circle((I+Z)/2,length(I-Z)/2))[1];
+draw(MP("A",A,N,s)--MP("B",B,S,s)--MP("C",C,W,s)--cycle);
+MP("C",C,W,s);
+draw(incircle(A,B,C),heavygreen);
+draw(Circle(Z,length(Z-foot(Z,A,B))),heavygreen);
+draw(Circle((I+Z)/2,length(I-Z)/2),orange);
+draw(MP("F",F,S,s)--MP("I",I,N,s)--MP("D",D,SE,s)^^MP("X",X,scale(3)*NE,s)--MP("Z",Z,SE,s)--MP("Y",Y,S,s),heavyred);
+draw(scale(1.4,C,Y,0),arrow=ArcArrow(SimpleHead));
+draw(C--C1,arrow=ArcArrow(SimpleHead));
+draw(scale(1.6,C,Z,0),arrow=ArcArrow(SimpleHead));
+draw(rightanglemark(I,F,C,2)^^rightanglemark(I,D,B,2)^^rightanglemark(A,X,Z,2)^^rightanglemark(Z,Y,B,2),heavyred);
+draw(MP("A'",A1,NW,s)--MP("B'",B1,S,s));
+MP("K",K,NW,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since I'd like to leave enough time to thoroughly discuss one more problem, I'll leave the proof that the construction works (and one more little point we've glossed over - what if the two circles with radius $r$ and $r_c$ as constructed intersect at one or two points; in practice, you'd write up this proof as a series of cases - we've tackled the hardest case in our construction) for the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+\begin{example}
+    In acute triangle $ABC,$ the internal bisector of angle $A$ meets the circumcircle of the triangle again at $D.$ Points $E$ opposite $B$ and $F$ opposite $C$ are defined similarly. Let $X$ be the intersection of line $AD$ with the external bisectors of angles $B$ and $C. $ Points $Y$ and $Z$ are defined similarly on lines $BE$ and $CF.$    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Two things to prove:
+
+%------------------
+%-- Message Achilleas ( moderator )
+a) The area of triangle $XYZ$ is twice the area of hexagon $AFBDCE.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+b) The area of triangle $XYZ$ is at least $4$ times the area of triangle $ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair excentre(pair A, pair B, pair C) {
+  return((-abs(B - C)*A + abs(C - A)*B + abs(A - B)*C)/(-abs(B - C) + abs(C - A) + abs(A - B)));
+};
+
+unitsize(2 cm);
+
+pair A, B, C, D, E, F, I, X, Y, Z;
+
+A = dir(130);
+B = dir(210);
+C = dir(330);
+I = incenter(A,B,C);
+X = excentre(A,B,C);
+Y = excentre(B,C,A);
+Z = excentre(C,A,B);
+D = (I + X)/2;
+E = (I + Y)/2;
+F = (I + Z)/2;
+
+draw(A--F--B--D--C--E--cycle,blue);
+draw(Circle((0,0),1),red);
+draw(X--Y--Z--cycle);
+draw(A--B--C--cycle);
+draw(A--X);
+draw(B--Y);
+draw(C--Z);
+
+label("$A$", A, N, s);
+label("$B$", B, SW, s);
+label("$C$", C, SE, s);
+label("$D$", D, SW, s);
+label("$E$", E, N, s);
+label("$F$", F, SW, s);
+label("$I$", I, dir(0), s);
+label("$X$", X, S, s);
+label("$Y$", Y, NE, s);
+label("$Z$", Z, W, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could start drawing in lines and chasing angles and get there. But first let's make some observations about what we have already and what we'd like to prove.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What might we prove that would show immediately that the area of $XYZ$ is twice that of $AFBDCE$?
+
+%------------------
+%-- Message dxs2016 ( user )
+% E,D,F midpoints?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Nice observation. Which line segment is $E$ the midpoint of?
+
+%------------------
+%-- Message dxs2016 ( user )
+% IY
+
+%------------------
+%-- Message Trollyjones ( user )
+% IY
+
+%------------------
+%-- Message coolbluealan ( user )
+% IY
+
+%------------------
+%-- Message Bimikel ( user )
+% IY
+
+%------------------
+%-- Message mark888 ( user )
+% IY
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% IY
+
+%------------------
+%-- Message christopherfu66 ( user )
+% YI
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% E is the midpoint of IY
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right! $E$ is the midpoint of $IY$.
+
+%------------------
+%-- Message MathJams ( user )
+% F is the midpoint of IZ, E is the midpoint of IY and D is the midpoint of IX
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% ABC is the orthic triangle of XYZ, so its circumcircle is the 9 point circle of XYZ, so DEF are midpoints of XI, YI, and ZI, since I is the orthocenter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we could show that $[FIB] = [FZB]$, we'd be finished, since then we could cut $XYZ$ into six pieces, then split each of those pieces in half, half in the hexagon and half out of it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we show $[FIB] = [FZB]$?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% show that $FZ=FI$
+
+%------------------
+%-- Message pritiks ( user )
+% show FI = FZ
+
+%------------------
+%-- Message ay0741 ( user )
+% F is midpoint of IZ
+
+%------------------
+%-- Message leoouyang ( user )
+% By showing F is the midpoint of IZ
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we show that $IF = FZ$, then the areas of these two triangles are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+More observations?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $AX, BY, $ and $CZ$?
+
+%------------------
+%-- Message coolbluealan ( user )
+% altitudes of XYZ
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% altitudes of $\triangle XYZ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since internal bisectors are perpendicular to external bisectors, $AX$ is perpendicular to $ZY$, $BY$ is perpendicular to $ZX$, $CZ$ is perpendicular to $XY$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So $AX$, $BY$, and $CZ$ are the altitudes of $XYZ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Remember, we want to show that $IF = FZ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can you tell me about the circumcircle of triangle $ABC$?
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is the nine point circle of XYZ
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% 9 point circle of $\triangle XYZ$
+
+%------------------
+%-- Message Trollyjones ( user )
+% 9 point circle of XYZ
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's the 9 point circle of triangle $XYZ$
+
+%------------------
+%-- Message Ezraft ( user )
+% it is the 9 point circle of $\triangle ZXY$
+
+%------------------
+%-- Message MathJams ( user )
+% 9 point circle of XYZ
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circle passes through $A$, $B$, and $C$, which are the feet of the altitudes of $XYZ$. So that circle is the 9-point circle of $XYZ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $I$?
+
+%------------------
+%-- Message bryanguo ( user )
+% $I$ is the orthocenter of $\triangle XYZ$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is the orthocenter of XYZ
+
+%------------------
+%-- Message Trollyjones ( user )
+% well it is the incenter of ABC and the orthocenter of XYZ
+
+%------------------
+%-- Message Ezraft ( user )
+% $I$ is the orthocenter of $\triangle XYZ$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% I is the orthocenter of XYZ
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% I is the orthocenter of triangle $XYZ$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $I$ is the orthocenter of $XYZ$. The 9-point circle of $XYZ$ goes through the midpoints of $XI$, $YI$, and $ZI$ as we proved earlier in class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, F is the midpoint of IZ (and D is the midpoint of IX and E the midpoint of IY).
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, that knocks out part (a). Since the circumcircle of $ABC$ is the 9-point circle of $XYZ$, $D$, $E$, and $F$ are the midpoints of $XI$, $YI$, and $ZI$. Thus, $[FIB] = [FZB]$ and likewise around our hexagon. Hence, we deduce that the area of hexagon $AFBDCE$ is half the area of $XYZ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next up, part (b).
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to show that the area of XYZ is at least 4 times the area of ABC. Where should we start?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thinking that our two parts might not be entirely unrelated, we rewrite the question in terms of what we already know about $[XYZ]$ (i.e. that $[XYZ] = 2[AFBDCE]$). Thus our question becomes proving that $[AFBDCE] \ge 2[ABC]$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we wonder - how can we relate that hexagon to $ABC?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both are inscribed in the same circle. $A,$ $B,$ and $C$ are just given points. Can we say anything interesting about $D,$ $E,$ and $F$ besides what we've already found?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Midpoints of the arcs.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Points $D,$ $E,$ and $F$ are midpoints of arcs $BC,$ $AC,$ and $AB,$ respectively.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In part (a) we strategically broke up the hexagon. Is there another useful dissection we should consider?
+
+%------------------
+%-- Message dxs2016 ( user )
+% perpendicualr bisectors of sides of ABC?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about a point on them? 
+
+%------------------
+%-- Message vsar0406 ( user )
+% the circumcenter of ABC?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could consider the center of our circle, and draw radii to $A,$ $B,$ $C,$ $D,$ $E,$ $F$ (radii are often useful).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+pair excentre(pair A, pair B, pair C) {
+  return((-abs(B - C)*A + abs(C - A)*B + abs(A - B)*C)/(-abs(B - C) + abs(C - A) + abs(A - B)));
+};
+
+unitsize(2 cm);
+
+pair A, B, C, D, E, F, I, X, Y, Z;
+
+A = dir(130);
+B = dir(210);
+C = dir(330);
+I = incenter(A,B,C);
+X = excentre(A,B,C);
+Y = excentre(B,C,A);
+Z = excentre(C,A,B);
+D = (I + X)/2;
+E = (I + Y)/2;
+F = (I + Z)/2;
+
+draw(A--F--B--D--C--E--cycle,blue);
+draw((0,0)--A,red);
+draw((0,0)--B,red);
+draw((0,0)--C,red);
+draw((0,0)--D,red);
+draw((0,0)--E,red);
+draw((0,0)--F,red);
+draw(Circle((0,0),1));
+draw(X--Y--Z--cycle);
+draw(A--B--C--cycle);
+draw(A--X);
+draw(B--Y);
+draw(C--Z);
+
+label("$A$", A, N, s);
+label("$B$", B, SW, s);
+label("$C$", C, SE, s);
+label("$D$", D, SW, s);
+label("$E$", E, N, s);
+label("$F$", F, SW, s);
+label("$O$", (0,0), dir(0), s);
+label("$X$", X, S, s);
+label("$Y$", Y, NE, s);
+label("$Z$", Z, W, s);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+$O$ is the center, our radii are in red. How does this help?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about $OD,$ $OE,$ and $OF?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% they are perpendicular to AB, BC, and CA
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Perpendicular to the sides of ABC and they have the same length
+
+%------------------
+%-- Message Achilleas ( moderator )
+$OD,$ $OE,$ and $OF$ are perpendicular bisectors of the sides of $ABC$ (make sure you see why; $D,$ $E,$ $F$ are midpoints of arcs $BC,$ $AC,$ and $AB,$ so radii $OD,$ $OE,$ and $OF$ bisect chords $BC,$ $AC,$ and $AB,$ respectively).
+
+%------------------
+%-- Message Achilleas ( moderator )
+So? How can we write the area of hexagon $AFBDCE?$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $(OF*AB+OE*AC+OD*BC)/2$
+
+%------------------
+%-- Message Trollyjones ( user )
+% (OF*AB+OE*AC+OD*BC)/2
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $OD,$ $OE,$ and $OF$ are perpendicular bisectors of the sides of $ABC,$ we have $$ [AFBDCE] = [BDCO] + [CEAO] + [AFBO] = \frac{1}{2} [(R)(BC) + (R)(AC) + (R)(AB)] = (R/2)(p), $$ where $p$ is the perimeter of $ABC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, now how can rewrite our original question?
+
+%------------------
+%-- Message bryanguo ( user )
+% (R/2)(p)>=2[ABC]
+
+%------------------
+%-- Message dxs2016 ( user )
+% Rp/2 >= 2[ABC]?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wanted to show that $[AFBDCE] \ge 2[ABC]$; using the above for $[AFBDCE]$, we wish to show $Rp/2 \ge 2[ABC]$. How can we rewrite this desired inequality?
+
+%------------------
+%-- Message coolbluealan ( user )
+% prove R*p/2>=r*p/2
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could try expressions for $[ABC]$. We could try either $[ABC] = abc/4R$ or $[ABC] = rs$, since both involve items in our desired inequality ($s$ is $p/2$, and $R$ is already present). Using $abc/4R$ gives us something messy, so we try $[ABC] = rs$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our inequality becomes $Rp/2 \ge 2rs$, or $R \ge 2r$. So all we have to do is show that $R \ge 2r$ and we're done. How can we do that?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Euler's formula says that
+
+%------------------
+%-- Message Achilleas ( moderator )
+It's such a simple inequality - can we arrive at it with a 'physical' approach (i.e. show that the circumradius is at least twice the inradius by comparing a couple circles - what do we have to do to achieve this?)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we find a circle with radius $2r$ that is obviously no larger than the circumcircle, or a circle with radius $R/2$ that is obviously larger than the incircle?
+
+%------------------
+%-- Message MathJams ( user )
+% 9 point circle
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the nine point circle
+
+%------------------
+%-- Message coolbluealan ( user )
+% 9 point circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's the radius of the 9-point circle?
+
+%------------------
+%-- Message vsar0406 ( user )
+% R/2
+
+%------------------
+%-- Message MathJams ( user )
+% R/2
+
+%------------------
+%-- Message coolbluealan ( user )
+% R/2
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% R/2
+
+%------------------
+%-- Message dxs2016 ( user )
+% R/2?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% R/2
+
+%------------------
+%-- Message Achilleas ( moderator )
+The 9-point circle of any triangle has radius $R/2$. It is at least as large as the incircle, since the incircle only touches each side in at most one point and the 9-point circle touches each side in at least one point. Therefore, $R/2 \ge r$, and our proof is complete.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    Do keep in mind that when you write up the proof, you would write it forwards rather than backwards as we've worked it. In other words, you show that $R/2 \ge r$, then multiply by $2s$ and show that the expressions on either side are the areas of the hexagon and $ABC,$ then invoke part (a) to arrive at the desired inequality.    
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Always keep your mind open to looking at the problem from different directions; just because $ABC$ is our initial triangle doesn't mean we have to view everything in relationship to $ABC.$ There are other triangles, and it may be better to focus on one of them as our 'main' triangle. In this problem, focusing on $XYZ$ instead of $ABC$ took the first problem apart.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    By the way, it turns out that the inequality $R/2 \ge r$ is slightly famous. It's known as \textbf{Euler's inequality}. See \url{https://www.maa.org/sites/default/files/Nelsen2-0859469.pdf} for proofs without words.    
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+We will take a further look at constructions in next week's class.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Make sure you study the message board problems and review this class transcript before grappling with the homework problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thank you all! Have a wonderful time and see you next week. 
+
+

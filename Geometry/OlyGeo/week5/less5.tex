@@ -1,0 +1,3690 @@
+
+\section{Session Transcript}
+%------------------
+%-- Message Achilleas ( moderator )
+Today we will tackle a few more challenging construction problems. I stress constructions not because they are particularly common but because deeply understanding constructions leads to a deep understanding of basic Euclidean geometry.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll dive right into the problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Given a right triangle $ABC,$ construct a point $N$ inside the triangle such that angles $NBC,$ $NCA,$ and $NAB$ are equal.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where should we start?
+
+%------------------
+%-- Message MathJams ( user )
+% draw a diagram so we have an idea where N is
+
+%------------------
+%-- Message mark888 ( user )
+% Draw a diagram!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% finished diagram?
+
+%------------------
+%-- Message Trollface60 ( user )
+% draw a completed construction
+
+%------------------
+%-- Message chardikala2 ( user )
+% start from the end?
+
+%------------------
+%-- Message dxs2016 ( user )
+% diagram
+
+%------------------
+%-- Message coolbluealan ( user )
+% diagram
+
+%------------------
+%-- Message pritiks ( user )
+% draw a diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+We start by sketching the 'finished' figure and looking for some information, or some way to relate what we want $(N)$ to what we have $(ABC).$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we going to chase lengths or angles?
+
+%------------------
+%-- Message Ezraft ( user )
+% angles
+
+%------------------
+%-- Message mark888 ( user )
+% Angles
+
+%------------------
+%-- Message Trollface60 ( user )
+% angles
+
+%------------------
+%-- Message AOPS81619 ( user )
+% The angles
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Probably angles
+
+%------------------
+%-- Message Catherineyaya ( user )
+% angles
+
+%------------------
+%-- Message coolbluealan ( user )
+% angles
+
+%------------------
+%-- Message RP3.1415 ( user )
+% angles probably
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% angles
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% angles
+
+%------------------
+%-- Message MathJams ( user )
+% angle chase
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angles
+
+%------------------
+%-- Message bigmath ( user )
+% Angles
+
+%------------------
+%-- Message bryanguo ( user )
+% angles
+
+%------------------
+%-- Message dxs2016 ( user )
+% angles
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% angles
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our 'finished' figure has a lot more information about angles than about lengths, so let's chase angles. With nothing obvious standing out we label a couple of angles and start chasing.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real tmp = 30;
+pair B = dir(180-tmp), C = dir(180+tmp), A = dir(-tmp);
+path circ = Circle((B+C)/2, length(B-C)/2);
+pair X = IPs(C--(C+(B-A)),circ)[1];
+pair N = IPs(A--X,circ)[0];
+draw(MP("A",A,SE,s)--MP("B",B,rotate(180)*S,s)--MP("C",C,S,s)--cycle);
+draw(N--A^^C--MP("N",N,NE,s)--B);
+markscalefactor=0.025;
+draw(anglemark(C,B,N)^^anglemark(B,A,N)^^anglemark(A,C,N));
+draw(rightanglemark(B,C,A,2));
+MP("x",A,rotate(-20)*scale(10)*W,s);
+MP("x",C,rotate(10)*scale(10)*E,s);
+MP("y",C,rotate(65)*scale(5)*E,s);
+MP("x",B,rotate(10)*scale(10)*S,s);
+MP("z",B,rotate(40)*scale(5)*S,s);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Notice that we only stick in as many labels as we need. We don't need to label $\angle CAN$ because we can determine that in terms of the other labels we've placed already. Same goes for all the angles at $N.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we make any observations?
+
+%------------------
+%-- Message bigmath ( user )
+% x+y=90 degrees
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $x+y = 90^{\circ}$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle BNC=90^\circ$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $y=90^{\circ}-x$
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle BNC = 90 degrees
+
+%------------------
+%-- Message MathJams ( user )
+% $\angle BNC=90^{\circ}$
+
+%------------------
+%-- Message coolbluealan ( user )
+% angle BNC seems to be a right angle
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\triangle BNC$ looks like a right triangle
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle BNC = 90^{\circ}$
+
+%------------------
+%-- Message leoouyang ( user )
+% Angle BNC is 90 degrees
+
+%------------------
+%-- Message Achilleas ( moderator )
+The right angle at $C$ gives us $x + y = 90^\circ.$ How does this help?
+
+%------------------
+%-- Message pritiks ( user )
+% angle BNC is 90 degrees
+
+%------------------
+%-- Message MathJams ( user )
+% it gives us right angle $BNC$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle CNB = 90$ degrees
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can apply this to $\triangle BNC$ to get that $\angle BNC = 90^\circ$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% This gives us that $\angle BNC= 90^\circ$.
+
+%------------------
+%-- Message Trollface60 ( user )
+% angle BNC is right
+
+%------------------
+%-- Message Achilleas ( moderator )
+This tells us that $\angle BNC$ is a right angle. That's useful information. Why does that help us find $N?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% N is on the circle with diameter BC
+
+%------------------
+%-- Message MathJams ( user )
+% N lies on a semicircle with center of the midpoint of BC
+
+%------------------
+%-- Message ca981 ( user )
+% Using BC as diameter, draw circle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It must be on the circle with diameter $BC$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% draw circle with diameter $BC$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is on the circle with diameter $BC$
+
+%------------------
+%-- Message bryanguo ( user )
+% $N$ lies on the circle with diameter $AC$
+
+%------------------
+%-- Message smileapple ( user )
+% $N$ is on the semicircle with diameter $BC$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% N is on circle with diameter BC
+
+%------------------
+%-- Message vsar0406 ( user )
+% Because we know that the circumcircle of BNC has diameter BC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $BNC$ is a right angle, point $N$ is on the circle with diameter $BC.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is very important - if you are hunting for a point and find that this point is the vertex of a right angle of a right triangle where the other two vertices are fixed, you know that the point is on the circle with the hypotenuse as diameter. Why does it make us happy to learn that our point is on a circle we can construct?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's the intersection of the circle and something else
+
+%------------------
+%-- Message MathJams ( user )
+% we can maybe find an intersection, so that we can find the exact point
+
+%------------------
+%-- Message Ezraft ( user )
+% it allows us to eventually construct the point by drawing the intersection of something and the circle
+
+%------------------
+%-- Message sae123 ( user )
+% now we just need one more line or circle its on
+
+%------------------
+%-- Message Achilleas ( moderator )
+Once we've found that our point is on a circle we can construct, all we have to do is show that the point is also on some line or circle or whatever, and we can locate the point at the intersection of our original circle and the line/circle/whatever.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We draw our circle and then look for more.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real tmp = 30;
+pair B = dir(180-tmp), C = dir(180+tmp), A = dir(-tmp);
+path circ = Circle((B+C)/2, length(B-C)/2);
+pair X = IPs(C--(C+(B-A)),circ)[1];
+pair N = IPs(A--X,circ)[0];
+draw(circ,heavygreen);
+draw(MP("A",A,SE,s)--MP("B",B,rotate(180)*S,s)--MP("C",C,S,s)--cycle);
+draw(N--A^^C--MP("N",N,NE,s)--B);
+markscalefactor=0.025;
+draw(anglemark(C,B,N)^^anglemark(B,A,N)^^anglemark(A,C,N));
+draw(rightanglemark(B,N,C,2)^^rightanglemark(B,C,A,2));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Chasing angles with what we have so far doesn't appear too helpful.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AC$ is also tangent to the circle
+
+%------------------
+%-- Message MathJams ( user )
+% AC is tangent to our circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right. It is true that $\overline{AC}$ is tangent to the circle.
+
+%------------------
+%-- Message dxs2016 ( user )
+% connect a line?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Often we have to explore a little - add a few lines here or there. Are there any lines that might be useful?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $AN$ would be useful if we could construct it
+
+%------------------
+%-- Message sae123 ( user )
+% extend AN towards BC?
+
+%------------------
+%-- Message chardikala2 ( user )
+% extend BN to meet AC
+
+%------------------
+%-- Message SlurpBurp ( user )
+% extend $BN$ to meet $CA$?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Extend $CN$?
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% intersection of AB and the circle to N
+
+%------------------
+%-- Message pritiks ( user )
+% extend BN?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Extend $AN$ past $N?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We might consider extending any of $AN$, $BN$, or $CN$. Do any of them give us anything interesting?
+
+%------------------
+%-- Message ca981 ( user )
+% extend AN to BC
+
+%------------------
+%-- Message bryanguo ( user )
+% $AN$ is interesting
+
+%------------------
+%-- Message Achilleas ( moderator )
+Extending $AN$ seems to be the most promising. Why?
+
+%------------------
+%-- Message MathJams ( user )
+% it makes use of the circle (cyclic quadrilateral)
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% It intersects the diameter of the circle we constructed, most relevant
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% It intersects the green circle at $N$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real tmp = 30;
+pair B = dir(180-tmp), C = dir(180+tmp), A = dir(-tmp);
+path circ = Circle((B+C)/2, length(B-C)/2);
+pair X = IPs(C--(C+(B-A)),circ)[1];
+pair N = IPs(A--X,circ)[0];
+pair Y = IPs(A--X,B--C)[0];
+draw(circ,heavygreen);
+draw(MP("A",A,SE,s)--MP("B",B,rotate(180)*S,s)--MP("C",C,S,s)--cycle);
+draw(MP("X",X,SW,s)--A^^C--MP("N",N,NE,s)--B);
+MP("Y",Y,NE,s);
+markscalefactor=0.025;
+draw(anglemark(C,B,N)^^anglemark(B,A,X)^^anglemark(A,C,N));
+draw(rightanglemark(B,N,C,2)^^rightanglemark(B,C,A,2));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is promising as we can hit both $BC$ and the circle with it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does it help?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $XC \parallel AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle NAB=\angle NBC=\angle NXC,$ so $AB\parallel CX$
+
+%------------------
+%-- Message MathJams ( user )
+% since $\angle AXC=\angle BAX$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle CXN=\angle XAB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle YXC = \angle YAB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle AXC=\angle CBN=\angle XAB$
+
+%------------------
+%-- Message ca981 ( user )
+% angle CXN=angle CBN= angle XAB
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% angle CXA is equal to angle CBN and thus angle NAB
+
+%------------------
+%-- Message SmartZX ( user )
+% Angle CXN = Angle CBN = Angle XAB
+
+%------------------
+%-- Message Achilleas ( moderator )
+We connect our $X$ to $B$ and $C$ and see that $\angle CXN = \angle CBN$ since they are inscribed in the same arc.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real tmp = 30;
+pair B = dir(180-tmp), C = dir(180+tmp), A = dir(-tmp);
+path circ = Circle((B+C)/2, length(B-C)/2);
+pair X = IPs(C--(C+(B-A)),circ)[1];
+pair N = IPs(A--X,circ)[0];
+pair Y = IPs(A--X,B--C)[0];
+draw(circ,heavygreen);
+draw(MP("A",A,SE,s)--MP("B",B,rotate(180)*S,s)--MP("C",C,S,s)--cycle);
+draw(C--MP("X",X,SW,s)--A^^C--MP("N",N,NE,s)--B--X);
+MP("Y",Y,NE,s);
+markscalefactor=0.025;
+draw(anglemark(C,B,N)^^anglemark(B,A,X)^^anglemark(A,C,N)^^anglemark(C,X,A));
+draw(rightanglemark(B,N,C,2)^^rightanglemark(B,C,A,2));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we home?
+
+%------------------
+%-- Message MathJams ( user )
+% yep!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% yee
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Yes
+
+%------------------
+%-- Message Yufanwang ( user )
+% yes
+
+%------------------
+%-- Message Lucky0123 ( user )
+% yes
+
+%------------------
+%-- Message ca981 ( user )
+% Yes!
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're home - our equal angles tell us that $CX$ and $AB$ are parallel. (This is why we mark equal angles as we go - so we can see cyclic quadrilaterals easily or parallel lines or similar triangles, etc.)  How does this lead to our construction?
+
+%------------------
+%-- Message Achilleas ( moderator )
+You need to describe the steps carefully.
+
+%------------------
+%-- Message sae123 ( user )
+% construct the circle with diameter $BC.$ Then construct $X$ so that $CX$ is parallel to $BA.$ Then $N$ is the other intersection of $XA$ with the circle.
+
+%------------------
+%-- Message laura.yingyue.zhang ( user )
+% we construct the point X on the circle with diameter BC such that CX is parallel to AB. the intersection of AX and the circle with diameter BC is N
+
+%------------------
+%-- Message MathJams ( user )
+% Construct our circle, then a line parallel to $AB$ through C, find the intersection of the circle and the line, label as X, then the intersection of XA nd the circle gives us N
+
+%------------------
+%-- Message SmartZX ( user )
+% Construct a the circle with diameter BC, and draw a line through C parallel to AB. Let the point where this line intersects the circle other than C be X. Draw segment AX. The intersection of AX and the circle other than X is point N.
+
+%------------------
+%-- Message SlurpBurp ( user )
+% construct a line parallel to $BA$ through $C$, name where the line meets the circle again $X$, $N$ is where $XA$ meets the circle again
+
+%------------------
+%-- Message coolbluealan ( user )
+% We draw the circle with diameter BC, then draw the line through C parallel to AB. The line intersects the circle again at point X. N is the intersection of XA and the circle.
+
+%------------------
+%-- Message Catherineyaya ( user )
+% construct circle with diameter BC (find center first), construct line through C parallel to AB intersecting the circle at a point X, AX intersects the circle at N
+
+%------------------
+%-- Message Ezraft ( user )
+% first construct line $CX$ parallel to $AB$ through $C,$ then construct the circle with diameter $BC.$ Let $X$ be the intersection of this circle with $C.X$Then $N$ is the intersection between $AX$ and our circle. $\blacksquare$
+
+%------------------
+%-- Message Trollface60 ( user )
+% construct a circle with diameter BC, then construct a line through C parallel to AB intersecting with the circle at X, connect AX, then mark N as the intersection of AX and the circle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We construct $N$ by constructing the circle with $BC$ as diameter. We then draw $CX$ parallel to $AB$ ($X$ is where this parallel hits the circle). We connect $A$ to $X$ and $N$ is the other intersection of $AX$ and our circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we finished with the problem?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% no - we have to prove the construction works
+
+%------------------
+%-- Message Catherineyaya ( user )
+% check the construction works
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We have to show that the construction works
+
+%------------------
+%-- Message dxs2016 ( user )
+% we need to prove that the construction represents our problem
+
+%------------------
+%-- Message coolbluealan ( user )
+% We have to prove it works.
+
+%------------------
+%-- Message smileapple ( user )
+% Prove it works!
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% No! We need to prove that the construction works
+
+%------------------
+%-- Message pritiks ( user )
+% we have to prove the construction works
+
+%------------------
+%-- Message Achilleas ( moderator )
+Not quite - we have to prove that our construction works. What exactly do we have to prove to show that our construction works?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% we need to prove the three angles are equal
+
+%------------------
+%-- Message ay0741 ( user )
+% you have to prove that the angles are congruent
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% that is, angles $NBC$, $NCA$, and  $NAB$ are equal.
+
+%------------------
+%-- Message Trollface60 ( user )
+% angles NBC, NCA, and NAB are equal
+
+%------------------
+%-- Message MathJams ( user )
+% show that our construction makes $\angle NBC=\angle NCA=\angle NAB$
+
+%------------------
+%-- Message vsar0406 ( user )
+% that the angles NBC, NCA, and NAB are equal
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We need to show that the specified angles are congruent when $N$ is constructed
+
+%------------------
+%-- Message Ezraft ( user )
+% we have to prove that $\angle NBC = \angle NCA = \angle NAB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have to show that if we construct N as given above, that $\angle CBN = \angle BAN = \angle CAN$. How do we do it?
+
+%------------------
+%-- Message apple.xy ( user )
+% angle chase?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Use our circle and the right angles that exist
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can basically work backwards from what we did before to find the construction. We start with angle $CXN $ and work from there - how?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(most of you show only one angle congruence)
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle CXN = \angle CBN = \angle NCA$ by tangent intersection theorem, also $\angle BAX = \angle AXC$ since our lines that we constructed are parallel, so the proof is done
+
+%------------------
+%-- Message ca981 ( user )
+% ∠CXN=∠CBN (cyclic) =∠BAN (parallel) =∠NCA (tangent inscribed angle ∠NCA= ∠CBN)
+
+%------------------
+%-- Message chardikala2 ( user )
+% angle CXN and CBN subtend the same arc so they are equal and since CX is parallel to AB, if we treat AX as a transversal through these two lines, then angle CXN and angle BAX are interior angles therefore they are equal
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $\angle CXN = \angle CBN = \angle NCA$ by the tangent intersection theorem, $\angle BAX = \angle AXC$ since our lines $AB$ and $XC$ are parallel, and from the two above $\angle NBC = \angle NCA = \angle NAB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% We have $\angle NCA=\angle CXN$ because AC is tangent to the circle. We also have $\angle CXN=\angle XAB$ by parallel lines. $\angle CXN=\angle CBN$ from inscribed angles.
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle CXN=\angle CBN$ because they are equal inscribed angles, $\angle CXN=\angle NAB$ because of the parallel lines, and $\angle CXN=\angle NCA$ because $AC$ is a tangent line
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle CXN = \angle BAN$ since $CX \parallel AB $ and $\angle CXN = \angle CBN$ since $CNBX $ is cyclic
+
+%------------------
+%-- Message mark888 ( user )
+% Because $\angle CXN$ shares arc $CN$ with $\angle NBC$, $\angle CXN=\angle NBC$. Because $\angle BCA$ is $90^{circ}$, $\angle NCA=\angle NBC$ also. Because $XC||BA$, $\angle CXN=\angle NAB$. Thus, $\angle NBC=\angle NCA=\angle NAB=\angle CXA$.
+
+%------------------
+%-- Message mark888 ( user )
+% Because $\angle CXN$ shares arc $CN$ with $\angle NBC$, $\angle CXN=\angle NBC$. Because $\angle BCA$ is $90^{\circ}$, $\angle NCA=\angle NBC$ also. Because $XC||BA$, $\angle CXN=\angle NAB$. Thus, $\angle NBC=\angle NCA=\angle NAB=\angle CXA$.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle CXN=\angle XAB$ because of parallel lines, and $\angle CXN=\angle CBN$ because of cyclic quads
+
+
+$\angle NCB=90-\angle CBN$, so $\angle NCA=90-\angle NCB=\angle NBC$
+
+%------------------
+%-- Message xyab ( user )
+% $\angle CXN = \angle CBN$ because they intercept the same arc. $\angle CXN$ = $\angle BAX$ because we have parallel lines. $\angle CXN = \angle CAN$ by alternate segment theorem. thus all three angles are the same
+
+%------------------
+%-- Message vsar0406 ( user )
+% Well, we know that because lines XC and AB are parallel, angle CXN = angle NAB. And then, because line AC is tangent to the circle at C, by the tangent chord theorem, we also have that angle ACN = angle CBN = angle CXN, so that shows that angles NBC, NCA, and NAB are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle BAN = \angle CXN$ due to parallel lines $AB$ and $CX.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$\angle NBC$ is inscribed in the same arc as $\angle CXN$, so $\angle NBC = \angle CXN$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Finally, $\angle ACN = \angle CBN$ because $\angle CNB$ is right (inscribed in a semicircle) and $\angle ACB$ is right, so both $\angle CBN$ and $\angle ACN$ are complementary to angle $\angle NCB$. Now we're finished.
+
+%------------------
+%-- Message Achilleas ( moderator )
+You may wonder if we can construct, in an arbitrary triangle $ABC$, a point $N$ for which the angles $NBC$, $NCA$, and $NAB$ are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The answer is...
+
+%------------------
+%-- Message tigerzhang ( user )
+% yes?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% yes
+
+%------------------
+%-- Message mark888 ( user )
+% Yes!
+
+%------------------
+%-- Message Yufanwang ( user )
+% yes?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes! Here is a quick general construction. Form a circle through points $A$ and $B$, tangent to edge $BC$ of the triangle (think about how you can construct it).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Symmetrically, form a circle through points $B$ and $C$, tangent to edge $AC$, and a circle through points $A$ and $C$, tangent to edge $AB$. These three circles have a common point $N$, called the first Brocard point of the triangle $ABC$.
+
+%------------------
+%-- Message xyab ( user )
+% are we going to do it?
+
+%------------------
+%-- Message Achilleas ( moderator )
+You are welcome to do it on the message board after class. 
+
+%------------------
+%-- Message chardikala2 ( user )
+% we don't have enough time unfortunately (totally guessing rn)
+
+%------------------
+%-- Message Achilleas ( moderator )
+ Try to go through the details of this proof after class. By the way, the point $N$ is called the first Brocard point because there is a second Brocard point: the point $M$ such that the angles $MCB$, $MAC$ and $MBA$ are equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Next up:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Construct a right triangle $ABC$ with a given hypotenuse $c$ such that two of its medians are perpendicular.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'm guessing you know where we'll start with this one - working backwards and seeing what we can find.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's our 'finished' diagram.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+//draw(Circle((0,0),1),heavygreen);
+//draw(Circle((-0.5,0),0.5),heavygreen);
+//draw(Circle((0.5,0),0.5),heavygreen);
+//draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("G",G,scale(2)*dir(60),s);
+
+draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we know that medians $AN$ and $BP$ aren't perpendicular?
+
+%------------------
+%-- Message pritiks ( user )
+% what is P?
+
+%------------------
+%-- Message mark888 ( user )
+% Where is P?
+
+%------------------
+%-- Message Achilleas ( moderator )
+$P$ is somewhere on $AC$, while $BP$ is the median from $B$.
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% because angle AGB must be obtuse.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Because $\angle AGB$ is obtuse.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The first step of the construction is easy. What is it?
+
+%------------------
+%-- Message razmath ( user )
+% construct AB?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We are given hypotenuse $c$, so we can construct a segment $AB$ of length $c$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about point $C?$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% we know $C$ lies on the circle with diameter $AB$, assuming that $AB=c$
+
+%------------------
+%-- Message MathJams ( user )
+% lies on a circle with diameter AB
+
+%------------------
+%-- Message razmath ( user )
+% its on the circle with diameter AB
+
+%------------------
+%-- Message Ezraft ( user )
+% $C$ is on the circle with diameter $AB$
+
+%------------------
+%-- Message Trollface60 ( user )
+% C is on the circle with diameter AB
+
+%------------------
+%-- Message dxs2016 ( user )
+% on the circle formed by diameter AB
+
+%------------------
+%-- Message Catherineyaya ( user )
+% C is on the circle with diameter AB
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% C is on the circle with diameter AB.
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is on the circle with diameter AB
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's on the circle with diameter $AB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% it lies on the circle that has $AB$ as a diameter
+
+%------------------
+%-- Message ay0741 ( user )
+% its on the circle with diameter AB
+
+%------------------
+%-- Message Trollyjones ( user )
+% it lies on the circle we can construct with diameter AB
+
+%------------------
+%-- Message trk08 ( user )
+% on the circle where the diameter is c
+
+%------------------
+%-- Message christopherfu66 ( user )
+% it is on a circle with diameter AB
+
+%------------------
+%-- Message RP3.1415 ( user )
+% C lies on the circle with diameter $AB$
+
+%------------------
+%-- Message ca981 ( user )
+% On circle with AB as diameter
+
+%------------------
+%-- Message ww2511 ( user )
+% must lie on the circle with diameter AB
+
+%------------------
+%-- Message mustwin_az ( user )
+% its on the cirlce with diameter AB
+
+%------------------
+%-- Message sae123 ( user )
+% C lies on the circle with a diameter of $AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$C$ lives on the circle with diameter $AB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+draw(Circle((0,0),1),heavygreen);
+//draw(Circle((-0.5,0),0.5),heavygreen);
+//draw(Circle((0.5,0),0.5),heavygreen);
+//draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("G",G,scale(2)*dir(60),s);
+
+draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't see how to construct $C$ directly. Can we get any more information about any of the other points in our diagram?
+
+%------------------
+%-- Message MathJams ( user )
+% $M$ is the center of the circle
+
+%------------------
+%-- Message ww2511 ( user )
+% M is the center of the circle
+
+%------------------
+%-- Message RP3.1415 ( user )
+% M is the center of this circle
+
+%------------------
+%-- Message mustwin_az ( user )
+% M is the center of the circle
+
+%------------------
+%-- Message sae123 ( user )
+% $M$ is the midpoint of $AB$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $M$ is the center of the circle with diameter $AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can easily construct $M$. Since angle $AGM$ is a right angle, $G$ lives on the circle with diameter $AM$ (which we can construct).
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+draw(Circle((0,0),1),heavygreen);
+draw(Circle((-0.5,0),0.5),heavygreen);
+//draw(Circle((0.5,0),0.5),heavygreen);
+//draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("G",G,scale(2)*dir(60),s);
+
+draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It may look like we're done, but if we were working forwards building our circles, our diagram would look like this:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = (-1,0), M = (0,0), B = (1,0);
+draw(Circle((0,0),1),heavygreen);
+draw(Circle((-0.5,0),0.5),heavygreen);
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message xyab ( user )
+% lol
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Have to keep an eye on both of these diagrams as we go - going forwards and backwards. It's easy to confuse them and think you're finished when you're not.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+So now what?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any more circles or lines to draw?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We've drawn a circle for $G$, and for $C$. Can we draw one for $N?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can draw one for $N$. What circle can we draw for $N?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% N is on the circle with diameter MB
+
+%------------------
+%-- Message myltbc10 ( user )
+% circle with diameter MB
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Oh the circle with diameter $MB$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% circle with diameter $BM$
+
+%------------------
+%-- Message sae123 ( user )
+% with diameter MB
+
+%------------------
+%-- Message tigerzhang ( user )
+% Circle with diameter BM
+
+%------------------
+%-- Message Achilleas ( moderator )
+Point $N$ must be on the circle with $BM$ as a diameter. Why?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $MN$ is parallel to $AC$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes, it is. Why?
+
+%------------------
+%-- Message dxs2016 ( user )
+% M is midpoint of AB, N is midpoint of BC, MN is midsegment and is parallel to AC
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Since M and N are midpoints of AB and BC respectively
+
+%------------------
+%-- Message bigmath ( user )
+% it's one of the sides of the medial triangle
+
+%------------------
+%-- Message sae123 ( user )
+% because MN is a side of the medial triangle
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right! $M$ and $N$ are the midpoints of $\overline{AB}$ and $\overline{CB}$ respectively, so the midline theorem applies.
+
+%------------------
+%-- Message SlurpBurp ( user )
+% there is a homothety with ratio 1/2 centered at $B$ that maps $MN$ to $AC$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Because $M$ and $N$ are both medians, so we can uses SAS similarity
+
+%------------------
+%-- Message SmartZX ( user )
+% Triangle MBN and Triangle ABC are homothetic through point B
+
+%------------------
+%-- Message christopherfu66 ( user )
+% B is the center of homothety from triangle MNB to ACB
+
+%------------------
+%-- Message mustwin_az ( user )
+% the circle with diameter MB is homothetic to circle with diameter AB with B as the center of homothety
+
+%------------------
+%-- Message Achilleas ( moderator )
+The circle with $BM$ as diameter is homothetic to the large circle with center $B$ and ratio $1/2$, since diameter $BM$ is $1/2$ diameter $AB$ of the large circle. Hence, if we define point $N$ to be the point where the smaller circle meets $BC$, we see that $N$ is the midpoint of $BC$ as desired since $BN = BC/2$ due to our homothety.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+draw(Circle((0,0),1),heavygreen);
+draw(Circle((-0.5,0),0.5),heavygreen);
+draw(Circle((0.5,0),0.5),heavygreen);
+//draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("G",G,scale(2)*dir(60),s);
+
+draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're still not finished. If we could find any of $G,$ $N,$ or $C,$ we'd be finished, but we only have a circle for each. We need another line or another circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+One thing we might ask ourselves here is 'What information have I not used?'  (In general, this is extremely useful when stuck on a geometry problem. It's perhaps more useful on a geometry problem than any other type of problem.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+What information have we not used?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We've used the fact that $C$ is right, that $M$ is a midpoint, that $N$ is a midpoint, that $AGM$ is right. What haven't we used?
+
+%------------------
+%-- Message Ezraft ( user )
+% $G$ is the centroid?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the fact that $G$ is the centroid. What good does that do?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $CG = 2 GM$
+
+%------------------
+%-- Message bryanguo ( user )
+% splits the medians into ratio $2:1$
+
+%------------------
+%-- Message Ezraft ( user )
+% $AG = 2 \cdot GN$
+
+%------------------
+%-- Message apple.xy ( user )
+% AG/GN = CG/GM = 2
+
+%------------------
+%-- Message bryanguo ( user )
+% $AG:GN=2:1$ and $CG:GM=2:1$
+
+%------------------
+%-- Message mark888 ( user )
+% All the medians are split into a ratio of 2:1
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It splits the medians in a 2:1 ratio
+
+%------------------
+%-- Message pritiks ( user )
+% CG = 2GM
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $G$ is a centroid, $AG = 2GN$ and $CG = 2GM.$ So?  How can we use this to finish the construction?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We've drawn plenty of circles - is there one more to draw?
+
+%------------------
+%-- Message Achilleas ( moderator )
+I see that some of you say: the circle with diameter $AN$. This is trivially true and does not help us construct $N$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We are looking for $N$ as the intersection of two circles. We have determined one of them and we need to use the properties of the centroid to find another circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Having used homothety to note that $N$ is on the circle with $BM$ as diameter since $BN/BC = BM/AB = 1/2$, we see ratios connected to another center of homothety candidate. Which one?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that $(AG/AN = 2/3)$ and that $N$ lives on the circle through $A$ with diameter $AK$ where $K$ is on $AB$ such that $AM/AK = 2/3$ (thus, the circle with diameter $AK$ is homothetic to the circle with diameter $AM$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we find $K?$
+
+%------------------
+%-- Message MathJams ( user )
+% Midpoint of MB
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's the midpoint of MB
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $K$ is the midpoint of $MB$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% K is the midpoint of BM.
+
+%------------------
+%-- Message Trollyjones ( user )
+% the midpoint of MB
+
+%------------------
+%-- Message bryanguo ( user )
+% looks like midpoint of $BM$
+
+%------------------
+%-- Message ca981 ( user )
+% K is midpoint of BM
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% midpoint $MB$
+
+%------------------
+%-- Message ay0741 ( user )
+% midpoint of MB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Take the midpoint of $BM$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$AK/AM = 3/2,$ so $K$ is just the midpoint of $BM.$ We locate $K$ as the midpoint of $BM$ and draw the circle to give us $N.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+draw(Circle((0,0),1),heavygreen);
+draw(Circle((-0.5,0),0.5),heavygreen);
+draw(Circle((0.5,0),0.5),heavygreen);
+draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("G",G,scale(2)*dir(60),s);
+
+draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Going forwards, our construction now looks like this:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(150);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+pair A = dir(180), M = origin, B = dir(0);
+pair N = IPs(Circle((-.25,0),0.75), Circle((0.5,0),0.5))[0];
+pair C = IPs(Circle((0,0),1),scale(2,B,N,0))[1];
+pair G = extension(A,N,C,M);
+
+draw(Circle((0,0),1),heavygreen);
+draw(Circle((-0.5,0),0.5),heavygreen);
+draw(Circle((0.5,0),0.5),heavygreen);
+draw(Circle((-.25,0),0.75),heavygreen);
+
+draw(MP("A",A,W,s)--MP("M",M,SE,s)--MP("B",B,E,s));
+//draw(A--MP("C",C,NW,s)--M^^C--B^^A--MP("N",N,NE,s));
+MP("N",N,NE,s);
+//MP("G",G,scale(2)*dir(60),s);
+
+//draw(rightanglemark(A,C,B,2.5)^^rightanglemark(A,G,C,2.5));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now how do we construct point $C?$
+
+%------------------
+%-- Message razmath ( user )
+% extend BN to hit the largest circle at another point not equal to B
+
+%------------------
+%-- Message mark888 ( user )
+% Extend BN to the large circle
+
+%------------------
+%-- Message SlurpBurp ( user )
+% extend $NB$ to meet the largest circle again
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% the intersection of $NB$ and the circle with diameter $AB$ not equivalent to $B$
+
+%------------------
+%-- Message ww2511 ( user )
+% extend BN beyond N
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Extend $BN$ past $N$ to hit the big circle
+
+%------------------
+%-- Message RP3.1415 ( user )
+% draw $NB$ and intersect it with the big circle
+
+%------------------
+%-- Message pritiks ( user )
+% extend BN to hit the circle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Extend $BN$ onto the big circle
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Draw line BN to intersect the circle with diameter AB at C.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We locate $C$ by extending $BN$ past $N.$ Where it hits the largest circle again is point $C.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Where "large circle" is the circle with diameter $\overline{AB}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can't say extend $\overline{BN}$ to meet the circumcircle of $ABC$ to obtain $C$ because it is the point $C$ that we want to construct.
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'll leave the proof that this construction works for the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There are lots of other approaches to this problem, see if you can find them.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+Next example:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    $ABCD$ and $A'B'C'D'$ are square maps of the same region, drawn to different scales and superimposed as shown in the figure. There is only one point $O$ on the small map which lies directly over point $O'$ on the large map such that $O$ and $O'$ each represent the same place of the region. Give a Euclidean construction that produces this point.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(175);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hmmm…  Now what?
+
+%------------------
+%-- Message xyab ( user )
+% find O from reverse?
+
+%------------------
+%-- Message Ezraft ( user )
+% draw the 'finished' diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+We go ahead with our usual working backwards approach:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+dot(MP("O",O,dir(200),s));
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Um. Looks like we'll need a little more. What should we add and why?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we tell if a point is our desired $O$ (i.e. the same site on both maps)?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Connect O to the vertices of the square
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which square?
+
+%------------------
+%-- Message MathJams ( user )
+% both squares
+
+%------------------
+%-- Message Ezraft ( user )
+% both squares
+
+%------------------
+%-- Message Achilleas ( moderator )
+$O$ must be in the same position relative to the corners of each square.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B); 
+//draw(MP("X",X,N,s)--A);
+//draw(circumcircle(AA,X,A)^^circumcircle(BB,X,B),deepgreen);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+draw(MP("O",O,dir(200),s)--A^^O--B^^O--C^^O--D,red);
+draw(O--AA^^O--BB^^O--CC^^O--DD,green);
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+draw(MP("x",O,scale(5)*N,s+green)^^
+    MP("w",O,scale(5)*W,s+green)^^
+    MP("y",O,scale(5)*E,s+green)^^
+    MP("z",O,scale(5)*S,s+green));
+draw(MP("x",O,rotate(rotate_factor)*scale(4)*N,s+mediumred)^^
+    MP("w",O,rotate(rotate_factor)*scale(4)*W,s+mediumred)^^
+    MP("y",O,rotate(rotate_factor)*scale(4)*E,s+mediumred)^^
+    MP("z",O,rotate(rotate_factor)*scale(4)*S,s+mediumred));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In the diagram, the lowercase colored letters are angle measures of the corresponding angles (green for the green angles, red for the red).
+
+%------------------
+%-- Message Achilleas ( moderator )
+What now?
+
+%------------------
+%-- Message SmartZX ( user )
+% Can we use homothety?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Homothety alone is hard to apply.
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% There aren't really any parallel segments
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there other angles we know must be equal?
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\angle OA'B=\angle OAB$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle OA'D' = \angle OAD$
+
+%------------------
+%-- Message ww2511 ( user )
+% angles OAB and OA'B' etc
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle OCB = \angle OC'B'$ as well as other similar angles
+
+%------------------
+%-- Message dxs2016 ( user )
+% ex. angle ADO = angle A'D'O?
+
+%------------------
+%-- Message Trollyjones ( user )
+% like angle DAO= angle D'A'O
+
+%------------------
+%-- Message Achilleas ( moderator )
+The angles the red and green lines form with the sides of the square are equal:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B); 
+//draw(MP("X",X,N,s)--A);
+//draw(circumcircle(AA,X,A)^^circumcircle(BB,X,B),deepgreen);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+draw(MP("O",O,dir(200),s)--A^^O--B^^O--C^^O--D,red);
+draw(O--AA^^O--BB^^O--CC^^O--DD,green);
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+draw(MP("a",AA,scale(5)*ESE,s+green)^^
+    MP("b",BB,scale(5)*WSW,s+green)^^
+    MP("x",O,scale(5)*N,s+green)^^
+    MP("w",O,scale(5)*W,s+green)^^
+    MP("y",O,scale(5)*E,s+green)^^
+    MP("z",O,scale(5)*S,s+green));
+draw(MP("a",A,scale(5)*S,s+red)^^
+    MP("b",B,scale(5)*NW,s+red)^^
+    MP("x",O,rotate(rotate_factor)*scale(4)*N,s+mediumred)^^
+    MP("w",O,rotate(rotate_factor)*scale(4)*W,s+mediumred)^^
+    MP("y",O,rotate(rotate_factor)*scale(4)*E,s+mediumred)^^
+    MP("z",O,rotate(rotate_factor)*scale(4)*S,s+mediumred));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+(I only marked a couple pairs of these angles - $a$ and $b$ in the diagram; clearly there are 6 more similar pairs.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what?
+
+%------------------
+%-- Message dxs2016 ( user )
+% similar triangles?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's a triangle similar to $\triangle AOB ?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+(the order of the vertices matters)
+
+%------------------
+%-- Message pritiks ( user )
+% triangle AOB is similar to triangle A'OB'
+
+%------------------
+%-- Message bryanguo ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message Trollyjones ( user )
+% triangle A'OB'
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message bigmath ( user )
+% triangle A'OB'
+
+%------------------
+%-- Message Ezraft ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Triangle A'OB'
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\triangle{A'OB'}$
+
+%------------------
+%-- Message mkannan ( user )
+% triangle A'OB'
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message chardikala2 ( user )
+% $\triangle{A'OB'}$
+
+%------------------
+%-- Message dxs2016 ( user )
+% triangle A'OB'
+
+%------------------
+%-- Message bryanguo ( user )
+% $\triangle AOB \sim \triangle A'OB'$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message xyab ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message mark888 ( user )
+% $\triangle A'O'B'$
+
+%------------------
+%-- Message raniamarrero1 ( user )
+% triangle A'OB'
+
+%------------------
+%-- Message MathJams ( user )
+% $\triangle A'OB'$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\triangle A'O'B'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $\triangle AOB \sim \triangle A'OB'.$ Does this help with the construction?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know the ratio of the sides of these triangles, but we're still pretty stuck.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are we lacking?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Connecting points from $ABCD$ to $A'B'C'D$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% a way to relate the position of $ABCD$ to $A'B'C'D'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're lacking a way to relate the two squares. Nothing in our diagram thus far gives us a way to relate the two squares. What can we do to measure how the squares are related?
+
+%------------------
+%-- Message MathJams ( user )
+% rotational angle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have the ratio of sides; we don't yet have anything regarding the angle of rotation. We think this will likely be useful because using angles is how we tell if we have our $O.$ How can we add something to our diagram to give us an angle related to the rotation angle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Ideally we'd like something unrelated to $O,$ since we want to then use it to construct $O.$ One way we can get an angle introduced to our diagram is extending $AB:$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B); 
+draw(MP("X",X,N,s)--A);
+//draw(circumcircle(AA,X,A)^^circumcircle(BB,X,B),deepgreen);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+draw(MP("O",O,dir(200),s)--A^^O--B^^O--C^^O--D,red);
+draw(O--AA^^O--BB^^O--CC^^O--DD,green);
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+draw(MP("a",AA,scale(5)*ESE,s+green)^^
+    MP("b",BB,scale(5)*WSW,s+green)^^
+    MP("x",O,scale(5)*N,s+green)^^
+    MP("w",O,scale(5)*W,s+green)^^
+    MP("y",O,scale(5)*E,s+green)^^
+    MP("z",O,scale(5)*S,s+green));
+draw(MP("a",A,scale(5)*S,s+red)^^
+    MP("b",B,scale(5)*NW,s+red)^^
+    MP("x",O,rotate(rotate_factor)*scale(4)*N,s+mediumred)^^
+    MP("w",O,rotate(rotate_factor)*scale(4)*W,s+mediumred)^^
+    MP("y",O,rotate(rotate_factor)*scale(4)*E,s+mediumred)^^
+    MP("z",O,rotate(rotate_factor)*scale(4)*S,s+mediumred));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now what? Do we see anything useful?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Hint: The little green and red congruent angles help)
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $OBB'X$ is cyclic
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $O$ is on the circumcircle of $XBB'$
+
+%------------------
+%-- Message Achilleas ( moderator )
+$XB'BO$ is cyclic. Why?
+
+%------------------
+%-- Message MathJams ( user )
+% since $\angle OBX=\angle OB'X$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle OBX = \angle OB'X$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\angle OBX = \angle OB'X$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Because $\angle OBX=\angle OB'X$
+
+%------------------
+%-- Message bigmath ( user )
+% angle OBX = angle XB'O
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle OBX = \angle OB'X = b$
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle XBO = angle XB'O
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle OBX=\angle OB'X$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\angle XB'O = \angle XBO$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $\angle{OBX} = \angle{OB'X}$
+
+%------------------
+%-- Message christopherfu66 ( user )
+% $\angle OBX = \angle XB'O$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle OBX=\angle XB'O=b$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle XBO= \angle XB'O$
+
+%------------------
+%-- Message vsar0406 ( user )
+% because angle XBO = XB'O = b°
+
+%------------------
+%-- Message Achilleas ( moderator )
+$XB'BO$ is cyclic because $\angle XB'O = \angle XBO.$ We add the circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B); 
+draw(MP("X",X,N,s)--A);
+//draw(circumcircle(AA,X,A)^^circumcircle(BB,X,B),deepgreen);
+draw(circumcircle(BB,X,B),deepgreen);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+draw(MP("O",O,dir(200),s)--A^^O--B^^O--C^^O--D,red);
+draw(O--AA^^O--BB^^O--CC^^O--DD,green);
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+draw(MP("a",AA,scale(5)*ESE,s+green)^^
+    MP("b",BB,scale(5)*WSW,s+green)^^
+    MP("x",O,scale(5)*N,s+green)^^
+    MP("w",O,scale(5)*W,s+green)^^
+    MP("y",O,scale(5)*E,s+green)^^
+    MP("z",O,scale(5)*S,s+green));
+draw(MP("a",A,scale(5)*S,s+red)^^
+    MP("b",B,scale(5)*NW,s+red)^^
+    MP("x",O,rotate(rotate_factor)*scale(4)*N,s+mediumred)^^
+    MP("w",O,rotate(rotate_factor)*scale(4)*W,s+mediumred)^^
+    MP("y",O,rotate(rotate_factor)*scale(4)*E,s+mediumred)^^
+    MP("z",O,rotate(rotate_factor)*scale(4)*S,s+mediumred));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+$O$ lives on this circle. If we can find one more line or circle that contains $O$, we're home. Can we find one?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $A'XAO$ is cyclic
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why?
+
+%------------------
+%-- Message Achilleas ( moderator )
+% \$'s are missing
+
+%------------------
+%-- Message MathJams ( user )
+% since $\angle OAB=\angle XA'O$
+
+%------------------
+%-- Message coolbluealan ( user )
+% $\angle OAB=\angle OA'X$
+
+%------------------
+%-- Message Trollyjones ( user )
+% angle XA'O and angle XAO are supplementry
+
+%------------------
+%-- Message RP3.1415 ( user )
+% oh because opposite angles sum to 180 which you can see in the ones marked a
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% angle OA'X = angle OAB
+
+%------------------
+%-- Message dxs2016 ( user )
+% angle OA'X = 180 - angle XAO
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\angle XAO = 180^\circ - a = 180^\circ - \angle XA'O $
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% \angle OA'X = \angle OAB$, so $\angle OA'X + \angle OAX = 180^{\circ}\$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% because $\angle XAO$ is $180 - a$, and $\angle XA'O$ is $a$, so the opposite angles add up to 180 degrees
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle XA'O+\angle XAO=a+180^\circ-a=180^\circ$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\angle OA'X = \angle OAB$, so $\angle OA'X + \angle OAX = 180^{\circ}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Having found one cyclic quadrilateral with $O,$ $X,$ and a vertex of each square, we look for another. We see that $\angle XAO = 180^\circ - a = 180^\circ - \angle B'A'O,$ so angle $B'A'O$ and angle $XAO$ are supplementary. Thus, $XA'OA$ is cyclic.
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% We can find O now 
+
+%------------------
+%-- Message sae123 ( user )
+% wait if that's true, then we are done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(4cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+real rotate_factor = -70;
+real scale_factor = 0.4;
+pair shift_factor = (0.1,-0.07);
+pair AA = dir(135), BB = dir(45), CC = dir(-45), DD = dir(-135);
+pair A = shift_factor+scale(scale_factor)*rotate(rotate_factor)*AA, 
+    B = shift_factor+scale(scale_factor)*rotate(rotate_factor)*BB, 
+    C = shift_factor+scale(scale_factor)*rotate(rotate_factor)*CC, 
+    D = shift_factor+scale(scale_factor)*rotate(rotate_factor)*DD;
+
+pair X = extension(AA,BB,A,B); 
+draw(MP("X",X,N,s)--A);
+draw(circumcircle(AA,X,A)^^circumcircle(BB,X,B),deepgreen);
+pair O = IPs(circumcircle(AA,X,A),circumcircle(BB,X,B))[1];
+draw(MP("O",O,dir(200),s)--A^^O--B^^O--C^^O--D,red);
+draw(O--AA^^O--BB^^O--CC^^O--DD,green);
+draw(MP("A'",AA,NW,s)--MP("B'",BB,NE,s)--MP("C'",CC,SE,s)--MP("D'",DD,SW,s)--cycle);
+draw(MP("A",A,NE,s)--MP("B",B,SE,s)--MP("C",C,SW,s)--MP("D",D,NW,s)--cycle);
+draw(MP("a",AA,scale(5)*ESE,s+green)^^
+    MP("b",BB,scale(5)*WSW,s+green)^^
+    MP("x",O,scale(5)*N,s+green)^^
+    MP("w",O,scale(5)*W,s+green)^^
+    MP("y",O,scale(5)*E,s+green)^^
+    MP("z",O,scale(5)*S,s+green));
+draw(MP("a",A,scale(5)*S,s+red)^^
+    MP("b",B,scale(5)*NW,s+red)^^
+    MP("x",O,rotate(rotate_factor)*scale(4)*N,s+mediumred)^^
+    MP("w",O,rotate(rotate_factor)*scale(4)*W,s+mediumred)^^
+    MP("y",O,rotate(rotate_factor)*scale(4)*E,s+mediumred)^^
+    MP("z",O,rotate(rotate_factor)*scale(4)*S,s+mediumred));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+This gives us our construction since we are able to generate these two circles from our original two squares (extend $AB$ to produce $X$, then construct our two circles).
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we prove that this construction works?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Prove that the angles between the vertices of the two squares and point $O$ are equal
+
+%------------------
+%-- Message Achilleas ( moderator )
+We basically go backwards. From the $A$ circle on the left, we see that $\angle OAB = 180 - \angle XAB = \angle OA'B'.$ Similarly, from the $B$ circle on the right, we have $\angle OBA = \angle OBX = \angle OB'X' = \angle OB'A'$ (the middle equality because the angles are inscribed in the same arc), and we're done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(In general, as you've probably deduced by now, our 'proof that the construction works' is often just an exercise in working backwards through the steps we used to figure out the construction in the first place.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we were doing this on the USAMO, what else would we have to address?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We extended $\overline{BA}$, didn't we? Could this not work as easily somehow?
+
+%------------------
+%-- Message coolbluealan ( user )
+% if AB was parallel to A'B' it wouldn't intersect
+
+%------------------
+%-- Message sae123 ( user )
+% what if it hits one of the corners
+
+%------------------
+%-- Message bryanguo ( user )
+% ex tending $BA$ could result in construction issues
+
+%------------------
+%-- Message bigmath ( user )
+% if it hits one of the vertices of A'B'C'D'
+
+%------------------
+%-- Message Achilleas ( moderator )
+What if ray $BA$ from $B$ doesn't hit segment $B'A'?$ What if it doesn't hit line $B'A'?$ I'll let you tackle these cases on the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+There's an additional solution to this problem where you draw $AA'$ and $BB'$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    
+As many of you noticed in the beginning there is a solution using spiral similarity.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% What is that?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is a nice article about spiral similarity:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\url{https://www.awesomemath.org/wp-pdf-files/math-reflections/mr-2019-01/mr_1_2019_spiral_similarity.pdf
+}
+%------------------
+%-- Message Achilleas ( moderator )
+We will learn more about it in week 10.
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+If you read about it now or are familiar with this, here is the idea:
+
+%------------------
+%-- Message Achilleas ( moderator )
+There is a unique spiral similarity sending AB to A'B'. Let AA' and BB' intersect at Q. Then the intersection of the circumcircles of AQB and A'B'Q is O, the center of the spiral similarity.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    
+This problem was a USAMO problem which also asked to prove that the existence of point $O$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The solution there refers to \emph{"Introduction to Geometry", by Coxeter} which I found to be a good read.
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next problem:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\vspace{10pt}
+\begin{example}
+    Two distinct circles, $O$ and $M,$ are drawn in the plane. They intersect at points $A$ and $B,$ where $AB$ is a diameter of $O.$ Point $P$ is on $M$ and inside $O.$ Using only a T-square (an instrument which can produce the straight line joining two points and the perpendicular to a line through a point on or off the line), find a construction for two points $C$ and $D$ on $O$ such that $CD$ is perpendicular to $AB$ and $CPD$ is a right angle.
+    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here's what we have:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+//draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+dot(MP("P",P,W,s));//^^MP("X",X,SW,s)^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+(read the problem statement carefully)
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we continue, let's think about what we can actually do with our only construction tool. What can we do?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% draw lines and right angles
+
+%------------------
+%-- Message MathJams ( user )
+% create right angles
+
+%------------------
+%-- Message xyab ( user )
+% construct perpendiculars
+
+%------------------
+%-- Message mark888 ( user )
+% Draw perpendicular lines and normal lines. No circles
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Draw the line between $2$ points or the perpendicular to a line using a point on or off that line
+
+%------------------
+%-- Message dxs2016 ( user )
+% make perpendiculars
+
+%------------------
+%-- Message Trollyjones ( user )
+% make right angles
+
+%------------------
+%-- Message dvrdvr ( user )
+% make perpendicular lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given a point and a line, we can construct a line through the given point perpendicular to the given line.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else can we construct?
+
+%------------------
+%-- Message MathJams ( user )
+% parallel lines
+
+%------------------
+%-- Message mark888 ( user )
+% Parallel lines
+
+%------------------
+%-- Message Achilleas ( moderator )
+Given a point and a line, we can construct a line through the given point parallel to the given line. How?
+
+%------------------
+%-- Message mark888 ( user )
+% We draw a perpendicular line and a perpendicular lines to that giving us a parallel line.
+
+%------------------
+%-- Message RP3.1415 ( user )
+% draw a line perpendicular to a perpendicular to the original line
+
+%------------------
+%-- Message AOPS81619 ( user )
+% draw a perpendicular, and then a line perpendicular to perpendicular
+
+%------------------
+%-- Message chardikala2 ( user )
+% construct a line perpendicular to that line and construct another line perpendicular to the perpendicular line.
+
+%------------------
+%-- Message Ezraft ( user )
+% construct a perpendicular to the line from the point, and then draw the perpendicular to the perpendicular
+
+%------------------
+%-- Message MathJams ( user )
+% construct a perpendiculr to a line, and a perpendicular to the perpendicular
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% We can construct a perpendicular to one line, and another perpendicular line to the line we just constructed. The original and the 2nd line are parallel as they are perpendicular to the same line.
+
+%------------------
+%-- Message vsar0406 ( user )
+% constructing the perpendicular to a line, and then constructing the perpendicular to the second line
+
+%------------------
+%-- Message smileapple ( user )
+% perpendicular line perpendicular to a perpendicular line yields a parallel line
+
+%------------------
+%-- Message ww2511 ( user )
+% Make a perpendicular and then make another line perpendicular to that oe
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can construct our parallel line by first constructing a perpendicular line, then constructing a line perpendicular to our constructed perpendicular.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, we can make perpendiculars and parallels, and can draw a line between any two points.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about circles?
+
+%------------------
+%-- Message mark888 ( user )
+% No circles 
+
+%------------------
+%-- Message Trollyjones ( user )
+% i don't think so
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We cannot draw any circles
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We can't construct them, we must use the given ones
+
+%------------------
+%-- Message Achilleas ( moderator )
+No circles with a T-square, so we reprogram our minds not to think about constructing circles in this problem - they will not help us because we can't make them.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, back to our problem. What should we do?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% start with a finished diagram
+
+%------------------
+%-- Message bigmath ( user )
+% draw the finished diagram
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can build our 'finished' diagram and work in both directions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(rightanglemark(B,X,D,2.5));
+draw(rightanglemark(C,P,D,2.5));
+dot(MP("P",P,W,s));//^^MP("X",X,SW,s)^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we have to locate in order to finish the problem?  Do we need to find both $C$ and $D$ independently?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% we just have to find one
+
+%------------------
+%-- Message coolbluealan ( user )
+% we just need 1 of them
+
+%------------------
+%-- Message mark888 ( user )
+% CD will always be perpendicular to AB so if we know one, we know the other.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% No, we need one of them
+
+%------------------
+%-- Message Catherineyaya ( user )
+% we just need one and construct the other with the T-square
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We need one of them as we can draw the perpendicular to AB through one of them to find the other
+
+%------------------
+%-- Message Trollyjones ( user )
+% if we find one we can draw a perpendicular to AB to find the other?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% No, if we find one of them we can draw a perpendicular line to find the other one
+
+%------------------
+%-- Message bigmath ( user )
+% if we find one of the points we know where the other is
+
+%------------------
+%-- Message Achilleas ( moderator )
+We only need $C$ or $D$ - we can easily construct the other once we have one of them. Is there any other way we could solve the problem?
+
+%------------------
+%-- Message vsar0406 ( user )
+% We also know that AB bisects CD, right?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right! Nice observation.
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, what could we find?
+
+%------------------
+%-- Message MathJams ( user )
+% the midpoint of CD
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could find the point where $CD$ meets $AB.$ Let's call this point $X.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(rightanglemark(B,X,D,2.5));
+draw(rightanglemark(C,P,D,2.5));
+dot(MP("P",P,W,s)^^MP("X",X,SW,s));//^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, if we find any one of three points, we are finished (always a good idea at the beginning of a construction problem to figure out what different points/lines/circles you need as a minimum to finish the problem).
+
+%------------------
+%-- Message Achilleas ( moderator )
+What are our options working backwards (in other words, what lines could we have constructed that would give us $C,$ $X,$ or $D$)?  Keep in mind, while there are infinitely many lines we might be able to construct to find these points, we want to start with lines we are most likely to be able to construct.
+
+%------------------
+%-- Message Ezraft ( user )
+% the extension of $CP$ to meet $AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have lots of options. Here are a few:
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we find a way to construct line $CP,$ line $DP,$ or line $XP,$ we are finished (what I mean by this is that if we find a point such that drawing a line through that point and $P$ produces $C,$ $D,$ or $X,$ then we are finished).
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also might be able to somehow come up with lines through $C$ or $D$ parallel to $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Drawing in all these options makes a bit of a mess:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(scale(3,Z,P,.2),arrow=ArcArrows(SimpleHead),red);
+draw(scale(6,C,P,.2),arrow=ArcArrows(SimpleHead),red);
+draw(scale(4,D,P,.5),arrow=ArcArrows(SimpleHead),red);
+draw((C.x,1.5)--(C.x,-1.5),arrow=ArcArrows(SimpleHead),red);
+draw((D.x,1.5)--(D.x,-1.5),arrow=ArcArrows(SimpleHead),red);
+dot(MP("P",P,W,s)^^MP("X",X,SE,s));//^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we could construct any of those points where one of the red lines hits the circles, we'd be set. Are any of them obviously easily to construct from our starting point:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+//draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+dot(MP("P",P,W,s));//^^MP("X",X,SW,s)^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message mark888 ( user )
+% We can draw parallel lines!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Right! This is a good thing to keep in mind. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+None is obvious, and we aren't going to investigate any of them too much since there are so many, and we can still try going forwards a little to see what we can do. What can we do going forwards?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which lines can we draw initially?
+
+%------------------
+%-- Message MathJams ( user )
+% line parallel to AB through P?
+
+%------------------
+%-- Message coolbluealan ( user )
+% line through P perpendicular to AB
+
+%------------------
+%-- Message mark888 ( user )
+% Draw a perpendicular line to AB through P. Or draw a parallel line through P parallel to AB.
+
+%------------------
+%-- Message Trollyjones ( user )
+% PA and PB
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We can draw $AP,AB,$ or the line through $P$ perpendicular to $AB$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Initially, all we can do is draw $AP,$ $BP,$ and the lines through $A,$ $B,$ $P$ perpendicular to $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path M = circumcircle(A,B,X);
+pair P = point(M,185);
+draw(O^^M,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+dot(MP("P",P,W,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Do any of these directly lead us to one of our desired intersection points from earlier?
+
+%------------------
+%-- Message mark888 ( user )
+% nope
+
+%------------------
+%-- Message AOPS81619 ( user )
+% No
+
+%------------------
+%-- Message MathJams ( user )
+% no 
+
+%------------------
+%-- Message Achilleas ( moderator )
+No - none leads us directly there. And this diagram is a mess, too. At this point, I'm terrified working this problem. Backwards - a hopeless mess. Forwards - a hopeless mess. I put my T-square down and start doing geometry.
+
+%------------------
+%-- Message Achilleas ( moderator )
+All I can construct are straight lines. I can't even copy angles. So, am I likely to solve this problem using information about angles or about segment lengths?
+
+%------------------
+%-- Message pritiks ( user )
+% segment lengths
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% segment lengths
+
+%------------------
+%-- Message MathJams ( user )
+% lengths
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% lengths!
+
+%------------------
+%-- Message Trollyjones ( user )
+% segment lengths
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% segment lengths
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Segment lengths?
+
+%------------------
+%-- Message Ezraft ( user )
+% segment lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+We're probably going to have to use information about lengths. What geometric tool might we think of?
+
+%------------------
+%-- Message mark888 ( user )
+% Power of a point!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Circles and chords - we might be able to use power of a point to figure something out. We start with our 'finished' diagram since that has the segment we seek in it and we hope to use power of a point in some way to relate that segment to something we can construct.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(200);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(rightanglemark(B,X,D,2.5));
+draw(rightanglemark(C,P,D,2.5));
+dot(MP("P",P,W,s)^^MP("X",X,SW,s));//^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does the power of point $X$ with respect to the left circle tell us?
+
+%------------------
+%-- Message MathJams ( user )
+% AX*XB=CX*XD
+
+%------------------
+%-- Message dxs2016 ( user )
+% AX*XB=CX*XD
+
+%------------------
+%-- Message smileapple ( user )
+% $(CX)(DX)=(AX)(BX)$
+
+%------------------
+%-- Message bryanguo ( user )
+% $CX \cdot DX = AX \cdot BX$
+
+%------------------
+%-- Message bigmath ( user )
+% CX * XD = AX * XB
+
+%------------------
+%-- Message chardikala2 ( user )
+% $AX \cdot XB = CX \cdot XD$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $CX \cdot DX=AX \cdot BX$
+
+%------------------
+%-- Message mark888 ( user )
+% $CX^2=AX(XB)$
+
+%------------------
+%-- Message coolbluealan ( user )
+% XC^2=XA*XB
+
+%------------------
+%-- Message vsar0406 ( user )
+% $AX \cdot BX = CX^2 = DX^2$
+
+%------------------
+%-- Message ca981 ( user )
+% CX^2=AX * BX
+
+%------------------
+%-- Message Achilleas ( moderator )
+Using the power of point $X$ with respect to the left circle tells us that $(AX)(BX) = (CX)(DX).$ This doesn't appear to wildly useful. Is there any other length information we can figure out?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Remember, think 'what information have we not used yet?'  What haven't we used?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $AB$ is a diameter
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the fact that $AB$ is a diameter of the left circle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If we're feeling a little stuck, we think 'what information haven't we used yet?'  We then realize that we haven't used the fact that $AB$ is a diameter of the left circle. Focusing on that, we see that since diameter $AB$ is perpendicular to $CD,$ we have $CX = DX.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+That turns our earlier power of a point relationship into $(AX)(BX) = (CX)^2.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Still stuck. Any other unused facts out there that can give us lengths?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% PX = CX = DX
+
+%------------------
+%-- Message Achilleas ( moderator )
+We haven't used the fact that $CPD$ in our finished diagram is right.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This gives us the Pythagorean Theorem, but that doesn't seem to help much.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We should focus on point $X,$ as we just found one important item about point $X$ - that $CX = DX$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We think 'Haven't used $CPD$ is right. Pythagorean Theorem not too promising. Just found out something important about point $X$ $(CX = DX),$ and $X$ is on the hypotenuse, so maybe I can use that. Yep, $X$ is the midpoint of the hypotenuse, so $PX = CX = DX$.'
+
+%------------------
+%-- Message Achilleas ( moderator )
+What good does $PX = CX = DX$ do us?  We look at our forwards and backwards diagrams to see if there's anything significant we can do with this information. We quickly focus on the backwards diagram, since $C,$ $D,$ and $X$ are still mysteries going forwards:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(scale(3,Z,P,.2),arrow=ArcArrows(SimpleHead),red);
+draw(scale(6,C,P,.2),arrow=ArcArrows(SimpleHead),red);
+draw(scale(4,D,P,.5),arrow=ArcArrows(SimpleHead),red);
+draw((C.x,1.5)--(C.x,-1.5),arrow=ArcArrows(SimpleHead),red);
+draw((D.x,1.5)--(D.x,-1.5),arrow=ArcArrows(SimpleHead),red);
+dot(MP("P",P,W,s)^^MP("X",X,SE,s));//^^MP("Z",Z,SE,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any lines that stand out as meriting more attention?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% if you extend $XP$ to the big circle to $K$, $XP=KX$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $PX$?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $PC$ and $PX$
+
+%------------------
+%-- Message Ezraft ( user )
+% $CP$ and $PX$
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% PX.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Line $PX$ now might hold some interesting information, as we have some new info about $PX$ (that it equals $CX$ and $DX$). We zero in on that:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+//draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+//draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+//draw(A--N,green);
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s)--P--cycle);
+draw(scale(3.5,Z,P,.3),arrow=ArcArrows(SimpleHead),red);
+//draw(scale(4,Z,PP,.2),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,M.y)--(3.2,M.y),arrow=ArcArrows(SimpleHead),green);
+//draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+//draw(rightanglemark(N+(1,0),(B.x,N.y),B,2.5));
+draw(rightanglemark(B,X,D,2.5));
+dot(MP("P",P,W,s)^^MP("Z",Z,SE,s)^^MP("X",X,SW,s)^^MP("W",IPs(scale(3.5,Z,P,.3),O)[1],W,s)^^MP("Y",IPs(scale(3.5,Z,P,.3),O)[0],NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+I've labeled the 3 points along this line that might be useful. Is one of them useful?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Z
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $Z$?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $Z$ since we can do power of point
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $Z$
+
+%------------------
+%-- Message MathJams ( user )
+% Z
+
+%------------------
+%-- Message ay0741 ( user )
+% Z
+
+%------------------
+%-- Message dxs2016 ( user )
+% Z?
+
+%------------------
+%-- Message Ezraft ( user )
+% $Z$ is useful
+
+%------------------
+%-- Message Achilleas ( moderator )
+Chords and circles...
+
+%------------------
+%-- Message Achilleas ( moderator )
+Chords and circles make us think back to our power of a point. Point $X$ is still the obvious candidate and we see that $(PX)(XZ) = (AX)(XB) = (CX)(DX).$ Since $CX = DX = PX,$ we have $PX = XZ.$ Does this seem significant?
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message pritiks ( user )
+% yes
+
+%------------------
+%-- Message mustwin_az ( user )
+% yes
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes - this seems like a big deal. What does it tell us about $Z?$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $CPDZ$ is a rectangle
+
+%------------------
+%-- Message MathJams ( user )
+% CPDZ is a rectangle
+
+%------------------
+%-- Message Trollyjones ( user )
+% its on a circle with diameter CD
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% CPDZ is cyclic
+
+%------------------
+%-- Message mark888 ( user )
+% ZD||CP
+
+
+
+
+
+Because the diagonals are equal, $CPDZ$ is a rectangle making $ZD$ and $CP$ parallel
+
+%------------------
+%-- Message dxs2016 ( user )
+% ZD||CP?
+
+%------------------
+%-- Message vsar0406 ( user )
+% Z is also a reflection of P over X
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $ZD$ is parallel to $CP$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $ZD$ || $PC$
+
+%------------------
+%-- Message coolbluealan ( user )
+% PCZD is a rectangle
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $Z$ is the reflection of $P$ over $X$
+
+%------------------
+%-- Message vsar0406 ( user )
+% that it lies on the circumcircle of triangle PCD
+
+%------------------
+%-- Message leoouyang ( user )
+% ZD is parallel to CP
+
+%------------------
+%-- Message Achilleas ( moderator )
+These are fine. 
+
+%------------------
+%-- Message Achilleas ( moderator )
+It tells us that $Z$ is on the line parallel to $AB$ that is just as far from $AB$ as $P$ is, but on the other side of $AB$ (in other words, $Z$ is on the parallel to $AB$ through the image of point $P$ when reflected over $AB$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, we'd be finished if we could reflect $P$ over $AB$. Is it obvious how to reflect $P$ over $AB?$
+
+%------------------
+%-- Message MathJams ( user )
+% no...
+
+%------------------
+%-- Message Achilleas ( moderator )
+Sigh. Not obvious at all. What might we ask ourselves now?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We might ask 'is there anything that's easy to reflect over $AB$?'  So we look at our forwards diagram:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,M.y)--(3.2,M.y),arrow=ArcArrows(SimpleHead),green);
+draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+draw(rightanglemark(N+(1,0),(B.x,N.y),B,2.5));
+dot(MP("P",P,W,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are there any points or lines or circles in this diagram that are easy to reflect over $AB?$
+
+%------------------
+%-- Message Achilleas ( moderator )
+The left circle is itself when reflected over $AB,$ as are lines perpendicular to $AB.$ Are there any other items in our forwards diagram we can reflect?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can reflect any point on the left circle over $AB$ by drawing a line through the point perpendicular to $AB$ - where the line meets the circle again is the reflection of our point. Are there any points that might be most useful to reflect?
+
+%------------------
+%-- Message coolbluealan ( user )
+% The second intersection of line AP and circle O
+
+%------------------
+%-- Message Achilleas ( moderator )
+We really want to reflect $P,$ but can't reflect it. The line through $P$ perpendicular to $AB$ reflected just gives itself. However, if we reflect the second point where line $AP$ meets the left circle we might find something useful:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,M.y)--(3.2,M.y),arrow=ArcArrows(SimpleHead),green);
+draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+draw(rightanglemark(N+(1,0),(B.x,N.y),B,2.5));
+dot(MP("P",P,W,s)^^MP("M",M,SW,s)^^MP("N",N,SE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Have we found something useful?
+
+%------------------
+%-- Message Gamingfreddy ( user )
+% Yes, connect N with A
+
+%------------------
+%-- Message AOPS81619 ( user )
+% We're done! $P'$ is the intersection of the perpendicular through $P$ and $AN$
+
+%------------------
+%-- Message smileapple ( user )
+% intersect $AN$ with line going through $P$ perpendicular to $AB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% now we draw AN to get the reflection of P
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Yes, the intersection of $AN$ and the line through $P$ perpendicular to $AP$ is the reflection of $P$ across $AB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% find where $AN$ intersects the perpendicular going through $P$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Yes - we have the reflection of line $AP.$ $AN$ is the reflection of segment $AM.$ This gives us the reflection of $P,$ as the intersection of $AN$ and the perpendicular to $AB$ through $P$ is the image of $P$ upon reflection over $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(250);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+draw(A--N,green);
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,M.y)--(3.2,M.y),arrow=ArcArrows(SimpleHead),green);
+draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+draw(rightanglemark(N+(1,0),(B.x,N.y),B,2.5));
+dot(MP("P",P,W,s)^^MP("M",M,SW,s)^^MP("N",N,SE,s)^^MP("P'",PP,NE,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now how do we finish?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Recall that we want to find $Z$ first.)
+
+%------------------
+%-- Message AOPS81619 ( user )
+% draw a line through $P'$ parallel to $AB$, and then the intersection of that line and circle $M$ is $Z$. Draw $PZ$ and find the intersection with $AB$ to find $X$. Draw perpendicular line through $X$ to find $C$ and $D$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% draw the line parallel to $AB$ going through $P'$, it intersects the larger circle at $Z$, $PZ$ intersects $AB$ at $X$, then use $X$ to construct $C$ and $D$.
+
+%------------------
+%-- Message sae123 ( user )
+% draw a line perpendicular to $PP'$ at $P'.$ Then find $Z$ as the intersection of this and the big circle. Then $X$ is the intersection of $AB$ and $PZ,$ and we are done
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that point $Z$ is on the line parallel to $AB$ through $P',$ so we construct this line by draw the line through $P'$ perpendicular to $PP'.$ Connecting $P$ and $Z$ gives us $X,$ and drawing the perpendicular to $AB$ through $X$ gives us $C$ and $D.$ Here's what it looks like without the green lines we didn't use:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(2cm);
+
+size(300);
+pathpen = black + linewidth(0.7);
+pointpen = black;
+pen s = fontsize(8);
+path scale(real s, pair D, pair E, real p) { return (point(D--E,p)+scale(s)*(-point(D--E,p)+D)--point(D--E,p)+scale(s)*(-point(D--E,p)+E));}
+path O = Circle((0,0),1);
+pair A = point(O,100), B = point(O,300), X = (2.5,0);
+path C = circumcircle(A,B,X);
+pair P = point(C,185), M = IPs(scale(3,A,P,0),O)[1], N = IPs((-1.6,M.y)--(3.2,M.y),O)[1];
+draw(O^^C,deepgreen);
+draw(MP("A",A,dir(120),s)--MP("B",B,dir(-120),s));
+draw(scale(6,A,P,.3),arrow=ArcArrows(SimpleHead),green);
+//draw(scale(3,B,P,.35),arrow=ArcArrows(SimpleHead),green);
+draw(A--N,green);
+pair PP = extension(A,N,(-1.6,P.y),(3.2,P.y));
+pair Z = IPs(PP--(PP.x,10),C)[0];
+pair X = extension(P,Z,A,B);
+pair C = IPs((-1.6,X.y)--(3.2,X.y),O)[0], D = IPs((-1.6,X.y)--(3.2,X.y),O)[1];
+draw(MP("C",C,NW,s)--MP("D",D,NE,s),green);
+draw(scale(4,Z,P,.3),arrow=ArcArrows(SimpleHead),green);
+draw(scale(4,Z,PP,.2),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,A.y)--(3.2,A.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,P.y)--(3.2,P.y),arrow=ArcArrows(SimpleHead),green);
+//draw((-1.6,B.y)--(3.2,B.y),arrow=ArcArrows(SimpleHead),green);
+draw((-1.6,M.y)--(3.2,M.y),arrow=ArcArrows(SimpleHead),green);
+draw(rightanglemark(P+(1,0),(B.x,P.y),B,2.5));
+draw(rightanglemark(N+(1,0),(B.x,N.y),B,2.5));
+dot(MP("P",P,W,s)^^MP("M",M,SW,s)^^MP("N",N,SE,s)^^MP("P'",PP,NE,s)^^MP("Z",Z,SE,s)^^MP("X",X,SW,s));
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message pritiks ( user )
+% prove this construction works
+
+%------------------
+%-- Message Achilleas ( moderator )
+I'll leave the proof that the construction works for the message board.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\paragraph{Solution Summary}
+I'll go through a somewhat lengthy summary of how we solved this problem. It is extremely instructive for geometry problems and problem solving in general.
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, confronted with a different set of tools then we were used to, we thought a little bit about how we could use that tool (a T-square in this case).
+
+%------------------
+%-- Message Achilleas ( moderator )
+Next, we drew our starting and 'finished' diagrams. Nothing appeared to be obvious from either diagram, so we took one step in each diagram. For our finished diagram, we went one step backwards, drawing lines that, if we could construct them, would solve the problem for us. For our starting diagram, we drew the lines we initially could draw.
+
+%------------------
+%-- Message Achilleas ( moderator )
+After this, we had two messy diagrams (at least, you better have had two; this problem should have been a good example of why you want to keep your 'forwards' and 'backwards' diagrams on different sheets of paper). Here was a good opportunity for us to panic and start scribbling in lines and getting really confused.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Instead, we stop and think, is this likely to be a problem involving lengths or angles or both. Given our tools, and the fact that we have chords and circles, we think we're most likely to find a solution chasing lengths and using power of a point.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then we ask, what facts have we not used?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We answer this with '$AB$ is a diameter', from which we discover $CX = DX,$ and '$CPD$ is right' from which we discover $PX = CX = DX.$ Now we have more information, so we go back to our backwards diagram (since our forwards diagram doesn't yet have $X,$ the point we have info about), and the problem starts to unfold.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We quickly see which line in the backwards diagram is most useful, then pull out power of a point to see that $ZX = PX,$ so $Z$ is just as far from line $AB$ as $P$ is. Then we know we're on a hunt for the image of $P$ when reflected over $AB.$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can't find the image of $P$ immediately, but we look at our forwards diagram for what we can reflect - we see we can reflect points on the left circle easily, so we can reflect line $AP,$ and then can find $P'.$ Then we're finished.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In addition to all the little important points to note in this solution is the simple fact that we didn't use any magic. No miraculous insights. No 'How in the world would we ever think of that?'  Not one step was a one-in-a-million pull it out of the air step, despite the fact that this problem required numerous steps and insights to solve.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+Make sure you study this solution closely, primarily for our methods of searching for the solution - these are the most important. There are few problems that will call on you to jump back and forth between forwards and backwards and require as many 'ah-ha' insights as this one - if you fully understand how we thought to take each step in this problem, you'll be well on your way to making significant steps through all other problems.
+    
+\end{remark}
+
+%------------------
+%-- Message chardikala2 ( user )
+% such a simple tool causing so much chaos lol 
+
+%------------------
+%-- Message vsar0406 ( user )
+% I now see the true value of a compass LOL
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark}
+    (This was a 1986 USAMO problem)    
+\end{remark}
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's it for today! 
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thank you all and have a wonderful time! See you next week!
+
+%------------------

@@ -1,0 +1,88 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[#1]%
+	{Problem \theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{My Favorite Problems from 2021-22}
+\subtitle{Session 2 - Olympiad}
+\author{Rohan Das}
+\institute{Upper School Math Circle}
+\date{April 21, 2022}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+
+\begin{probslide}[t]{USEMO 2021, \#4}{}
+    \begin{block}{}
+        Let $ABC$ be a triangle with circumcircle $\omega$, and let $X$ be the reflection of $A$ in $B$. Line $CX$ meets $\omega$ again at $D$. Lines $BD$ and $AC$ meet at $E$, and lines $AD$ and $BC$ meet at $F$. Let $M$ and $N$ denote the midpoints of $AB$ and $AC$. 
+
+        Can line $EF$ share a point with the circumcircle of triangle $AMN$?
+    \end{block}
+\end{probslide}
+
+
+
+\begin{probslide}[t]{ISL 2020, C1}{}
+    \begin{block}{}
+        Let $n$ be a positive integer. Find the number of permutations $a_1$, $a_2$, \ldots, $a_n$ of the sequence $1$, $2$, \ldots, $n$ satisfying \[a_1 \leq 2a_2 \leq 3a_3 \leq \cdots \leq na_n.\]     % Answer: 50
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{ISL 2020, N2}{}
+    \begin{block}{}
+        For each prime $p$, there is a kingdom of $p$-Landia consisting of $p$ islands numbered $1$, $2$, \ldots, $p$. Two distinct islands numbered $n$ and $m$ are connected by a bridge if and only if $p$ divides $(n^2 - m + 1)(m^2 - n + 1)$. The bridges may pass over each other, but cannot cross. Prove that for infinitely many $p$ there are two islands in $p$-Landia not connected by a chain of bridges.
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{USAMO 2022, \#1}{}
+    \begin{block}{}
+        Let $a$ and $b$ be positive integers. The cells of an $(a + b + 1) \times (a + b + 1)$ grid are colored amber and bronze such that there are at least $a^2 + ab - b$ amber cells and at least $b^2 + ab - a$ bronze cells. Prove that it is possible to choose $a$ amber cells and $b$ bronze cells such that no two of the $a + b$ chosen cells lie in the same row or column.
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{CHMMC 2022, Proof \#5}{}
+    \begin{block}{}
+        Find all functions $f : \mathbb{R} \to \mathbb{R}$ such that \[f(f(x) + f(y)^2) = f(x)^2 + y^2f(y)^3.\] Here $\mathbb{R}$ denotes the usual real numbers. 
+    \end{block}
+\end{probslide}
+
+
+
+\end{document}

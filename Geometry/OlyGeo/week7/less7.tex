@@ -1,0 +1,3672 @@
+\section{Lesson Transcript}
+
+%-- Message Achilleas ( moderator )
+% Hi, everyone!
+
+%------------------
+%-- Message MTHJJS ( user )
+% hi!
+
+%------------------
+%-- Message bryanguo ( user )
+% hi!
+
+%------------------
+%-- Message MathJams ( user )
+% hey!
+
+%------------------
+%-- Message smileapple ( user )
+% Hello! 
+
+%------------------
+%-- Message RP3.1415 ( user )
+% Hello!
+
+%------------------
+%-- Message Ezraft ( user )
+% hello!
+
+%------------------
+%-- Message xyab ( user )
+% hi!
+
+%------------------
+%-- Message Lucky0123 ( user )
+% hi
+
+%------------------
+%-- Message Glczx ( user )
+% Hello
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% hi
+
+%------------------
+%-- Message chardikala2 ( user )
+% Hello!
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Hi guys!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we're going to look at a couple of tools for proving collinearity and concurrency.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can group them together since collinearity and concurrency are often times equivalent problems. For example, proving that the three lines concur is equivalent to showing that the intersection of two of the lines lies on the third line.
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Ceva and Menelaus?
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right!
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's start with two basic theorems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(1cm);
+
+    size(12cm);
+    defaultpen(fontsize(10));
+    pair A = (5,12), B = (0,0), C = (14,0);
+    real d = 2.0/3, e = 0.2, f_interm = d*e/(1-d)/(1-e), f = 1/(f_interm+1);
+    pair D = d*B+(1-d)*C, E = e*C+(1-e)*A, F = f*A+(1-f)*B, P = extension(A,D,B,E);
+    picture ceva, menelaus;
+    draw(ceva, D--A--B--C--A^^B--E^^C--F);
+    pair point = P;
+    pair[] p={A,B,C,D,E,F};
+    string s = "A,B,C,D,E,F";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+    label(ceva,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    pair A = (11,11), B = (0,0), C = (14,0);
+    real d = -.8, e = 0.4, f_interm = -d*e/(1-d)/(1-e), f = 1/(f_interm+1);
+    pair D = d*B+(1-d)*C, E = e*C+(1-e)*A, F = f*A+(1-f)*B, P = extension(C,F,B,E);
+    draw(menelaus, C--D--F^^A--B--C--A^^B--E^^C--F);
+    pair point = P;
+    pair[] p={A,B,C,D,E,F};
+    string s = "A,B,C,D,E,F";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[3]=0; d[4]=30; d[5]=-10; mult[4]=1.5;d[1]=20;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+    label(menelaus,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    pair M = midpoint(D--E); real len = abs(D-E)/2*1.3;
+    //draw(menelaus, M+len*dir(M--D)--M+len*dir(M--E), linewidth(0.3), Arrows(4));
+    label(ceva,"Ceva's Theorem", (7, -4));
+    label(menelaus,"Menelaus's Theorem", (12,-4));
+    add(shift((-15,0))*ceva);
+    add(shift((10,0))*menelaus);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{theorem}[Ceva's Theorem]
+    In a triangle $ABC$, points $D$, $E$, and $F$ are on lines $BC$, $AC$, and $AB$ respectively. Then the lines $AD$, $BE$, and $CF$ are concurrent if and only if $$\frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA} = 1.$$
+\end{theorem}
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{theorem}[Menelaus's Theorem]
+    In a triangle $ABC$, points $D$, $E$, and $F$ are on lines $BC$, $AC$, and $AB$ respectively. Then points $D$, $E$, and $F$ are collinear if and only if $$\frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA} = -1.$$
+\end{theorem}
+ 
+
+%------------------
+%-- Message Achilleas ( moderator )
+As you can see, the formulas that show up in the two theorems are almost identical, except we have a $-1$ in the statement of Menelaus. You may wonder how it is even possible for a product of ratios to equal a negative number.
+
+%------------------
+%-- Message MathJams ( user )
+% directed lengths
+
+%------------------
+%-- Message Catherineyaya ( user )
+% directed lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+The reason for the negative is that we work here with directed lengths. With directed lengths, a ratio of two line segments (on the same line) is considered positive if and only if they point in the same direction.
+
+%------------------
+%-- Message Bimikel ( user )
+% what does it mean that line segments point in the same direction?
+
+%------------------
+%-- Message Achilleas ( moderator )
+AE and EC point in the same direction, while AE and CE point in opposite directions.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let’s clarify this through an example. Let’s assume that $BF = 4$, $AF = 2$, $AE = 1$, and $EC = 6$ in the diagram on the left, for Ceva’s Theorem. What is $BD/DC$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(it can't be 3)
+
+%------------------
+%-- Message Catherineyaya ( user )
+% 1/3
+
+%------------------
+%-- Message christopherfu66 ( user )
+% 1/3
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% 1/3
+
+%------------------
+%-- Message MathJams ( user )
+% 1/3
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\frac{1}{3}$
+
+%------------------
+%-- Message MTHJJS ( user )
+% 1/3
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $BD/DC = 1/3$. Let's duplicate the Ceva diagram, and define point $D^\prime$ to be on $BC$ such that $BD^\prime/D^\prime C = -BD/DC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(9cm);
+    defaultpen(fontsize(10));
+    void blacksquare(picture pic, pair P, pen p) {
+        real r = 0.2;
+        pair C1 = (r,r), C2 = (-r,r);
+        filldraw(pic, shift((-0.3,0))*(P+C1--P+C2--P-C1--P-C2--cycle), p, p);
+    }
+    picture ceva, menelaus;
+    pair A = (5,12), B = (0,0), C = (14,0);
+    real d = 2.0/3, e = 0.2, f_interm = d*e/(1-d)/(1-e), f = 1/(f_interm+1);
+    real dp = 2;
+    pair D = d*B+(1-d)*C, Dp = dp*B + (1-dp)*C, E = e*C+(1-e)*A, F = f*A+(1-f)*B, P = extension(A,D,B,E);
+    draw(ceva, A--Dp--B^^D--A--B--C--A^^B--E^^C--F);
+    pair point = P;
+    pair[] p={A,B,C,D,E,F,Dp};
+    string s = "A,B,C,D,E,F,D^\prime";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    string[] k= split(s,",");
+    d[1]=-110; 
+    for(int i = 0;i<p.length;++i) {
+    label(ceva,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    pair O = circumcenter((F.x,-F.y),B,D);
+    draw(ceva,shift((0,.1))*Arc(O, abs(O-B), degrees(dir(O--B+(0.7,0))), degrees(dir(O--(D-(0.5,0))))), orange, EndArrow(4));
+    pair O = circumcenter((1.5*A.x, -1.5A.y),D,C-(0.3,0));
+    draw(ceva,shift((0,.05))*Arc(O, abs(O-D), degrees(dir(O--(D+(0.5,0)))), degrees(dir(O--C-(0.5,0)))), orange, EndArrow(4));
+
+    pair O = circumcenter(A,B,Dp);
+    draw(ceva,shift((0,-.5))*Arc(O, abs(O-B), degrees(dir(O--B)), degrees(dir(O--(Dp+(0.5,0))))), blue, EndArrow(4));
+    pair O = circumcenter(4*A,Dp,C);
+    draw(ceva,shift((0,-1))*Arc(O, abs(O-Dp), degrees(dir(O--(Dp-(0,0)))), degrees(dir(O--C))), blue, EndArrow(4));
+
+    blacksquare(ceva,(-5,-6), orange);
+    blacksquare(ceva,(-5,-9), blue);
+    label(ceva,"Positive ratio: $\frac{BD}{DC} = \frac13$", (-5, -6), dir(0));
+    label(ceva,"Negative ratio: $\frac{BD^\prime}{D^\prime C} = -\frac13$", (-5,-9), dir(0));
+    add(shift((-15,0))*ceva);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+The negative sign of the ratio amounts to the fact that the line segments $BD^\prime$ and $D^\prime C$ are in opposite directions. Notice that in this case, $D^\prime$ is outside of triangle $ABC$, so the cevians $AD^\prime$, $BE$, and $CF$ don't concur, even though if we work with undirected lengths we have $$\frac{AE}{EC}\cdot \frac{CD^\prime}{D^\prime B}\cdot \frac{BF}{FA} = 1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is not good, as it contradicts Ceva's theorem! However, if we work with directed lengths, we have $\frac{CD^\prime}{D^\prime B}=-3$ and the relation above becomes $$\frac{AE}{EC}\cdot \frac{CD^\prime}{D^\prime B}\cdot \frac{BF}{FA} = -1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+This statement no longer contradicts Ceva's theorem. What does this tell us about the points $D',E,F$?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% they are collinear
+
+%------------------
+%-- Message MTHJJS ( user )
+% collinear
+
+%------------------
+%-- Message Ezraft ( user )
+% they are collinear
+
+%------------------
+%-- Message bryanguo ( user )
+% collinear
+
+%------------------
+%-- Message Trollyjones ( user )
+% colinear
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% they are collinear
+
+%------------------
+%-- Message mark888 ( user )
+% They are collinear
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% They're collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+That's right, points $D',E,F$ must be collinear by Menelaus' Theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+For the sake of convenience, you can usually feel free to work with undirected lengths without running into bad assumptions. However, to be fully rigorous, you must include the signs in your write-up.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does that make sense to everyone?
+
+%------------------
+%-- Message MathJams ( user )
+% yea
+
+%------------------
+%-- Message MTHJJS ( user )
+% yes 
+
+%------------------
+%-- Message Ezraft ( user )
+% yes
+
+%------------------
+%-- Message bryanguo ( user )
+% yes
+
+%------------------
+%-- Message mark888 ( user )
+% yup!
+
+%------------------
+%-- Message Achilleas ( moderator )
+To sum it up: as long as $$\left | \frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA}\right | = 1$$ (i.e. with undirected lengths), it means that either $AD, BE, CF$ are concurrent by Ceva's or that $D, E, F$ are collinear by Menelaus's.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Here is what we discovered about $D,D'$. You should remember this duality between Ceva and Menelaus, as it can be useful in problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $ABC$ be a triangle with points $E$ and $F$ on lines $AC$ and $AB$ respectively. Let $P$ be the intersection of $BE$ and $CF$, $D$ the intersection of $AP$ and $BC$, and $D^\prime$ the intersection of $EF$ and $BC$. Then $\frac{BD}{DC} = -\frac{BD^\prime}{D^\prime C}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+    size(9cm);
+    defaultpen(fontsize(10));
+    void blacksquare(picture pic, pair P, pen p) {
+        real r = 0.2;
+        pair C1 = (r,r), C2 = (-r,r);
+        filldraw(pic, shift((-0.3,0))*(P+C1--P+C2--P-C1--P-C2--cycle), p, p);
+    }
+    picture ceva, menelaus;
+    pair A = (5,12), B = (0,0), C = (14,0);
+    real d = 2.0/3, e = 0.2, f_interm = d*e/(1-d)/(1-e), f = 1/(f_interm+1);
+    real dp = 2;
+    pair D = d*B+(1-d)*C, Dp = dp*B + (1-dp)*C, E = e*C+(1-e)*A, F = f*A+(1-f)*B, P = extension(A,D,B,E);
+    draw(ceva, Dp--B^^A--B--C--A^^B--E^^C--F);
+    draw(ceva, D--A^^E--Dp, gray(0.3)+linetype("3 3"));
+    pair point = P;
+    pair[] p={A,B,C,D,E,F,Dp};
+    string s = "A,B,C,D,E,F,D^\prime";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    string[] k= split(s,",");
+    d[1]=20; 
+    for(int i = 0;i<p.length;++i) {
+    label(ceva,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    dot(ceva, D^^Dp^^B^^C);
+    add(shift((0,0))*ceva);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any questions up to this point?
+
+%------------------
+%-- Message bryanguo ( user )
+% nope 
+
+%------------------
+%-- Message Catherineyaya ( user )
+% nope
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can also look at this from a projective geometry perspective. For any four points $W$, $X$, $Y$, $Z$ on a line, we can define their \textbf{cross ratio} to be $$(W,X; Y,Z) =  \frac{YW}{WZ}:\frac{YX}{XZ}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+//unitsize(4cm);
+
+    size(7cm);
+    void drawArc(pair A, pair B, pen p, bool top = true, real trim=.05, real ycurve = .1*abs(A-B), real yshiftfactor = 0.3) {
+        if (!top) {
+            ycurve = -ycurve;
+        }
+        pair A = A+yshiftfactor*(0,ycurve);
+        pair B = B+yshiftfactor*(0,ycurve);
+        pair M = midpoint(A--B)+(0,ycurve);
+           pair O = circumcenter(A,B,M);
+        real dirA = degrees(dir(O--A));
+        real dirB = degrees(dir(O--B));
+        real newdirA = trim*dirB + (1-trim)*dirA;
+        real newdirB = trim*dirA + (1-trim)*dirB;
+        draw(Arc(O,abs(O-M),newdirA,newdirB), p, EndArrow(4));
+    }
+    pair W = origin, Y = (9,0), X = (13,0), Z = (20,0);
+    draw(W--Z);
+    dot("$W$",W,dir(225));
+    dot("$X$",X,dir(-90));
+    dot("$Y$",Y,dir(-90));
+    dot("$Z$",Z,dir(-45));
+    drawArc(Y,W,orange);
+    drawArc(W,Z,orange);
+    drawArc(Y,X,blue,false,.1);
+    drawArc(X,Z,blue,false,.1);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We call sets of points that have a cross ratio of $-1$ \textbf{harmonic}. Harmonic bundles have some interesting properties that we won't go over in class today, but it's useful to recognize that in the previous diagram, $(D,D^\prime; B,C)$ is harmonic because its cross ratio is $-1$. Another way to say this is that $D'$ is the harmonic conjugate of $D$, with respect to $B$ and $C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Prove that the three altitudes $AD$, $BE$, and $CF$ of a triangle $ABC$ concur.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    defaultpen(fontsize(10));
+    size(6cm);
+    pair A = (5,12), B = (0,0), C = (14,0), D = foot(A,B,C), E = foot(B,A,C), F = foot(C,A,B), H = orthocenter(A,B,C);
+    draw(D--A--B--C^^E--B^^F--C--A);
+    markscalefactor = 0.08;
+    draw(rightanglemark(A,D,B)^^rightanglemark(C,E,B)^^rightanglemark(A,F,C));
+    pair point = incenter(A,B,C);
+    pair[] p={A,B,C,D,E,F};
+    string s = "A,B,C,D,E,F";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    mult[6] = 2; d[6] = -10;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's pretend we don't know anything about cyclic quadrilaterals or angle chasing. What other tools can we use? If we wanted to use either Ceva's or Menelaus's Theorem, which should we choose and why?
+
+%------------------
+%-- Message MathJams ( user )
+% Cevas, since we are trying to show concurrency
+
+%------------------
+%-- Message MTHJJS ( user )
+% ceva, because this is about concurrency
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Ceva because we want to prove that they are concurrent
+
+%------------------
+%-- Message Lucky0123 ( user )
+% We can use Ceva's Theorem because it deals with concurrency
+
+%------------------
+%-- Message Ezraft ( user )
+% We should use Ceva's theorem because we want to show concurrence
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% ceva because we are proving concurrency, not collinearity
+
+%------------------
+%-- Message Yufanwang ( user )
+% Ceva to prove concurrency
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% ceva's since it's proving concurrence of 3 lines
+
+%------------------
+%-- Message Catherineyaya ( user )
+% ceva's because we're trying to show concurrency
+
+%------------------
+%-- Message dxs2016 ( user )
+% concurrency - Ceva
+
+%------------------
+%-- Message SlurpBurp ( user )
+% ceva's because we want concurrency
+
+%------------------
+%-- Message Trollyjones ( user )
+% cevas works better because the lines are concurrent
+
+%------------------
+%-- Message Bimikel ( user )
+% ceva's because it can prove concurrence
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Ceva's theorem as it proves concurrency
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try Ceva's. To show that $\frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA} = 1$, we need to compute the ratio $AE/EC$. How might we compute either $AE$ or $EC$?
+
+%------------------
+%-- Message tigerzhang ( user )
+% trigonometry
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we use trigonometry to write $AE$?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $AE=AB\cos\angle BAC$
+
+%------------------
+%-- Message tigerzhang ( user )
+% AE=AB*cos A
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $AE = AB\cos(A)$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $AE=AB\cos A$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $AB\cdot{cos(A)}$
+
+%------------------
+%-- Message vsar0406 ( user )
+% AB * cos(angle BAC)
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $EC$?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $EC = BC \cos C$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $EC=BC\cos\angle BCA$
+
+%------------------
+%-- Message renyongfu ( user )
+% EC = cos(C) * BC
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% $EC=BC\cdot{cos(C)}$
+
+%------------------
+%-- Message apple.xy ( user )
+% $EC=BC\cos C$
+
+%------------------
+%-- Message Trollyjones ( user )
+% EC=EB*cosC
+
+%------------------
+%-- Message smileapple ( user )
+% $EC=BC\cos \angle C$
+
+%------------------
+%-- Message ay0741 ( user )
+% EC = BC cos C
+
+%------------------
+%-- Message ca981 ( user )
+% EC=BC cosC
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% BCcosC
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $EC = BC * cos(C)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can write that $AE = c\cos A$ and $EC = a\cos C$. Notice that the key to simplifying our expression is to generally \textbf{rewrite complex lengths in terms of more fundamental lengths and angles}.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we have that $\dfrac{AE}{EC} = \dfrac{c\cos A}{a\cos C}$. How can we quickly compute $\dfrac{CD}{DB}$ and $\dfrac{BF}{FA}$?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% using symmetry
+
+%------------------
+%-- Message tigerzhang ( user )
+% just cycle through the other sides/angles
+
+%------------------
+%-- Message Achilleas ( moderator )
+The diagram is symmetric, so the values for these expressions will also be symmetric.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $\dfrac{CD}{DB} = \dfrac{b\cos C}{c\cos B}$ and $\dfrac{BF}{FA} = \dfrac{a\cos B}{b\cos A}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus, $\dfrac{AE}{EC}\cdot \dfrac{CD}{DB}\cdot \dfrac{BF}{FA} = \dfrac{c\cos A}{a\cos C}\cdot \dfrac{b\cos C}{c\cos B}\cdot \dfrac{a\cos B}{b\cos A} = 1$ and we are done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Checking that your expressions are appropriately symmetric is a good way to check that you have not performed any computation mistakes and can greatly speed up your calculations. We'll see that Ceva's and Menelaus's Theorems often come in handy in symmetric setups like these.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Of course, there are other proofs of this theorem, but we just saw how to apply Ceva's theorem to prove it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any questions about this?
+
+%------------------
+%-- Message MathJams ( user )
+% no 
+
+%------------------
+%-- Message chardikala2 ( user )
+% nope
+
+%------------------
+%-- Message Yufanwang ( user )
+% Nope
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% nope
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try another problem:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    
+Let $ABC$ be a triangle. Extend the side $BC$ past $C$, and let $D$ be the point on the extension such that $CD = AC$. Let $P$ be the second intersection of the circumcircle of $ACD$ with the circle with diameter $BC$. Let $BP$ and $AC$ meet at $E$ and let $CP$ and $AB$ meet at $F$. Prove that $D$, $E$, $F$ are collinear.
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(8cm);
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    draw(C--A--B--D--A);
+    draw(Arc(O,abs(O-A),190,300)^^Arc(midpoint(B--C),abs(B-C)/2,0,180), linewidth(.1));
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(B--E^^C--F);
+    pair point = circumcenter(A,B,D);
+    pair[] p={A,B,C,D,E,F,P};
+    string s = "A,B,C,D,E,F,P";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = -140; d[6] = 10; mult[6] = 1.3; d[7] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any ideas?
+
+%------------------
+%-- Message dxs2016 ( user )
+% menelaus
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% menelaus
+
+%------------------
+%-- Message MathJams ( user )
+% menelaus!
+
+%------------------
+%-- Message Ezraft ( user )
+% we can use Menelaus
+
+%------------------
+%-- Message MTHJJS ( user )
+% menelaus
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why does this problem suggest Menelaus's Theorem?
+
+%------------------
+%-- Message pritiks ( user )
+% use Menelaus since we're showing collinearity
+
+%------------------
+%-- Message vsar0406 ( user )
+% We're asked to prove collinearity, so menelaeus may be usefuk
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We want to show collinearity
+
+%------------------
+%-- Message Ezraft ( user )
+% we are trying to prove collinearity
+
+%------------------
+%-- Message chardikala2 ( user )
+% we are trying to prove collinearity
+
+%------------------
+%-- Message SlurpBurp ( user )
+% we want to prove collinearity
+
+%------------------
+%-- Message AOPS81619 ( user )
+% we want to prove that they are collinear
+
+%------------------
+%-- Message Catherineyaya ( user )
+% we want to prove collinearity
+
+%------------------
+%-- Message bryanguo ( user )
+% we want to prove collinearity
+
+%------------------
+%-- Message Yufanwang ( user )
+% We need to prove collinearity and we have cevians
+
+%------------------
+%-- Message Achilleas ( moderator )
+Points $D$, $E$, and $F$ each lie on the sides of triangle $ABC$ and we want to show that they are collinear. What do we need to show (equation)?
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% AE/EC * CD/DB * BF/FA = -1
+
+%------------------
+%-- Message mustwin_az ( user )
+% $\frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA} = -1.$
+
+%------------------
+%-- Message Trollyjones ( user )
+% $\frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA} = -1$
+
+%------------------
+%-- Message SmartZX ( user )
+% AE/EC * CD/DB * BF/FA = -1
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $AE/EC \cdot  CD/DB \cdot BF/FA = -1$
+
+%------------------
+%-- Message Bimikel ( user )
+% $AE/EC*CD/DB*BF/FA=-1$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We would like to show that $$\frac{BF}{FA}\cdot\frac{AE}{EC}\cdot\frac{CD}{DB} = -1.$$ Why might this be difficult to compute?
+
+%------------------
+%-- Message MathJams ( user )
+% we don't know much about E and F
+
+%------------------
+%-- Message Achilleas ( moderator )
+Points $E$ and $F$ are a bit out of the way -- we don't have much information about them. How can we get rid of points $E$ and $F$ from our problem?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Use ceva's?
+
+%------------------
+%-- Message SmartZX ( user )
+% Ceva's theorem?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Ceva.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How?
+
+%------------------
+%-- Message coolbluealan ( user )
+% extend AP
+
+%------------------
+%-- Message MathJams ( user )
+% extend AP
+
+%------------------
+%-- Message ay0741 ( user )
+% Extend AP
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can use the duality between Ceva and Menelaus that we saw above! We'll let $D_1$ be the intersection of $AP$ with $BC$. By Ceva's we know that $$\frac{BF}{FA}\cdot\frac{AE}{EC}\cdot\frac{CD_1}{D_1B} = 1.$$ Substituting this into our original Menelaus equation, we just need to show that $$\frac{CD}{DB} \stackrel{?}{=} - \frac{CD_1}{D_1B}.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(8cm);
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    draw(C--A--B--D--A);
+    draw(Arc(O,abs(O-A),190,300), linewidth(.1));
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(B--P--C);
+    draw(A--D1);
+    markscalefactor = 0.1;
+    draw(rightanglemark(B,P,C));
+    pair point = circumcenter(A,B,D);
+    pair[] p={A,B,C,D,P,D1};
+    string s = "A,B,C,D,P,D_1";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try what we did in the last problem by reducing $BD_1$ and $D_1C$ into more fundamental lengths. Why isn't this easy?
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% We don't know much about P and D1.
+
+%------------------
+%-- Message MathJams ( user )
+% we still dont' know much about D_1
+
+%------------------
+%-- Message Achilleas ( moderator )
+We don't know much about $D_1$ because we haven't looked at how $P$ is defined yet. What kind of techniques might be helpful for understanding point $P$?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% cyclic quads?
+
+%------------------
+%-- Message coolbluealan ( user )
+% angle chasing?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll try angle chasing because $P$ is defined to be the intersection of two circles. Which angles should we focus on?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hint: We want to think about the angles which might be most directly helpful in finding $BD_1$ and $D_1C$.
+
+%------------------
+%-- Message pritiks ( user )
+% angle BPD_1 and angle D_1PC
+
+%------------------
+%-- Message sae123 ( user )
+% $\angle BPD_1$ and $\angle D_1PC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's look at $\angle BPD_1$ and $\angle D_1PC$. We choose these angles because they directly "face" the desired lengths and are likely to be useful when we use Law of Sines later.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The intuition for thinking about Law of Sines in this scenario is that we're hunting for a ratio of lengths in a diagram with nice angles. One of the most effective ways to connect length-based and angle-based approaches is Law of Sines.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle BAD_1$ and $\angle D_1AC$?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle BAD_1$ and $\angle D_1AC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another note is that $\angle BAD_1$ and $\angle D_1AC$ might also be handy for the same reason, but we'll first look at $\angle BPD_1$ and $\angle D_1PC$ to see if these angles work.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now, can we say anything about $\angle D_1PC$?
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle D_1PC=\angle CDA$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle D_1PC = \angle ADC$
+
+%------------------
+%-- Message bryanguo ( user )
+% $\angle D_1PC = \angle ADC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything else?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle D_1PC=\angle ADC=\angle CAD$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $\angle D_1PC= \angle CAD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Anything else?
+
+%------------------
+%-- Message bryanguo ( user )
+% $\angle CAD = \angle CPD$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's also equal to $\angle CPD$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $APCD$ is cyclic, we know that $\angle D_1PC = \angle ADC = \angle CAD = \angle CPD = x$. This looks like a promising start, seeing as we have several equal angles.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(8cm);
+    anglepen = blue;
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    draw(C--A--B--D--A);
+    draw(Arc(O,abs(O-A),190,300), linewidth(.1));
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(B--P--C);
+    draw(A--D1^^P--D);
+    markscalefactor = 0.1;
+    draw(rightanglemark(B,P,C));
+    MA(C,P,D,2);
+    MA(C,A,D,2);
+    MA(A,D,C,2);
+    MA(D1,P,C,2.4);
+    pair point = circumcenter(A,B,D);
+    pair[] p={A,B,C,D,P,D1};
+    string s = "A,B,C,D,P,D_1";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle D_1PC$ is nicely expressed in terms of other angles and faces side $D_1C$, we can write $D_1C$ by using Law of Sines on $\triangle CPD_1$. Can we do something analogous for side $BD_1$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\angle BPD_1$?
+
+%------------------
+%-- Message MathJams ( user )
+% 90-<D_1PC
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle BPD_1 = 90^{\circ} - \angle D_1PC$
+
+%------------------
+%-- Message sae123 ( user )
+% $90-x$
+
+%------------------
+%-- Message dxs2016 ( user )
+% 90 - angle CPD_1
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can also nicely express $\angle BPD_1 = 90 - \angle D_1PC = 90-x$, so it makes sense to try Law of Sines on $\triangle BPD_1$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This gives $$\frac{BD_1}{\sin\angle BPD_1} = \frac{BP}{\sin\angle PD_1B}. $$ What does our desired ratio $BD_1/D_1C$ become?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How would we find this?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\frac{BP\sin(\angle BPD_1)}{PC\sin(\angle D_1PC)}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can try dividing the two equations, and get $$\frac{BD_1}{D_1C} = \frac{BP}{CP}\cdot \frac{\sin \angle BPD_1}{\sin\angle D_1PC} \cdot \frac{\sin\angle CD_1P}{\sin\angle PD_1B}. $$ Since $\angle CD_1P$ and $\angle PD_1B$ are supplementary, the third fraction $\frac{\sin\angle CD_1P}{\sin\angle PD_1B} = 1$. Thus:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{eqnarray*}\frac{BD_1}{D_1C} &=& \frac{BP}{CP}\cdot \frac{\sin \angle BPD_1}{\sin\angle D_1PC} \\&=& \frac{BP}{CP}\cdot \frac{\sin (90-x)}{\sin x} \end{eqnarray*}
+
+%------------------
+%-- Message SlurpBurp ( user )
+% why does $\angle D_1PC = \angle ADC$?
+
+%------------------
+%-- Message renyongfu ( user )
+% i'm still a little confused on why D_1PC = x, since D_1 isn't on APCD
+
+%------------------
+%-- Message Achilleas ( moderator )
+It turns out that this is a common question.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This is true because $APCD$ is cyclic and $\triangle ACD$ is isosceles from the hypothesis, as it is given that $CD=AC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence $\angle D_1PC=\angle ADC=\angle CAD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Back to our ratio above.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{eqnarray*}\frac{BD_1}{D_1C} &=& \frac{BP}{CP}\cdot \frac{\sin \angle BPD_1}{\sin\angle D_1PC} \\&=& \frac{BP}{CP}\cdot \frac{\sin (90-x)}{\sin x} \end{eqnarray*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Before we rewrite the two angles in terms of $x$, let's take a step back.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also need to find $BD/DC$. What are we going to do about that?
+
+%------------------
+%-- Message mustwin_az ( user )
+% same thing
+
+%------------------
+%-- Message bryanguo ( user )
+% similar strategy as before
+
+%------------------
+%-- Message Achilleas ( moderator )
+This result is generalizable and holds for other similar configurations! (We didn't make any assumptions about these points.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(.2cm);
+    anglepen = blue;
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(D1--P--B--C--P);
+    markscalefactor = 0.2;
+    draw(rightanglemark(B,P,C));
+    markscalefactor = 0.3;
+    draw(anglemark(D1,P,C),blue);
+    pair point = midpoint(D1--P);
+    pair[] p={B,C,P,D1};
+    string s = "B,C,P,D_1";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we use this generalization to get $BD/DC$? If so, what do we get?
+
+%------------------
+%-- Message MathJams ( user )
+% law of sines on BPC and PCD
+
+%------------------
+%-- Message Achilleas ( moderator )
+Okay. What do we get?
+
+%------------------
+%-- Message Achilleas ( moderator )
+No need to go through the same proof again. All we are asking is about the result for $\frac{BD}{DC}$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By our corollary, $$-\frac{BD}{DC} = \frac{BP}{CP}\cdot \frac{\sin \angle BPD}{\sin\angle DPC}. $$ Can we express these angles nicely in terms of what we know?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Yes, $\angle BPD = x + 90^{\circ}$ and $\angle DPC = x$.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle BPD=90+x$, $\angle DPC=x$
+
+%------------------
+%-- Message MathJams ( user )
+% <BPD=x+90, <PDC=x
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $\angle CPD = x$, $\angle DPB = 90 + x$, so this equation nicely simplifies to:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$-\frac{BD}{DC} = \frac{BP}{CP}\cdot \frac{\sin(90+x)}{\sin x}. $$
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(.2cm);
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(C--P--B--D--P);
+    markscalefactor = 0.2;
+    draw(rightanglemark(B,P,C));
+    markscalefactor = 0.3;
+    draw(anglemark(C,P,D),blue);
+    pair point = midpoint(D1--P);
+    pair[] p={B,C,P,D};
+    string s = "B,C,P,D";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's take a step back. What was our original objective?
+
+%------------------
+%-- Message pritiks ( user )
+% show that CD/DB = -CD1 / D1B
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $$\frac{CD}{DB} = - \frac{CD_1}{D_1B}$$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\frac{CD}{DB} {=} - \frac{CD_1}{D_1B}.$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% proving the $CD/DB = -CD_1/D_1B$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wanted to show that $BD_1/D_1C = -BD/DC$. How do we finish?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Use that $\sin(90+x)=\sin(90-x)$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We are left to show that $$\frac{BP}{CP}\cdot \frac{\sin (90-x)}{\sin x} =  \frac{BP}{CP}\cdot \frac{\sin(90+x)}{\sin x},$$ which is always true, so we are done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This solution may have felt like an unmotivated, messy trig computation, but we chose this problem to illustrate the kind of ideas behind similar trig solutions: 
+
+
+(1) We worked forwards and backwards, and chose to work with lengths/angles that moved us in the direction of our desired results. 
+
+
+(2) We avoided trig expressions involving angles that didn't cancel out or weren't easily expressible in terms of other angles. 
+
+
+(3) We boiled the problem down into some kind of nontrivial trig identity (in this case $\sin(90-x) = \sin(90+x)$).
+
+%------------------
+%-- Message Achilleas ( moderator )
+A lemma that subtly came up in this problem is: 
+\begin{lemma}
+    Let $A, B, X, Y$ be four points on a line and $P$ a point in the plane such that $\angle APB = 90^\circ$ and $\angle XPB = \angle BPY$. Then $\frac{AX}{XB} = -\frac{AY}{YB}$ or $(A,B;X,Y) = -1$ (i.e. it is harmonic).    
+\end{lemma}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(.2cm);
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(C--P--B--D--P--D1);
+    markscalefactor = 0.2;
+    draw(rightanglemark(B,P,C));
+    markscalefactor = 0.3;
+    draw(anglemark(C,P,D));
+    draw(anglemark(D1,P,C));
+    pair point = centroid(P,B,D);
+    pair[] p={B,C,P,D,D1};
+    string s = "A,B,P,Y,X";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Another tool that comes in handy in trig-involved problems like this is the trigonometric form of Ceva's theorem (also known as trig Ceva).
+\begin{theorem}[Trig Ceva]
+    $AD$, $BE$, and $CF$ are concurrent if and only if $$ \frac{\sin\angle BAD}{\sin\angle DAC}\cdot\frac{\sin\angle ACF}{\sin\angle FCB}\cdot\frac{\sin\angle CBE}{\sin\angle EBA} = 1.$$
+\end{theorem}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    size(5cm);
+    defaultpen(fontsize(10));
+    pair A = (5,12), B = (0,0), C = (14,0);
+    real d = 2.0/3, e = 0.2, f_interm = d*e/(1-d)/(1-e), f = 1/(f_interm+1);
+    pair D = d*B+(1-d)*C, E = e*C+(1-e)*A, F = f*A+(1-f)*B, P = extension(A,D,B,E);
+    picture ceva, menelaus;
+    draw(ceva, D--A--B--C--A^^B--E^^C--F);
+    pair point = P;
+    pair[] p={A,B,C,D,E,F};
+    string s = "A,B,C,D,E,F";
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+    label(ceva,"$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+    add(ceva);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We'll leave the proof of trig Ceva as an exercise for you. In the mean time, we'll look at a useful application of it.
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the way, there is another way to solve the previous problem, without the Law of Sines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What can we say about $PC$ in triangle $PD_1D$?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is the angle bisector
+
+%------------------
+%-- Message pritiks ( user )
+% it is the angle bisector
+
+%------------------
+%-- Message MathJams ( user )
+% it is an angle bisector
+
+%------------------
+%-- Message bryanguo ( user )
+% OH it's the angle bsiector of $\angle D_1PD$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's the angle bisector
+
+%------------------
+%-- Message mark888 ( user )
+% Its an angle bisector
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% its an angle bisector
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is an angle bisector
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Angle bisector
+
+%------------------
+%-- Message Ezraft ( user )
+% it is an angle bisector
+
+%------------------
+%-- Message apple.xy ( user )
+% it is an angle bisector
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is an internal angle bisector.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does that say about $PB$?
+
+%------------------
+%-- Message vsar0406 ( user )
+% external angle bisector?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% it's an external angle bisector
+
+%------------------
+%-- Message coolbluealan ( user )
+% external angle bisector
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% it's the external bisector
+
+%------------------
+%-- Message SlurpBurp ( user )
+% it's the external angle bisector
+
+%------------------
+%-- Message AOPS81619 ( user )
+% It's the external angle bisector
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Its the external angle bisector since it's perpendicular to $PC$
+
+%------------------
+%-- Message Bimikel ( user )
+% it's an external angle bisector
+
+%------------------
+%-- Message MTHJJS ( user )
+% external angle bisector of P side angle
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% external angle bisector
+
+%------------------
+%-- Message smileapple ( user )
+% external angle bisector
+
+%------------------
+%-- Message Lucky0123 ( user )
+% It's the external angle bisector
+
+%------------------
+%-- Message MathJams ( user )
+% extenral angle bisector
+
+%------------------
+%-- Message Achilleas ( moderator )
+It is an external angle bisector.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Then what? How do we finish?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% angle bisector theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+Thus we could have applied the bisector theorem twice (for internal and external bisectors).
+
+%------------------
+%-- Message Achilleas ( moderator )
+See if you can finish the problem later using this hint.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Moving on:
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Let $ABC$ be a triangle and $P$ and $Q$ be two points on the plane, not necessarily inside of $ABC$, such that $\angle BAP = \angle QAC$ and $\angle PBA = \angle CBQ$. Prove that $\angle ACP = \angle QCB$.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.5cm);
+
+pathfontpen=black; anglepen=black; anglefontpen=black; 
+    pair A = (5,12), B = origin, C = (14,0);
+    pair P = (4,4);
+    pair Q = extension(B,B+dir(B--A)/dir(B--P),C,C+dir(C--A)*dir(C--B)/dir(C--P));
+    draw(A--B--C--cycle);
+    draw(A--P--B--Q--C--P--A--Q, linewidth(0.1));
+    real r1 = 1.5, r2 = 2;
+    MA(B,A,P,r2,2); MA(Q,A,C,r2,2);
+    MA(P,B,A,r1,3); MA(C,B,Q,r1,3);
+    MA(A,C,P,r1,1); MA(Q,C,B,r2,1);
+    pair point = midpoint(B--C)+(0,1);
+    pair[] p={A,B,C,P,Q};
+    string s = "A,B,C,P,Q";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Some of you might notice that there are two ways for $\angle BAP = \angle QAC$ to hold; $Q$ can lie on the line "inside" of $\angle BAC$ (red) or it could also lie "outside" (blue). To avoid this kind of confusion, we use the convention that the points of the angles are always listed in clockwise order, so that $\angle BAP$ means something different from $\angle PAB$. If you're interested in learning more, we can have a discussion about \textbf{directed angles} on the forums.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(0.5cm);
+
+pathfontpen=black; anglepen=black; anglefontpen=black; dotfactor=5;
+    pair A = (5,12), B = origin, C = (14,0);
+    pair P = (4,4);
+    pair Q = extension(B,B+dir(B--A)/dir(B--P),C,C+dir(C--A)*dir(C--B)/dir(C--P));
+    draw(A--B--C--cycle);
+    pair Q1top = 2*A-midpoint(A--Q), Q1bot = 2*Q-A;
+    pair Q2top = reflect(A,C)*Q1top, Q2bot = reflect(A,C)*Q1bot;
+    pair Ptop = 2*A-midpoint(A--P), Pbot = 2*P-A;
+    draw(Q1top--Q1bot, red+linewidth(0.5), Arrows(5));
+    draw(Q2top--Q2bot, blue+linewidth(0.5), Arrows(5));
+    draw(Ptop--Pbot, linewidth(0.3), Arrows(5));
+
+    real r1 = 1.5, r2 = 2;
+    MA(B,A,P,r2,2); MA(Q,A,C,r2,2); MA(C,A,Q2bot,r2+.2,2);
+
+    pair point = midpoint(B--C)+(0,1);
+    pair[] p={A,B,C,P};
+    string s = "A,B,C,P";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[0] = -30;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+But back to the original question: how do we turn this into a problem about concurrency?
+
+%------------------
+%-- Message MathJams ( user )
+% extend AP, BP, and CP and use cevas
+
+%------------------
+%-- Message Achilleas ( moderator )
+We could do that. Next?
+
+%------------------
+%-- Message apple.xy ( user )
+% extend AQ,BQ and CQ?
+
+%------------------
+%-- Message Ezraft ( user )
+% Extend $AQ, BQ, CQ$ similarl
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let $AX$ and $BY$ be the cevians that intersect at point $Q$. (Note: Cevians do not necessarily have to be interior to the triangle.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to show that the cevian $CZ$ that satisfies $\angle ACP = \angle ZCB$ concurs with $AX$ and $BY$ at point $Q$.
+
+%------------------
+%-- Message RP3.1415 ( user )
+% apply trig cevas instead right?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we use trig Ceva to prove this?
+
+%------------------
+%-- Message myltbc10 ( user )
+% use it on Q and P and compare the equatiosn
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that from trig Ceva on points $P$ and $\triangle ABC$, we have:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\frac{\sin\angle BAP}{\sin\angle PAC}\cdot \frac{\sin\angle CBP}{\sin\angle PBA}\cdot \frac{\sin\angle ACP}{\sin\angle PCB} = 1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle BAP = \angle QAC$. So what must we have about $\angle PAC ?$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $\angle PAC=\angle QAB$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is equal to angle BAQ
+
+%------------------
+%-- Message Ezraft ( user )
+% $\angle PAC = \angle QAB$
+
+%------------------
+%-- Message Yufanwang ( user )
+% $\angle PAC = \angle QAB$
+
+%------------------
+%-- Message pritiks ( user )
+% equals angle QAB
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $\angle BAP = \angle QAC$, so we must also have that $\angle PAC = \angle BAQ$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, we can say that $\angle PBC = \angle ABQ$ and $\angle PCA=\angle ZCB$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Rewrite the relation above using these new angles, then Ceva implies that $AX, BY$, and $CZ$ are concurrent.
+
+%------------------
+%-- Message Achilleas ( moderator )
+The point $Q$ from the previous configuration is called the isogonal conjugate of the point $P$. In a previous class we saw that the two Brocard points of triangle $ABC$ are isogonal conjugates.
+
+%------------------
+%-- Message Achilleas ( moderator )
+If $P$ is the incenter, what is its isogonal conjugate?
+
+%------------------
+%-- Message ay0741 ( user )
+% itself?
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $P$
+
+%------------------
+%-- Message MTHJJS ( user )
+% itself
+
+%------------------
+%-- Message coolbluealan ( user )
+% P
+
+%------------------
+%-- Message Catherineyaya ( user )
+% P
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note*}
+Indeed, the incenter is its own isogonal conjugate.
+\end{note*}
+%------------------
+%-- Message Achilleas ( moderator )
+If $P$ is the orthocenter of triangle $ABC$, what is its isogonal conjugate?
+
+%------------------
+%-- Message MathJams ( user )
+% circumcenter
+
+%------------------
+%-- Message mustwin_az ( user )
+% circumcenter
+
+%------------------
+%-- Message coolbluealan ( user )
+% the circumcenter
+
+%------------------
+%-- Message Catherineyaya ( user )
+% circumcenter
+
+%------------------
+%-- Message singingBanana ( user )
+% circumcenter
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% O the circumcenter.
+
+%------------------
+%-- Message Lucky0123 ( user )
+% The circumcenter?
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note*}
+    The isogonal conjugate of the orthocenter is the circumcenter. Try to show this later.    
+\end{note*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Finally, do you know a name for the isogonal conjugate of the centroid?
+
+%------------------
+%-- Message myltbc10 ( user )
+% symmedian
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% symmedian
+
+%------------------
+%-- Message bryanguo ( user )
+% the symmedian point
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% symmedian
+
+%------------------
+%-- Message MathJams ( user )
+% symmedian
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{note*}
+    The isogonal conjugate of the centroid is called the symmedian point, or the Lemoine point of triangle $ABC$.    
+\end{note*}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try some problems.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Circles $A$ and $C$ are drawn inside of circle $O$ so that they are both internally tangent to circle $O$ at points $B$ and $D$ respectively and externally tangent to each other at $E$. Show that $AD$, $BC$, and $OE$ are concurrent.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+defaultpen(fontsize(10));
+size(7cm);
+    pair O = origin, A = .7*dir(200), C = .55*dir(270), X = extension(O,incenter(O,A,C),C,C+dir(C--incenter(O,A,C))*dir(90)), B = foot(X,A,O), D = foot(X,C,O), E = foot(X,A,C), M = midpoint(B--E);
+    draw(Circle(O,1)^^Circle(A,abs(A-B))^^Circle(C,abs(C-D)));
+    draw(B--O--D^^A--C);
+    pair point = M;
+    pair[] p={A,B,C,D,E,O};
+    string s = "A,B,C,D,E,O";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4]=-70; d[3] = -40; mult[4] = 2;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any ideas?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Our first idea would be to apply Ceva's theorem.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why can't we just apply Ceva to $OBD$?
+
+%------------------
+%-- Message pritiks ( user )
+% we dont have a point on BD
+
+%------------------
+%-- Message Achilleas ( moderator )
+It doesn't quite look like our Ceva's diagram above. Since $E$ isn't a point on side $BD$, we can't just directly apply Ceva's Theorem to $\triangle OBD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else can we try?
+
+%------------------
+%-- Message sae123 ( user )
+% ceva's on $\triangle AOC$ with directed lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can try Ceva's Theorem on $\triangle OAC$. We have cevians $OE$, $AD$, and $CB$ ($D$ is on line $OC$, $B$ is on line $OA$, and $E$ is on line $AC$). Our cevians don't necessarily have to be interior to our reference triangle!
+
+%------------------
+%-- Message Achilleas ( moderator )
+So, in order to finish this problem off with Ceva, what do we want to prove is equal to 1? (Remember to direct your lengths!)
+
+%------------------
+%-- Message coolbluealan ( user )
+% CD/DO*OB/BA*AE/EC=1
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $\frac{OD}{DC}\frac{CE}{EA}\frac{AB}{BO} = 1$
+
+%------------------
+%-- Message sae123 ( user )
+% $\frac{AB}{BO} \cdot \frac{OD}{DC} \cdot \frac{CE}{EA} = 1$
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $$ \frac{AB}{BO}\cdot\frac{OD}{DC}\cdot\frac{CE}{EA}=1 $$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\frac{AE}{EC} \cdot \frac{CD}{DO} \cdot \frac{OB}{BA} = 1$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We wish to show that $\frac{AE}{EC}\cdot\frac{CD}{DO}\cdot\frac{OB}{BA} = 1$. Is it true?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(If you have trouble seeing how to write that, I thought of it as 'Go from $A$ to $E$ to $C$ ($AE/EC$), then from $C$ to $D$ to $O$ ($CD/DO$), then from $O$ to $B$ to $A$ ($OB/BA$)'.  Remember that the reference triangle is $OAC$.)
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Basically cancels because of radii being equal.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let circles $A$, $C$, and $O$ have radii $r_1$, $r_2$, and $R$ respectively. The magnitude of the expression above simplifies to $$ \frac{r_1}{r_2}\cdot \left(-\frac{r_2}{R}\right)\cdot\left(-\frac{R}{r_1}\right) = 1. $$ In our diagram, only the second and third terms are negative, so the signed expression is indeed equal to 1.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Done.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{remark*}
+    The main lesson to take away from this problem is that cevians don't have to be interior to the reference triangle for you to apply Ceva or Menelaus.    
+\end{remark*}
+
+%------------------
+%-- Message Ezraft ( user )
+% that was much simpler than it originally seemed
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Yup! 
+
+%------------------
+%-- Message chardikala2 ( user )
+% wow
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    A straight line intersects lines $AB$, $AC$, and $BC$ at the points $F$, $E$, and $D$, respectively.  Prove that the midpoints of the line segments $AD$, $BE$, and $CF$ are collinear.    
+\end{example}
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+defaultpen(fontsize(10));
+size(10cm);
+pair A = (6,8), B = (0,0), C = (9,0), D = (12,0), F = .4*A, E = extension(A,C,D,F), K = midpoint(A--D), L = midpoint(B--E), M = midpoint(C--F);
+pair X = midpoint(B--C), Y = midpoint(A--C), Z = midpoint(A--B);
+pair R = midpoint(D--F); real rf = abs(R-F)*1.5;
+
+draw(R+rf*dir(R--F)--R-rf*dir(R--F), Arrows(4));
+draw(A--B--C--cycle^^C--D);
+draw(A--D^^B--E^^C--F, gray(0));
+//draw(Y--X--Z--K, gray(0.6));
+
+pair point = A-(0,1);
+pair[] p={A,B,C,D,E,F,K,L,M};
+string s = "A,B,C,D,E,F,K,L,M,X,Y,Z";    
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+d[3]=-10; d[4]=100; d[5] = -20; d[6]=90; d[7] = -20; d[9] = 10; d[10] = 120; d[11] = -120; mult[5] = 2;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Are we likely to solve this problem with angles?  Why or why not?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% nope since we are given nothing about angles
+
+%------------------
+%-- Message MathJams ( user )
+% no, we do not have much information about them
+
+%------------------
+%-- Message ww2511 ( user )
+% no because we don't get any information about them
+
+%------------------
+%-- Message dxs2016 ( user )
+% no - we don't have any nice angles to work with
+
+%------------------
+%-- Message myltbc10 ( user )
+% no because we don't know anything about them
+
+%------------------
+%-- Message Catherineyaya ( user )
+% no because we don't know many angles
+
+%------------------
+%-- Message AOPS81619 ( user )
+% No, because we are not given anything about angles
+
+%------------------
+%-- Message bryanguo ( user )
+% probably not we dont have any cyclic quads, right angles, etc.
+
+%------------------
+%-- Message pritiks ( user )
+% probably not angles since its best to use side lengths
+
+%------------------
+%-- Message Achilleas ( moderator )
+The problem involves midpoints; midpoint problems are more likely to be tackled with lengths than with angles.  What else makes us think about considering lengths?
+
+%------------------
+%-- Message coolbluealan ( user )
+% menelaus
+
+%------------------
+%-- Message ww2511 ( user )
+% we're asked to prove collinearity so we can try menelaus which has to do with lengths
+
+%------------------
+%-- Message pritiks ( user )
+% Menelaus theorem
+
+%------------------
+%-- Message christopherfu66 ( user )
+% we are trying to prove collinearity
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% since it's proving collinear so maybe menelaus
+
+%------------------
+%-- Message bryanguo ( user )
+% we want to show collinearity so it would make more sense for us to try to use menelaus
+
+%------------------
+%-- Message Achilleas ( moderator )
+This problem looks like Menelaus' figure with line $DEF$ as a transversal to $ABC$. Is it clear how we can apply it directly to show that $K$, $L$, $M$ are collinear?
+
+%------------------
+%-- Message vsar0406 ( user )
+% not really
+
+%------------------
+%-- Message Yufanwang ( user )
+% not really
+
+%------------------
+%-- Message MathJams ( user )
+% no...
+
+%------------------
+%-- Message RP3.1415 ( user )
+% not really 
+
+%------------------
+%-- Message coolbluealan ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+Unfortunately we can't fit those points into Menelaus just yet.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we need in order to apply Menelaus?
+
+%------------------
+%-- Message dxs2016 ( user )
+% a triangle?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need another triangle.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% A triangle with points that lie on the 3 respective sides of the triangle
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We need $K, M, N$ to be the base of the cevians of some triangle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We need a triangle with $K$, $L$, $M$ on its three sides (or extensions of sides) in order to apply Menelaus.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Any suggestions?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What might we consider introducing to the problem?
+
+%------------------
+%-- Message RP3.1415 ( user )
+% some more points ig
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which other points?
+
+%------------------
+%-- Message bryanguo ( user )
+% midpoints?
+
+%------------------
+%-- Message dxs2016 ( user )
+% more midpoints?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We are getting there.  Which other midpoints?
+
+%------------------
+%-- Message Achilleas ( moderator )
+In problems involving midpoints of lengths, it is often helpful to introduce additional midpoints to create parallel lines. Any suggestions for which midpoints might be useful?
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% Since $K, M, L$ are midpoints, perhaps we should draw the medial triangle of $\triangle ABC$?
+
+%------------------
+%-- Message MathJams ( user )
+% midpoint of AC?
+
+%------------------
+%-- Message apple.xy ( user )
+% the midpoint of BC?
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% the midpoint of $AC$
+
+%------------------
+%-- Message Ezraft ( user )
+% $AC, BC, AB?$
+
+%------------------
+%-- Message RP3.1415 ( user )
+% midpoint of AB, BC, CA?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's try adding the midpoints of the sides of $\triangle ABC$:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+defaultpen(fontsize(10));
+size(10cm);
+pair A = (6,8), B = (0,0), C = (9,0), D = (12,0), F = .4*A, E = extension(A,C,D,F), K = midpoint(A--D), L = midpoint(B--E), M = midpoint(C--F);
+pair X = midpoint(B--C), Y = midpoint(A--C), Z = midpoint(A--B);
+pair R = midpoint(D--F); real rf = abs(R-F)*1.5;
+
+draw(R+rf*dir(R--F)--R-rf*dir(R--F), Arrows(4));
+draw(A--B--C--cycle^^C--D);
+draw(A--D^^B--E^^C--F, gray(0));
+//draw(Y--X--Z--K, gray(0.6));
+
+pair point = A-(0,1);
+pair[] p={A,B,C,D,E,F,K,L,M,X,Y,Z};
+string s = "A,B,C,D,E,F,K,L,M,X,Y,Z";    
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+d[3]=-10; d[4]=100; d[5] = -20; d[6]=90; d[7] = -20; d[9] = 10; d[10] = 120; d[11] = -120; mult[5] = 2;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What now?
+
+%------------------
+%-- Message coolbluealan ( user )
+% Z,L,X are collinear
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Z, Y, K are collinear
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% X, M, Y are also collinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+It looks like $K$ is on $YZ$, $L$ is on $XZ$, and $M$ on $XY$. (Now you see why I included this problem - we have more than one collinearity problem in this one problem.)
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we show that $K$ is on $YZ$?
+
+%------------------
+%-- Message coolbluealan ( user )
+% Homothety with center A and ration 1/2 to B,C,D
+
+%------------------
+%-- Message dxs2016 ( user )
+% two parallel lines sharing a same point must be the same parallel line
+
+%------------------
+%-- Message Catherineyaya ( user )
+% YZ||BC, YK||CD so Z,Y,K collinear
+
+%------------------
+%-- Message MathJams ( user )
+% since ZY//BC and YK//CD, so K is on ZY
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have $YK \parallel BD$ since $Y$ and $K$ are midpoints of $AC$ and $AD$ in triangle $ACD$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Similarly, $YZ\parallel BC$, so $YZ$ and $YK$ are both parallel to $BC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Therefore, $Z$, $K$, and $Y$ are collinear. Similarly, $L$ is on $XZ$ and $M$ on $XY$:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+unitsize(1cm);
+
+defaultpen(fontsize(10));
+size(10cm);
+pair A = (6,8), B = (0,0), C = (9,0), D = (12,0), F = .4*A, E = extension(A,C,D,F), K = midpoint(A--D), L = midpoint(B--E), M = midpoint(C--F);
+pair X = midpoint(B--C), Y = midpoint(A--C), Z = midpoint(A--B);
+pair R = midpoint(D--F); real rf = abs(R-F)*1.5;
+
+draw(R+rf*dir(R--F)--R-rf*dir(R--F), Arrows(4));
+draw(A--B--C--cycle^^C--D);
+draw(A--D^^B--E^^C--F, gray(0));
+draw(Y--X--Z--K, gray(0.6));
+
+pair point = A-(0,1);
+pair[] p={A,B,C,D,E,F,K,L,M,X,Y,Z};
+string s = "A,B,C,D,E,F,K,L,M,X,Y,Z";    
+int size = p.length;
+real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+d[3]=-10; d[4]=100; d[5] = -20; d[6]=90; d[7] = -20; d[9] = 10; d[10] = 120; d[11] = -120; mult[5] = 2;
+string[] k= split(s,",");
+for(int i = 0;i<p.length;++i) {
+    dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+}
+// [/i][/i][/i][/i][/i][/i][/i]
+
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why is this useful?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% now we have a triangle to use menelaus on
+
+%------------------
+%-- Message Achilleas ( moderator )
+Which triangle is that?
+
+%------------------
+%-- Message coolbluealan ( user )
+% apply menelaus to triangle ZXY
+
+%------------------
+%-- Message Catherineyaya ( user )
+% menelaus on triangle XYZ
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% we might be able to apply Menelaus to $\triangle XYZ$
+
+%------------------
+%-- Message Bimikel ( user )
+% we can use Menelaus on $\triangle XYZ$
+
+%------------------
+%-- Message Ezraft ( user )
+% we can use Menelaus on $\triangle XYZ$
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% we have a triangle XYZ to do menealus on
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% We've found our triangle $\triangle{XYZ}$ that contains points $K,L,M$ on the sides, so we use menelaus
+
+%------------------
+%-- Message Achilleas ( moderator )
+We have a triangle to break out Menelaus on.  Triangle $XYZ$ has points $K$, $L$, $M$ on its sides (or extensions).  What must we show to prove that the three points are collinear?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $\frac{XM}{MY} \frac{YK}{KZ} \frac{ZL}{LX} = -1$, where the lengths are directed.
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\frac{XM}{MY}\cdot\frac{YK}{KZ}\cdot\frac{ZL}{LX}=-1$
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% $\frac{ZL}{LX} \cdot \frac{XM}{MY} \cdot \frac{YK}{KZ} = -1$
+
+%------------------
+%-- Message Ezraft ( user )
+% $\frac{ZL}{LX} \cdot \frac{XM}{MY} \cdot \frac{YK}{KZ} = -1$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We must show that
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$ \frac{YK}{KZ}\cdot\frac{ZL}{LX}\cdot\frac{XM}{MY} = -1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we equate any of these fractions (say, $YK/KZ$) to other ratios?
+
+%------------------
+%-- Message coolbluealan ( user )
+% YK/KZ=CD/DB
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\frac{YK}{KZ}=\frac{CD}{DB}$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% YK/KZ = CD/DB
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% $YK/KZ = CD / DB$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\frac{YK}{KZ} = \frac{CD}{DB}$
+
+%------------------
+%-- Message JamesSong ( user )
+% YK/KZ=CD/DB
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since $Z$, $Y$, and $K$ are midpoints of $AB$, $AC$, and $AD$, we know that $\frac{YK}{KZ} = \frac{CD}{DB}$ by a homothety centered at $A$. What about the other two fractions?
+
+%------------------
+%-- Message Achilleas ( moderator )
+(one post with both relations would be best)
+
+%------------------
+%-- Message coolbluealan ( user )
+% ZL/LX=AE/EC and XM/MY=BF/FA
+
+%------------------
+%-- Message bryanguo ( user )
+% ZL/LX=ZE/EC and XM/MY=BF/FA
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% $ZL/LX=AE/EC$ and $XM/MY=BF/FA$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% ZL/LX = AE/EC, XM/MY = BF/FA
+
+%------------------
+%-- Message Achilleas ( moderator )
+Likewise, $\frac{ZL}{LX} = \frac{AE}{EC}$ and $\frac{XM}{MY} = \frac{BF}{FA}$. Why is this helpful?
+
+%------------------
+%-- Message MTHJJS ( user )
+% menelaus on triangle ABC
+
+%------------------
+%-- Message MathJams ( user )
+% since we know that D,E,F are collinear, so by Menelaus we know it is true
+
+%------------------
+%-- Message JacobGallager1 ( user )
+% We are given that $F, E, D$ are colinear so we can apply Menalus's theorem to evaluiate the product of these lengths
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Then use Menelaus on ABC with points DEF.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% we can apply Menelaus to $\triangle ABC$
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% We can use Menelaus again on $\triangle ABC$
+
+%------------------
+%-- Message dxs2016 ( user )
+% We can prove it using menelaus with F, E, D
+
+%------------------
+%-- Message Bimikel ( user )
+% It uses Menelaus on $\triangle ABC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can apply Menelaus to our original line and triangle (triangle $ABC$ with points $D$, $E$, $F$ on the sides), to give:
+
+%------------------
+%-- Message Achilleas ( moderator )
+$$\frac{CD}{DB}\cdot\frac{BF}{FA}\cdot\frac{AE}{EC} = -1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we finish?
+
+%------------------
+%-- Message Ezraft ( user )
+% We can substitute for our earlier ratios due to the homothety
+
+%------------------
+%-- Message MathJams ( user )
+% subsitute our ratios
+
+%------------------
+%-- Message Achilleas ( moderator )
+Substituting in our fraction equalities gives us the desired expression we want, so $K$, $L$, $M$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Nice!
+
+%------------------
+%-- Message Achilleas ( moderator )
+\begin{example}
+    Let $I$ be the incenter of triangle $ABC$, and let the incircle touch the sides $BC$, $CA$, $AB$ at the points $A_1$, $B_1$, $C_1$, respectively.  Prove that the circumcenters of triangles $AIA_1$, $BIB_1$, $CIC_1$ are collinear.    
+\end{example}
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+draw(circumcircle(B[0],I,B[1]));
+draw(circumcircle(C[0],I,C[1]));
+draw((O[1] + 0.2*(O[1] - O[3]))--(O[3] + 0.2*(O[3] - O[1])),dashed);
+
+label("$A$", A[0], N);
+label("$B$", B[0], SW);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$B_1$", B[1], NE);
+dot("$C_1$", C[1], W);
+dot("$I$", I, E);
+dot(O[1]);
+dot(O[2]);
+dot(O[3]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We want to prove that three points are collinear. Which theorem comes to mind?
+
+%------------------
+%-- Message ay0741 ( user )
+% another menalaus?
+
+%------------------
+%-- Message apple.xy ( user )
+% Menelaus
+
+%------------------
+%-- Message AOPS81619 ( user )
+% menelaus
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% menelaus
+
+%------------------
+%-- Message ww2511 ( user )
+% menelaus
+
+%------------------
+%-- Message SmartZX ( user )
+% Menelaus
+
+%------------------
+%-- Message Ezraft ( user )
+% Menelaus
+
+%------------------
+%-- Message mustwin_az ( user )
+% Menelaus
+
+%------------------
+%-- Message Catherineyaya ( user )
+% menelaus
+
+%------------------
+%-- Message Bimikel ( user )
+% menelaus
+
+%------------------
+%-- Message mkannan ( user )
+% menelaus
+
+%------------------
+%-- Message pritiks ( user )
+% menelaus
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Menelaus
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% menelaus
+
+%------------------
+%-- Message christopherfu66 ( user )
+% Menelaus' theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+Naturally, we think of Menelaus.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we easily apply Menelaus theorem here?
+
+%------------------
+%-- Message Bimikel ( user )
+% no
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% No.
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% no..
+
+%------------------
+%-- Message MathJams ( user )
+% no 
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% No
+
+%------------------
+%-- Message coolbluealan ( user )
+% not really
+
+%------------------
+%-- Message pritiks ( user )
+% no
+
+%------------------
+%-- Message Achilleas ( moderator )
+What makes it difficult to apply Menelaus directly to this problem?
+
+%------------------
+%-- Message coolbluealan ( user )
+% the circumcenters are not on sides of a triangle
+
+%------------------
+%-- Message mustwin_az ( user )
+% No triangle that involves the circumcenters
+
+%------------------
+%-- Message Achilleas ( moderator )
+The problem with Menelaus is that none of the circumcenters aren't necessarily on the sides of triangle $ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+In problems like these, it's not particularly clear whether a Menelaus approach would even work. However, the main reason we won't discount Menelaus immediately today is that our circumcenters are defined "symmetrically" with respect to triangle $ABC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Hence, our goal will be to transform the diagram into something for which we can use Menelaus on.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How should we start tackling this problem?
+
+%------------------
+%-- Message pritiks ( user )
+% maybe connecting some points?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% look for collinear points
+
+%------------------
+%-- Message dvrdvr ( user )
+% connect more points together
+
+%------------------
+%-- Message Achilleas ( moderator )
+Looking for collinear points or drawing new lines is a good idea. However, for the time being, we would like to simplify our diagram.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's look at one circumcenter at a time. Here's the circumcircle of triangle $AIA_1$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+
+label("$A$", A[0], N);
+label("$B$", B[0], SW);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$I$", I, E);
+dot(O[1]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we know about the location of this circumcenter?
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is on the perpendicular bisectors of AI and AA_1
+
+%------------------
+%-- Message chardikala2 ( user )
+% its on the intersection of the perpendicular bisectors of the sides of the triangle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that the circumcenter is the intersection of the perpendicular bisectors of the sides.
+
+%------------------
+%-- Message Achilleas ( moderator )
+However, this doesn't appear to be very useful - none of the perpendicular bisectors are interesting lines.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's take a step back. Do the points $A$, $I$, and $A_1$ interact well with each other?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What do we know about $AI$?
+
+%------------------
+%-- Message apple.xy ( user )
+% it is an angle bisector of triangle ABC
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is the angle bisector of $\angle A$
+
+%------------------
+%-- Message sae123 ( user )
+% bisects $\angle BAC$
+
+%------------------
+%-- Message Ezraft ( user )
+% it is the angle bisector of $\angle BAC$
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $AI$ bisects $\angle BAC$
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is the angle bisector of $\angle BAC$
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% It's the interior angle bisector of $\angle BAC$.
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Angle bisector of $\angle{BAC}$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $AI$ is the angle bisector of $\angle BAC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $IA_1$?
+
+%------------------
+%-- Message MathJams ( user )
+% IA_1 is perpendicular to BC
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% It's perpendicular to $BC$
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $IA_1\perp BC$
+
+%------------------
+%-- Message ay0741 ( user )
+% perpendicular to BC?
+
+%------------------
+%-- Message coolbluealan ( user )
+% it is perpendicular to BC
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% it is perpendicular to $BC$
+
+%------------------
+%-- Message SlurpBurp ( user )
+% perpendicular to $BC$
+
+%------------------
+%-- Message bryanguo ( user )
+% perpendicular to $BC$
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% Perpendicular to $BC$
+
+%------------------
+%-- Message apple.xy ( user )
+% perpendicular to BC?
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% perpendicular to $BC$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We also know that $IA_1$ is a radius of the incircle perpendicular to $BC$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Can we use $IA_1\perp BC$ to motivate the construction of any points?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Note that $\angle BA_1I$ is a right angle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+(Focus on the circle on the left)
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+
+label("$A$", A[0], N);
+label("$B$", B[0], SW);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$I$", I, E);
+dot(O[1]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message AOPS81619 ( user )
+% Diameter of the circle passing through $I$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How do we construct a diameter of the circle passing through $I$?
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Extend $BA_1$ to meet the circle on the left
+
+%------------------
+%-- Message ay0741 ( user )
+% Sorry extend BA_1 to create diameter?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can extend $BC$ to intersect the circumcircle again at another point, say $A_2$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+A[2] = extension(A[0],A[0] + rotate(90)*(A[0] - I),B[0],C[0]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+draw(B[0]--A[2]);
+
+label("$A$", A[0], N);
+label("$B$", B[0], S);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$A_2$", A[2], W);
+dot("$I$", I, E);
+dot(O[1]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+So $\angle IA_1 A_2$ is a right angle.  What does this say about the diagram?
+
+%------------------
+%-- Message Bimikel ( user )
+% $IA_2$ is a diameter
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% $A_2I$ is a diameter and the center of the circle is its midpoint.
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% IA2 is the diameter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+This says that $IA_2$ is a diameter of the circumcircle.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+A[2] = extension(A[0],A[0] + rotate(90)*(A[0] - I),B[0],C[0]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+draw(B[0]--A[2]);
+draw(I--A[2]);
+
+label("$A$", A[0], N);
+label("$B$", B[0], S);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$A_2$", A[2], W);
+dot("$I$", I, E);
+dot(O[1]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+It follows that the circumcenter is the midpoint of $IA_2$, which looks useful.
+
+%------------------
+%-- Message Achilleas ( moderator )
+What else can we say about the diagram?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How about $\angle IAA_2?$
+
+%------------------
+%-- Message Bimikel ( user )
+% that is also a right angle
+
+%------------------
+%-- Message MathJams ( user )
+% <IAA_2=90
+
+%------------------
+%-- Message ay0741 ( user )
+% its right angle
+
+%------------------
+%-- Message bryanguo ( user )
+% $\angle IAA_2 = 90^\circ$
+
+%------------------
+%-- Message MathJams ( user )
+% it is a right angle
+
+%------------------
+%-- Message Catherineyaya ( user )
+% $\angle IAA_2=90^\circ$
+
+%------------------
+%-- Message Ezraft ( user )
+% It is a right angle
+
+%------------------
+%-- Message Achilleas ( moderator )
+We can say that $\angle IAA_2$ is also right because $IA_2$ is a diameter.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+A[2] = extension(A[0],A[0] + rotate(90)*(A[0] - I),B[0],C[0]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(circumcircle(A[0],I,A[1]));
+draw(B[0]--A[2]);
+draw(I--A[2]);
+draw(A[0]--A[2]);
+
+label("$A$", A[0], N);
+label("$B$", B[0], S);
+label("$C$", C[0], SE);
+dot("$A_1$", A[1], SE);
+dot("$A_2$", A[2], W);
+dot("$I$", I, E);
+dot(O[1]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+In other words, $AA_2$ is perpendicular to $AI$.  What does that mean?
+
+%------------------
+%-- Message Ezraft ( user )
+% $AA_2$ is the external angle bisector of $\angle BAC$
+
+%------------------
+%-- Message ay0741 ( user )
+% A_2A is angle bisector of angle A in triangle ABC
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% AA2 is the external angle bisector of angle BAC.
+
+%------------------
+%-- Message Achilleas ( moderator )
+It means that $AA_2$ is the external angle bisector of $\angle A$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Let's take a step back to our original problem. Can we change our current problem of proving the circumcenters collinear into a different problem involving $A_2$ and the analogous external angle bisector intersections ($B_2$, $C_2$)?
+
+%------------------
+%-- Message Achilleas ( moderator )
+How are the circumcenters related to $IA_2$, $IB_2$, and $IC_2$?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% They are the midpoints of $IA_2, IB_2,$ and $IC_2$
+
+%------------------
+%-- Message Ezraft ( user )
+% They are the midpoints of $IA_2, IB_2, and IC_2$
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since the circumcenters are the midpoints of $IA_2$, $IB_2$, $IC_2$, what does it suffice to show?
+
+%------------------
+%-- Message Lucky0123 ( user )
+% $A_2,B_2,$ and $C_2$ are collinear
+
+%------------------
+%-- Message coolbluealan ( user )
+% A_2,B_2,C_2 are collinear
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% That points A2, B2, and C2 are collinear.
+
+%------------------
+%-- Message AOPS81619 ( user )
+% $A_2, B_2, C_2$ are collinear
+
+%------------------
+%-- Message Achilleas ( moderator )
+Since the circumcenters are the midpoints of $IA_2$, $IB_2$, $IC_2$, it suffices to show that $A_2$, $B_2$, $C_2$ are collinear.
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+A[2] = extension(A[0],A[0] + rotate(90)*(A[0] - I),B[0],C[0]);
+B[2] = extension(B[0],B[0] + rotate(90)*(B[0] - I),C[0],A[0]);
+C[2] = extension(C[0],C[0] + rotate(90)*(C[0] - I),A[0],B[0]);
+
+draw(circumcircle(A[0],I,A[1]),gray(0.7));
+draw(circumcircle(B[0],I,B[1]),gray(0.7));
+draw(circumcircle(C[0],I,C[1]),gray(0.7));
+draw((O[1] + 0.2*(O[1] - O[3]))--(O[3] + 0.2*(O[3] - O[1])),dashed+gray(0.7));
+draw(A[2]--I,gray(0.7));
+draw(B[2]--I,gray(0.7));
+draw(C[2]--I,gray(0.7));
+draw(A[0]--B[0]--C[0]--cycle);
+draw(incircle(A[0],B[0],C[0]));
+draw(A[0]--I);
+draw(B[0]--I);
+draw(C[0]--I);
+draw(A[0]--A[2]--B[0]);
+draw(B[0]--B[2]--A[0]);
+draw(C[0]--C[2]--A[0]);
+draw((A[2] + 0.1*(A[2] - C[2]))--(C[2] + 0.1*(C[2] - A[2])),dashed);
+
+label("$A$", A[0], N);
+label("$B$", B[0], S);
+label("$C$", C[0], SE);
+dot("$A_2$", A[2], NW);
+dot("$B_2$", B[2], NW);
+dot("$C_2$", C[2], N);
+dot("$I$", I, E);
+dot(O[1]);
+dot(O[2]);
+dot(O[3]);
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+Why does this make us happy?
+
+%------------------
+%-- Message tigerzhang ( user )
+% we can use menelaus
+
+%------------------
+%-- Message Ezraft ( user )
+% we can use Menelaus on $\triangle ABC$ now
+
+%------------------
+%-- Message mustwin_az ( user )
+% we can use menelaus
+
+%------------------
+%-- Message MathJams ( user )
+% we can use menelaus on triangle ABC
+
+%------------------
+%-- Message SlurpBurp ( user )
+% now we can use menelaus on triangle ABC
+
+%------------------
+%-- Message Achilleas ( moderator )
+Now we're in business, because $A_2$, $B_2$, and $C_2$ are on the sides of triangle $ABC$, so we are in a position to apply Menelaus. What length ratios should we try to compute?
+
+%------------------
+%-- Message SlurpBurp ( user )
+% $\frac{AC_2}{C_2B} \cdot \frac{BA_2}{A_2C} \cdot \frac{CB_2}{B_2A} = -1$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We must show that
+$$\frac{BA_2}{A_2 C} \cdot \frac{CB_2}{B_2 A} \cdot \frac{AC_2}{C_2 B} = -1.$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+First, let's try to find $BA_2/A_2 C$.
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $AA_2$ is the external angle bisector of $\angle A$, so it is perpendicular to the internal angle bisector of $\angle A$, shown above.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we find $BA_2/A_2 C$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+Does this configuration look familiar to anyone?
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+import markers;
+
+unitsize(0.3 cm);
+
+pair I;
+pair[] A, B, C, O;
+
+A[0] = (4,3);
+B[0] = (0,0);
+C[0] = (14,0);
+I = incenter(A[0],B[0],C[0]);
+A[1] = (I + reflect(B[0],C[0])*(I))/2;
+B[1] = (I + reflect(C[0],A[0])*(I))/2;
+C[1] = (I + reflect(A[0],B[0])*(I))/2;
+O[1] = circumcenter(A[0],I,A[1]);
+O[2] = circumcenter(B[0],I,B[1]);
+O[3] = circumcenter(C[0],I,C[1]);
+A[2] = extension(A[0],A[0] + rotate(90)*(A[0] - I),B[0],C[0]);
+B[2] = extension(B[0],B[0] + rotate(90)*(B[0] - I),C[0],A[0]);
+C[2] = extension(C[0],C[0] + rotate(90)*(C[0] - I),A[0],B[0]);
+
+draw(A[0]--B[0]--C[0]--cycle);
+draw(A[0]--A[2]--B[0]);
+draw(A[0]--extension(A[0],I,B[0],C[0]));
+markscalefactor = 0.08;
+draw(rightanglemark(A[2],A[0],A[1]));
+
+label("$A$", A[0], N);
+label("$B$", B[0], S);
+label("$C$", C[0], SE);
+label("$A_2$", A[2], SW);
+label("$A_3$", A[1], S);
+
+markangle(1, B[0], A[0], I, radius=4mm, marker(markinterval(stickframe(n=1,2mm),true)));
+markangle(1, I, A[0], C[0], radius=4mm, marker(markinterval(stickframe(n=1,2mm),true)));
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message MathJams ( user )
+% the example from earlier
+
+%------------------
+%-- Message Lucky0123 ( user )
+% Yes
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Yes...
+
+%------------------
+%-- Message AOPS81619 ( user )
+% it's what we did earlier
+
+%------------------
+%-- Message Achilleas ( moderator )
+This looks like one of our lemmas from an above problem! Recall that $(A,B; X,Y) = -1$ in:
+
+%------------------
+%-- Message Achilleas ( moderator )
+
+
+
+\begin{center}
+\begin{asy}
+import cse5;
+import olympiad;
+// unitsize(4cm);
+
+    unitsize(.2cm);
+    pair A = (4,14), B =(0,0), C = (16,0), D = C+abs(A-C)*dir(B--C);
+    path w1 = circumcircle(A,C,D), w2 = circumcircle(B,C,foot(B,C,A));
+    pair P = intersectionpoints(w1,w2)[0], O = circumcenter(A,C,D);
+    pair E = extension(B,P,A,C), F = extension(C,P,A,B), D1 = extension(A,P,B,C);
+    draw(C--P--B--D--P--D1);
+    markscalefactor = 0.2;
+    draw(rightanglemark(B,P,C));
+    markscalefactor = 0.3;
+    draw(anglemark(C,P,D));
+    draw(anglemark(D1,P,C));
+    pair point = centroid(P,B,D);
+    pair[] p={B,C,P,D,D1};
+    string s = "A,B,P,Y,X";    
+    int size = p.length;
+    real[] d; real[] mult; for(int i = 0; i<size; ++i) { d[i] = 0; mult[i] = 1;}
+    d[4] = 10; mult[4] = 1.3; d[5] = 80;
+    string[] k= split(s,",");
+    for(int i = 0;i<p.length;++i) {
+        dot("$"+k[i]+"$",p[i],mult[i]*dir(point--p[i])*dir(d[i]));    
+    }
+    // [/i][/i][/i][/i][/i][/i][/i]
+
+\end{asy}
+\end{center}
+
+
+
+
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $AA_2$ is the external angle bisector of $\angle A$, so it is perpendicular to the internal angle bisector of $\angle A$, shown above.
+
+%------------------
+%-- Message Achilleas ( moderator )
+How can we find $BA_2/A_2 C$?
+
+%------------------
+%-- Message Achilleas ( moderator )
+What does this lemma tell us?
+
+%------------------
+%-- Message Achilleas ( moderator )
+We know that $BA_2/A_2C = -BA_3/A_3C$, where $A_3$ is the intersection of the internal angle bisector with $BC$. How do we continue simplifying?
+
+%------------------
+%-- Message Ezraft ( user )
+% we can use the angle bisector theorem
+
+%------------------
+%-- Message Achilleas ( moderator )
+What's $BA_3/A_3C?$
+
+%------------------
+%-- Message coolbluealan ( user )
+% BA/AC
+
+%------------------
+%-- Message ay0741 ( user )
+% BA/AC
+
+%------------------
+%-- Message Achilleas ( moderator )
+By the angle bisector theorem, $BA_2/A_2C = -BA_3/A_3C = -AB/AC$. How do we finish?
+
+%------------------
+%-- Message MathJams ( user )
+% symmetry
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% use symmetry
+
+%------------------
+%-- Message Achilleas ( moderator )
+By symmetry, we know that $CB_2/B_2A = -BC/AB$ and $AC_2/C_2B = -AC/BC$. Thus, by Menelaus, we have: $$\frac{BA_2}{A_2 C} \cdot \frac{CB_2}{B_2 A} \cdot \frac{AC_2}{C_2 B} = \left(-\frac{AB}{AC}\right)\cdot\left(-\frac{BC}{AB}\right)\cdot\left(-\frac{AC}{BC}\right) = -1$$
+
+%------------------
+%-- Message Achilleas ( moderator )
+We conclude that $A_2$, $B_2$, and $C_2$ are collinear, which means that the circumcenters are collinear as well.
+
+%------------------
+%-- Message Achilleas ( moderator )
+As a final note about this problem, the hardest part of this problem was transforming the problem into something that we could use Ceva/Menelaus on. Most collinearity problems won't necessarily provide a straightforward Ceva/Menelaus setups, so the meat of the problem is often finding out how to do so.
+
+%------------------
+%-- Message Achilleas ( moderator )
+\textbf{SUMMARY}
+
+%------------------
+%-- Message Achilleas ( moderator )
+Today we learned Ceva's and Menelaus's theorem, which are very closely related theorems (hence, "Cevalaus"). The two theorems are useful when the diagrams lend themselves to length/ratio chasing, and are harder to apply when diagrams involve angle relations. When chasing lengths, it is important to rewrite "more complex" lengths in terms of more fundamental lengths.
+
+%------------------
+%-- Message Achilleas ( moderator )
+Both Ceva and Menelaus require a reference triangle $ABC$ and points $D$, $E$, $F$ on its three sides. Sometimes it will not be obvious what the reference triangle for a set of three points is. The difficult part of these problems is to construct the reference triangle yourself.
+
+
+% ---------------------------------
+
+%------------------
+%-- Message Achilleas ( moderator )
+% Thank you all! Have a wonderful week! See you next time!  
+
+%------------------
+%-- Message leoouyang ( user )
+% Thanks
+
+%------------------
+%-- Message bryanguo ( user )
+% thanks for class 
+
+%------------------
+%-- Message sae123 ( user )
+% thanks!
+
+%------------------
+%-- Message myltbc10 ( user )
+% thank you
+
+%------------------
+%-- Message Ezraft ( user )
+% Thank you!
+
+%------------------
+%-- Message Riya_Tapas ( user )
+% thank you!
+
+%------------------
+%-- Message MeepMurp5 ( user )
+% Thank you!
+
+%------------------
+%-- Message SlurpBurp ( user )
+% thanks!!
+
+%------------------
+%-- Message Catherineyaya ( user )
+% thank you!
+
+%------------------
+%-- Message dxs2016 ( user )
+% thanks!
+
+%------------------
+%-- Message Wangminqi1 ( user )
+% Thank you!
+
+%------------------
+%-- Message Lucky0123 ( user )
+% thanks!
+
+%------------------
+%-- Message vsar0406 ( user )
+% Thank you so much for the class 
+
+%------------------
+%-- Message Ezraft ( user )
+% 
+
+%------------------
+%-- Message ellenmom ( user )
+% thanks
+
+%------------------
+%-- Message Celwelf ( user )
+% Thank you
+
+%------------------
+%-- Message MathJams ( user )
+% thank you!
+
+%------------------
+%-- Message Bimikel ( user )
+% Thanks!
+
+%------------------
+%-- Message Ezraft ( user )
+% Thanks!
+
+%------------------
+%-- Message Glczx ( user )
+% Thank you
+
+%------------------
+%-- Message AOPS81619 ( user )
+% thanks
+
+%------------------
+%-- Message TomQiu2023 ( user )
+% Thanks!
+
+%------------------
+%-- Message Trollyjones ( user )
+% thanks
+
+%------------------
+%-- Message J4wbr34k3r ( user )
+% Thanks!
+
+%------------------
+%-- Message mustwin_az ( user )
+% thank you
+
+%------------------
+%-- Message Achilleas ( moderator )
+Bye, everyone!
+
+%------------------

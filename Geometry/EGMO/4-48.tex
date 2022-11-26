@@ -1,0 +1,104 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+\title{EGMO - 4.48}
+
+\author{\TBD}
+\date{\today}
+
+\begin{document}
+Given: Circle with center $O$ is tangent to $BC$ at $P$ and internally tangent to $\Gamma$ at $Q$.
+
+\vspace{10pt}
+Show that if $\angle{BAO} = \angle{CAO}$ then $\angle{PAO} = \angle{QAO}$.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+        unitsize(6cm);
+
+        pair A, B, C, P, Q, O, Ow, M, A1, R, S;
+        path w, w1;
+        // get this by trial and error for the center to be close to angle bisector
+        real x = 0.42;
+
+        Ow = (0,0);
+        w = circle(Ow, 1);
+
+        A = dir(145);
+        B = dir(210);
+        C = dir(330);
+
+        // Center of arc
+        M = dir (90);
+
+        A1 = rotate((angle(C-A)-angle(B-A))*90/pi, A)*B;
+        A1 = A + (A1 - A)*2;
+
+        P = x*C + (1-x)*B;
+        Q = P + (P - M);
+        Q = intersectionpoint(w, Q--P);
+        // O = (P + Q)/2;
+
+        // Homothety scaling factor
+        real r = distance(P,Q)/distance(M,Q);
+
+
+        O = rotate(90,P)*B;
+        O = P + (O - P)*r/distance(O, P);
+
+        w1 = circle(O, r);
+
+        R = O + (O - A);
+        R = intersectionpoint(w, R--O);
+        
+        S = foot(Ow, B, C);
+
+        dot(P);
+        dot(Q);
+        dot(O);
+        dot(Ow, blue);
+
+        draw(A--B--C--cycle);
+        draw(w);
+        draw(w1);
+
+        draw(A--P^^A--O^^A--Q, black);
+
+        // draw(A--A1, red, arrow=ArcArrow(SimpleHead));
+
+        dot(M);
+        dot(R);
+
+        draw(M--Q, blue);
+        draw(O--R, blue);
+        draw(M--R, blue);
+
+        draw(rightanglemark(Ow, S, P, 1), blue);
+
+        label("$A$", A, N);
+        label("$B$", B, SW);
+        label("$C$", C, SE);
+
+        label("$P$", P, N);
+        label("$Q$", Q, S);
+        label("$O$", O, SE);
+        label("$R$", R, dir(R-O));
+        label("$S$", S, NE);
+        label("$M$", M, dir(90));
+
+        label("$O_\Gamma$", Ow, SE);
+
+        label(Label("$\Gamma$", Relative(0.2)), w);
+
+    \end{asy}
+\end{center}
+\textbf{Hints}:
+\begin{itemize}
+    \item 220: Which quadrilateral is cyclic?
+    \item 676: Complement Lemma 4.33 by extending $AO$ to meet $\Gamma$ again.
+    \item 19: Use angle chasing to show that $APOQ$ is cyclic and we are done!
+\end{itemize}
+\end{document}
