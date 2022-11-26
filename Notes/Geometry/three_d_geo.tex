@@ -1,0 +1,226 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{3-D Geometry }
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{November 13, 2021}
+
+\maketitle
+
+\section{Basics}
+
+\subsection{Cross-sections}
+Whenever we have spheres, we try to take cross-sections through centers and points of tangencies.
+
+\section{AMC 10/12 Problems}
+
+\begin{problem}[2012 AMC 10 B, \#17]
+    Jesse cuts a circular paper disk of radius 12 along two radii to form two sectors, the smaller having a central angle of 120 degrees. He makes two circular cones, using each sector to form the lateral surface of a cone. What is the ratio of the volume of the smaller cone to that of the larger?
+
+$\text{(A)} \frac{1}{8} \qquad \text{(B)} \frac{1}{4} \qquad \text{(C)} \frac{\sqrt{10}}{10} \qquad \text{(D)} \frac{\sqrt{5}}{6} \qquad \text{(E)} \frac{\sqrt{5}}{5}$
+    \begin{sketch}
+       Use old circumference to calculate radius and the old radius to calculate lateral height. Answer is $\boxed{\text{(C)} \frac{\sqrt{10}}{10}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2007 AMC 10 A, \#21]
+    A sphere is inscribed in a cube that has a surface area of $24$ square meters. A second cube is then inscribed within the sphere. What is the surface area in square meters of the inner cube?
+
+    $\text{(A)}\ 3 \qquad \text{(B)}\ 6 \qquad \text{(C)}\ 8 \qquad \text{(D)}\ 9 \qquad \text{(E)}\ 12$
+
+    \begin{sketch}
+       Diameter of the sphere is the space diagonal of the second cube.  Answer is $\boxed{\text{C}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2015 AMC 10 A, \#21]
+    Tetrahedron $ABCD$ has $AB=5$, $AC=3$, $BC=4$, $BD=4$, $AD=3$, and $CD=\tfrac{12}5\sqrt2$. What is the volume of the tetrahedron?
+
+$\textbf{(A) }3\sqrt2\qquad\textbf{(B) }2\sqrt5\qquad\textbf{(C) }\dfrac{24}5\qquad\textbf{(D) }3\sqrt3\qquad\textbf{(E) }\dfrac{24}5\sqrt2$
+
+    \begin{sketch}
+       Drop altitudes from $C$ and $D$ to $\overline{AB}$; they will be at the same point $E$ by symmetry. Conclude that $\angle{CED} = 90^\circ$. Answer is $\boxed{\textbf{(C) }\dfrac{24}5}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2011 AMC 10 B, \#22]
+    A pyramid has a square base with sides of length $1$ and has lateral faces that are equilateral triangles. A cube is placed within the pyramid so that one face is on the base of the pyramid and its opposite face has all its edges on the lateral faces of the pyramid. What is the volume of this cube?
+
+$\textbf{(A)}\ 5\sqrt{2} - 7 \qquad\textbf{(B)}\ 7 - 4\sqrt{3} \qquad\textbf{(C)}\ \frac{2\sqrt{2}}{27} \qquad\textbf{(D)}\ \frac{\sqrt{2}}{9} \qquad\textbf{(E)}\ \frac{\sqrt{3}}{9}$
+    \begin{sketch}
+       Take the cross-section through the diagonal of the base. Answer is $\boxed{\textbf{(A)}\ 5\sqrt{2} - 7}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2014 AMC 10 B, \#23]
+    A sphere is inscribed in a truncated right circular cone as shown. The volume of the truncated cone is twice that of the sphere. What is the ratio of the radius of the bottom base of the truncated cone to the radius of the top base of the truncated cone?
+
+$\text{(A) } \dfrac32 \quad \text{(B) } \dfrac{1+\sqrt5}2 \quad \text{(C) } \sqrt3 \quad \text{(D) } 2 \quad \text{(E) } \dfrac{3+\sqrt5}2$
+    \begin{center}
+        \begin{asy}
+            unitsize(1cm);
+            real r=(3+sqrt(5))/2; 
+            real s=sqrt(r); 
+            real Brad=r; 
+            real brad=1; 
+            real Fht = 2*s; 
+            import graph3; 
+            import solids; 
+            currentprojection=orthographic(1,0,.2); 
+            currentlight=(10,10,5); 
+            revolution sph=sphere((0,0,Fht/2),Fht/2); 
+            draw(surface(sph),green+white+opacity(0.5)); 
+            //triple f(pair t) {return (t.x*cos(t.y),t.x*sin(t.y),t.x^(1/n)*sin(t.y/n));} 
+            triple f(pair t) { triple v0 = Brad*(cos(t.x),sin(t.x),0); triple v1 = brad*(cos(t.x),sin(t.x),0)+(0,0,Fht); return (v0 + t.y*(v1-v0)); } 
+            triple g(pair t) { return (t.y*cos(t.x),t.y*sin(t.x),0); }
+            surface sback=surface(f,(3pi/4,0),(7pi/4,1),80,2); 
+            surface sfront=surface(f,(7pi/4,0),(11pi/4,1),80,2); 
+            surface base = surface(g,(0,0),(2pi,Brad),80,2); 
+            draw(sback,gray(0.4)+opacity(0.65)); 
+            draw(sfront,gray(0.9)+opacity(0.65)); 
+            draw(base,gray(0.9)); 
+            draw(surface(sph),green);
+        \end{asy}
+    \end{center}
+    \begin{sketch}
+       Take the vertical cross-section. Answer is $\boxed{\text{(E) } \dfrac{3+\sqrt5}2}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2004 AMC 10 A, \#25]
+    Three mutually tangent spheres of radius $1$ rest on a horizontal plane. A sphere of radius $2$ rests on them. What is the distance from the plane to the top of the larger sphere?
+
+$\text {(A)}\ 3 + \frac {\sqrt {30}}{2} \qquad \text {(B)}\ 3 + \frac {\sqrt {69}}{3} \qquad \text {(C)}\ 3 + \frac {\sqrt {123}}{4}\qquad \text {(D)}\ \frac {52}{9}\qquad \text {(E)}\ 3 + 2\sqrt2$
+
+
+    \begin{sketch}
+       Connect centers of the spheres, to get a pyramid with base equilateral traingle of length $2$, and side lengths of $3$. Answer is $\boxed{\text{B}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2005 AMC 12 B, \#16]
+    Eight spheres of radius 1, one per octant, are each tangent to the coordinate planes. What is the radius of the smallest sphere, centered at the origin, that contains these eight spheres?
+
+$\mathrm {(A)}\ \sqrt{2}  \qquad \mathrm {(B)}\ \sqrt{3}  \qquad \mathrm {(C)}\ 1+\sqrt{2}\qquad \mathrm {(D)}\ 1+\sqrt{3}\qquad \mathrm {(E)}\ 3$
+
+
+    \begin{sketch}
+       Consider the cube through the centers. Answer is $\boxed{\text{D}}.$
+    \end{sketch}
+\end{problem}
+
+
+\begin{problem}[2013 AMC 10 A, \#22]
+    Six spheres of radius $1$ are positioned so that their centers are at the vertices of a regular hexagon of side length $2$. The six spheres are internally tangent to a larger sphere whose center is the center of the hexagon. An eighth sphere is externally tangent to the six smaller spheres and internally tangent to the larger sphere. What is the radius of this eighth sphere?
+
+    $\textbf{(A)} \ \sqrt{2} \qquad \textbf{(B)} \ \frac{3}{2} \qquad \textbf{(C)} \ \frac{5}{3} \qquad \textbf{(D)} \ \sqrt{3} \qquad \textbf{(E)} \ 2$
+
+
+    \begin{sketch}
+       Take the cross-section through the hexagon (say, horizontal) to find radius of big sphere. Then take the vertical cross-section to find radius of the eighth sphere. Answer is $\boxed{\textbf{(B)} \ \frac{3}{2}}$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2012 AMC 10 B, \#23]
+    A solid tetrahedron is sliced off a solid wooden unit cube by a plane passing through two nonadjacent vertices on one face and one vertex on the opposite face not adjacent to either of the first two vertices. The tetrahedron is discarded and the remaining portion of the cube is placed on a table with the cut surface face down. What is the height of this object?
+
+$\textbf{(A)}\ \frac{\sqrt{3}}{3} \qquad\textbf{(B)}\ \frac{2 \sqrt{2}}{3}\qquad\textbf{(C)}\ 1\qquad\textbf{(D)}\ \frac{2 \sqrt{3}}{3}\qquad\textbf{(E)}\ \sqrt{2}$
+    \begin{sketch}
+        Note that by symmetry, the space diagonal will pass through the center of the chopped surface. Either calculate volume of the chopped tetrahedron two-ways or use coordinates; coordinates faster. Answer is $\boxed{\textbf{(D)}\ \frac{2 \sqrt{3}}{3}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2009 AMC 12 A, \#22]
+    A regular octahedron has side length $1$. A plane parallel to two of its opposite faces cuts the octahedron into the two congruent solids. The polygon formed by the intersection of the plane and the octahedron has area $\frac {a\sqrt {b}}{c}$, where $a$, $b$, and $c$ are positive integers, $a$ and $c$ are relatively prime, and $b$ is not divisible by the square of any prime. What is $a + b + c$?
+    \begin{sketch}
+        It will be a hexagon.  Answer is $\boxed{\text{E}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[2012 AMC 12 B, \#19]
+    A unit cube has vertices $P_1,P_2,P_3,P_4,P_1',P_2',P_3',$ and $P_4'$. Vertices $P_2$, $P_3$, and $P_4$ are adjacent to $P_1$, and for $1\le i\le 4,$ vertices $P_i$ and $P_i'$ are opposite to each other. A regular octahedron has one vertex in each of the segments $P_1P_2$, $P_1P_3$, $P_1P_4$, $P_1'P_2'$, $P_1'P_3'$, and $P_1'P_4'$. What is the octahedron's side length?
+
+    \begin{center}
+        \begin{asy}
+            import three;  
+            size(7.5cm); 
+            triple eye = (-4, -8, 3); 
+            currentprojection = perspective(eye);  
+            triple[] P = {(1, -1, -1), (-1, -1, -1), (-1, 1, -1), (-1, -1, 1), (1, -1, -1)}; 
+            // P[0] = P[4] for convenience 
+            triple[] Pp = {-P[0], -P[1], -P[2], -P[3], -P[4]};  
+            // draw octahedron 
+            triple pt(int k){ return (3*P[k] + P[1])/4; } 
+            triple ptp(int k){ return (3*Pp[k] + Pp[1])/4; } 
+            draw(pt(2)--pt(3)--pt(4)--cycle, gray(0.6)); 
+            draw(ptp(2)--pt(3)--ptp(4)--cycle, gray(0.6)); 
+            draw(ptp(2)--pt(4), gray(0.6)); 
+            draw(pt(2)--ptp(4), gray(0.6)); 
+            draw(pt(4)--ptp(3)--pt(2), gray(0.6) + linetype("4 4")); 
+            draw(ptp(4)--ptp(3)--ptp(2), gray(0.6) + linetype("4 4"));  
+            // draw cube 
+            for(int i = 0; i < 4; ++i){ 	
+                draw(P[1]--P[i]); draw(Pp[1]--Pp[i]); 	
+                for(int j = 0; j < 4; ++j){ 		
+                    if(i == 1 || j == 1 || i == j) continue; 		
+                    draw(P[i]--Pp[j]); draw(Pp[i]--P[j]); 	
+                } 	
+                dot(P[i]); dot(Pp[i]); 	
+                dot(pt(i)); dot(ptp(i)); 
+            }  
+            label("$P_1$", P[1], dir(P[1])); 
+            label("$P_2$", P[2], dir(P[2])); 
+            label("$P_3$", P[3], dir(-45)); 
+            label("$P_4$", P[4], dir(P[4])); 
+            label("$P'_1$", Pp[1], dir(Pp[1])); 
+            label("$P'_2$", Pp[2], dir(Pp[2])); 
+            label("$P'_3$", Pp[3], dir(-100)); 
+            label("$P'_4$", Pp[4], dir(Pp[4]));
+        
+        \end{asy}
+    \end{center}
+    
+    $\textbf{(A)}\ \frac{3\sqrt{2}}{4}\qquad\textbf{(B)}\ \frac{7\sqrt{6}}{16}\qquad\textbf{(C)}\ \frac{\sqrt{5}}{2}\qquad\textbf{(D)}\ \frac{2\sqrt{3}}{3}\qquad\textbf{(E)}\ \frac{\sqrt{6}}{2}$
+    
+    \begin{sketch}
+        By symmetry, the verices from the $(0,0,0)$ and $(1,1,1)$ point will be the same. Call this $x$ and equate all sides of the octahedron. Answer is $\boxed{\text{A}}.$
+    \end{sketch}
+\end{problem}
+
+\begin{problem}[AlphaStar Mock 21-S, Test 4, \#24]
+    A cone of height 12 and radius 5 is placed in the middle of three mutually tangent spheres that are all congruent to each other so that each sphere is externally tangent to the cone and all four objects are resting on the same surface, with the cone’s base flat on the surface. A cylinder, also with its base flat on the surface, is internally tangent to all three spheres (so the cylinder contains the spheres). What is the radius of the cylinder? 
+
+    $\textbf{(A)}\ \frac{15+5\sqrt 3}{2}\qquad\textbf{(B)}\ 10\sqrt 3\qquad\textbf{(C)}\ \frac{45+25\sqrt 3}{4}\qquad\textbf{(D)}\ 15 + 5\sqrt 3\qquad\textbf{(E)}\ 24$
+
+    \begin{sketch}
+        First consider the cross-section containing all sphere centers. Second, consider the cross-section with the axis of the cone.
+
+        The correct answer is $\boxed{\textbf{(C)}\ \frac{45+25\sqrt 3}{4}}.$
+    \end{sketch}
+    
+\end{problem}
+\section{AIME Problems}
+\begin{problem}[2015 AIME II, \#9]
+    A cylindrical barrel with radius $4$ feet and height $10$ feet is full of water. A solid cube with side length $8$ feet is set into the barrel so that the diagonal of the cube is vertical. The volume of water thus displaced is $v$ cubic feet. Find $v^2$.
+    \begin{center}
+        \begin{asy}
+            import three; import solids; size(5cm); currentprojection=orthographic(1,-1/6,1/6);  draw(surface(revolution((0,0,0),(-2,-2*sqrt(3),0)--(-2,-2*sqrt(3),-10),Z,0,360)),white,nolight);  triple A =(8*sqrt(6)/3,0,8*sqrt(3)/3), B = (-4*sqrt(6)/3,4*sqrt(2),8*sqrt(3)/3), C = (-4*sqrt(6)/3,-4*sqrt(2),8*sqrt(3)/3), X = (0,0,-2*sqrt(2));  draw(X--X+A--X+A+B--X+A+B+C); draw(X--X+B--X+A+B); draw(X--X+C--X+A+C--X+A+B+C); draw(X+A--X+A+C); draw(X+C--X+C+B--X+A+B+C,linetype("2 4")); draw(X+B--X+C+B,linetype("2 4"));  draw(surface(revolution((0,0,0),(-2,-2*sqrt(3),0)--(-2,-2*sqrt(3),-10),Z,0,240)),white,nolight); draw((-2,-2*sqrt(3),0)..(4,0,0)..(-2,2*sqrt(3),0)); draw((-4*cos(atan(5)),-4*sin(atan(5)),0)--(-4*cos(atan(5)),-4*sin(atan(5)),-10)..(4,0,-10)..(4*cos(atan(5)),4*sin(atan(5)),-10)--(4*cos(atan(5)),4*sin(atan(5)),0)); draw((-2,-2*sqrt(3),0)..(-4,0,0)..(-2,2*sqrt(3),0),linetype("2 4")); 
+        \end{asy}
+    \end{center}
+    \begin{sketch}
+       The cross-section cut by the surface of the cylinder is equilateral triangle. The submerged tetrahedron has $45-45-90$ faces. Answer is $\boxed{384}.$
+    \end{sketch}
+\end{problem}
+
+\clearpage
+\section{Solutions}
+\makehints
+
+
+\end{document}

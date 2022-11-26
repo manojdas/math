@@ -1,0 +1,61 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+
+% \usepackage{cgt}
+\newcommand{\mcN}{\mathcal{N}}
+\newcommand{\mcP}{\mathcal{P}}
+\newcommand{\msN}{\mathscr{N}}
+\newcommand{\msP}{\mathscr{P}}
+
+\title{Impartial Games}
+\subtitle{Paper Outline}
+\author{Rohan Das}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section{Fibonacci NIM}
+\subsection{Introduction}
+I will describe the rules of the game. I will elaborate with some examples.
+\subsection{Winning Strategy}
+I will come up with a winning strategy. I will prove key theorems and elaborate with examples.
+\begin{theorem}{Zeckendorf ’s Theorem}
+    Let $n$ be a positive integer. Then there is a unique increasing sequence $(c_i)_{i=0}^k$ such that $c_i \ge 2$ and $c_{i+1} > c_i + 1$ for $i \ge 0$, and that
+    \[n = \sum_{i=0}^k F_{c_i}.\]
+\end{theorem}
+
+\begin{theorem}
+    Initial game is a $\mcP$ position if and only if the number of stones is a Fibonacci number.
+\end{theorem}
+\subsection{Grundy Values}
+I will compute some Grundy values.
+
+\subsection{Two Pile Fibonacci NIM}
+I will extend to the two pile game.
+
+\subsection{Game with Lucas Numbers and Catalan Numbers}
+If I can get some \textbf{hints} on how to solve Chapter 4, problem 16, I would like to solve it and see if it makes sense to add here.
+
+\section{WYTHOFF}
+\subsection{Introduction}
+I will describe the game and the rules. I will elaborate with some examples.
+\subsection{First few Grundy values}
+I will compute the first few Grundy values.
+
+\subsection{$\mathscr{P}$ positions}
+I will discuss the $\mathscr{P}$ positions and try to prove the key theorem.
+\begin{theorem}
+    The $n^{\text{th}}$ $\mathscr{P}$-position of \textsc{Wythoff} is given by
+    \[(a_n,b_n) = (\floor{n\phi}), \floor{n\phi^2})\] 
+\end{theorem}
+
+I will compute some of the $\mathscr{P}$ positions.
+
+\subsection{Generalized Grundy values}
+I will discuss the patterns in generalized Grundy values and prove the key theorem.
+\begin{theorem}
+    For a fixed value of $a$, the sequence $b \mapsto \mathscr{G}(a,b)$ is arithematic periodic.
+\end{theorem}
+\end{document}

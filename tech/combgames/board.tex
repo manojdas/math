@@ -1,0 +1,199 @@
+%! TeX program = latexmk
+
+%%% FILE LAST BACKED UP 2007-02-27-07:22:38 %%%
+
+\documentclass[12pt]{amsart}
+%\usepackage{combgames}
+\usepackage{board}
+
+\def\cgloony{\texttt{x}}
+% \usepackage{marvosym}\def\cgloony{\textrm\Moon} % Loony symbol used
+                                % only in DotsAndBoxes and StringsAndCoins
+\begin{document}
+\section{Board game examples 2}
+%\Boardset{frame}
+
+\[\StringsAndCoins[insert={\rput(5.5,1.5){\dashbox{.5}(3,3){ANY}}}]{.\\o-o-...\\.\\}\]
+
+\[
+\Checkers{.o.o.o.o\\
+          o.o.o.o.\\
+          .o.o.o.o\\
+          ........\\
+          ........\\
+          x.x.x.x.\\
+          .x.x.x.x\\
+          x.x.x.x.\\
+}
+\]
+
+\newboard[printname=G]{foo}{}
+\[\foo{XO.},
+  \foo{xo.},
+  \foo{lr.},
+  \foo{LR.},
+\]
+\[\TopplingDominoes{xxox.xo}\]
+
+\[
+\Domineering{ooo\\oo\\} = \left\{
+\Domineering{^oo\\vo\\},
+\Domineering{o^o\\ov\\}
+\ |\ %
+\Domineering{<>o\\oo\\},
+\Domineering{o<>\\oo\\},
+\Domineering{ooo\\<>\\}
+\right\}
+\]
+
+
+
+\begin{center}
+\Clobber{xxxo\\o.ox\\xoxo\\}\hspace{.25in}
+\Clobber[unit=.3cm,square=]{xxxo\\o.ox\\xoxo}\hspace{.25in}
+\Clobber{xxxo\\o.ox\\xoxo}
+\end{center}
+
+\[
+\DotsAndBoxes[unit=.5cm]{
+  o+o.o.o-o-o \\
+  |.|.|.|.*.| \\
+  o.o.o.o*o*o \\
+  |.|.|.|.|.| \\
+  o-o.o.o*o*o \\
+  |A|.|.|.|.| \\
+  o-o.o.o*o*o}
+\]
+
+\[
+\DotsAndBoxes[unit=.5cm]{
+  o+o.o.o-o-o \\
+  |.|.|.|.*.| \\
+  o.o.o.o*o*o \\
+  |.|.|.|.|.| \\
+  o-o.o.o*o*o \\
+  |A|.|.|.|.| \\
+  o-o.o.o*o*o}
+\]
+
+\[
+\StringsAndCoins{
+:.|.| \\
+o.o.o.o*o \\
+|.|.|.!.! \\
+o.o.o.o.o \\
+..|.|.!.! \\
+A.o.o.o.o \\
+..|.|.!.! \\
+}
+\]
+
+\[
+\Chomp{OO\\OOO\\OOO\\OOO\\XOO\\}
+\]
+
+\[
+\Bridgit{
+.x.x.x.x \\
+o.o.o.o.o \\
+.x.x.x.x \\
+o-o|o.o.o \\
+.x.x.x.x \\
+o|o.o.o.o \\
+.x-x|x.x \\
+o.o.o.o.o \\
+.x.x.x.x \\
+}
+\]
+
+
+\begin{center}
+\ \hfill
+\Amazons{oox\\oL.\\xoo\\}
+\hfill
+\Amazons{oox\\oLR\\xoo\\}
+\hfill\ \ %
+\end{center}
+
+\[\Shove{GLG.#R#RGR\\}\]
+
+\[\Hackenbushstring{BBRBR\\RGG\\BR\\}\]
+
+\[\Hackenbushstring[color]{BBRBR\\RGG\\.\\BR\\}\]
+
+
+\[
+\Maze{
+        o
+       / \
+      o   o
+     /     \
+    o   *   o
+   /         \
+  o   o   *   o
+ /     \       \
+o   *   o   *   o
+ \               \
+  o   *   *   o   o
+   \         /   /
+    o   *   o   o
+     \       \ /
+      o   o   o
+       \ /   /
+        o   o
+         \ /
+          o
+}
+\]
+%%%%  I would prefer that the following works:
+% \Maze{
+% o-o-o-o-o-o\\
+% |.........|\\
+% o.+.+.+.+.o\\
+% |.........|\\
+% o.+.+.o.o-o\\
+% |.....|...|\\
+% o.+.+.o.+.o\\
+% |.....|..x|\\
+% o-o-o-o-o-o\\
+% }
+
+\[
+\Domineeringset{unit=.3cm,frame}
+\Domineering{oo\\oo\\} \  \Domineering{ox\\oo\\}
+\rightarrow
+\Domineering{^o\\vo\\} \  \Domineering{ox\\oo\\}
+\rightarrow
+\Domineering{^o\\vo\\} \  \Domineering{ox\\<>\\}
+\rightarrow
+\Domineering{^o\\vo\\} \  \Domineering{ox\\<>\\}
+\rightarrow
+\Domineering{^^\\vv\\} \  \Domineering{ox\\<>\\}
+                                % Use ^# instead of ^^ because of a
+                                % bug I haven't solved
+\]
+
+\Chompset{unit=.5cm,text=\small,code={AABBCCDDEEZ{$\scriptstyle C\!/\!D$}}}
+\[
+\Chomp{
+  CB\\
+  AD\\
+  XABZ\\}
+\]
+
+\[
+\Hex{
+     *
+ L  X *  R
+   * X *
+  * O O *
+ * O X * *
+* * X X * *
+ * * O O *
+  * X O *
+   * X *
+ R  * O  L
+     X
+}
+\]
+\end{document}

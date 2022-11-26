@@ -1,0 +1,458 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+\usepackage{diagbox}
+
+% \usepackage{cgt}
+\newcommand{\mcN}{\mathcal{N}}
+\newcommand{\mcP}{\mathcal{P}}
+\newcommand{\mcG}{\mathcal{G}}
+\newcommand{\mcA}{\mathcal{A}}
+\newcommand{\mcB}{\mathcal{B}}
+
+\newcommand{\msN}{\mathscr{N}}
+\newcommand{\msP}{\mathscr{P}}
+\newcommand{\TODO}[1]{\emph{\textcolor{red}{#1\ }}}
+
+\DeclareMathOperator{\mex}{mex}
+
+\title{Impartial Games}
+\subtitle{Paper Outline}
+\author{Rohan Das}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+Quick introduction to impartial games, subtraction games, and NIM.
+
+Outline of the rest of the paper.
+\section{Fibonacci NIM}
+\subsection{Introduction}
+I will describe the rules of the game. I will elaborate with some examples.
+\subsection{Zeckendorf’s Representation}
+The winning strategy and analysis for Fibonacci NIM depends on the Zeckendorf's represetation. We briefly review it here.
+
+\begin{theorem}{Zeckendorf’s Theorem}
+    Let $n$ be a positive integer. Then there is a unique increasing sequence $(c_i)_{i=0}^k$ such that $c_i \ge 2$ and $c_{i+1} > c_i + 1$ for $i \ge 0$, and that
+    \[n = \sum_{i=0}^k F_{c_i}.\]
+\end{theorem}
+Note sure if you want to prove this. You can either get the proof from or just cite \cite{henderson}. 
+
+\TODO{Add example(s)}.
+
+\begin{corollary}
+    If $F_{k+1} > n \ge F_k$ , then $F_k$ is the largest number in the Zeckendorff representation of $n$.
+\end{corollary}
+
+If there is time, \TODO{prove this.} See page 3 of \cite{cody}.
+
+\begin{definition}
+    Let $n = F_{i_r} +F{i_{r-1}} + \cdots +F_{i_1}$ where $r,i, n \in \NN$. We define the \emph{tail}, $T(n) = F_{i_1}$.
+
+    That is, $T(n)$ is the smallest number in the Zeckendorff representation.
+\end{definition}
+
+\TODO{Review and change}. If we don't end up using $j-$length tails, then we can remove the next definition. In that case, we should also use $z_1(n)$ as Simon uses that notation.
+
+\begin{definition}
+    Let $n = F_{i_r} +F{i_{r-1}} + \cdots +F_{i_1}$ where $r,i, n \in \NN$. We define the length $j$ tail to be the specific sum of $j$ consecutive Fibonacci numbers in the
+    Zeckendorff representation of n beginning with the smallest number, $F_{i_1}$. We set
+    $T_1(n) = T (n)$ for consistency. Then, 
+    \[T_j(n) = T (n) + T_{i-1}(n - T (n)).\]
+    
+\end{definition}
+
+\subsection{Winning Strategy}
+I will come up with a winning strategy. I will prove key theorems and elaborate with examples.
+
+\begin{theorem}\label{thm-fibp}
+    Initial game is a $\mcP$ position if and only if the number of stones is a Fibonacci number.
+\end{theorem}
+\TODO{Give} intuition of this first and then prove.
+
+This lemma may be useful for the proof.
+\begin{lemma}
+    For every $i \in N$ where $i \ge 3$, $2F_{i-1} \ge F_i$ and $F_{i+1} > 2F_{i-1}$.
+\end{lemma}
+For proof \TODO{see page 5 of \cite{cody}}.
+
+\begin{remark}
+    Simon uses different notation. The winning strategy for one-pile Fibonacci nim was described by Whinihan. Consider the position $(n;r)$. If $z_1(n) \le r$, then $(n;r)$ is an $\msN$ position, and removing $z_1(n)$ stones is a winning move. If $z_1(n) > r$, then $(n;r)$ is a $P$ position, and there are no winning moves. \TODO{Change to match?}
+\end{remark}
+\begin{claim}\label{claim-part}
+    $\msP$ is the set of positions $(n, r)$, such that $T(n) > r$. $\msN$ is the set of positions not in $\msP$, that is $T(n) \le r$.
+\end{claim}
+
+The next Lemma, Lemma \ref{part-1}, says that every move from $\msP$ is to $\msN$.
+\begin{lemma}\label{part-1}
+    Let $n \in \NN$. For any $p$ with $T (n) > p$, $(n-p, 2p) \in \msN$.
+\end{lemma}
+\begin{proof}
+    \TBD see page 5, lemma 11 of \cite{cody}.
+\end{proof}
+
+\vspace{6pt}
+The next Lemma, Lemma \ref{part-2}, says from $\msN$ there is a move to $\msP$.
+\begin{lemma}\label{part-2}
+    Let $n \in \NN$. Let $p := T(n)$. Then $(n - p, 2p) \in \msP$.
+\end{lemma}
+\begin{proof}
+    \TBD see page 5, lemma 12 of \cite{cody}.
+\end{proof}
+
+\vspace{6pt}
+\begin{proof}[Proof of Claim \ref{claim-part}]
+    \TBD partition theorem.
+\end{proof}
+
+\vspace{6pt}
+\begin{proof}[Proof of Theorem \ref{thm-fibp}]
+    \TBD should be trivial from the claim above.
+\end{proof}
+
+\subsection{Grundy Values}
+\TODO{Describe} what Grundy values, $\mcG$ are and their use in multi-pile games. Define what mex is and the formula for $\mcG$.
+
+Now compute some $\mcG$ values - in addition to some small ones that are built ground up, do a few that are built using the table below.
+
+Refer to the table \ref{tab:gvals}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|*{21}c}
+      $n \backslash r$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20  \\\hline
+    0  & 0 &   &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    1  & 0 & 1 &   &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    2  & 0 & 0 & 2 &   &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    3  & 0 & 0 & 0 & 3 &   &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    4  & 0 & 1 & 1 & 3 & 3 &   &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    5  & 0 & 0 & 0 & 0 & 0 & 4 &   &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    6  & 0 & 1 & 1 & 1 & 1 & 4 & 4 &   &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    7  & 0 & 0 & 2 & 2 & 2 & 4 & 4 & 4 &   &   &    &    &    &    &    &    &    &    &    &    &     \\
+    8  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5 &   &    &    &    &    &    &    &    &    &    &    &     \\
+    9  & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 5 & 5 &    &    &    &    &    &    &    &    &    &    &     \\
+    10 & 0 & 0 & 2 & 2 & 2 & 2 & 2 & 2 & 5 & 5 & 5  &    &    &    &    &    &    &    &    &    &     \\
+    11 & 0 & 0 & 0 & 3 & 3 & 3 & 3 & 5 & 5 & 5 & 5  & 5  &    &    &    &    &    &    &    &    &     \\
+    12 & 0 & 1 & 1 & 3 & 3 & 3 & 3 & 3 & 6 & 6 & 6  & 6  & 6  &    &    &    &    &    &    &    &     \\
+    13 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  & 0  & 0  & 6  &    &    &    &    &    &    &     \\
+    14 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1  & 1  & 1  & 6  & 6  &    &    &    &    &    &     \\
+    15 & 0 & 0 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2  & 2  & 2  & 6  & 6  & 6  &    &    &    &    &     \\
+    16 & 0 & 0 & 0 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3  & 3  & 7  & 7  & 7  & 7  & 7  &    &    &    &     \\
+    17 & 0 & 1 & 1 & 3 & 3 & 3 & 3 & 3 & 3 & 3 & 3  & 3  & 3  & 7  & 7  & 7  & 7  & 7  &    &    &     \\
+    18 & 0 & 0 & 0 & 0 & 0 & 4 & 4 & 4 & 4 & 4 & 4  & 7  & 7  & 7  & 7  & 7  & 7  & 7  & 7  &    &     \\
+    19 & 0 & 1 & 1 & 1 & 1 & 4 & 4 & 4 & 4 & 4 & 4  & 4  & 7  & 7  & 7  & 7  & 7  & 7  & 7  & 7  &     \\
+    20 & 0 & 0 & 2 & 2 & 2 & 4 & 4 & 4 & 4 & 4 & 4  & 4  & 4  & 7  & 7  & 7  & 7  & 7  & 7  & 7  & 7  \\
+    \hline
+    \end{tabular}
+    \caption{\label{tab:gvals}Gundy Values for Fibonacci NIM.}
+    \end{table}
+
+\TODO{Refer to} \textit{Larsson and Rubinstein-Salzedo \cite{simon1}}
+\begin{remark}
+    \TODO{Delete Later.} The paper is at 
+    
+    \url{https://drive.google.com/file/d/1UmXLhttps://drive.google.com/file/d/1UmXL36N0uQWlUq4OaCruBifv6yJ0m7Fp/view?usp=sharing}
+\end{remark}
+
+\subsection{Two Pile Fibonacci NIM}
+I will extend to the two pile game.
+
+\textit{Larsson and Rubinstein-Salzedo \cite{simon2}}
+\begin{remark}
+    \TODO{Delete Later.} The paper is at 
+    
+    \url{https://drive.google.com/file/d/1UmXL36N0uQWlUq4OaCruBifv6yJ0m7Fp/view?usp=sharing}
+\end{remark}
+\subsection{Game with Lucas Numbers and Catalan Numbers}
+If I can get some \textbf{hints} on how to solve Chapter 4, problem 16, I would like to solve it and see if it makes sense to add here.
+
+\section{WYTHOFF}
+\subsection{Introduction}
+I will describe the game and the rules. I will elaborate with some examples.
+
+\TODO{Consider} also describing the interpretation of queen.
+
+\subsection{First few Grundy values}
+I will compute the first few Grundy values.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|*{11}c}
+    \diagbox{$a$}{$b$}& 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10  \\ \hline
+    0   & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10  \\
+    1   & 1  & 2  & 0  & 4  & 5  & 3  & 7  & 8  & 6  & 10 & 11  \\
+    2   & 2  & 0  & 1  & 5  & 3  & 4  & 8  & 6  & 7  & 11 & 9   \\
+    3   & 3  & 4  & 5  & 6  & 2  & 0  & 1  & 9  & 10 & 12 & 8   \\
+    4   & 4  & 5  & 3  & 2  & 7  & 6  & 9  & 0  & 1  & 8  & 13  \\
+    5   & 5  & 3  & 4  & 0  & 6  & 8  & 10 & 1  & 2  & 7  & 12  \\
+    6   & 6  & 7  & 8  & 1  & 9  & 10 & 3  & 4  & 5  & 13 & 0   \\
+    7   & 7  & 8  & 6  & 9  & 0  & 1  & 4  & 5  & 3  & 14 & 15  \\
+    8   & 8  & 6  & 7  & 10 & 1  & 2  & 5  & 3  & 4  & 15 & 16  \\
+    9   & 9  & 10 & 11 & 12 & 8  & 7  & 13 & 14 & 15 & 16 & 17  \\
+    10  & 10 & 11 & 9  & 8  & 13 & 12 & 0  & 15 & 16 & 17 & 14 \\ \hline
+    \end{tabular}
+    \caption{\label{tab:gvals-wyth}$\mcG$ values for \textsc{Wythoff} game.}
+\end{table}
+
+\subsection{$\msP$ positions}
+I will discuss the $\mathscr{P}$ positions and try to prove the key theorem.
+
+\begin{lemma}\label{lemma-wyth-p}
+    The \textsc{Wythoff} $\msP$ positions are the pairs of the form $(a_n, b_n)$, or $(b_n, a_n)$, where $(a_n, b_n) \in \NN^2$ satisfy
+    \begin{align*}
+        a_n &= \mex\{a_i, b_i : i < n\}, \\
+        b_n &= a_n + n.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    \TODO{Page 199} of Siegal book.
+\end{proof}
+
+Some of the early values for $A_n, B_n$ are shown in table \ref{tab:wyth-p}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|*{11}c}
+    $n$    & 0 & 1 & 2 & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10  \\ \hline
+    $A_n$ & 0 & 1 & 3 & 4 & 6  & 8  & 9  & 11 & 12 & 14 & 16  \\
+    $B_n$ & 0 & 2 & 5 & 7 & 10 & 13 & 15 & 18 & 20 & 23 & 16 
+    \end{tabular}
+    \caption{\label{tab:wyth-p}$\msP$ positions for \textsc{Wythoff}.}
+
+    \end{table}
+
+\begin{definition}
+    Let $\mcA, \mcB \subset \NN^+$. We say $\mcA$ and $\mcB$ are complementary if $B = \NN^+ \setminus A$, that is, if $\mcA \cap \mcB = \emptyset$ and $\mcA \cup \mcB = \NN^+$.
+\end{definition}
+
+\begin{lemma}\label{lemma-wyth-comp}
+    Fix irrational real numbers $\alpha, \beta > 1$ such that
+    \[\frac{1}{\alpha} + \frac{1}{\beta} = 1.\]
+    Then the sets 
+        \[\{\floor{n\alpha}: n \in \NN^+\} \quad\text{and}\quad \{\floor{n\beta}: n \in \NN^+\}\]
+        are complementary.
+\end{lemma}
+\begin{theorem}\label{thm-wyth}
+    The $n^{\text{th}}$ $\mathscr{P}$-position of \textsc{Wythoff} is given by
+    \[(a_n,b_n) = (\floor{n\phi}), \floor{n\phi^2})\] 
+\end{theorem}
+
+I will compute some of the $\mathscr{P}$ positions.
+
+\subsection{Generalized Grundy values}
+\TODO{May be skip this.}
+I will discuss the patterns in generalized Grundy values and prove the key theorem.
+\begin{theorem}
+    For a fixed value of $a$, the sequence $b \mapsto \mathscr{G}(a,b)$ is arithematic periodic.
+\end{theorem}
+
+\section{Temp}
+\begin{center}
+    \begin{asy}
+        import graph;
+
+        unitsize(0.75cm);
+        picture pic;
+        path star;
+        int n = 10;
+
+        pen border = gray(0.7);
+        pen safe = blue;
+        pen covered = red;
+
+        void drawStep(int x, int y) {
+            int n1;
+
+            draw(pic, shift(x+0.5, y+0.5)*scale(0.35)*rotate(18)*star, safe);
+            draw(pic,(x+0.5,y+1)--(x+0.5,n-0.5), covered, EndArrow(4));
+            draw(pic,(x+1,y+0.5)--(n-0.5,y+0.5), covered, EndArrow(4));
+
+            if (x > y) {
+                n1 = n - x;
+            } else {
+                n1 = n - y;
+            }
+            draw(pic,(x+1,y+1)--(n1+x-0.5,n1+y-0.5), covered, EndArrow(4));
+        }
+        for (int i = 0; i <= n; ++i) {
+            draw(pic, (0,i)--(n,i), border);
+            draw(pic, (i,0)--(i,n), border);
+        }
+        star=expi(0)--(scale((3-sqrt(5))/2)*expi(pi/5))--expi(2*pi/5)--
+            (scale((3-sqrt(5))/2)*expi(3*pi/5))--expi(4pi/5)--
+            (scale((3-sqrt(5))/2)*expi(5*pi/5))--expi(6*pi/5)--
+            (scale((3-sqrt(5))/2)*expi(7*pi/5))--expi(8*pi/5)--
+            (scale((3-sqrt(5))/2)*expi(9*pi/5))--cycle;
+
+        drawStep(0,0);
+        add (pic);
+
+        drawStep(2,1);
+        drawStep(1,2);
+
+
+        add(shift((n+2)*right)*pic);
+
+        drawStep(3,5);
+        drawStep(5,3);
+
+        add(shift((n+2)*down)*pic);
+
+        drawStep(7,4);
+        drawStep(4,7);
+        add(shift((n+2)*right)*shift((n+2)*down)*pic);
+
+    \end{asy}
+\end{center}
+
+\begin{lstlisting}[language=iPython, caption=Python to Generate $\msP$ Positions.]
+
+def mex(mex_set):
+    ret = 0
+    while ret in mex_set:
+        ret += 1
+    return ret
+
+def wyth_p_positions(max_n = 10):
+    mex_set = set()
+    ret = []
+    for n in range(max_n+1):
+        a_n = mex(mex_set)
+        b_n = a_n + n
+
+        mex_set.add(a_n)
+        mex_set.add(b_n)
+
+        ret.append((a_n, b_n))
+        ret.append((b_n, a_n))
+
+    return ret
+\end{lstlisting}
+
+\begin{figure}[h]
+\begin{tikzpicture}
+    [
+    level 1/.style = {red, sibling distance = 2cm},
+    level 2/.style = {blue, sibling distance = 2cm},
+    level 3/.style = {red, sibling distance = 2cm},
+    level 4/.style = {blue, sibling distance = 1.5cm},
+    level 5/.style = {red, sibling distance = 2cm},
+    level 6/.style = {blue, sibling distance = 2cm},
+    level 7/.style = {red, sibling distance = 2cm},    
+    ]
+    \tikzstyle{hollow node}=[circle,draw,inner sep=2.5]
+    \tikzstyle{solid node}=[circle,draw,inner sep=2.5,fill=black]
+    \tikzstyle{win node}=[rectangle,draw=blue,inner sep=2.5]
+
+    \node[blue]{(10)}
+    child{node[]{(8,4)} 
+        child{node[win node]{(4,4)}}
+        child{node[win node]{(5,5)}}
+        child{node[]{(6,4)}
+            child{node[]{(5,2)}
+                child{node[win node]{(3,3)}}
+                child{node[]{(4,2)}
+                    child{node[]{(3,2)}
+                        child{node[win node]{(2,2)}}
+                        child{node[win node]{(1,1)}}
+                    }
+                }    
+            }
+        }
+        child{node[right=5.5cm]{(7,2)}
+            child{node[]{(5,4)}
+                child{node[]{(4,2)}
+                    child{node[]{(3,2)}
+                        child{node[win node]{(2,2)}}
+                        child{node[win node]{(1,1)}}
+                    }
+                }    
+                child{node[win node]{(3,3)}}
+                child{node[win node]{(2,2)}}
+                child{node[win node]{(1,1)}}
+            }
+        }
+    }
+    ;
+\end{tikzpicture}
+    \caption{\label{fig:fibnim-ex1} Fibonnaci NIM Example 1}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{tikzpicture}
+        [
+        level 1/.style = {red, sibling distance = 2cm},
+        level 2/.style = {blue, sibling distance = 2cm},
+        level 3/.style = {red, sibling distance = 1.5cm},
+        level 4/.style = {blue, sibling distance = 1.5cm},
+        level 5/.style = {red, sibling distance = 1.5cm},
+        level 6/.style = {blue, sibling distance = 1cm},
+        level 7/.style = {red, sibling distance = 1cm},    
+        ]
+        \tikzstyle{hollow node}=[circle,draw,inner sep=2.5]
+        \tikzstyle{solid node}=[circle,draw,inner sep=2.5,fill=black]
+        \tikzstyle{win node}=[rectangle,draw=blue,inner sep=2.5]
+    
+        \node[blue]{(8,7)}
+        child{node[left=3cm]{(7,2)}
+            child{node[]{(5,4)}
+                child{node[]{(4,2)}
+                    child{node[]{(3,2)}
+                        child{node[win node]{(2,2)}}
+                        child{node[win node]{(1,1)}}
+                    }
+                }    
+                child{node[win node]{(3,3)}}
+                child{node[win node]{(2,2)}}
+                child{node[win node]{(1,1)}}
+            }
+        }
+        child{node[]{(6,4)}
+            child{node[]{(5,2)}
+                child{node[win node]{(3,3)}}
+                child{node[]{(4,2)}
+                    child{node[]{(3,2)}
+                        child{node[win node]{(2,2)}}
+                        child{node[win node]{(1,1)}}
+                    }
+                }    
+            }
+        }
+        child{node[win node]{(5,5)}}
+        child{node[win node]{(4,4)}}
+        child{node[win node]{(3,3)}}
+        child{node[win node]{(2,2)}}
+        child{node[win node]{(1,1)}}
+        ;
+    \end{tikzpicture}
+        \caption{\label{fig:fibnim-ex1} Fibonnaci NIM Example 2}
+    \end{figure}
+    
+
+\clearpage
+\sectionmark{References}
+\begin{thebibliography}{99}
+    \bibitem{simoncgt} Rubinstein-Salzedo, S. Combinatorial Game Theory. 
+    \bibitem{simon1} Larsson, U., Rubinstein-Salzedo, S. Grundy values of Fibonacci nim. Int J Game Theory 45, 617–625 (2016). \url{https://doi.org/10.1007/s00182-015-0473-y}
+    \bibitem{simon2} Larsson, U., Rubinstein-Salzedo, S. Global Fibonacci nim. Int J Game Theory 47, 595–611 (2018). 
+    
+    \url{https://doi.org/10.1007/s00182-017-0574-x}
+
+    \bibitem{cody} Allen, C., Ponomarenko, V. (2014), Fibonacci Nim and a full characterization of winning moves, 
+    
+    Involve, \href{https://msp.org/involve/2014/7-6/p08.xhtml}{doi:10.2140/involve.2014.7.807}
+    \bibitem{wiki} Fibonacci nim, Wikipedia. 5 June 2021, \url{https://en.wikipedia.org/wiki/Fibonacci_nim}.
+    \bibitem{siegel} Aaron N. Siegel, Combinatorial Game Theory
+
+    \bibitem{henderson} Henderson, N. What is Zeckendorf’s Theorem?
+
+    \url{https://math.osu.edu/sites/math.osu.edu/files/henderson_zeckendorf.pdf}
+
+    \bibitem{beatty}Beatty sequence, Wikipedia. 5 June 2021, \url{https://en.wikipedia.org/wiki/Beatty_sequence}
+\end{thebibliography}
+
+
+
+\end{document}

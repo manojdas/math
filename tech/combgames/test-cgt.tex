@@ -1,0 +1,368 @@
+%! TeX program = latexmk
+
+\documentclass[11pt,twoside]{article}
+\usepackage[fancy]{mdas}
+\usepackage{cgt}
+
+\title{Test CGT}
+\author{Manoj Das}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+% \thispagestyle{plain}
+\section{SNORT}
+\subsection{a)}
+\begin{align*}
+    BOOO &= \combgame{\{BBOO,BOBO,BOOB|BORO,BOOR\}}, \\
+    &= \combgame{\{2|-1,\{BBOR|BORR\}\}}, \\
+    &= \combgame{\{2|-1,\{0|0\}\}}, \\
+    &= \combgame{\{2|-1\}}.
+\end{align*}
+
+\subsection{b)}
+\begin{align*}
+    \substack{BRXX\\BOOO} &= \combgame{\{ \substack{BRXX\\BOBO}, \substack{BRXX\\BOOB}| \substack{BRXX\\BORO}, \substack{BRXX\\BOOR}\}}, \\
+    &= \combgame{\{ 1, 1| -1, -1\}}, \\
+    &= \combgame{\{ 1| -1\}}. \\
+    \substack{BRXX\\OOBO} &= \combgame{\{ \substack{BRXX\\BOBO}, \substack{BRXX\\OOBB}| \}}, \\
+    &= \combgame{\{ 1| \}}, \\
+    &= 2. \\
+    \substack{BRXX\\OOOB} &= \combgame{\{ \substack{BRXX\\BOOB}, \substack{BRXX\\OOBB}| \substack{BRXX\\OROB} \}}, \\
+    &= \combgame{\{ 1| 0 \}}. \\
+    \substack{BRXX\\OROO} &= \combgame{\{ \substack{BRXX\\OROB}| \substack{BRXX\\ORRO}, \substack{BRXX\\OROR} \}}, \\
+    &= \combgame{\{ 0| -1 \}}. \\
+    \substack{BRXX\\OORO} &= \combgame{\{ \substack{BRXX\\BORO}| \substack{BRXX\\ORRO}, \substack{BRXX\\OORR} \}}, \\
+    &= \combgame{\{ -1| -1 \}}. \\
+    \substack{BRXX\\OOOR} &= \combgame{\{ \substack{BRXX\\BOOR}| \substack{BRXX\\OROR}, \substack{BRXX\\OORR} \}}, \\
+    &= \combgame{\{ -1| -1, \{0|0\} \}}, \\
+    &= \combgame{\{ -1| -1 \}}. \\
+    \substack{BRXX\\OOOO} &= \combgame{\{\substack{BRXX\\BOOO},\substack{BRXX\\OOBO},\substack{BRXX\\OOOB}|\substack{BRXX\\OROO},\substack{BRXX\\OORO},\substack{BRXX\\OOOR}\}}, \\
+    &= \combgame{\{ \{ 1| -1\}, 2, \{ 1| 0\}|\{ 0| -1 \},\{ -1| -1 \}, \{ -1| -1 \}\}}, \\
+    &= \combgame{\{2|\{-1|-1\}\}}. 
+\end{align*}
+
+\subsection{c)}
+
+\begin{align*}
+    \substack{XBXX\\BOOO} &= \combgame{\{\substack{XBXX\\BBOO},\substack{XBXX\\BOBO},\substack{XBXX\\BOOB}|\substack{XBXX\\BORO},\substack{XBXX\\BOOR}\}}, \\
+    &= . \\
+    \substack{XBXX\\OOOO} &= \combgame{\{\substack{XBXX\\BOOO},\substack{XBXX\\OOBO},\substack{XBXX\\OOOB}|\substack{XBXX\\ROOO},\substack{XBXX\\OORO},\substack{XBXX\\OOOR}\}}, \\
+    &= \combgame{\{ | \}}
+\end{align*}
+\section{Checkers}
+\[
+\Checkers{...o.x..\\
+          ..o..x..\\
+          o.....x.
+}
+\]
+
+\[
+\Checkers{...o.x..} \to \Checkers{....ox..} 
+\]
+
+\section{Hackenbush}
+\begin{center}
+    \begin{tikzpicture}
+    \draw[dashed] (0,0) -- (2,0);
+    \node[hackennode] (base) at (1,0) {};
+    \node[hackennode] (ht) at (1,1) {};
+    \node[hackennode] (ht2) at (1,2) {};
+    \draw[hackenline,blue] (base) -- (ht) -- (ht2);
+    \end{tikzpicture}
+\end{center}
+
+\subsection{problem 3}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[dashed] (-0.5,0) -- (0.5,0);
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,red] (omega) -- (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.4) {$\vdots$};
+
+        \path node at (0,-.3) {$-\omega$};
+
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}
+        \draw[dashed] (-0.5,0) -- (0.5,0);
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,blue] (omega) -- (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.3) {$\vdots$};
+
+        \node[hackennode] (omega*1) at (0,4.6) {};
+        \node[hackennode] (omega*1+1) at (0,5.2) {};
+        \node[hackennode] (omega*1+2) at (0,5.7) {};
+        \node[hackennode] (omega*1+3) at (0,6.1) {};
+        \node[hackennode] (omega*1+4) at (0,6.4) {};
+        \node[hackennode] (omega*1+5) at (0,6.6) {};
+        \node[hackennode] (omega*1+6) at (0,6.7) {};
+        \node[hackennode] (omega*1+7) at (0,6.8) {};
+        \draw[hackenline,blue] (omega*1) -- (omega*1+1) -- (omega*1+2) -- (omega*1+3)-- (omega*1+4)-- (omega*1+5) -- (omega*1+6) -- (omega*1+7);
+        \path node at (0,7.1) {$\vdots$};
+
+
+        \node[hackennode] (omega*2) at (0,7.4) {};
+        \node[hackennode] (omega*2+1) at (0,7.9) {};
+        \node[hackennode] (omega*2+2) at (0,8.3) {};
+        \node[hackennode] (omega*2+3) at (0,8.6) {};
+        \node[hackennode] (omega*2+4) at (0,8.8) {};
+        \node[hackennode] (omega*2+5) at (0,8.9) {};
+        \node[hackennode] (omega*2+6) at (0,9) {};
+        \draw[hackenline,blue] (omega*2) -- (omega*2+1) -- (omega*2+2) -- (omega*2+3)-- (omega*2+4)-- (omega*2+5)-- (omega*2+6);
+        \path node at (0,9.3) {$\vdots$};
+
+        \path node at (0,-.3) {$3\omega$};
+
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}
+        \draw[dashed] (-0.5,0) -- (0.5,0);
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,blue] (omega) -- (omega+1);
+        \draw[hackenline,red] (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.4) {$\vdots$};
+
+        \node[hackennode] (omega*1) at (0,4.6) {};
+        \node[hackennode] (omega*1+1) at (0,5.2) {};
+        \node[hackennode] (omega*1+2) at (0,5.7) {};
+        \node[hackennode] (omega*1+3) at (0,6.1) {};
+        \node[hackennode] (omega*1+4) at (0,6.4) {};
+        \node[hackennode] (omega*1+5) at (0,6.6) {};
+        \node[hackennode] (omega*1+6) at (0,6.7) {};
+        \node[hackennode] (omega*1+7) at (0,6.8) {};
+        \draw[hackenline,blue] (omega*1) -- (omega*1+1);
+        \draw[hackenline,red] (omega*1+1) -- (omega*1+2) -- (omega*1+3)-- (omega*1+4)-- (omega*1+5) -- (omega*1+6) -- (omega*1+7);
+        \path node at (0,7.2) {$\vdots$};
+
+        \path node at (0,-.6) {$\dfrac{2}{w}$};
+
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}
+        \draw[dashed] (-0.5,0) -- (0.5,0);
+
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,blue] (omega) -- (omega+1);
+        \draw[hackenline,red] (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.4) {$\vdots$};
+        \node[hackennode] (omega*1) at (0,4.6) {};
+        \node[hackennode] (omega*1+1) at (0,5.2) {};
+        \node[hackennode] (omega*1+2) at (0,5.7) {};
+        \node[hackennode] (omega*1+3) at (0,6.1) {};
+        \node[hackennode] (omega*1+4) at (0,6.4) {};
+        \node[hackennode] (omega*1+5) at (0,6.6) {};
+        \node[hackennode] (omega*1+6) at (0,6.7) {};
+        \node[hackennode] (omega*1+7) at (0,6.8) {};
+        \draw[hackenline,red] (omega*1) -- (omega*1+1);
+        \draw[hackenline,blue] (omega*1+1) -- (omega*1+2) -- (omega*1+3)-- (omega*1+4)-- (omega*1+5) -- (omega*1+6) -- (omega*1+7);
+        \path node at (0,7.2) {$\vdots$};
+
+        \path node at (0,-.6) {$\dfrac{1}{2\omega}$};
+
+    \end{tikzpicture}
+    \qquad
+
+\end{center}
+\subsection{example 2}
+\begin{center}
+    \begin{tikzpicture}
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,red] (omega) -- (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.3) {$\vdots$};
+
+        \node[hackennode] (omega*1) at (0,4.6) {};
+        \node[hackennode] (omega*1+1) at (0,5.2) {};
+        \node[hackennode] (omega*1+2) at (0,5.7) {};
+        \node[hackennode] (omega*1+3) at (0,6.1) {};
+        \node[hackennode] (omega*1+4) at (0,6.4) {};
+        \node[hackennode] (omega*1+5) at (0,6.6) {};
+        \node[hackennode] (omega*1+6) at (0,6.7) {};
+        \node[hackennode] (omega*1+7) at (0,6.8) {};
+        \draw[hackenline,blue] (omega*1) -- (omega*1+1) -- (omega*1+2) -- (omega*1+3)-- (omega*1+4)-- (omega*1+5) -- (omega*1+6) -- (omega*1+7);
+        \path node at (0,7.1) {$\vdots$};
+
+
+        \node[hackennode] (omega*2) at (0,7.4) {};
+        \node[hackennode] (omega*2+1) at (0,7.9) {};
+        \node[hackennode] (omega*2+2) at (0,8.3) {};
+        \node[hackennode] (omega*2+3) at (0,8.6) {};
+        \node[hackennode] (omega*2+4) at (0,8.8) {};
+        \node[hackennode] (omega*2+5) at (0,8.9) {};
+        \node[hackennode] (omega*2+6) at (0,9) {};
+        \draw[hackenline,blue] (omega*2) -- (omega*2+1) -- (omega*2+2) -- (omega*2+3)-- (omega*2+4)-- (omega*2+5)-- (omega*2+6);
+        \path node at (0,9.3) {$\vdots$};
+        \node[hackennode] (omega*3) at (0,9.6) {};
+        \node[hackennode] (omega*3+1) at (0,9.9) {};
+        \node[hackennode] (omega*3+2) at (0,10.1) {};
+        \node[hackennode] (omega*3+3) at (0,10.2) {};
+
+        \draw[hackenline,blue] (omega*3) -- (omega*3+1) -- (omega*3+2) -- (omega*3+3);
+        \path node at (0,10.5) {$\vdots$};
+
+        \path node at (0,-.3) {$\substack{\omega\times\omega \\ = \omega^2}$};
+
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}
+        \node[hackennode] (omega) at (0,0.0) {};
+        \node[hackennode] (omega+1) at (0,0.8) {};
+        \node[hackennode] (omega+2) at (0,1.5) {};
+        \node[hackennode] (omega+3) at (0,2.1) {};
+        \node[hackennode] (omega+4) at (0,2.6) {};
+        \node[hackennode] (omega+5) at (0,3.0) {};
+        \node[hackennode] (omega+6) at (0,3.3) {};
+        \node[hackennode] (omega+7) at (0,3.6) {};
+        \node[hackennode] (omega+8) at (0,3.8) {};
+        \node[hackennode] (omega+9) at (0,3.9) {};
+        \node[hackennode] (omega+10) at (0,4.0) {};
+        \draw[hackenline,blue] (omega) -- (omega+1) -- (omega+2) -- (omega+3)-- (omega+4)-- (omega+5) -- (omega+6) -- (omega+7) -- (omega+8) -- (omega+9) -- (omega+10);
+        \path node at (0,4.3) {$\vdots$};
+
+        \node[hackennode] (omega*1) at (0,4.6) {};
+        \node[hackennode] (omega*1+1) at (0,5.2) {};
+        \node[hackennode] (omega*1+2) at (0,5.7) {};
+        \node[hackennode] (omega*1+3) at (0,6.1) {};
+        \node[hackennode] (omega*1+4) at (0,6.4) {};
+        \node[hackennode] (omega*1+5) at (0,6.6) {};
+        \node[hackennode] (omega*1+6) at (0,6.7) {};
+        \node[hackennode] (omega*1+7) at (0,6.8) {};
+        \draw[hackenline,blue] (omega*1) -- (omega*1+1) -- (omega*1+2) -- (omega*1+3)-- (omega*1+4)-- (omega*1+5) -- (omega*1+6) -- (omega*1+7);
+        \path node at (0,7.1) {$\vdots$};
+
+
+        \node[hackennode] (omega*2) at (0,7.4) {};
+        \node[hackennode] (omega*2+1) at (0,7.9) {};
+        \node[hackennode] (omega*2+2) at (0,8.3) {};
+        \node[hackennode] (omega*2+3) at (0,8.6) {};
+        \node[hackennode] (omega*2+4) at (0,8.8) {};
+        \node[hackennode] (omega*2+5) at (0,8.9) {};
+        \node[hackennode] (omega*2+6) at (0,9) {};
+        \draw[hackenline,blue] (omega*2) -- (omega*2+1) -- (omega*2+2) -- (omega*2+3)-- (omega*2+4)-- (omega*2+5)-- (omega*2+6);
+        \path node at (0,9.3) {$\vdots$};
+        \node[hackennode] (omega*3) at (0,9.6) {};
+        \node[hackennode] (omega*3+1) at (0,9.9) {};
+        \node[hackennode] (omega*3+2) at (0,10.1) {};
+        \node[hackennode] (omega*3+3) at (0,10.2) {};
+
+        \draw[hackenline,blue] (omega*3) -- (omega*3+1) -- (omega*3+2) -- (omega*3+3);
+        \path node at (0,10.5) {$\vdots$};
+
+        \path node at (0,-.3) {$\substack{\omega\times\omega \\ = \omega^2}$};
+
+    \end{tikzpicture}
+\end{center}
+
+\section{Clobber}
+% \begin{ex} 
+
+% \end{ex}
+
+\begin{example}[\textsc{clobber}]
+\end{example}
+\[\Clobber{xoxo\\oxox\\}\ .\] 
+    
+\[\Clobber{xo.o\\oxxx\\}\ .\] 
+
+\begin{problem}
+    Compute the values of the following \textsc{clobber} positions: \begin{multicols}{4} \begin{enumerate} \item \Clobber{ox\\} \item \Clobber{oxx\\} \item \Clobber{oxxx\\} \item \Clobber{xoxo\\} \item \Clobber{xoxox\\} \item \Clobber{xoxoxo\\} \item \Clobber{xxoo} \item \Clobber{xxooo} \item \Clobber{xxoooo} \item \Clobber{xxxooo} \item \Clobber{xxoxxo} \end{enumerate} \end{multicols} What are their atomic weights? Can you generalize your results?
+\end{problem}
+
+% \begin{table}[]
+    \begin{tabular}{cllll}
+    & \multicolumn{1}{c}{$\mcL$}   & \multicolumn{1}{c}{$\mcR$} & \multicolumn{1}{c}{$\mcN$} & \multicolumn{1}{c}{$\mcP$}   \\ \cline{2-5} 
+    \multicolumn{1}{c|}{$\mcL$} & \multicolumn{1}{l|}{+1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} \\ \cline{2-5} 
+    \multicolumn{1}{c|}{$\mcR$} & \multicolumn{1}{l|}{+5}   & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8}   \\ \cline{2-5} 
+    \multicolumn{1}{c|}{$\mcN$} & \multicolumn{1}{l|}{9}   & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{12}   \\ \cline{2-5} 
+    \multicolumn{1}{c|}{$\mcP$} & \multicolumn{1}{l|}{13} & \multicolumn{1}{l|}{14} & \multicolumn{1}{l|}{15} & \multicolumn{1}{l|}{16} \\ \cline{2-5} 
+    \end{tabular}
+% \end{table}
+
+\section{Notations}
+
+\subsection{combgame}
+\[G:H=\combgame{\{G^L,G:H^L|G^R,G:H^R\}}.\]
+
+\subsection{cgstar}
+\[\cgstar\]
+
+$\cgstar n:1$
+
+\subsection{cgfarstar} 
+\[\cgfarstar\]
+$G\equiv H\pmod{\cgfarstar}$
+
+\subsection{cgup}
+\[\cgup\]
+$\cgup\in\mcL$
+\subsection{cgdown}
+\[\cgdown\]
+$\cgdown\cgfarstar<G-H<\cgup\cgfarstar$
+
+\subsection{cgdoubleup}
+\[\cgdoubleup\]
+$\cgstar n:-1+\cgdoubleup\cgfarstar > 0$.
+
+\subsection{cggfuz}
+\[\cggfuz\]
+$g>\cgfarstar\cggfuz 0$
+
+\subsection{cgfuzzy}
+\[\cgfuzzy\]
+$\cgup\cgfuzzy\cgstar$
+
+
+\end{document}

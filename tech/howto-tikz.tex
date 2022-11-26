@@ -54,4 +54,104 @@
     % \draw[->] (6) -- node[midway, above right, sloped, pos=1] {+1} (4); 
 \end{tikzpicture} 
 
+\section{Trees}
+\begin{figure}[h]
+    \begin{tikzpicture}
+        [
+        level 1/.style = {red, sibling distance = 2cm},
+        level 2/.style = {blue, sibling distance = 2cm},
+        level 3/.style = {red, sibling distance = 2cm},
+        level 4/.style = {blue, sibling distance = 1.5cm},
+        level 5/.style = {red, sibling distance = 2cm},
+        level 6/.style = {blue, sibling distance = 2cm},
+        level 7/.style = {red, sibling distance = 2cm},    
+        ]
+        \tikzstyle{hollow node}=[circle,draw,inner sep=2.5]
+        \tikzstyle{solid node}=[circle,draw,inner sep=2.5,fill=black]
+        \tikzstyle{win node}=[rectangle,draw=blue,inner sep=2.5]
+    
+        \node[blue]{(10)}
+        child{node[]{(8,4)} 
+            child{node[win node]{(4,4)}}
+            child{node[win node]{(5,5)}}
+            child{node[]{(6,4)}
+                child{node[]{(5,2)}
+                    child{node[win node]{(3,3)}}
+                    child{node[]{(4,2)}
+                        child{node[]{(3,2)}
+                            child{node[win node]{(2,2)}}
+                            child{node[win node]{(1,1)}}
+                        }
+                    }    
+                }
+            }
+            child{node[right=5.5cm]{(7,2)}
+                child{node[]{(5,4)}
+                    child{node[]{(4,2)}
+                        child{node[]{(3,2)}
+                            child{node[win node]{(2,2)}}
+                            child{node[win node]{(1,1)}}
+                        }
+                    }    
+                    child{node[win node]{(3,3)}}
+                    child{node[win node]{(2,2)}}
+                    child{node[win node]{(1,1)}}
+                }
+            }
+        }
+        ;
+    \end{tikzpicture}
+        \caption{\label{fig:fibnim-ex1} Fibonnaci NIM Example 1}
+    \end{figure}
+    
+    \begin{figure}[h]
+        \begin{tikzpicture}
+            [
+            level 1/.style = {red, sibling distance = 2cm},
+            level 2/.style = {blue, sibling distance = 2cm},
+            level 3/.style = {red, sibling distance = 1.5cm},
+            level 4/.style = {blue, sibling distance = 1.5cm},
+            level 5/.style = {red, sibling distance = 1.5cm},
+            level 6/.style = {blue, sibling distance = 1cm},
+            level 7/.style = {red, sibling distance = 1cm},    
+            ]
+            \tikzstyle{hollow node}=[circle,draw,inner sep=2.5]
+            \tikzstyle{solid node}=[circle,draw,inner sep=2.5,fill=black]
+            \tikzstyle{win node}=[rectangle,draw=blue,inner sep=2.5]
+        
+            \node[blue]{(8,7)}
+            child{node[left=3cm]{(7,2)}
+                child{node[]{(5,4)}
+                    child{node[]{(4,2)}
+                        child{node[]{(3,2)}
+                            child{node[win node]{(2,2)}}
+                            child{node[win node]{(1,1)}}
+                        }
+                    }    
+                    child{node[win node]{(3,3)}}
+                    child{node[win node]{(2,2)}}
+                    child{node[win node]{(1,1)}}
+                }
+            }
+            child{node[]{(6,4)}
+                child{node[]{(5,2)}
+                    child{node[win node]{(3,3)}}
+                    child{node[]{(4,2)}
+                        child{node[]{(3,2)}
+                            child{node[win node]{(2,2)}}
+                            child{node[win node]{(1,1)}}
+                        }
+                    }    
+                }
+            }
+            child{node[win node]{(5,5)}}
+            child{node[win node]{(4,4)}}
+            child{node[win node]{(3,3)}}
+            child{node[win node]{(2,2)}}
+            child{node[win node]{(1,1)}}
+            ;
+        \end{tikzpicture}
+            \caption{\label{fig:fibnim-ex1} Fibonnaci NIM Example 2}
+        \end{figure}
+    
 \end{document}
