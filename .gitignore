@@ -20,3 +20,4 @@
 *.mf
 *.tfm
 *.*pk
+__pycache__

@@ -1,0 +1,70 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{WOOT - Practice Olympiad 3}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{Fall, 2021}
+\paragraph{Problem 5}
+Let $P$ be the midpoint of the shorter arc $AB$ of circle $\Gamma$. Let also $C$ be a variable point on the longer arc $AB$ of $\Gamma$ such that triangle $ABC$ is acute-angled. The tangents to $\Gamma$ at $A$ and $C$ meet at point $X$ and the tangents to
+$\Gamma$ at $B$ and $C$ meet at point $Y$ . Lines $PX$ and $PY$ meet line $AB$ at points $M$ and $N$, respectively. Prove that
+the length of segment $MN$ remains constant when point $C$ varies. (Points $A$ and $B$ and circle $\Gamma$ are fixed.)
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (4cm);
+        import olympiad;
+
+        pair A, B, C, O, P, X, Y, M, N, T1, T2;
+        path g;
+
+        O = (0, 0);
+        A = dir (110);
+        C = dir (210);
+        B = dir (330);
+        
+        g = circle (O, 1);
+
+        P = rotate ((degrees (A - O) - degrees(B - O))/2 + 180, O) * B;
+
+        T1 = rotate (90, A) * O;
+        T2 = rotate (90, C) * O;
+        X = extension (A, T1, C, T2);
+
+        T1 = rotate (90, B) * O;
+        // T2 = rotate (90, C) * O;
+        Y = extension (B, T1, C, T2);
+
+        M = extension (P, X, A, B);
+        N = extension (P, Y, A, B);
+
+
+        draw (A--B--C--A);
+        draw (g);
+        draw (A--X--C--Y--B);
+        draw (X--P--Y, gray(0.5));
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (B));
+        label ("$C$", C, dir (C));
+
+        dot ("$P$", P, dir (P));
+
+        dot ("$X$", X, dir (X));
+        dot ("$Y$", Y, dir (Y));
+
+        dot ("$M$", M, dir (M));
+        dot ("$N$", N, dir (N));
+
+        label ("AM: " + (string)distance(A, M), O);
+    \end{asy}
+\end{center}
+
+
+\end{document}

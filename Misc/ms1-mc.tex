@@ -1,0 +1,459 @@
+\documentclass[11pt]{article}
+\usepackage{parskip}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{etoolbox}
+\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{asymptote}
+\usepackage{listings}
+\usepackage[TS1,T1]{fontenc}% NEW: T1 is the default font encoding, TS1is allowed
+% \usepackage[sexy, fancy, hints]{evan}
+
+\newcommand{\tsone}{\fontencoding{TS1}\selectfont}%NEW: define a cmd that sets the TS1 encoding\usepackage[latin1]{inputenc}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+\title{MS1 - Challenge}
+\author{Manoj Das}
+\date{\today}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{C6}
+\begin{center}
+    \begin{asy}
+        pair A, O, B;
+        unitsize(0.15cm);
+
+        fill((-1,-1)--(81,-1)--(81,81)--(-1,81)--cycle, white);
+        draw((0,0)--(80,0)^^(0,0)--(0,80), black+2);
+        O = (37,37);
+        draw(circle(O, 37));
+
+        A = (2, 25);
+        dot(A);
+        label("$A$", A, E);
+
+        draw ((0,37)--O);
+        label ("37 inch", (0,37)--O, N);
+
+    \end{asy}
+\end{center}
+
+Solution
+
+\begin{center}
+    \begin{asy}
+        pair A, O, B;
+        unitsize(0.15cm);
+
+        fill((-1,-1)--(81,-1)--(81,81)--(-1,81)--cycle, white);
+        draw((0,0)--(80,0)^^(0,0)--(0,80), black+2);
+        O = (37,37);
+        draw(circle(O, 37));
+
+        A = (2, 25);
+        dot(A);
+        label("$A$", A, E);
+
+        draw ((0,37)--O);
+        label ("37 inch", (0,37)--O, N);
+
+        label ("$O$", O, S, red);
+        B = (2, 37);
+        label ("$B$", B, N, red);
+
+        draw(O--A--B, red);
+    \end{asy}
+\end{center}
+
+\begin{asy} 
+    import cse5;
+    pair L,O,N,G,R,E,C,T; 
+    unitsize(.25cm);
+    
+    T = (0,7); C = (13,7); E = (13,0);
+    L = (0,4); O = (1,7); N = (13,3); G= (12,0);
+    draw(R--E--C--T--R); draw(L--O--N--G--L);
+    label("R",R,W);label("E",E,dir(0));label("C",C,NE);label("T",T,NW);
+    label("L",L,W);label("O",O-(3.5,0),N);label("N",N-(3,0),E);label("G",G,S);
+    label("3",(T+L)/2,W); label("1",(T+O)/2-(3.5,0),N);
+    label("7", (13.5, 5));
+\end{asy}
+
+\begin{center}
+    \begin{asy}
+    import cse5;
+    import olympiad;
+    unitsize(0.2cm);
+    
+    pointpen = black; 
+    pathpen = black+linewidth(0.7); 
+    pen d = linewidth(0.7) + linetype("4 4"); 
+    pair B=(0,0), C=(20,0), A=IP(CR(B,21),CR(C,22)), I=incenter(A,B,C), D=IP((0,I.y)--(20,I.y),A--B), E=IP((0,I.y)--(20,I.y),A--C); 
+    D(MP("A",A,N)--MP("B",B)--MP("C",C)--cycle); 
+    D(incircle(A,B,C)); 
+    D(MP("P",I,(1,2))); 
+    D(MP("E",E,NE)--MP("D",D,NW)); 
+    MP("20",(B+C)/2); 
+    MP("21",(A+B)/2,NW); 
+    MP("22",(A+C)/2,NE);  
+    
+    /* construct angle bisectors */ 
+    path anglebisector (pair X, pair Y, pair Z, path K) { 
+    return Y -- IP(Y -- Y + 30 * (bisectorpoint(X,Y,Z)-Y) , K); 
+    } 
+    D(anglebisector(C,A,B,B--C), d); 
+    D(anglebisector(B,C,A,A--B),d); 
+    D(anglebisector(C,B,A,A--C),d); 
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+    import three;
+    unitsize(5cm);
+
+    real radius=1, theta=37, phi=60;
+
+    currentprojection=oblique;
+
+    // Planes
+    pen bg=gray(0.5)+opacity(0.5);
+
+    real r=1.5;
+    draw(Label("$x$",1), O--r*X, Arrow3());
+    draw(Label("$y$",1), O--r*Y, Arrow3());
+    draw(Label("$z$",1), O--r*Z, Arrow3());
+    label("$\rm O$", O, S);
+
+
+    draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1)--(0,0,0)--(0,1,0)--(0,1,1)^^
+            (0,1,0)--(1,1,0)--(1,1,1)^^(1,1,0)--(1,0,0)--(1,0,1)^^(0,0,0)--(1,0,0));
+
+
+    draw(surface((1,0,0)--(0,1,0)--(0,0,1)--cycle),bg, bg);
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import olympiad;
+        import cse5;
+        unitsize(0.35cm);
+
+        pair O, O1, O2, A, B, T1, K1, M, G, D;
+        real r = 8, r1, r2, x, y = 0, xd = 3;
+
+        x = sqrt(r*r-y*y);
+
+        O = (0,0);
+        A = (-x,y);
+        B = (x,y);
+        M = (0,-r);
+
+        K1 = (x - xd, y);
+
+        path circ = circle(O, r);
+        pair [] t1c =intersectionpoints(circ, M--(M+(M-K1)*-5));
+
+        if (t1c[0].y != M.y) {
+            T1 = t1c[0];
+        } else {
+            T1 = t1c[1];
+        }
+
+        r1 = r * (distance(K1,T1)/distance(M,T1));
+
+        O1 = (x - xd, y + r1);
+
+        path circ2 = circle(O1, r1);
+
+        G = intersectionpoints(circ2, T1--O)[1];
+        D = rotate(180)*T1;
+
+        draw (circ2);
+
+        draw (M--T1);
+        draw(circ);
+        draw(A--B);
+        draw(T1--D);
+
+        //draw(anglemark(B, A, M, 40,45), orange);
+        //draw(anglemark(M, B, A, 20), red);
+
+
+        dot(O);
+        dot(O1);
+        dot(M);
+        dot(K1);
+        dot(T1);
+        dot(G);
+        dot(D);
+
+        MP("$O$", O, S);
+        MP("$B$", B, E);
+        MP("$A$", T1, NE);
+        MP("$F$", K1, SE);
+        MP("$C$", M, S);
+        MP("$E$", A, W);
+        MP("$G$", G, NW);
+        MP("$D$", D, SW);
+        MP("$P$", O1, N);
+    \end{asy}
+
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize(2cm);
+        pair A, B, C, D, E, O;
+        real r = 2;
+
+        O = (0, 0);
+
+        A = rotate(-32)*(-r, 0);
+        B = rotate(32)*(-r, 0);
+        C = rotate(32)*(r, 0);
+        D = rotate(-32)*(r, 0);
+        E = rotate(75)*(r, 0);
+
+        draw(circle(O, r));
+        draw(A--D^^B--C);
+        draw(A--E--B, blue);
+
+        MarkAngle("\alpha",A,O,B, 0.5, q=black);
+        MarkAngle("\frac{\alpha}{2}",A,E,B,0.5, q=blue);
+
+        dot(O);
+        dot(A);
+        dot(B);
+        dot(C);
+        dot(D);
+        dot(E);
+
+        MP("$A$", A, NW);
+        MP("$B$", B, SW);
+        MP("$C$", C, NE);
+        MP("$D$", D, SE);
+        MP("$E$", E, NE);
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize(1cm);
+        picture pic1, pic2, cp;
+
+        pair A, B, C, D, E, O;
+        real r = 2;
+
+        O = (0, 0);
+
+        A = rotate(-35)*(-r, 0);
+        B = rotate(35)*(-r, 0);
+        C = rotate(16)*(r, 0);
+        D = rotate(-16)*(r, 0);
+
+        cp = currentpicture;
+
+        for (int i = 0; i < 2; ++i) {
+            picture pic;
+
+            if (i == 0) {
+                currentpicture = pic1;
+                E = extension(A, D, B, C);
+                draw(A--D^^B--C);
+            } else {
+                currentpicture = pic2;
+                E = extension(A, C, B, D);
+                draw(A--E--B);
+            }
+            //currentpicture = pic;
+
+            draw(circle(O, r));
+            MarkAngle("\alpha",A,E,B, 0.5, q=black);
+
+            //dot(O);
+            dot(A);
+            dot(B);
+            dot(C);
+            dot(D);
+            dot(E);
+    
+            MP("$A$", A, NW);
+            MP("$B$", B, SW);
+            MP("$C$", C, NE);
+            MP("$D$", D, SE);
+            MP("$E$", E, NE);
+    
+        }
+
+        currentpicture = cp;
+        add(shift(6*right)*pic2);
+        add(pic1);
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize(2cm);
+        pair A, B, C, D, E, O;
+        real r = 2;
+
+        O = (0, 0);
+
+        A = rotate(-32)*(-r, 0);
+        B = rotate(32)*(-r, 0);
+        C = rotate(32)*(r, 0);
+        D = rotate(-32)*(r, 0);
+        E = rotate(90, B)*O;
+
+        draw(circle(O, r));
+        draw(A--B^^E--rotate(180,B)*E);
+        draw(A--O--B);
+
+        MarkAngle("\alpha",A,O,B, 0.5, q=black);
+        MarkAngle("\frac{\alpha}{2}",A,B,E,0.5, q=blue);
+
+        dot(O);
+        dot(A);
+        dot(B);
+        //dot(C);
+        //dot(D);
+        //dot(E);
+
+        MP("$A$", A, NW);
+        MP("$B$", B, SW);
+        //MP("$C$", C, NE);
+        //MP("$D$", D, SE);
+        MP("$E$", E, NE);
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+    import three;
+    unitsize(4cm);
+
+    real radius=1, theta=37, phi=60;
+
+    currentprojection= orthographic(-500, -300, 400);
+
+
+    // Planes
+    pen bg=gray(1)+opacity(0.1);
+    pen solidp = green+opacity(0.6);
+
+    real r=1.5;
+    draw(Label("$x$",1), O--r*X, Arrow3());
+    draw(Label("$y$",1), O--r*Y, Arrow3());
+    draw(Label("$z$",1), O--r*Z, Arrow3());
+
+    draw(surface((0,0,1)--(0,1,0)--(1,0,0)--cycle),solidp, green);
+    draw(surface((1,1,1)--(0,0,1)--(0,1,0)--cycle),solidp, green);
+    draw(surface((1,1,1)--(0,0,1)--(1,0,0)--cycle),solidp, green);
+    draw(surface((1,1,1)--(1,0,0)--(0,1,0)--cycle),solidp, red);
+
+    draw(surface((0,0,0)--(0,0,1)--(0,1,1)--(0,1,0)--cycle), bg);
+    draw(surface((0,0,0)--(1,0,0)--(1,1,0)--(0,1,0)--cycle), bg);
+    draw(surface((0,0,0)--(1,0,0)--(1,0,1)--(0,0,1)--cycle), bg);
+    draw(surface((0,1,0)--(1,1,0)--(1,1,1)--(0,1,1)--cycle), bg);
+    draw(surface((1,0,0)--(1,1,0)--(1,1,1)--(1,0,1)--cycle), bg);
+    draw(surface((0,0,1)--(1,0,1)--(1,1,1)--(0,1,1)--cycle), bg);
+
+    //draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1)--(0,0,0)--(0,1,0)--(0,1,1)^^
+    //        (0,1,0)--(1,1,0)--(1,1,1)^^(1,1,0)--(1,0,0)--(1,0,1)^^(0,0,0)--(1,0,0));
+
+
+
+
+    label("$O$", O, S);
+    label("$1$", (0,0,1), NE);
+    label("$1$", (0,1,0), S);
+    label("$1$", (1,0,0), S);
+    label("$2$", (1,0,1), N);
+    label("$2$", (1,1,0), S);
+    label("$2$", (0,1,1), N);
+    label("$3$", (1,1,1), N);
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize(1cm);
+        pair A, B, C, D, E, Cp, Bp, Ap, Cp2, Bp2, Ap2, H;
+
+        real xt = -3/2, yt = -1/2;
+
+        A = (0,4);
+        C = (0,0);
+        D = (0, -1);
+        B = (3,0);
+        E = (-12/5,11/5);
+
+        real dEA, dED;
+
+        dEA = distance(E, A);
+        dED = distance(E, D);
+
+        Cp = (E.x-xt, E.y - yt);
+        Bp = (A.x-xt, A.y-yt);
+        Ap = (D.x-xt, D.y-yt);
+
+
+        Cp2 = (C + Cp)/2;
+        Bp2 = (B + Bp)/2;
+        Ap2 = (A + Ap)/2;
+
+        //H = extension(A, Bp, D, Ap);
+
+        draw(Ap--Bp--Cp--cycle, blue);
+
+        draw(Ap2--Bp2--Cp2);
+        draw(C--Cp^^A--Ap^^B--Bp, green);
+
+        dot(Cp2);
+        dot(Bp2);
+        dot(Ap2);
+
+        //dot(H, red);
+
+        draw(A--C--B--cycle--E--D--C);
+        
+        //label ("Bp2: " + format(Bp2.x) + ", " + format(Bp2.y), (-2,8));
+        //label ("H: " + format(H.x) + ", " + format(H.y), (-2,7));
+
+            dot((0, 3/2), red);
+            dot((3/2, 2), red);
+
+        label("$A$", A, N);
+        label("$A'$", Ap, S);
+        label("$B$", B, SE);
+        label("$B'$", Bp, N);
+        label("$C$", C, SE);
+        label("$D$", D, S);
+        label("$C'$", Cp, N);
+        label("$E$", E, N);
+
+        label("$P$", (0, 3/2), SE);
+        label("$Q$", (3/2, 2), SE);
+    \end{asy}
+\end{center}
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Cyclotomic}
+
+
+\author{Manoj Das}
+\date{\today}
+\section{7 - 21EGMO3}
+
+\begin{soln}
+    The answers are $f(x) \equiv +x$
+and $f(x) \equiv -x$ which work.
+To show they are the only ones,
+we follow an approach similar to \texttt{SnowPanda}.
+
+First, by setting $x=y=1$ we get $\boxed{f(1) \neq 0}$.
+
+Note that by iterating the functional equation
+multiple times, we have more generally that
+\begin{align*}
+	f(xf(x) + m \cdot y) &= x^2 + m \cdot f(y) \\
+	f(n \cdot xf(x) + y) &= n \cdot x^2 + f(y).
+\end{align*}
+In particular, replacing $x=1$ everywhere gives:
+\begin{align*}
+	f(f(1) + m \cdot y) &= 1 + m \cdot f(y) \\
+	f(n \cdot f(1) + y) &= n + f(y).
+\end{align*}
+Hence, we have the following sentence for any $y \in \QQ$
+and $m,n \in \ZZ$:
+\[ f(1) + my = n f(1) + y \implies 1 + mf(y) = n + f(y). \]
+If we choose $m = kf(1)+1 \neq 1$ and $n = ky+1$
+for some suitable nonzero $k$,
+the first equation is true automatically;
+we hence conclude $f$ is linear.
+From here one quickly recovers the solution set.
+
+\end{soln}
+\section{20 - 10SLA6}
+
+    \begin{problem}[Shortlist 2010 A6]
+        Prove that if two functions $f, g \colon \NN \to \NN$
+        obey
+        \[ f(g(n)) = f(n)+1 \quad\text{ and }\quad g(f(n)) = g(n)+1 \]
+        for each positive integer $n$, then $f = g$.
+    \end{problem}
+
+    Hints:
+    \begin{enumerate}
+        \item It may be useful to first solve the FE $h(h(n)) = h(n) + 1$.
+        \item IMO 1977/6 is worth solving before attempting this problem as well. (Did it already)
+        \item Let the images of $f$ and $g$ be $\{A,A+1,\ldots\}$ and 
+        $\{B,B+1,\ldots\}$ respectively. If $A \le B$, try to prove that  $g(n) \ge f(n) + (B-A)$ to start.
+        \item To prove the main estimate in the previous hint, show the sentence $n \ge A+k$ implies $g(n) \ge B+k+1$ by induction on k.
+    \end{enumerate}
+    \begin{soln}
+        Let $P(n)$ and $Q(n)$ denote the two given assertions, respectively.
+
+\begin{claim*}
+	[Contiguous images]
+	The images of $f$ and $g$ are of the form
+	\begin{align*}
+		f(\NN) &= \left\{ A, A+1, \dots \right\} \\
+		g(\NN) &= \left\{ B, B+1, \dots \right\}
+	\end{align*}
+	for some $A$ and $B$.
+\end{claim*}
+\begin{proof}
+	If $f(n) \in f(\NN)$, then $f(n)+1 = fg(n) \in f(\NN)$, by $P(n)$.
+	Similarly for $g$.
+\end{proof}
+
+\begin{claim*}
+	For any nonnegative integer $k$, we have
+	$g(f(n)+k) = g^{k+1}(n)+1$.
+\end{claim*}
+\begin{proof}
+	Both sides are equal to $gfg^k(n)$.
+\end{proof}
+
+Let us assume WLOG that $A \le B$.
+The main lemma is the following (see IMO 1977/6 for a similar argument):
+\begin{lemma*}
+	[Main estimate]
+	We have $g(n) \ge f(n) + (B-A)$ for every $n \ge 1$.
+\end{lemma*}
+\begin{proof}
+	We prove the sentence
+	\[ S(k) \colon \quad \text{If } n \ge A+k \text{ then } g(n) \ge B+k+1 \]
+	by induction on $k$.
+	For $k = 0$ this follows by varying $n$ in assertion $Q$.
+	Now note that
+	\begin{align*}
+		g(n) &\ge B \\
+		\implies gg(n) &\ge B+1 &\text{by $S(0)$} \\
+		\implies ggg(n) &\ge B+2 &\text{by $S(1)$} \\
+		& \vdotswithin\ge \\
+		\implies g^{k}(n) &\ge B+(k-1) &\text{ by $S(k-2)$} \\
+		\implies g^{k+1}(n) &\ge B+k &\text{ by $S(k-1)$}.
+	\end{align*}
+	And thus $g(f(n)+k) = g^{k+1}(n) + 1 \ge (B+k)+1$ which implies $S(k)$.
+
+	Now for any particular $m \ge A$, we have $g(m) \ge m+(B-A+1)$.
+	Replacing $m$ with $f(n)$ gives
+	$1 + g(n) = g(f(n)) \ge f(n) + (B-A+1)$ as needed.
+\end{proof}
+
+\begin{claim*}
+	[$f$ has no eventual cycles]
+	For any $k > 0$ and $n \ge 1$,
+	we have $f^k(n) \neq n$.
+\end{claim*}
+\begin{proof}
+	Otherwise, $g(n) + k = (g \circ f^k)(n) = g(n) \implies k = 0$, contradiction.
+\end{proof}
+
+\begin{claim*}
+	[We found all functions!]
+	For $n \ge A$, we have
+	\[ f(n) = n+1 \qquad g(n) = n+(B-A+1). \]
+\end{claim*}
+\begin{proof}
+	By induction on $n \ge A$.
+	For the base step, pick $x_0$ such that $g(x_0) = B$.
+	By the main lemma, we have
+	$B = g(x_0) \ge f(x_0) + (B-A) \implies f(x_0) = A$.
+	Hence, $Q(x_0) \implies g(A) = B+1$.
+	Finally,
+	\[ B+1 = g(A) \ge f(A) + (B-A) \implies f(A) \le A+1. \]
+	Since $f(A) \neq A$, but also $f(A) \ge A$ from the range of $f$,
+	it follows $f(A) = A+1$.
+
+	The inductive step is almost the same:
+	assume we know $f$ and $g$ up to $n-1$.
+	Then
+	\[ g(n) = g(f(n-1)) = g(n-1) + 1 = n + (B-A+1). \]
+	Now by the main lemma,
+	\[ n + (B-A+1) = g(n) \ge f(n) + (B-A) \implies f(n) \le n+1. \]
+	But since $f$ has no eventual cycles,
+	and we already have a chain
+	\[ A \xmapsto{f} (A+1) \xmapsto{f} (A+2)
+		\xmapsto{f} \dots \xmapsto{f} (n-1) \xmapsto{f} n \]
+	we must have $f(n) = n+1$ since
+	it can't map to any values in $\{A , \dots, n\}$.
+\end{proof}
+
+Now $P(n)$ reads $f(n)+1 = f(g(n)) = g(n)+1$ since $g(n) \ge A$.
+Thus $f = g$.
+
+\begin{remark*}
+	From here it easy to characterize all functions.
+	We have $A=B$ and $f(n) = g(n) = n+1$ for all $n \ge A$.
+	The values of $f(n) = g(n)$ may be arbitrary for $n < A$,
+	as long as they are at least $A$.
+\end{remark*}
+    \end{soln}
+\end{document}

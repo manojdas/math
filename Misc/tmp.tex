@@ -13,6 +13,46 @@
 
 \begin{center}
     \begin{asy}
+        picture p;
+        unitsize(0.5cm);
+        for (int i = 0; i <= 10; ++i) {
+            draw (p, (0, i) -- (10 - i, i));
+            draw (p, (i, 0) -- (i, 10-i));
+            draw (p, (i, 0) -- (0, i));                
+        }
+        add (rotate(225)*p);
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (0.5 cm);
+        pair A = (0, 6);
+        pair B = (0, 0);
+        pair C = (8, 0);
+        real rb = distance(A, C)/2;
+        real ra = distance (B, C)/2;
+        real rc = distance (A, B)/2;
+
+        pair B1 = (A+C)/2;
+        pair C1 = (A+B)/2;
+        pair A1 = (B+C)/2;
+
+        filldraw (arc(B1, rb, degrees(A-B1), degrees(C-B1))--cycle, gray(0.85));
+        draw (arc(A1, ra, -degrees(B-A1), degrees(C-A1)));
+        draw (arc(C1, rc, degrees(B-C1), degrees(A-C1)));
+
+        draw (A--B--C--A);
+        draw(rightanglemark(A, B, C, 15));
+        
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
         unitsize (1 cm);
         real x = 0.45, y = 1;
         for (int i = 0; i < 31; ++i) {

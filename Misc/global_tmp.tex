@@ -1,0 +1,384 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Global}
+
+
+\author{Manoj Das}
+\date{\today}
+\section{Global and Expo NT}
+\subsection{Problem 14, 99RUS}
+\begin{problem}[Russia 1999]
+    In a certain finite nonempty school, every boy likes at least one girl. Prove that we can find a set $S$ of strictly more than half the students in the school such that each boy in $S$ likes an odd number of girls in $S$.
+\end{problem}
+
+Hints:
+\begin{enumerate}
+    \item (Nudge, 0\%) Since it's a parity problem, if you pick a set reasonably at random, you should be expecting to get half the students anyways.
+    \item (Main Idea, 10\%) Flip a coin for the girls.
+\end{enumerate}
+\begin{soln}
+    It suffices to coin-flip to determine the set of $G$ girls chosen,
+and then take all boys which like an odd number of girls in $G$.
+The expected size of $G$ is clearly equal to half of all girls.
+Now note that each boy also has $50\%$ chance of being taken,
+hence the expectation overall is half the students in the school.
+To see that the inequality is strict,
+note that $S = \varnothing$ is a possible outcome.
+
+\begin{remark*}
+The constant $\half$ is nonetheless sharp.
+To see this, imagine there are $2N \gg 0$ boys and two girls;
+$N$ of the boys like one girl (Alice)
+and the other $N$ like both girls.
+Then we can get at most $N+2$ students.
+\end{remark*}
+
+\end{soln}
+
+\begin{soln}
+    Let $L_b$ be the set of girls liked by a given boy $b$, and let $B$ and $G$ be the sets of chosen
+    boys and girls. For fixed $G$, WLOG $B$ is the set of all boys who like an odd number of
+    girls in $G$, so the challenge is to choose $G$. Doing so uniformly randomly means each girl
+    has probability $50\%$ to be included, and for each boy $b$,
+    \[P(b \in B) = P(|L_b \cap G| \text{ is odd}) = 50\%\]
+    because a uniformly random subset of $L_b$ is $50\%$ likely to be odd. Hence $E[|B \cup G|] > 50\%$ (total).
+\end{soln}
+\section{Expo NT}
+
+\subsection{Problem 11, 98SLN5}
+\begin{problem}[Shortlist 1998 N5]
+    Find all positive integers $n$ for which $2^n-1$ has a multiple of the form $m^2+9$.
+\end{problem}
+
+Hints:
+\begin{enumerate}
+    \item (Answer Confirmation, $20\%$) Holds for all $n = 2^k.$
+\end{enumerate}
+
+Questions:
+\begin{enumerate}
+    \item Why is a $3 \pmod 4$ prime other than $3$ dividing $m^2 + 9$ a contradiction?
+    \item In second part, why does order imply $p \equiv 1 \pmod 4$ and how do we use primitive roots?
+    
+    The point is that $-1$ is a square $\mod p$ iff $p \equiv 1 \pmod 4$. This is because if $a^2 = -1 \pmod p$, then $a$ has order $4$, so $4$ divides $p - 1$.Meanwhile, if $p$ is $1 \pmod 4$ you can let $g$ be a primitive root and take $g^{(p - 1)/4}$; its square is $-1$. The first part then follows from the fact that all the terms on the right are $a^2 + 1$, so $p$ must divide one of them.
+
+\end{enumerate}
+
+\begin{soln}
+    Answer: powers of two only.
+
+    First we prove no other $n$ work.
+    If $n$ has an odd factor $t > 1$,
+    consider the divisor $d = 2^t-1$ of $2^n-1$.
+    Then $d \equiv 3 \pmod 4$, but also $d \not\equiv 0 \pmod 3$.
+    Then there must be a $3 \pmod 4$ prime other than $3$ dividing $m^2+9$
+    which is a contradiction.
+    
+    For the other direction, let $n = 2^k$, and assume $k \ge 1$; write
+    \[ 2^n - 1 = 3 \cdot (2^2+1) \cdot (2^4+1) \cdot (2^8+1)
+        \cdot \dots \cdot (2^{2^{\log_2 n - 1}} - 1). \]
+    Let $q = p^e$ be any prime power dividing $2^n-1$.
+    Then either $q = 3$, or (for order reasons) we have $p \equiv 1 \pmod 4$.
+    In either case there exists $m$ such that $q \mid m^2 + 9$
+    (in the latter case, one can for example use primitive roots).
+\end{soln}
+
+\subsection{Problem 14, 07SLN5}
+
+\begin{problem}[Shortlist 2007 N5, edited]
+    Find all functions $f : N \to N$ such that $f(1) = 1$ and for all positive integers $m$ and $n$ and primes $p$, the number $f(m + n)$ is divisible by $p$ if and only if $f (m) + f (n)$ is divisible by $p$.
+\end{problem}
+
+Hints:
+\begin{enumerate}
+    \item (Easy starting points, $0\%$) First prove that $f(2^e)$ is always a power of $2$ and $f(2)=2$, $f(3)=3$, $f(4)=4$.
+    \item (Advice, $20\%$) You should, in principle, be able to work out the values of $f(5)$, $f(6)$, \ldots up to $f(16)$, say. Doing this can give you intuition for how to proceed further.
+    \item (Setup, $30\%$) By induction on $e \ge 1$, go for the following statement:
+    \[ f(n) = n \quad\text{for } 2^e \le n \le 2^{e+1}.\]
+\end{enumerate}
+\begin{soln}
+    The answer is that $f$ must be the identity (which works).
+We let $\opname{rad} n$ denote the product of distinct prime factors of $n$.
+We also let $P(m,n)$ denote the given statement.
+
+\begin{remark*}
+	The original problem gave the hypothesis $f$ was surjective
+	in place of $f(1)=1$.
+	Our version is better:
+	to see that $f$ surjective implies $f(1)=1$ anyways,
+	consider $P(1,N-1)$ if $f(N)=1$ held for any $N \ge 2$.
+\end{remark*}
+
+\begin{claim*}
+	We have $\opname{rad} f(2^e) =2$ for every positive integer $e$;
+	that is, $f(2)$, $f(4)$, \dots are all powers of $2$.
+\end{claim*}
+\begin{proof}
+	Follows by taking $P(2^{e-1}, 2^{e-1})$ and induction.
+\end{proof}
+
+\begin{claim*}
+	We have $f(2) = 2$, $f(3) = 3$, $f(4) = 4$.
+\end{claim*}
+\begin{proof}
+	First, $P(3,1)$ gives that $f(3) = 2^y-1$ for some $y$.
+	Now if $f(2) = 2^x$ then $P(2,1)$ gives
+	\[ \opname{rad}(2^x+1) = \opname{rad}(2^y-1). \]
+	We now consider two cases.
+	\begin{itemize}
+		\ii If $x = 3$ then this forces $y = 2$.
+		So $f(2) = 8$ and $f(3) = 3$.
+		But $\opname{rad} (1+f(4)) = \opname{rad} (f(2)+f(3)) = 11$,
+		so there is no possible value of $f(4)$, contradiction.
+
+		\ii Otherwise, let $p$ be a primitive prime divisor of $2^{2x}-1$
+		which exists by Zsigmondy.
+		It also divides the right-hand side, so $2x \mid y$,
+		and $2^{2x}-1 \mid 2^y-1$.
+		This could only happen if $2^x-1=1$, so $x=1$.
+		This gives $y=2$ (again by Zsigmondy) and we're done.
+	\end{itemize}
+	Hence $f(2) = 2$ and $f(3) = 3$.
+	Now $\opname{rad} (1+f(4)) = \opname{rad} (f(2)+f(3)) = 5$,
+	and since $f(4)$ is a power of $2$,
+	Zsigmondy implies $f(4) = 4$.
+\end{proof}
+
+Moving forward, we apply the following simple consequence of Zsigmondy:
+\begin{lemma*}
+	If $\opname{rad}(2^x-1) = \opname{rad}(2^y-1)$ then $x=y$.
+	Similarly if $\opname{rad}(2^x+1) = \opname{rad}(2^y+1)$ then $x=y$.
+\end{lemma*}
+
+We now prove by induction on $e \ge 1$ the statement that
+\[ f(n) = n \qquad \text{ for } 2^e \le n \le 2^{e+1}. \]
+The base case is already set for us.
+For the inductive step, suppose $f$ is the identity for $n \le 2^e$.
+We proceed in three steps:
+\begin{itemize}
+\ii First, we have
+\begin{align*}
+	\opname{rad} \left( 1 + f\left( 2^{e+1}-1 \right) \right) &= 2 \\
+	\opname{rad} \left( f\left( 2^{e+1}-1 \right) \right) &=
+	\opname{rad} \left( f(2^e-1) + f(2^e) \right) = \opname{rad} (2^{e+1}-1).
+\end{align*}
+The first equation just says $f(2^{e+1}-1) = 2^x-1$ for some $x$.
+
+\ii Next, we have
+\begin{align*}
+	\opname{rad} \left( f(2^{e+1}) + 1 \right)
+	&= \opname{rad} f(2^{e+1}+1)
+	= \opname{rad} \left( (2^{e+1}-1) + 2 \right) \\
+	&= \opname{rad} \left( f(2^{e+1}-1) + f(2) \right)
+	= \opname{rad} \left( 2^{e+1} + 1 \right)
+\end{align*}
+which gives $f(2^{e+1}) = 2^{e+1}$.
+
+\ii Now assume $2^e + 1 \le n \le 2^{e+1}-2$.
+Let $1 \le k \le 2^e - 2$ be such than $n+k = 2^{e+1}-1$.
+Then
+\begin{align*}
+	\opname{rad} \left( f(n)+k \right)
+	&= \opname{rad} \left( f(n)+f(k) \right)
+	= \opname{rad} \left( f(n+k) \right) = \opname{rad} \left( 2^{e+1}-1 \right) \\
+	\opname{rad} \left( f(n)+k+1 \right)
+	&= \opname{rad} \left( f(n)+f(k+1) \right)
+	= \opname{rad} \left( f(n+k+1) \right) = 2.
+\end{align*}
+So we have an integer $x$ such that
+\[ f(n) + k + 1 = 2^x \implies
+	\opname{rad}(2^x - 1)
+	= \opname{rad} \left( f(n)+k \right)
+	= \opname{rad}(2^{e+1}-1).  \]
+Hence $x = e+1$.
+And so $f(n) = n$.
+\end{itemize}
+This completes the induction and hence the problem is solved.
+
+\end{soln}
+
+\subsection{Problem 20, 18TSTST8}
+\begin{problem}
+    [IMO 1990/3, 90IMO3] 
+    Find all positive integers $n$ for which $n^2$ divides $2^n + 1$.
+\end{problem}
+
+Hints:
+\begin{enumerate}
+    \item (Setup, $0\%$) Let $p$ be a prime dividing $n$, hence $2^n + 1$. Take modulo  $p$ and look at what the orders argument gives.
+    \item (First Milestone, $20\%$) The order of 2 modulo $p$ divides $\gcd(p-1, 2n)$ so you may consider the smallest prime dividing $n$.
+    \item (Second Milestone, $60\%$) Compute $\nu_3(n)$ and then try to consider the second smallest prime dividing $n$. 
+\end{enumerate}
+\begin{soln}
+    Answer: $n=1$ or $n=3$, which clearly work.
+
+So we prove they are the only ones.
+
+Assume now $n > 1$, and let $p \mid n$ be a minimal prime.
+Note that $p \ne 2$.
+As $2^{2n} \equiv 1 \pmod p$ and $2^{p-1} \equiv 1 \pmod p$
+we must have
+\[ p \mid 2^{\gcd(2n, p-1)} - 1 \mid 2^2 - 1 \]
+and so $p = 3$.
+
+Now, by lifting the exponent,
+\[ 2 \nu_3(n) = \nu_3(n^2) \le \nu_3(2^n+1) = \nu_3(2+1) + \nu_3(n) = 1 + \nu_3(n)
+	\implies \nu_3(n) \le 1. \]
+Now assume for contradiction $n > 3$, and let $q \mid n/3$ be a minimal prime.
+We know $q \notin \{2,3\}$, and yet
+\[ q \mid 2^{\gcd(2n, q-1)} - 1 \mid 2^6 - 1 = 63 \]
+which would require $q = 7$,
+but $2^n+1 \not\equiv 0 \pmod 7$ for any $n$, contradiction.
+\end{soln}
+
+
+\begin{problem}
+    [IMO 2000/5, 00IMO5] Does there exist a positive integer $n$ such that $n$ has exactly $2000$ distinct prime divisors and $n$ divides $2^n + 1$?
+\end{problem}
+
+\begin{soln}
+    Answer: Yes.
+
+We say that $n$ is Korean if $n \mid 2^n + 1$. First, observe that $n = 9$ is Korean. Now, the
+problem is solved upon the following claim:
+\begin{claim*}
+If $n > 3$ is Korean, there exists a prime $p$ not dividing $n$ such that $np$ is Korean too.
+\end{claim*}
+\begin{proof}
+    I claim that one can take any primitive prime divisor $p$ of $2^{2n} - 1$, which exists by
+    Zsigmondy theorem. Obviously $p \ne 2$. Then:
+    \begin{itemize}
+        \item Since $p \nmid 2^{\varphi(n)} - 1$ it follows then that $p \nmid n$.
+        \item Moreover, $p \mid 2^n + 1$ since $p\nmid 2^n - 1$.
+    \end{itemize}
+
+    Hence $np | 2^n + 1 | 2^{np} + 1$ by Chinese Theorem, since $\gcd(n, p) = 1$.
+        
+\end{proof}
+\end{soln}
+\begin{problem}[TSTST 2018/8, 18TSTST8]
+    For which positive integers $b > 2$ do there exist infinitely many positive integers $n$ such that $n^2$ divides $b^n + 1$?
+\end{problem}
+
+Hints:
+\begin{enumerate}
+    \item (Advice, $0\%$)This problem essentially doesn't have any new ideas compared to the previous two problems (IMO 1990/3 and IMO 2000/5). You should first make sure you understand the solutions to these two problems fully, and then try to repeat those arguments here.
+    \item (Answer Confirmation, $20\%$) The answer is all $b > 2$ such that $b+1$ is not a power of $2$.
+\end{enumerate}
+
+Questions:
+\begin{enumerate}
+    \item \TBD
+\end{enumerate}
+
+\begin{soln}
+    This problem is sort of the union of IMO 1990/3 and IMO 2000/5.
+
+    The answer is any $b$ such that $b+1$ is not a power of $2$.
+    In the forwards direction, we first prove more carefully the
+    following claim.
+    
+    \begin{claim*}
+        If $b+1$ is a power of $2$,
+        then the only $n$ which is valid is $n = 1$.
+    \end{claim*}
+    \begin{proof}
+        Assume $n > 1$ and let $p$ be the smallest prime dividing $n$.
+        We cannot have $p=2$, since then $4 \mid b^n+1 \equiv 2 \pmod 4$.
+        Thus, \[ b^{2n} \equiv 1 \pmod p \]
+        so the order of $b \pmod p$ divides $\gcd(2n,p-1) = 2$.
+        Hence $p \mid b^2-1 = (b-1)(b+1)$.
+    
+        But since $b+1$ was a power of $2$,
+        this forces $p \mid b-1$.
+        Then $0 \equiv b^n + 1 \equiv 2 \pmod p$, contradiction.
+    \end{proof}
+    
+    On the other hand, suppose that $b+1$ is not a power of $2$
+    (and that $b > 2$).
+    We will inductively construct an infinite sequence
+    of distinct primes $p_0$, $p_1$, \dots,
+    such that the following two properties hold for each $k \ge 0$:
+    \begin{itemize}
+        \ii $p_0^2 \dots p_{k-1}^2 p_k \mid b^{p_0 \dots p_{k-1}} + 1$,
+        \ii and hence $p_0^2 \dots p_{k-1}^2 p_k^2 \mid b^{p_0 \dots p_{k-1} p_k} + 1$
+        by exponent lifting lemma.
+    \end{itemize}
+    This will solve the problem.
+    
+    Initially, let $p_0$ be any odd prime dividing $b+1$.
+    For the inductive step, we contend there exists an
+    \emph{odd} prime $q \notin \{p_0, \dots, p_k\}$
+    such that $q \mid b^{p_0 \dots p_k} + 1$.
+    Indeed, this follows immediately by Zsigmondy theorem
+    since $p_0 \dots p_k$ divides $b^{p_0 \dots p_{k-1}} + 1$.
+    Since $(b^{p_0 \dots p_k})^q \equiv b^{p_0 \dots p_k} \pmod q$,
+    it follows we can then take $p_{k+1} = q$.
+    This finishes the induction.
+    
+    To avoid the use of Zsigmondy,
+    one can instead argue as follows:
+    let $p = p_k$ for brevity, and let $c = b^{p_0 \dots p_{k-1}}$.
+    Then $\frac{c^p+1}{c+1} = c^{p-1} - c^{p-2} + \dots + 1$
+    has GCD exactly $p$ with $c+1$.
+    Moreover, this quotient is always odd.
+    Thus as long as $c^p + 1 > p \cdot (c+1)$,
+    there will be some new prime dividing $c^p+1$ but not $c+1$.
+    This is true unless $p = 3$ and $c = 2$,
+    but we assumed $b > 2$ so this case does not appear.
+    
+    
+\end{soln}
+\begin{remark*}
+    [On new primes]
+    In going from $n^2 \mid b^{n}+1$ to $(nq)^2 \mid b^{nq} + 1$,
+    one does not necessarily need to pick a $q$ such that
+    $q \nmid n$, as long as $\nu_q(n^2) < \nu_q(b^n+1)$.
+    In other words it suffices to just
+    check that $\frac{b^n+1}{n^2}$ is not a power of $2$ in this process.
+
+    However, this calculation is a little more involved with this approach.
+    One proceeds by noting that $n$ is odd,
+    hence $\nu_2(b^n+1) = \nu_2(b+1)$,
+    and thus $\frac{b^n+1}{n^2} = 2^{\nu_2(b+1)} \le b+1$,
+    which is a little harder to bound than the analogous
+    $c^p+1 > p \cdot (c+1)$ from the previous solution.
+\end{remark*}
+
+\paragraph{Authorship comments}
+I came up with this problem by simply
+mixing together the main ideas of IMO 1990/3 and IMO 2000/5,
+late one night after a class.
+On the other hand, I do not consider it very original;
+it is an extremely ``routine'' number theory problem
+for experienced contestants, using highly standard methods.
+Thus it may not be that interesting,
+but is a good discriminator of understanding of fundamentals.
+
+IMO 1990/3 shows that if $b=2$,
+then the only $n$ which work are $n=1$ and $n=3$.
+Thus $b = 2$ is a special case
+and for this reason the problem explicitly requires $b > 2$.
+
+An alternate formulation of the problem is worth mentioning.
+Originally, the problem statement asked whether there existed
+$n$ with at least $3$ (or $2018$, etc.) prime divisors,
+thus preventing the approach in which one takes
+a prime $q$ dividing $\frac{b^n+1}{n^2}$.
+Ankan Bhattacharya suggested changing it to ``infinitely many $n$'',
+which is more natural.
+
+These formulations are actually not so different though.
+Explicitly, suppose $k^2 \mid b^{k}+1$ and $p \mid b^k+1$.
+Consider any $k \mid n$ with $n^2 \mid b^n+1$,
+and let $p$ be an odd prime dividing $b^k+1$.
+Then $2\nu_p(n) \le \nu_p(b^n+1) = \nu_p(n/k) + \nu_p(b^k+1)$
+and thus
+\[ \nu_p(n/k) \le \nu_p\left( \frac{b^k+1}{k^2} \right). \]
+Effectively, this means we can only add each prime a certain number of times.
+
+\end{document}

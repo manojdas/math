@@ -1,0 +1,394 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+\usepackage{arcs}
+\usepackage{tikz}
+\graphicspath{{./images}}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[t]%
+	{Problem \thesection.\theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Counting and Probability}
+\subtitle{Mathcounts 22 - Session 4}
+\author{Rohan D., Derrick L.}
+\institute{BISV Mathcounts Club 22}
+\date{January 3, 2023}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+\setcounter{section}{4}
+
+\section{Beginner Problems}
+% Difficulty: 1 • Answer: 2 faces
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+    Jamie rolled a standard six-sided die that has each face painted either red, green or blue. In 100 rolls, the die landed with a red face up 50 times, with a blue face up 17 times, and with a green face up 33 times. Based on this data, how many faces of the die would you expect to be green?
+	
+    \end{block}
+\end{frame}
+
+% Difficulty: 1 • Answer: 24
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+  How many three-digit numbers greater than 700 can be formed using the digits 1, 3, 4, 7 and 9, if no repetition of digits is allowed in a number?
+	
+    \end{block}
+\end{frame}
+
+% Difficulty: 2 • Answer: 44/125 
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+ A large cube is dipped into red paint and then divided into 125 smaller congruent cubes. One of the smaller cubes is then randomly selected. What is the probability that the cube selected will have at least $25\%$ of its surface area painted red? Express your answer as a common fraction.
+ 
+    \end{block}
+\end{frame}
+
+% Difficulty: 2 • Answer: 5/9 
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+    The nine regions on a spinner are numbered with positive integers 1 through 9, and the probability of the spinner landing on a given region is proportional to the label for that region. For example, since $4 \times 2 = 8$, the probability of landing on 8 is twice the probability of landing on 4. What is the probability that this spinner will land on an odd number? Express your answer as a common fraction.
+	
+    \end{block}
+\end{frame}
+
+% Difficulty: 1 • Answer: 32 paths
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+     Skipper follows a path along the grid shown, always moving either up or to the right. How many paths from $A$ to $C$ do not pass through $B$?
+     
+    \end{block}
+    \begin{center}
+        \begin{asy}
+        import cse5;
+        //import olympiad;
+        unitsize(1cm);
+           draw((0,0)--(3,0), linewidth(2));
+           draw((0,1)--(4,1), linewidth(2));
+           draw((0,2)--(4,2), linewidth(2));
+           draw((0,3)--(4,3), linewidth(2));
+           draw((1,4)--(4,4), linewidth(2));
+           draw((0,0)--(0,3), linewidth(2));
+           draw((1,0)--(1,4), linewidth(2));
+           draw((2,0)--(2,4), linewidth(2));
+           draw((3,0)--(3,4), linewidth(2));
+           draw((4,1)--(4,4), linewidth(2));
+           filldraw(Circle((0,0),0.1));
+           filldraw(Circle((2,2),0.1));
+           filldraw(Circle((4,4),0.1));
+           label("$A$", (0,0), SW);
+           label("$B$", (2,2), NE);
+           label("$C$", (4,4), NE);
+        \end{asy}
+    \end{center}
+   
+\end{frame}
+
+
+% Difficulty: 2 • Answer: $\frac{1}{5}$ 
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+     Six students (four juniors and two seniors) must be split into three pairs. If the pairs are chosen randomly, what is the probability that the two seniors form one pair? Express your answer as a common fraction.
+	
+    \end{block}
+\end{frame}
+
+% Difficulty: 4 • Answer: 50 percent
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+    Eighty percent of adults drink coffee and seventy percent drink tea. What is the smallest possible percent of adults who drink both coffee and tea?
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2018 Chapter, Sprint \#17]
+    Dak has a quarter, a dime, a nickel and a penny. How many different amounts can be obtained by using one or more of the coins in Dak’s collection?
+    
+    \end{block}
+\end{frame}
+\newpage
+\section{Intermediate Problems}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{} [MATHCOUNTS 2019 Chapter, Sprint \#24]
+    A fair tetrahedral die, whose faces are numbered 1, 2, 3 and 4 is rolled three times. What is the probability that the sum of the numbers rolled is 7? Express your answer as a common fraction.
+
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{} [MATHCOUNTS 2019 Chapter, Sprint \#26]
+    In the grid shown, how many ways are there to spell the word “QUEUE” by
+moving one square at a time either horizontally or vertically, and provided
+squares may be revisited?
+    \end{block}
+
+    \begin{center}
+        \begin{asy}
+            unitsize (1cm);
+            string[][] l = {
+                {"E", "U", "E", "U", "E"},
+                {"U", "E", "U", "E", "U"},
+                {"E", "U", "Q", "U", "E"},
+                {"U", "E", "U", "E", "U"},
+                {"E", "U", "E", "U", "E"}
+            };
+            for (int i = 0; i < 5; ++i)
+            for (int j = 0; j < 5; ++j) {
+                label(l[i][j], (i + 0.5, j + 0.5));
+            }
+            for (int i = 0; i < 6; ++i) {
+                draw ((0,i)--(5,i));
+                draw ((i,0)--(i,5));
+            }
+        \end{asy}
+    \end{center}
+    
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2018 Chapter, Sprint \#30]
+    Six standard six-sided dice are rolled, and the sum $S$ is calculated. What is the probability that $S \times (42 - S ) < 297$? Express your answer as a common fraction.
+    
+    
+    \end{block}
+\end{frame}
+
+% Difficulty: 4 • Answer: 28
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+    A number is called increasing if each of its digits is greater than the digit immediately to its left, if there is one. How many increasing numbers are there between $100$ and $200$?
+	
+    \end{block}
+\end{frame}
+
+% Difficulty: 4 • Answer: 1/4
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS]
+    Four packages are delivered to four houses, one to each house. If these packages are randomly delivered, what is the probability that exactly two of them are delivered to the correct houses? Express your answer as a common fraction.
+	
+    \end{block}
+\end{frame}
+
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS Handbook 2020-21, \#228]
+     Five fair coins are flipped. Those that land heads up are flipped again. After the second round of flips, what is the probability that all five coins are now tails up? Express your answer as a common fraction. 
+     
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS Handbook 2020-21, \#212]
+     The license plates in Eulerville are made of seven distinct characters, six of which are letters from A to Z inclusive and one of which is a digit from 0 to 9 inclusive. How many different Eulerville license plates include the word ``MATH'' with those four letters consecutive and in that order?
+     
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS Handbook 2020-21, \#236]
+     How many subsets of one or more elements of the set {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} contain the element 1 or the element 2 or both? 
+     
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2019 Chapter, Team \#7]
+Shi Yin chooses four numbers at random, without replacement, from the set of
+integers from 1 to 10, inclusive. What is the probability that the product of these
+four numbers has units digit 0? Express your answer as a common fraction.
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2018 Chapter, Team \#8]
+    In isosceles right triangle $ABC$, shown here, $AC = BC = 10$ units.
+The horizontal segments are spaced 1 unit apart, as are the vertical
+segments. Including triangle $ABC$, how many of the triangles in
+this figure are isosceles right triangles?
+    \end{block}
+
+    \begin{center}
+        \begin{asy}
+            unitsize(0.5cm);
+            for (int i = 0; i <= 10; ++i) {
+                draw ((0, i) -- (10 - i, i));
+                draw ((i, 0) -- (i, 10-i));
+                draw ((i, 0) -- (0, i));                
+            }
+            label ("$A$", (0,10), NW);
+            label ("$B$", (0,0), SW);
+            label ("$C$", (10, 0), SE);
+
+        \end{asy}
+    \end{center}
+    
+    
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2019 Chapter, Team \#9]
+Jane has six different hamsters for which she has two cages, one red
+and one blue. She wants to put three hamsters in the red cage and
+three in the blue cage, but two of the hamsters, Felix and Oscar,
+do not get along and cannot be in the same cage. In how many different
+ways can she choose which three hamsters to put in the red cage?
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[MATHCOUNTS 2018 Chapter, Team \#10]
+
+    How many five-letter permutations can be made from the letters in the word $ADDITION$?
+    
+    \end{block}
+\end{frame}
+% 
+\section{Challenge Problems}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{} [HMMT 2010 February, Combinatorics \#1]
+     Let $S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$. How many (potentially empty) subsets $T$ of $S$ are there such that, for all $x$, if $x$ is in $T$ and $2x$ is in $S$ then $2x$ is also in $T$?
+     
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}
+    A certain donut shop offers three types of donuts: glazed, chocolate, and strawberry. The shop currently has 7 glazed donuts, 4 chocolate donuts, and 5 strawberry donuts. 3 students walk into the shop and buy all the donuts. If each student receives at least one donut of each type, how many ways are there to distribute all the donuts among the three students?
+    
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[AMC 10A 2015, \#22]
+    Eight people are sitting around a circular table, each holding a fair coin. All eight people flip their coins and those who flip heads stand while those who flip tails remain seated. If the probability that no two adjacent people will stand can be expressed as $\frac{a}{b}$, where $a$ and $b$ are relatively prime, what is the value of $a+b$?
+    
+    \end{block}
+\end{frame}
+
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[AMC 10A 2005, \#22]
+    Two cubical dice each have removable numbers $1$ through $6$. The twelve numbers on the two dice are removed, put into a bag, then drawn one at a time and randomly reattached to the faces of the cubes, one number to each face. The dice are then rolled and the numbers on the two top faces are added. If the probability that the sum is $7$ can be expressed as $\frac{a}{b}$, where $a$ and $b$ are relatively prime, what is the value of $a+b$?
+    
+    \end{block}
+\end{frame}
+\refstepcounter{problem}
+\begin{frame}[t, fragile]{Problem \thesection.\theproblem}
+    \begin{block}{}[AMC 10B 2012, \#25]
+    A bug travels from A to B along the segments in the hexagonal lattice pictured below. The segments marked with an arrow can be traveled only in the direction of the arrow, and the bug never travels the same segment more than once. How many different paths are there?
+    \end{block}
+
+    \begin{center}
+\begin{asy}
+size(6cm);
+ draw((0.0,0.0)--(1.0,1.7320508075688772)--(3.0,1.7320508075688772)--(4.0,3.4641016151377544)--(6.0,3.4641016151377544)--(7.0,5.196152422706632)--(9.0,5.196152422706632)--(10.0,6.928203230275509)--(12.0,6.928203230275509));
+ draw((0.0,0.0)--(1.0,1.7320508075688772)--(3.0,1.7320508075688772)--(4.0,3.4641016151377544)--(6.0,3.4641016151377544)--(7.0,5.196152422706632)--(9.0,5.196152422706632)--(10.0,6.928203230275509)--(12.0,6.928203230275509));
+ draw((3.0,-1.7320508075688772)--(4.0,0.0)--(6.0,0.0)--(7.0,1.7320508075688772)--(9.0,1.7320508075688772)--(10.0,3.4641016151377544)--(12.0,3.464101615137755)--(13.0,5.196152422706632)--(15.0,5.196152422706632));
+ draw((6.0,-3.4641016151377544)--(7.0,-1.7320508075688772)--(9.0,-1.7320508075688772)--(10.0,0.0)--(12.0,0.0)--(13.0,1.7320508075688772)--(15.0,1.7320508075688776)--(16.0,3.464101615137755)--(18.0,3.4641016151377544));
+ draw((9.0,-5.196152422706632)--(10.0,-3.464101615137755)--(12.0,-3.464101615137755)--(13.0,-1.7320508075688776)--(15.0,-1.7320508075688776)--(16.0,0)--(18.0,0.0)--(19.0,1.7320508075688772)--(21.0,1.7320508075688767));
+ draw((12.0,-6.928203230275509)--(13.0,-5.196152422706632)--(15.0,-5.196152422706632)--(16.0,-3.464101615137755)--(18.0,-3.4641016151377544)--(19.0,-1.7320508075688772)--(21.0,-1.7320508075688767)--(22.0,0));
+ draw((0.0,-0.0)--(1.0,-1.7320508075688772)--(3.0,-1.7320508075688772)--(4.0,-3.4641016151377544)--(6.0,-3.4641016151377544)--(7.0,-5.196152422706632)--(9.0,-5.196152422706632)--(10.0,-6.928203230275509)--(12.0,-6.928203230275509));
+ draw((3.0,1.7320508075688772)--(4.0,-0.0)--(6.0,-0.0)--(7.0,-1.7320508075688772)--(9.0,-1.7320508075688772)--(10.0,-3.4641016151377544)--(12.0,-3.464101615137755)--(13.0,-5.196152422706632)--(15.0,-5.196152422706632));
+ draw((6.0,3.4641016151377544)--(7.0,1.7320508075688772)--(9.0,1.7320508075688772)--(10.0,-0.0)--(12.0,-0.0)--(13.0,-1.7320508075688772)--(15.0,-1.7320508075688776)--(16.0,-3.464101615137755)--(18.0,-3.4641016151377544));
+ draw((9.0,5.1961524)--(10.0,3.464101)--(12.0,3.46410)--(13.0,1.73205)--(15.0,1.732050)--(16.0,0)--(18.0,-0.0)--(19.0,-1.7320)--(21.0,-1.73205080));
+ draw((12.0,6.928203)--(13.0,5.1961524)--(15.0,5.1961524)--(16.0,3.464101615)--(18.0,3.4641016)--(19.0,1.7320508)--(21.0,1.732050)--(22.0,0));
+ dot((0,0));
+ dot((22,0));
+ label("$A$",(0,0),WNW);
+ label("$B$",(22,0),E);
+ filldraw((2.0,1.7320508075688772)--(1.6,1.2320508075688772)--(1.75,1.7320508075688772)--(1.6,2.232050807568877)--cycle,black);
+ filldraw((5.0,3.4641016151377544)--(4.6,2.9641016151377544)--(4.75,3.4641016151377544)--(4.6,3.9641016151377544)--cycle,black);
+ filldraw((8.0,5.196152422706632)--(7.6,4.696152422706632)--(7.75,5.196152422706632)--(7.6,5.696152422706632)--cycle,black);
+ filldraw((11.0,6.928203230275509)--(10.6,6.428203230275509)--(10.75,6.928203230275509)--(10.6,7.428203230275509)--cycle,black);
+ filldraw((4.6,0.0)--(5.0,-0.5)--(4.85,0.0)--(5.0,0.5)--cycle,white);
+ filldraw((8.0,1.732050)--(7.6,1.2320)--(7.75,1.73205)--(7.6,2.2320)--cycle,black);
+ filldraw((11.0,3.4641016)--(10.6,2.9641016)--(10.75,3.46410161)--(10.6,3.964101)--cycle,black);
+ filldraw((14.0,5.196152422706632)--(13.6,4.696152422706632)--(13.75,5.196152422706632)--(13.6,5.696152422706632)--cycle,black);
+ filldraw((8.0,-1.732050)--(7.6,-2.232050)--(7.75,-1.7320508)--(7.6,-1.2320)--cycle,black);
+ filldraw((10.6,0.0)--(11,-0.5)--(10.85,0.0)--(11,0.5)--cycle,white);
+ filldraw((14.0,1.7320508075688772)--(13.6,1.2320508075688772)--(13.75,1.7320508075688772)--(13.6,2.232050807568877)--cycle,black);
+ filldraw((17.0,3.464101615137755)--(16.6,2.964101615137755)--(16.75,3.464101615137755)--(16.6,3.964101615137755)--cycle,black);
+ filldraw((11.0,-3.464101615137755)--(10.6,-3.964101615137755)--(10.75,-3.464101615137755)--(10.6,-2.964101615137755)--cycle,black);
+ filldraw((14.0,-1.7320508075688776)--(13.6,-2.2320508075688776)--(13.75,-1.7320508075688776)--(13.6,-1.2320508075688776)--cycle,black);
+ filldraw((16.6,0)--(17,-0.5)--(16.85,0)--(17,0.5)--cycle,white);
+ filldraw((20.0,1.7320508075688772)--(19.6,1.2320508075688772)--(19.75,1.7320508075688772)--(19.6,2.232050807568877)--cycle,black);
+ filldraw((14.0,-5.196152422706632)--(13.6,-5.696152422706632)--(13.75,-5.196152422706632)--(13.6,-4.696152422706632)--cycle,black);
+ filldraw((17.0,-3.464101615137755)--(16.6,-3.964101615137755)--(16.75,-3.464101615137755)--(16.6,-2.964101615137755)--cycle,black);
+ filldraw((20.0,-1.7320508075688772)--(19.6,-2.232050807568877)--(19.75,-1.7320508075688772)--(19.6,-1.2320508075688772)--cycle,black);
+ filldraw((2.0,-1.7320508075688772)--(1.6,-1.2320508075688772)--(1.75,-1.7320508075688772)--(1.6,-2.232050807568877)--cycle,black);
+ filldraw((5.0,-3.4641016)--(4.6,-2.964101)--(4.75,-3.4641)--(4.6,-3.9641016)--cycle,black);
+ filldraw((8.0,-5.1961524)--(7.6,-4.6961524)--(7.75,-5.19615242)--(7.6,-5.696152422)--cycle,black);
+ filldraw((11.0,-6.9282032)--(10.6,-6.4282032)--(10.75,-6.928203)--(10.6,-7.428203)--cycle,black);
+ \end{asy}
+ \end{center}
+
+
+    % \begin{center}
+    %   \includegraphics[scale=0.5]{hexagon1.png} 
+    % \end{center}
+    
+
+
+\end{frame}
+
+\end{document}

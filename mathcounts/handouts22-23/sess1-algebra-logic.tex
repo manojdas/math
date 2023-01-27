@@ -1,0 +1,259 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[9pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsthm,asymptote,graphicx}
+\usepackage{graphics}
+% \usepackage{bisvslides}
+\usepackage{arcs}
+\graphicspath{{./images}}
+
+\newcounter{problem}[section]
+
+\newenvironment{probslide}[3][]{%
+    \refstepcounter{problem}\begin{frame}[t]%
+	{Problem \thesection.\theproblem 
+        \def\temp{#2}\ifx\temp\empty
+            %
+        \else
+            \ - \temp%
+        \fi}
+    {#3}}%
+	{\end{frame}}
+
+% \newenvironment{Example}[2][Example]
+%     {This is an #1. You gave #2 as an argument. The rest will be bold: \bfseries}
+%     {}
+% \textbf{Problem~\theproblem. #1
+% \newenvironment{bsmi}{\begin{CJK}{UTF8}{bsmi}}{\end{CJK}}
+
+\title{Algebra and Logic}
+\subtitle{Mathcounts 22 - Session 1}
+\author{Irene W., Krishnaveni P.}
+\institute{BISV Mathcounts Club 22-23}
+\date{November 29, 2022}
+
+%\maketitle
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+%\title{TEMPLATE}
+
+%\titlegraphic{assets/gkg.png} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\begin{frame}
+    \titlepage        
+\end{frame}
+% \setbeamertemplate{footline}[miniframes Madrid]
+
+\setcounter{section}{3}
+
+\section{Beginner Practice Problems}
+\begin{probslide}[t]{}{}
+    \begin{block}{} [Mathcounts Handbook 2018]
+      Ten friends went to a restaurant and agreed to share the bill equally. However, one person forgot his wallet, so the other four friends’ portions of the bill went up by \$9 each. How many dollars was the total bill?
+	    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2018]
+    A rectangle has area 108 square inches and perimeter 42 inches. If the length and the width are both increased by 1 inch, then what is the area of the resulting rectangle?
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts States Sprint, 2018]
+    Alexandra plays poker with nine friends. Each of the ten players starts with 20 chips, but players take chips from one another as play progresses. The goal of the game is to win all of the chips. A player drops out of the game if she loses all her chips to other players in the game. After five players have dropped out of the game, what is the average number of chips each of the remaining players has?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts States Sprint, 2018]
+    Four consecutive odd integers sum to 256. What is the least of the four integers?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook ]
+    If Tom travels 135 miles in 1 hour 30 minutes, what is his speed in feet per second, given 1 mile = 5,280 feet?
+	
+    \end{block}
+\end{probslide}
+
+
+\section{Intermediate Practice Problems}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[The National Mathclub Piggy Bank Day]
+        Anjali has 230 quarters, 300 dimes and 165 nickels. Niki has 210 quarters, 316 dimes and 173 nickes. How many more cents than Niki does Anjali have?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Chapter 2021 Sprint]
+    If a runner who runs at a constant speed of $p$ miles per hour runs a mile in exactly $p$ minutes, what is the integer closest to the value of $p$?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook]
+    Jack and Jill travel up a hill at a speed of 2 mi/h. They travel back down the hill at a speed of 4 mi/h. What is their average speed for the entire trip? Express your answer as a mixed number
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{} [Mathcounts Handbook 2019]
+    If $x$, $y$ and $z$ are positive odd integers, what is the remainder when $x^2+y^2+z^2$ is divided by 4?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{} [Mathcounts 2018 State Sprint Round]
+    Steph is playing basketball with his brother. He scores 29 points on 12 successful baskets. Each basket was worth either 2 or 3 points. How many baskets worth 3 points did Steph make?
+ 	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2015 State Sprint Round]
+    If $x + \frac{1}{x} = 3$, what is the value of $x^4 + \frac{1}{x^4}$?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts State Sprint Round, 2015]
+    A streaming video service offers its customers two plans. The first plan has a \$24 registration fee, a fixed monthly rate of \$5 and a charge of \$0.75 for each video download. The second plan has a \$15 registration fee, a fixed monthly rate of \$3 and a charge of \$1.50 for each video download. For how many download would the two plans cost the same for a year of service?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts Handbook 2018]
+        Harry writes down three two-digit numbers, each with units digit 7. The tens digit of the product of these three numbers is 5. What is the tens digit of the sum of the three numbers?
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[The National Mathclub Piggy Bank Day]
+    Jennifer, Mike and Carol each have a bunch of quarters. Jennifer and Mike have 26 quarters together. Jennifer and Carol have 20 quarters together. Mike and Carol have 22 quarters together. How many cents does Mike have?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts]
+    Daniel began painting a room at 9:00 a.m. Yeong, who can paint twice as fast as Daniel, started helping Daniel at 9:20 a.m., and they worked together until the room was fully painted at 10:00 a.m. What fraction of the room had been painted by 9:30 a.m.? Express your answer as a common fraction.
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts]
+    A firefighter uses the formula $S = 0.5 N + 26$ to determine the maximum number of feet of horizontal distance ($S$) water will travel leaving a hose with a $\frac{3}{4}$-inch nozzle diameter. $N$ is the nozzle pressure in pounds. If the hose has a nozzle diameter greater than $\frac{3}{4}$-inch, 5 feet is added to the distance for every $\frac{1}{8}$-inch increase in nozzle diameter. For a $1\frac{1}{8}$-inch diameter nozzle with a nozzle pressure of 80 pounds, what is the maximum horizontal distance in feet that the water will travel?
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2015 State Sprint Round]
+    Iniki has large, medium and small metal bars. The large bars each weigh 8 kg.
+    The medium bars each weigh 6 kg. The small bars each weigh 3 kg. Iron, nickel
+    and lead are present in the ratio $4:1:3$ in each large bar, $2:1:3$ in each medium
+    bar and $1:1:1$ in each small bar. If Iniki wants to melt together a combination of bars to make an alloy that contains 40 kg of iron, 20 kg of nickel
+    and 40 kg of lead, how many small bars will she have to use?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10A, 2005]
+    While eating out, Mike and Joe each tipped their server $2$ dollars. Mike tipped $10\%$ of his bill and Joe tipped $20\%$ of his bill. What was the difference, in dollars between their bills?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10B, 2006]
+    A football game was played between two teams, the Cougars and the Panthers. The two teams scored a total of $34$ points, and the Cougars won by a margin of $14$ points. How many points did the Panthers score?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10A, 2012]
+    Cagney can frost a cupcake every 20 seconds and Lacey can frost a cupcake every 30 seconds. Working together, how many cupcakes can they frost in 5 minutes?
+	
+    \end{block}
+\end{probslide}
+
+
+
+\section{Challenge Practice Problems}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10B, 2019]
+    Two jars each contain the same number of marbles, and every marble is either blue or green. In Jar $1$ the ratio of blue to green marbles is $9:1$, and the ratio of blue to green marbles in Jar $2$ is $8:1$. There are $95$ green marbles in all. How many more blue marbles are in Jar $1$ than in Jar $2$?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 10A, 2007]
+    The Dunbar family consists of a mother, a father, and some children. The average age of the members of the family is $20$, the father is $48$ years old, and the average age of the mother and children is $16$. How many children are in the family?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2015 State Sprint Round]
+    A restaurant sells three sizes of drinks: small for \$1.20, medium for \$1.30 and large for \$1.80. Each person at a table of ten ordered one drink, for a total cost of \$14.90, before sales tax. How many people ordered a large drink?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[AMC 12A, 2004]
+    Brenda and Sally run in opposite directions on a circular track, starting at diametrically opposite points. They first meet after Brenda has run 100 meters. They next meet after Sally has run 150 meters past their first meeting point. Each girl runs at a constant speed. What is the length of the track in meters?
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}
+    In Ms. Pham's third grade class, an election with two candidates was held in which the losing candidate received $31\%$ of the vote, expressed to the nearest whole percent. (If the percent is half-way between two integers, it is rounded up. For example, $47.5\%$ is rounded up to $48\%.$) Knowing that each student cast a vote for one or the other candidate, what is the minimum number of votes that could have been cast in the election?
+    
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[1991 Mathcounts National]
+    A man is running through a train tunnel. When he is $\frac{2}{5}$ of the way through, he nears a train that is approaching the tunnel from behind him at a speed of 60 mph. Whether he runs ahead or runs back, he will reach an end of the tunnel at the same time the train reaches that end. At what rate, in miles per hour, is he running? (Assume he runs at a constant rate.)
+	
+    \end{block}
+\end{probslide}
+
+\begin{probslide}[t]{}{}
+    \begin{block}{}[Mathcounts 2017 State, Team Round]
+    Eddie and Missy are swimming laps in parallel lanes of a swimming pool at different constant speeds. They start simultaneously at opposite ends of the pool. They first pass each other when Eddie has swum 72 feet. Both turn back when they reach the opposite ends, and they next pass each other when Eddie is 40 feet from Missy’s starting point. What is the length of a lap?
+    
+	
+    \end{block}
+\end{probslide}
+
+
+
+\end{document}

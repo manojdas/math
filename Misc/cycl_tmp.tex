@@ -1,0 +1,177 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Cyclotomic}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\date{\today}
+\section{1}
+\begin{center}
+\begin{tabular}{c|*{11}c}
+     & $2^0$ & $2^1$ & $2^2$ & $2^3$ & $2^4$ & $2^5$ & $2^6$ & $2^7$ & $2^8$ & $2^9$ & $2^{10}$ \\ \hline
+     1  & \textbf{1} & 2 & 4 & 8 & 16 & 32 & 64 & 39 & \textbf{78} & 67 & 45 \\
+     3  & \textbf{3} & 6 & 12 & 24 & 48 & \textbf{7} & 14 & 28 & 56 & 23 & 46 \\
+     5  & \textbf{5} & 10 & 20 & 40 & \textbf{80} & 71 & 53 & 17 & 34 & 68 & 47 \\
+     9  & \textbf{9} & 18 & 36 & 72 & 55 & 21 & 42 & \textbf{84} & 79 & 69 & 49 \\
+     11 & \textbf{11} & 22 & 44 & \textbf{88} & 87 & 85 & 81 & 73 & 57 & 25 & 50 \\
+     13 & \textbf{13} & 26 & 52 & \textbf{15} & 30 & 60 & 31 & 62 & 35 & 70 & 51 \\
+     19 & 19 & 38 & \textbf{76} & 63 & 37 & \textbf{74} & 59 & 29 & 58 & 27 & 54 \\
+     33 & 33 & 66 & 43 & \textbf{86} & 83 & 77 & 65 & 41 & \textbf{82} & 75 & 61
+\end{tabular}
+    
+\end{center}
+
+\begin{center}
+\begin{tabular}{c|c|c}
+    $i$ & $i \mod{89}$ & coset($i$) \\ \hline
+    -15 & 74 & 19 \\
+    -13 & 76 & 19 \\
+    -11 & 78 & 1 \\
+    -9 & 80 & 5 \\
+    -7 & 82 & 33 \\
+    -5 & 84 & 9 \\
+    -3 & 86 & 33 \\
+    -1 & 88 & 11 \\
+    1 & 1 & 1 \\
+    3 & 3 & 3 \\
+    5 & 5 & 5 \\
+    7 & 7 & 3 \\
+    9 & 9 & 9 \\
+    11 & 11 & 11 \\
+    13 & 13 & 13 \\
+    15 & 15 & 13
+\end{tabular}
+    
+\end{center}
+
+\section*{Euclid 21}
+
+The condition is equivalent to $a^n+a^2-1$
+dividing $a^m+a-1$ as polynomials.
+The big step is the following analytic one.
+
+\begin{claim*}
+	We must have $m \le 2n$.
+\end{claim*}
+\begin{proof}
+	Assume on contrary $m > 2n$
+	and let $0 < r < 1$ be the unique real number
+	with $r^n+r^2 = 1$, hence $r^m+r = 1$.
+	But now
+	\begin{align*}
+		0 &= r^m + r - 1 < r(r^n)^2 + r - 1 = r\left( (1-r^2)^2+1 \right) - 1 \\
+		&= -(1-r)\left( r^4+r^3-r^2-r+1 \right).
+	\end{align*}
+	As $1-r > 0$ and $r^4+r^3-r^2-r+1 > 0$, this is a contradiction
+\end{proof}
+
+Now for the algebraic part.
+Obviously $m > n$.
+\begin{align*}
+	a^n+a^2-1 &\mid a^m+a-1 \\
+	\iff a^n+a^2-1 &\mid (a^m+a-1)(a+1) = a^m(a+1) + (a^2-1)  \\
+	\iff a^n+a^2-1 &\mid a^m(a+1) - a^n \\
+	\iff a^n+a^2-1 &\mid a^{m-n}(a+1) - 1.
+\end{align*}
+The right-hand side has degree $m-n+1 \le n+1$,
+and the leading coefficients are both $+1$.
+So the only possible situations are
+\begin{align*}
+	a^{m-n}(a+1) - 1 &= (a+1)\left( a^n+a^2-1 \right) \\
+	a^{m-n}(a+1) + 1 &=  a^n+a^2-1.
+\end{align*}
+The former fails by just taking $a=-1$;
+the latter implies $(m,n) = (5,3)$.
+As our work was reversible, this also implies $(m,n) = (5,3)$ works, done.
+
+\section*{Entry Combo}
+\subsection{n-gon}
+\begin{center}
+    \begin{asy}
+        unitsize (5cm);
+
+        pair[] P;
+
+        for (int i = 0; i < 11; ++i) {
+            P[i] = dir(i*360/11);
+
+            dot ("$P_{" + (string)i + "}$", P[i], dir(P[i]));
+            if (i > 0) draw(P[i-1]--P[i]);
+        }
+        draw (P[0]--P[10]);
+        draw (P[0]--P[6]);
+    \end{asy}
+\end{center}
+
+\subsection{grid}
+\begin{center}
+    \begin{asy}
+        unitsize (1cm);
+
+        for (int x = 0; x < 8; ++x) 
+        for (int y = 0; y < 4; ++y) {
+            if ((x % 2) == (y % 2)) {
+                fill ((x,y)--(x,y+1)--(x+1,y+1)--(x+1,y)--cycle, gray(0.75));
+            } else {
+                string s = (x % 2 == 0) ? "A" : "B";
+                label (s, (x+0.5, y+0.5));
+            }
+        }
+        for (int x = 0; x < 9; ++x) {
+            draw ((x, 0) -- (x, 4), (x % 2 == 0) ? black+2 : black);
+        }
+        for (int y = 0; y < 5; ++y) {
+            draw ((0, y) -- (8, y), (y % 2 == 0) ? black+2 : black);
+        }
+    \end{asy}
+\end{center}
+
+\section*{Fn Eqn}
+\subsection{3}
+The answers are $f(x) \equiv x$ and $f(x) \equiv 1/x$.
+These work, so we show they are the only ones.
+
+First, setting $(t,t,t,t)$ gives $f(t^2) = f(t)^2$.
+In particular, $f(1) = 1$.
+Next, setting $(t, 1, \sqrt t, \sqrt t)$ gives
+\[ \frac{f(t)^2 + 1}{2f(t)} = \frac{t^2 + 1}{2t} \]
+which as a quadratic implies $f(t) \in \{t, 1/t\}$.
+
+Now assume $f(a) = a$ and $f(b) = 1/b$.
+Setting $(\sqrt a, \sqrt b, 1, \sqrt{ab})$ gives
+\[ \frac{a + 1/b}{f(ab) + 1} = \frac{a+b}{ab+1}. \]
+One can check the two cases on $f(ab)$ each imply
+$a=1$ and $b=1$ respectively.
+Hence the only answers are those claimed.
+
+\subsection{4}
+The function  $f \colon {\mathbb Z}_{>0} \to {\mathbb Z}_{>0}$ satisfies
+\[f(n+1) > f(f(n))\]
+for every positive integer $n$. Show that $f$ is the identity.
+
+Hint 1: Prove that $f(n)$ is the nth smallest output of $f$.
+
+Hint 2: Focus on first proving $f(1)$ is the smallest output of $f$. From there, it is easy to generalize to all  using induction.
+
+
+Consider the sentence
+\[ P(n,k) : f(n) \ge k \quad \text{for all } n \ge k. \]
+Note that $P(n,k)$ is true by induction on $k$.
+Indeed, for $k = 1$ this is obvious.
+For $k \ge 2$, note that if $n \ge k+1$ then $n-1 \ge k$, so
+\[ f(n) > f(f(n-1)) = f(\text{something at least $k$}) \ge k
+	\implies f(n) \ge k \]
+by applying the inductive hypothesis twice.
+
+In particular, $P(n,n)$ gives $f(n) \ge n$ for every $n$.
+Thus $f(n+1) > f(n)$.
+Consequently, $f$ is increasing,
+and then it follows that $f$ is the identity.
+\begin{remark*}
+This is a special case of the key lemma in Shortlist 2011 A4.
+\end{remark*}
+\end{document}

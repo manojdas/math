@@ -1,0 +1,953 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{Scratch Work - Figures for Harmonic}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{Fall, 2021}
+\paragraph{Problem 2}
+\begin{center}
+    \begin{asy}
+        import cse5;
+
+        unitsize (2cm);
+        pair O, O1, P, P1, Q;
+        pair[] X;
+        real r = 2, r1;
+        path w, w1;
+
+        O = (0, 0);
+        P = (0, -r*r);
+        P1 = (0, -1);
+        Q = (-1, -1);
+
+        O1 = (P + Q)/2;
+        r1 = distance(P, Q)/2;
+
+        w = circle (O, r);
+        w1 = circle (O1, r1);
+
+        X = intersectionpoints(w, w1);
+        draw (w);
+        draw (w1);
+        draw (O--P);
+        draw(rotate(180, Q)*P1--rotate(180, P1)*Q);
+
+        draw (O--X[0]--O1--O, blue);
+
+        dot ("$P$", P, SE);
+        dot ("$Q$", Q, NE);
+        dot ("$O$", O, NE);
+        dot ("$P'$", P1, NE);
+        dot ("$O_\gamma$", O1, NE);
+
+        dot ("$X$", X[0], W);
+        dot ("$Y$", X[1], E);
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 2}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (2cm);
+        pair O, A, B, C, D, E, P, X, C1, E1, P1;
+        real r = 1;
+
+        path w, w1;
+
+        O = (0, 0);
+        w = circle (O, r);
+        P = dir (255)*2;
+
+        A = dir (235);
+
+        C = A + (A-P)*3;
+        C = intersectionpoints(C--A, w)[0];
+
+
+        B = tangent (P, O, r, 2);
+        D = tangent (P, O, r, 1);
+
+        // E = rotate ((angle(D-A)-angle(C-A))*180/pi, D)*A;
+        E = rotate (degrees(D-A)-degrees(C-A), D)*A;
+        E = E + (E-D);
+        E = intersectionpoints(E--D, w)[0];
+
+        X = intersectionpoint (B--E, A--C);
+
+        C1 = C + 0.50*(C-A);
+        E1 = E + 0.50*(E-D);
+
+        w1 = Arc ((C1 + E1)/2, distance(C1, E1)/2, degrees(E1-(C1+E1)/2), degrees(C1-(C1+E1)/2));
+        P1 = rotate(90, (C1+E1)/2)*E1;
+
+        draw (w);
+        draw (P--B^^P--D);
+        draw (P--C);
+        draw (B--E--D);
+
+        draw(C--C1^^E--E1^^w1, blue+dashed);
+        
+        dot ("$P$", P, S);
+        dot ("$A$", A, NE);
+        dot ("$B$", B, NW);
+        dot ("$D$", D, dir(D));
+        dot ("$C$", C, NW);
+        dot ("$E$", E, dir(E));
+        dot ("$X$", X, dir(X));
+
+        label ("$P_\infty$", P1, N);
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 3}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (4cm);
+        pair A, B, C, D, E, F, H, K, X;
+        real h = 0.75;
+
+        A = dir (110);
+        B = dir (210);
+        C = dir (330);
+
+        D = foot (A, B, C);
+
+        H = h * D + (1 - h) * A;
+
+        E = extension (B, H, A, C);
+        F = extension (C, H, A, B);
+        X = extension (E, F, B, C);
+        K = extension (E, F, A, D);
+
+        draw(A--B--C--A--D);
+        draw (B--E^^C--F);
+        draw (E--X--B);
+
+        dot ("$H$", H, SE);
+        dot ("$E$", E, NE);
+        dot ("$F$", F, NW);
+        dot ("$K$", K, NE);
+        dot ("$X$", X, S);
+
+        label ("$A$", A, dir (A));
+        label ("$B$", B, S);
+        label ("$C$", C, S);
+        label ("$D$", D, S);
+
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 18}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (4cm);
+        pair A, B, C, D, E, F, M, T, K, G, P, P1, C1, E1;
+        path w, w1, w2;
+
+        A = dir (90);
+        B = dir (210);
+        C = dir (330);
+
+        M = (B + C) / 2;
+
+        E = foot (M, A, C);
+        F = foot (M, A, B);
+
+        w = circle (M, distance (E, M));
+
+        w1 = Arc ((A+E)/2, distance (A,E)/2, degrees (A-(A+E)/2), degrees (C-(A+E)/2));
+        G = intersectionpoint (w, w1);
+        K = rotate (-90, G) * M;
+        K = extension (G, K, A, B);
+
+        T = G + (G-A)*2;
+        T = intersectionpoints (w, T--G)[1];
+
+        P = extension (C, K, E, F);
+
+        E1 = E + dir (E - F) * 0.50;
+        C1 = C + dir (C - B) * 0.50;
+        C1 = extension (C, C1, E1, rotate (90, E1)*E);
+
+        w2 = Arc ((C1 + E1)/2, distance(C1, E1)/2, degrees(C1-(C1+E1)/2)+180, degrees(E1-(C1+E1)/2)+180);
+        P1 = rotate(-90, (C1+E1)/2)*E1;
+
+        draw (A--B--C--A);
+        draw (w);
+        // draw (w1, blue);
+
+        draw (E--F);
+        draw (G--K);
+        draw (A--T);
+        draw (C--K);
+
+        draw(E--E1^^C--C1^^w2, blue + dashed);
+
+        dot ("$M$", M, S);
+        dot ("$E$", E, dir (E-M));
+        dot ("$F$", F, dir (F-M));
+        dot ("$K$", K, NW);
+        dot ("$G$", G, NE);
+        dot ("$P$", P, NE);
+
+        dot ("$T$", T, dir(T-A));
+
+        label ("$A$", A, dir (A));
+        label ("$B$", B, S);
+        label ("$C$", C, S);
+        label ("$P_\infty$", P1, NE);
+
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 10}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (4cm);
+        pair A, B, C, I, A1, B1, C1, P, M, N, P1;
+        path w;
+
+        A = dir (140);
+        B = dir (210);
+        C = dir (330);
+
+        w = incircle (A, B, C);
+        I = incenter (A, B, C);
+
+        A1 = foot (I, B, C);
+        B1 = foot (I, A, C);
+        C1 = foot (I, A, B);
+
+        P = intersectionpoint (A--A1, w);
+        M = intersectionpoints (P--B, w)[1];
+        N = intersectionpoints (P--C, w)[1];
+
+        P1 = rotate (90, P)*I;
+        P1 = extension (P, P1, B, C);
+
+        draw (A--B--C--A--A1);
+        draw (w);
+        draw (P--B^^P--C, gray(0.75));
+        draw (P1--B1);
+        draw (P--P1--B);
+
+        dot ("$P$", P, dir(P));
+        dot ("$M$", M, dir(M-I));
+        dot ("$N$", N, dir(N-I));
+
+        dot ("$A'$", A1, S);
+        dot ("$B'$", B1, dir(B1-I));
+        dot ("$C'$", C1, dir(C1-I));
+
+        label ("$A$", A, dir(A));
+        label ("$B$", B, S);
+        label ("$C$", C, S);
+        label ("$P'$", P1, S);
+
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 7}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (4cm);
+
+        pair A, B, C, O, D, E, F, H, P;
+        path w;
+
+        A = dir (70);
+        B = dir (210);
+        C = dir (330);
+
+        D = foot (A, B, C);
+        F = foot (C, A, B);
+        E = foot (B, A, C);
+
+        H = extension (A, D, B, E);
+        P = extension (F, E, B, C);
+
+        w = circumcircle (B, C, E);
+        O = (B + C)/2;
+
+        draw (A--B--C--A);
+        draw (A--D^^B--E^^C--F);
+        draw (F--P--C);
+        draw (w);
+
+        draw (rightanglemark (C, D, A, 2));
+
+        dot ("$O$", O, dir (270));
+        dot ("$D$", D, dir (270));
+        dot ("$F$", F, dir (F-C));
+        dot ("$E$", E, dir (E-B));
+        dot ("$H$", H, dir ((D+C)/2 - H));
+        dot ("$P$", P, dir (270));
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (B-E));
+        label ("$C$", C, dir (C-F));
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (4cm);
+
+        pair A, B, C, E, F;
+
+        A = dir (90);
+        B = dir (210);
+        C = dir (330);
+        
+        F = foot (C, A, B);
+        E = foot (B, A, C);
+        
+        draw (A--B--C--A);
+        draw (F--E);
+
+        draw (circumcircle (B, C, E));
+
+        arrow((B+C)/2, dir(B-C), length=10, arrow = Arrow(HookHead), black);
+        arrow((F+E)/2, dir(F-E), length=10, arrow = Arrow(HookHead), black);
+
+        dot ("$F$", F, dir (F-C));
+        dot ("$E$", E, dir (E-B));
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (B-E));
+        label ("$C$", C, dir (C-F));
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 8}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (6cm);
+
+        pair A, B, C, D, D1, E, F, G, H, I, M, P, Q, Q1, X;
+        path w;
+
+        A = dir (65);
+        B = dir (210);
+        C = dir (330);
+
+        w = incircle (A, B, C);
+        I = incenter (A, B, C);
+
+        D = foot (I, B, C);
+        E = foot (I, A, C);
+        F = foot (I, A, B);
+
+        G = rotate (180, I) * E;
+        H = rotate (180, I) * F;
+
+        Q = extension (G, H, B, C);
+        M = rotate (90, I) * Q;
+        M = extension (I, M, B, C);
+        
+        Q1 = rotate (180, I) * Q;
+        D1 = rotate (180, I) * D;
+
+        X = tangent (Q1, I, inradius (A, B, C), 1);
+        P = intersectionpoint (A--X, E--F);
+
+        draw (A--B--C--A);
+        draw (w);
+
+        draw (A--X^^Q1--D1^^Q1--X^^Q1--E);
+        draw (Q--Q1^^I--M);
+        draw (C--Q);
+        draw (rightanglemark (M, I, Q, 2));
+
+        draw (F--H^^E--G^^G--Q, green);
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (270));
+        label ("$C$", C, dir (270));
+
+        dot ("$I$", I, dir (22.5));
+        dot ("$M$", M, dir (270));
+        dot ("$D$", D, dir (270));
+        dot ("$Q$", Q, dir (270));
+        dot ("$G$", G, dir (G - I));
+        dot ("$H$", H, dir (H - I));
+        dot ("$E$", E, dir (E - I));
+        dot ("$F$", F, dir (F - I));
+        dot ("$X$", X, dir (I - X));
+        dot ("$D'$", D1, dir (I - D1));
+        dot ("$Q'$", Q1, dir (Q1 - I));
+        dot ("$P$", P, dir (I - P));
+
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+
+        unitsize (6cm);
+
+        pair A, B, C, D, D1, E, I, I1, M, B1, C1;
+        path w;
+
+        A = dir (110);
+        B = dir (210);
+        C = dir (330);
+
+        M = (B + C) / 2;
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        D1 = rotate (180, I) * D;
+
+
+        I1 = excenter (B, C, A);
+        E = foot (I1, B, C);
+
+        B1 = rotate (-180 + degrees (A-B) - degrees (C-B), B) * C;
+        C1 = rotate (-180 + degrees (A-C) - degrees (B-C), C) * B;
+
+        draw (A--B--C--A);
+        draw (B--B1^^C--C1);
+        draw (I--M^^A--E);
+
+        draw (incircle (A, B, C));
+        // draw (excircle (B, C, A));
+        draw (arc (I1, exradius (B, C, A), -10, 190));
+
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (215));
+        label ("$C$", C, dir (-15));
+
+        dot ("$I$", I, dir (90));
+        dot ("$I_A$", I1, dir (270));
+        dot ("$D$", D, dir (270));
+        dot ("$D'$", D1, dir (D1 - B));
+        dot ("$E$", E, dir (90));
+        dot ("$M$", M, dir (270));
+
+    \end{asy}
+\end{center}
+
+\paragraph{Problem 9}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import olympiad;
+
+        unitsize (1cm);
+
+        pair A, B, C, D, A1, X, X1, P, E, E1, F, F1;
+
+        B = (0,0);
+        C = (-2,0);
+        A = (4, 0);
+        A1 = (1, 0);
+
+         
+        P = dir (75) * 5;
+        X = 0.35 * B + (1 - 0.35) * P;
+        X1 = 0.65 * B + (1 - 0.65) * P;
+        
+        E = extension (A, X, P, C);
+        E1 = extension (A, X1, P, C);
+        F = extension (C, X, P, A);
+        F1 = extension (C, X1, P, A);
+
+        D = extension (F, E, F1, E1);
+
+        draw (C--P--A--C);
+        draw (P--B);
+        draw (A--E^^A--E1^^C--F^^C--F1);
+        draw (F--D--F1^^D--C);
+
+        dot ("$A$", A, dir (270));
+        dot ("$A'$", A1, dir (270));
+        dot ("$B$", B, dir (270));
+        dot ("$C$", C, dir (270));
+        dot ("$D$", D, dir (270));
+
+        dot ("$X$", X, dir (45));
+        dot ("$X'$", X1, dir (45));
+
+        dot ("$P$", P, dir (P - B));
+        dot ("$E$", E, dir (E - A));
+        dot ("$E'$", E1, dir (E1 - A));
+        dot ("$F$", F, dir (F - C));
+        dot ("$F'$", F1, dir (F1 - C));
+
+
+
+    \end{asy}
+\end{center}
+
+
+% A'B < BC, BC < AB
+% also label the point at the top as P, and label the intersections of the lines with PC and PA as E, F, E', and F'
+% and the intersections of three lines inside the triangle as X and X'
+
+\newpage
+\paragraph{Problem 19}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+
+        import olympiad;
+
+        unitsize (3cm);
+
+        pair A, B, C, I, Ia, D, E, F, G, H, L, T, Y, V, Z, N;
+        pair [] tmp;
+        path w, w1, w2;
+
+        A = dir (110);
+        B = dir (210);
+        C = dir (330);
+
+        E = foot (A, B, C);
+
+        w = circumcircle (A, B, C);
+        I = incenter (A, B, C);
+
+        Ia = excenter (B, C, A);
+        w1 = arc (Ia, exradius (B, C, A), -25, 205);
+        D = foot (Ia, B, C);
+
+        w2 = circle ((I + Ia)/2, distance (I, Ia)/2);
+
+        tmp = intersectionpoints (w, w1);
+        F = tmp[0];
+        G = tmp[1];
+
+        tmp = intersectionpoints (w1, w2);
+        Y = tmp[0];
+        Z = tmp[1];
+
+        H = extension (F, G, Z, Y);
+        T = tangent (H, Ia, exradius (B, C, A), 2);
+        L = extension (T, I, A, E);
+
+        V = rotate (90, L) * A;
+        V = extension (L, V, D, G);
+        N = extension (L, V, D, F);
+
+        draw (A--B--C--A--E);
+        draw (w);
+        draw (w1);
+        draw (w2);
+
+        draw (F--H^^Z--H^^C--H^^H--T--L, gray(0.75));
+        draw (G--V^^F--N);
+        draw (V--N);
+
+        dot ("$A$", A, dir (A-I));
+        dot ("$B$", B, dir (B-I));
+        dot ("$C$", C, dir (C-I));
+        dot ("$E$", E, dir (180+35));
+        dot ("$D$", D, dir (45));
+
+        dot ("$I$", I, NE);
+        dot ("$I_A$", Ia, dir (Ia-I));
+
+        dot ("$F$", F, dir (270));
+        dot ("$G$", G, dir (270));
+        dot ("$Z$", Z, dir (270));
+        dot ("$Y$", Y, dir (270));
+
+        dot ("$H$", H, dir (45));
+        dot ("$V$", V, dir (45));
+        dot ("$N$", N, dir (45));
+        dot ("$L$", L, dir (45));
+        dot ("$T$", T, dir (T-Ia));
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        import geometry;
+        import olympiad;
+
+        unitsize (3cm);
+
+        pair A, B, C, D, D1, E, F, I, I1, M, B1, C1, G;
+        path w;
+
+        A = dir (110);
+        B = dir (210);
+        C = dir (330);
+
+        M = (B + C) / 2;
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        D1 = rotate (180, I) * D;
+
+
+        I1 = excenter (B, C, A);
+        F = foot (I1, B, C);
+        E = foot (A, B, C);
+
+        G = extension (F, I, A, E);
+
+        B1 = rotate (-180 + degrees (A-B) - degrees (C-B), B) * C;
+        C1 = rotate (-180 + degrees (A-C) - degrees (B-C), C) * B;
+
+        draw (A--B--C--A);
+        draw (B--B1^^C--C1);
+        draw (E--A--F--G);
+
+        draw (incircle (A, B, C));
+        // draw (excircle (B, C, A));
+        draw (arc (I1, exradius (B, C, A), -10, 190));
+
+
+        label ("$A$", A, dir (90));
+        label ("$B$", B, dir (215));
+        label ("$C$", C, dir (-15));
+
+        dot ("$I$", I, dir (90));
+        // dot ("$I_A$", I1, dir (270));
+        dot ("$D$", D, dir (270));
+        dot ("$D'$", D1, dir (D1 - B));
+        dot ("$F$", F, dir (45));
+        dot ("$E$", E, dir (180+35));
+        dot ("$G$", G, dir (G-I));
+
+    \end{asy}
+\end{center}
+
+
+\paragraph{Problem 20}
+\begin{center}
+    \begin{asy}
+        import cse5;
+        // import geometry;
+
+        import olympiad;
+
+        pair A, B, C, D, E, M, F, L, M, I, O1, Oc, P, S, T, X, Y, Z;
+
+        unitsize (1.5cm);
+
+        A = (0, 4);
+        B = (-1, 0);
+        C = (6, 0);
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        E = foot (I, A, C);
+        F = foot (I, A, B);
+
+        O1 = circumcenter (A, E, F);
+
+        M = (B + C) / 2;
+
+        P = extension (A, D, B, E);
+        S = extension (E, rotate(90, E)*O1, F, rotate(90, F)*O1);
+        T = extension (E, F, B, C);
+
+        X = foot (B, I, C);
+        Y = foot (C, I, B);
+        Z = extension (A, M, E, F);
+
+        L = extension (Z, S, B, C);
+        Oc = circumcenter (X, Y, M);
+
+        draw (A--B--C--A);
+
+        draw (incircle(A, B, C), gray (0.65));
+        draw (circumcircle(A, E, F), gray (0.65));
+        draw (circumcircle(X, Y, M), gray (0.65));
+
+        draw (A--D^^C--F^^B--E, gray(0.65));
+        draw (E--S--F, gray(0.35));
+        draw (Z--S--A, gray(0.35));
+
+        draw (Y--T--B, black);
+
+        dot ("$A$", A, dir (90));
+        dot ("$B$", B, dir (270));
+        dot ("$C$", C, dir (270));
+
+        dot ("$D$", D, dir (270));
+        dot ("$E$", E, dir (E - B));
+        dot ("$F$", F, dir (F - C));
+
+        dot ("$I$", I, dir (45));
+        dot ("$O_1$", O1, dir (45));
+        dot ("$O_C$", Oc, dir (45));
+
+        dot ("$M$", M, dir (270));
+        dot ("$L$", L, dir (270));
+        dot ("$P$", P, dir (45));
+        dot ("$S$", S, dir (270));
+        dot ("$T$", T, dir (270));
+
+        dot ("$X$", X, dir (45));
+        dot ("$Y$", Y, dir (Y - I));
+        dot ("$Z$", Z, dir (Z - I));
+
+    \end{asy}
+\end{center}
+
+X and Y are the projections or feet of altitudes or whatever those are called for B to IC and C to IB
+Alternatively, they are the intersections of the 9 point circle of BIC with EF
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        // import geometry;
+
+        import olympiad;
+
+        pair A, B, C, D, E, M, F, L, M, I, O1, D1, D2, P, S, T, Z;
+
+        unitsize (1.5cm);
+
+        A = (0, 4);
+        B = (-1, 0);
+        C = (6, 0);
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        E = foot (I, A, C);
+        F = foot (I, A, B);
+
+        O1 = circumcenter (A, E, F);
+        M = (B + C) / 2;
+
+        D1 = rotate (180, I)*D;
+        D2 = extension (A, D1, B, C);
+
+        P = (D.x, A.y);
+        S = extension (E, rotate(90, E)*O1, F, rotate(90, F)*O1);
+        T = extension (E, F, B, C);
+
+        Z = extension (A, M, E, F);
+
+
+        draw (A--B--C--A);
+
+        draw (incircle(A, B, C), gray (0.65));
+        draw (circumcircle(A, E, F), gray (0.65));
+
+
+        draw (E--T--B, black);
+        draw (A--M^^A--D2);
+        draw (A--P--D);
+
+        dot ("$A$", A, dir (90));
+        dot ("$B$", B, dir (270));
+        dot ("$C$", C, dir (270));
+
+        dot ("$D$", D, dir (270));
+        dot ("$E$", E, dir (E - B));
+        dot ("$F$", F, dir (F - C));
+        dot ("$D_1$", D2, dir (270));
+        dot ("$D'$", D1, dir (45));
+
+
+        dot ("$I$", I, dir (45));
+        // dot ("$O_1$", O1, dir (45));
+
+        dot ("$M$", M, dir (270));
+        dot ("$P$", P, dir (P - B));
+        // dot ("$S$", S, dir (270));
+        dot ("$T$", T, dir (270));
+
+        dot ("$Z$", Z, dir (Z - I));
+
+    \end{asy}
+\end{center}
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        // import geometry;
+
+        import olympiad;
+
+        pair A, B, C, D, E, M, F, L, M, I, O1, D1, D2, P, S, T, Z;
+
+        unitsize (1.5cm);
+
+        A = (0, 4);
+        B = (-1, 0);
+        C = (6, 0);
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        E = foot (I, A, C);
+        F = foot (I, A, B);
+
+        O1 = circumcenter (A, E, F);
+        M = (B + C) / 2;
+
+        D1 = rotate (180, I)*D;
+        D2 = extension (A, D1, B, C);
+
+        P = (D.x, A.y);
+        S = extension (E, rotate(90, E)*O1, F, rotate(90, F)*O1);
+        T = extension (E, F, B, C);
+
+        Z = extension (A, M, E, F);
+
+
+        draw (A--B--C--A);
+
+        draw (incircle(A, B, C), gray (0.65));
+        draw (circumcircle(A, E, F), gray (0.65));
+
+
+        draw (E--T--B, black);
+        draw (A--M^^A--D2);
+        draw (A--P--D);
+
+        dot ("$A$", A, dir (90));
+        dot ("$B$", B, dir (270));
+        dot ("$C$", C, dir (270));
+
+        dot ("$D$", D, dir (270));
+        dot ("$E$", E, dir (E - B));
+        dot ("$F$", F, dir (F - C));
+        dot ("$D_1$", D2, dir (270));
+        dot ("$D'$", D1, dir (45));
+
+
+        dot ("$I$", I, dir (45));
+        // dot ("$O_1$", O1, dir (45));
+
+        dot ("$M$", M, dir (270));
+        dot ("$P$", P, dir (P - B));
+        // dot ("$S$", S, dir (270));
+        dot ("$T$", T, dir (270));
+
+        dot ("$Z$", Z, dir (Z - I));
+
+    \end{asy}
+\end{center}
+
+% \begin{center}
+%     \begin{asy}
+%         import cse5;
+%         // import geometry;
+
+%         import olympiad;
+
+%         unitsize (3cm);
+%     \end{asy}
+% \end{center}
+
+% diag 2: AP and BC intersect at P_infty
+% X = EF cap IC
+% Y = BI cap EF
+% Lower D' in second diagram is D_1
+\begin{center}
+    \begin{asy}
+        import cse5;
+        // import geometry;
+
+        import olympiad;
+
+        pair A, B, C, D, E, M, F, L, M, I, O1, D1, D2, P, S, T, Z;
+
+        unitsize (1.5cm);
+
+        A = (0, 4);
+        B = (-1, 0);
+        C = (6, 0);
+
+        I = incenter (A, B, C);
+        D = foot (I, B, C);
+        E = foot (I, A, C);
+        F = foot (I, A, B);
+
+        O1 = circumcenter (A, E, F);
+        M = (B + C) / 2;
+
+        D1 = rotate (180, I)*D;
+        D2 = extension (A, D1, B, C);
+
+        P = (D.x, A.y);
+        S = extension (E, rotate(90, E)*O1, F, rotate(90, F)*O1);
+        T = extension (E, F, B, C);
+
+        Z = extension (A, M, E, F);
+
+
+        // draw (A--B--C--A);
+
+        // draw (incircle(A, B, C), gray (0.65));
+        draw (circumcircle(A, E, F), gray (0.65));
+
+        draw (A--F--S--E--A--S);
+        draw (F--O1--E);
+
+        // draw (E--T--B, black);
+        // draw (A--M^^A--D2);
+        // draw (A--P--D);
+
+        dot ("$A$", A, dir (90));
+        // dot ("$B$", B, dir (270));
+        // dot ("$C$", C, dir (270));
+
+        // dot ("$D$", D, dir (270));
+        dot ("$E$", E, dir (E - B));
+        dot ("$F$", F, dir (F - C));
+        // dot ("$D_1$", D2, dir (270));
+        // dot ("$D'$", D1, dir (45));
+
+
+        dot ("$I$", I, dir (45));
+        dot ("$O_1$", O1, dir (45));
+
+        // dot ("$M$", M, dir (270));
+        // dot ("$P$", P, dir (P - B));
+        dot ("$S$", S, dir (S - A));
+        // dot ("$T$", T, dir (270));
+
+        // dot ("$Z$", Z, dir (Z - I));
+
+    \end{asy}
+\end{center}
+
+\end{document}

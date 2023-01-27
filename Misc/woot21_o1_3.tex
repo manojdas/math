@@ -1,0 +1,509 @@
+\documentclass[11pt,twoside]{scrartcl}
+\usepackage{mdas}
+% \usepackage[sexy, fancy, hints]{evan}
+
+
+\begin{document}
+\title{WOOT - Practice Olympiad 1}
+% If you contribute to the handout, put your name in comment here
+
+\author{Manoj Das}
+\org{Manoj Math Notes}
+\date{Fall, 2021}
+\paragraph{Problem 2}
+Each one of circles $\Gamma_1$ and $\Gamma_2$ lies outside of the other. Let $O_1$ and $O_2$ be the centers of $\Gamma_1$ and $\Gamma_2$,
+respectively. Line $l$ is a common internal tangent of $\Gamma_1$ and $\Gamma_1$, and its contact points with them are $A$ and $B$,
+respectively. Line $m$ is a common external tangent of $\Gamma_1$ and $\Gamma_2$, and its contact points with them are $C$ and
+$D$, respectively. Prove that lines $AC$, $BD$, and $O_1O_2$ are concurrent.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (1.5cm);
+        import olympiad;
+
+        pair [] commomIntTangent (pair O1, real r1, pair O2, real r2) {
+            
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r1+r2, 2);
+            
+            T1 = rotate(degrees(T-O2)-degrees(O1-O2), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+        // Assumes r2 >= r1
+        pair [] commomExtTangent (pair O1, real r1, pair O2, real r2) {
+            if (r2 < r1) abort ("r2 must be larger than r1");
+
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r2-r1, 2);
+            
+            T1 = rotate(180-(degrees(O1-O2)-degrees(T-O2)), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = O2 + (T-O2)*r2/(r2-r1);
+
+            // T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+
+        real r1 = 1, r2 = 2, d = 1;
+        pair O1, O2, X, P, S, T;
+        pair[] A, C;
+
+        O1 = (0,0);
+        O2 = (r1+r2+d, 0);
+
+        A = commomIntTangent (O1, r1, O2, r2);
+        C = commomExtTangent (O1, r1, O2, r2);
+
+        X = extension (A[1], C[1], O1, O2);
+        
+        T = extension (C[1], C[0], O2, O1);
+        P = extension (C[1], C[0], A[1], A[0]);
+        S = extension (A[1], A[0], O2, O1);
+
+        draw (circle (O1, r1));
+        draw (circle (O2, r2));
+
+        draw (C[0]--C[1]);
+        draw (A[0]--A[1]);
+        draw (O1--O2);
+
+        // draw (C[0]--T--O1^^A[1]--P);
+
+        draw (A[0]--C[0]^^C[1]--X, blue);
+
+        dot ("$O_1$", O1, dir(270));
+        dot ("$O_2$", O2, dir(270));
+
+        dot ("$A$", A[0], dir (A[0]-O1));
+        dot ("$B$", A[1], dir (A[1]-O2));
+
+        dot ("$C$", C[0], dir (C[0]-O1));
+        dot ("$D$", C[1], dir (C[1]-O2));
+
+        // dot ("$P$", P, dir (A[1]-A[0]));
+        // dot ("$T$", T, dir(270));
+        // dot ("$S$", S, dir(270));
+
+    \end{asy}
+\end{center}
+
+\subparagraph{Solution 1}
+
+Let $X$ be the intersection point of $O_1O_2$ and $AC$, and $Y$ be the intersection point of $O_1O_2$ and $BD$. We need to show that $X$ and $Y$ are the same point. If we can show that $\frac{O_1X}{O_2X} = \frac{O_1Y}{O_2Y}$ we are done.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (3 cm);
+        import olympiad;
+
+        pair [] commomIntTangent (pair O1, real r1, pair O2, real r2) {
+            
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r1+r2, 2);
+            
+            T1 = rotate(degrees(T-O2)-degrees(O1-O2), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+        // Assumes r2 >= r1
+        pair [] commomExtTangent (pair O1, real r1, pair O2, real r2) {
+            if (r2 < r1) abort ("r2 must be larger than r1");
+
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r2-r1, 2);
+            
+            T1 = rotate(180-(degrees(O1-O2)-degrees(T-O2)), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = O2 + (T-O2)*r2/(r2-r1);
+
+            // T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+
+        real r1 = 1, r2 = 1.5, d = 1;
+        pair O1, O2, X, P, S, T, E, F;
+        pair[] A, C;
+
+        O1 = (0,0);
+        O2 = (r1+r2+d, 0);
+
+        A = commomIntTangent (O1, r1, O2, r2);
+        C = commomExtTangent (O1, r1, O2, r2);
+
+        X = extension (A[1], C[1], O1, O2);
+        
+        T = extension (C[1], C[0], O2, O1);
+        P = extension (C[1], C[0], A[1], A[0]);
+        S = extension (A[1], A[0], O2, O1);
+
+        F = extension (A[1], C[1], O2, P);
+
+        draw (circle (O1, r1));
+        draw (circle (O2, r2));
+
+        draw (C[0]--C[1]);
+        draw (A[0]--A[1]);
+        draw (O1--O2);
+
+        // draw (C[0]--T--O1^^A[1]--P);
+
+        draw (A[1]--P);
+        draw (O1--P--O2);
+        draw (O1--C[0]^^O2--C[1]);
+
+        draw (X--C[1], blue);
+
+        draw (rightanglemark (O1, C[0], P, 2));
+        draw (rightanglemark (O2, C[1], P, 2));
+        draw (rightanglemark (O1,C[0], P, 2));
+
+        dot ("$O_1$", O1, dir(270));
+        dot ("$O_2$", O2, dir(270));
+
+        dot ("$A$", A[0], dir (A[0]-O1));
+        dot ("$B$", A[1], dir (O2-A[1]));
+
+        dot ("$C$", C[0], dir (C[0]-O1));
+        dot ("$D$", C[1], dir (C[1]-O2));
+
+        dot ("$P$", P, dir (A[1]-A[0]));
+        // dot ("$T$", T, dir(270));
+        // dot ("$S$", S, dir(270));
+        dot ("$Y$", X, dir(270));
+        dot ("$F$", F, dir(315));
+
+    \end{asy}
+\end{center}
+
+First, note that $\angle{O_1PO_2} = 90^\circ$ because $O_1P$ is the angle bisector of $\angle{CPA}$ and $O_2P$ is the angle bisector of $\angle{BPD}$. Further, $\angle{PFB} = 90^\circ$ because $PB$ and $PD$ are tangents to $\Gamma_2$.
+
+$O_1P \parallel FY$, therefore $\frac{O_1Y}{O_2Y} = \frac{PF}{O_2P}$.
+
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (3 cm);
+        import olympiad;
+
+        pair [] commomIntTangent (pair O1, real r1, pair O2, real r2) {
+            
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r1+r2, 2);
+            
+            T1 = rotate(degrees(T-O2)-degrees(O1-O2), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+        // Assumes r2 >= r1
+        pair [] commomExtTangent (pair O1, real r1, pair O2, real r2) {
+            if (r2 < r1) abort ("r2 must be larger than r1");
+
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r2-r1, 2);
+            
+            T1 = rotate(180-(degrees(O1-O2)-degrees(T-O2)), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = O2 + (T-O2)*r2/(r2-r1);
+
+            // T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+
+        real r1 = 1, r2 = 1.5, d = 1;
+        pair O1, O2, X, P, S, T, E, F;
+        pair[] A, C;
+
+        O1 = (0,0);
+        O2 = (r1+r2+d, 0);
+
+        A = commomIntTangent (O1, r1, O2, r2);
+        C = commomExtTangent (O1, r1, O2, r2);
+
+        X = extension (A[1], C[1], O1, O2);
+        
+        T = extension (C[1], C[0], O2, O1);
+        P = extension (C[1], C[0], A[1], A[0]);
+        S = extension (A[1], A[0], O2, O1);
+
+        F = extension (A[1], C[1], O2, P);
+        E = extension (A[0], C[0], O1, P);
+
+        draw (circle (O1, r1));
+        draw (circle (O2, r2));
+
+        draw (C[0]--C[1]);
+        draw (A[0]--A[1]);
+        draw (O1--O2);
+
+        // draw (C[0]--T--O1^^A[1]--P);
+
+        draw (A[1]--P);
+        draw (O1--P--O2);
+        draw (O1--C[0]^^O2--C[1]);
+
+        draw (A[0]--C[0], blue);
+
+        draw (rightanglemark (O1, C[0], P, 2));
+        draw (rightanglemark (O2, C[1], P, 2));
+        draw (rightanglemark (O1,C[0], P, 2));
+
+        dot ("$O_1$", O1, dir(270));
+        dot ("$O_2$", O2, dir(270));
+
+        dot ("$A$", A[0], dir (A[0]-O1));
+        dot ("$B$", A[1], dir (O2-A[1]));
+
+        dot ("$C$", C[0], dir (C[0]-O1));
+        dot ("$D$", C[1], dir (C[1]-O2));
+
+        dot ("$P$", P, dir (A[1]-A[0]));
+        // dot ("$T$", T, dir(270));
+        // dot ("$S$", S, dir(270));
+        dot ("$X$", X, dir(270));
+        dot ("$E$", E, dir(45));
+
+    \end{asy}
+\end{center}
+$PC$ and $PA$ are tangents to $\Gamma_1$, therefore, $\angle{CEO_1} = 90^\circ$. Therefore, $\frac{O_1X}{O_2X} = \frac{O_1E}{PE}$.
+
+So now if we could show $\frac{PF}{O_2P} = \frac{O_1E}{PE}$, we would be done.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (3 cm);
+        import olympiad;
+
+        pair [] commomIntTangent (pair O1, real r1, pair O2, real r2) {
+            
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r1+r2, 2);
+            
+            T1 = rotate(degrees(T-O2)-degrees(O1-O2), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+        // Assumes r2 >= r1
+        pair [] commomExtTangent (pair O1, real r1, pair O2, real r2) {
+            if (r2 < r1) abort ("r2 must be larger than r1");
+
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r2-r1, 2);
+            
+            T1 = rotate(180-(degrees(O1-O2)-degrees(T-O2)), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = O2 + (T-O2)*r2/(r2-r1);
+
+            // T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+
+        real r1 = 1, r2 = 1.5, d = 1;
+        pair O1, O2, X, P, S, T, E, F;
+        pair[] A, C;
+
+        O1 = (0,0);
+        O2 = (r1+r2+d, 0);
+
+        A = commomIntTangent (O1, r1, O2, r2);
+        C = commomExtTangent (O1, r1, O2, r2);
+
+        X = extension (A[1], C[1], O1, O2);
+        
+        T = extension (C[1], C[0], O2, O1);
+        P = extension (C[1], C[0], A[1], A[0]);
+        S = extension (A[1], A[0], O2, O1);
+
+        F = extension (A[1], C[1], O2, P);
+        E = extension (A[0], C[0], O1, P);
+
+        draw (circle (O1, r1));
+        draw (circle (O2, r2));
+
+        draw (C[0]--C[1]);
+        draw (A[0]--A[1]);
+        draw (O1--O2);
+
+        // draw (C[0]--T--O1^^A[1]--P);
+
+        draw (A[1]--P);
+        draw (O1--P--O2);
+        draw (O1--C[0]^^O2--C[1]);
+
+        draw (A[0]--C[0]^^A[1]--C[1], blue);
+
+        draw (rightanglemark (O1, C[0], P, 2));
+        draw (rightanglemark (O2, C[1], P, 2));
+        draw (rightanglemark (O1,C[0], P, 2));
+
+        dot ("$O_1$", O1, dir(270));
+        dot ("$O_2$", O2, dir(270));
+
+        dot ("$A$", A[0], dir (A[0]-O1));
+        dot ("$B$", A[1], dir (O2-A[1]));
+
+        dot ("$C$", C[0], dir (C[0]-O1));
+        dot ("$D$", C[1], dir (C[1]-O2));
+
+        dot ("$P$", P, dir (A[1]-A[0]));
+        // dot ("$T$", T, dir(270));
+        // dot ("$S$", S, dir(270));
+        // dot ("$X$", X, dir(270));
+        dot ("$E$", E, dir(45));
+        dot ("$F$", F, dir(270+45));
+
+    \end{asy}
+\end{center}
+
+$\angle{CPO_1} + \angle{DPO_2} = 90^\circ$, 
+therefore, $\angle{CPO_1} = \angle{DO_2P}$ and $\triangle CPO_1 \sim \triangle DO_2P$.
+
+Now, $CE$ and $DF$ are altitudes to the 2 similar triangles. Therefore,
+
+\[\frac{O_1E}{PE} = \frac{PF}{O_2F}.\]
+
+
+\subparagraph{Solution 2}
+Similar to solution 1, let $X$ be the intersection point of $O_1O_2$ and $AC$, and $Y$ be the intersection point of $O_1O_2$ and $BD$. We need to show that $X$ and $Y$ are the same point. 
+
+Let $S := AB \cap O_1O_2$ and $T := CD \cap O_1O_2$. We can show that $X = Y$ by showing $SX = SY$ (and that $X$ and $Y$ are both on the same side of $S$).
+
+In this solution, we use Menelaus theorem in the case when the radius of the circles are not the same. 
+Apply Menelaus' theorem on $\triangle{PST}$ and line $AXC$ and on $\triangle{PST}$ and line $DBY$ to get the desired ratios.
+
+Note that we need to prove the case where the two radius are equal separately as the point $T$ does not exist in this case.
+
+\begin{center}
+    \begin{asy}
+        import cse5;
+        unitsize (1.5cm);
+        import olympiad;
+
+        pair [] commomIntTangent (pair O1, real r1, pair O2, real r2) {
+            
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r1+r2, 2);
+            
+            T1 = rotate(degrees(T-O2)-degrees(O1-O2), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+        // Assumes r2 >= r1
+        pair [] commomExtTangent (pair O1, real r1, pair O2, real r2) {
+            if (r2 < r1) abort ("r2 must be larger than r1");
+
+            pair T, T1, T2;
+
+            T = tangent (O1, O2, r2-r1, 2);
+            
+            T1 = rotate(180-(degrees(O1-O2)-degrees(T-O2)), O1)*O2;
+            T1 = intersectionpoint (circle (O1, r1), O1--T1);
+
+            T2 = O2 + (T-O2)*r2/(r2-r1);
+
+            // T2 = intersectionpoint (circle (O2, r2), O2--T);
+            
+            pair [] ret = {T1, T2};
+            return ret;
+        }
+
+
+        real r1 = 1, r2 = 2, d = 1;
+        pair O1, O2, X, P, S, T;
+        pair[] A, C;
+
+        O1 = (0,0);
+        O2 = (r1+r2+d, 0);
+
+        A = commomIntTangent (O1, r1, O2, r2);
+        C = commomExtTangent (O1, r1, O2, r2);
+
+        X = extension (A[1], C[1], O1, O2);
+        
+        T = extension (C[1], C[0], O2, O1);
+        P = extension (C[1], C[0], A[1], A[0]);
+        S = extension (A[1], A[0], O2, O1);
+
+        draw (circle (O1, r1));
+        draw (circle (O2, r2));
+
+        draw (C[0]--C[1]);
+        draw (A[0]--A[1]);
+        draw (O1--O2);
+
+        draw (C[0]--T--O1^^A[1]--P);
+
+        draw (A[0]--C[0]^^C[1]--X, blue);
+
+        dot ("$O_1$", O1, dir(270));
+        dot ("$O_2$", O2, dir(270));
+
+        dot ("$A$", A[0], dir (A[0]-O1));
+        dot ("$B$", A[1], dir (A[1]-O2));
+
+        dot ("$C$", C[0], dir (C[0]-O1));
+        dot ("$D$", C[1], dir (C[1]-O2));
+
+        dot ("$P$", P, dir (A[1]-A[0]));
+        dot ("$T$", T, dir(270));
+        dot ("$S$", S, dir(270));
+        dot ("$X,Y$", X, dir(315));
+
+    \end{asy}
+\end{center}
+
+\end{document}
